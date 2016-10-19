@@ -14,14 +14,14 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Archivos de código fuente\Utils">
-      <UniqueIdentifier>{c13282e9-0e68-48c2-96a2-88faac420f96}</UniqueIdentifier>
+      <UniqueIdentifier>{66ef4d27-042c-417e-a42e-db265ae8aad4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Utils\test.cpp">
+    <ClCompile Include="test.cpp">
       <Filter>Archivos de código fuente\Utils</Filter>
     </ClCompile>
   </ItemGroup>
