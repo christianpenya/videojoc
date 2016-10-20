@@ -8,8 +8,6 @@
 //-----------------------------------------------------------------------------
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
-	//Christian estuvo aquí
-	// canvi irrellevant
   switch( msg )
   {
   case WM_DESTROY:

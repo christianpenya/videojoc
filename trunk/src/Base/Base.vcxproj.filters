@@ -16,13 +16,110 @@
     <Filter Include="Archivos de código fuente\Utils">
       <UniqueIdentifier>{c13282e9-0e68-48c2-96a2-88faac420f96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Utils">
+      <UniqueIdentifier>{7014a3c9-9f6f-4bc5-9aed-8d2944b90ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Math">
+      <UniqueIdentifier>{d69c4a85-b010-470e-b360-272aab8129bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Math">
+      <UniqueIdentifier>{3afca205-d119-447d-9a62-9434dbf286c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos inline">
+      <UniqueIdentifier>{f60d45cf-084e-4c9a-89c8-d869dccee643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos inline\Math">
+      <UniqueIdentifier>{50c3df59-14a3-4b30-ad89-3f8aca384bd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Utils\test.cpp">
-      <Filter>Archivos de código fuente\Utils</Filter>
+    <ClCompile Include="Math\MathConstants.cpp">
+      <Filter>Archivos de código fuente\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>Archivos de código fuente\Math</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Math\Color.h">
+      <Filter>Archivos de encabezado\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\MathTypes.h">
+      <Filter>Archivos de encabezado\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\MathUtils.h">
+      <Filter>Archivos de encabezado\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix33.h">
+      <Filter>Archivos de encabezado\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix34.h">
+      <Filter>Archivos de encabezado\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix44.h">
+      <Filter>Archivos de encabezado\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Quaternion.h">
+      <Filter>Archivos de encabezado\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Transform.h">
+      <Filter>Archivos de encabezado\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.h">
+      <Filter>Archivos de encabezado\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Archivos de encabezado\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector4.h">
+      <Filter>Archivos de encabezado\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\CheckedDelete.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Defines.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\EnumToString.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\StringUtils.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Types.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="TemplatedMap.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Math\Color.inl">
+      <Filter>Archivos inline\Math</Filter>
+    </None>
+    <None Include="Math\MathUtils.inl">
+      <Filter>Archivos inline\Math</Filter>
+    </None>
+    <None Include="Math\Matrix33.inl">
+      <Filter>Archivos inline\Math</Filter>
+    </None>
+    <None Include="Math\Matrix34.inl">
+      <Filter>Archivos inline\Math</Filter>
+    </None>
+    <None Include="Math\Matrix44.inl">
+      <Filter>Archivos inline\Math</Filter>
+    </None>
+    <None Include="Math\Vector2.inl">
+      <Filter>Archivos inline\Math</Filter>
+    </None>
+    <None Include="Math\Vector3.inl">
+      <Filter>Archivos inline\Math</Filter>
+    </None>
+    <None Include="Math\Vector4.inl">
+      <Filter>Archivos inline\Math</Filter>
+    </None>
   </ItemGroup>
 </Project>
