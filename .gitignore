@@ -5,3 +5,4 @@ trunk/bin/
 trunk/src/Engine/ReadMe.txt
 *.suo
 *.pdb
+*.user

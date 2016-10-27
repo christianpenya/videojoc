@@ -1,3 +1,4 @@
+#include "Utils/MemLeaks/MemLeaks.h"
 #include <Windows.h>
 
 #define APPLICATION_NAME	"VIDEOGAME"
@@ -38,6 +39,13 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 //-----------------------------------------------------------------------
 int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCmdLine, int _nCmdShow)
 {
+#ifdef _DEBUG
+	MemLeaks::MemoryBegin();
+#endif
+
+	
+
+
   // Register the window class
   WNDCLASSEX wc = {	sizeof(WNDCLASSEX), CS_CLASSDC, MsgProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, APPLICATION_NAME, NULL };
   
@@ -76,6 +84,11 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
   UnregisterClass( APPLICATION_NAME, wc.hInstance );
 
   // Añadir una llamada a la alicación para finalizar/liberar memoria de todos sus datos
+
+#ifdef _DEBUG
+  MemLeaks::MemoryEnd();
+#endif
+
 
   return 0;
 }
