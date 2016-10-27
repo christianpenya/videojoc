@@ -1,3 +1,5 @@
+#ifndef _BASE_XML_EBM_27102016204614_H
+#define _BASE_XML_EBM_27102016204614_H
 #pragma once
 #ifndef __H_XML__
 #define __H_XML__
@@ -13,3 +15,5 @@ namespace base
 }
 
 #endif
+
+#endif	// _BASE_XML_EBM_27102016204614_H

@@ -90,6 +90,9 @@
     <ClCompile Include="Utils\MemLeaks\MemLeaks.cpp">
       <Filter>Archivos de código fuente\Utils\MemLeaks</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\Name.cpp">
+      <Filter>Archivos de código fuente\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Color.h">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Utils\MemLeaks\MemLeaks.h">
       <Filter>Archivos de encabezado\Utils\MemLeaks</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Name.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

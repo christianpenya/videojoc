@@ -142,6 +142,7 @@ namespace base
                     CASE_ERROR_XML(XML_NO_TEXT_NODE)
                 }
                 //LOG_ERROR_APPLICATION("Error '%s' when loading xml", lMsg.c_str());
+				printf("Error '%s' when loading xml", lMsg.c_str());
             }
 #undef CASE_ERROR_XML
             return lOk;

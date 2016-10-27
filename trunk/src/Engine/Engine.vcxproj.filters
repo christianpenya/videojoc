@@ -13,16 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Archivos de código fuente\Utils">
-      <UniqueIdentifier>{66ef4d27-042c-417e-a42e-db265ae8aad4}</UniqueIdentifier>
+    <Filter Include="Archivos de código fuente\Materials">
+      <UniqueIdentifier>{d15dc66a-1fa3-40d6-90f1-a207ddb63108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Materials">
+      <UniqueIdentifier>{6d66a433-be25-4de8-b335-172e1f77672c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="test.cpp">
-      <Filter>Archivos de código fuente\Utils</Filter>
+    <ClInclude Include="Materials\MaterialManager.h">
+      <Filter>Archivos de encabezado\Materials</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Materials\MaterialManager.cpp">
+      <Filter>Archivos de código fuente\Materials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

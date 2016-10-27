@@ -94,6 +94,7 @@
     <ClCompile Include="Math\MathConstants.cpp" />
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Utils\MemLeaks\MemLeaks.cpp" />
+    <ClCompile Include="Utils\Name.cpp" />
     <ClCompile Include="Utils\PublisherSubscriber\Broker.cpp" />
     <ClCompile Include="Utils\PublisherSubscriber\Subscriber.cpp" />
     <ClCompile Include="Utils\SubjectObserver\Subject.cpp" />
@@ -116,6 +117,7 @@
     <ClInclude Include="Utils\Defines.h" />
     <ClInclude Include="Utils\EnumToString.h" />
     <ClInclude Include="Utils\MemLeaks\MemLeaks.h" />
+    <ClInclude Include="Utils\Name.h" />
     <ClInclude Include="Utils\PublisherSubscriber\Broker.h" />
     <ClInclude Include="Utils\PublisherSubscriber\Event.h" />
     <ClInclude Include="Utils\PublisherSubscriber\Subscriber.h" />
