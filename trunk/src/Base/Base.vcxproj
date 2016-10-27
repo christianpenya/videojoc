@@ -55,7 +55,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/;$(SolutionDir)/../include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -75,6 +75,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)/;$(SolutionDir)/../include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -92,9 +93,11 @@
   <ItemGroup>
     <ClCompile Include="Math\MathConstants.cpp" />
     <ClCompile Include="Math\Transform.cpp" />
+    <ClCompile Include="Utils\PublisherSubscriber\Broker.cpp" />
+    <ClCompile Include="Utils\PublisherSubscriber\Subscriber.cpp" />
+    <ClCompile Include="Utils\SubjectObserver\Subject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TemplatedMap.h" />
     <ClInclude Include="Math\Color.h" />
     <ClInclude Include="Math\MathTypes.h" />
     <ClInclude Include="Math\MathUtils.h" />
@@ -109,7 +112,15 @@
     <ClInclude Include="Utils\CheckedDelete.h" />
     <ClInclude Include="Utils\Defines.h" />
     <ClInclude Include="Utils\EnumToString.h" />
+    <ClInclude Include="Utils\PublisherSubscriber\Broker.h" />
+    <ClInclude Include="Utils\PublisherSubscriber\Event.h" />
+    <ClInclude Include="Utils\PublisherSubscriber\Subscriber.h" />
+    <ClInclude Include="Utils\Singleton.h" />
     <ClInclude Include="Utils\StringUtils.h" />
+    <ClInclude Include="Utils\SubjectObserver\Observer.h" />
+    <ClInclude Include="Utils\SubjectObserver\Subject.h" />
+    <ClInclude Include="Utils\TemplatedMap.h" />
+    <ClInclude Include="Utils\TemplatedMapVector.h" />
     <ClInclude Include="Utils\Types.h" />
   </ItemGroup>
   <ItemGroup>

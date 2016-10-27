@@ -1,4 +1,4 @@
-#include "MathUtils.h"
+/*#include "MathUtils.h"
 #include "Transform.h"
 #include "XML/XML.h"
 
@@ -118,4 +118,4 @@ void CTransform::SetForward(const Vect3f& aForward)
     SetYaw(mathUtils::ATan2(aForward.z, aForward.x));
     SetPitch(mathUtils::ATan2(aForward.y, mathUtils::Sqrt(aForward.z * aForward.z + aForward.x * aForward.x)));
     SetRoll(0.0f);
-}
+}*/

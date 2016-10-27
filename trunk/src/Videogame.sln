@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Videogame", "Videogame\Videogame.vcxproj", "{816A670E-D1FD-4025-A148-2C422E6230C1}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -12,6 +12,12 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Base", "Base\Base.vcxproj", "{8D6D5138-EE26-4934-99D7-166567CF83E7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{26F83A88-A038-4A21-9857-1E9360341EF5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "UnitTest\UnitTest.vcxproj", "{5E1D7992-F55F-4662-97D2-0CC53A1D62AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8D6D5138-EE26-4934-99D7-166567CF83E7} = {8D6D5138-EE26-4934-99D7-166567CF83E7}
+		{26F83A88-A038-4A21-9857-1E9360341EF5} = {26F83A88-A038-4A21-9857-1E9360341EF5}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +37,10 @@ Global
 		{26F83A88-A038-4A21-9857-1E9360341EF5}.Debug|Win32.Build.0 = Debug|Win32
 		{26F83A88-A038-4A21-9857-1E9360341EF5}.Release|Win32.ActiveCfg = Release|Win32
 		{26F83A88-A038-4A21-9857-1E9360341EF5}.Release|Win32.Build.0 = Release|Win32
+		{5E1D7992-F55F-4662-97D2-0CC53A1D62AD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5E1D7992-F55F-4662-97D2-0CC53A1D62AD}.Debug|Win32.Build.0 = Debug|Win32
+		{5E1D7992-F55F-4662-97D2-0CC53A1D62AD}.Release|Win32.ActiveCfg = Release|Win32
+		{5E1D7992-F55F-4662-97D2-0CC53A1D62AD}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

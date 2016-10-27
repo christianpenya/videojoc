@@ -31,6 +31,18 @@
     <Filter Include="Archivos inline\Math">
       <UniqueIdentifier>{50c3df59-14a3-4b30-ad89-3f8aca384bd6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Utils\PublisherSubscriber">
+      <UniqueIdentifier>{cee6c1eb-b018-40f4-ad3c-8c7300b8a4a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Utils\SubjectObserver">
+      <UniqueIdentifier>{10e2a406-5bec-433c-931d-cea01065979b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Utils\PublisherSubscriber">
+      <UniqueIdentifier>{9d82b776-3990-4134-b0ce-cea9aedbb3a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Utils\SubjectObserver">
+      <UniqueIdentifier>{bd2ae189-4c9e-4485-9128-104c7bc1acbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -41,6 +53,15 @@
     </ClCompile>
     <ClCompile Include="Math\Transform.cpp">
       <Filter>Archivos de código fuente\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\PublisherSubscriber\Broker.cpp">
+      <Filter>Archivos de código fuente\Utils\PublisherSubscriber</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\PublisherSubscriber\Subscriber.cpp">
+      <Filter>Archivos de código fuente\Utils\PublisherSubscriber</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\SubjectObserver\Subject.cpp">
+      <Filter>Archivos de código fuente\Utils\SubjectObserver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,7 +113,28 @@
     <ClInclude Include="Utils\Types.h">
       <Filter>Archivos de encabezado\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="TemplatedMap.h">
+    <ClInclude Include="Utils\TemplatedMap.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\TemplatedMapVector.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\SubjectObserver\Observer.h">
+      <Filter>Archivos de encabezado\Utils\SubjectObserver</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\SubjectObserver\Subject.h">
+      <Filter>Archivos de encabezado\Utils\SubjectObserver</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\PublisherSubscriber\Broker.h">
+      <Filter>Archivos de encabezado\Utils\PublisherSubscriber</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\PublisherSubscriber\Event.h">
+      <Filter>Archivos de encabezado\Utils\PublisherSubscriber</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\PublisherSubscriber\Subscriber.h">
+      <Filter>Archivos de encabezado\Utils\PublisherSubscriber</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Singleton.h">
       <Filter>Archivos de encabezado\Utils</Filter>
     </ClInclude>
   </ItemGroup>
