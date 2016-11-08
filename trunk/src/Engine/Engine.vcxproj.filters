@@ -19,6 +19,15 @@
     <Filter Include="Archivos de encabezado\Materials">
       <UniqueIdentifier>{6d66a433-be25-4de8-b335-172e1f77672c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de recursos\Materials">
+      <UniqueIdentifier>{022f74db-6f7b-4b21-a3d0-84ddf7d28ce8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Render">
+      <UniqueIdentifier>{ba341513-ab9a-4e8b-8ac1-839836e9ae8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Render">
+      <UniqueIdentifier>{1973e7a2-7cd5-442f-98b3-8743c3bca0f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -27,10 +36,24 @@
     <ClInclude Include="Materials\MaterialManager.h">
       <Filter>Archivos de encabezado\Materials</Filter>
     </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Archivos de encabezado\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\RenderManager.h">
+      <Filter>Archivos de encabezado\Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Materials\MaterialManager.cpp">
       <Filter>Archivos de código fuente\Materials</Filter>
     </ClCompile>
+    <ClCompile Include="Render\RenderManager.cpp">
+      <Filter>Archivos de código fuente\Render</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Materials\materials.xml">
+      <Filter>Archivos de recursos\Materials</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

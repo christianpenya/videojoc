@@ -1,30 +1,26 @@
 #include "Base/XML/tinyxml2/tinyxml2.h"
 #include <list>
-#include "Utils\TemplatedMap.h"
+#include "Base\Utils\TemplatedMap.h"
 #include "Base\Utils\Name.h"
+#include "Material.h"
 
-namespace engine{
-
-	namespace materials{
-		class MaterialManager{ //: public TemplatedMap<Material> {
+namespace engine {
+	namespace materials {
+		
+		class CMaterialManager : public base::utils::CTemplatedMap<CMaterial> {
+		
 		public:
-			MaterialManager(const std::string path);
-			~MaterialManager();
+			CMaterialManager(void);
+			CMaterialManager(const std::string path);
+			~CMaterialManager() {
+			};
 			void LoadXML();
 			void ReloadXML();
 
 		private:
-			std::list<Material> materialList;
+			std::list<CMaterial> materialList;
 			std::string m_path;
 
 		};		
-
-		class Material : public CName{
-		public:
-			Material();
-			~Material();
-		};
-
 	}
-
 }

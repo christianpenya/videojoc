@@ -8,6 +8,7 @@
 #ifndef COLOR_H_
 #define COLOR_H_
 
+#include <cstdint>
 #include "Vector4.h"
 
 class CColor : public Vect4f

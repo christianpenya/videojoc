@@ -55,7 +55,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;$(SolutionDir)/Engine;$(DXSDK_DIR)Include/;$(WindowsSDK_IncludePath);$(DXSDK_DIR)lib/x86/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -72,7 +72,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;;$(DXSDK_DIR)Include;$(WindowsSDK_IncludePath);$(DXSDK_DIR)Include;$(WindowsSDK_IncludePath);$(DXSDK_DIR)lib/x86/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -85,10 +85,16 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Material.h" />
     <ClInclude Include="Materials\MaterialManager.h" />
+    <ClInclude Include="Render\RenderManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Materials\MaterialManager.cpp" />
+    <ClCompile Include="Render\RenderManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Materials\materials.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
