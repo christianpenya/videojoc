@@ -85,12 +85,19 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Material.h" />
-    <ClInclude Include="Materials\MaterialManager.h" />
+    <ClInclude Include="CameraController.h" />
+    <ClInclude Include="imgui_impl_dx11.h" />
+    <ClInclude Include="Input\ActionManager.h" />
+    <ClInclude Include="Input\InputDefinitions.h" />
+    <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="Render\RenderManager.h" />
+    <ClInclude Include="SphericalCameraController.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Materials\MaterialManager.cpp" />
+    <ClCompile Include="SphericalCameraController.cpp" />
+    <ClCompile Include="imgui_impl_dx11.cpp" />
+    <ClCompile Include="Input\ActionManager.cpp" />
+    <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Render\RenderManager.cpp" />
   </ItemGroup>
   <ItemGroup>

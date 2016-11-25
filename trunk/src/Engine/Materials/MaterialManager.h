@@ -1,3 +1,9 @@
+#pragma once
+
+#ifndef _ENGINE_MATERIALMANAGER_CPB_1611241620428_H
+#define _ENGINE_MATERIALMANAGER_CPB_1611241620428_H
+
+
 #include "Base/XML/tinyxml2/tinyxml2.h"
 #include <list>
 #include "Base\Utils\TemplatedMap.h"
@@ -12,8 +18,7 @@ namespace engine {
 		public:
 			CMaterialManager(void);
 			CMaterialManager(const std::string path);
-			~CMaterialManager() {
-			};
+			~CMaterialManager() {};
 			void LoadXML();
 			void ReloadXML();
 
@@ -24,3 +29,5 @@ namespace engine {
 		};		
 	}
 }
+
+#endif //_ENGINE_MATERIALMANAGER_CPB_1611241620428_H

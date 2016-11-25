@@ -7,7 +7,10 @@ void engine::render::CRenderManager::Init(HWND hWnd, int Width, int Height) {
 	Set_Viewport(Width, Height);
 	SetRendertarget();
 
+	SetViewProjectionMatrix(m_ViewMatrix, m_ProjectionMatrix);
+
 	CreateDebugShader();
+	CreateDebugObjects();
 
 	m_BackgroundColor = { 1, 0, 1, 1 };
 }
@@ -202,10 +205,6 @@ void engine::render::CRenderManager::SetSolidRenderState() {
 	m_DeviceContext->RSSetState(m_SolidRenderState);
 }
 
-void engine::render::CRenderManager::DoRender() {
-	Draw_Triangle();
-}
-
 void engine::render::CRenderManager::EndRender() {
 	m_SwapChain->Present(1, 0);
 }
@@ -267,8 +266,47 @@ void engine::render::CRenderManager::CreateDebugObjects()
 	const float l_SizeCube = 1.0f;
 	static CDebugVertex l_CubeVtxs[] =
 	{
+		// vertex 1
 		{ Vect4f(-l_SizeCube / 2.0f, -l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
-		// TODO
+		{ Vect4f(-l_SizeCube / 2.0f, -l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+
+		{ Vect4f(-l_SizeCube / 2.0f, -l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vect4f(l_SizeCube / 2.0f, -l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+
+		{ Vect4f(-l_SizeCube / 2.0f, -l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vect4f(-l_SizeCube / 2.0f, l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+
+		// vertex 2
+		{ Vect4f(l_SizeCube / 2.0f, l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vect4f(-l_SizeCube / 2.0f, l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+
+		{ Vect4f(l_SizeCube / 2.0f, l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vect4f(l_SizeCube / 2.0f, l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+
+		{ Vect4f(l_SizeCube / 2.0f, l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vect4f(l_SizeCube / 2.0f, -l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+
+		// vertex 3
+		{ Vect4f(l_SizeCube / 2.0f, -l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vect4f(l_SizeCube / 2.0f, l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		
+
+		{ Vect4f(l_SizeCube / 2.0f, -l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vect4f(-l_SizeCube / 2.0f, -l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+
+		{ Vect4f(l_SizeCube / 2.0f, -l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vect4f(l_SizeCube / 2.0f, -l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+
+		// vertex 4
+		{ Vect4f(-l_SizeCube / 2.0f, l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vect4f(-l_SizeCube / 2.0f, -l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+
+		{ Vect4f(-l_SizeCube / 2.0f, l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vect4f(-l_SizeCube / 2.0f, l_SizeCube / 2.0f, -l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+
+		{ Vect4f(-l_SizeCube / 2.0f, l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ Vect4f(l_SizeCube / 2.0f, l_SizeCube / 2.0f, l_SizeCube / 2.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f) },
+
 	};
 
 	m_CubeRenderableVertexs = l_CubeVtxs;
@@ -278,19 +316,27 @@ void engine::render::CRenderManager::CreateDebugObjects()
 	float l_Size = 10.0f;
 	const int l_Grid = 10;
 	static CDebugVertex l_GridVtxs[(l_Grid + 1) * 2 * 2];
-	for (int b = 0; b <= l_Grid; ++b)
-	{
-		l_GridVtxs[b * 2].Position = Vect4f(); // TODO
+	float axis = 0;
+
+	//LINEAS EN Z
+	for (int b = 0; b <= l_Grid; ++b)	{
+
+		axis = (l_Size / 2.0f) * (((2.0f*b) / l_Size) - 1.0f);
+
+		l_GridVtxs[b * 2].Position = Vect4f(axis , 0, -l_Size / 2.0f, 1.0f); // TODO
 		l_GridVtxs[b * 2].Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
-		l_GridVtxs[(b * 2) + 1].Position = Vect4f(); // TODO
+		l_GridVtxs[(b * 2) + 1].Position = Vect4f(axis, 0, l_Size / 2.0f, 1.0f); // TODO
 		l_GridVtxs[(b * 2) + 1].Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 	}
+
 	//LINEAS EN X
-	for (int b = 0; b <= l_Grid; ++b)
-	{
-		l_GridVtxs[(l_Grid + 1) * 2 + (b * 2)].Position = Vect4f(); // TODO
+	for (int b = 0; b <= l_Grid; ++b)	{
+
+		axis = (l_Size / 2.0f) * (((2.0f*b) / l_Size) - 1.0f);
+
+		l_GridVtxs[(l_Grid + 1) * 2 + (b * 2)].Position = Vect4f(-l_Size / 2.0f, 0, axis, 1.0f); // TODO
 		l_GridVtxs[(l_Grid + 1) * 2 + (b * 2)].Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
-		l_GridVtxs[(l_Grid + 1) * 2 + (b * 2) + 1].Position = Vect4f(); // TODO
+		l_GridVtxs[(l_Grid + 1) * 2 + (b * 2) + 1].Position = Vect4f(l_Size / 2.0f, 0, axis, 1.0f); // TODO
 		l_GridVtxs[(l_Grid + 1) * 2 + (b * 2) + 1].Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 	}
 
@@ -321,4 +367,106 @@ void engine::render::CRenderManager::CreateDebugObjects()
 
 	m_SphereRenderableVertexs = l_SphereVtxs;
 	m_NumVerticesSphere = 4 * l_Aristas*l_Aristas;
+}
+
+void engine::render::CRenderManager::SetModelMatrix(const Mat44f &Model) { 
+	m_ModelMatrix = Model; 
+	m_ModelViewProjectionMatrix = m_ModelMatrix * m_ViewProjectionMatrix; 
+}
+
+void engine::render::CRenderManager::SetViewMatrix(const Mat44f &View) { 
+	m_ViewMatrix = View; 
+	m_ViewProjectionMatrix = m_ViewMatrix * m_ProjectionMatrix; 
+	m_ModelViewProjectionMatrix = m_ModelMatrix * m_ViewProjectionMatrix; 
+}
+
+void engine::render::CRenderManager::SetProjectionMatrix(const Mat44f &Projection) { 
+	m_ProjectionMatrix = Projection; 
+	m_ViewProjectionMatrix = m_ViewMatrix * m_ProjectionMatrix; 
+	m_ModelViewProjectionMatrix = m_ModelMatrix * m_ViewProjectionMatrix; 
+}
+
+void engine::render::CRenderManager::SetViewProjectionMatrix(const Mat44f &View, const Mat44f &Projection) { 
+	m_ViewMatrix = View; 
+	m_ProjectionMatrix = Projection; 
+	m_ViewProjectionMatrix = m_ViewMatrix * m_ProjectionMatrix; 
+	m_ModelViewProjectionMatrix = m_ModelMatrix * m_ViewProjectionMatrix; 
+}
+
+void engine::render::CRenderManager::SetViewMatrix(const Vect3f& vPos, const Vect3f& vTarget, const Vect3f& vUp) { 
+	Mat44f View; View.SetIdentity(); 
+	View.SetFromLookAt(vPos, vTarget, vUp); 
+	SetViewMatrix(View); 
+}
+
+void engine::render::CRenderManager::SetProjectionMatrix(float fovy, float aspect, float zn, float zf) { 
+	Mat44f Projection; Projection.SetIdentity(); 
+	Projection.SetFromPerspective(fovy, aspect, zn, zf); 
+	SetProjectionMatrix(Projection); 
+}
+
+
+void engine::render::CRenderManager::DebugRender(const Mat44f& modelViewProj, const CDebugVertex* modelVertices, int numVertices, CColor colorTint)
+{
+	CDebugVertex *resultBuffer = (CDebugVertex *)alloca(numVertices * sizeof(CDebugVertex));
+
+	for (int i = 0; i < numVertices; ++i)
+	{
+		resultBuffer[i].Position = (modelVertices[i].Position * modelViewProj);
+		resultBuffer[i].Color = modelVertices[i].Color * colorTint;
+	}
+
+	// set vertex data
+	D3D11_MAPPED_SUBRESOURCE resource;
+	HRESULT hr = m_DeviceContext->Map(m_DebugVertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+
+	if (FAILED(hr))
+		return; // TODO log
+
+	assert(numVertices * sizeof(CDebugVertex) < DebugVertexBufferSize * sizeof(CDebugVertex));
+	memcpy(resource.pData, resultBuffer, numVertices * sizeof(CDebugVertex));
+
+	m_DeviceContext->Unmap(m_DebugVertexBuffer, 0);
+
+
+	UINT stride = sizeof(CDebugVertex);
+	UINT offset = 0;
+	m_DeviceContext->IASetVertexBuffers(0, 1, &m_DebugVertexBuffer, &stride, &offset);
+	m_DeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_LINELIST);
+	m_DeviceContext->IASetInputLayout(m_DebugVertexLayout);
+	m_DeviceContext->VSSetShader(m_DebugVertexShader, NULL, 0);
+	m_DeviceContext->PSSetShader(m_DebugPixelShader, NULL, 0);
+
+	m_DeviceContext->Draw(numVertices, 0);
+}
+
+void engine::render::CRenderManager::DrawAxis(float SizeX, float SizeY, float SizeZ, const CColor &Color)
+{
+	Mat44f scale;
+	scale.SetIdentity();
+	scale.SetScale(SizeX, SizeY, SizeZ);
+
+	Mat44f viewProj = scale * m_ModelViewProjectionMatrix;
+
+	DebugRender(viewProj, m_AxisRenderableVertexs, m_NumVerticesAxis, Color);
+}
+
+void engine::render::CRenderManager::DrawCube(float SizeX, float SizeY, float SizeZ, const CColor &Color) {
+	Mat44f scale;
+	scale.SetIdentity();
+	scale.SetScale(SizeZ, SizeY, SizeZ);
+
+	Mat44f viewProj = scale * m_ModelViewProjectionMatrix;
+
+	DebugRender(viewProj, m_CubeRenderableVertexs, m_NumVerticesCube, Color);
+}
+
+void engine::render::CRenderManager::DrawGrid(float SizeX, float SizeY, float SizeZ, const CColor &Color) {
+	Mat44f scale;
+	scale.SetIdentity();
+	scale.SetScale(SizeZ, SizeY, SizeZ);
+
+	Mat44f viewProj = scale * m_ModelViewProjectionMatrix;
+
+	DebugRender(viewProj, m_GridRenderableVertexs, m_NumVerticesGrid, Color);
 }

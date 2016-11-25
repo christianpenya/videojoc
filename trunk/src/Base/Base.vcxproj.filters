@@ -61,6 +61,12 @@
     <Filter Include="Archivos de código fuente\Utils\MemLeaks">
       <UniqueIdentifier>{32951efa-0a64-49b2-a63f-b2a9927e3709}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\DearImGUI">
+      <UniqueIdentifier>{40e46c17-ec1a-4bf8-982c-c8ce20c395a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\DearImGUI">
+      <UniqueIdentifier>{42fa1a95-4eb2-40d2-82cf-da9a73a02db9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -92,6 +98,15 @@
     </ClCompile>
     <ClCompile Include="Utils\Name.cpp">
       <Filter>Archivos de código fuente\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGUI\imgui.cpp">
+      <Filter>Archivos de código fuente\DearImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGUI\imgui_demo.cpp">
+      <Filter>Archivos de código fuente\DearImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGUI\imgui_draw.cpp">
+      <Filter>Archivos de código fuente\DearImGUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +193,24 @@
     </ClInclude>
     <ClInclude Include="Utils\Name.h">
       <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\imconfig.h">
+      <Filter>Archivos de encabezado\DearImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\imgui.h">
+      <Filter>Archivos de encabezado\DearImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\imgui_internal.h">
+      <Filter>Archivos de encabezado\DearImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\stb_rect_pack.h">
+      <Filter>Archivos de encabezado\DearImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\stb_textedit.h">
+      <Filter>Archivos de encabezado\DearImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\stb_truetype.h">
+      <Filter>Archivos de encabezado\DearImGUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef _ENGINE_RENDERMANAGER_CPB_2016110320428_H
 #define _ENGINE_RENDERMANAGER_CPB_2016110320428_H
 
@@ -7,6 +9,7 @@
 #include "d3d11.h"
 #include "dxgi.h"
 #include "Math/Color.h"
+#include "Math/Matrix44.h"
 
 #ifdef _DEBUG
 #include <assert.h>
@@ -49,8 +52,10 @@ namespace engine {
 
 			ID3D11RasterizerState					*m_SolidRenderState;
 
-			//Mat44f m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix;
-			//Mat44f m_ViewProjectionMatrix, m_ModelViewProjectionMatrix;
+			Mat44f m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix;
+			Mat44f m_ViewProjectionMatrix, m_ModelViewProjectionMatrix;
+
+			void DebugRender(const Mat44f& modelViewProj, const CDebugVertex* modelVertices, int numVertices, CColor colorTint);
 
 		public:
 			Vect4f									m_BackgroundColor;
@@ -78,8 +83,32 @@ namespace engine {
 			void EndRender();
 
 			// Drawing
+			void DrawAxis(float SizeX, float SizeY, float SizeZ, const CColor &Color = colWHITE);
+			void DrawGrid(float SizeX, float SizeY, float SizeZ, const CColor &Color = colWHITE);
+			void DrawCube(float SizeX, float SizeY, float SizeZ, const CColor &Color = colWHITE);
+			void DrawSphere(float Radius, const CColor &Color = colWHITE);
+
+			void DrawAxis(Vect3f Size, const CColor &Color = colWHITE) { DrawAxis(Size.x, Size.y, Size.z, Color); }
+			void DrawAxis(float Size = 1.0f, const CColor &Color = colWHITE) { DrawAxis(Size, Size, Size, Color); }
+			void DrawGrid(Vect3f Size, const CColor &Color = colWHITE) { DrawGrid(Size.x, Size.y, Size.z, Color); }
+			void DrawGrid(float Size = 1.0f, const CColor &Color = colWHITE) { DrawGrid(Size, Size, Size, Color); }
+			void DrawCube(Vect3f Size, const CColor &Color = colWHITE) { DrawCube(Size.x, Size.y, Size.z, Color); }
+			void DrawCube(float Size = 1.0f, const CColor &Color = colWHITE) { DrawCube(Size, Size, Size, Color); }
+
 			void Draw_Triangle();
 			void CreateDebugObjects();
+
+			// Matrix Operations
+			void SetModelMatrix(const Mat44f &Model);
+			void SetViewMatrix(const Mat44f &View);
+			void SetProjectionMatrix(const Mat44f &Projection);
+			void SetViewProjectionMatrix(const Mat44f &View, const Mat44f &Projection);
+			void SetViewMatrix(const Vect3f& vPos, const Vect3f& vTarget, const Vect3f& vUp);
+			void SetProjectionMatrix(float fovy, float aspect, float zn, float zf);
+
+			ID3D11Device* GetDevice() { return m_Device;}
+			ID3D11DeviceContext* GetDeviceContext() { return m_DeviceContext;}
+
 		};
 	}
 }
