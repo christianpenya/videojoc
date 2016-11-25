@@ -146,20 +146,85 @@ void engine::input::CInputManager::SetupHighprecisionMouse(HWND hWnd) {
 }
 
 int engine::input::CInputManager::GetMouseAxis(InputDefinitions::MouseAxis axis) const {
-	switch (axis)
-	{
+	
+	switch (axis) {
+
 	case InputDefinitions::MOUSE_X:
 		return m_MouseX;
+	
 	case InputDefinitions::MOUSE_Y:
 		return m_MouseY;
+	
 	case InputDefinitions::DX:
 		return m_MouseMovementX;
+	
 	case InputDefinitions::DY:
 		return m_MouseMovementY;
+	
 	case InputDefinitions::DZ:
 		return m_MouseMovementZ;
+	
 	default:
 		assert(false);
 		return 0;
 	}
 }
+
+bool engine::input::CInputManager::IsMouseButtonPressed(InputDefinitions::MouseButton button) const {
+	switch (button) {
+
+	case InputDefinitions::MouseButton::LEFT:
+		return m_ButtonLeft;
+	
+	case InputDefinitions::MouseButton::RIGHT:
+		return m_ButtonRight;
+	
+	case InputDefinitions::MouseButton::MIDDLE:
+		return m_ButtonMiddle;
+	
+	default:
+		assert(false);
+		return 0;
+	}
+}
+
+bool engine::input::CInputManager::MouseButtonBecomesPressed(InputDefinitions::MouseButton button) const {
+	
+	switch (button) {
+
+	case InputDefinitions::MouseButton::LEFT:
+		return m_ButtonLeft && !m_PreviousButtonLeft;
+	
+	case InputDefinitions::MouseButton::RIGHT:
+		return m_ButtonRight && !m_PreviousButtonRight;
+	
+	case InputDefinitions::MouseButton::MIDDLE:
+		return m_ButtonMiddle && !m_PreviousButtonMiddle;
+	
+	default:
+		assert(false);
+		return 0;
+	}
+}
+
+bool engine::input::CInputManager::MouseButtonBecomesReleased(InputDefinitions::MouseButton button) const {
+
+	switch (button) {
+
+	case InputDefinitions::MouseButton::LEFT:
+		return !m_ButtonLeft && m_PreviousButtonLeft;
+
+	case InputDefinitions::MouseButton::RIGHT:
+		return !m_ButtonRight && m_PreviousButtonRight;
+
+	case InputDefinitions::MouseButton::MIDDLE:
+		return !m_ButtonMiddle && m_PreviousButtonMiddle;;
+
+	default:
+		assert(false);
+		return 0;
+	}
+}
+
+
+

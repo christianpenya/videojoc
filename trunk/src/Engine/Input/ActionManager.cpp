@@ -104,34 +104,30 @@ void engine::input::CActionManager::Update() {
 				switch (trigger.mouseButton.actionType)
 				{
 				case ActionTrigger::IsPressed:
-					if (m_InputManager.IsMouseButtonPressed(trigger.mouseButton.button))
-					{
+					if (m_InputManager.IsMouseButtonPressed(trigger.mouseButton.button)) {
 						action->active = true;
 						action->value = trigger.mouseButton.value;
 					}
 					break;
 				case ActionTrigger::IsReleased:
-					/*if (m_InputManager.)
-					{
+					if (!m_InputManager.IsMouseButtonPressed(trigger.mouseButton.button)) {
 						action->active = true;
 						action->value = trigger.mouseButton.value;
-					}*/
+					}
 					break;
 				
 				case ActionTrigger::BecomesPressed:
-					/*if (m_InputManager.IsMouseButtonPressed(trigger.mouseButton.button))
-					{
+					if (m_InputManager.MouseButtonBecomesPressed(trigger.mouseButton.button)) {
 						action->active = true;
 						action->value = trigger.mouseButton.value;
-					}*/
+					}
 					break;
 
 				case ActionTrigger::BecomesReleased:
-					/*if (m_InputManager.IsMouseButtonPressed(trigger.mouseButton.button))
-					{
+					if (m_InputManager.MouseButtonBecomesReleased(trigger.mouseButton.button)) {
 						action->active = true;
 						action->value = trigger.mouseButton.value;
-					}*/
+					}
 					break; 
 				default:
 					assert(false);
@@ -208,7 +204,7 @@ bool engine::input::CActionManager::LoadActions(const std::string &path)
 								actionTrigger.mouse.geThreshold = trigger->BoolAttribute("ge_threshold");
 								break;
 							case ActionTrigger::MOUSE_BUTTON:
-								actionTrigger.mouseButton.button = InputDefinitions::GetMouseButtonFromString(trigger->Attribute("button"), InputDefinitions::LEFT);
+								actionTrigger.mouseButton.button = InputDefinitions::GetMouseButtonFromString(trigger->Attribute("button"));
 								actionTrigger.mouseButton.actionType = ActionTrigger::GetButtonActionTypeFromString(trigger->Attribute("button_type"), ActionTrigger::IsPressed);
 								actionTrigger.mouseButton.value = trigger->FloatAttribute("value");
 								break;

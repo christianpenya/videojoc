@@ -60,9 +60,9 @@ namespace engine {
 			bool MiddleMouseButtonBecomesReleased() const { return !m_ButtonMiddle && m_PreviousButtonMiddle; }
 			bool RightMouseButtonBecomesReleased() const { return !m_ButtonRight && m_PreviousButtonRight; }
 
-			bool IsMouseButtonPressed(InputDefinitions::MouseButton button) const { return (m_ButtonLeft || m_ButtonMiddle || m_ButtonRight); };
-			bool MouseButtonBecomesPressed(InputDefinitions::MouseButton button) const { return (m_ButtonLeft && !m_PreviousButtonLeft || m_ButtonMiddle && !m_PreviousButtonMiddle || m_ButtonRight &&!m_PreviousButtonRight); };
-			bool MouseButtonBecomesReleased(InputDefinitions::MouseButton button) const { return (!m_ButtonLeft && m_PreviousButtonLeft || !m_ButtonMiddle && m_PreviousButtonMiddle || !m_ButtonRight &&m_PreviousButtonRight); };
+			bool IsMouseButtonPressed(InputDefinitions::MouseButton button) const;
+			bool MouseButtonBecomesPressed(InputDefinitions::MouseButton button) const;
+			bool MouseButtonBecomesReleased(InputDefinitions::MouseButton button) const;
 
 		private:
 

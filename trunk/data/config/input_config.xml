@@ -1,0 +1,29 @@
+<actions>
+	<action name = "horizontal">
+		<trigger type="KEYBOARD" key_code="A" value ="-1"/>
+		<trigger type="KEYBOARD" key_code="VK_LEFT" value ="-1"/>
+		<trigger type="KEYBOARD" key_code="D" value ="1"/>
+		<trigger type="KEYBOARD" key_code="VK_RIGHT" value ="1"/>
+	</action>
+	<action name = "vertical">
+		<trigger type="KEYBOARD" key_code="W" value="1"/>
+		<trigger type="KEYBOARD" key_code="VK_UP" value="1"/>
+		<trigger type="KEYBOARD" key_code="S" value="-1"/>
+		<trigger type="KEYBOARD" key_code="VK_DOWN" value="-1"/>
+	</action>	
+	<action name = "vertical_orientation">
+		<trigger type="MOUSE" axis="DX" threshold="0.5" ge_threshold = "true"/>
+		<trigger type="MOUSE" axis="DX" threshold="0.5" ge_threshold = "false"/>
+	</action>
+	<action name = "horizontal_orientation">
+		<trigger type="MOUSE" axis="DY" threshold="0.5" ge_threshold = "true"/>
+		<trigger type="MOUSE" axis="DY" threshold="0.5" ge_threshold = "false"/>
+	</action>
+	<action name = "enable_orientation">
+		<trigger type="MOUSE_BUTTON" button="MIDDLE" value="1"/>
+	</action>
+	<action name = "interact">
+		<trigger type="MOUSE_BUTTON" button="LEFT" value="1"/>
+		<trigger type="MOUSE_BUTTON" button="RIGHT" value="-1"/>
+	</action>
+</actions>

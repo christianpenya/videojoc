@@ -151,6 +151,7 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 		//ImGui::Text("Ola k ase world");
 		//ImGui::End();
 
+		if (l_InputManager.IsKeyPressed('A') || l_InputManager.IsKeyPressed(VK_DOWN))
 		l_RenderManager.DrawGrid(1, 1, 1, CColor(1, 1, 1, 1));
 
 		//if (l_ActionManager("vertical")->active) {
