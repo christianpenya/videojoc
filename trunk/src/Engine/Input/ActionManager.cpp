@@ -150,7 +150,9 @@ void engine::input::CActionManager::Update() {
 
 inline unsigned char GetKeyCode(const std::string& str)
 {
-	if (str.length() == 1 && ((str[0] >= 'A' && str[0] <= 'Z') || (str[0] >= '0' && str[0] <= '9')))
+	if (str.length() == 1 && ((str[0] >= 'A' && str[0] <= 'Z') || (str[0] >= '0' && str[0] <= '9')) 
+		// Tecles especials
+		|| str[0] >= 0x20 && str[0] <= 0x20F)
 	{
 		return str[0];
 	}

@@ -1,15 +1,15 @@
 <actions>
 	<action name = "horizontal">
 		<trigger type="KEYBOARD" key_code="A" value ="-1"/>
-		<trigger type="KEYBOARD" key_code="VK_LEFT" value ="-1"/>
+		<trigger type="KEYBOARD" key_code="%" value ="-1"/>
 		<trigger type="KEYBOARD" key_code="D" value ="1"/>
-		<trigger type="KEYBOARD" key_code="VK_RIGHT" value ="1"/>
+		<trigger type="KEYBOARD" key_code="'" value ="1"/>
 	</action>
 	<action name = "vertical">
 		<trigger type="KEYBOARD" key_code="W" value="1"/>
-		<trigger type="KEYBOARD" key_code="VK_UP" value="1"/>
+		<trigger type="KEYBOARD" key_code="&" value="1"/>
 		<trigger type="KEYBOARD" key_code="S" value="-1"/>
-		<trigger type="KEYBOARD" key_code="VK_DOWN" value="-1"/>
+		<trigger type="KEYBOARD" key_code="(" value="-1"/>
 	</action>	
 	<action name = "vertical_orientation">
 		<trigger type="MOUSE" axis="DX" threshold="0.5" ge_threshold = "true"/>
