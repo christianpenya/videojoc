@@ -346,11 +346,13 @@ void engine::render::CRenderManager::CreateDebugObjects()
 	//SPHERE
 	const int l_Aristas = 10;
 	static CDebugVertex l_SphereVtxs[4 * l_Aristas*l_Aristas];
-	for (int t = 0; t<l_Aristas; ++t)
-	{
+	
+	for (int t = 0; t<l_Aristas; ++t) {
+
 		float l_RadiusRing = sin(/*DEG2RAD*/(6.28318531f / 360.f) * (180.0f*((float)t)) / ((float)l_Aristas));
-		for (int b = 0; b<l_Aristas; ++b)
-		{
+
+		for (int b = 0; b<l_Aristas; ++b) {
+
 			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 0].Position = Vect4f(l_RadiusRing*cos(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))), cos(/*DEG2RAD*/(6.28318531f / 360.f) *(180.0f*((float)t)) / ((float)l_Aristas)), l_RadiusRing*sin(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))), 1.0f);
 			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 0].Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 1].Position = Vect4f(l_RadiusRing*cos(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)(b + 1)) / ((float)l_Aristas))), cos(/*DEG2RAD*/(6.28318531f / 360.f) *(180.0f*((float)t)) / ((float)l_Aristas)), l_RadiusRing*sin(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)(b + 1)) / ((float)l_Aristas))), 1.0f);
@@ -469,4 +471,14 @@ void engine::render::CRenderManager::DrawGrid(float SizeX, float SizeY, float Si
 	Mat44f viewProj = scale * m_ModelViewProjectionMatrix;
 
 	DebugRender(viewProj, m_GridRenderableVertexs, m_NumVerticesGrid, Color);
+}
+
+void engine::render::CRenderManager::DrawSphere(float Radius, const CColor &Color) {
+	Mat44f scale;
+	scale.SetIdentity();
+	scale.SetScale(Radius, Radius, Radius);
+
+	Mat44f viewProj = scale * m_ModelViewProjectionMatrix;
+
+	DebugRender(viewProj, m_SphereRenderableVertexs, m_NumVerticesSphere, Color);
 }

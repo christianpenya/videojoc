@@ -151,21 +151,14 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 		//ImGui::Text("Ola k ase world");
 		//ImGui::End();
 
-		if (l_InputManager.IsKeyPressed('A') || l_InputManager.IsKeyPressed(VK_DOWN))
-		l_RenderManager.DrawGrid(1, 1, 1, CColor(1, 1, 1, 1));
-
-		//if (l_ActionManager("vertical")->active) {
-		//	l_sphericalCamera.zoomSpeed = -1.0 * l_ActionManager("vertical")->value;
-		//}
-		//else {
-		//	l_sphericalCamera.zoomSpeed = 0.0f;
-		//}
+	l_RenderManager.DrawSphere(1, CColor(1, 1, 1, 1));
+	//	l_RenderManager.DrawGrid(1, 1, 1, CColor(1, 1, 1, 1));
 
 		l_sphericalCamera.zoomSpeed = l_InputManager.GetMouseMovementZ();
 
-		if (l_ActionManager("enable_orientation")->active) {
-				l_sphericalCamera.yawSpeed = 0.1 * l_ActionManager("vertical_orientation")->value;
-				l_sphericalCamera.pitchSpeed = -0.1 * l_ActionManager("horizontal_orientation")->value;
+		if (l_ActionManager("horizontal")->active) {
+				l_sphericalCamera.yawSpeed = 0.1 * l_ActionManager("horizontal")->value;
+				l_sphericalCamera.pitchSpeed = -0.1 * l_ActionManager("horizontal")->value;
 		}
 		else {
 			l_sphericalCamera.yawSpeed = 0.0;
