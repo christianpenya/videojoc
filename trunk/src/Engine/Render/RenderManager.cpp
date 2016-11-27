@@ -1,6 +1,6 @@
 #include "RenderManager.h"
 
-void engine::render::CRenderManager::Init(HWND hWnd, int Width, int Height) {
+void CRenderManager::Init(HWND hWnd, int Width, int Height) {
 	InitDevice_SwapChain_DeviceContext(hWnd, Width, Height);
 	Get_RendertargetView();
 	Create_DepthStencil(hWnd, Width, Height);
@@ -10,12 +10,12 @@ void engine::render::CRenderManager::Init(HWND hWnd, int Width, int Height) {
 	SetViewProjectionMatrix(m_ViewMatrix, m_ProjectionMatrix);
 
 	CreateDebugShader();
-	CreateDebugObjects();
 
 	m_BackgroundColor = { 1, 0, 1, 1 };
+	m_SphereOffset(0.0f, 0.0f, 0.0f);
 }
 
-bool engine::render::CRenderManager::InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height) {
+bool CRenderManager::InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height) {
 
 	D3D_FEATURE_LEVEL featureLevels[] =
 	{
@@ -46,7 +46,7 @@ bool engine::render::CRenderManager::InitDevice_SwapChain_DeviceContext(HWND hWn
 	}
 }
 
-bool engine::render::CRenderManager::Get_RendertargetView() {
+bool CRenderManager::Get_RendertargetView() {
 	ID3D11Texture2D *pBackBuffer;
 	if (FAILED(m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer)))
 		return FALSE;
@@ -56,7 +56,7 @@ bool engine::render::CRenderManager::Get_RendertargetView() {
 		return FALSE;
 }
 
-bool engine::render::CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height) {
+bool CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height) {
 
 	D3D11_TEXTURE2D_DESC descDepth;
 	ZeroMemory(&descDepth, sizeof(descDepth));
@@ -89,7 +89,7 @@ bool engine::render::CRenderManager::Create_DepthStencil(HWND hWnd, int Width, i
 	}
 }
 
-void engine::render::CRenderManager::Set_Viewport(int Width, int Height) {
+void CRenderManager::Set_Viewport(int Width, int Height) {
 	D3D11_VIEWPORT vp;
 	vp.Width = (FLOAT)Width;
 	vp.Height = (FLOAT)Height;
@@ -100,11 +100,11 @@ void engine::render::CRenderManager::Set_Viewport(int Width, int Height) {
 	m_DeviceContext->RSSetViewports(1, &vp);
 }
 
-void engine::render::CRenderManager::SetRendertarget() {
+void CRenderManager::SetRendertarget() {
 	m_DeviceContext->OMSetRenderTargets(1, &m_RenderTargetView, m_DepthStencilView);
 }
 
-bool engine::render::CRenderManager::CreateDebugShader() {
+bool CRenderManager::CreateDebugShader() {
 	
 // C++ macros are nuts
 #define STRINGIFY(X) #X
@@ -195,21 +195,21 @@ const char debugRenderEffectCode[] =
 		
 
 // Rendering
-void engine::render::CRenderManager::BeginRender() {
+void CRenderManager::BeginRender() {
 	m_DeviceContext->ClearRenderTargetView(m_RenderTargetView, &m_BackgroundColor.x);
 	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 	SetSolidRenderState();
 }
 
-void engine::render::CRenderManager::SetSolidRenderState() {
+void CRenderManager::SetSolidRenderState() {
 	m_DeviceContext->RSSetState(m_SolidRenderState);
 }
 
-void engine::render::CRenderManager::EndRender() {
+void CRenderManager::EndRender() {
 	m_SwapChain->Present(1, 0);
 }
 
-void engine::render::CRenderManager::Draw_Triangle()
+void CRenderManager::Draw_Triangle()
 {
 	CDebugVertex resultBuffer[] = {
 		{ Vect4f(-0.5f, -0.5f, 0.0f, 1.0f), CColor(1.0f, 0.0f, 0.0f, 1.0f) },
@@ -243,7 +243,7 @@ void engine::render::CRenderManager::Draw_Triangle()
 	m_DeviceContext->Draw(3, 0);
 }
 
-void engine::render::CRenderManager::CreateDebugObjects()
+void CRenderManager::CreateDebugObjects()
 {
 	//AXIS
 	static CDebugVertex l_AxisVtxs[6] =
@@ -353,16 +353,16 @@ void engine::render::CRenderManager::CreateDebugObjects()
 
 		for (int b = 0; b<l_Aristas; ++b) {
 
-			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 0].Position = Vect4f(l_RadiusRing*cos(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))), cos(/*DEG2RAD*/(6.28318531f / 360.f) *(180.0f*((float)t)) / ((float)l_Aristas)), l_RadiusRing*sin(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))), 1.0f);
+			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 0].Position = Vect4f(l_RadiusRing*cos(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))) + m_SphereOffset.x, cos(/*DEG2RAD*/(6.28318531f / 360.f) *(180.0f*((float)t)) / ((float)l_Aristas)) + m_SphereOffset.y, l_RadiusRing*sin(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))) + m_SphereOffset.z, 1.0f);
 			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 0].Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
-			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 1].Position = Vect4f(l_RadiusRing*cos(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)(b + 1)) / ((float)l_Aristas))), cos(/*DEG2RAD*/(6.28318531f / 360.f) *(180.0f*((float)t)) / ((float)l_Aristas)), l_RadiusRing*sin(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)(b + 1)) / ((float)l_Aristas))), 1.0f);
+			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 1].Position = Vect4f(l_RadiusRing*cos(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)(b + 1)) / ((float)l_Aristas))) + m_SphereOffset.x, cos(/*DEG2RAD*/(6.28318531f / 360.f) *(180.0f*((float)t)) / ((float)l_Aristas)) + m_SphereOffset.y, l_RadiusRing*sin(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)(b + 1)) / ((float)l_Aristas))) + m_SphereOffset.z, 1.0f);
 			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 1].Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 			float l_RadiusNextRing = sin(/*DEG2RAD*/(6.28318531f / 360.f) *(180.0f*((float)(t + 1))) / ((float)l_Aristas));
 
-			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 2].Position = Vect4f(l_RadiusRing*cos(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))), cos(/*DEG2RAD*/(6.28318531f / 360.f) *(180.0f*((float)t)) / ((float)l_Aristas)), l_RadiusRing*sin(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))), 1.0f);
+			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 2].Position = Vect4f(l_RadiusRing*cos(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))) + m_SphereOffset.x, cos(/*DEG2RAD*/(6.28318531f / 360.f) *(180.0f*((float)t)) / ((float)l_Aristas)) + m_SphereOffset.y, l_RadiusRing*sin(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))) + m_SphereOffset.z, 1.0f);
 			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 2].Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
-			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 3].Position = Vect4f(l_RadiusNextRing*cos(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))), cos(/*DEG2RAD*/(6.28318531f / 360.f) *(180.0f*((float)(t + 1))) / ((float)l_Aristas)), l_RadiusNextRing*sin(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))), 1.0f);
+			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 3].Position = Vect4f(l_RadiusNextRing*cos(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))) + m_SphereOffset.x, cos(/*DEG2RAD*/(6.28318531f / 360.f) *(180.0f*((float)(t + 1))) / ((float)l_Aristas)) + m_SphereOffset.y, l_RadiusNextRing*sin(/*DEG2RAD*/(6.28318531f / 360.f) *((float)(360.0f*(float)b) / ((float)l_Aristas))) + m_SphereOffset.z, 1.0f);
 			l_SphereVtxs[(t*l_Aristas * 4) + (b * 4) + 3].Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
 		}
 	}
@@ -371,44 +371,44 @@ void engine::render::CRenderManager::CreateDebugObjects()
 	m_NumVerticesSphere = 4 * l_Aristas*l_Aristas;
 }
 
-void engine::render::CRenderManager::SetModelMatrix(const Mat44f &Model) { 
+void CRenderManager::SetModelMatrix(const Mat44f &Model) { 
 	m_ModelMatrix = Model; 
 	m_ModelViewProjectionMatrix = m_ModelMatrix * m_ViewProjectionMatrix; 
 }
 
-void engine::render::CRenderManager::SetViewMatrix(const Mat44f &View) { 
+void CRenderManager::SetViewMatrix(const Mat44f &View) { 
 	m_ViewMatrix = View; 
 	m_ViewProjectionMatrix = m_ViewMatrix * m_ProjectionMatrix; 
 	m_ModelViewProjectionMatrix = m_ModelMatrix * m_ViewProjectionMatrix; 
 }
 
-void engine::render::CRenderManager::SetProjectionMatrix(const Mat44f &Projection) { 
+void CRenderManager::SetProjectionMatrix(const Mat44f &Projection) { 
 	m_ProjectionMatrix = Projection; 
 	m_ViewProjectionMatrix = m_ViewMatrix * m_ProjectionMatrix; 
 	m_ModelViewProjectionMatrix = m_ModelMatrix * m_ViewProjectionMatrix; 
 }
 
-void engine::render::CRenderManager::SetViewProjectionMatrix(const Mat44f &View, const Mat44f &Projection) { 
+void CRenderManager::SetViewProjectionMatrix(const Mat44f &View, const Mat44f &Projection) { 
 	m_ViewMatrix = View; 
 	m_ProjectionMatrix = Projection; 
 	m_ViewProjectionMatrix = m_ViewMatrix * m_ProjectionMatrix; 
 	m_ModelViewProjectionMatrix = m_ModelMatrix * m_ViewProjectionMatrix; 
 }
 
-void engine::render::CRenderManager::SetViewMatrix(const Vect3f& vPos, const Vect3f& vTarget, const Vect3f& vUp) { 
+void CRenderManager::SetViewMatrix(const Vect3f& vPos, const Vect3f& vTarget, const Vect3f& vUp) { 
 	Mat44f View; View.SetIdentity(); 
 	View.SetFromLookAt(vPos, vTarget, vUp); 
 	SetViewMatrix(View); 
 }
 
-void engine::render::CRenderManager::SetProjectionMatrix(float fovy, float aspect, float zn, float zf) { 
+void CRenderManager::SetProjectionMatrix(float fovy, float aspect, float zn, float zf) { 
 	Mat44f Projection; Projection.SetIdentity(); 
 	Projection.SetFromPerspective(fovy, aspect, zn, zf); 
 	SetProjectionMatrix(Projection); 
 }
 
 
-void engine::render::CRenderManager::DebugRender(const Mat44f& modelViewProj, const CDebugVertex* modelVertices, int numVertices, CColor colorTint)
+void CRenderManager::DebugRender(const Mat44f& modelViewProj, const CDebugVertex* modelVertices, int numVertices, CColor colorTint)
 {
 	CDebugVertex *resultBuffer = (CDebugVertex *)alloca(numVertices * sizeof(CDebugVertex));
 
@@ -442,7 +442,7 @@ void engine::render::CRenderManager::DebugRender(const Mat44f& modelViewProj, co
 	m_DeviceContext->Draw(numVertices, 0);
 }
 
-void engine::render::CRenderManager::DrawAxis(float SizeX, float SizeY, float SizeZ, const CColor &Color)
+void CRenderManager::DrawAxis(float SizeX, float SizeY, float SizeZ, const CColor &Color)
 {
 	Mat44f scale;
 	scale.SetIdentity();
@@ -453,7 +453,7 @@ void engine::render::CRenderManager::DrawAxis(float SizeX, float SizeY, float Si
 	DebugRender(viewProj, m_AxisRenderableVertexs, m_NumVerticesAxis, Color);
 }
 
-void engine::render::CRenderManager::DrawCube(float SizeX, float SizeY, float SizeZ, const CColor &Color) {
+void CRenderManager::DrawCube(float SizeX, float SizeY, float SizeZ, const CColor &Color) {
 	Mat44f scale;
 	scale.SetIdentity();
 	scale.SetScale(SizeZ, SizeY, SizeZ);
@@ -463,7 +463,7 @@ void engine::render::CRenderManager::DrawCube(float SizeX, float SizeY, float Si
 	DebugRender(viewProj, m_CubeRenderableVertexs, m_NumVerticesCube, Color);
 }
 
-void engine::render::CRenderManager::DrawGrid(float SizeX, float SizeY, float SizeZ, const CColor &Color) {
+void CRenderManager::DrawGrid(float SizeX, float SizeY, float SizeZ, const CColor &Color) {
 	Mat44f scale;
 	scale.SetIdentity();
 	scale.SetScale(SizeZ, SizeY, SizeZ);
@@ -473,7 +473,7 @@ void engine::render::CRenderManager::DrawGrid(float SizeX, float SizeY, float Si
 	DebugRender(viewProj, m_GridRenderableVertexs, m_NumVerticesGrid, Color);
 }
 
-void engine::render::CRenderManager::DrawSphere(float Radius, const CColor &Color) {
+void CRenderManager::DrawSphere(float Radius, const CColor &Color) {
 	Mat44f scale;
 	scale.SetIdentity();
 	scale.SetScale(Radius, Radius, Radius);

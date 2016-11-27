@@ -1,11 +1,11 @@
 <actions>
-	<action name = "horizontal">
+	<action name = "x_move">
 		<trigger type="KEYBOARD" key_code="A" value ="-1"/>
 		<trigger type="KEYBOARD" key_code="%" value ="-1"/>
 		<trigger type="KEYBOARD" key_code="D" value ="1"/>
 		<trigger type="KEYBOARD" key_code="'" value ="1"/>
 	</action>
-	<action name = "vertical">
+	<action name = "z_move">
 		<trigger type="KEYBOARD" key_code="W" value="1"/>
 		<trigger type="KEYBOARD" key_code="&" value="1"/>
 		<trigger type="KEYBOARD" key_code="S" value="-1"/>
@@ -19,10 +19,12 @@
 		<trigger type="MOUSE" axis="DY" threshold="0.5" ge_threshold = "true"/>
 		<trigger type="MOUSE" axis="DY" threshold="0.5" ge_threshold = "false"/>
 	</action>
+	<action name = "zoom">
+		<trigger type="MOUSE" axis="DZ" threshold="0.1" ge_threshold = "true"/>
+		<trigger type="MOUSE" axis="DZ" threshold="0.1" ge_threshold = "false"/>
+	</action>
 	<action name = "enable_orientation">
 		<trigger type="MOUSE_BUTTON" button="MIDDLE" value="1"/>
-	</action>
-	<action name = "interact">
 		<trigger type="MOUSE_BUTTON" button="LEFT" value="1"/>
 		<trigger type="MOUSE_BUTTON" button="RIGHT" value="-1"/>
 	</action>

@@ -86,19 +86,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraController.h" />
+    <ClInclude Include="FpsCameraController.h" />
     <ClInclude Include="imgui_impl_dx11.h" />
     <ClInclude Include="Input\ActionManager.h" />
     <ClInclude Include="Input\InputDefinitions.h" />
     <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="Render\RenderManager.h" />
     <ClInclude Include="SphericalCameraController.h" />
+    <ClInclude Include="TpsCameraController.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FpsCameraController.cpp" />
     <ClCompile Include="SphericalCameraController.cpp" />
     <ClCompile Include="imgui_impl_dx11.cpp" />
     <ClCompile Include="Input\ActionManager.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Render\RenderManager.cpp" />
+    <ClCompile Include="TpsCameraController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Materials\materials.xml" />

@@ -66,6 +66,12 @@
     <ClInclude Include="SphericalCameraController.h">
       <Filter>Archivos de encabezado\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="FpsCameraController.h">
+      <Filter>Archivos de encabezado\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="TpsCameraController.h">
+      <Filter>Archivos de encabezado\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Render\RenderManager.cpp">
@@ -81,6 +87,12 @@
       <Filter>Archivos de código fuente\Debug</Filter>
     </ClCompile>
     <ClCompile Include="SphericalCameraController.cpp">
+      <Filter>Archivos de código fuente\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="FpsCameraController.cpp">
+      <Filter>Archivos de código fuente\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="TpsCameraController.cpp">
       <Filter>Archivos de código fuente\Camera</Filter>
     </ClCompile>
   </ItemGroup>

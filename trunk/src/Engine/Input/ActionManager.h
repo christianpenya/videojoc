@@ -8,8 +8,6 @@
 #include "InputManager.h"
 #include "Base/XML/XML.h"
 
-namespace engine {
-	namespace input {
 
 		struct ActionTrigger {
 			enum ButtonActionType
@@ -71,7 +69,6 @@ namespace engine {
 		private:
 			const CInputManager& m_InputManager;
 		};
-	}
-}
+
 
 #endif //_ENGINE_ACTIONMANAGER_CPB_1611201620428_H

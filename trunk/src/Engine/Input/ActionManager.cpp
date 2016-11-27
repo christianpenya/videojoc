@@ -1,11 +1,11 @@
 #include "ActionManager.h"
 #include <assert.h>
 
-engine::input::CActionManager::CActionManager(const CInputManager &inputManager)
+CActionManager::CActionManager(const CInputManager &inputManager)
  :m_InputManager(inputManager){
 }
 
-engine::input::ActionTrigger::TriggerType engine::input::ActionTrigger::GetTriggerTypeFromString(const char* str, TriggerType defaultValue)
+ActionTrigger::TriggerType ActionTrigger::GetTriggerTypeFromString(const char* str, TriggerType defaultValue)
 {
 	if (str == nullptr)
 		return defaultValue;
@@ -23,7 +23,7 @@ engine::input::ActionTrigger::TriggerType engine::input::ActionTrigger::GetTrigg
 		return (TriggerType)-1;
 }
 
-engine::input::ActionTrigger::ButtonActionType engine::input::ActionTrigger::GetButtonActionTypeFromString(const char* str, ButtonActionType defaultValue)
+ActionTrigger::ButtonActionType ActionTrigger::GetButtonActionTypeFromString(const char* str, ButtonActionType defaultValue)
 {
 	if (str == nullptr)
 		return defaultValue;
@@ -39,7 +39,7 @@ engine::input::ActionTrigger::ButtonActionType engine::input::ActionTrigger::Get
 		return (ButtonActionType)-1;
 }
 
-void engine::input::CActionManager::Update() {
+void CActionManager::Update() {
 
 	for (auto &actionIt : m_ResourcesMap) {
 
@@ -167,7 +167,7 @@ inline unsigned char GetKeyCode(const std::string& str)
 	}
 }
 
-bool engine::input::CActionManager::LoadActions(const std::string &path)
+bool CActionManager::LoadActions(const std::string &path)
 {
 	bool ok = false;
 

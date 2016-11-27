@@ -1,6 +1,6 @@
 #include "InputManager.h"
 
-void engine::input::CInputManager::PreUpdate(bool isWindowActive) {
+void CInputManager::PreUpdate(bool isWindowActive) {
 
 	// TODO Falta setejar algunes variables
 
@@ -18,11 +18,11 @@ void engine::input::CInputManager::PreUpdate(bool isWindowActive) {
 	}
 }
 
-void engine::input::CInputManager::PostUpdate() {
+void CInputManager::PostUpdate() {
 
 }
 
-bool engine::input::CInputManager::HandleKeyboard(const MSG& msg) {
+bool CInputManager::HandleKeyboard(const MSG& msg) {
 	
 	bool handled = false;
 
@@ -42,7 +42,7 @@ bool engine::input::CInputManager::HandleKeyboard(const MSG& msg) {
 	return handled;
 }
 
-bool engine::input::CInputManager::HandleMouse(const MSG& msg) {
+bool CInputManager::HandleMouse(const MSG& msg) {
 	
 	switch (msg.message) {
 	
@@ -101,7 +101,7 @@ bool engine::input::CInputManager::HandleMouse(const MSG& msg) {
 	}
 }
 
-void engine::input::CInputManager::KeyboardData::SetKey(unsigned char key, bool state) {
+void CInputManager::KeyboardData::SetKey(unsigned char key, bool state) {
 	
 	raw[key] = state;
 
@@ -135,7 +135,7 @@ void engine::input::CInputManager::KeyboardData::SetKey(unsigned char key, bool 
 	}
 }
 
-void engine::input::CInputManager::SetupHighprecisionMouse(HWND hWnd) {
+void CInputManager::SetupHighprecisionMouse(HWND hWnd) {
 	RAWINPUTDEVICE Rid[1];
 	Rid[0].usUsagePage = 0x01;
 	Rid[0].usUsage = 0x02;
@@ -145,7 +145,7 @@ void engine::input::CInputManager::SetupHighprecisionMouse(HWND hWnd) {
 
 }
 
-int engine::input::CInputManager::GetMouseAxis(InputDefinitions::MouseAxis axis) const {
+int CInputManager::GetMouseAxis(InputDefinitions::MouseAxis axis) const {
 	
 	switch (axis) {
 
@@ -170,7 +170,7 @@ int engine::input::CInputManager::GetMouseAxis(InputDefinitions::MouseAxis axis)
 	}
 }
 
-bool engine::input::CInputManager::IsMouseButtonPressed(InputDefinitions::MouseButton button) const {
+bool CInputManager::IsMouseButtonPressed(InputDefinitions::MouseButton button) const {
 	switch (button) {
 
 	case InputDefinitions::MouseButton::LEFT:
@@ -188,7 +188,7 @@ bool engine::input::CInputManager::IsMouseButtonPressed(InputDefinitions::MouseB
 	}
 }
 
-bool engine::input::CInputManager::MouseButtonBecomesPressed(InputDefinitions::MouseButton button) const {
+bool CInputManager::MouseButtonBecomesPressed(InputDefinitions::MouseButton button) const {
 	
 	switch (button) {
 
@@ -207,7 +207,7 @@ bool engine::input::CInputManager::MouseButtonBecomesPressed(InputDefinitions::M
 	}
 }
 
-bool engine::input::CInputManager::MouseButtonBecomesReleased(InputDefinitions::MouseButton button) const {
+bool CInputManager::MouseButtonBecomesReleased(InputDefinitions::MouseButton button) const {
 
 	switch (button) {
 

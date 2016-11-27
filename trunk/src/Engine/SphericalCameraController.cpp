@@ -1,6 +1,6 @@
 #include"SphericalCameraController.h"
 
-void SphericalCameraController::Update(float ElapsedTime) {
+void CSphericalCameraController::Update(float ElapsedTime) {
 
 	yaw += yawSpeed * ElapsedTime;
 	pitch += pitchSpeed * ElapsedTime;
