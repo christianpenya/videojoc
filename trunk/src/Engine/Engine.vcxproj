@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraController.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="FpsCameraController.h" />
     <ClInclude Include="imgui_impl_dx11.h" />
     <ClInclude Include="Input\ActionManager.h" />
@@ -96,6 +97,7 @@
     <ClInclude Include="TpsCameraController.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FpsCameraController.cpp" />
     <ClCompile Include="SphericalCameraController.cpp" />
     <ClCompile Include="imgui_impl_dx11.cpp" />

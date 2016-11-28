@@ -9,6 +9,7 @@
 #include "Engine\TpsCameraController.h"
 #include "Base\ImGUI\imgui.h"
 #include <Windows.h>
+#include <chrono>
 
 #define APPLICATION_NAME	"ESCAPE FROM ALCATRAZ"
 
@@ -19,8 +20,6 @@ const Vect3f m_vup = Vect3f(0, 1, 0);
 
 const int m_width = 800;
 const int m_height = 600;
-
-int m_prevCameraSelector = 0;
 
 bool s_WindowActive;
 
@@ -73,8 +72,7 @@ CRenderManager initRenderManager(HWND& hWnd) {
 	return l_RenderManager;
 }
 
-float clamp(float x, float upper, float lower)
-{
+float clamp(float x, float upper, float lower) {
 	return min(upper, max(x, lower));
 }
 
@@ -97,7 +95,7 @@ void sphere(CRenderManager& renderManager, CActionManager& actionManager, Vect3f
 void orbitalCamera(CSphericalCameraController& sphericalCamera, CActionManager& actionManager) {
 	
 	ImGui::Text("Gira la roda del mouse per controlar el zoom.");
-	ImGui::Text("Mantingues apretada la roda del mouse per rotar la camera.");
+	ImGui::Text("Apreta qualsevol boto del ratoli per habilitar la rotacio.");
 
 	sphericalCamera.zoomSpeed = actionManager("zoom")->value;
 	
@@ -190,9 +188,21 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 	ZeroMemory(&msg, sizeof(msg));
 
 	l_RenderManager.SetProjectionMatrix(0.8f, 800.0f / 600.0f, 0.5f, 100.5f);
-	//std::chrono::high_resolution_clock clock;
+	
+	int l_prevCameraSelector = 0;
+	std::chrono::monotonic_clock l_Clock;
+	std::chrono::monotonic_clock::time_point l_PrevTime;
+	float timer = 0.0f;
+	std::string s_fps("");
+	float fps = 0.0f;
 
 	while (msg.message != WM_QUIT) 	{
+
+		auto currentTime = l_Clock.now();
+		std::chrono::duration<float> chronoDeltaTime = currentTime - l_PrevTime;
+		l_PrevTime = currentTime;
+
+		float dt = chronoDeltaTime.count() > 0.5f ? 0.5f : chronoDeltaTime.count();
 
 		l_InputManager.PreUpdate(s_WindowActive);
 
@@ -225,10 +235,23 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 		l_RenderManager.BeginRender();
 
 		static bool show_app_auto_resize = false;
-		ImGui::Begin("Motor3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
-		
+		ImGui::Begin("Motor3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);		
+
+		//FPS		
+		if (timer > 1.0f) {
+			fps = 1.0 / dt;
+			s_fps = std::to_string(fps);
+			timer = 0.0f;
+		}
+
+		timer += dt;
+		ImGui::Text("Frame rate: ");
+		ImGui::SameLine();
+		ImGui::Text("FPS", &s_fps, 0.0f, -1, 0);
+		ImGui::ShowTestWindow;
+
 		static int cameraSelector = 0;
-		
+
 		ImGui::RadioButton("Orbital", &cameraSelector, 0); ImGui::SameLine();
 		ImGui::RadioButton("FPS", &cameraSelector, 1); ImGui::SameLine();
 		ImGui::RadioButton("TPS", &cameraSelector, 2);
@@ -236,11 +259,11 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 		l_RenderManager.DrawGrid(1, 1, 1, CColor(0, 0, 0, 1));
 
 		// Reiniciem posició de l'esfera quan canviem de camera
-		if (cameraSelector != m_prevCameraSelector) {
+		if (cameraSelector != l_prevCameraSelector) {
 			l_RenderManager.m_SphereOffset = Vect3f(0, 0, 0);
 		}
 
-		m_prevCameraSelector = cameraSelector;
+		l_prevCameraSelector = cameraSelector;
 
 		switch (cameraSelector) {
 		case 0: //Orbital

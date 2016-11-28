@@ -72,6 +72,9 @@
     <ClInclude Include="TpsCameraController.h">
       <Filter>Archivos de encabezado\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Render\RenderManager.cpp">
@@ -94,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="TpsCameraController.cpp">
       <Filter>Archivos de código fuente\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
