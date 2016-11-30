@@ -28,8 +28,7 @@ public:
 	virtual ~CTpsCameraController(){};
 
 	virtual void Update(float ElapsedTime) override;
-	Vect3f getFront() { return m_Front; }
-	Vect3f getUp() { return m_Up; }
+	
 
 private:
 	float yaw, pitch, roll, zoom;

@@ -7,7 +7,8 @@
 #include "Engine\SphericalCameraController.h"
 #include "Engine\FpsCameraController.h"
 #include "Engine\TpsCameraController.h"
-#include "Base\ImGUI\imgui.h"
+#include "ImGUI\imgui.h"
+#include "Engine\Engine.h"
 #include <Windows.h>
 #include <chrono>
 
@@ -72,75 +73,11 @@ CRenderManager initRenderManager(HWND& hWnd) {
 	return l_RenderManager;
 }
 
-float clamp(float x, float upper, float lower) {
-	return min(upper, max(x, lower));
-}
 
 
-void sphere(CRenderManager& renderManager, CActionManager& actionManager, Vect3f front = Vect3f(0,0,1), Vect3f up = Vect3f(0,1,0)) {
 
-	Vect3f right = front ^ up;
-	float smoother = 0.1f;
 
-	renderManager.m_SphereOffset += actionManager("z_move")->value * front * smoother;
-	renderManager.m_SphereOffset += actionManager("x_move")->value * right * smoother;
-	
-	renderManager.m_SphereOffset.x = clamp(renderManager.m_SphereOffset.x, 5.0, -5.0);
-	renderManager.m_SphereOffset.y = 1;
-	renderManager.m_SphereOffset.z = clamp(renderManager.m_SphereOffset.z, 5.0, -5.0);
 
-	renderManager.DrawSphere(1, CColor(1, 1, 1, 1));
-}
-
-void orbitalCamera(CSphericalCameraController& sphericalCamera, CActionManager& actionManager) {
-	
-	ImGui::Text("Gira la roda del mouse per controlar el zoom.");
-	ImGui::Text("Apreta qualsevol boto del ratoli per habilitar la rotacio.");
-
-	sphericalCamera.zoomSpeed = actionManager("zoom")->value;
-	
-	if (actionManager("enable_orientation")->active) {
-		sphericalCamera.yawSpeed = 0.1 * actionManager("vertical_orientation")->value;
-		sphericalCamera.pitchSpeed = -0.1 * actionManager("horizontal_orientation")->value;
-	}
-	else {
-		sphericalCamera.yawSpeed = 0.0;
-		sphericalCamera.pitchSpeed = 0.0;
-	}
-
-	sphericalCamera.Update(0.016f);
-}
-
-void fpsCamera(CFpsCameraController& fpsCamera, CActionManager& actionManager) {
-
-	ImGui::Text("Mou la camera amb WASD.");
-	ImGui::Text("Orienta't amb el ratoli.");
-	ImGui::Text("Vigila el cap.");
-
-	fpsCamera.xSpeed = 0.1f * actionManager("x_move")->value;
-	fpsCamera.zSpeed = 0.1f * actionManager("z_move")->value;
-	
-	fpsCamera.yawSpeed = 0.1 * actionManager("vertical_orientation")->value;
-	fpsCamera.pitchSpeed = -0.1 * actionManager("horizontal_orientation")->value;
-	
-	fpsCamera.Update(0.016f);
-}
-
-void TpsCamera(CTpsCameraController& tpsCamera, CActionManager& actionManager, Vect3f sphereCenter) {
-
-	ImGui::Text("Mou l'esfera amb WASD");
-	ImGui::Text("Orienta't amb el ratoli.");
-	ImGui::Text("Amb la roda del ratoli pots controlar el zoom.");
-
-	tpsCamera.center = sphereCenter;
-
-	tpsCamera.yawSpeed = 0.1 * actionManager("vertical_orientation")->value;
-	tpsCamera.pitchSpeed = -0.1 * actionManager("horizontal_orientation")->value;
-
-	tpsCamera.zoomSpeed = actionManager("zoom")->value;
-
-	tpsCamera.Update(0.016f);
-}
 
 //-----------------------------------------------------------------------
 // WinMain
@@ -181,6 +118,14 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 	CSphericalCameraController l_SphericalCamera(Vect3f(0, 0, 0), 1.5f, -1.5f, 20.0f, 1.0f);
 	CFpsCameraController l_FpsCamera(Vect3f(0, 1.0, 0), 1.5f, -1.5f);
 	CTpsCameraController l_TpsCamera(Vect3f(0, 0, 0), 1.5f, -1.5f, 20.0f, 4.0f);
+
+	CEngine l_Engine = CEngine();
+	l_Engine.SetActionManager(&l_ActionManager);
+	l_Engine.SetCameraController(&l_SphericalCamera);
+	l_Engine.SetRenderManager(&l_RenderManager);
+	l_Engine.fpsCam = l_FpsCamera;
+	l_Engine.orbitalCam = l_SphericalCamera;
+	l_Engine.tpsCam = l_TpsCamera;
 
 	ShowWindow(hWnd, SW_SHOWDEFAULT);
 	UpdateWindow(hWnd);
@@ -229,67 +174,13 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 		}
 
 		l_InputManager.PostUpdate();
-		l_ActionManager.Update();
-		ImGui_ImplDX11_NewFrame();
+		l_Engine.ProcessInputs();
+		l_Engine.Update();
+		l_Engine.Render();
 
-		l_RenderManager.BeginRender();
-
-		static bool show_app_auto_resize = false;
-		ImGui::Begin("Motor3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);		
-
-		//FPS		
-		if (timer > 1.0f) {
-			fps = 1.0 / dt;
-			s_fps = std::to_string(fps);
-			timer = 0.0f;
-		}
-
-		timer += dt;
-		ImGui::Text("Frame rate: ");
-		ImGui::SameLine();
-		ImGui::Text("FPS", &s_fps, 0.0f, -1, 0);
-		ImGui::ShowTestWindow;
-
-		static int cameraSelector = 0;
-
-		ImGui::RadioButton("Orbital", &cameraSelector, 0); ImGui::SameLine();
-		ImGui::RadioButton("FPS", &cameraSelector, 1); ImGui::SameLine();
-		ImGui::RadioButton("TPS", &cameraSelector, 2);
 		
-		l_RenderManager.DrawGrid(1, 1, 1, CColor(0, 0, 0, 1));
 
-		// Reiniciem posició de l'esfera quan canviem de camera
-		if (cameraSelector != l_prevCameraSelector) {
-			l_RenderManager.m_SphereOffset = Vect3f(0, 0, 0);
-		}
-
-		l_prevCameraSelector = cameraSelector;
-
-		switch (cameraSelector) {
-		case 0: //Orbital
-			l_RenderManager.DrawSphere(1, CColor(1, 1, 0, 1));
-			orbitalCamera(l_SphericalCamera, l_ActionManager);
-			l_SphericalCamera.SetToRenderManager(l_RenderManager);
-			break;
-		case 1: //FPS
-			l_RenderManager.m_SphereOffset = Vect3f(0, 3, 0);
-			l_RenderManager.DrawSphere(1, CColor(0, 1, 1, 1));
-			fpsCamera(l_FpsCamera, l_ActionManager);
-			l_FpsCamera.SetToRenderManager(l_RenderManager);
-			break;
-		case 2: //TPS
-			sphere(l_RenderManager, l_ActionManager, l_TpsCamera.getFront(), l_TpsCamera.getUp());
-			TpsCamera(l_TpsCamera, l_ActionManager, l_RenderManager.m_SphereOffset);
-			l_TpsCamera.SetToRenderManager(l_RenderManager);
-			break;
-		default:
-			break;
-		}
-
-		ImGui::End();
-		ImGui::Render();
-		l_RenderManager.CreateDebugObjects();
-		l_RenderManager.EndRender();
+	
 	}
 
 	// Añadir una llamada a la alicación para finalizar/liberar memoria de todos sus datos
