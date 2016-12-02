@@ -3,6 +3,7 @@
 #ifndef _ENGINE_RENDERMANAGER_CPB_2016110320428_H
 #define _ENGINE_RENDERMANAGER_CPB_2016110320428_H
 
+#include "Base\Utils\Release.h"
 #include <Windows.h>
 #include <winerror.h>
 #include "d3dcompiler.h"
@@ -28,18 +29,19 @@ public:
 	Vect3f  m_SphereOffset;
 
 protected:
-	ID3D11Device							*m_Device;
-	ID3D11DeviceContext						*m_DeviceContext;
-	IDXGISwapChain							*m_SwapChain;
-	ID3D11RenderTargetView					*m_RenderTargetView;
-	ID3D11Texture2D							*m_DepthStencil;
-	ID3D11DepthStencilView					*m_DepthStencilView;
+	releaser_ptr<ID3D11Device>						m_Device;
+	releaser_ptr<ID3D11DeviceContext>				m_DeviceContext;
+	releaser_ptr<IDXGISwapChain>					m_SwapChain;
+	releaser_ptr<ID3D11RenderTargetView>			m_RenderTargetView;
+	releaser_ptr<ID3D11Texture2D>					m_DepthStencil;
+	releaser_ptr<ID3D11DepthStencilView>			m_DepthStencilView;
 
-	ID3D11Buffer							*m_DebugVertexBuffer;
-	int										m_DebugVertexBufferCurrentIndex;
-	ID3D11VertexShader						*m_DebugVertexShader;
-	ID3D11InputLayout						*m_DebugVertexLayout;
-	ID3D11PixelShader						*m_DebugPixelShader;
+	
+	ID3D11Buffer						*m_DebugVertexBuffer;
+	int										*m_DebugVertexBufferCurrentIndex;
+	ID3D11VertexShader				*m_DebugVertexShader;
+	ID3D11InputLayout					*m_DebugVertexLayout;
+	ID3D11PixelShader					*m_DebugPixelShader;
 
 	const CDebugVertex*						m_AxisRenderableVertexs;
 	const CDebugVertex*						m_GridRenderableVertexs;
@@ -105,8 +107,8 @@ public:
 	void SetViewMatrix(const Vect3f& vPos, const Vect3f& vTarget, const Vect3f& vUp);
 	void SetProjectionMatrix(float fovy, float aspect, float zn, float zf);
 
-	ID3D11Device* GetDevice() { return m_Device;}
-	ID3D11DeviceContext* GetDeviceContext() { return m_DeviceContext;}
+	ID3D11Device* GetDevice() { return m_Device.get();}
+	ID3D11DeviceContext* GetDeviceContext() { return m_DeviceContext.get();}
 
 };
 

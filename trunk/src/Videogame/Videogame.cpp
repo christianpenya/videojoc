@@ -60,24 +60,6 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
   return DefWindowProc( hWnd, msg, wParam, lParam );
 }
 
-CRenderManager initRenderManager(HWND& hWnd) {
-
-	CRenderManager l_RenderManager;
-
-	l_RenderManager.SetModelMatrix(m_model_matrix);
-	l_RenderManager.SetProjectionMatrix(45.0f, m_width / m_height, 0.5f, 100.0f);
-	l_RenderManager.SetViewMatrix(m_vpos, m_vtarget, m_vup);
-
-	l_RenderManager.Init(hWnd, 800, 600);
-
-	return l_RenderManager;
-}
-
-
-
-
-
-
 
 //-----------------------------------------------------------------------
 // WinMain
@@ -104,7 +86,13 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 	HWND hWnd = CreateWindow(APPLICATION_NAME, APPLICATION_NAME, WS_OVERLAPPEDWINDOW, 100, 100, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, wc.hInstance, NULL);
 
 	// Añadir aquí el Init de la applicacioón
-	CRenderManager l_RenderManager = initRenderManager(hWnd);
+	CRenderManager l_RenderManager;
+	l_RenderManager.SetModelMatrix(m_model_matrix);
+	l_RenderManager.SetProjectionMatrix(45.0f, m_width / m_height, 0.5f, 100.0f);
+	l_RenderManager.SetViewMatrix(m_vpos, m_vtarget, m_vup);
+	l_RenderManager.Init(hWnd, 800, 600);
+
+	
 	CInputManager l_InputManager(hWnd);
 	CActionManager l_ActionManager(l_InputManager);
 

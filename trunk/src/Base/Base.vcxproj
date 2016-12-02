@@ -130,6 +130,7 @@
     <ClInclude Include="Utils\PublisherSubscriber\Broker.h" />
     <ClInclude Include="Utils\PublisherSubscriber\Event.h" />
     <ClInclude Include="Utils\PublisherSubscriber\Subscriber.h" />
+    <ClInclude Include="Utils\Release.h" />
     <ClInclude Include="Utils\Singleton.h" />
     <ClInclude Include="Utils\StringUtils.h" />
     <ClInclude Include="Utils\SubjectObserver\Observer.h" />

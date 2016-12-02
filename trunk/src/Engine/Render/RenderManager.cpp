@@ -8,8 +8,8 @@ void CRenderManager::Init(HWND hWnd, int Width, int Height) {
 	SetRendertarget();
 
 	SetViewProjectionMatrix(m_ViewMatrix, m_ProjectionMatrix);
-
 	CreateDebugShader();
+	
 
 	m_BackgroundColor = { 1, 0, 1, 1 };
 	m_SphereOffset(0.0f, 0.0f, 0.0f);
@@ -39,25 +39,40 @@ bool CRenderManager::InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, in
 	sd.SampleDesc.Count = 1;
 	sd.SampleDesc.Quality = 0;
 	sd.Windowed = TRUE;
+	ID3D11Device					*l_Device;
+	ID3D11DeviceContext				*l_DeviceContext;
+	IDXGISwapChain					*l_SwapChain;
+	
 
 	if (FAILED(D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, featureLevels, numFeatureLevels,
-		D3D11_SDK_VERSION, &sd, &m_SwapChain, &m_Device, NULL, &m_DeviceContext))) {
+		D3D11_SDK_VERSION, &sd, &l_SwapChain, &l_Device, NULL, &l_DeviceContext))) {
 		return false;
 	}
+	m_Device.reset(l_Device);
+	m_DeviceContext.reset(l_DeviceContext);
+	m_SwapChain.reset(l_SwapChain);
+	
 }
 
 bool CRenderManager::Get_RendertargetView() {
 	ID3D11Texture2D *pBackBuffer;
+	ID3D11RenderTargetView		*l_RenderTargetView;
 	if (FAILED(m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer)))
 		return FALSE;
-	HRESULT hr = m_Device->CreateRenderTargetView(pBackBuffer, NULL, &m_RenderTargetView);
+	//auto rtv = m_RenderTargetView.get();
+	HRESULT hr = m_Device->CreateRenderTargetView(pBackBuffer, NULL, &l_RenderTargetView);
 	pBackBuffer->Release();
 	if (FAILED(hr))
 		return FALSE;
+	m_RenderTargetView.reset(l_RenderTargetView);
+
 }
 
 bool CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height) {
 
+
+	ID3D11Texture2D					*l_DepthStencil;
+	ID3D11DepthStencilView			*l_DepthStencilView;
 	D3D11_TEXTURE2D_DESC descDepth;
 	ZeroMemory(&descDepth, sizeof(descDepth));
 	descDepth.Width = Width;
@@ -71,7 +86,8 @@ bool CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height) {
 	descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 	descDepth.CPUAccessFlags = 0;
 	descDepth.MiscFlags = 0;
-	HRESULT hr = m_Device->CreateTexture2D(&descDepth, NULL, &m_DepthStencil);
+	//auto ds = m_DepthStencil.get();
+	HRESULT hr = m_Device->CreateTexture2D(&descDepth, NULL, &l_DepthStencil);
 	
 	if (FAILED(hr)) {
 		return false;
@@ -82,11 +98,15 @@ bool CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height) {
 	descDSV.Format = descDepth.Format;
 	descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 	descDSV.Texture2D.MipSlice = 0;
-	hr = m_Device->CreateDepthStencilView(m_DepthStencil, &descDSV, &m_DepthStencilView);
+//	auto ds = m_DepthStencil.get();
+	//auto dsv = m_DepthStencilView.get();
+	hr = m_Device->CreateDepthStencilView(l_DepthStencil, &descDSV, &l_DepthStencilView);
 	
 	if (FAILED(hr)) {
 		return false;
 	}
+	m_DepthStencil.reset(l_DepthStencil);
+	m_DepthStencilView.reset(l_DepthStencilView);
 }
 
 void CRenderManager::Set_Viewport(int Width, int Height) {
@@ -101,7 +121,10 @@ void CRenderManager::Set_Viewport(int Width, int Height) {
 }
 
 void CRenderManager::SetRendertarget() {
-	m_DeviceContext->OMSetRenderTargets(1, &m_RenderTargetView, m_DepthStencilView);
+
+	auto dsv = m_DepthStencilView.get();
+	auto rtv = m_RenderTargetView.get();
+	m_DeviceContext->OMSetRenderTargets(1, &rtv, dsv);
 }
 
 bool CRenderManager::CreateDebugShader() {
@@ -157,12 +180,12 @@ const char debugRenderEffectCode[] =
 			errorBlob->Release();
 		return false;
 	}
-
+	//auto dvs = m_DebugVertexShader.get();
 	hr = m_Device->CreateVertexShader(vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), NULL, &m_DebugVertexShader);
-
+	
 	if (FAILED(hr))
 		return false;
-
+	//auto dpl = m_DebugPixelShader.get();
 	hr = m_Device->CreatePixelShader(psBlob->GetBufferPointer(), psBlob->GetBufferSize(), NULL, &m_DebugPixelShader);
 
 	if (FAILED(hr))
@@ -172,7 +195,7 @@ const char debugRenderEffectCode[] =
 		{ "POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 16, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 	};
-
+	//auto dvl = m_DebugVertexLayout.get();
 	hr = m_Device->CreateInputLayout(layout, 2, vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), &m_DebugVertexLayout);
 
 	if (FAILED(hr))
@@ -187,6 +210,7 @@ const char debugRenderEffectCode[] =
 	//D3D11_SUBRESOURCE_DATA InitData;
 	//ZeroMemory(&InitData, sizeof(InitData));
 	//InitData.pSysMem = Vtxs;
+	//auto dvb = m_DebugVertexBuffer.get();
 	hr = m_Device->CreateBuffer(&l_BufferDescription, nullptr, &m_DebugVertexBuffer);
 	if (FAILED(hr)) {
 		return false;
@@ -196,8 +220,10 @@ const char debugRenderEffectCode[] =
 
 // Rendering
 void CRenderManager::BeginRender() {
-	m_DeviceContext->ClearRenderTargetView(m_RenderTargetView, &m_BackgroundColor.x);
-	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+	auto rtv = m_RenderTargetView.get();
+	m_DeviceContext->ClearRenderTargetView(rtv, &m_BackgroundColor.x);
+	auto dsv = m_DepthStencilView.get();
+	m_DeviceContext->ClearDepthStencilView(dsv, D3D11_CLEAR_DEPTH, 1.0f, 0);
 	SetSolidRenderState();
 }
 
@@ -219,6 +245,7 @@ void CRenderManager::Draw_Triangle()
 
 	// set vertex data
 	D3D11_MAPPED_SUBRESOURCE resource;
+	//auto dvb = m_DebugVertexBuffer.get();
 	HRESULT hr = m_DeviceContext->Map(m_DebugVertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
 
 	if (FAILED(hr))
@@ -229,13 +256,17 @@ void CRenderManager::Draw_Triangle()
 	#endif
 	
 	memcpy(resource.pData, resultBuffer, 3 * sizeof(CDebugVertex));
-
+	//auto dvb = m_DebugVertexBuffer.get();
 	m_DeviceContext->Unmap(m_DebugVertexBuffer, 0);
 
 	UINT stride = sizeof(CDebugVertex);
 	UINT offset = 0;
+//	auto dvb = m_DebugVertexBuffer.get();
 	m_DeviceContext->IASetVertexBuffers(0, 1, &m_DebugVertexBuffer, &stride, &offset);
 	m_DeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	/*auto dvl = m_DebugVertexLayout.get();
+	auto dvs = m_DebugVertexShader.get();
+	auto dps = m_DebugPixelShader.get();*/
 	m_DeviceContext->IASetInputLayout(m_DebugVertexLayout);
 	m_DeviceContext->VSSetShader(m_DebugVertexShader, NULL, 0);
 	m_DeviceContext->PSSetShader(m_DebugPixelShader, NULL, 0);
@@ -417,9 +448,11 @@ void CRenderManager::DebugRender(const Mat44f& modelViewProj, const CDebugVertex
 		resultBuffer[i].Position = (modelVertices[i].Position * modelViewProj);
 		resultBuffer[i].Color = modelVertices[i].Color * colorTint;
 	}
-
+	
 	// set vertex data
 	D3D11_MAPPED_SUBRESOURCE resource;
+	
+	//auto dvb = m_DebugVertexBuffer.get();
 	HRESULT hr = m_DeviceContext->Map(m_DebugVertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
 
 	if (FAILED(hr))
@@ -428,13 +461,18 @@ void CRenderManager::DebugRender(const Mat44f& modelViewProj, const CDebugVertex
 	assert(numVertices * sizeof(CDebugVertex) < DebugVertexBufferSize * sizeof(CDebugVertex));
 	memcpy(resource.pData, resultBuffer, numVertices * sizeof(CDebugVertex));
 
+	//auto dvb = m_DebugVertexBuffer.get();
 	m_DeviceContext->Unmap(m_DebugVertexBuffer, 0);
 
 
 	UINT stride = sizeof(CDebugVertex);
 	UINT offset = 0;
+	//auto dvb = m_DebugVertexBuffer.get();
 	m_DeviceContext->IASetVertexBuffers(0, 1, &m_DebugVertexBuffer, &stride, &offset);
 	m_DeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_LINELIST);
+	/*auto dvl = m_DebugVertexLayout.get();
+	auto dvs = m_DebugVertexShader.get();
+	auto dps = m_DebugPixelShader.get();*/
 	m_DeviceContext->IASetInputLayout(m_DebugVertexLayout);
 	m_DeviceContext->VSSetShader(m_DebugVertexShader, NULL, 0);
 	m_DeviceContext->PSSetShader(m_DebugPixelShader, NULL, 0);

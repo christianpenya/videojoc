@@ -212,6 +212,9 @@
     <ClInclude Include="ImGUI\stb_truetype.h">
       <Filter>Archivos de encabezado\DearImGUI</Filter>
     </ClInclude>
+    <ClInclude Include="Utils\Release.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\Color.inl">
