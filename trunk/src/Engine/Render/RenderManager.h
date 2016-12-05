@@ -52,7 +52,7 @@ protected:
 
 	int m_NumVerticesAxis, m_NumVerticesGrid, m_NumVerticesCube, m_NumVerticesSphere;
 
-	ID3D11RasterizerState					*m_SolidRenderState;
+	releaser_ptr<ID3D11RasterizerState>			m_SolidRenderState;
 
 	Mat44f m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix;
 	Mat44f m_ViewProjectionMatrix, m_ModelViewProjectionMatrix;
@@ -77,6 +77,8 @@ public:
 		m_RenderTargetView.reset(nullptr);
 		m_DepthStencil.reset(nullptr);
 		m_DepthStencilView.reset(nullptr);
+		m_SolidRenderState.reset(nullptr);
+
 		m_DebugVertexBuffer.reset(nullptr);
 		m_DebugVertexShader.reset(nullptr);
 		m_DebugVertexLayout.reset(nullptr);

@@ -275,7 +275,8 @@ void CRenderManager::BeginRender() {
 }
 
 void CRenderManager::SetSolidRenderState() {
-	m_DeviceContext->RSSetState(m_SolidRenderState);
+	auto srs = m_SolidRenderState.get();
+	m_DeviceContext->RSSetState(srs);
 }
 
 void CRenderManager::EndRender() {
