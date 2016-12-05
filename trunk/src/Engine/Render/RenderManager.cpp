@@ -53,7 +53,7 @@ bool CRenderManager::InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, in
 	
 	if (debugD3D)
 	{
-		if (FAILED(D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, creationFlags, featureLevels, numFeatureLevels,
+		if (FAILED(D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, debugD3D ? D3D11_CREATE_DEVICE_DEBUG : 0, featureLevels, numFeatureLevels,
 			D3D11_SDK_VERSION, &sd, &l_SwapChain, &l_Device, NULL, &l_DeviceContext)))
 		{
 			debugD3D = false;
@@ -81,6 +81,7 @@ bool CRenderManager::InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, in
 		HRESULT hr = m_Device->QueryInterface(__uuidof(ID3D11Debug), reinterpret_cast<void**>(&l_D3DDebug));
 		if (SUCCEEDED(hr))
 		{
+			
 			debugD3D = false;
 		}
 		else
@@ -220,12 +221,16 @@ const char debugRenderEffectCode[] =
 		return false;
 	}
 	//auto dvs = m_DebugVertexShader.get();
-	hr = m_Device->CreateVertexShader(vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), NULL, &m_DebugVertexShader);
+	ID3D11VertexShader *l_DebugVertexShader;
+	hr = m_Device->CreateVertexShader(vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), NULL, &l_DebugVertexShader);
+	m_DebugVertexShader.reset(l_DebugVertexShader);
 	
 	if (FAILED(hr))
 		return false;
+	ID3D11PixelShader *l_DebugPixelShader;
 	//auto dpl = m_DebugPixelShader.get();
-	hr = m_Device->CreatePixelShader(psBlob->GetBufferPointer(), psBlob->GetBufferSize(), NULL, &m_DebugPixelShader);
+	hr = m_Device->CreatePixelShader(psBlob->GetBufferPointer(), psBlob->GetBufferSize(), NULL, &l_DebugPixelShader);
+	m_DebugPixelShader.reset(l_DebugPixelShader);
 
 	if (FAILED(hr))
 		return false;
@@ -234,9 +239,10 @@ const char debugRenderEffectCode[] =
 		{ "POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 16, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 	};
+	ID3D11InputLayout *l_DebugVertexLayout;
 	//auto dvl = m_DebugVertexLayout.get();
-	hr = m_Device->CreateInputLayout(layout, 2, vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), &m_DebugVertexLayout);
-
+	hr = m_Device->CreateInputLayout(layout, 2, vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), &l_DebugVertexLayout);
+	m_DebugVertexLayout.reset(l_DebugVertexLayout);
 	if (FAILED(hr))
 		return false;
 
@@ -250,7 +256,9 @@ const char debugRenderEffectCode[] =
 	//ZeroMemory(&InitData, sizeof(InitData));
 	//InitData.pSysMem = Vtxs;
 	//auto dvb = m_DebugVertexBuffer.get();
-	hr = m_Device->CreateBuffer(&l_BufferDescription, nullptr, &m_DebugVertexBuffer);
+	ID3D11Buffer *l_DebugVertexBuffer;
+	hr = m_Device->CreateBuffer(&l_BufferDescription, nullptr, &l_DebugVertexBuffer);
+	m_DebugVertexBuffer.reset(l_DebugVertexBuffer);
 	if (FAILED(hr)) {
 		return false;
 	}
@@ -284,8 +292,8 @@ void CRenderManager::Draw_Triangle()
 
 	// set vertex data
 	D3D11_MAPPED_SUBRESOURCE resource;
-	//auto dvb = m_DebugVertexBuffer.get();
-	HRESULT hr = m_DeviceContext->Map(m_DebugVertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+	auto dvb = m_DebugVertexBuffer.get();
+	HRESULT hr = m_DeviceContext->Map(dvb, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
 
 	if (FAILED(hr))
 		return; // TODO log
@@ -296,19 +304,19 @@ void CRenderManager::Draw_Triangle()
 	
 	memcpy(resource.pData, resultBuffer, 3 * sizeof(CDebugVertex));
 	//auto dvb = m_DebugVertexBuffer.get();
-	m_DeviceContext->Unmap(m_DebugVertexBuffer, 0);
+	m_DeviceContext->Unmap(dvb, 0);
 
 	UINT stride = sizeof(CDebugVertex);
 	UINT offset = 0;
 //	auto dvb = m_DebugVertexBuffer.get();
-	m_DeviceContext->IASetVertexBuffers(0, 1, &m_DebugVertexBuffer, &stride, &offset);
+	m_DeviceContext->IASetVertexBuffers(0, 1, &dvb, &stride, &offset);
 	m_DeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	/*auto dvl = m_DebugVertexLayout.get();
+	auto dvl = m_DebugVertexLayout.get();
 	auto dvs = m_DebugVertexShader.get();
-	auto dps = m_DebugPixelShader.get();*/
-	m_DeviceContext->IASetInputLayout(m_DebugVertexLayout);
-	m_DeviceContext->VSSetShader(m_DebugVertexShader, NULL, 0);
-	m_DeviceContext->PSSetShader(m_DebugPixelShader, NULL, 0);
+	auto dps = m_DebugPixelShader.get();
+	m_DeviceContext->IASetInputLayout(dvl);
+	m_DeviceContext->VSSetShader(dvs, NULL, 0);
+	m_DeviceContext->PSSetShader(dps, NULL, 0);
 
 	m_DeviceContext->Draw(3, 0);
 }
@@ -491,8 +499,8 @@ void CRenderManager::DebugRender(const Mat44f& modelViewProj, const CDebugVertex
 	// set vertex data
 	D3D11_MAPPED_SUBRESOURCE resource;
 	
-	//auto dvb = m_DebugVertexBuffer.get();
-	HRESULT hr = m_DeviceContext->Map(m_DebugVertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+	auto dvb = m_DebugVertexBuffer.get();
+	HRESULT hr = m_DeviceContext->Map(dvb, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
 
 	if (FAILED(hr))
 		return; // TODO log
@@ -501,20 +509,20 @@ void CRenderManager::DebugRender(const Mat44f& modelViewProj, const CDebugVertex
 	memcpy(resource.pData, resultBuffer, numVertices * sizeof(CDebugVertex));
 
 	//auto dvb = m_DebugVertexBuffer.get();
-	m_DeviceContext->Unmap(m_DebugVertexBuffer, 0);
+	m_DeviceContext->Unmap(dvb, 0);
 
 
 	UINT stride = sizeof(CDebugVertex);
 	UINT offset = 0;
 	//auto dvb = m_DebugVertexBuffer.get();
-	m_DeviceContext->IASetVertexBuffers(0, 1, &m_DebugVertexBuffer, &stride, &offset);
+	m_DeviceContext->IASetVertexBuffers(0, 1, &dvb, &stride, &offset);
 	m_DeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_LINELIST);
-	/*auto dvl = m_DebugVertexLayout.get();
+	auto dvl = m_DebugVertexLayout.get();
 	auto dvs = m_DebugVertexShader.get();
-	auto dps = m_DebugPixelShader.get();*/
-	m_DeviceContext->IASetInputLayout(m_DebugVertexLayout);
-	m_DeviceContext->VSSetShader(m_DebugVertexShader, NULL, 0);
-	m_DeviceContext->PSSetShader(m_DebugPixelShader, NULL, 0);
+	auto dps = m_DebugPixelShader.get();
+	m_DeviceContext->IASetInputLayout(dvl);
+	m_DeviceContext->VSSetShader(dvs, NULL, 0);
+	m_DeviceContext->PSSetShader(dps, NULL, 0);
 
 	m_DeviceContext->Draw(numVertices, 0);
 }
@@ -562,7 +570,7 @@ void CRenderManager::DrawSphere(float Radius, const CColor &Color) {
 
 void CRenderManager::Resize(int Width, int Height, HWND hWnd)
 {
-/*	if (m_Device.get() != nullptr)
+	if (m_Device.get() != nullptr)
 	{
 		m_DeviceContext->OMSetRenderTargets(0, nullptr, nullptr);
 
@@ -572,7 +580,7 @@ void CRenderManager::Resize(int Width, int Height, HWND hWnd)
 		
 		m_SwapChain->ResizeBuffers(0, Width, Height, DXGI_FORMAT_UNKNOWN, 0);
 		CreateBackBuffers(Width, Height, hWnd); // where we initialize m_RenderTargetView, m_DepthStencil, m_DepthStencilView
-	}*/
+	}
 }
 
 void CRenderManager::CreateBackBuffers(int Width, int Height, HWND hWnd)

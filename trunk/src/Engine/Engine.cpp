@@ -3,7 +3,6 @@
 #include "Engine\imgui_impl_dx11.h"
 #include "ImGUI\imgui.h"
 #include "CameraController.h"
-
 #include "Engine\CameraController.h"
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
@@ -22,26 +21,19 @@ CEngine::CEngine()
 }
 
 void CEngine::ProcessInputs() {
-
+	ImGui_ImplDX11_NewFrame();
 	m_ActionManager->Update();
 }
 
 void CEngine::Update()
 {	
-	ImGui_ImplDX11_NewFrame();
+	
 	auto currentTime = m_Clock.now();
 	std::chrono::duration<float> chronoDeltaTime = currentTime - m_PrevTime;
 	m_PrevTime = currentTime;
 
 	float dt = chronoDeltaTime.count() > 0.5f ? 0.5f : chronoDeltaTime.count();
 	deltaTime = dt;
-	//(*m_ActionManager)("string")->value;
-	
-	// -----------------------------
-
-	// game logic
-
-	// -----------------------------
 
 	// Reiniciem posició de l'esfera quan canviem de camera
 	if (cameraSelector != l_prevCameraSelector) {

@@ -12,6 +12,7 @@
 #include "Math/Color.h"
 #include "Math/Matrix44.h"
 
+
 #ifdef _DEBUG
 #include <assert.h>
 #endif
@@ -38,11 +39,11 @@ protected:
 	releaser_ptr<ID3D11Debug>						m_D3DDebug;
 
 	
-	ID3D11Buffer							*m_DebugVertexBuffer;
+	releaser_ptr<ID3D11Buffer	>						m_DebugVertexBuffer;
 	int										*m_DebugVertexBufferCurrentIndex;
-	ID3D11VertexShader						*m_DebugVertexShader;
-	ID3D11InputLayout						*m_DebugVertexLayout;
-	ID3D11PixelShader						*m_DebugPixelShader;
+	releaser_ptr<ID3D11VertexShader	>					m_DebugVertexShader;
+	releaser_ptr<ID3D11InputLayout	>					m_DebugVertexLayout;
+	releaser_ptr<ID3D11PixelShader	>					m_DebugPixelShader;
 
 	const CDebugVertex*						m_AxisRenderableVertexs;
 	const CDebugVertex*						m_GridRenderableVertexs;
@@ -63,7 +64,24 @@ public:
 
 public:
 	CRenderManager(){};
-	~CRenderManager(){};
+	~CRenderManager(){
+		releasePointers();		
+		m_D3DDebug.reset(nullptr);
+	}
+
+	void CRenderManager::releasePointers()
+	{
+		m_Device.reset(nullptr);
+		m_DeviceContext.reset(nullptr);
+		m_SwapChain.reset(nullptr);
+		m_RenderTargetView.reset(nullptr);
+		m_DepthStencil.reset(nullptr);
+		m_DepthStencilView.reset(nullptr);
+		m_DebugVertexBuffer.reset(nullptr);
+		m_DebugVertexShader.reset(nullptr);
+		m_DebugVertexLayout.reset(nullptr);
+		m_DebugPixelShader.reset(nullptr);
+	};
 
 	void Init(HWND hWnd, int Width, int Height, bool debugD3D);
 	bool InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height, bool debugD3D);

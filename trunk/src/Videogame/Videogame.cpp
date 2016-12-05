@@ -196,7 +196,7 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 		l_Engine.Update();
 		l_Engine.Render();
 	}
-
+	
 	// Añadir una llamada a la alicación para finalizar/liberar memoria de todos sus datos
 	#ifdef _DEBUG
 		l_RenderManager.ReportLive();

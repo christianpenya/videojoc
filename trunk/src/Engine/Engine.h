@@ -2,13 +2,14 @@
 
 #ifndef _ENGINE_ENGINE_CPB_20161127_H
 #define _ENGINE_ENGINE_CPB_20161127_H
-
+#include "Engine\Render\RenderManager.h"
 #include "Base\Utils\Singleton.h"
 #include "Engine\SphericalCameraController.h"
 #include "Engine\FpsCameraController.h"
 #include "Engine\TpsCameraController.h"
 #include <chrono>
-
+#include "Base\ImGUI\imgui.h"
+#include "Engine\imgui_impl_dx11.h"
 class CRenderManager;
 class CActionManager;
 class CCameraController;
@@ -28,7 +29,11 @@ class CEngine : public base::utils::CSingleton<CEngine> {
 public:
 
 	CEngine();
-	virtual ~CEngine(){};
+	virtual ~CEngine(){
+		
+		m_RenderManager->~CRenderManager();		
+		ImGui_ImplDX11_Shutdown();	
+	};
 
 	void ProcessInputs();
 	void Update();
