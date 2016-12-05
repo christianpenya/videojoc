@@ -19,11 +19,11 @@ const Vect3f m_vpos = Vect3f(10, 5, 7);
 const Vect3f m_vtarget = Vect3f(0, 0, 0);
 const Vect3f m_vup = Vect3f(0, 1, 0);
 
-const int m_width = 800;
-const int m_height = 600;
+float m_width = 1600;
+float m_height = 900;
 
 bool s_WindowActive;
-
+bool debug=false;
 //-----------------------------------------------------------------------------
 // Name: MsgProc()
 // Desc: The window's message handler
@@ -55,6 +55,17 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 	  break;
   }
     break;
+  case WM_SIZE:
+  {
+	  if (wParam == SIZE_MAXIMIZED)
+	  {
+		  auto& renderManager = CEngine::GetInstance().GetRenderManager();
+		  renderManager.Resize((UINT)LOWORD(lParam), (UINT)HIWORD(lParam), hWnd);
+	  }
+	  return 0;
+  }
+  break;
+
   }//end switch( msg )
 
   return DefWindowProc( hWnd, msg, wParam, lParam );
@@ -69,6 +80,7 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 
   #ifdef _DEBUG
 	MemLeaks::MemoryBegin();
+	debug=true;
   #endif
 	
 	// Register the window class
@@ -80,15 +92,15 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
 	// Create the application's window
-	HWND hWnd = CreateWindow(APPLICATION_NAME, APPLICATION_NAME, WS_OVERLAPPEDWINDOW, 100, 100, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, wc.hInstance, NULL);
+	HWND hWnd = CreateWindow(APPLICATION_NAME, APPLICATION_NAME, WS_OVERLAPPEDWINDOW, 0, 0, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, wc.hInstance, NULL);
 
 	// Añadir aquí el Init de la applicacioón
 	CRenderManager l_RenderManager;
 	l_RenderManager.SetModelMatrix(m_model_matrix);
 	l_RenderManager.SetProjectionMatrix(45.0f, m_width / m_height, 0.5f, 100.0f);
 	l_RenderManager.SetViewMatrix(m_vpos, m_vtarget, m_vup);
-	l_RenderManager.Init(hWnd, 800, 600);
-
+	l_RenderManager.Init(hWnd, m_width, m_height, debug);
+	
 	
 	CInputManager l_InputManager(hWnd);
 	CActionManager l_ActionManager(l_InputManager);
@@ -116,8 +128,6 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 	UpdateWindow(hWnd);
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
-
-	l_RenderManager.SetProjectionMatrix(0.8f, 800.0f / 600.0f, 0.5f, 100.5f);
 	
 	int l_prevCameraSelector = 0;
 	std::chrono::monotonic_clock l_Clock;
@@ -144,9 +154,32 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 			if ((msg.message >= WM_MOUSEFIRST && msg.message <= WM_MOUSELAST) || msg.message == WM_INPUT) {
 				fHandled = l_InputManager.HandleMouse(msg);
 			}
-			else if (msg.message >= WM_KEYFIRST && msg.message <= WM_KEYLAST) {
+			else if (msg.message >= WM_KEYFIRST && msg.message <= WM_KEYLAST)
+			{
 				fHandled = l_InputManager.HandleKeyboard(msg);
+				bool WasDown = ((msg.lParam & (1 << 30)) != 0);
+				bool IsDown = ((msg.lParam & (1 << 31)) == 0);
+				bool Alt = ((msg.lParam & (1 << 29)) != 0);
+
+				if (!WasDown && IsDown && Alt && msg.wParam == VK_RETURN)
+				{
+					WINDOWPLACEMENT windowPosition = { sizeof(WINDOWPLACEMENT) };
+					GetWindowPlacement(msg.hwnd, &windowPosition);
+
+					l_RenderManager.ToggleFullscreen(msg.hwnd, windowPosition);
+					fHandled = true;
+				}
+				else if (msg.message == WM_KEYDOWN && msg.wParam == VK_ESCAPE)
+				{
+					PostQuitMessage(0);
+				}
+				else
+				{
+					fHandled = l_InputManager.HandleKeyboard(msg);
+				}
 			}
+
+
 
 			if (!fHandled) {
 				TranslateMessage(&msg);
@@ -166,6 +199,7 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 
 	// Añadir una llamada a la alicación para finalizar/liberar memoria de todos sus datos
 	#ifdef _DEBUG
+		l_RenderManager.ReportLive();
 		MemLeaks::MemoryEnd();
 	#endif	
 

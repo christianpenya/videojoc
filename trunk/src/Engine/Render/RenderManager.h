@@ -35,13 +35,14 @@ protected:
 	releaser_ptr<ID3D11RenderTargetView>			m_RenderTargetView;
 	releaser_ptr<ID3D11Texture2D>					m_DepthStencil;
 	releaser_ptr<ID3D11DepthStencilView>			m_DepthStencilView;
+	releaser_ptr<ID3D11Debug>						m_D3DDebug;
 
 	
-	ID3D11Buffer						*m_DebugVertexBuffer;
+	ID3D11Buffer							*m_DebugVertexBuffer;
 	int										*m_DebugVertexBufferCurrentIndex;
-	ID3D11VertexShader				*m_DebugVertexShader;
-	ID3D11InputLayout					*m_DebugVertexLayout;
-	ID3D11PixelShader					*m_DebugPixelShader;
+	ID3D11VertexShader						*m_DebugVertexShader;
+	ID3D11InputLayout						*m_DebugVertexLayout;
+	ID3D11PixelShader						*m_DebugPixelShader;
 
 	const CDebugVertex*						m_AxisRenderableVertexs;
 	const CDebugVertex*						m_GridRenderableVertexs;
@@ -64,14 +65,14 @@ public:
 	CRenderManager(){};
 	~CRenderManager(){};
 
-	void Init(HWND hWnd, int Width, int Height);
-			
-	bool InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height);
+	void Init(HWND hWnd, int Width, int Height, bool debugD3D);
+	bool InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height, bool debugD3D);
 	bool Get_RendertargetView();
 	bool Create_DepthStencil(HWND hWnd, int Width, int Height);
 	void Set_Viewport(int Width, int Height);
 	void SetRendertarget();
-			
+	void ReportLive();
+
 	bool CreateDebugShader();
 
 	void Destroy();
@@ -109,7 +110,10 @@ public:
 
 	ID3D11Device* GetDevice() { return m_Device.get();}
 	ID3D11DeviceContext* GetDeviceContext() { return m_DeviceContext.get();}
-
+	void Resize(int Width, int Height, HWND hWnd);
+	void CreateBackBuffers(int Width, int Height, HWND hWnd);
+	void ClearAltIntro(HWND hWnd);
+	void ToggleFullscreen(HWND Window, WINDOWPLACEMENT &WindowPosition);
 };
 
 #endif //_ENGINE_RENDERMANAGER_CPB_2016110320428_H

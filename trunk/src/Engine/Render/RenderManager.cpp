@@ -1,7 +1,8 @@
 #include "RenderManager.h"
 
-void CRenderManager::Init(HWND hWnd, int Width, int Height) {
-	InitDevice_SwapChain_DeviceContext(hWnd, Width, Height);
+void CRenderManager::Init(HWND hWnd, int Width, int Height, bool debugD3D=false) {
+	
+	InitDevice_SwapChain_DeviceContext(hWnd, Width, Height, debugD3D);
 	Get_RendertargetView();
 	Create_DepthStencil(hWnd, Width, Height);
 	Set_Viewport(Width, Height);
@@ -15,7 +16,14 @@ void CRenderManager::Init(HWND hWnd, int Width, int Height) {
 	m_SphereOffset(0.0f, 0.0f, 0.0f);
 }
 
-bool CRenderManager::InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height) {
+bool CRenderManager::InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height, bool debugD3D)
+{
+
+	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+	#if defined(_DEBUG)
+		// If the project is in a debug build, enable the debug layer.
+		creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
+	#endif
 
 	D3D_FEATURE_LEVEL featureLevels[] =
 	{
@@ -43,16 +51,47 @@ bool CRenderManager::InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, in
 	ID3D11DeviceContext				*l_DeviceContext;
 	IDXGISwapChain					*l_SwapChain;
 	
-
-	if (FAILED(D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, featureLevels, numFeatureLevels,
-		D3D11_SDK_VERSION, &sd, &l_SwapChain, &l_Device, NULL, &l_DeviceContext))) {
-		return false;
+	if (debugD3D)
+	{
+		if (FAILED(D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, creationFlags, featureLevels, numFeatureLevels,
+			D3D11_SDK_VERSION, &sd, &l_SwapChain, &l_Device, NULL, &l_DeviceContext)))
+		{
+			debugD3D = false;
+			if (FAILED(D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, featureLevels, numFeatureLevels,
+				D3D11_SDK_VERSION, &sd, &l_SwapChain, &l_Device, NULL, &l_DeviceContext)))
+			{
+				return FALSE;
+			}
+		}
+	}else
+	{
+		if (FAILED(D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, featureLevels, numFeatureLevels,
+			D3D11_SDK_VERSION, &sd, &l_SwapChain, &l_Device, NULL, &l_DeviceContext))) {
+			return false;
+		}
 	}
+
 	m_Device.reset(l_Device);
 	m_DeviceContext.reset(l_DeviceContext);
 	m_SwapChain.reset(l_SwapChain);
-	
+
+	if (debugD3D)
+	{
+		ID3D11Debug *l_D3DDebug;
+		HRESULT hr = m_Device->QueryInterface(__uuidof(ID3D11Debug), reinterpret_cast<void**>(&l_D3DDebug));
+		if (SUCCEEDED(hr))
+		{
+			debugD3D = false;
+		}
+		else
+		{
+			m_D3DDebug.reset(l_D3DDebug);
+		}
+	}
+
 }
+
+
 
 bool CRenderManager::Get_RendertargetView() {
 	ID3D11Texture2D *pBackBuffer;
@@ -519,4 +558,80 @@ void CRenderManager::DrawSphere(float Radius, const CColor &Color) {
 	Mat44f viewProj = scale * m_ModelViewProjectionMatrix;
 
 	DebugRender(viewProj, m_SphereRenderableVertexs, m_NumVerticesSphere, Color);
+}
+
+void CRenderManager::Resize(int Width, int Height, HWND hWnd)
+{
+/*	if (m_Device.get() != nullptr)
+	{
+		m_DeviceContext->OMSetRenderTargets(0, nullptr, nullptr);
+
+		m_RenderTargetView.reset(nullptr);
+		m_DepthStencil.reset(nullptr);
+		m_DepthStencilView.reset(nullptr);
+		
+		m_SwapChain->ResizeBuffers(0, Width, Height, DXGI_FORMAT_UNKNOWN, 0);
+		CreateBackBuffers(Width, Height, hWnd); // where we initialize m_RenderTargetView, m_DepthStencil, m_DepthStencilView
+	}*/
+}
+
+void CRenderManager::CreateBackBuffers(int Width, int Height, HWND hWnd)
+{
+	//Create_DepthStencil(hWnd, Width, Height);
+	Set_Viewport(Width, Height);
+	SetProjectionMatrix(45.0f, Width / Height, 0.5f, 100.0f);
+	SetRendertarget();
+	SetViewProjectionMatrix(m_ViewMatrix, m_ProjectionMatrix);
+	CreateDebugShader();
+}
+
+void CRenderManager::ClearAltIntro(HWND hWnd)
+{
+	IDXGIFactory* dxgiFactory;
+	HRESULT hr = m_SwapChain->GetParent(__uuidof(IDXGIFactory), (void **)&dxgiFactory);
+	assert(hr == S_OK);
+
+	hr = dxgiFactory->MakeWindowAssociation(hWnd, DXGI_MWA_NO_ALT_ENTER);
+	assert(hr == S_OK);
+
+	dxgiFactory->Release();
+}
+
+
+void CRenderManager::ToggleFullscreen(HWND Window, WINDOWPLACEMENT &WindowPosition)
+{
+	// This follows Raymond Chen's prescription
+	// for fullscreen toggling, see:
+	// http://blogs.msdn.com/b/oldnewthing/archive/2010/04/12/9994016.aspx
+
+	DWORD Style = GetWindowLongW(Window, GWL_STYLE);
+	if (Style & WS_OVERLAPPEDWINDOW)
+	{
+		MONITORINFO MonitorInfo = { sizeof(MonitorInfo) };
+		if (GetWindowPlacement(Window, &WindowPosition) &&
+			GetMonitorInfoW(MonitorFromWindow(Window, MONITOR_DEFAULTTOPRIMARY), &MonitorInfo))
+		{
+			SetWindowLongW(Window, GWL_STYLE, Style & ~WS_OVERLAPPEDWINDOW);
+			SetWindowPos(Window, HWND_TOP,
+				MonitorInfo.rcMonitor.left, MonitorInfo.rcMonitor.top,
+				MonitorInfo.rcMonitor.right - MonitorInfo.rcMonitor.left,
+				MonitorInfo.rcMonitor.bottom - MonitorInfo.rcMonitor.top,
+				SWP_NOOWNERZORDER | SWP_FRAMECHANGED);
+		}
+	}
+	else
+	{
+		SetWindowLongW(Window, GWL_STYLE, Style | WS_OVERLAPPEDWINDOW);
+		SetWindowPlacement(Window, &WindowPosition);
+		SetWindowPos(Window, NULL, 0, 0, 0, 0,
+			SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER |
+			SWP_NOOWNERZORDER | SWP_FRAMECHANGED);
+	}
+}
+
+void CRenderManager::ReportLive()
+{
+	if (m_D3DDebug)
+		m_D3DDebug->ReportLiveDeviceObjects(D3D11_RLDO_SUMMARY | D3D11_RLDO_DETAIL);
+	
 }
