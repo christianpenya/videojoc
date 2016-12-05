@@ -5,13 +5,16 @@
 #include "InputDefinitions.h"
 #include <Windows.h>
 #include <assert.h>
-
+#include <Xinput.h>
 
 class CInputManager {
 
 public:
 
-	CInputManager(HWND hWnd){ SetupHighprecisionMouse(hWnd);	}
+	CInputManager(HWND hWnd){ 
+		SetupHighprecisionMouse(hWnd);
+		SetupGamepad();
+	}
 	virtual ~CInputManager(){}
 
 	bool HandleKeyboard(const MSG& msg);
@@ -61,6 +64,51 @@ public:
 	bool MouseButtonBecomesPressed(InputDefinitions::MouseButton button) const;
 	bool MouseButtonBecomesReleased(InputDefinitions::MouseButton button) const;
 
+	void SetupGamepad();
+	bool HasGamepad() const { return m_HasGamepad; }
+
+	bool IsGamepadButtonPressed(InputDefinitions::GamepadButton button) const;
+	bool GamepadButtonBecomesPressed(InputDefinitions::GamepadButton button) const;
+	bool GamepadButtonBecomesReleased(InputDefinitions::GamepadButton button) const;
+	float GetGamepadAxis(InputDefinitions::GamepadAxis axis) const;
+
+	/*float GetGamepadLeftThumbX() const { return m_GamepadStickLeftX; }
+	float GetGamepadLeftThumbY() const { return m_GamepadStickLeftY; }
+	float GetGamepadRightThumbX() const { return m_GamepadStickRightX; }
+	float GetGamepadRightThumbY() const { return m_GamepadStickRightY; }
+	float GetGamepadLeftTrigger() const { return m_GamepadTriggerLeft; }
+	float GetGamepadRightTrigger() const { return m_GamepadTriggerRight; }
+	
+	bool IsGamepadAPressed() const { return m_GamepadA; }
+	bool IsGamepadBPressed() const { return m_GamepadB; }
+	bool IsGamepadXPressed() const { return m_GamepadX; }
+	bool IsGamepadYPressed() const { return m_GamepadY; }*/
+
+	inline float ProcessXInputStickValue(SHORT Value, SHORT DeadZoneThreshold) {
+
+		float Result = 0;
+
+		if (Value < -DeadZoneThreshold) {
+			Result = (float)((Value + DeadZoneThreshold) / (32768.0f - DeadZoneThreshold));
+		}
+		else if (Value > DeadZoneThreshold) {
+			Result = (float)((Value - DeadZoneThreshold) / (32768.0f - DeadZoneThreshold));
+		}
+
+		return Result;
+	}
+
+	inline float ProcessXInputTriggerValue(SHORT Value, SHORT DeadZoneThreshold) {
+
+		float Result = 0;
+
+		if (Value > DeadZoneThreshold) {
+			Result = (float)((Value - DeadZoneThreshold) / (255.0f - DeadZoneThreshold));
+		}
+
+		return Result;
+	}
+
 private:
 
 	bool UpdateKeyboard();
@@ -88,7 +136,27 @@ private:
 	bool								m_ButtonRight = false, m_PreviousButtonRight = false;
 	bool								m_ButtonLeft = false, m_PreviousButtonLeft = false;
 	bool								m_ButtonMiddle = false, m_PreviousButtonMiddle = false;
+
+	bool								m_HasGamepad;
+
+	float								m_GamepadStickLeftX = 0.0f, m_GamepadStickLeftY = 0.0f;
+	float								m_GamepadStickRightX = 0.0f, m_GamepadStickRightY = 0.0f;
+	float								m_GamepadTriggerLeft = 0.0f, m_GamepadTriggerRight = 0.0f;
+
+	bool								m_GamepadLeftThumbButton = false, m_PreviousGamepadLeftThumbButton = false;
+	bool								m_GamepadRightThumbButton = false, m_PreviousGamepadRightThumbButton = false;
+	bool								m_GamepadA = false, m_PreviousGamepadA = false;
+	bool								m_GamepadB = false, m_PreviousGamepadB = false;
+	bool								m_GamepadX = false, m_PreviousGamepadX = false;
+	bool								m_GamepadY = false, m_PreviousGamepadY = false;
+	bool								m_GamepadRight = false, m_PreviousGamepadRight = false;
+	bool								m_GamepadLeft = false, m_PreviousGamepadLeft = false;
+	bool								m_GamepadSelect = false;
+	bool								m_GamepadStart = false;
+	bool								m_GamepadDpadUp = false, m_PreviousGamepadDpadUp = false;
+	bool								m_GamepadDpadRight = false, m_PreviousGamepadDpadRight = false;
+	bool								m_GamepadDpadDown = false, m_PreviousGamepadDpadDown = false;
+	bool								m_GamepadDpadLeft = false, m_PreviousGamepadDpadLeft = false;
 };
 
 #endif //_ENGINE_INPUTMANAGER_CPB_1611201620428_H
-

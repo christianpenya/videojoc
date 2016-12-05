@@ -6,9 +6,7 @@
 
 #include "Engine\CameraController.h"
 
-
 #undef BUILD_GET_SET_ENGINE_MANAGER
-
 
 CEngine::CEngine()
 
@@ -17,22 +15,15 @@ CEngine::CEngine()
 	, m_CameraController(nullptr)
 	, m_Clock()
 	, m_PrevTime(m_Clock.now())
-	
 {
 	deltaTime = 0;
 	cameraSelector = 0;
 	l_prevCameraSelector = 0;
-	
-	
-
 }
 
-void CEngine::ProcessInputs(){
-
+void CEngine::ProcessInputs() {
 
 	m_ActionManager->Update();
-
-
 }
 
 void CEngine::Update()
@@ -68,6 +59,7 @@ void CEngine::Update()
 	case 1: //FPS
 		SetCameraController(&fpsCam);
 		fpsCameraUpdate( *m_CameraController,m_ActionManager, dt);
+
 		break;
 	case 2: //TPS
 		SetCameraController(&tpsCam);
@@ -77,15 +69,12 @@ void CEngine::Update()
 		break;
 	default:
 		break;
-	}
-	//fpsCameraUpdate( *m_CameraController,*m_ActionManager, dt);
-	
+	}	
 	
 	m_CameraController->Update(dt);
 
 	m_CameraController->SetToRenderManager(*m_RenderManager);
 }
-
 
 void CEngine::Render()
 {
@@ -108,7 +97,6 @@ void CEngine::Render()
 	case 0: //Orbital
 		m_RenderManager->DrawSphere(1, CColor(1, 1, 0, 1));
 		
-
 		break;
 	case 1: //FPS
 		m_RenderManager->m_SphereOffset = Vect3f(0, 3, 0);
@@ -143,8 +131,8 @@ void CEngine::fpsCameraUpdate(CCameraController& camera, CActionManager* actionM
 	fpsCamera->xSpeed = 0.1f * (*actionManager)("x_move")->value;
 	fpsCamera->zSpeed = 0.1f * (*actionManager)("z_move")->value;
 
-	fpsCamera->yawSpeed = 0.1 * (*actionManager)("vertical_orientation")->value;
-	fpsCamera->pitchSpeed = -0.1 * (*actionManager)("horizontal_orientation")->value;
+	fpsCamera->yawSpeed = 0.1 * (*actionManager)("pitch")->value;
+	fpsCamera->pitchSpeed = -0.1 * (*actionManager)("yaw")->value;
 
 	fpsCamera->Update(dt);
 }
@@ -156,9 +144,9 @@ void CEngine::orbitalCameraUpdate(CCameraController& camera, CActionManager* act
 	CSphericalCameraController *sphericalCamera = static_cast<CSphericalCameraController*>(&camera);
 	sphericalCamera->zoomSpeed = (*actionManager)("zoom")->value;
 
-	if ((*actionManager)("enable_orientation")->active) {
-		sphericalCamera->yawSpeed = 0.1 * (*actionManager)("vertical_orientation")->value;
-		sphericalCamera->pitchSpeed = -0.1 * (*actionManager)("horizontal_orientation")->value;
+	if ((*actionManager)("enable_rotation")->active) {
+		sphericalCamera->yawSpeed = 0.1 * (*actionManager)("pitch")->value;
+		sphericalCamera->pitchSpeed = -0.1 * (*actionManager)("yaw")->value;
 	}
 	else {
 		sphericalCamera->yawSpeed = 0.0;
@@ -176,8 +164,8 @@ void CEngine::tpsCameraUpdate(CCameraController& camera, CActionManager* actionM
 	CTpsCameraController *tpsCamera = static_cast<CTpsCameraController*>(&camera);
 	tpsCamera->center = sphereCenter;
 
-	tpsCamera->yawSpeed = 0.1 * (*actionManager)("vertical_orientation")->value;
-	tpsCamera->pitchSpeed = -0.1 * (*actionManager)("horizontal_orientation")->value;
+	tpsCamera->yawSpeed = 0.1 * (*actionManager)("pitch")->value;
+	tpsCamera->pitchSpeed = -0.1 * (*actionManager)("yaw")->value;
 
 	tpsCamera->zoomSpeed = (*actionManager)("zoom")->value;
 

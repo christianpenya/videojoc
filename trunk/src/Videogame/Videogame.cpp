@@ -70,9 +70,6 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
   #ifdef _DEBUG
 	MemLeaks::MemoryBegin();
   #endif
-
-	//engine::materials::CMaterialManager manager = engine::materials::CMaterialManager();
-	//manager.LoadXML();
 	
 	// Register the window class
 	WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, MsgProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, APPLICATION_NAME, NULL };
@@ -165,10 +162,6 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 		l_Engine.ProcessInputs();
 		l_Engine.Update();
 		l_Engine.Render();
-
-		
-
-	
 	}
 
 	// Añadir una llamada a la alicación para finalizar/liberar memoria de todos sus datos

@@ -2,7 +2,7 @@
 #include <assert.h>
 
 CActionManager::CActionManager(const CInputManager &inputManager)
- :m_InputManager(inputManager){
+	:m_InputManager(inputManager){
 }
 
 ActionTrigger::TriggerType ActionTrigger::GetTriggerTypeFromString(const char* str, TriggerType defaultValue)
@@ -109,13 +109,14 @@ void CActionManager::Update() {
 						action->value = trigger.mouseButton.value;
 					}
 					break;
+				
 				case ActionTrigger::IsReleased:
 					if (!m_InputManager.IsMouseButtonPressed(trigger.mouseButton.button)) {
 						action->active = true;
 						action->value = trigger.mouseButton.value;
 					}
 					break;
-				
+
 				case ActionTrigger::BecomesPressed:
 					if (m_InputManager.MouseButtonBecomesPressed(trigger.mouseButton.button)) {
 						action->active = true;
@@ -128,17 +129,60 @@ void CActionManager::Update() {
 						action->active = true;
 						action->value = trigger.mouseButton.value;
 					}
-					break; 
+					break;
 				default:
 					assert(false);
 					break;
 				}
 				break;
 			case ActionTrigger::GAMEPAD:
-				// TODO
+			{
+				float value = m_InputManager.GetGamepadAxis(trigger.gamepad.axis);
+				bool active = trigger.gamepad.geThreshold ? (value >= trigger.gamepad.threshold) : (value <= trigger.gamepad.threshold);
+				if (fabs(value) >= fabs(action->value))
+				{
+					if (active || !action->active)
+					{
+						action->value = value;
+						action->active = active;
+					}
+				}
 				break;
+			}
 			case ActionTrigger::GAMEPAD_BUTTON:
-				// TODO
+				switch (trigger.mouseButton.actionType)
+				{
+				case ActionTrigger::IsPressed:
+					if (m_InputManager.IsGamepadButtonPressed(trigger.gamepadButton.button)) {
+						action->active = true;
+						action->value = trigger.gamepadButton.value;
+					}
+					break;
+				case ActionTrigger::IsReleased:
+					if (!m_InputManager.IsGamepadButtonPressed(trigger.gamepadButton.button)) {
+						action->active = true;
+						action->value = trigger.mouseButton.value;
+					}
+					break;
+
+				case ActionTrigger::BecomesPressed:
+					if (m_InputManager.GamepadButtonBecomesPressed(trigger.gamepadButton.button)) {
+						action->active = true;
+						action->value = trigger.gamepadButton.value;
+					}
+					break;
+
+				case ActionTrigger::BecomesReleased:
+					if (m_InputManager.GamepadButtonBecomesReleased(trigger.gamepadButton.button)) {
+						action->active = true;
+						action->value = trigger.gamepadButton.value;
+					}
+					break;
+
+				default:
+					assert(false);
+					break;
+				}
 				break;
 			default:
 				assert(false);
@@ -150,8 +194,8 @@ void CActionManager::Update() {
 
 inline unsigned char GetKeyCode(const std::string& str)
 {
-	if (str.length() == 1 && ((str[0] >= 'A' && str[0] <= 'Z') 
-		|| (str[0] >= '0' && str[0] <= '9')) 
+	if (str.length() == 1 && ((str[0] >= 'A' && str[0] <= 'Z')
+		|| (str[0] >= '0' && str[0] <= '9'))
 		|| str[0] >= 0x20 && str[0] <= 0x20F) // Tecles especials
 	{
 		return str[0];
@@ -211,7 +255,15 @@ bool CActionManager::LoadActions(const std::string &path)
 								actionTrigger.mouseButton.value = trigger->FloatAttribute("value");
 								break;
 							case ActionTrigger::GAMEPAD:
+								actionTrigger.gamepad.axis = InputDefinitions::GetGamepadAxisFromString(trigger->Attribute("axis"), InputDefinitions::RIGHT_THUMB_X);
+								actionTrigger.gamepad.threshold = trigger->FloatAttribute("threshold");
+								actionTrigger.gamepad.geThreshold = trigger->BoolAttribute("ge_threshold");
+								break;
 							case ActionTrigger::GAMEPAD_BUTTON:
+								actionTrigger.gamepadButton.button = InputDefinitions::GetGamepadButtonFromString(trigger->Attribute("button"));
+								actionTrigger.gamepadButton.actionType = ActionTrigger::GetButtonActionTypeFromString(trigger->Attribute("button_type"), ActionTrigger::IsPressed);
+								actionTrigger.gamepadButton.value = trigger->FloatAttribute("value");
+								break;
 							default:
 								assert(false);
 								break;
@@ -225,11 +277,9 @@ bool CActionManager::LoadActions(const std::string &path)
 						}
 					}
 
-
 					base::utils::CTemplatedMap<InputAction>::Update(actionName, new InputAction(inputAction));
 				}
-				else
-				{
+				else {
 					assert(false); // TODO better log error
 				}
 			}
@@ -238,6 +288,3 @@ bool CActionManager::LoadActions(const std::string &path)
 	}
 	return ok;
 }
-
-
-

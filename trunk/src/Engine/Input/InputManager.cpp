@@ -1,8 +1,15 @@
 #include "InputManager.h"
 
-void CInputManager::PreUpdate(bool isWindowActive) {
+typedef DWORD WINAPI TInputGetState(DWORD dwUserIndex, XINPUT_STATE *pState);
+typedef DWORD WINAPI TInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION *pVibration);
 
-	// TODO Falta setejar algunes variables
+DWORD WINAPI InputGetStateStub(DWORD dwUserIndex, XINPUT_STATE *pState) { return ERROR_DEVICE_NOT_CONNECTED; }
+DWORD WINAPI InputSetStateStub(DWORD dwUserIndex, XINPUT_VIBRATION *pState) { return ERROR_DEVICE_NOT_CONNECTED; }
+
+static TInputGetState* InputGetState = InputGetStateStub;
+static TInputSetState* InputSetState = InputSetStateStub;
+
+void CInputManager::PreUpdate(bool isWindowActive) {
 
 	m_PreviousKeyboardState = m_KeyboardState;
 
@@ -20,6 +27,52 @@ void CInputManager::PreUpdate(bool isWindowActive) {
 
 void CInputManager::PostUpdate() {
 
+	XINPUT_STATE l_ControllerState;
+
+	if (InputGetState(0, &l_ControllerState) == ERROR_SUCCESS) {
+		m_HasGamepad = true;
+		
+		m_GamepadStickLeftX = ProcessXInputStickValue(l_ControllerState.Gamepad.sThumbLX, XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE);
+	    m_GamepadStickLeftY = ProcessXInputStickValue(l_ControllerState.Gamepad.sThumbLY, XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE);
+		m_PreviousGamepadLeftThumbButton = m_GamepadLeftThumbButton;
+		m_GamepadLeftThumbButton = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_THUMB);
+		
+		m_GamepadStickRightX = ProcessXInputStickValue(l_ControllerState.Gamepad.sThumbRX, XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE);
+		m_GamepadStickRightY = ProcessXInputStickValue(l_ControllerState.Gamepad.sThumbRY, XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE);
+		m_PreviousGamepadRightThumbButton = m_GamepadRightThumbButton;
+		m_GamepadRightThumbButton = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_THUMB);
+		
+		m_GamepadTriggerLeft = ProcessXInputTriggerValue(l_ControllerState.Gamepad.bLeftTrigger, XINPUT_GAMEPAD_TRIGGER_THRESHOLD);
+		m_GamepadTriggerRight = ProcessXInputTriggerValue(l_ControllerState.Gamepad.bRightTrigger, XINPUT_GAMEPAD_TRIGGER_THRESHOLD);
+
+		m_PreviousGamepadA = m_GamepadA;
+		m_GamepadA = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_A) != 0;
+		m_PreviousGamepadB = m_GamepadB;
+		m_GamepadB = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_B) != 0;
+		m_PreviousGamepadX = m_GamepadX;
+		m_GamepadX = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_X) != 0;
+		m_PreviousGamepadY = m_GamepadY;
+		m_GamepadY = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_Y) != 0;
+
+		m_PreviousGamepadLeft = m_GamepadLeft;
+		m_GamepadLeft = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_SHOULDER);
+		m_PreviousGamepadRight = m_GamepadRight;
+		m_GamepadRight = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER);
+		m_GamepadSelect = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_BACK);
+		m_GamepadStart = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_START);
+
+		m_PreviousGamepadDpadUp = m_GamepadDpadUp;
+		m_GamepadDpadUp = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP);
+		m_PreviousGamepadDpadRight = m_GamepadDpadRight;
+		m_GamepadDpadRight = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT);
+		m_PreviousGamepadDpadDown = m_GamepadDpadDown;
+		m_GamepadDpadDown = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN);
+		m_PreviousGamepadDpadLeft = m_GamepadDpadLeft;
+		m_GamepadDpadLeft = (l_ControllerState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT);
+	}
+	else {
+		m_HasGamepad = false;
+	}
 }
 
 bool CInputManager::HandleKeyboard(const MSG& msg) {
@@ -226,5 +279,199 @@ bool CInputManager::MouseButtonBecomesReleased(InputDefinitions::MouseButton but
 	}
 }
 
+void CInputManager::SetupGamepad()
+{
+	HMODULE XInputLibrary = LoadLibraryA("xinput1_4.dll");
+	if (!XInputLibrary)
+	{
+		XInputLibrary = LoadLibraryA("xinput9_1_0.dll");
+	}
 
+	if (!XInputLibrary)
+	{
+		XInputLibrary = LoadLibraryA("xinput1_3.dll");
+	}
 
+	if (XInputLibrary) {
+		InputGetState = (TInputGetState *)GetProcAddress(XInputLibrary, "XInputGetState");
+		if (!InputGetState) {
+			InputGetState = InputGetStateStub;
+		}
+
+		InputSetState = (TInputSetState *)GetProcAddress(XInputLibrary, "XInputSetState");
+		if (!InputSetState) {
+			InputSetState = InputSetStateStub;
+		}
+	}
+}
+
+bool CInputManager::IsGamepadButtonPressed(InputDefinitions::GamepadButton button) const {
+	
+	switch (button) {
+
+	case InputDefinitions::GamepadButton::A:
+		return m_GamepadA;
+
+	case InputDefinitions::GamepadButton::B:
+		return m_GamepadB;
+
+	case InputDefinitions::GamepadButton::X:
+		return m_GamepadX;
+
+	case InputDefinitions::GamepadButton::Y:
+		return m_GamepadY;
+
+	case InputDefinitions::GamepadButton::BACK:
+		return m_GamepadSelect;
+
+	case InputDefinitions::GamepadButton::START:
+		return m_GamepadStart;
+
+	case InputDefinitions::GamepadButton::RB:
+		return m_GamepadRight;
+
+	case InputDefinitions::GamepadButton::LB:
+		return m_GamepadLeft;
+
+	case InputDefinitions::GamepadButton::RIGHT_THUMB:
+		return m_GamepadRightThumbButton;
+
+	case InputDefinitions::GamepadButton::LEFT_THUMB:
+		return m_GamepadLeftThumbButton;
+
+	case InputDefinitions::GamepadButton::DPAD_UP:
+		return m_GamepadDpadUp;
+
+	case InputDefinitions::GamepadButton::DPAD_RIGHT:
+		return m_GamepadDpadRight;
+
+	case InputDefinitions::GamepadButton::DPAD_DOWN:
+		return m_GamepadDpadDown;
+
+	case InputDefinitions::GamepadButton::DPAD_LEFT:
+		return m_GamepadDpadLeft;
+
+	default:
+		assert(false);
+		return 0;
+	}
+}
+
+bool CInputManager::GamepadButtonBecomesPressed(InputDefinitions::GamepadButton button) const {
+
+	switch (button) {
+
+	case InputDefinitions::GamepadButton::A:
+		return m_GamepadA && !m_PreviousGamepadA;
+
+	case InputDefinitions::GamepadButton::B:
+		return m_GamepadB && !m_PreviousGamepadB;
+
+	case InputDefinitions::GamepadButton::X:
+		return m_GamepadX && !m_PreviousGamepadX;
+
+	case InputDefinitions::GamepadButton::Y:
+		return m_GamepadY && !m_PreviousGamepadY;
+
+	case InputDefinitions::GamepadButton::RB:
+		return m_GamepadRight && !m_PreviousGamepadRight;
+
+	case InputDefinitions::GamepadButton::LB:
+		return m_GamepadLeft && !m_PreviousGamepadLeft;
+
+	case InputDefinitions::GamepadButton::RIGHT_THUMB:
+		return m_GamepadRightThumbButton && !m_PreviousGamepadRightThumbButton;
+
+	case InputDefinitions::GamepadButton::LEFT_THUMB:
+		return m_GamepadLeftThumbButton && !m_PreviousGamepadLeftThumbButton;
+
+	case InputDefinitions::GamepadButton::DPAD_UP:
+		return m_GamepadDpadUp && !m_PreviousGamepadDpadUp;
+
+	case InputDefinitions::GamepadButton::DPAD_RIGHT:
+		return m_GamepadDpadRight && !m_PreviousGamepadDpadRight;
+
+	case InputDefinitions::GamepadButton::DPAD_DOWN:
+		return m_GamepadDpadDown && !m_PreviousGamepadDpadDown;
+
+	case InputDefinitions::GamepadButton::DPAD_LEFT:
+		return m_GamepadDpadLeft && !m_PreviousGamepadDpadLeft;
+
+	default:
+		assert(false);
+		return 0;
+	}
+}
+
+bool CInputManager::GamepadButtonBecomesReleased(InputDefinitions::GamepadButton button) const {
+
+		switch (button) {
+
+		case InputDefinitions::GamepadButton::A:
+			return !m_GamepadA && m_PreviousGamepadA;
+
+		case InputDefinitions::GamepadButton::B:
+			return !m_GamepadB && m_PreviousGamepadB;
+
+		case InputDefinitions::GamepadButton::X:
+			return !m_GamepadX && m_PreviousGamepadX;
+
+		case InputDefinitions::GamepadButton::Y:
+			return !m_GamepadY && m_PreviousGamepadY;
+
+		case InputDefinitions::GamepadButton::RB:
+			return !m_GamepadRight && m_PreviousGamepadRight;
+
+		case InputDefinitions::GamepadButton::LB:
+			return !m_GamepadLeft && m_PreviousGamepadLeft;
+
+		case InputDefinitions::GamepadButton::RIGHT_THUMB:
+			return !m_GamepadRightThumbButton && m_PreviousGamepadRightThumbButton;
+
+		case InputDefinitions::GamepadButton::LEFT_THUMB:
+			return !m_GamepadLeftThumbButton && m_PreviousGamepadLeftThumbButton;
+
+		case InputDefinitions::GamepadButton::DPAD_UP:
+			return !m_GamepadDpadUp && m_PreviousGamepadDpadUp;
+
+		case InputDefinitions::GamepadButton::DPAD_RIGHT:
+			return !m_GamepadDpadRight && m_PreviousGamepadDpadRight;
+
+		case InputDefinitions::GamepadButton::DPAD_DOWN:
+			return !m_GamepadDpadDown && m_PreviousGamepadDpadDown;
+
+		case InputDefinitions::GamepadButton::DPAD_LEFT:
+			return !m_GamepadDpadLeft && m_PreviousGamepadDpadLeft;
+
+		default:
+			assert(false);
+			return 0;
+		}
+}
+
+float CInputManager::GetGamepadAxis(InputDefinitions::GamepadAxis axis) const {
+
+	switch (axis) {
+	case InputDefinitions::LEFT_THUMB_X:
+		return m_GamepadStickLeftX;
+
+	case InputDefinitions::LEFT_THUMB_Y:
+		return -m_GamepadStickLeftY;
+
+	case InputDefinitions::RIGHT_THUMB_X:
+		return m_GamepadStickRightX;
+
+	case InputDefinitions::RIGHT_THUMB_Y:
+		return -m_GamepadStickRightY;
+
+	case InputDefinitions::LEFT_TRIGGER:
+		return m_GamepadTriggerLeft;
+
+	case InputDefinitions::RIGHT_TRIGGER:
+		return m_GamepadTriggerRight;
+
+	default:
+		assert(false);
+		return 0;
+	}
+}

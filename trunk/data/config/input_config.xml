@@ -4,28 +4,44 @@
 		<trigger type="KEYBOARD" key_code="%" value ="-1"/>
 		<trigger type="KEYBOARD" key_code="D" value ="1"/>
 		<trigger type="KEYBOARD" key_code="'" value ="1"/>
+		<trigger type="GAMEPAD" axis="LEFT_THUMB_X" threshold="0.1" ge_threshold = "true"/>
+		<trigger type="GAMEPAD" axis="LEFT_THUMB_X" threshold="0.1" ge_threshold = "false"/>
 	</action>
 	<action name = "z_move">
 		<trigger type="KEYBOARD" key_code="W" value="1"/>
 		<trigger type="KEYBOARD" key_code="&" value="1"/>
 		<trigger type="KEYBOARD" key_code="S" value="-1"/>
 		<trigger type="KEYBOARD" key_code="(" value="-1"/>
+		<trigger type="GAMEPAD" axis="LEFT_THUMB_Y" threshold="0.1" ge_threshold = "true"/>
+		<trigger type="GAMEPAD" axis="LEFT_THUMB_Y" threshold="0.1" ge_threshold = "false"/>
 	</action>	
-	<action name = "vertical_orientation">
+	<action name = "pitch">
 		<trigger type="MOUSE" axis="DX" threshold="0.5" ge_threshold = "true"/>
 		<trigger type="MOUSE" axis="DX" threshold="0.5" ge_threshold = "false"/>
+		<trigger type="GAMEPAD" axis="RIGHT_THUMB_X" threshold="0.1" ge_threshold = "true"/>
+		<trigger type="GAMEPAD" axis="RIGHT_THUMB_X" threshold="0.1" ge_threshold = "false"/>
 	</action>
-	<action name = "horizontal_orientation">
+	<action name = "yaw">
 		<trigger type="MOUSE" axis="DY" threshold="0.5" ge_threshold = "true"/>
 		<trigger type="MOUSE" axis="DY" threshold="0.5" ge_threshold = "false"/>
+		<trigger type="GAMEPAD" axis="RIGHT_THUMB_Y" threshold="0.1" ge_threshold = "true"/>
+		<trigger type="GAMEPAD" axis="RIGHT_THUMB_Y" threshold="0.1" ge_threshold = "false"/>
 	</action>
 	<action name = "zoom">
 		<trigger type="MOUSE" axis="DZ" threshold="0.1" ge_threshold = "true"/>
 		<trigger type="MOUSE" axis="DZ" threshold="0.1" ge_threshold = "false"/>
+		<trigger type="GAMEPAD_BUTTON" button="LB" value="-1"/>
+		<trigger type="GAMEPAD_BUTTON" button="RB" value="1"/>
+		<trigger type="GAMEPAD_BUTTON" button="A" value="-1"/>
+		<trigger type="GAMEPAD_BUTTON" button="B" value="1"/>
+		<trigger type="GAMEPAD_BUTTON" button="X" value="-1"/>
+		<trigger type="GAMEPAD_BUTTON" button="Y" value="1"/>
+
 	</action>
-	<action name = "enable_orientation">
+	<action name = "enable_rotation">
 		<trigger type="MOUSE_BUTTON" button="MIDDLE" value="1"/>
 		<trigger type="MOUSE_BUTTON" button="LEFT" value="1"/>
 		<trigger type="MOUSE_BUTTON" button="RIGHT" value="-1"/>
+		<trigger type="GAMEPAD_BUTTON" button="RIGHT_THUMB" value="1"/>
 	</action>
 </actions>
