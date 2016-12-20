@@ -3,31 +3,31 @@
 #ifndef _ENGINE_MATERIALMANAGER_CPB_1611241620428_H
 #define _ENGINE_MATERIALMANAGER_CPB_1611241620428_H
 
-
 #include "Base/XML/tinyxml2/tinyxml2.h"
 #include <list>
 #include "Base\Utils\TemplatedMap.h"
 #include "Base\Utils\Name.h"
+#include "Base\Utils\Defines.h"
 #include "Material.h"
+#include <assert.h>
 
-namespace engine {
-	namespace materials {
+XML_FORWARD_DECLARATION
+
+class CMaterialManager : public base::utils::CTemplatedMap<CMaterial> {
 		
-		class CMaterialManager : public base::utils::CTemplatedMap<CMaterial> {
-		
-		public:
-			CMaterialManager(void);
-			CMaterialManager(const std::string path);
-			~CMaterialManager() {};
-			void LoadXML();
-			void ReloadXML();
+public:
+	CMaterialManager() {};
+	virtual ~CMaterialManager() {};
+	void Load(const std::string &LevelFilename, const std::string &DefaultsFileName = "");
+	void Reload();
+	void Save();
 
-		private:
-			std::list<CMaterial> materialList;
-			std::string m_path;
+private:
+	const std::string m_materialsFolderPath = "data/materials/";
 
-		};		
-	}
-}
+	std::string m_LevelMaterialsFilename;     
+	std::string m_DefaultMaterialsFilename;     
+	bool LoadMaterialsFromFile(const std::string &Filename, bool Update = false);
+};		
 
 #endif //_ENGINE_MATERIALMANAGER_CPB_1611241620428_H
