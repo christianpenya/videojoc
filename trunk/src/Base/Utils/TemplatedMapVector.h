@@ -1,3 +1,4 @@
+#pragma once
 #ifndef __H_TEMPLATED_MAP_VECTOR__
 #define __H_TEMPLATED_MAP_VECTOR__
 
@@ -39,7 +40,7 @@ namespace base{
 
             bool Exist(const std::string &aName)
             {
-                return m_ResourcesMap.find(aName) != m_ResourcesMap.end;
+                return m_ResourcesMap.find(aName) != m_ResourcesMap.end();
             }
 
             void Remove(const std::string &aName)
