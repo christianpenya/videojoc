@@ -1,0 +1,12 @@
+Exportador de materiales
+
+-Abrir escena 3dsMax.
+-Seleccionar los objetos de la escena de los que se quiere extraer los materiales. (si alguno no tiene materiales o submateriales se ignorara)
+-En la barra de herramientas seleccionar MaxScript, Run Script.
+-Se abrira un explorador de archivos, seleccionar materialExporter.ms
+-Si hay algun objeto seleccionado, en caso contrario terminara el script, aparecera un explorador de archivos donde estableceremos el fichero xml de salida.
+
+El archivo materials tiene que ir dentro de la carpeta "data" del proyecto.
+La idea seria que dentro de data hubiera distintos directorios para las distintas escenas/salas del videojuego y en cada una de ellas el fichero materials.xml con los materiales de cada sala/escena.
+
+El script tambien creara una carpeta llamada "texturas" donde copiara todos los archivos de imagen/bitmaps que contengan los materiales.
