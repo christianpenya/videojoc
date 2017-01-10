@@ -8,8 +8,10 @@
 #include "Base\Utils\Name.h"
 #include "Utils\EnumToString.h"
 
+class CTechnique;
 class CTexture;
 class CMaterialParameter;
+
 class CMaterial : public CName
 {
 public:
@@ -34,11 +36,14 @@ public:
 	CMaterial(CXMLElement* aElement);
 	virtual ~CMaterial();
 	void Apply();
+    void SetTechnique(CTechnique* aTechnique) { mTechnique = aTechnique; };
+    CTechnique* GetTechnique() { return mTechnique; };
 
 private:
 	DISALLOW_COPY_AND_ASSIGN(CMaterial);
 
-	std::vector< CTexture* >           mTextures;
+    CTechnique* mTechnique;
+	std::vector< CTexture* > mTextures;
 	std::vector< CMaterialParameter *> mParameters;
 };
 

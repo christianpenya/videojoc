@@ -1,6 +1,6 @@
 <materials>
 	<material name="RedBoxMaterial"> 
-		<texture type="diffuse" filename="data/scene01/textures/RedBox.jpg"/> 
+		<texture type="diffuse" filename="data/textures/fish_can_roll.jpg"/> 
 		<parameter type="float" name="specular" value="1.0"/>
 		<parameter type="float" name="gloss" value="10.0"/>
 		<parameter type="float" name="bump" value="3.0"/>
@@ -8,7 +8,7 @@
 		<parameter type="float" name="cutout_factor" value="1.0"/>
 	</material>
 	<material name="RedBoxMaterial2"> 
-		<texture type="diffuse" filename="data/scene01/textures/RedBox.jpg"/> 
+		<texture type="diffuse" filename="data/textures/crystal_can_do_it.jpg"/> 
 		<parameter type="float" name="specular" value="1.0"/>
 		<parameter type="float" name="gloss" value="10.0"/>
 		<parameter type="float" name="bump" value="3.0"/>
@@ -16,7 +16,7 @@
 		<parameter type="float" name="cutout_factor" value="1.0"/>
 	</material> 
 	<material name="RedBoxMaterial3"> 
-		<texture type="diffuse" filename="data/scene01/textures/RedBox.jpg"/> 
+		<texture type="diffuse" filename="data/textures/yv_lots_of_money.png"/> 
 		<parameter type="float" name="specular" value="1.0"/>
 		<parameter type="float" name="gloss" value="10.0"/>
 		<parameter type="float" name="bump" value="3.0"/>

@@ -13,21 +13,22 @@
 
 XML_FORWARD_DECLARATION
 
-class CMaterialManager : public base::utils::CTemplatedMap<CMaterial> {
-		
+class CMaterialManager : public base::utils::CTemplatedMap<CMaterial>
+{
+
 public:
-	CMaterialManager() {};
-	virtual ~CMaterialManager() {};
-	void Load(const std::string &LevelFilename, const std::string &DefaultsFileName = "");
-	void Reload();
-	void Save();
+    CMaterialManager() {};
+    virtual ~CMaterialManager() {};
+    void Load(const std::string &LevelFilename, const std::string &DefaultsFileName = "");
+    void Reload();
+    void Save();
 
 private:
-	const std::string m_materialsFolderPath = "data/materials/";
+    const std::string m_materialsFolderPath = "data/materials/";
 
-	std::string m_LevelMaterialsFilename;     
-	std::string m_DefaultMaterialsFilename;     
-	bool LoadMaterialsFromFile(const std::string &Filename, bool Update = false);
-};		
+    std::string m_LevelMaterialsFilename;
+    std::string m_DefaultMaterialsFilename;
+    bool LoadMaterialsFromFile(const std::string &Filename, bool Update = false);
+};
 
 #endif //_ENGINE_MATERIALMANAGER_CPB_1611241620428_H

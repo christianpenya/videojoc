@@ -17,9 +17,8 @@ void CMaterialManager::Reload()
 }
 
 
-bool CMaterialManager::LoadMaterialsFromFile(const std::string &Filename, bool UpdateFlag) {
-
-    //TODO Update
+bool CMaterialManager::LoadMaterialsFromFile(const std::string &Filename, bool UpdateFlag)
+{
 
     bool out = false;
 
@@ -40,10 +39,12 @@ bool CMaterialManager::LoadMaterialsFromFile(const std::string &Filename, bool U
 
                     if (!Add(lMaterial->GetName(), lMaterial))
                     {
-                        if (UpdateFlag) {
+                        if (UpdateFlag)
+                        {
                             Update(lMaterial->GetName(), lMaterial);
                         }
-                        else {
+                        else
+                        {
                             base::utils::CheckedDelete(lMaterial);
                         }
                     }
