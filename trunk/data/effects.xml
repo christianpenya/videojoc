@@ -1,0 +1,7 @@
+<effects>
+  <effect name="PositionNormalTechniqueForward">
+   <shader stage="vertex"   name="PositionNormalForward"/>
+   <shader stage="pixel"    name="PositionNormalForward"/>
+  </effect>
+ </effects>
+ 

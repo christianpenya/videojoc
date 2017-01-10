@@ -1,0 +1,12 @@
+#include "Colors.fxh"
+
+struct Vertex2Pixel
+{
+	float4 pos         : SV_POSITION;
+	float3 worldNormal : TEXCOORD1;
+};
+
+float4 mainPixelShader( Vertex2Pixel pix ) : SV_Target
+{
+	return Green();
+}
