@@ -42,6 +42,11 @@ struct sMaterial (
 	m_glossinessBitmap = undefined,
 	m_glossinessAmount = 0
 
+	/*m_emissionEnabled = false,
+	m_emissionMap = undefined,
+	m_emissionBitmap = undefined,
+	m_emissionAmount = 0*/
+
 	
 )
 

@@ -5,6 +5,12 @@ fileIn "structMaterial.ms"
 function preProcess = (
 	for object in $ do (
 		iMaterial = object.material
+		if iMaterial == undefined then (
+			iMaterial = StandardMaterial()
+			iMaterial.name = object.name+"Material"
+			iMaterial.diffuse = object.wirecolor
+
+		)
 		if classOf iMaterial == StandardMaterial then	(	
 			appendIfUnique mArrayMaterial iMaterial
 		)else if classOf iMaterial == Multimaterial then	(
@@ -12,6 +18,7 @@ function preProcess = (
 			for iSubMaterial =  1 to lSubMaterialsCount do(
 				local lSubMaterial = iMaterial[iSubMaterial]
 				appendIfUnique mArrayMaterial lSubMaterial
+
 			)
 		)
 	)
@@ -49,7 +56,7 @@ function process = (
 					lSMaterial.m_bumpAmount = mMaterial.bumpMapAmount				
 			)else (
 					lSMaterial.m_bumpEnabled = false
-			)			
+			)
 			
 		)
 		--Datos self illum
@@ -112,7 +119,18 @@ function process = (
 			)else(
 				lSMaterial.m_glossinessEnabled = false
 			)
-		)	
+		)
+		/*--Datos emission
+		lSMaterial.m_emissionEnabled = mMaterial.emissionMapEnable
+		if lSMaterial.m_emissionEnabled == true then (
+			lSMaterial.m_emissionMap = mMaterial.emissionMap
+			lSMaterial.m_emissionBitmap = mMaterial.emissionMap.bitmap
+			if lSMaterial.m_emissionBitmap != undefined then(
+				lSMaterial.m_emissionAmount = mMaterial.emissionMapAmount
+			)else(
+				lSMaterial.m_emissionEnabled = false
+			)
+		)*/
 		
 		append mArrayMaterialStruct lSMaterial 
 	)	
@@ -121,6 +139,7 @@ function process = (
 
 function parse outPath = (
 	local rootNode = XmlNode tag:"materials"
+	local dataStr = "data\\"
 	xmlDoc.rootNode = rootNode
 	for object in mArrayMaterialStruct do(
 		local matNode = XmlNode tag:"material"
@@ -131,7 +150,7 @@ function parse outPath = (
 			matNode.addChild textNode
 			textNode.addAttribute "type" "diffuse"			
 			local filename = copyTexture object.m_diffuseBitmap outPath
-			textNode.addAttribute "filename" filename
+			textNode.addAttribute "filename" (dataStr + filename)
 			
 			local colorNode = XmlNode tag:"color"
 			matNode.addChild colorNode
@@ -150,7 +169,7 @@ function parse outPath = (
 			matNode.addChild textNode
 			textNode.addAttribute "type" "bump"
 			local filename = copyTexture object.m_bumpBitmap outPath
-			textNode.addAttribute "filename" filename
+			textNode.addAttribute "filename" (dataStr + filename)
 			
 			local paramNode = XmlNode tag:"parameter"
 			matNode.addChild paramNode
@@ -163,7 +182,7 @@ function parse outPath = (
 			matNode.addChild textNode
 			textNode.addAttribute "type" "selfIllum"
 			local filename = copyTexture object.m_selfIllumBitmap outPath
-			textNode.addAttribute "filename" filename
+			textNode.addAttribute "filename" (dataStr + filename)
 			
 			local paramNode = XmlNode tag:"parameter"
 			matNode.addChild paramNode
@@ -178,7 +197,7 @@ function parse outPath = (
 			matNode.addChild textNode
 			textNode.addAttribute "type" "ambient"
 			local filename = copyTexture object.m_ambientBitmap outPath
-			textNode.addAttribute "filename" filename
+			textNode.addAttribute "filename" (dataStr + filename)
 
 			local colorNode = XmlNode tag:"color"
 			matNode.addChild colorNode
@@ -198,7 +217,7 @@ function parse outPath = (
 			matNode.addChild textNode
 			textNode.addAttribute "type" "specularLevel"
 			local filename = copyTexture object.m_specularLevelBitmap outPath
-			textNode.addAttribute "filename" filename
+			textNode.addAttribute "filename" (dataStr + filename)
 			
 			local paramNode = XmlNode tag:"parameter"
 			matNode.addChild paramNode
@@ -212,7 +231,7 @@ function parse outPath = (
 			matNode.addChild textNode
 			textNode.addAttribute "type" "specular"
 			local filename = copyTexture object.m_specularBitmap outPath
-			textNode.addAttribute "filename" filename
+			textNode.addAttribute "filename" (dataStr + filename)
 
 			local colorNode = XmlNode tag:"color"
 			matNode.addChild colorNode
@@ -232,7 +251,7 @@ function parse outPath = (
 			matNode.addChild textNode
 			textNode.addAttribute "type" "glossiness"
 			local filename = copyTexture object.m_glossinessBitmap outPath
-			textNode.addAttribute "filename" filename
+			textNode.addAttribute "filename" (dataStr + filename)
 
 			local paramNode = XmlNode tag:"parameter"
 			matNode.addChild paramNode
@@ -240,6 +259,20 @@ function parse outPath = (
 			paramNode.addAttribute "name" "glossiness"
 			paramNode.addAttribute "value" object.m_glossinessAmount
 		)
+
+		/*if object.m_emissionEnabled == true then(
+			local textNode = XmlNode tag:"texture"
+			matNode.addChild textNode
+			textNode.addAttribute "type" "emission"
+			local filename = copyTexture object.m_emissionBitmap outPath
+			textNode.addAttribute "filename" (dataStr + filename)
+
+			local paramNode = XmlNode tag:"parameter"
+			matNode.addChild paramNode
+			paramNode.addAttribute "type" "float"
+			paramNode.addAttribute "name" "emission"
+			paramNode.addAttribute "value" object.m_emissionAmount
+		)*/
 
 
 	
