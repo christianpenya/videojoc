@@ -7,26 +7,28 @@
 #include <vector>
 #include "BoundingSphere.h"
 #include "AxisAlignedBoundingBox.h"
+
 class CRenderManager;
 class CMaterial;
 class CGeometry;
 
-class CMesh : public CName {
+class CMesh : public CName
+{
 public:
-    CMesh(){}
-    virtual ~CMesh(){}
-    bool Load(const std::string& aFilename);   
+    CMesh() {};
+    virtual ~CMesh() {};
+    bool Load(const std::string& aFilename);
     bool Render(CRenderManager& aRenderManager);
 
-protected:   
-    uint32 mCount;   
-    std::vector< CMaterial* > mMaterials;   
-    std::vector< CGeometry* > mGeometries;   
-    CAxisAlignedBoundingBox mAABB;   
+protected:
+    uint32 mCount;
+    std::vector< CMaterial* > mMaterials;
+    std::vector< CGeometry* > mGeometries;
+    CAxisAlignedBoundingBox mAABB;
     CBoundingSphere mBoundingSphere;
 };
 
-#define HEADER 0xFE55 
-#define FOOTER 0x55FE 
+#define HEADER 0xFE55
+#define FOOTER 0x55FE
 
 #endif //_ENGINE_MESH_20161222

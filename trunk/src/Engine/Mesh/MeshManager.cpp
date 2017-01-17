@@ -1,9 +1,11 @@
 #include "MeshManager.h"
 #include "Mesh.h"
 
-CMesh* CMeshManager::GetMesh(const std::string& aFilename) {
+CMesh* CMeshManager::GetMesh(const std::string& aFilename)
+{
 
-    if (!mMeshes.Exist(aFilename)) {
+    if (!mMeshes.Exist(aFilename))
+    {
         Load(aFilename);
     }
 
@@ -28,6 +30,7 @@ bool CMeshManager::Load(const std::string& aFilename)
     return lOk;
 }
 
-void CMeshManager::Destroy() {
+void CMeshManager::Destroy()
+{
     mMeshes.Destroy();
 }

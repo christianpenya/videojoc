@@ -11,7 +11,7 @@
 #include "Engine/Materials/MaterialManager.h"
 #include "Mesh/TemplatedIndexedGeometry.h"
 
-CGeometry* CreateGeometry(CRenderManager& aRM, uint32& aVertexFlags, uint32& aNumVertices, void* aVertexData, void* aIndexData)
+CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsigned short aNumVertices, void* aVertexData, void* aIndexData)
 {
 
     if (aVertexFlags == VertexTypes::PositionUV::GetVertexFlags())
@@ -66,69 +66,93 @@ CGeometry* CreateGeometry(CRenderManager& aRM, uint32& aVertexFlags, uint32& aNu
 
 bool CMesh::Load(const std::string& aFilename)
 {
-    bool lOk = false;
+    m_Name = aFilename;
+
+    bool lOk = true;
 
     std::shared_ptr<base::utils::CBinFileReader> lBinFileReader = std::make_shared<base::utils::CBinFileReader>(aFilename);
-    lBinFileReader->Open();
-
-    // read header
-    unsigned short lHeader = lBinFileReader->Read<unsigned short>();
-
-    CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
-    CMaterialManager& lMM = CEngine::GetInstance().GetMaterialManager();
-
-    if (lHeader == HEADER)
+    if (lBinFileReader->Open())
     {
-        unsigned short lNumMaterialesMallas = lBinFileReader->Read<unsigned short>();
-        for (unsigned short iMatMesh = 0; iMatMesh < lNumMaterialesMallas; ++iMatMesh)
+        unsigned short lHeader = lBinFileReader->Read<unsigned short>();
+
+        CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
+        CMaterialManager& lMM = CEngine::GetInstance().GetMaterialManager();
+
+        if (lHeader == HEADER)
         {
-            //MATERIAL
-            std::string lMaterialName = lBinFileReader->Read<std::string>();
-            mMaterials.push_back(lMM(lMaterialName));
+            unsigned short lNumMaterialesMallas = lBinFileReader->Read<unsigned short>();
+            if (lNumMaterialesMallas > 0)
+            {
+                mMaterials.resize(lNumMaterialesMallas);
+                mGeometries.reserve(lNumMaterialesMallas);
+                for (unsigned short iMatMesh = 0; iMatMesh < lNumMaterialesMallas; ++iMatMesh)
+                {
+                    //MATERIAL
+                    std::string lMaterialName = lBinFileReader->Read<std::string>();
+                    mMaterials[iMatMesh] = lMM(lMaterialName);
 
-            //VERTEX
-            uint32 lVertexFlags = lBinFileReader->Read<uint32>();
-            uint32 lNumVertices = lBinFileReader->Read<uint32>();
+                    //VERTEX
+                    unsigned short lVertexFlags = lBinFileReader->Read<unsigned short>();
+                    unsigned short lNumVertices = lBinFileReader->Read<unsigned short>();
 
-            uint32 lVertexSize = VertexTypes::GetVertexSize(lVertexFlags);
-            size_t lNumBytesVertices = lNumVertices * lVertexSize;
-            void* lVertexData = lBinFileReader->ReadRaw(lNumBytesVertices);
+                    uint32 lVertexSize = VertexTypes::GetVertexSize(lVertexFlags);
+                    uint32 lNumBytesVertices = lNumVertices * lVertexSize;
+                    void* lVertexData = lBinFileReader->ReadRaw(lNumBytesVertices);
+                    //inspect debug example: (float*)lVertexData,24
 
-            //INDEX
-            size_t lNumBytesIndexes = lNumVertices * sizeof(unsigned int);
-            void* lIndexData = lBinFileReader->ReadRaw(lNumBytesVertices);
+                    //INDEX
+                    unsigned short lNumIndex = lBinFileReader->Read<unsigned short>();
+                    size_t lNumBytesIndexes = lNumIndex * sizeof(unsigned short);
+                    void* lIndexData = lBinFileReader->ReadRaw(lNumBytesIndexes);
 
-            CGeometry* lGeometry = CreateGeometry(lRM, lVertexFlags, lNumVertices, lVertexData, lIndexData);
-            mGeometries.push_back(lGeometry);
+                    CGeometry* lGeometry = CreateGeometry(lRM, lVertexFlags, lNumVertices, lVertexData, lIndexData);
+                    mGeometries.push_back(lGeometry);
 
-            free(lVertexData);
-            free(lIndexData);
+                    free(lVertexData);
+                    free(lIndexData);
 
-            //AABB
-            Vect3f lMinVertex = lBinFileReader->Read<Vect3f>();
-            Vect3f lMaxVertex = lBinFileReader->Read<Vect3f>();
+                    //AABB
+                    Vect3f lMinVertex = lBinFileReader->Read<Vect3f>();
+                    Vect3f lMaxVertex = lBinFileReader->Read<Vect3f>();
 
-            CAxisAlignedBoundingBox* lAABB = new CAxisAlignedBoundingBox();
-            lAABB->SetMin(lMinVertex);
-            lAABB->SetMax(lMaxVertex);
+                    CAxisAlignedBoundingBox* lAABB = new CAxisAlignedBoundingBox();
+                    lAABB->SetMin(lMinVertex);
+                    lAABB->SetMax(lMaxVertex);
 
-            mAABB = *lAABB;
+                    mAABB = *lAABB;
 
-            //Bounding Sphere
-            float lRadius = lBinFileReader->Read<float>();
-            Vect3f lCenter = lBinFileReader->Read<Vect3f>();
+                    //Bounding Sphere
+                    Vect3f lCenter = lBinFileReader->Read<Vect3f>();
+                    //#PARANORMAL no lee bien un float solo
+                    Vect3f lRadius = lBinFileReader->Read<Vect3f>();
 
-            CBoundingSphere* lBoundingSphere = new CBoundingSphere();
-            lBoundingSphere->SetRadius(lRadius);
-            lBoundingSphere->SetCenter(lCenter);
+                    CBoundingSphere* lBoundingSphere = new CBoundingSphere();
+                    lBoundingSphere->SetRadius(lRadius.x);
+                    lBoundingSphere->SetCenter(lCenter);
 
-            mBoundingSphere = *lBoundingSphere;
+                    mBoundingSphere = *lBoundingSphere;
+                }
+            }
         }
+
+        unsigned short lFooter = lBinFileReader->Read<unsigned short>();
+        lOk &= lFooter == FOOTER;
+
+        lBinFileReader->Close();
+        return lOk;
     }
+}
 
-    lBinFileReader->Close();
+bool CMesh::Render(CRenderManager& aRM)
+{
+    bool lOk = true;
 
-    lOk &= lHeader == FOOTER;
+    // #TODO constant buffer
+
+    for (std::vector<CGeometry*>::iterator it = mGeometries.begin(); it != mGeometries.end(); ++it)
+    {
+        lOk &= (*it)->RenderIndexed(aRM.GetDeviceContext());
+    }
 
     return lOk;
 }
