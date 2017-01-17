@@ -7,7 +7,6 @@
 
 CVertexShader::CVertexShader(const std::string& aShaderCode, uint32 aVertexFlags) : CShader(aShaderCode, EShaderStage::eVertexShader)
 {
-    //ALEX: En que casuistica se usa este constructor? Que mas debe hacer?
 }
 
 CVertexShader::CVertexShader(const CXMLElement* aElement) : CShader(aElement, EShaderStage::eVertexShader)
@@ -17,7 +16,6 @@ CVertexShader::CVertexShader(const CXMLElement* aElement) : CShader(aElement, ES
 
 CVertexShader::~CVertexShader()
 {
-    //TODO: Esto debe hacer algo?
 }
 
 bool CVertexShader::Load()
