@@ -108,6 +108,9 @@
     <ClCompile Include="ImGUI\imgui_draw.cpp">
       <Filter>Archivos de código fuente\DearImGUI</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\StringUtils.cpp">
+      <Filter>Archivos de código fuente\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Color.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="Utils\Release.h">
       <Filter>Archivos de encabezado\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\BinFileReader.h">
+      <Filter>Archivos de código fuente\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
