@@ -15,13 +15,10 @@
 CMaterial::~CMaterial()
 {
     base::utils::CheckedDelete(mParameters);
-    //TODO sembla que la seguent linia peta;
-    base::utils::CheckedDelete(mTextures);
 }
 
 CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
 {
-    //mTextures.resize(CMaterial::ETextureIndex, nullptr);
     for (tinyxml2::XMLElement *iTextureOrParameter = aElement->FirstChildElement(); iTextureOrParameter != nullptr; iTextureOrParameter = iTextureOrParameter->NextSiblingElement())
     {
         if (strcmp(iTextureOrParameter->Name(), "texture") == 0)
@@ -72,7 +69,6 @@ break;\
 
 void CMaterial::Apply()
 {
-
     assert(mTechnique);
     ID3D11DeviceContext * lContext = CEngine::GetInstance().GetRenderManager().GetDeviceContext();
 

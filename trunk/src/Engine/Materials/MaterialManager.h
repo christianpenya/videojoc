@@ -28,7 +28,7 @@ private:
 
     std::string m_LevelMaterialsFilename;
     std::string m_DefaultMaterialsFilename;
-    bool LoadMaterialsFromFile(const std::string &Filename, bool Update = false);
+    bool Load(const std::string &Filename, bool Update = false);
 };
 
 #endif //_ENGINE_MATERIALMANAGER_CPB_1611241620428_H
