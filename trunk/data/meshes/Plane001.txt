@@ -1,0 +1,51 @@
+C:/mallas/Plane001.mesh opened in wb
+PrintUnsignedShort 65109
+PrintUnsignedShort 1
+PrintString Plane003Material count 16 
+PrintUnsignedShort 3
+PrintUnsignedShort 4
+PrintFloat 11.1231
+PrintFloat 0.0
+PrintFloat 15.4167
+PrintFloat 0.0
+PrintFloat 1.0
+PrintFloat 0.0
+PrintFloat -11.1231
+PrintFloat 0.0
+PrintFloat 15.4167
+PrintFloat 0.0
+PrintFloat 1.0
+PrintFloat 0.0
+PrintFloat 11.1231
+PrintFloat 0.0
+PrintFloat -15.4167
+PrintFloat 0.0
+PrintFloat 1.0
+PrintFloat 0.0
+PrintFloat -11.1231
+PrintFloat 0.0
+PrintFloat -15.4167
+PrintFloat 0.0
+PrintFloat 1.0
+PrintFloat 0.0
+PrintUnsignedShort 6
+PrintUnsignedShort 0
+PrintUnsignedShort 1
+PrintUnsignedShort 2
+PrintUnsignedShort 3
+PrintUnsignedShort 2
+PrintUnsignedShort 1
+PrintFloat -11.1231
+PrintFloat 0.0
+PrintFloat -15.4167
+PrintFloat 11.1231
+PrintFloat 0.0
+PrintFloat 15.4167
+PrintFloat 11.1231
+PrintFloat 0.0
+PrintFloat 15.4167
+PrintUnsignedShort 38.0209
+PrintUnsignedShort 22014
+C:/mallas/Plane001.mesh closed
+1
+OK

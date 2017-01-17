@@ -1,0 +1,26 @@
+<scene>
+  <layer name="opaque" >
+   <scene_mesh name="Plane001" mesh="Plane001">
+    <transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
+   </scene_mesh>
+   <scene_basic_primitive name="Plane002" type="Plane002">
+    <transform position="10.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
+   </scene_basic_primitive>
+  </layer>
+  <layer name="cut out" >
+   <scene_mesh name="Box001" mesh="Box001">
+    <transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
+   </scene_mesh >
+  </layer>
+  <layer name="transparent" >
+   < scene_mesh name="Box03" mesh="GlassBox">
+    <transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
+   </scene_mesh>
+  </layer>
+  <layer name="animated_models"/>
+  <layer name="particles"/>
+  <layer name="lights">
+   <scene_light name="PL" light="FSpot001" />
+  </layer>
+  <layer name="cameras"/>
+ </scene>

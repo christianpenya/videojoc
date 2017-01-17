@@ -1,26 +1,42 @@
-<materials>
-	<material name="RedBoxMaterial"> 
-		<texture type="diffuse" filename="data/textures/fish_can_roll.jpg"/> 
-		<parameter type="float" name="specular" value="1.0"/>
-		<parameter type="float" name="gloss" value="10.0"/>
-		<parameter type="float" name="bump" value="3.0"/>
-		<parameter type="float" name="environment_factor" value="0.0"/>
-		<parameter type="float" name="cutout_factor" value="1.0"/>
+<materials >
+	<material name="Material #98" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
 	</material>
-	<material name="RedBoxMaterial2"> 
-		<texture type="diffuse" filename="data/textures/crystal_can_do_it.jpg"/> 
-		<parameter type="float" name="specular" value="1.0"/>
-		<parameter type="float" name="gloss" value="10.0"/>
-		<parameter type="float" name="bump" value="3.0"/>
-		<parameter type="float" name="environment_factor" value="0.0"/>
-		<parameter type="float" name="cutout_factor" value="1.0"/>
-	</material> 
-	<material name="RedBoxMaterial3"> 
-		<texture type="diffuse" filename="data/textures/yv_lots_of_money.png"/> 
-		<parameter type="float" name="specular" value="1.0"/>
-		<parameter type="float" name="gloss" value="10.0"/>
-		<parameter type="float" name="bump" value="3.0"/>
-		<parameter type="float" name="environment_factor" value="0.0"/>
-		<parameter type="float" name="cutout_factor" value="1.0"/>
-	</material> 
-</materials> 
+	<material name="Material #102" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+	</material>
+	<material name="Material #103" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+	</material>
+	<material name="Material #104" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+	</material>
+	<material name="Material #105" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+	</material>
+	<material name="Material #106" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+	</material>
+	<material name="04 - Default" >
+		<texture type="diffuse" filename="data\textures\alpha.jpg" />
+		<color type="diffuse" value="150.0,150.0,150.0,150.0," />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data\textures\BARK5.jpg" />
+		<parameter type="float" name="bump" value="30.0" />
+		<texture type="selfIllum" filename="data\textures\BWom0001-M3-Body-N.jpg" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+		<texture type="specularLevel" filename="data\textures\BWom0001-M3-Hair-N.jpg" />
+		<parameter type="float" name="specularLevel" value="100.0" />
+		<texture type="specular" filename="data\textures\BWom0001-M3-Body-N.jpg" />
+		<color type="specular" value="229.5,229.5,229.5,229.5," />
+		<parameter type="float" name="specular" value="100.0" />
+		<texture type="glossiness" filename="data\textures\BWom0001-M3-Body-S.jpg" />
+		<parameter type="float" name="glossiness" value="100.0" />
+	</material>
+</materials>
