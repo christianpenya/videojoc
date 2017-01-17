@@ -2,17 +2,11 @@
 #include "Engine\Render\RenderManager.h"
 #include "Engine\Engine.h"
 
-CPixelShader::CPixelShader(const std::string& aShaderCode) : CShader(aShaderCode, EShaderStage::ePixelShader)
-{
-    //ALEX: En que casuistica se usa este constructor? Que mas debe hacer?
-}
+CPixelShader::CPixelShader(const std::string& aShaderCode) : CShader(aShaderCode, EShaderStage::ePixelShader) {}
 
 CPixelShader::CPixelShader(const CXMLElement* aElement) : CShader(aElement, EShaderStage::ePixelShader) {}
 
-CPixelShader::~CPixelShader()
-{
-    //TODO: Esto debe hacer algo?
-};
+CPixelShader::~CPixelShader() {}
 
 bool CPixelShader::Load()
 {

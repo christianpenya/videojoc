@@ -14,6 +14,7 @@ public:
     bool Reload();
 
 private:
+    bool Load();
     DISALLOW_COPY_AND_ASSIGN(CEffectManager);
     std::string mFilename;
 };

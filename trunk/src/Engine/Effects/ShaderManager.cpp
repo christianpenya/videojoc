@@ -8,9 +8,13 @@ CShaderManager::CShaderManager()
 {
     m_Library.resize(CShader::EShaderStage::EStageCount);
 }
+
 CShaderManager::~CShaderManager()
 {
-    // #Alex: liberar coleccion de pointers
+    for (std::vector<TShadersLibrary>::iterator it = m_Library.begin(); it != m_Library.end(); ++it)
+    {
+        it->Destroy();
+    }
 }
 
 bool CShaderManager::Load(const std::string& aFilename)

@@ -2,16 +2,33 @@
 #include "Base/XML/tinyxml2/tinyxml2.h"
 #include "Base/XML/XML.h"
 
-CEffectManager::CEffectManager() {}
-CEffectManager::~CEffectManager() {}
+CEffectManager::CEffectManager()
+{
+}
+
+CEffectManager::~CEffectManager()
+{
+    Destroy();
+}
 
 bool CEffectManager::Load(const std::string& aFilename)
 {
-    bool lOk = false;
     mFilename = aFilename;
+    return Load();
+}
+
+bool CEffectManager::Reload()
+{
+    Clear();
+    return Load();
+}
+
+bool CEffectManager::Load()
+{
+    bool lOk = false;
 
     CXMLDocument document;
-    EXMLParseError error = document.LoadFile((aFilename).c_str());
+    EXMLParseError error = document.LoadFile((mFilename).c_str());
 
     if (base::xml::SucceedLoad(error))
     {
@@ -33,5 +50,3 @@ bool CEffectManager::Load(const std::string& aFilename)
 
     return lOk;
 }
-
-//TODO Reload

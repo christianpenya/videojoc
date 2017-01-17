@@ -4,9 +4,14 @@
 #include "Utils\EnumToString.h"
 #include "Engine\Engine.h"
 #include "Engine\Effects\EffectManager.h"
+#include "TechniquePool.h"
 
 CTechniquePoolManager::CTechniquePoolManager() {}
-CTechniquePoolManager::~CTechniquePoolManager() {}
+CTechniquePoolManager::~CTechniquePoolManager()
+{
+    CTemplatedMapVector::Destroy();
+    mPools.Destroy();
+}
 
 bool CTechniquePoolManager::Load(const std::string& aFilename)
 {
@@ -38,9 +43,8 @@ bool CTechniquePoolManager::Reload()
                         if (strcmp(iTechnique->Name(), "technique") == 0)
                         {
                             std::string lVertexType = iTechnique->GetAttribute<std::string>("vertex_type", "");
-                            // *ALEX: esto está bien? No me cuadra buscar effecto por nombre de vertice. que efectos cargamos por defecto?
                             CTechnique*	lTechnique = new CTechnique();
-                            lTechnique->SetEffect(lEM(lVertexType));
+                            lTechnique->SetEffect(nullptr);
                             Add(lVertexType, lTechnique);
                         }
                     }
@@ -57,8 +61,18 @@ bool CTechniquePoolManager::Reload()
     return lOk;
 }
 
-bool Apply(const std::string& aPoolName)
+bool  CTechniquePoolManager::Apply(const std::string& aPoolName)
 {
-    // *ALEX: que significa aplicar la pool?
-    return true;
+    bool lOk = false;
+    CTechniquePool* lPool = mPools(aPoolName);
+    if (lPool)
+    {
+        for (auto iTechnique = m_ResourcesMap.begin(); iTechnique != m_ResourcesMap.end(); ++iTechnique)
+        {
+            (*iTechnique).second.m_Value->SetEffect((*lPool)((*iTechnique).first));
+        }
+        lOk = true;
+    }
+
+    return lOk;
 }
