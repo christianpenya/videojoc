@@ -62,6 +62,8 @@ bool CSceneAnimatedModel::Initialize(CAnimatedCoreModel * AnimatedCoreModel)
 
     LoadVertexBuffer();
     LoadMaterials();
+
+    return false;
 }
 
 void CSceneAnimatedModel::Update(float ElapsedTime)
