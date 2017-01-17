@@ -2,6 +2,7 @@
 #ifndef _ENGINE_SPHERICALCAMERACONTROLLER_CPB_20161126_H
 #define _ENGINE_SPHERICALCAMERACONTROLLER_CPB_20161126_H
 
+
 #include "CameraController.h";
 
 class CSphericalCameraController : public CCameraController {
