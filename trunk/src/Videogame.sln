@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "UnitTest\UnitTe
 		{26F83A88-A038-4A21-9857-1E9360341EF5} = {26F83A88-A038-4A21-9857-1E9360341EF5}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cal3D", "cal3d\cal3d.vcxproj", "{9BFDEC28-3270-49E6-9EFC-9A03D3412BA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -41,6 +43,10 @@ Global
 		{5E1D7992-F55F-4662-97D2-0CC53A1D62AD}.Debug|Win32.Build.0 = Debug|Win32
 		{5E1D7992-F55F-4662-97D2-0CC53A1D62AD}.Release|Win32.ActiveCfg = Release|Win32
 		{5E1D7992-F55F-4662-97D2-0CC53A1D62AD}.Release|Win32.Build.0 = Release|Win32
+		{9BFDEC28-3270-49E6-9EFC-9A03D3412BA3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9BFDEC28-3270-49E6-9EFC-9A03D3412BA3}.Debug|Win32.Build.0 = Debug|Win32
+		{9BFDEC28-3270-49E6-9EFC-9A03D3412BA3}.Release|Win32.ActiveCfg = Release|Win32
+		{9BFDEC28-3270-49E6-9EFC-9A03D3412BA3}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

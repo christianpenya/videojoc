@@ -60,14 +60,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0600;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;$(DXSDK_DIR)Include\;$(WindowsSDK_IncludePath)\;$(DXSDK_DIR)lib\x86\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;$(SolutionDir)/Engine;$(SolutionDir)/cal3d;$(DXSDK_DIR)Include\;$(WindowsSDK_IncludePath)\;$(DXSDK_DIR)lib\x86\;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Base.lib;Engine.lib;d3d11.lib;d3dcompiler.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base.lib;Engine.lib;Cal3D.lib;d3d11.lib;d3dcompiler.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>$(SolutionDir)/../tools/build.cmd  "$(Configuration)" "$(SolutionDir)" "$(ProjectName)"</Command>
@@ -83,7 +83,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0600;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;$(DXSDK_DIR)Include\;$(WindowsSDK_IncludePath)\;$(DXSDK_DIR)lib\x86\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;$(SolutionDir)/Engine;$(SolutionDir)/cal3d;$(DXSDK_DIR)Include\;$(WindowsSDK_IncludePath)\;$(DXSDK_DIR)lib\x86\;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -92,7 +92,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Base.lib;Engine.lib;d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base.lib;Engine.lib;Cal3D.lib;d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>$(SolutionDir)/../tools/build.cmd  "$(Configuration)" "$(SolutionDir)" "$(ProjectName)"</Command>
