@@ -2,7 +2,7 @@
 #ifndef _ENGINE_FPSCAMERACONTROLLER_CPB_20161127_H
 #define _ENGINE_FPSCAMERACONTROLLER_CPB_20161127_H
 
-#include "CameraController.h";
+#include "CameraController.h"
 
 class CFpsCameraController : public CCameraController {
 public:

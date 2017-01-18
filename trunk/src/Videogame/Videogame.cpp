@@ -111,7 +111,7 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 
     CMaterialManager l_MaterialManager;
 
-    std::string inputConfigPath = "data/config/input_config.xml";
+	std::string inputConfigPath = "../../data/config/input_config.xml";
     l_ActionManager.LoadActions(inputConfigPath);
 
     // Setup iMGui binding

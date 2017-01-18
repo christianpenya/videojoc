@@ -83,7 +83,7 @@ void CEngine::Render()
     ImGui::Text("Frame rate: ");
     ImGui::SameLine();
     ImGui::Text("FPS", 1/deltaTime, 0.0f, -1, 0);
-    ImGui::ShowTestWindow;
+   // ImGui::ShowTestWindow();
 
     ImGui::RadioButton("Orbital", &cameraSelector, 0);
     ImGui::SameLine();

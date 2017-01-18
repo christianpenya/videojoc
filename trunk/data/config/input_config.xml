@@ -9,7 +9,7 @@
 	</action>
 	<action name = "z_move">
 		<trigger type="KEYBOARD" key_code="W" value="1"/>
-		<trigger type="KEYBOARD" key_code="&" value="1"/>
+		<trigger type="KEYBOARD" key_code="&amp;" value="1"/>
 		<trigger type="KEYBOARD" key_code="S" value="-1"/>
 		<trigger type="KEYBOARD" key_code="(" value="-1"/>
 		<trigger type="GAMEPAD" axis="LEFT_THUMB_Y" threshold="0.1" ge_threshold = "true"/>
@@ -36,7 +36,6 @@
 		<trigger type="GAMEPAD_BUTTON" button="B" value="1"/>
 		<trigger type="GAMEPAD_BUTTON" button="X" value="-1"/>
 		<trigger type="GAMEPAD_BUTTON" button="Y" value="1"/>
-
 	</action>
 	<action name = "enable_rotation">
 		<trigger type="MOUSE_BUTTON" button="MIDDLE" value="1"/>

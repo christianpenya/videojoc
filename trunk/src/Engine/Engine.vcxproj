@@ -55,7 +55,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;$(SolutionDir)/Engine;$(DXSDK_DIR)Include/;$(WindowsSDK_IncludePath);$(DXSDK_DIR)lib/x86/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;$(SolutionDir)/Engine;$(WindowsSDK_IncludePath);$(DXSDK_DIR)lib/x86/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -72,7 +72,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;;$(DXSDK_DIR)Include;$(WindowsSDK_IncludePath);$(DXSDK_DIR)Include;$(WindowsSDK_IncludePath);$(DXSDK_DIR)lib/x86/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;$(WindowsSDK_IncludePath);$(DXSDK_DIR)lib/x86/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
