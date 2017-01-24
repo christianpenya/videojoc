@@ -4,7 +4,7 @@
 #include "DirectXTex\dds.h"
 #include "Render\RenderManager.h"
 #include "Engine\Engine.h"
-#include "Base\Utils\CheckedDelete.h"
+#include "Utils\CheckedDelete.h"
 
 bool CTexture::Load()
 {

@@ -1,5 +1,5 @@
 #include "MaterialManager.h"
-#include "Base/XML/XML.h"
+#include "XML/XML.h"
 
 void CMaterialManager::Load(const std::string & aLevelFilename, const std::string &aDefaultsFileName)
 {

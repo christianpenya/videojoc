@@ -2,7 +2,7 @@
 #ifndef _ENGINE_SCENEMANAGER_20170110_H
 #define _ENGINE_SCENEMANAGER_20170110_H
 
-#include "Base\Utils\TemplatedMapVector.h"
+#include "Utils\TemplatedMapVector.h"
 #include "Scene.h"
 
 class CSceneManager : public base::utils::CTemplatedMapVector<CScene>

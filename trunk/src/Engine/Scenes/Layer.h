@@ -3,14 +3,14 @@
 #define _ENGINE_LAYER_20170110_H
 
 #include "SceneNode.h"
-#include "Base\Utils\TemplatedMapVector.h"
+#include "Utils\TemplatedMapVector.h"
 
 class CLayer : public CName, public base::utils::CTemplatedMapVector< CSceneNode >
 {
 public:
     CLayer(const std::string& aName);
     virtual ~CLayer();
-    bool Load(const CXMLElement* aElement);
+    bool Load(CXMLElement* aElement);
     bool Update(float elapsedTime);
     bool Render();
 protected:

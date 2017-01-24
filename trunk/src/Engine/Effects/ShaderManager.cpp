@@ -1,6 +1,6 @@
 #include "ShaderManager.h"
-#include "Base/XML/tinyxml2/tinyxml2.h"
-#include "Base/XML/XML.h"
+#include "XML\tinyxml2\tinyxml2.h"
+#include "XML\XML.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
 

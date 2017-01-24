@@ -3,7 +3,7 @@
 #ifndef _ENGINE_RENDERMANAGER_CPB_2016110320428_H
 #define _ENGINE_RENDERMANAGER_CPB_2016110320428_H
 
-#include "Base\Utils\Release.h"
+#include "Utils\Release.h"
 #include <Windows.h>
 #include <winerror.h>
 #include "d3dcompiler.h"
@@ -11,6 +11,8 @@
 #include "dxgi.h"
 #include "Math/Color.h"
 #include "Math/Matrix44.h"
+#define MAX_RENDER_TARGETS 5
+
 
 #ifdef _DEBUG
 #include <assert.h>
@@ -55,7 +57,6 @@ protected:
 
     releaser_ptr<ID3D11RasterizerState>			m_SolidRenderState;
 
-    Mat44f m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix;
     Mat44f m_ViewProjectionMatrix, m_ModelViewProjectionMatrix;
 
     void DebugRender(const Mat44f& modelViewProj, const CDebugVertex* modelVertices, int numVertices, CColor colorTint);
@@ -91,7 +92,7 @@ public:
     bool InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height, bool debugD3D);
     bool Get_RendertargetView();
     bool Create_DepthStencil(HWND hWnd, int Width, int Height);
-    void Set_Viewport(int Width, int Height);
+    void Set_Viewport(float Width, float Height);
     void SetRendertarget();
     void ReportLive();
 
@@ -156,10 +157,26 @@ public:
     {
         return m_DeviceContext.get();
     }
-    void Resize(int Width, int Height, HWND hWnd);
-    void CreateBackBuffers(int Width, int Height, HWND hWnd);
+    void Resize(float Width, float Height, HWND hWnd);
+    void CreateBackBuffers(float Width, float Height, HWND hWnd);
     void ClearAltIntro(HWND hWnd);
     void ToggleFullscreen(HWND Window, WINDOWPLACEMENT &WindowPosition);
+
+
+    void Clear(bool renderTarget, bool depthStencil, const CColor& backgroundColor);
+    void SetViewport(const Vect2u & aPosition, const Vect2u & aSize);
+    void ResetViewport();
+    void UnsetRenderTargets();
+    void SetRenderTargets(int aNumViews, ID3D11RenderTargetView **aRenderTargetViews, ID3D11DepthStencilView *aDepthStencilViews);
+    Mat44f m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix; // se movio de protected para render pipeline
+
+private:
+    ID3D11RenderTargetView* m_CurrentRenderTargetViews[MAX_RENDER_TARGETS];
+    int m_NumViews;
+    ID3D11DepthStencilView* m_CurrentDepthStencilView;
+    D3D11_VIEWPORT m_Viewport;
+
+
 };
 
 #endif //_ENGINE_RENDERMANAGER_CPB_2016110320428_H

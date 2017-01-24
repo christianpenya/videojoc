@@ -5,7 +5,7 @@
 
 #include<string>
 #include<vector>
-#include "Base\Utils\Name.h"
+#include "Utils\Name.h"
 #include "Utils\EnumToString.h"
 
 class CTechnique;

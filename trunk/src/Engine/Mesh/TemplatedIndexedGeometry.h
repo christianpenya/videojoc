@@ -3,6 +3,8 @@
 #define _ENGINE_TEMPLATEDINDEXEDDGEOMETRY_20161222
 
 #include "Geometry.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 
 template< class TVertexType >
 class CTemplatedIndexedGeometry : public CGeometry

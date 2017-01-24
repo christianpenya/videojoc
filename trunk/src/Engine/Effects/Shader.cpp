@@ -1,7 +1,7 @@
 #include "Shader.h"
 #include "ShaderInclude.h"
 #include <fstream>
-#include "Base/XML/tinyxml2/tinyxml2.h"
+#include "XML\tinyxml2\tinyxml2.h"
 
 CShader::CShader(const std::string& aShaderCode, EShaderStage aType) :
     m_ShaderCode(aShaderCode),
@@ -10,7 +10,7 @@ CShader::CShader(const std::string& aShaderCode, EShaderStage aType) :
 }
 
 CShader::CShader(const CXMLElement* aElement, EShaderStage aType) :
-    m_Type(aType) ,
+    m_Type(aType),
     CName(aElement->GetAttribute<std::string>("name", ""))
 {
     m_Filename = aElement->GetAttribute<std::string>("file", "");

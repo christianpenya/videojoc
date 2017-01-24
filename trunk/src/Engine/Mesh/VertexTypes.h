@@ -3,8 +3,8 @@
 #define _ENGINE_VERTEXTYPES_20161229
 
 #include "VertexsTypes_HelperMacros.h"
-#include "Base\Math\Vector3.h"
-#include "Engine\Render\RenderManager.h"
+#include "Math\Vector3.h"
+#include "Render\RenderManager.h"
 #include <string>
 
 namespace VertexTypes

@@ -4,7 +4,7 @@
 
 #include "Shader.h"
 #include <string>
-#include "Base\Utils\TemplatedMapVector.h"
+#include "Utils\TemplatedMapVector.h"
 
 class CShaderManager
 {

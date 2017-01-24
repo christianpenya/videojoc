@@ -3,14 +3,16 @@
 #include "XML\XML.h"
 #include <assert.h>
 #include "Utils\EnumToString.h"
-#include "Base\Math\Vector2.h"
-#include "Base\Math\Vector3.h"
-#include "Base\Math\Vector4.h"
-#include "Base\Math\Color.h"
-#include "Base\Utils\CheckedDelete.h"
-#include "Engine\Textures\TextureManager.h"
+#include "Math\Vector2.h"
+#include "Math\Vector3.h"
+#include "Math\Vector4.h"
+#include "Math\Color.h"
+#include "Utils\CheckedDelete.h"
+#include "Textures\TextureManager.h"
 #include "Engine\Engine.h"
-#include "Engine\Effects\Technique.h"
+#include "Effects\Technique.h"
+#include "Effects\TechniquePoolManager.h"
+#include "Engine\Engine.h"
 
 CMaterial::~CMaterial()
 {
@@ -19,6 +21,8 @@ CMaterial::~CMaterial()
 
 CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
 {
+    mTechnique = CEngine::GetInstance().GetTechniquePoolManager()(aElement->GetAttribute<std::string>("vertex_type", ""));
+
     for (tinyxml2::XMLElement *iTextureOrParameter = aElement->FirstChildElement(); iTextureOrParameter != nullptr; iTextureOrParameter = iTextureOrParameter->NextSiblingElement())
     {
         if (strcmp(iTextureOrParameter->Name(), "texture") == 0)

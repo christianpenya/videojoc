@@ -2,9 +2,9 @@
 #ifndef _ENGINE_SHADER_20170104
 #define _ENGINE_SHADER_20170104
 
-#include "Base\Utils\Name.h"
-#include "Base\Utils\Defines.h"
-#include "Base\Utils\EnumToString.h"
+#include "Utils\Name.h"
+#include "Utils\Defines.h"
+#include "Utils\EnumToString.h"
 #include <d3d11.h>
 
 class CShader : public CName

@@ -2,7 +2,7 @@
 #ifndef _ENGINE_MESH_20161222
 #define _ENGINE_MESH_20161222
 
-#include "Base\Utils\Name.h"
+#include "Utils\Name.h"
 #include "Math\MathUtils.h"
 #include <vector>
 #include "BoundingSphere.h"
@@ -11,12 +11,11 @@
 class CRenderManager;
 class CMaterial;
 class CGeometry;
-
 class CMesh : public CName
 {
 public:
-    CMesh() {};
-    virtual ~CMesh() {};
+    CMesh();
+    virtual ~CMesh();
     bool Load(const std::string& aFilename);
     bool Render(CRenderManager& aRenderManager);
 

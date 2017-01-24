@@ -1,5 +1,5 @@
 #include "PixelShader.h"
-#include "Engine\Render\RenderManager.h"
+#include "Render\RenderManager.h"
 #include "Engine\Engine.h"
 
 CPixelShader::CPixelShader(const std::string& aShaderCode) : CShader(aShaderCode, EShaderStage::ePixelShader) {}

@@ -3,7 +3,7 @@
 #define _ENGINE_TECHNIQUEPOOL_20170107
 
 #include "Effect.h"
-#include "Base\Utils\TemplatedMapVector.h"
+#include "Utils\TemplatedMapVector.h"
 
 class CTechniquePool : public base::utils::CTemplatedMapVector<CEffect>, public CName
 {

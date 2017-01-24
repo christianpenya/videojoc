@@ -1,5 +1,0 @@
-data\*.*;                      bin\_KEYWORD_CONFIG_NAME_\_KEYWORD_PROJECT_NAME_\data;     allconfigs
-
-lib\vcredist\Debug\*.*;        bin\_KEYWORD_CONFIG_NAME_\_KEYWORD_PROJECT_NAME_\;         Debug
-
-lib\vcredist\Release\*.*;      bin\_KEYWORD_CONFIG_NAME_\_KEYWORD_PROJECT_NAME_\;         Release

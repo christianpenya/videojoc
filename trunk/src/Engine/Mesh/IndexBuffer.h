@@ -2,8 +2,8 @@
 #ifndef _ENGINE_INDEXBUFFER_20161214
 #define _ENGINE_INDEXBUFFER_20161214
 
-#include"Buffer.h"
-#include "Engine\Render\RenderManager.h"
+#include "Buffer.h"
+#include "Render\RenderManager.h"
 
 class CIndexBuffer : public CBuffer
 {

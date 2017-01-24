@@ -1,6 +1,6 @@
 #include "SceneManager.h"
-#include "Base/XML/tinyxml2/tinyxml2.h"
-#include "Base/XML/XML.h"
+#include "XML/tinyxml2/tinyxml2.h"
+#include "XML/XML.h"
 
 CSceneManager::CSceneManager() {}
 CSceneManager::~CSceneManager() {}
@@ -13,14 +13,34 @@ bool CSceneManager::Load(const std::string& aFilename)
 
 bool CSceneManager::Update(float elapsedTime)
 {
-    //TODO Actualizar aquellas escenas activas
-    return false;
+    bool lOk = true;
+
+    for (TMapResources::iterator iSceneMapEntry = m_ResourcesMap.begin(); iSceneMapEntry != m_ResourcesMap.end(); ++iSceneMapEntry)
+    {
+        CScene* lScene = iSceneMapEntry->second.m_Value;
+
+        if (lScene->IsActive())
+        {
+            lOk &= lScene->Update(elapsedTime);
+        }
+    }
+    return lOk;
 }
 
 bool CSceneManager::Render(const std::string& aLayer)
 {
-    //TODO  Llamará al pintado de la layer seleccionada por aquellas escenas activas.
-    return false;
+    bool lOk = true;
+
+    for (TMapResources::iterator iSceneMapEntry = m_ResourcesMap.begin(); iSceneMapEntry != m_ResourcesMap.end(); ++iSceneMapEntry)
+    {
+        CScene* lScene = iSceneMapEntry->second.m_Value;
+
+        if (lScene->IsActive())
+        {
+            lOk &= lScene->Render();
+        }
+    }
+    return lOk;
 }
 
 bool CSceneManager::Reload()
@@ -41,7 +61,7 @@ void CSceneManager::Destroy()
 
 bool CSceneManager::Load()
 {
-    bool lOk = false;
+    bool lOk = true;
 
     CXMLDocument document;
     EXMLParseError error = document.LoadFile((m_Filename).c_str());
@@ -56,7 +76,7 @@ bool CSceneManager::Load()
             {
                 if (strcmp(iScene->Name(), "scene") == 0)
                 {
-                    // TODO mes maco
+                    // #TODO mes maco
                     // #ALEX = des de donde se llama el load de la escena?
                     std::string lName = iScene->GetAttribute<std::string>("name", "");
                     CScene* lScene = new CScene(lName);
@@ -71,10 +91,9 @@ bool CSceneManager::Load()
 
                     lScene->Load(lFilename);
 
-                    Add(lScene->GetName(), lScene);
+                    lOk &= Add(lScene->GetName(), lScene);
                 }
             }
-            lOk = true;
         }
     }
     return lOk;

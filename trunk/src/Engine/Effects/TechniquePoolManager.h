@@ -4,7 +4,7 @@
 
 #include "Technique.h"
 #include "TechniquePool.h"
-#include "Base\Utils\TemplatedMapVector.h"
+#include "Utils\TemplatedMapVector.h"
 
 class CTechniquePoolManager : public base::utils::CTemplatedMapVector<CTechnique>
 {

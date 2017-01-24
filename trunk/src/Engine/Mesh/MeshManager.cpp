@@ -1,16 +1,24 @@
 #include "MeshManager.h"
 #include "Mesh.h"
 
+CMeshManager::CMeshManager()
+{
+}
+
+CMeshManager::~CMeshManager()
+{
+}
+
 CMesh* CMeshManager::GetMesh(const std::string& aFilename)
 {
-
-    if (!mMeshes.Exist(aFilename))
+    CMesh* lMesh = nullptr;
+    if (!aFilename.empty())
     {
-        Load(aFilename);
+        if (!mMeshes.Exist(aFilename))
+            Load(aFilename);
+
+        lMesh = mMeshes(aFilename);
     }
-
-    CMesh* lMesh = mMeshes(aFilename);
-
     return lMesh;
 }
 

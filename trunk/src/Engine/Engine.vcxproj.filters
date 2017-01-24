@@ -82,6 +82,24 @@
     <Filter Include="Archivos de encabezado\Animation">
       <UniqueIdentifier>{0e462402-7944-4785-a60b-8622c609d656}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Lights">
+      <UniqueIdentifier>{379d02b4-9765-4d64-945c-05f814bb1cc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Lights">
+      <UniqueIdentifier>{18638606-1dd9-494f-bf79-a8542cdce274}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\RenderPipeline">
+      <UniqueIdentifier>{c7e909c0-c102-4c7e-8a72-a86f38ebe0f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\RenderPipeline">
+      <UniqueIdentifier>{bf63ada2-63bb-4f5c-ab9c-9b0cc66d1e76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Logger">
+      <UniqueIdentifier>{04974d02-3e14-4271-a5e9-cd60032fab1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Logger">
+      <UniqueIdentifier>{d2c879aa-fd01-435e-ad19-cb1ecbb10009}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -246,6 +264,84 @@
     <ClInclude Include="Animation\SceneAnimatedModel.h">
       <Filter>Archivos de encabezado\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="Lights\DirectionalLight.h">
+      <Filter>Archivos de encabezado\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights\Light.h">
+      <Filter>Archivos de encabezado\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights\LightManager.h">
+      <Filter>Archivos de encabezado\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights\PointLight.h">
+      <Filter>Archivos de encabezado\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights\SpotLight.h">
+      <Filter>Archivos de encabezado\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\ApplyTechniquePool.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\BeginRenderCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\CaptureFrameBuffer.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\CaptureFrameBufferTexture.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\ClearCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\DrawQuad.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\DynamicTexture.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\EndRenderCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\Quad.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\RenderCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\RenderImGUI.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\RenderPipeline.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\RenderSceneLayer.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\RenderStagedTexture.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\SetAlphaBlendState.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\SetDepthStencilStateCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\SetPerFrameConstantsCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\SetRasterizerState.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\SetRenderTarget.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\UnSetRenderTarget.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\Logger.h">
+      <Filter>Archivos de encabezado\Logger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Input\InputManager.cpp">
@@ -403,6 +499,84 @@
     </ClCompile>
     <ClCompile Include="Animation\SceneAnimatedModel.cpp">
       <Filter>Archivos de código fuente\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights\DirectionalLight.cpp">
+      <Filter>Archivos de código fuente\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights\Light.cpp">
+      <Filter>Archivos de código fuente\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights\LightManager.cpp">
+      <Filter>Archivos de código fuente\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights\PointLight.cpp">
+      <Filter>Archivos de código fuente\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights\SpotLight.cpp">
+      <Filter>Archivos de código fuente\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\ApplyTechniquePool.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\BeginRenderCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\CaptureFrameBuffer.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\CaptureFrameBufferTexture.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\clearCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\DrawQuad.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\DynamicTexture.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\endRenderCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\Quad.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\RenderCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\RenderPipeline.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\RenderSceneLayer.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\RenderStagedTexture.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\SetAlphaBlendState.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\SetDepthStencilStateCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\SetPerFrameConstantsCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\SetRasterizerState.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\SetRenderTarget.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\UnSetRenderTarget.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\RenderImGUI.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger\Logger.cpp">
+      <Filter>Archivos de código fuente\Logger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,11 +3,11 @@
 #ifndef _ENGINE_MATERIALMANAGER_CPB_1611241620428_H
 #define _ENGINE_MATERIALMANAGER_CPB_1611241620428_H
 
-#include "Base/XML/tinyxml2/tinyxml2.h"
+#include "XML\tinyxml2\tinyxml2.h"
 #include <list>
-#include "Base\Utils\TemplatedMap.h"
-#include "Base\Utils\Name.h"
-#include "Base\Utils\Defines.h"
+#include "Utils\TemplatedMap.h"
+#include "Utils\Name.h"
+#include "Utils\Defines.h"
 #include "Material.h"
 #include <assert.h>
 

@@ -3,9 +3,9 @@
 #define _ENGINE_ANIMATEDCOREMODEL_20170107
 
 
-#include "Base\Utils\Name.h"
+#include "Utils\Name.h"
 #include <vector>
-#include "Base\Math\Vector3.h"
+#include "Math\Vector3.h"
 
 class CalCoreModel;
 class CMaterial;

@@ -1,9 +1,9 @@
 #include "TechniquePool.h"
 #include <string>
-#include "Base/XML/tinyxml2/tinyxml2.h"
+#include "XML\tinyxml2\tinyxml2.h"
 #include "Engine\Engine.h"
 #include "Mesh\VertexTypes.h"
-#include "Engine\Effects\EffectManager.h"
+#include "Effects\EffectManager.h"
 
 CTechniquePool::~CTechniquePool() {}
 

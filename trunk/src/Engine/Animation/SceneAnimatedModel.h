@@ -2,7 +2,10 @@
 #ifndef _ENGINE_SCENEANIMATEDMODEL_20170117
 #define _ENGINE_SCENEANIMATEDMODEL_20170117
 
-#include "Engine\Scenes\SceneNode.h"
+#include "Scenes\SceneNode.h"
+#include "XML\tinyxml2\tinyxml2.h"
+#include "XML\XML.h"
+
 #include <vector>
 
 class CalModel;
@@ -29,7 +32,7 @@ public:
     virtual ~CSceneAnimatedModel();
     bool Initialize(CAnimatedCoreModel *AnimatedCoreModel);
     bool Render(CRenderManager &RenderManager);
-    void Update(float ElapsedTime);
+    bool Update(float ElapsedTime);
     void Destroy();
     void ExecuteAction(int Id, float DelayIn, float DelayOut, float WeightTarget = 1.0f,
                        bool AutoLock = true);

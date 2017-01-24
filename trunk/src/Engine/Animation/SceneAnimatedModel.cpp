@@ -1,5 +1,6 @@
 #include "SceneAnimatedModel.h"
 
+
 CSceneAnimatedModel::CSceneAnimatedModel(const CXMLElement &TreeNode)
 {
 
@@ -66,9 +67,9 @@ bool CSceneAnimatedModel::Initialize(CAnimatedCoreModel * AnimatedCoreModel)
     return false;
 }
 
-void CSceneAnimatedModel::Update(float ElapsedTime)
+bool CSceneAnimatedModel::Update(float ElapsedTime)
 {
-
+    return false;
 }
 
 void Destroy()

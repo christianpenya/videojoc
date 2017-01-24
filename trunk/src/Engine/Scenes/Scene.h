@@ -2,7 +2,7 @@
 #ifndef _ENGINE_SCENE_20170110_H
 #define _ENGINE_SCENE_20170110_H
 
-#include "Base\Utils\Name.h"
+#include "Utils\Name.h"
 #include "Layer.h"
 
 class CScene : public CName, public base::utils::CTemplatedMapVector< CLayer >

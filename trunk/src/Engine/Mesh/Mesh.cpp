@@ -1,17 +1,25 @@
 #include "Mesh.h"
-#include "Base\Utils\BinFileReader.h"
+#include "Utils\BinFileReader.h"
 #include "Engine\Engine.h"
-#include "Engine\Render\RenderManager.h"
+#include "Render\RenderManager.h"
 #include "VertexTypes.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include <iostream>
 #include <memory>
-#include "Engine/Materials/Material.h"
-#include "Engine/Materials/MaterialManager.h"
+#include "Materials/Material.h"
+#include "Materials/MaterialManager.h"
 #include "Mesh/TemplatedIndexedGeometry.h"
+#include "Scenes/ConstantBufferManager.h"
 
-CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsigned short aNumVertices, void* aVertexData, void* aIndexData)
+CMesh::CMesh()
+{
+}
+CMesh::~CMesh()
+{
+}
+
+CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsigned short aNumVertices, unsigned short aNumIndices, void* aVertexData, void* aIndexData)
 {
 
     if (aVertexFlags == VertexTypes::PositionUV::GetVertexFlags())
@@ -19,7 +27,7 @@ CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsi
         return new CIndexedGeometryTriangleList<VertexTypes::PositionUV>
                (
                    new CVertexBuffer<VertexTypes::PositionUV>(aRM, aVertexData, aNumVertices),
-                   new CIndexBuffer(aRM, aIndexData, aNumVertices, 16)
+                   new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
                );
     }
     else if (aVertexFlags == VertexTypes::PositionNormal::GetVertexFlags())
@@ -27,7 +35,7 @@ CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsi
         return new CIndexedGeometryTriangleList<VertexTypes::PositionNormal>
                (
                    new CVertexBuffer<VertexTypes::PositionNormal>(aRM, aVertexData, aNumVertices),
-                   new CIndexBuffer(aRM, aIndexData, aNumVertices, 16)
+                   new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
                );
     }
     else if (aVertexFlags == VertexTypes::PositionNormalUV::GetVertexFlags())
@@ -35,7 +43,7 @@ CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsi
         return new CIndexedGeometryTriangleList<VertexTypes::PositionNormalUV>
                (
                    new CVertexBuffer<VertexTypes::PositionNormalUV>(aRM, aVertexData, aNumVertices),
-                   new CIndexBuffer(aRM, aIndexData, aNumVertices, 16)
+                   new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
                );
     }
     else if (aVertexFlags == VertexTypes::PositionBump::GetVertexFlags())
@@ -43,7 +51,7 @@ CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsi
         return new CIndexedGeometryTriangleList<VertexTypes::PositionBump>
                (
                    new CVertexBuffer<VertexTypes::PositionBump>(aRM, aVertexData, aNumVertices),
-                   new CIndexBuffer(aRM, aIndexData, aNumVertices, 16)
+                   new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
                );
     }
     else if (aVertexFlags == VertexTypes::PositionBumpUV::GetVertexFlags())
@@ -51,7 +59,7 @@ CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsi
         return new CIndexedGeometryTriangleList<VertexTypes::PositionBumpUV>
                (
                    new CVertexBuffer<VertexTypes::PositionBumpUV>(aRM, aVertexData, aNumVertices),
-                   new CIndexBuffer(aRM, aIndexData, aNumVertices, 16)
+                   new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
                );
     }
     else if (aVertexFlags == VertexTypes::PositionBumpUVUV2::GetVertexFlags())
@@ -59,7 +67,7 @@ CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsi
         return new CIndexedGeometryTriangleList<VertexTypes::PositionBumpUVUV2>
                (
                    new CVertexBuffer<VertexTypes::PositionBumpUVUV2>(aRM, aVertexData, aNumVertices),
-                   new CIndexBuffer(aRM, aIndexData, aNumVertices, 16)
+                   new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
                );
     }
 }
@@ -67,7 +75,6 @@ CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsi
 bool CMesh::Load(const std::string& aFilename)
 {
     m_Name = aFilename;
-
     bool lOk = true;
 
     std::shared_ptr<base::utils::CBinFileReader> lBinFileReader = std::make_shared<base::utils::CBinFileReader>(aFilename);
@@ -95,6 +102,8 @@ bool CMesh::Load(const std::string& aFilename)
                     unsigned short lVertexFlags = lBinFileReader->Read<unsigned short>();
                     unsigned short lNumVertices = lBinFileReader->Read<unsigned short>();
 
+                    //mMaterials[iMatMesh].SetTechnique(VertexTypes::GetFlagsFromString());
+
                     uint32 lVertexSize = VertexTypes::GetVertexSize(lVertexFlags);
                     uint32 lNumBytesVertices = lNumVertices * lVertexSize;
                     void* lVertexData = lBinFileReader->ReadRaw(lNumBytesVertices);
@@ -105,7 +114,7 @@ bool CMesh::Load(const std::string& aFilename)
                     size_t lNumBytesIndexes = lNumIndex * sizeof(unsigned short);
                     void* lIndexData = lBinFileReader->ReadRaw(lNumBytesIndexes);
 
-                    CGeometry* lGeometry = CreateGeometry(lRM, lVertexFlags, lNumVertices, lVertexData, lIndexData);
+                    CGeometry* lGeometry = CreateGeometry(lRM, lVertexFlags, lNumVertices, lNumIndex, lVertexData, lIndexData);
                     mGeometries.push_back(lGeometry);
 
                     free(lVertexData);
@@ -141,17 +150,21 @@ bool CMesh::Load(const std::string& aFilename)
         lBinFileReader->Close();
         return lOk;
     }
+    else
+        lOk = false;
+    return lOk;
+
 }
 
 bool CMesh::Render(CRenderManager& aRM)
 {
     bool lOk = true;
+    CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
 
-    // #TODO constant buffer
-
-    for (std::vector<CGeometry*>::iterator it = mGeometries.begin(); it != mGeometries.end(); ++it)
+    for (size_t i = 0, lCount = mGeometries.size(); i < lCount; ++i)
     {
-        lOk &= (*it)->RenderIndexed(aRM.GetDeviceContext());
+        mMaterials[i]->Apply();
+        mGeometries[i]->RenderIndexed(aRM.GetDeviceContext());
     }
 
     return lOk;

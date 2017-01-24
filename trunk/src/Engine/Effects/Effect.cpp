@@ -1,8 +1,8 @@
 #include "Effect.h"
-#include "Base/XML/tinyxml2/tinyxml2.h"
-#include "Engine/Engine.h"
+#include "XML\tinyxml2\tinyxml2.h"
+#include "Engine\Engine.h"
 #include "Utils\EnumToString.h"
-#include "Engine/Effects/ShaderManager.h"
+#include "Effects\ShaderManager.h"
 
 CEffect::CEffect()
 {
@@ -37,4 +37,9 @@ void CEffect::Bind(ID3D11DeviceContext* aContext)
     {
         (*iShader)->Bind(aContext);
     }
+}
+
+void CEffect::SetShader(CShader::EShaderStage aType, CShader* aShader)
+{
+    mShaders[aType] = aShader;
 }

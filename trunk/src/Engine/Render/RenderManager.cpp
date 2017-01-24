@@ -6,7 +6,7 @@ void CRenderManager::Init(HWND hWnd, int Width, int Height, bool debugD3D=false)
     InitDevice_SwapChain_DeviceContext(hWnd, Width, Height, debugD3D);
     Get_RendertargetView();
     Create_DepthStencil(hWnd, Width, Height);
-    Set_Viewport(Width, Height);
+    Set_Viewport((float)Width, (float)Height);
     SetRendertarget();
 
     SetViewProjectionMatrix(m_ViewMatrix, m_ProjectionMatrix);
@@ -96,7 +96,7 @@ bool CRenderManager::InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, in
             m_D3DDebug.reset(l_D3DDebug);
         }
     }
-
+    return true;
 }
 
 
@@ -114,14 +114,28 @@ bool CRenderManager::Get_RendertargetView()
         return FALSE;
     m_RenderTargetView.reset(l_RenderTargetView);
 
+    return true;
 }
 
 bool CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height)
 {
+    HRESULT hr;
+    // Definimos el lienzo
+    ID3D11Texture2D *pBackBuffer;
+    auto sc = m_SwapChain.get();
+    if (FAILED(sc->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer)))
+    {
+        return false;
+    }
+    ID3D11RenderTargetView *l_RenderTargetView;
+    hr = m_Device->CreateRenderTargetView(pBackBuffer, NULL, &l_RenderTargetView);
+    m_RenderTargetView.reset(l_RenderTargetView);
+    pBackBuffer->Release();
+    if (FAILED(hr))
+    {
+        return false;
+    }
 
-
-    ID3D11Texture2D					*l_DepthStencil;
-    ID3D11DepthStencilView			*l_DepthStencilView;
     D3D11_TEXTURE2D_DESC descDepth;
     ZeroMemory(&descDepth, sizeof(descDepth));
     descDepth.Width = Width;
@@ -136,12 +150,11 @@ bool CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height)
     descDepth.CPUAccessFlags = 0;
     descDepth.MiscFlags = 0;
     //auto ds = m_DepthStencil.get();
-    HRESULT hr = m_Device->CreateTexture2D(&descDepth, NULL, &l_DepthStencil);
+    ID3D11Texture2D					*l_DepthStencil;
+    hr = m_Device->CreateTexture2D(&descDepth, NULL, &l_DepthStencil);
 
     if (FAILED(hr))
-    {
         return false;
-    }
 
     D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
     ZeroMemory(&descDSV, sizeof(descDSV));
@@ -150,21 +163,35 @@ bool CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height)
     descDSV.Texture2D.MipSlice = 0;
 //	auto ds = m_DepthStencil.get();
     //auto dsv = m_DepthStencilView.get();
+    ID3D11DepthStencilView			*l_DepthStencilView;
     hr = m_Device->CreateDepthStencilView(l_DepthStencil, &descDSV, &l_DepthStencilView);
 
     if (FAILED(hr))
-    {
         return false;
-    }
+
     m_DepthStencil.reset(l_DepthStencil);
     m_DepthStencilView.reset(l_DepthStencilView);
+
+    D3D11_VIEWPORT vp;
+    vp.Width = Width;
+    vp.Height = Height;
+    vp.MinDepth = 0.0f;
+    vp.MaxDepth = 1.0f;
+    vp.TopLeftX = 0;
+    vp.TopLeftY = 0;
+    m_DeviceContext->RSSetViewports(1, &vp);
+
+    // Activamos el render target
+    auto dsv = m_DepthStencilView.get();
+    auto rtv = m_RenderTargetView.get();
+    m_DeviceContext->OMSetRenderTargets(1, &l_RenderTargetView, l_DepthStencilView);
 }
 
-void CRenderManager::Set_Viewport(int Width, int Height)
+void CRenderManager::Set_Viewport(float Width, float Height)
 {
     D3D11_VIEWPORT vp;
-    vp.Width = (FLOAT)Width;
-    vp.Height = (FLOAT)Height;
+    vp.Width = Width;
+    vp.Height = Height;
     vp.MinDepth = 0.0f;
     vp.MaxDepth = 1.0f;
     vp.TopLeftX = 0;
@@ -277,32 +304,11 @@ bool CRenderManager::CreateDebugShader()
     hr = m_Device->CreateBuffer(&l_BufferDescription, nullptr, &l_DebugVertexBuffer);
     m_DebugVertexBuffer.reset(l_DebugVertexBuffer);
     if (FAILED(hr))
-    {
         return false;
-    }
+
+    return true;
 }
 
-
-// Rendering
-void CRenderManager::BeginRender()
-{
-    auto rtv = m_RenderTargetView.get();
-    m_DeviceContext->ClearRenderTargetView(rtv, &m_BackgroundColor.x);
-    auto dsv = m_DepthStencilView.get();
-    m_DeviceContext->ClearDepthStencilView(dsv, D3D11_CLEAR_DEPTH, 1.0f, 0);
-    SetSolidRenderState();
-}
-
-void CRenderManager::SetSolidRenderState()
-{
-    auto srs = m_SolidRenderState.get();
-    m_DeviceContext->RSSetState(srs);
-}
-
-void CRenderManager::EndRender()
-{
-    m_SwapChain->Present(1, 0);
-}
 
 void CRenderManager::Draw_Triangle()
 {
@@ -425,7 +431,7 @@ void CRenderManager::CreateDebugObjects()
 
         axis = (l_Size / 2.0f) * (((2.0f*b) / l_Size) - 1.0f);
 
-        l_GridVtxs[b * 2].Position = Vect4f(axis , 0, -l_Size / 2.0f, 1.0f);
+        l_GridVtxs[b * 2].Position = Vect4f(axis, 0, -l_Size / 2.0f, 1.0f);
         l_GridVtxs[b * 2].Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
         l_GridVtxs[(b * 2) + 1].Position = Vect4f(axis, 0, l_Size / 2.0f, 1.0f);
         l_GridVtxs[(b * 2) + 1].Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -606,22 +612,25 @@ void CRenderManager::DrawSphere(float Radius, const CColor &Color)
     DebugRender(viewProj, m_SphereRenderableVertexs, m_NumVerticesSphere, Color);
 }
 
-void CRenderManager::Resize(int Width, int Height, HWND hWnd)
+void CRenderManager::Resize(float Width, float Height, HWND hWnd)
 {
     if (m_Device.get() != nullptr)
     {
-        m_DeviceContext->OMSetRenderTargets(0, nullptr, nullptr);
+        m_DeviceContext.get()->OMSetRenderTargets(0, nullptr, nullptr);
 
         m_RenderTargetView.reset(nullptr);
         m_DepthStencil.reset(nullptr);
         m_DepthStencilView.reset(nullptr);
 
-        m_SwapChain->ResizeBuffers(0, Width, Height, DXGI_FORMAT_UNKNOWN, 0);
-        CreateBackBuffers(Width, Height, hWnd); // where we initialize m_RenderTargetView, m_DepthStencil, m_DepthStencilView
+        auto l_SwapChain = m_SwapChain.get();
+        l_SwapChain->ResizeBuffers(0, Width, Height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+        Create_DepthStencil(hWnd, Width, Height);
+        SetProjectionMatrix(45.0f, (float)Width / (float)Height, 0.5f, 100.0f);
     }
+
 }
 
-void CRenderManager::CreateBackBuffers(int Width, int Height, HWND hWnd)
+/*void CRenderManager::CreateBackBuffers(float Width, float Height, HWND hWnd)
 {
     //Create_DepthStencil(hWnd, Width, Height);
     Set_Viewport(Width, Height);
@@ -629,7 +638,7 @@ void CRenderManager::CreateBackBuffers(int Width, int Height, HWND hWnd)
     SetRendertarget();
     SetViewProjectionMatrix(m_ViewMatrix, m_ProjectionMatrix);
     CreateDebugShader();
-}
+}*/
 
 void CRenderManager::ClearAltIntro(HWND hWnd)
 {
@@ -680,4 +689,84 @@ void CRenderManager::ReportLive()
     if (m_D3DDebug)
         m_D3DDebug->ReportLiveDeviceObjects(D3D11_RLDO_SUMMARY | D3D11_RLDO_DETAIL);
 
+}
+
+
+// Rendering
+void CRenderManager::BeginRender()
+{
+    auto rtv = m_RenderTargetView.get();
+    auto dsv = m_DepthStencilView.get();
+    m_DeviceContext->ClearRenderTargetView(rtv, &m_BackgroundColor.x);
+    m_DeviceContext->ClearDepthStencilView(dsv, D3D11_CLEAR_DEPTH, 1.0f, 0);
+    this->SetSolidRenderState();
+}
+
+
+void CRenderManager::SetSolidRenderState()
+{
+    auto srs = m_SolidRenderState.get();
+    m_DeviceContext->RSSetState(srs);
+}
+
+void CRenderManager::EndRender()
+{
+    m_SwapChain->Present(1, 0);
+}
+
+
+
+void CRenderManager::Clear(bool renderTarget, bool depthStencil, const CColor& backgroundColor)
+{
+    if (renderTarget)
+    {
+        for (int i = 0; i < m_NumViews; ++i)
+        {
+            m_DeviceContext->ClearRenderTargetView(m_CurrentRenderTargetViews[i], &backgroundColor.x);
+        }
+    }
+    else
+    {
+        m_DeviceContext->ClearRenderTargetView(m_RenderTargetView.get(), &backgroundColor.x);
+    }
+    // TODO: Handle the current render target view stencil and depth
+    if (depthStencil)
+        m_DeviceContext->ClearDepthStencilView(m_DepthStencilView.get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
+
+void CRenderManager::SetViewport(const Vect2u & aPosition, const Vect2u & aSize)
+{
+    D3D11_VIEWPORT l_Viewport;
+    l_Viewport.Width = aSize.x*m_Viewport.Width;
+    l_Viewport.Height = aSize.y*m_Viewport.Height;
+    l_Viewport.MinDepth = 0.0f;
+    l_Viewport.MaxDepth = 1.0f;
+    l_Viewport.TopLeftX = aPosition.x*m_Viewport.Width;
+    l_Viewport.TopLeftY = aPosition.y*m_Viewport.Height;
+    m_DeviceContext->RSSetViewports(1, &l_Viewport);
+}
+
+void CRenderManager::ResetViewport()
+{
+    m_DeviceContext->RSSetViewports(1, &m_Viewport);
+}
+
+
+void CRenderManager::UnsetRenderTargets()
+{
+    ID3D11RenderTargetView * lTargetView = m_RenderTargetView.get();
+    SetRenderTargets(1, &lTargetView, m_DepthStencilView.get());
+    ResetViewport();
+}
+
+void CRenderManager::SetRenderTargets(int aNumViews, ID3D11RenderTargetView **aRenderTargetViews, ID3D11DepthStencilView *aDepthStencilViews)
+{
+    m_NumViews = aNumViews;
+    m_CurrentDepthStencilView = aDepthStencilViews;
+    for (int i = 0; i<m_NumViews; ++i)
+        m_CurrentRenderTargetViews[i] = aRenderTargetViews[i];
+    if (aDepthStencilViews)
+        m_DeviceContext->OMSetRenderTargets(m_NumViews, m_CurrentRenderTargetViews, aDepthStencilViews);
+    else
+        m_DeviceContext->OMSetRenderTargets(m_NumViews, m_CurrentRenderTargetViews, m_DepthStencilView.get());
 }

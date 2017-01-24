@@ -2,8 +2,8 @@
 #include "Mesh\VertexTypes.h"
 #include "Render\RenderManager.h"
 #include "Engine\Engine.h"
-#include "Base/XML/tinyxml2/tinyxml2.h"
-#include "Mesh/VertexTypes.h"
+#include "XML\tinyxml2\tinyxml2.h"
+#include "Mesh\VertexTypes.h"
 
 CVertexShader::CVertexShader(const std::string& aShaderCode, uint32 aVertexFlags) : CShader(aShaderCode, EShaderStage::eVertexShader)
 {

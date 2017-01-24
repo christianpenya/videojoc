@@ -2,20 +2,21 @@
 #ifndef _ENGINE_MESHMANAGER_20161222
 #define _ENGINE_MESHMANAGER_20161222
 
-#include<string>
-#include "Base\Utils\TemplatedMapVector.h"
-class CMesh;
+#include <string>
+#include "Utils\TemplatedMapVector.h"
+#include "Mesh.h"
 
-class CMeshManager 
-{ 
+class CMesh;
+class CMeshManager
+{
 public:
-    CMeshManager(){}
-    virtual ~CMeshManager(){}
+    CMeshManager();
+    virtual ~CMeshManager();
     CMesh* GetMesh(const std::string& aFilename);
-    void Destroy(); 
-private:     
+private:
     base::utils::CTemplatedMapVector<CMesh> mMeshes;
     bool Load(const std::string& aFilename);
+    void Destroy();
 };
 
 #endif //_ENGINE_MESHMANAGER_20161222

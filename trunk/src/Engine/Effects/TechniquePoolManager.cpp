@@ -1,9 +1,9 @@
 #include "TechniquePoolManager.h"
-#include "Base/XML/tinyxml2/tinyxml2.h"
-#include "Base/XML/XML.h"
+#include "XML\tinyxml2\tinyxml2.h"
+#include "XML\XML.h"
 #include "Utils\EnumToString.h"
 #include "Engine\Engine.h"
-#include "Engine\Effects\EffectManager.h"
+#include "Effects\EffectManager.h"
 #include "TechniquePool.h"
 
 CTechniquePoolManager::CTechniquePoolManager() {}

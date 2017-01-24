@@ -2,7 +2,7 @@
 #ifndef _ENGINE_EFFECT_20170104
 #define _ENGINE_EFFECT_20170104
 
-#include "Base\Utils\Name.h"
+#include "Utils\Name.h"
 #include "Shader.h"
 #include <vector>
 

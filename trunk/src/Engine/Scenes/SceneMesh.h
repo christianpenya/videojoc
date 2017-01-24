@@ -9,8 +9,8 @@ class CRenderManager;
 class CSceneMesh : public CSceneNode
 {
 public:
-    CSceneMesh(const CXMLElement* aElement);
-    CSceneMesh(const CXMLElement* aElement, CMesh* aMesh);
+    CSceneMesh(CXMLElement* aElement);
+    CSceneMesh(CXMLElement* aElement, CMesh* aMesh);
     virtual ~CSceneMesh();
     virtual bool Render(CRenderManager& aRendermanager);
 protected:

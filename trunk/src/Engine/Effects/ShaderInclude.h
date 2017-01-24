@@ -4,8 +4,8 @@
 
 #include <string>
 #include <fstream>
-#include "Base\Utils\CheckedDelete.h"
-#include "Engine\Render\RenderManager.h"
+#include "Utils\CheckedDelete.h"
+#include "Render\RenderManager.h"
 
 static std::string sShadersDirectory = "data/shaders/";
 

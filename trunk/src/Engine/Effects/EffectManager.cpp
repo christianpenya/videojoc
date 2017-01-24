@@ -1,6 +1,6 @@
 #include "EffectManager.h"
-#include "Base/XML/tinyxml2/tinyxml2.h"
-#include "Base/XML/XML.h"
+#include "XML/tinyxml2/tinyxml2.h"
+#include "XML/XML.h"
 
 CEffectManager::CEffectManager()
 {
