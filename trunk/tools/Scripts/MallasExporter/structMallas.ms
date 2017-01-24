@@ -56,9 +56,6 @@ struct sMaterial (
 
 		flag_value = bit.or ePosition eNormal
 		
-
-
-		
 		local diffuseE = mMaterial.diffuseMapEnable
 		if diffuseE == true then (
 			diffBitmap = mMaterial.diffuseMap.bitmap 
@@ -87,6 +84,7 @@ struct sMaterial (
 				glossinessE = false
 			)
 		)
+
 		local selfIllumE = mMaterial.selfIllumMapEnable
 		if selfIllumE == true then (
 			selfIllumBitmap = mMaterial.selfIllumMap.bitmap
@@ -108,9 +106,6 @@ struct sMaterial (
 			flag_value = bit.or flag_value eTangent
 			flag_value = bit.or flag_value eBinormal
 		)
-
-		
-		
 	)
 )
 

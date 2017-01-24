@@ -137,7 +137,8 @@ fn writeToBin = (
 	writter.PrintUnsignedShort(gMatsArray.count)
 	for lMat in gMatsArray do (
 		writter.PrintString(lMat.m_name)
-		format "%\n" lMat.flag_value
+
+  format "%\n" lMat.flag_value
 		writter.PrintUnsignedShort(lMat.flag_value)
 		writter.PrintUnsignedShort(lMat.m_aVB.count)
 		for lVrtx in lMat.m_aVB do(
@@ -170,8 +171,6 @@ fn writeToBin = (
 					writter.PrintFloat(lVrtx.m_uv2.y)
 				)
 			)
-			
-
 
 		)
 		writter.PrintUnsignedShort(lMat.m_aIB.count)
@@ -251,6 +250,7 @@ fn boundingSphere = (
 fn ExportSingleObjectMesh aObj =
 (
 	global gSelection = copy aObj
+
 	global gMatsArray = #()
 
 	global gAX = #()
@@ -290,12 +290,11 @@ fn ExportMeshSelection =
 		(
 			format "Multi objects\n"
 			local lSelection = $.count
-			for obj in $ do (
-
+			
+      for obj in $ do (
 				ExportSingleObjectMesh obj
-
 				)
-
+        
 		)
 		catch
 		(
@@ -306,5 +305,3 @@ fn ExportMeshSelection =
 )
 
 ExportMeshSelection()
-
- 

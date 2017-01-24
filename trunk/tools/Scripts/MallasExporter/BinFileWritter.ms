@@ -18,7 +18,6 @@ struct BinFileWritter
 	fn Open aName aDirectory aExtension = 
 	(
 		
-		
 		if aName != undefined and aDirectory != undefined then
 		(
 			if not doesFileExist aDirectory then
