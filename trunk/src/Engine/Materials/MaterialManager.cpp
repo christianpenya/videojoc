@@ -1,26 +1,24 @@
 #include "MaterialManager.h"
-#include "Base/XML/XML.h"
+#include "XML/XML.h"
 
 void CMaterialManager::Load(const std::string & aLevelFilename, const std::string &aDefaultsFileName)
 {
     m_LevelMaterialsFilename = aLevelFilename;
-    LoadMaterialsFromFile(m_LevelMaterialsFilename, false);
+    Load(m_LevelMaterialsFilename, false);
 
     m_DefaultMaterialsFilename = aDefaultsFileName;
-    LoadMaterialsFromFile(m_DefaultMaterialsFilename, true);
+    Load(m_DefaultMaterialsFilename, true);
 }
 
 void CMaterialManager::Reload()
 {
-    LoadMaterialsFromFile(m_LevelMaterialsFilename, true);
-    LoadMaterialsFromFile(m_DefaultMaterialsFilename, true);
+    Load(m_LevelMaterialsFilename, true);
+    Load(m_DefaultMaterialsFilename, true);
 }
 
 
-bool CMaterialManager::LoadMaterialsFromFile(const std::string &Filename, bool UpdateFlag) {
-
-    //TODO Update
-
+bool CMaterialManager::Load(const std::string &Filename, bool UpdateFlag)
+{
     bool out = false;
 
     CXMLDocument document;
@@ -40,10 +38,12 @@ bool CMaterialManager::LoadMaterialsFromFile(const std::string &Filename, bool U
 
                     if (!Add(lMaterial->GetName(), lMaterial))
                     {
-                        if (UpdateFlag) {
+                        if (UpdateFlag)
+                        {
                             Update(lMaterial->GetName(), lMaterial);
                         }
-                        else {
+                        else
+                        {
                             base::utils::CheckedDelete(lMaterial);
                         }
                     }

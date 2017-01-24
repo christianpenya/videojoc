@@ -3,7 +3,15 @@ fileIn "UABVertexNormals.ms"
 fileIn "xml.ms"
 fileIn "BinFileWritter.ms"
 
-
+global ePosition = 0x0001
+global eNormal = 0x0002
+global eTangent = 0x0004
+global eBinormal = 0x0008
+global eUV = 0x0010
+global eUV2 = 0x0020
+global eColor = 0x0040
+global ePosition4 = 0x0080
+global eDummy = 0x0100
 
 fn preProcess = (
 	
@@ -65,9 +73,9 @@ fn process = (
 		local lFaceNormal = getFaceNormal gSelection nFace
 		local lSmoothValue = getFaceSmoothGroup gSelection nFace
 
-		local auxNorm1 = (UABGetVertexNormal gSelection IdxsFace.x lSmoothValue lFaceNormal) * gInverseTransform
-		local auxNorm2 = (UABGetVertexNormal gSelection IdxsFace.y lSmoothValue lFaceNormal) * gInverseTransform
-		local auxNorm3 = (UABGetVertexNormal gSelection IdxsFace.z lSmoothValue lFaceNormal) * gInverseTransform
+		local auxNorm1 = (UABGetVertexNormal gSelection IdxsFace.x lSmoothValue lFaceNormal) --* gInverseTransform
+		local auxNorm2 = (UABGetVertexNormal gSelection IdxsFace.y lSmoothValue lFaceNormal) --* gInverseTransform
+		local auxNorm3 = (UABGetVertexNormal gSelection IdxsFace.z lSmoothValue lFaceNormal) --* gInverseTransform
 
 		Vtx1.m_norm = TranslationToRH(auxNorm1)
 		Vtx2.m_norm = TranslationToRH(auxNorm2)
@@ -129,9 +137,12 @@ fn writeToBin = (
 	writter.PrintUnsignedShort(gMatsArray.count)
 	for lMat in gMatsArray do (
 		writter.PrintString(lMat.m_name)
+
+  format "%\n" lMat.flag_value
 		writter.PrintUnsignedShort(lMat.flag_value)
 		writter.PrintUnsignedShort(lMat.m_aVB.count)
 		for lVrtx in lMat.m_aVB do(
+		 
 			writter.PrintFloat(lVrtx.m_pos.x)
 			writter.PrintFloat(lVrtx.m_pos.y)
 			writter.PrintFloat(lVrtx.m_pos.z)
@@ -140,9 +151,26 @@ fn writeToBin = (
 			writter.PrintFloat(lVrtx.m_norm.y)
 			writter.PrintFloat(lVrtx.m_norm.z)
 
-			writter.PrintFloat(lVrtx.m_uv.x)
-			writter.PrintFloat(lVrtx.m_uv.y)
+			if(bit.and lMat.flag_value eTangent) == eTangent then(
+				writter.PrintFloat(lVrtx.m_tangencial.x)
+				writter.PrintFloat(lVrtx.m_tangencial.y)
+				writter.PrintFloat(lVrtx.m_tangencial.z)
+			)
+			if(bit.and lMat.flag_value eBinormal) == eBinormal then (
+				writter.PrintFloat(lVrtx.m_binormal.x)
+				writter.PrintFloat(lVrtx.m_binormal.y)
+				writter.PrintFloat(lVrtx.m_binormal.z)
+			)
+			if(bit.and lMat.flag_value eUV)  == eUV then (
 
+				writter.PrintFloat(lVrtx.m_uv.x)
+				writter.PrintFloat(lVrtx.m_uv.y)
+
+				if(bit.and lMat.flag_value eUV2) == eUV2 then (
+					writter.PrintFloat(lVrtx.m_uv2.x)
+					writter.PrintFloat(lVrtx.m_uv2.y)
+				)
+			)
 
 		)
 		writter.PrintUnsignedShort(lMat.m_aIB.count)
@@ -164,7 +192,9 @@ fn writeToBin = (
 	writter.PrintFloat(gBSphere.m_center.y)
 	writter.PrintFloat(gBSphere.m_center.z)
 
-	writter.PrintUnsignedShort(gBSphere.m_radius)
+	writter.PrintFloat(gBSphere.m_radius)
+	writter.PrintFloat(0)
+	writter.PrintFloat(0)
 
 	writter.PrintUnsignedShort(footer)
 	writter.Close()
@@ -219,7 +249,8 @@ fn boundingSphere = (
 
 fn ExportSingleObjectMesh aObj =
 (
-	global gSelection = copy $
+	global gSelection = copy aObj
+
 	global gMatsArray = #()
 
 	global gAX = #()
@@ -259,12 +290,11 @@ fn ExportMeshSelection =
 		(
 			format "Multi objects\n"
 			local lSelection = $.count
-			for object in $ do (
-
-				ExportSingleObjectMesh object
-
+			
+      for obj in $ do (
+				ExportSingleObjectMesh obj
 				)
-
+        
 		)
 		catch
 		(
@@ -275,4 +305,3 @@ fn ExportMeshSelection =
 )
 
 ExportMeshSelection()
-

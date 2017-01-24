@@ -55,9 +55,6 @@ struct sMaterial (
 
 
 		flag_value = bit.or ePosition eNormal
-		--flag_value = bit.or 0x0001 0x0004
-
-		--flag_value = bit.or flag_value COLOR_FLAG
 		
 		local diffuseE = mMaterial.diffuseMapEnable
 		if diffuseE == true then (
@@ -88,17 +85,6 @@ struct sMaterial (
 			)
 		)
 
-		if specularE or bumpE or diffuseE or glossinessE then(
-			--flag_value = bit.or flag_value UV
-			flag_value = bit.or flag_value 0x0020
-		)
-		if bumpE then (
-			--flag_value = bit.or flag_value TANGENT
-			--flag_value = bit.or flag_value BINORMAL
-			flag_value = bit.or flag_value 0x0008
-			flag_value = bit.or flag_value 0x0010
-		)
-
 		local selfIllumE = mMaterial.selfIllumMapEnable
 		if selfIllumE == true then (
 			selfIllumBitmap = mMaterial.selfIllumMap.bitmap
@@ -106,9 +92,19 @@ struct sMaterial (
 				selfIllumE = false
 			)
 		)
-		if selfIllumE then(
-			--flag_value = bit.or flag_value UV2
-			flag_value = bit.or flag_value 0x0040
+
+		if specularE or bumpE or diffuseE or glossinessE then(
+			format "UV\n"
+			flag_value = bit.or flag_value eUV
+			if selfIllumE then(
+				format "UV2\n"
+				flag_value = bit.or flag_value eUV2
+			)
+		)
+		if bumpE then (
+			format "Tang and Bin\n"
+			flag_value = bit.or flag_value eTangent
+			flag_value = bit.or flag_value eBinormal
 		)
 	)
 )

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ImGUI">
+      <UniqueIdentifier>{80FB640D-EC0F-8DBE-B591-301E216589EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{AFF4887C-9B2B-8A0D-4418-7010302E060F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{F68B420E-62A0-6ABF-2B22-0E1F97F566F0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\MemLeaks">
+      <UniqueIdentifier>{B4BFB0AC-A08D-A4B2-8921-15D9758E8017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\PublisherSubscriber">
+      <UniqueIdentifier>{67035388-D3C5-8612-1C76-159F88775FF0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\SubjectObserver">
+      <UniqueIdentifier>{FD219110-698E-4C0B-3282-E4689EAD6E73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML">
+      <UniqueIdentifier>{7633880B-E23C-887C-6BB8-9E7CD7C0937C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML\tinyxml2">
+      <UniqueIdentifier>{EC4D0989-D8B0-982D-8136-D1E36D7864B0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Base\ImGUI\imconfig.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\ImGUI\imgui.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\ImGUI\imgui_internal.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\ImGUI\stb_rect_pack.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\ImGUI\stb_textedit.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\ImGUI\stb_truetype.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Math\Color.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Math\MathTypes.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Math\MathUtils.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Math\Matrix33.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Math\Matrix34.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Math\Matrix44.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Math\Quaternion.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Math\Transform.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Math\Vector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Math\Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Math\Vector4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\BinFileReader.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\CheckedDelete.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\Defines.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\EnumToString.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\MemLeaks\MemLeaks.h">
+      <Filter>Utils\MemLeaks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\Name.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\PublisherSubscriber\Broker.h">
+      <Filter>Utils\PublisherSubscriber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\PublisherSubscriber\Event.h">
+      <Filter>Utils\PublisherSubscriber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\PublisherSubscriber\Subscriber.h">
+      <Filter>Utils\PublisherSubscriber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\Release.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\Singleton.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\StringUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\SubjectObserver\Observer.h">
+      <Filter>Utils\SubjectObserver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\SubjectObserver\Subject.h">
+      <Filter>Utils\SubjectObserver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\TemplatedMap.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\TemplatedMapVector.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\Types.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\XML\XML.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\XML\tinyxml2\tinyxml2.h">
+      <Filter>XML\tinyxml2</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Base\ImGUI\imgui.cpp">
+      <Filter>ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\ImGUI\imgui_demo.cpp">
+      <Filter>ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\ImGUI\imgui_draw.cpp">
+      <Filter>ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\Math\MathConstants.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\Math\Transform.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\Utils\MemLeaks\MemLeaks.cpp">
+      <Filter>Utils\MemLeaks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\Utils\Name.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\Utils\PublisherSubscriber\Broker.cpp">
+      <Filter>Utils\PublisherSubscriber</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\Utils\PublisherSubscriber\Subscriber.cpp">
+      <Filter>Utils\PublisherSubscriber</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\Utils\StringUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\Utils\SubjectObserver\Subject.cpp">
+      <Filter>Utils\SubjectObserver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\XML\XML.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\XML\tinyxml2\tinyxml2.cpp">
+      <Filter>XML\tinyxml2</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\Base\Math\Color.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="..\..\src\Base\Math\MathUtils.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="..\..\src\Base\Math\Matrix33.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="..\..\src\Base\Math\Matrix34.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="..\..\src\Base\Math\Matrix44.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="..\..\src\Base\Math\Vector2.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="..\..\src\Base\Math\Vector3.inl">
+      <Filter>Math</Filter>
+    </None>
+    <None Include="..\..\src\Base\Math\Vector4.inl">
+      <Filter>Math</Filter>
+    </None>
+  </ItemGroup>
+</Project>

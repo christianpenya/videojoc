@@ -5,41 +5,54 @@
 
 #include<string>
 #include<vector>
-#include "Base\Utils\Name.h"
+#include "Utils\Name.h"
 #include "Utils\EnumToString.h"
 
+class CTechnique;
 class CTexture;
 class CMaterialParameter;
+
 class CMaterial : public CName
 {
 public:
-	enum ETextureIndex {
-		eDiffuse = 0,
-		eBump,
-		eLightMap,
-		eSpecular,
-		eIndexCount
-	};
+    enum ETextureIndex
+    {
+        eDiffuse = 0,
+        eBump,
+        eLightMap,
+        eSpecular,
+        eIndexCount
+    };
 
-	enum TParameterType {
-		eFloat = 0,
-		eFloat2,
-		eFloat3,
-		eFloat4,
-		eColor,
-		eParametersCount
-	};
+    enum TParameterType
+    {
+        eFloat = 0,
+        eFloat2,
+        eFloat3,
+        eFloat4,
+        eColor,
+        eParametersCount
+    };
 
 public:
-	CMaterial(CXMLElement* aElement);
-	virtual ~CMaterial();
-	void Apply();
+    CMaterial(CXMLElement* aElement);
+    virtual ~CMaterial();
+    void Apply();
+    void SetTechnique(CTechnique* aTechnique)
+    {
+        mTechnique = aTechnique;
+    };
+    CTechnique* GetTechnique()
+    {
+        return mTechnique;
+    };
 
 private:
-	DISALLOW_COPY_AND_ASSIGN(CMaterial);
+    DISALLOW_COPY_AND_ASSIGN(CMaterial);
 
-	std::vector< CTexture* >           mTextures;
-	std::vector< CMaterialParameter *> mParameters;
+    CTechnique* mTechnique;
+    std::vector< CTexture* > mTextures;
+    std::vector< CMaterialParameter *> mParameters;
 };
 
 Begin_Enum_String(CMaterial::ETextureIndex)

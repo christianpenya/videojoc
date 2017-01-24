@@ -1,0 +1,42 @@
+<materials >
+	<material name="Material #98" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+	</material>
+	<material name="Material #102" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+	</material>
+	<material name="Material #103" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+	</material>
+	<material name="Material #104" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+	</material>
+	<material name="Material #105" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+	</material>
+	<material name="Material #106" >
+		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+	</material>
+	<material name="04 - Default" >
+		<texture type="diffuse" filename="data\textures\alpha.jpg" />
+		<color type="diffuse" value="150.0,150.0,150.0,150.0," />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data\textures\BARK5.jpg" />
+		<parameter type="float" name="bump" value="30.0" />
+		<texture type="selfIllum" filename="data\textures\BWom0001-M3-Body-N.jpg" />
+		<parameter type="float" name="selfIllum" value="100.0" />
+		<texture type="specularLevel" filename="data\textures\BWom0001-M3-Hair-N.jpg" />
+		<parameter type="float" name="specularLevel" value="100.0" />
+		<texture type="specular" filename="data\textures\BWom0001-M3-Body-N.jpg" />
+		<color type="specular" value="229.5,229.5,229.5,229.5," />
+		<parameter type="float" name="specular" value="100.0" />
+		<texture type="glossiness" filename="data\textures\BWom0001-M3-Body-S.jpg" />
+		<parameter type="float" name="glossiness" value="100.0" />
+	</material>
+</materials>

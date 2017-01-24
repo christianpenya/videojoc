@@ -17,7 +17,6 @@ struct BinFileWritter
 	),
 	fn Open aName aDirectory aExtension = 
 	(
-		format "\n------------------"
 		
 		if aName != undefined and aDirectory != undefined then
 		(

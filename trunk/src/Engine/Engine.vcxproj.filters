@@ -40,6 +40,66 @@
     <Filter Include="Archivos de código fuente\Camera">
       <UniqueIdentifier>{b0bc990a-44ea-46bc-9127-a5524987cf68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Mesh">
+      <UniqueIdentifier>{3dc83f49-82c3-4bc7-8069-40ccf418aba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Mesh">
+      <UniqueIdentifier>{d246a7a4-521e-4efc-b412-7966b0c50857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Materials">
+      <UniqueIdentifier>{70f295cb-9c3c-4705-8893-f4cebbdf9895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Materials">
+      <UniqueIdentifier>{b1a245e1-7d0e-44d5-ba79-70e34bdeba88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Textures">
+      <UniqueIdentifier>{c5fe1d1d-0a5d-4575-9227-72302ea5b8f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Textures">
+      <UniqueIdentifier>{60122475-2fe1-42d8-b815-e4b500f93b80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Effects">
+      <UniqueIdentifier>{34499a8a-4343-4fa6-8e5e-7cb65c9a5363}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Effects">
+      <UniqueIdentifier>{b84fabc2-000a-4a7d-b338-357e348378cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Scenes">
+      <UniqueIdentifier>{413fd23d-152e-4f00-a3a4-c3fdb4e525ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Scenes">
+      <UniqueIdentifier>{2e1baaf2-9fa3-446a-bb7b-20dd3373830e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\DirectXTex">
+      <UniqueIdentifier>{96b323a2-b9fb-488a-8c89-ca88d19b22db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\DirectXTex">
+      <UniqueIdentifier>{8d3d88cb-1e4f-46c1-9d9d-7419ffe0c710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Animation">
+      <UniqueIdentifier>{8f0019dc-bd86-4b6a-a10c-ce84346d67a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Animation">
+      <UniqueIdentifier>{0e462402-7944-4785-a60b-8622c609d656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Lights">
+      <UniqueIdentifier>{379d02b4-9765-4d64-945c-05f814bb1cc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Lights">
+      <UniqueIdentifier>{18638606-1dd9-494f-bf79-a8542cdce274}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\RenderPipeline">
+      <UniqueIdentifier>{c7e909c0-c102-4c7e-8a72-a86f38ebe0f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\RenderPipeline">
+      <UniqueIdentifier>{bf63ada2-63bb-4f5c-ab9c-9b0cc66d1e76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Logger">
+      <UniqueIdentifier>{04974d02-3e14-4271-a5e9-cd60032fab1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Logger">
+      <UniqueIdentifier>{d2c879aa-fd01-435e-ad19-cb1ecbb10009}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -60,26 +120,230 @@
     <ClInclude Include="imgui_impl_dx11.h">
       <Filter>Archivos de encabezado\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="CameraController.h">
-      <Filter>Archivos de encabezado\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="SphericalCameraController.h">
-      <Filter>Archivos de encabezado\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="FpsCameraController.h">
-      <Filter>Archivos de encabezado\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="TpsCameraController.h">
-      <Filter>Archivos de encabezado\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Materials\Material.h">
+      <Filter>Archivos de encabezado\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Materials\MaterialManager.h">
+      <Filter>Archivos de encabezado\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Materials\MaterialParameter.h">
+      <Filter>Archivos de encabezado\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Materials\TemplatedMaterialParameter.h">
+      <Filter>Archivos de encabezado\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Textures\Texture.h">
+      <Filter>Archivos de encabezado\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Textures\TextureManager.h">
+      <Filter>Archivos de encabezado\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\CameraController.h">
+      <Filter>Archivos de encabezado\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\FpsCameraController.h">
+      <Filter>Archivos de encabezado\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\SphericalCameraController.h">
+      <Filter>Archivos de encabezado\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\TpsCameraController.h">
+      <Filter>Archivos de encabezado\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Buffer.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\IndexBuffer.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\VertexBuffer.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Geometry.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\TemplatedGeometry.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\TemplatedIndexedGeometry.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Mesh.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\MeshManager.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\BoundingSphere.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\AxisAlignedBoundingBox.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\VertexsTypes_HelperMacros.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\VertexTypes.h">
+      <Filter>Archivos de encabezado\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects\Effect.h">
+      <Filter>Archivos de encabezado\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects\EffectManager.h">
+      <Filter>Archivos de encabezado\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects\PixelShader.h">
+      <Filter>Archivos de encabezado\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects\Shader.h">
+      <Filter>Archivos de encabezado\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects\Technique.h">
+      <Filter>Archivos de encabezado\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects\VertexShader.h">
+      <Filter>Archivos de encabezado\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects\ShaderManager.h">
+      <Filter>Archivos de encabezado\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects\TechniquePool.h">
+      <Filter>Archivos de encabezado\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects\TechniquePoolManager.h">
+      <Filter>Archivos de encabezado\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects\ShaderInclude.h">
+      <Filter>Archivos de encabezado\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Layer.h">
+      <Filter>Archivos de encabezado\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Scene.h">
+      <Filter>Archivos de encabezado\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\SceneManager.h">
+      <Filter>Archivos de encabezado\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\SceneMesh.h">
+      <Filter>Archivos de encabezado\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\SceneNode.h">
+      <Filter>Archivos de encabezado\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXTex\BC.h">
+      <Filter>Archivos de encabezado\DirectXTex</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXTex\BCDirectCompute.h">
+      <Filter>Archivos de encabezado\DirectXTex</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXTex\DDS.h">
+      <Filter>Archivos de encabezado\DirectXTex</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXTex\DirectXTex.h">
+      <Filter>Archivos de encabezado\DirectXTex</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXTex\DirectXTexP.h">
+      <Filter>Archivos de encabezado\DirectXTex</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXTex\Filters.h">
+      <Filter>Archivos de encabezado\DirectXTex</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXTex\scoped.h">
+      <Filter>Archivos de encabezado\DirectXTex</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\AnimatedCoreModel.h">
+      <Filter>Archivos de encabezado\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\AnimatedModelManager.h">
+      <Filter>Archivos de encabezado\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\SceneAnimatedModel.h">
+      <Filter>Archivos de encabezado\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights\DirectionalLight.h">
+      <Filter>Archivos de encabezado\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights\Light.h">
+      <Filter>Archivos de encabezado\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights\LightManager.h">
+      <Filter>Archivos de encabezado\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights\PointLight.h">
+      <Filter>Archivos de encabezado\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights\SpotLight.h">
+      <Filter>Archivos de encabezado\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\ApplyTechniquePool.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\BeginRenderCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\CaptureFrameBuffer.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\CaptureFrameBufferTexture.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\ClearCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\DrawQuad.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\DynamicTexture.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\EndRenderCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\Quad.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\RenderCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\RenderImGUI.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\RenderPipeline.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\RenderSceneLayer.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\RenderStagedTexture.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\SetAlphaBlendState.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\SetDepthStencilStateCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\SetPerFrameConstantsCmd.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\SetRasterizerState.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\SetRenderTarget.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline\UnSetRenderTarget.h">
+      <Filter>Archivos de encabezado\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\Logger.h">
+      <Filter>Archivos de encabezado\Logger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Render\RenderManager.cpp">
-      <Filter>Archivos de código fuente\Render</Filter>
-    </ClCompile>
     <ClCompile Include="Input\InputManager.cpp">
       <Filter>Archivos de código fuente\Input</Filter>
     </ClCompile>
@@ -89,22 +353,240 @@
     <ClCompile Include="imgui_impl_dx11.cpp">
       <Filter>Archivos de código fuente\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="SphericalCameraController.cpp">
-      <Filter>Archivos de código fuente\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="FpsCameraController.cpp">
-      <Filter>Archivos de código fuente\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="TpsCameraController.cpp">
-      <Filter>Archivos de código fuente\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Materials\MaterialManager.cpp">
+      <Filter>Archivos de código fuente\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\RenderManager.cpp">
+      <Filter>Archivos de código fuente\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Materials\Material.cpp">
+      <Filter>Archivos de código fuente\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Textures\Texture.cpp">
+      <Filter>Archivos de código fuente\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Textures\TextureManager.cpp">
+      <Filter>Archivos de código fuente\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\FpsCameraController.cpp">
+      <Filter>Archivos de código fuente\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\SphericalCameraController.cpp">
+      <Filter>Archivos de código fuente\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\TpsCameraController.cpp">
+      <Filter>Archivos de código fuente\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Mesh.cpp">
+      <Filter>Archivos de código fuente\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\MeshManager.cpp">
+      <Filter>Archivos de código fuente\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\VertexTypes.cpp">
+      <Filter>Archivos de código fuente\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects\Effect.cpp">
+      <Filter>Archivos de código fuente\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects\EffectManager.cpp">
+      <Filter>Archivos de código fuente\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects\PixelShader.cpp">
+      <Filter>Archivos de código fuente\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects\Shader.cpp">
+      <Filter>Archivos de código fuente\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects\VertexShader.cpp">
+      <Filter>Archivos de código fuente\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects\ShaderManager.cpp">
+      <Filter>Archivos de código fuente\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects\Technique .cpp">
+      <Filter>Archivos de código fuente\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects\TechniquePoolManager.cpp">
+      <Filter>Archivos de código fuente\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects\TechniquePool.cpp">
+      <Filter>Archivos de código fuente\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\Layer.cpp">
+      <Filter>Archivos de código fuente\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\Scene.cpp">
+      <Filter>Archivos de código fuente\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\SceneManager.cpp">
+      <Filter>Archivos de código fuente\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\SceneMesh.cpp">
+      <Filter>Archivos de código fuente\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\SceneNode.cpp">
+      <Filter>Archivos de código fuente\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\BC.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\BC4BC5.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\BC6HBC7.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\BCDirectCompute.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexCompress.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexCompressGPU.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexConvert.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexD3D11.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexDDS.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexFlipRotate.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexHDR.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexImage.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexMipmaps.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexMisc.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexNormalMaps.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexPMAlpha.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexResize.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexTGA.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexUtil.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXTex\DirectXTexWIC.cpp">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\AnimatedCoreModel.cpp">
+      <Filter>Archivos de código fuente\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\AnimatedModelManager.cpp">
+      <Filter>Archivos de código fuente\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\SceneAnimatedModel.cpp">
+      <Filter>Archivos de código fuente\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights\DirectionalLight.cpp">
+      <Filter>Archivos de código fuente\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights\Light.cpp">
+      <Filter>Archivos de código fuente\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights\LightManager.cpp">
+      <Filter>Archivos de código fuente\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights\PointLight.cpp">
+      <Filter>Archivos de código fuente\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights\SpotLight.cpp">
+      <Filter>Archivos de código fuente\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\ApplyTechniquePool.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\BeginRenderCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\CaptureFrameBuffer.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\CaptureFrameBufferTexture.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\clearCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\DrawQuad.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\DynamicTexture.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\endRenderCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\Quad.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\RenderCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\RenderPipeline.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\RenderSceneLayer.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\RenderStagedTexture.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\SetAlphaBlendState.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\SetDepthStencilStateCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\SetPerFrameConstantsCmd.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\SetRasterizerState.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\SetRenderTarget.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\UnSetRenderTarget.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline\RenderImGUI.cpp">
+      <Filter>Archivos de código fuente\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger\Logger.cpp">
+      <Filter>Archivos de código fuente\Logger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Materials\materials.xml">
       <Filter>Archivos de recursos\Materials</Filter>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DirectXTex\DirectXTex.inl">
+      <Filter>Archivos de código fuente\DirectXTex</Filter>
+    </None>
   </ItemGroup>
 </Project>

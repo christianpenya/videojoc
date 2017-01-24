@@ -3,10 +3,14 @@
 template<typename T>
 struct CReleaser
 {
-	void operator()(T* obj)
-	{
-		obj->Release();
-	}
+    void operator()(T* obj)
+    {
+        if (obj)
+        {
+            obj->Release();
+            obj = nullptr;
+        }
+    }
 };
 
 template<typename T>

@@ -55,7 +55,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;$(SolutionDir)/Engine;$(DXSDK_DIR)Include/;$(WindowsSDK_IncludePath);$(DXSDK_DIR)lib/x86/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;$(SolutionDir)/Engine;$(WindowsSDK_IncludePath);$(DXSDK_DIR)lib/x86/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -72,7 +72,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;;$(DXSDK_DIR)Include;$(WindowsSDK_IncludePath);$(DXSDK_DIR)Include;$(WindowsSDK_IncludePath);$(DXSDK_DIR)lib/x86/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\;$(SolutionDir)/Base;$(WindowsSDK_IncludePath);$(DXSDK_DIR)lib/x86/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -85,29 +85,171 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CameraController.h" />
+    <ClInclude Include="Animation\AnimatedCoreModel.h" />
+    <ClInclude Include="Animation\AnimatedModelManager.h" />
+    <ClInclude Include="Animation\SceneAnimatedModel.h" />
+    <ClInclude Include="Camera\CameraController.h" />
+    <ClInclude Include="Camera\FpsCameraController.h" />
+    <ClInclude Include="Camera\SphericalCameraController.h" />
+    <ClInclude Include="Camera\TpsCameraController.h" />
+    <ClInclude Include="DirectXTex\BC.h" />
+    <ClInclude Include="DirectXTex\BCDirectCompute.h" />
+    <ClInclude Include="DirectXTex\DDS.h" />
+    <ClInclude Include="DirectXTex\DirectXTex.h" />
+    <ClInclude Include="DirectXTex\DirectXTexP.h" />
+    <ClInclude Include="DirectXTex\Filters.h" />
+    <ClInclude Include="DirectXTex\scoped.h" />
+    <ClInclude Include="Effects\Effect.h" />
+    <ClInclude Include="Effects\EffectManager.h" />
+    <ClInclude Include="Effects\PixelShader.h" />
+    <ClInclude Include="Effects\Shader.h" />
+    <ClInclude Include="Effects\ShaderManager.h" />
+    <ClInclude Include="Effects\ShaderInclude.h" />
+    <ClInclude Include="Effects\Technique.h" />
+    <ClInclude Include="Effects\TechniquePool.h" />
+    <ClInclude Include="Effects\TechniquePoolManager.h" />
+    <ClInclude Include="Effects\VertexShader.h" />
     <ClInclude Include="Engine.h" />
-    <ClInclude Include="FpsCameraController.h" />
     <ClInclude Include="imgui_impl_dx11.h" />
     <ClInclude Include="Input\ActionManager.h" />
     <ClInclude Include="Input\InputDefinitions.h" />
     <ClInclude Include="Input\InputManager.h" />
+    <ClInclude Include="Lights\DirectionalLight.h" />
+    <ClInclude Include="Lights\Light.h" />
+    <ClInclude Include="Lights\LightManager.h" />
+    <ClInclude Include="Lights\PointLight.h" />
+    <ClInclude Include="Lights\SpotLight.h" />
+    <ClInclude Include="Logger\Logger.h" />
+    <ClInclude Include="Materials\Material.h" />
+    <ClInclude Include="Materials\MaterialManager.h" />
+    <ClInclude Include="Materials\MaterialParameter.h" />
+    <ClInclude Include="Materials\TemplatedMaterialParameter.h" />
+    <ClInclude Include="Mesh\AxisAlignedBoundingBox.h" />
+    <ClInclude Include="Mesh\BoundingSphere.h" />
+    <ClInclude Include="Mesh\Buffer.h" />
+    <ClInclude Include="Mesh\Geometry.h" />
+    <ClInclude Include="Mesh\IndexBuffer.h" />
+    <ClInclude Include="Mesh\Mesh.h" />
+    <ClInclude Include="Mesh\MeshManager.h" />
+    <ClInclude Include="Mesh\TemplatedGeometry.h" />
+    <ClInclude Include="Mesh\TemplatedIndexedGeometry.h" />
+    <ClInclude Include="Mesh\VertexBuffer.h" />
+    <ClInclude Include="Mesh\VertexsTypes_HelperMacros.h" />
+    <ClInclude Include="Mesh\VertexTypes.h" />
+    <ClInclude Include="RenderPipeline\ApplyTechniquePool.h" />
+    <ClInclude Include="RenderPipeline\BeginRenderCmd.h" />
+    <ClInclude Include="RenderPipeline\CaptureFrameBuffer.h" />
+    <ClInclude Include="RenderPipeline\CaptureFrameBufferTexture.h" />
+    <ClInclude Include="RenderPipeline\ClearCmd.h" />
+    <ClInclude Include="RenderPipeline\DrawQuad.h" />
+    <ClInclude Include="RenderPipeline\DynamicTexture.h" />
+    <ClInclude Include="RenderPipeline\EndRenderCmd.h" />
+    <ClInclude Include="RenderPipeline\Quad.h" />
+    <ClInclude Include="RenderPipeline\RenderCmd.h" />
+    <ClInclude Include="RenderPipeline\RenderImGUI.h" />
+    <ClInclude Include="RenderPipeline\RenderPipeline.h" />
+    <ClInclude Include="RenderPipeline\RenderSceneLayer.h" />
+    <ClInclude Include="RenderPipeline\RenderStagedTexture.h" />
+    <ClInclude Include="RenderPipeline\SetAlphaBlendState.h" />
+    <ClInclude Include="RenderPipeline\SetDepthStencilStateCmd.h" />
+    <ClInclude Include="RenderPipeline\SetPerFrameConstantsCmd.h" />
+    <ClInclude Include="RenderPipeline\SetRasterizerState.h" />
+    <ClInclude Include="RenderPipeline\SetRenderTarget.h" />
+    <ClInclude Include="RenderPipeline\UnSetRenderTarget.h" />
     <ClInclude Include="Render\RenderManager.h" />
-    <ClInclude Include="SphericalCameraController.h" />
-    <ClInclude Include="TpsCameraController.h" />
+    <ClInclude Include="Scenes\Layer.h" />
+    <ClInclude Include="Scenes\Scene.h" />
+    <ClInclude Include="Scenes\SceneManager.h" />
+    <ClInclude Include="Scenes\SceneMesh.h" />
+    <ClInclude Include="Scenes\SceneNode.h" />
+    <ClInclude Include="Textures\Texture.h" />
+    <ClInclude Include="Textures\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation\AnimatedCoreModel.cpp" />
+    <ClCompile Include="Animation\AnimatedModelManager.cpp" />
+    <ClCompile Include="Animation\SceneAnimatedModel.cpp" />
+    <ClCompile Include="Camera\FpsCameraController.cpp" />
+    <ClCompile Include="Camera\SphericalCameraController.cpp" />
+    <ClCompile Include="Camera\TpsCameraController.cpp" />
+    <ClCompile Include="DirectXTex\BC.cpp" />
+    <ClCompile Include="DirectXTex\BC4BC5.cpp" />
+    <ClCompile Include="DirectXTex\BC6HBC7.cpp" />
+    <ClCompile Include="DirectXTex\BCDirectCompute.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexCompress.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexCompressGPU.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexConvert.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexD3D11.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexDDS.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexFlipRotate.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexHDR.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexImage.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexMipmaps.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexMisc.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexNormalMaps.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexPMAlpha.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexResize.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexTGA.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexUtil.cpp" />
+    <ClCompile Include="DirectXTex\DirectXTexWIC.cpp" />
+    <ClCompile Include="Effects\Effect.cpp" />
+    <ClCompile Include="Effects\EffectManager.cpp" />
+    <ClCompile Include="Effects\PixelShader.cpp" />
+    <ClCompile Include="Effects\Shader.cpp" />
+    <ClCompile Include="Effects\ShaderManager.cpp" />
+    <ClCompile Include="Effects\Technique .cpp" />
+    <ClCompile Include="Effects\TechniquePool.cpp" />
+    <ClCompile Include="Effects\TechniquePoolManager.cpp" />
+    <ClCompile Include="Effects\VertexShader.cpp" />
     <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="FpsCameraController.cpp" />
-    <ClCompile Include="SphericalCameraController.cpp" />
+    <ClCompile Include="Lights\DirectionalLight.cpp" />
+    <ClCompile Include="Lights\Light.cpp" />
+    <ClCompile Include="Lights\LightManager.cpp" />
+    <ClCompile Include="Lights\PointLight.cpp" />
+    <ClCompile Include="Lights\SpotLight.cpp" />
+    <ClCompile Include="Logger\Logger.cpp" />
+    <ClCompile Include="Materials\Material.cpp" />
+    <ClCompile Include="Materials\MaterialManager.cpp" />
+    <ClCompile Include="Mesh\Mesh.cpp" />
+    <ClCompile Include="Mesh\MeshManager.cpp" />
+    <ClCompile Include="Mesh\VertexTypes.cpp" />
+    <ClCompile Include="RenderPipeline\ApplyTechniquePool.cpp" />
+    <ClCompile Include="RenderPipeline\BeginRenderCmd.cpp" />
+    <ClCompile Include="RenderPipeline\CaptureFrameBuffer.cpp" />
+    <ClCompile Include="RenderPipeline\CaptureFrameBufferTexture.cpp" />
+    <ClCompile Include="RenderPipeline\clearCmd.cpp" />
+    <ClCompile Include="RenderPipeline\DrawQuad.cpp" />
+    <ClCompile Include="RenderPipeline\DynamicTexture.cpp" />
+    <ClCompile Include="RenderPipeline\endRenderCmd.cpp" />
+    <ClCompile Include="RenderPipeline\Quad.cpp" />
+    <ClCompile Include="RenderPipeline\RenderCmd.cpp" />
+    <ClCompile Include="RenderPipeline\RenderImGUI.cpp" />
+    <ClCompile Include="RenderPipeline\RenderPipeline.cpp" />
+    <ClCompile Include="RenderPipeline\RenderSceneLayer.cpp" />
+    <ClCompile Include="RenderPipeline\RenderStagedTexture.cpp" />
+    <ClCompile Include="RenderPipeline\SetAlphaBlendState.cpp" />
+    <ClCompile Include="RenderPipeline\SetDepthStencilStateCmd.cpp" />
+    <ClCompile Include="RenderPipeline\SetPerFrameConstantsCmd.cpp" />
+    <ClCompile Include="RenderPipeline\SetRasterizerState.cpp" />
+    <ClCompile Include="RenderPipeline\SetRenderTarget.cpp" />
+    <ClCompile Include="RenderPipeline\UnSetRenderTarget.cpp" />
+    <ClCompile Include="Render\RenderManager.cpp" />
     <ClCompile Include="imgui_impl_dx11.cpp" />
     <ClCompile Include="Input\ActionManager.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
-    <ClCompile Include="Render\RenderManager.cpp" />
-    <ClCompile Include="TpsCameraController.cpp" />
+    <ClCompile Include="Scenes\Layer.cpp" />
+    <ClCompile Include="Scenes\Scene.cpp" />
+    <ClCompile Include="Scenes\SceneManager.cpp" />
+    <ClCompile Include="Scenes\SceneMesh.cpp" />
+    <ClCompile Include="Scenes\SceneNode.cpp" />
+    <ClCompile Include="Textures\Texture.cpp" />
+    <ClCompile Include="Textures\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Materials\materials.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DirectXTex\DirectXTex.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
