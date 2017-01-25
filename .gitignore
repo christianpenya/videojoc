@@ -1,5 +1,9 @@
-trunk/int/
-trunk/bin/
+trunk/workdir/solution/bin/
+trunk/workdir/solution/obj/
+
+*.exp
+*.idb
+*.tlog
 *.opensdf
 *.sdf
 trunk/src/Engine/ReadMe.txt
