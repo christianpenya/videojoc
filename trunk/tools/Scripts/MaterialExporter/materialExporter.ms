@@ -30,9 +30,25 @@ function process = (
 		--Creamos un objeto con la estructura y añadimos el nombre
 		local lSMaterial = sMaterial()
 		lSMaterial.m_name = mMaterial.name
+		lSMaterial.m_vertexType = "PositionNormal"
 		
 		lSMaterial.m_opacity = mMaterial.opacity
 		
+
+		--Datos bump
+		lSMaterial.m_bumpEnabled = mMaterial.bumpMapEnable
+		if lSMaterial.m_bumpEnabled == true then (
+			lSMaterial.m_bumpMap = mMaterial.bumpMap
+			lSMaterial.m_bumpBitmap = mMaterial.bumpMap.bitmap
+			if lSMaterial.m_bumpBitmap != undefined then (				
+					lSMaterial.m_bumpAmount = mMaterial.bumpMapAmount
+					lSMaterial.m_vertexType = "PositionBump"			
+			)else (
+					lSMaterial.m_bumpEnabled = false
+			)
+			
+		)
+
 		--Obtenemos los datos referentes al diffuse del material
 		lSMaterial.m_diffuseEnabled = mMaterial.diffuseMapEnable
 		if lSMaterial.m_diffuseEnabled == true then (
@@ -47,29 +63,6 @@ function process = (
 			)
 		)	
 		
-		--Datos bump
-		lSMaterial.m_bumpEnabled = mMaterial.bumpMapEnable
-		if lSMaterial.m_bumpEnabled == true then (
-			lSMaterial.m_bumpMap = mMaterial.bumpMap
-			lSMaterial.m_bumpBitmap = mMaterial.bumpMap.bitmap
-			if lSMaterial.m_bumpBitmap != undefined then (				
-					lSMaterial.m_bumpAmount = mMaterial.bumpMapAmount				
-			)else (
-					lSMaterial.m_bumpEnabled = false
-			)
-			
-		)
-		--Datos self illum
-		lSMaterial.m_selfIllumEnabled = mMaterial.selfIllumMapEnable
-		if lSMaterial.m_selfIllumEnabled == true then (
-			lSMaterial.m_selfIllumMap = mMaterial.selfIllumMap
-			lSMaterial.m_selfIllumBitmap = mMaterial.selfIllumMap.bitmap
-			if lSMaterial.m_selfIllumBitmap != undefined then(
-				lSMaterial.m_selfIllumAmount = mMaterial.selfIllumMapAmount
-			)else (
-				lSMaterial.m_selfIllumEnabled = false
-			)
-		)
 		
 		--Datos ambient map
 		lSMaterial.m_ambientEnabled = mMaterial.ambientMapEnable
@@ -120,6 +113,28 @@ function process = (
 				lSMaterial.m_glossinessEnabled = false
 			)
 		)
+
+		if lSMaterial.m_glossinessEnabled or lSMaterial.m_specularEnabled or lSMaterial.m_diffuseEnabled then(
+			lSMaterial.m_vertexType = lSMaterial.m_vertexType + "UV"
+		)
+
+
+		--Datos self illum
+		lSMaterial.m_selfIllumEnabled = mMaterial.selfIllumMapEnable
+		if lSMaterial.m_selfIllumEnabled == true then (
+			lSMaterial.m_selfIllumMap = mMaterial.selfIllumMap
+			lSMaterial.m_selfIllumBitmap = mMaterial.selfIllumMap.bitmap
+			if lSMaterial.m_selfIllumBitmap != undefined then(
+				lSMaterial.m_selfIllumAmount = mMaterial.selfIllumMapAmount
+				if lSMaterial.m_vertexType == "PositionBumpUV" then(
+					lSMaterial.m_vertexType = lSMaterial.m_vertexType + "UV2"
+
+					)
+			)else (
+				lSMaterial.m_selfIllumEnabled = false
+			)
+		)
+
 		/*--Datos emission
 		lSMaterial.m_emissionEnabled = mMaterial.emissionMapEnable
 		if lSMaterial.m_emissionEnabled == true then (
@@ -145,6 +160,7 @@ function parse outPath = (
 		local matNode = XmlNode tag:"material"
 		rootNode.addChild matNode
 		matNode.AddAttribute "name" object.m_name
+		matNode.AddAttribute "vertex_type" object.m_vertexType
 		if object.m_diffuseEnabled == true then(
 			local textNode = XmlNode tag:"texture"
 			matNode.addChild textNode

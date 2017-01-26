@@ -1,8 +1,14 @@
-trunk/int/
-trunk/bin/
+trunk/workdir/solution/bin/
+trunk/workdir/solution/obj/
+
 *.opensdf
 *.sdf
 trunk/src/Engine/ReadMe.txt
 *.suo
 *.pdb
 *.user
+
+*.exp
+trunk/workdir/solution/obj/x32/Debug/Base/Base.tlog/Base.lastbuildstate
+*.tlog
+*.idb
