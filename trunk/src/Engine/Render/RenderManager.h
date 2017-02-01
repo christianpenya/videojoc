@@ -143,9 +143,25 @@ public:
 
     // Matrix Operations
     void SetModelMatrix(const Mat44f &Model);
+
     void SetViewMatrix(const Mat44f &View);
+    Mat44f GetViewMatrix()
+    {
+        return m_ViewMatrix;
+    }
+
     void SetProjectionMatrix(const Mat44f &Projection);
+    Mat44f GetProjectionMatrix()
+    {
+        return m_ProjectionMatrix;
+    }
+
     void SetViewProjectionMatrix(const Mat44f &View, const Mat44f &Projection);
+    Mat44f GetViewProjectionMatrix()
+    {
+        return m_ViewProjectionMatrix;
+    }
+
     void SetViewMatrix(const Vect3f& vPos, const Vect3f& vTarget, const Vect3f& vUp);
     void SetProjectionMatrix(float fovy, float aspect, float zn, float zf);
 
@@ -175,8 +191,6 @@ private:
     int m_NumViews;
     ID3D11DepthStencilView* m_CurrentDepthStencilView;
     D3D11_VIEWPORT m_Viewport;
-
-
 };
 
 #endif //_ENGINE_RENDERMANAGER_CPB_2016110320428_H

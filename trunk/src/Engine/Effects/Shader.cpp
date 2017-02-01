@@ -28,7 +28,7 @@ bool CShader::Load()
 {
     if (!m_Filename.empty())
     {
-        std::ifstream lStream("data/shaders/" + m_Filename);
+        std::ifstream lStream(m_Filename);
         m_ShaderCode = std::string((std::istreambuf_iterator<char>(lStream)),
                                    (std::istreambuf_iterator<char>()));
     }

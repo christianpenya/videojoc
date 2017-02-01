@@ -6,7 +6,6 @@
 
 CEffect::CEffect()
 {
-
 }
 
 CEffect::~CEffect() {}
@@ -35,7 +34,10 @@ void CEffect::Bind(ID3D11DeviceContext* aContext)
 {
     for (std::vector<CShader*>::iterator iShader = mShaders.begin(); iShader != mShaders.end(); ++iShader)
     {
-        (*iShader)->Bind(aContext);
+        if ((*iShader) != nullptr)
+        {
+            (*iShader)->Bind(aContext);
+        }
     }
 }
 

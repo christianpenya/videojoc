@@ -1,10 +1,10 @@
 <shaders>
 	<!--VERTEX SHADERS-->
 	<vertex_shaders>
-		<shader name="PositionNormalForward" file="Forward/PositionNormal.vs" entry_point="mainVertexShader" vertex_type="PositionNormal" preprocessor=""/>
+		<shader name="PositionNormalForward" file="data/shaders/Forward/PositionNormal.vs" entry_point="mainVertexShader" vertex_type="PositionNormal" preprocessor=""/>
 	</vertex_shaders>     
 	<!--PIXEL SHADERS-->  
 	<pixel_shaders>
-		<shader name="PositionNormalForward" file="Forward/PositionNormal.ps" entry_point="mainPixelShader" preprocessor=""/>
+		<shader name="PositionNormalForward" file="data/shaders/Forward/PositionNormal.ps" entry_point="mainPixelShader" preprocessor=""/>
 	</pixel_shaders>
 </shaders> 

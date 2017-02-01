@@ -1,11 +1,21 @@
 #include "Engine.h"
-#include "Input\ActionManager.h"
 #include "imgui_impl_dx11.h"
 #include "ImGUI\imgui.h"
+
 #include "Camera\CameraController.h"
-#include "Textures\TextureManager.h"
 #include "Mesh\Mesh.h"
+
+#include "Input\ActionManager.h"
+#include "Materials\MaterialManager.h"
+#include "Textures\TextureManager.h"
 #include "Mesh\MeshManager.h"
+#include "Effects\ShaderManager.h"
+#include "Effects\EffectManager.h"
+#include "Effects\TechniquePoolManager.h"
+#include "Scenes\SceneManager.h"
+#include "Lights\LightManager.h"
+#include "Scenes\ConstantBufferManager.h"
+
 #include "RenderPipeline\RenderPipeline.h"
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
@@ -13,8 +23,20 @@
 CEngine::CEngine()
 
     : m_RenderManager(nullptr)
+    , m_InputManager(nullptr)
     , m_ActionManager(nullptr)
     , m_CameraController(nullptr)
+    , m_MaterialManager(nullptr)
+    , m_TextureManager(nullptr)
+    , m_MeshManager(nullptr)
+    , m_ShaderManager(nullptr)
+    , m_EffectManager(nullptr)
+    , m_TechniquePoolManager(nullptr)
+    , m_LightManager(nullptr)
+    , m_SceneManager(nullptr)
+    , m_ConstantBufferManager(nullptr)
+    , m_RenderPipeline(nullptr)
+    , m_AnimatedModelManager(nullptr)
     , m_Clock()
     , m_PrevTime(m_Clock.now())
 {
@@ -26,6 +48,34 @@ CEngine::CEngine()
 void CEngine::Init(HWND hWnd)
 {
     ImGui_ImplDX11_Init(hWnd, m_RenderManager->GetDevice(), m_RenderManager->GetDeviceContext());
+
+    m_ConstantBufferManager = new CConstantBufferManager();
+
+    m_ShaderManager = new CShaderManager();
+    m_ShaderManager->Load("data/shaders.xml"); // #TODO properties
+
+    m_EffectManager = new CEffectManager();
+    m_EffectManager->Load("data/effects.xml");
+
+    m_TechniquePoolManager = new CTechniquePoolManager();
+    m_TechniquePoolManager->Load("data/techniques_pool.xml");
+    m_TechniquePoolManager->Apply("forward");
+
+    std::string lLevelMaterialsFilename = "reclusion.xml"; // #TODO nombres hardcoded
+    std::string lDefaultMaterialsFilename = "default.xml";
+    m_MaterialManager = new CMaterialManager();
+    m_MaterialManager->Load(lLevelMaterialsFilename, lDefaultMaterialsFilename);
+
+    m_TextureManager = new CTextureManager();
+
+    m_MeshManager = new CMeshManager();
+    // m_MeshManager->GetMesh("data/meshes/Plane001.mesh"); // #TODO
+
+    m_LightManager = new CLightManager();
+    m_LightManager->Load("data/lights.xml");
+
+    m_SceneManager = new CSceneManager();
+    m_SceneManager->Load("data/scenes.xml");
 }
 
 void CEngine::ProcessInputs()
@@ -83,7 +133,6 @@ void CEngine::Render()
 {
     //m_RenderPipeline->Execute();
 
-
     m_RenderManager->BeginRender();
 
     static bool show_app_auto_resize = false;
@@ -104,26 +153,31 @@ void CEngine::Render()
     //ImTextureID tex_id = m_TextureManager->GetTexture();
     //ImGui::Image(tex_id, ImVec2(500, 500), ImVec2(0, 0), ImVec2(1, 1), ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
 
-    /*    CMesh* lMesh = m_MeshManager->GetMesh("data/meshes/Plane001.mesh");
-        lMesh->Render(*m_RenderManager);
-    	*/
+    m_ConstantBufferManager->mFrameDesc.m_View = m_RenderManager->GetViewMatrix();
+    m_ConstantBufferManager->mFrameDesc.m_Projection = m_RenderManager->GetProjectionMatrix();
+    m_ConstantBufferManager->mFrameDesc.m_ViewProjection = m_RenderManager->GetViewProjectionMatrix();
 
+    ID3D11DeviceContext* lContext = m_RenderManager->GetDeviceContext();
+    m_ConstantBufferManager->BindVSBuffer(lContext, CConstantBufferManager::CB_Frame);
+    m_SceneManager->Render("opaque");
 
     m_RenderManager->DrawGrid(1, 1, 1, CColor(0, 0, 0, 1));
+
     switch (cameraSelector)
     {
     case 0: //Orbital
         m_RenderManager->DrawSphere(1, CColor(1, 1, 0, 1));
-
         break;
+
     case 1: //FPS
         m_RenderManager->m_SphereOffset = Vect3f(0, 3, 0);
         m_RenderManager->DrawSphere(1, CColor(0, 1, 1, 1));
-
         break;
+
     case 2: //TPS
         sphereRender(*m_RenderManager);
         break;
+
     default:
         break;
     }
@@ -221,6 +275,5 @@ void CEngine::sphereUpdate(CRenderManager& renderManager, CActionManager* action
 
 void CEngine::sphereRender(CRenderManager& renderManager)
 {
-
     renderManager.DrawSphere(1, CColor(1, 1, 1, 1));
 }
