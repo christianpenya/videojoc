@@ -12,6 +12,7 @@
 #include "imgui_impl_dx11.h"
 
 class CRenderManager;
+class CInputManager;
 class CActionManager;
 class CCameraController;
 class CTextureManager;
@@ -55,7 +56,8 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(RenderManager);
     BUILD_GET_SET_ENGINE_MANAGER(CameraController);
     BUILD_GET_SET_ENGINE_MANAGER(SceneManager);
-    BUILD_GET_SET_ENGINE_MANAGER(ActionManager);
+	BUILD_GET_SET_ENGINE_MANAGER(InputManager);
+	BUILD_GET_SET_ENGINE_MANAGER(ActionManager);
     BUILD_GET_SET_ENGINE_MANAGER(ShaderManager);
     BUILD_GET_SET_ENGINE_MANAGER(EffectManager);
     BUILD_GET_SET_ENGINE_MANAGER(MeshManager);

@@ -4,6 +4,7 @@
 
 #include "Render/RenderManager.h"
 #include "Mesh/Buffer.h"
+#include "Logger/Logger.h"
 
 class CConstantBuffer : public CBuffer
 {
@@ -21,8 +22,7 @@ public:
         constantBufferDesc.CPUAccessFlags = 0;
         constantBufferDesc.Usage = D3D11_USAGE_DEFAULT;
         HRESULT lHR = lDevice->CreateBuffer(&constantBufferDesc, nullptr, &m_pBuffer);
-        // #TODO Afegir Logger
-        //LOG_ERROR_APPLICATION_IF(FAILED(lHR), "Error creating constant buffer");
+        LOG_ERROR_APPLICATION_IF(FAILED(lHR), "Error creating constant buffer");
     }
 public:
     CConstantBuffer(CRenderManager& RenderManager, void* aRawData, uint32 aByteWidth) : CBuffer()
@@ -48,8 +48,7 @@ public:
         // Create the buffer.
         ID3D11Device *lDevice = RenderManager.GetDevice();
         HRESULT lHR = lDevice->CreateBuffer(&lConstantBuffer, &InitData, &m_pBuffer);
-        // #TODO Afegir Logger
-        //LOG_ERROR_APPLICATION_IF(FAILED(lHR), "Error creating immutable constant buffer");
+        LOG_ERROR_APPLICATION_IF(FAILED(lHR), "Error creating immutable constant buffer");
     }
 
 

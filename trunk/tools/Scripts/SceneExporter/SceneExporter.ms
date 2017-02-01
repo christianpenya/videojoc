@@ -5,7 +5,7 @@ fn GetCores =
 	uniqueInstance = #()
 	for obj in selection do
 	(
-		print("obj in selection: " + obj.name)
+		--print("obj in selection: " + obj.name)
 		if (InstanceMgr.GetInstances obj &instances) > 1 then
 		(
 			if findItem uniqueInstance instances[1] == 0 do
@@ -20,14 +20,12 @@ fn GetCores =
 )
 
 fn Point3ToString aPoint3 = 
-(	
-	
+(		
 	local l_Text = stringstream ""
 	format "% " aPoint3.x to:l_Text
  	format "% " aPoint3.y to:l_Text
  	format "%" aPoint3.z to:l_Text
 	return (l_Text as string)
-
 )
 
 fn ExportScene =
@@ -43,7 +41,7 @@ fn ExportScene =
 	(
 		xmlDoc.filename = f
 		
-		print(LayerManager.count)
+		--print(LayerManager.count)
 		
 		for i = 0 to LayerManager.count - 1 do
 		(
@@ -62,23 +60,24 @@ fn ExportScene =
 			
  			for o in uniqueObjects do
  			(
-			print (superclassOf o)
+			--print (superclassOf o)
 				if (superclassOf o == GeometryClass) then 
 			(
  					-- meshes
 					local sceneMeshNode = XmlNode tag:"scene_mesh"
  					layerNode.AddChild sceneMeshNode
 					sceneMeshNode.AddAttribute "name" o.name
-					sceneMeshNode.AddAttribute "mesh" o.name
+					local filename = "data/meshes/" + o.name + ".mesh"
+					sceneMeshNode.AddAttribute "mesh" filename
 					
 					-- transform
 					local transformNode = XmlNode tag:"transform"
  					sceneMeshNode.AddChild transformNode
 					
 					
-					print (classOf o.transform.position)
-					print (classOf o.transform.rotation)
-					print (classOf o.transform.scale)
+					--print (classOf o.transform.position)
+					--print (classOf o.transform.rotation)
+					--print (classOf o.transform.scale)
 					
 					local tmp = Point3ToString(o.transform.position)
 					transformNode.AddAttribute "position" tmp

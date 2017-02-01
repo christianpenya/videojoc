@@ -1,8 +1,7 @@
 #include "Frustum.h"
 #include "Mesh/AxisAlignedBoundingBox.h"
 #include "Mesh/BoundingSphere.h"
-#include "Math/Matrix44.h"
-/*
+
 void CFrustum::Update(const Mat44f &ViewProjection)
 {
     //left plane frustum
@@ -81,8 +80,7 @@ void CFrustum::Update(const Mat44f &ViewProjection)
 bool CFrustum::IsVisible(const CBoundingSphere &aBoundingSphere) const
 {
     const Vect3f& Center = aBoundingSphere.GetCenter();
-    const float Radius = 1.0f;
-    // #TODO #ALEX aBoundingSphere.GetRadius();
+	const float Radius = aBoundingSphere.GetRadius();
 
     for (int i = 0; i < 6; ++i)
     {
@@ -144,4 +142,4 @@ bool CFrustum::IsVisible(const CAxisAlignedBoundingBox &aAABB) const
             return false;
     }
     return true;
-}*/
+}

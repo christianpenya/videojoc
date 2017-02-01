@@ -28,11 +28,8 @@ bool CVertexShader::Load()
         HRESULT lHR = lRenderManager.GetDevice()->CreateVertexShader(m_pBlob->GetBufferPointer(), m_pBlob->GetBufferSize(), nullptr, &m_pVertexShader);
         lOk = SUCCEEDED(lHR);
 
-        if (lOk)
-        {
-            lOk &= m_VertexFlags != 0;
-            lOk &= VertexTypes::CreateInputLayout(lRenderManager, m_VertexFlags, m_pBlob, &m_pVertexLayout);
-        }
+        lOk &= m_VertexFlags != 0;
+        lOk &= VertexTypes::CreateInputLayout(lRenderManager, m_VertexFlags, m_pBlob, &m_pVertexLayout);
     }
 
     return lOk;

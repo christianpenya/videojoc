@@ -21,7 +21,6 @@ CMesh::~CMesh()
 
 CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsigned short aNumVertices, unsigned short aNumIndices, void* aVertexData, void* aIndexData)
 {
-
     if (aVertexFlags == VertexTypes::PositionUV::GetVertexFlags())
     {
         return new CIndexedGeometryTriangleList<VertexTypes::PositionUV>
@@ -102,8 +101,6 @@ bool CMesh::Load(const std::string& aFilename)
                     unsigned short lVertexFlags = lBinFileReader->Read<unsigned short>();
                     unsigned short lNumVertices = lBinFileReader->Read<unsigned short>();
 
-                    //mMaterials[iMatMesh].SetTechnique(VertexTypes::GetFlagsFromString());
-
                     uint32 lVertexSize = VertexTypes::GetVertexSize(lVertexFlags);
                     uint32 lNumBytesVertices = lNumVertices * lVertexSize;
                     void* lVertexData = lBinFileReader->ReadRaw(lNumBytesVertices);
@@ -119,28 +116,28 @@ bool CMesh::Load(const std::string& aFilename)
 
                     free(lVertexData);
                     free(lIndexData);
-
-                    //AABB
-                    Vect3f lMinVertex = lBinFileReader->Read<Vect3f>();
-                    Vect3f lMaxVertex = lBinFileReader->Read<Vect3f>();
-
-                    CAxisAlignedBoundingBox* lAABB = new CAxisAlignedBoundingBox();
-                    lAABB->SetMin(lMinVertex);
-                    lAABB->SetMax(lMaxVertex);
-
-                    mAABB = *lAABB;
-
-                    //Bounding Sphere
-                    Vect3f lCenter = lBinFileReader->Read<Vect3f>();
-                    //#PARANORMAL no lee bien un float solo
-                    Vect3f lRadius = lBinFileReader->Read<Vect3f>();
-
-                    CBoundingSphere* lBoundingSphere = new CBoundingSphere();
-                    lBoundingSphere->SetRadius(lRadius.x);
-                    lBoundingSphere->SetCenter(lCenter);
-
-                    mBoundingSphere = *lBoundingSphere;
                 }
+
+                //AABB
+                Vect3f lMinVertex = lBinFileReader->Read<Vect3f>();
+                Vect3f lMaxVertex = lBinFileReader->Read<Vect3f>();
+
+                CAxisAlignedBoundingBox* lAABB = new CAxisAlignedBoundingBox();
+                lAABB->SetMin(lMinVertex);
+                lAABB->SetMax(lMaxVertex);
+
+                mAABB = *lAABB;
+
+                //Bounding Sphere
+                Vect3f lCenter = lBinFileReader->Read<Vect3f>();
+                //#PARANORMAL no lee bien un float solo
+                Vect3f lRadius = lBinFileReader->Read<Vect3f>();
+
+                CBoundingSphere* lBoundingSphere = new CBoundingSphere();
+                lBoundingSphere->SetRadius(lRadius.x);
+                lBoundingSphere->SetCenter(lCenter);
+
+                mBoundingSphere = *lBoundingSphere;
             }
         }
 
@@ -152,8 +149,8 @@ bool CMesh::Load(const std::string& aFilename)
     }
     else
         lOk = false;
-    return lOk;
 
+    return lOk;
 }
 
 bool CMesh::Render(CRenderManager& aRM)

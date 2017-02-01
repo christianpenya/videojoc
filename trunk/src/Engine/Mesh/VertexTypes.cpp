@@ -68,41 +68,45 @@ bool CreateInputLayout(CRenderManager &aRenderManager, uint32 aVertexFlags, ID3D
         lOk = true;
     }
 
-    assert(!"Error creating input layout");
+	if (!lOk)
+		assert(!"Error creating input layout");
 
     return lOk;
 }
 
 uint32 GetFlagsFromString(const std::string& aString)
 {
-    if (aString == "PositionUV")
+	uint32 lOut;
+	
+	if (aString == "PositionUV")
     {
-        return PositionUV::GetVertexFlags();
+		lOut = PositionUV::GetVertexFlags();
     }
     else if (aString == "PositionNormal")
     {
-        return PositionNormal::GetVertexFlags();
+		lOut = PositionNormal::GetVertexFlags();
     }
     else if (aString == "PositionNormalUV")
     {
-        return PositionNormalUV::GetVertexFlags();
+		lOut = PositionNormalUV::GetVertexFlags();
     }
     else if (aString == "PositionBump")
     {
-        return PositionBump::GetVertexFlags();
+		lOut = PositionBump::GetVertexFlags();
     }
     else if (aString == "PositionBumpUV")
     {
-        return PositionBumpUV::GetVertexFlags();
+		lOut = PositionBumpUV::GetVertexFlags();
     }
     else if (aString == "PositionBumpUVUV2")
     {
-        return PositionBumpUVUV2::GetVertexFlags();
+		lOut = PositionBumpUVUV2::GetVertexFlags();
     }
 
-    assert(!"Wrong string flags!");
+	if (!lOut)
+	    assert(!"Wrong string flags!");
 
-    return 0;
+	return lOut;
 
 }
 }

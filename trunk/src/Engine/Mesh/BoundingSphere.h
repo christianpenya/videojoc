@@ -12,7 +12,7 @@ public:
     virtual ~CBoundingSphere()   {   }
 
     GET_SET_REF(Vect3f, Center);
-    GET_SET(float, Radius);
+    GET_SET_REF(float, Radius);
 
 protected:
     float m_Radius;

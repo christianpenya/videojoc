@@ -2,6 +2,8 @@
 #ifndef _ENGINE_FRUSTUM_20170118_H
 #define _ENGINE_FRUSTUM_20170118_H
 
+#include "Math/Matrix44.h"
+
 class CBoundingSphere;
 class CAxisAlignedBoundingBox;
 
@@ -10,7 +12,7 @@ class CFrustum
 public:
     CFrustum() {}
     virtual ~CFrustum() {}
-//    void Update(const Mat44f &ViewProj);
+    void Update(const Mat44f &ViewProj);
     bool IsVisible(const CBoundingSphere &aBoundingSphere) const;
     bool IsVisible(const CAxisAlignedBoundingBox &aAABB) const;
 

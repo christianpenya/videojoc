@@ -1,19 +1,26 @@
 <scene>
   <layer name="opaque" >
-   <scene_mesh name="Plane001" mesh="Plane001">
+   <scene_mesh name="Teapot001" mesh="data/meshes/Teapot001.mesh" >
+		<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
+	</scene_mesh>
+  </layer>
+   <!--
+   
+   <scene_mesh name="Box001" mesh="data/meshes/Box001.mesh">
     <transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
    </scene_mesh>
-   <scene_basic_primitive name="Plane002" type="Plane002">
-    <transform position="10.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
-   </scene_basic_primitive>
-  </layer>
+   
+   <scene_basic_primitive name="Plane001" type="plane">
+		<transform position="1.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
+	</scene_basic_primitive>
+
   <layer name="cut out" >
-   <scene_mesh name="Box001" mesh="Box001">
+   <scene_mesh name="Box001" mesh="data/meshes/Box001.mesh">
     <transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
    </scene_mesh >
   </layer>
   <layer name="transparent" >
-   < scene_mesh name="Box03" mesh="GlassBox">
+   < scene_mesh name="Box03" mesh="data/meshes/Box003.mesh">
     <transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
    </scene_mesh>
   </layer>
@@ -22,5 +29,5 @@
   <layer name="lights">
    <scene_light name="PL" light="FSpot001" />
   </layer>
-  <layer name="cameras"/>
+  <layer name="cameras"/>-->
  </scene>

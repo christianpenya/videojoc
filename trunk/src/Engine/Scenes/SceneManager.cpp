@@ -37,7 +37,7 @@ bool CSceneManager::Render(const std::string& aLayer)
 
         if (lScene->IsActive())
         {
-            lOk &= lScene->Render();
+            lOk &= lScene->Render(aLayer);
         }
     }
     return lOk;
@@ -76,8 +76,8 @@ bool CSceneManager::Load()
             {
                 if (strcmp(iScene->Name(), "scene") == 0)
                 {
-                    // #TODO mes maco
-                    // #ALEX = des de donde se llama el load de la escena?
+                    // #TODO mes maco, treure la merda de folder
+                    // #ALEX des de donde se llama el load de la escena?
                     std::string lName = iScene->GetAttribute<std::string>("name", "");
                     CScene* lScene = new CScene(lName);
                     lScene->SetActive(iScene->GetAttribute<bool>("active", false));

@@ -1,29 +1,22 @@
 <materials >
-	<material name="Material #98" >
-		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
-		<parameter type="float" name="selfIllum" value="100.0" />
+	<material name="Teapot002Material"  vertex_type="PositionNormal">
+
 	</material>
-	<material name="Material #102" >
-		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
-		<parameter type="float" name="selfIllum" value="100.0" />
+	<material name="Box002Material"  vertex_type="PositionNormal">
+
 	</material>
-	<material name="Material #103" >
-		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
-		<parameter type="float" name="selfIllum" value="100.0" />
+	<material name="Material #102" vertex_type="PositionNormal">
 	</material>
-	<material name="Material #104" >
-		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
-		<parameter type="float" name="selfIllum" value="100.0" />
+
+	<material name="Material #103" vertex_type="PositionNormal">
 	</material>
-	<material name="Material #105" >
-		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
-		<parameter type="float" name="selfIllum" value="100.0" />
+	<material name="Material #104" vertex_type="PositionNormal">
 	</material>
-	<material name="Material #106" >
-		<texture type="selfIllum" filename="data\textures\Box001LightingMap.tga" />
-		<parameter type="float" name="selfIllum" value="100.0" />
+	<material name="Material #105" vertex_type="PositionNormal">
 	</material>
-	<material name="04 - Default" >
+	<material name="Material #106" vertex_type="PositionNormal">
+	</material>
+	<material name="04 - Default" vertex_type="PositionNormal">
 		<texture type="diffuse" filename="data\textures\alpha.jpg" />
 		<color type="diffuse" value="150.0,150.0,150.0,150.0," />
 		<parameter type="float" name="diffuse" value="100.0" />
