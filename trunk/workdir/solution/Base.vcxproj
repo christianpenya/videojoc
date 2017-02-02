@@ -252,7 +252,9 @@
     <ClInclude Include="..\..\src\Base\Utils\BinFileReader.h" />
     <ClInclude Include="..\..\src\Base\Utils\CheckedDelete.h" />
     <ClInclude Include="..\..\src\Base\Utils\Defines.h" />
+    <ClInclude Include="..\..\src\Base\Utils\Enable.h" />
     <ClInclude Include="..\..\src\Base\Utils\EnumToString.h" />
+    <ClInclude Include="..\..\src\Base\Utils\Logger.h" />
     <ClInclude Include="..\..\src\Base\Utils\MemLeaks\MemLeaks.h" />
     <ClInclude Include="..\..\src\Base\Utils\Name.h" />
     <ClInclude Include="..\..\src\Base\Utils\PublisherSubscriber\Broker.h" />
@@ -275,6 +277,8 @@
     <ClCompile Include="..\..\src\Base\ImGUI\imgui_draw.cpp" />
     <ClCompile Include="..\..\src\Base\Math\MathConstants.cpp" />
     <ClCompile Include="..\..\src\Base\Math\Transform.cpp" />
+    <ClCompile Include="..\..\src\Base\Utils\Enable.cpp" />
+    <ClCompile Include="..\..\src\Base\Utils\Logger.cpp" />
     <ClCompile Include="..\..\src\Base\Utils\MemLeaks\MemLeaks.cpp" />
     <ClCompile Include="..\..\src\Base\Utils\Name.cpp" />
     <ClCompile Include="..\..\src\Base\Utils\PublisherSubscriber\Broker.cpp" />
