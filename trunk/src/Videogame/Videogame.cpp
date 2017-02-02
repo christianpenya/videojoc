@@ -58,7 +58,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
     {
         if (wParam != SIZE_MINIMIZED)
         {
-            if (CEngine::GetInstance().HasRenderManager())
+            if (CEngine::GetInstance().ExistRenderManager())
             {
                 auto& renderManager = CEngine::GetInstance().GetRenderManager();
                 renderManager.Resize(LOWORD(lParam), HIWORD(lParam), hWnd);
@@ -99,15 +99,15 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
     // Create the application's window
     HWND hWnd = CreateWindow(APPLICATION_NAME, APPLICATION_NAME, WS_OVERLAPPEDWINDOW, 0, 0, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, wc.hInstance, NULL);
 
-	//RENDER MANAGER
-	CRenderManager l_RenderManager;
-	l_RenderManager.SetModelMatrix(m_model_matrix);
-	l_RenderManager.SetProjectionMatrix(45.0f, m_width / m_height, 0.5f, 100.0f);
-	l_RenderManager.SetViewMatrix(m_vpos, m_vtarget, m_vup);
-	l_RenderManager.Init(hWnd, (int)m_width, (int)m_height, debug);
+    //RENDER MANAGER
+    CRenderManager l_RenderManager;
+    l_RenderManager.SetModelMatrix(m_model_matrix);
+    l_RenderManager.SetProjectionMatrix(45.0f, m_width / m_height, 0.5f, 100.0f);
+    l_RenderManager.SetViewMatrix(m_vpos, m_vtarget, m_vup);
+    l_RenderManager.Init(hWnd, (int)m_width, (int)m_height, debug);
 
-    //CRenderPipeline l_RenderManagerP;
-    //l_RenderManagerP.Load("data/render_pipeline.xml");
+    CRenderPipeline l_RenderPipeline;
+    l_RenderPipeline.Load("data/render_pipeline.xml");
 
     CInputManager l_InputManager(hWnd);
     CActionManager l_ActionManager(l_InputManager);
@@ -124,12 +124,14 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
     CTpsCameraController l_TpsCamera(Vect3f(0, 0, 0), 1.5f, -1.5f, 20.0f, 4.0f);
 
     CEngine& l_Engine = CEngine::GetInstance();
-	
+
     l_Engine.SetActionManager(&l_ActionManager);
     l_Engine.SetCameraController(&l_SphericalCamera);
     l_Engine.SetRenderManager(&l_RenderManager);
-	l_Engine.Init(hWnd);
-	l_Engine.fpsCam = l_FpsCamera;
+    l_Engine.SetRenderPipeline(&l_RenderPipeline);
+
+    l_Engine.Init(hWnd);
+    l_Engine.fpsCam = l_FpsCamera;
     l_Engine.orbitalCam = l_SphericalCamera;
     l_Engine.tpsCam = l_TpsCamera;
 
@@ -140,7 +142,7 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 
     std::chrono::monotonic_clock l_Clock;
     std::chrono::monotonic_clock::time_point l_PrevTime;
-    std::string s_fps("");    
+    std::string s_fps("");
 
     while (msg.message != WM_QUIT)
     {

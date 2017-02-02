@@ -1,6 +1,7 @@
 #include "ApplyTechniquePool.h"
 #include "XML\XML.h"
-
+#include "Engine\Engine.h"
+#include "Effects\TechniquePoolManager.h"
 
 CApplyTechniquePool::CApplyTechniquePool()
 {
@@ -25,5 +26,9 @@ bool CApplyTechniquePool::Load(const CXMLElement* aElement)
 
 void CApplyTechniquePool::Execute(CRenderManager& lRM)
 {
-    //lRM.GetDeviceContext()->OMSetBlendState(m_PoolName, NULL, 0xffffffff);
+    if (CEngine::GetInstance().ExistTechniquePoolManager())
+    {
+        CTechniquePoolManager& lTechniquePoolManager = CEngine::GetInstance().GetTechniquePoolManager();
+        lTechniquePoolManager.Apply(m_PoolName);
+    }
 }

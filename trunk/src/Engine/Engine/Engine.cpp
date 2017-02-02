@@ -131,71 +131,7 @@ void CEngine::Update()
 
 void CEngine::Render()
 {
-    //m_RenderPipeline->Execute();
-
-    m_RenderManager->BeginRender();
-
-    static bool show_app_auto_resize = false;
-    ImGui::Begin("Motor3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
-
-    ImGui::Text("Frame rate: ");
-    ImGui::SameLine();
-    ImGui::Text("FPS", 1/deltaTime, 0.0f, -1, 0);
-    // ImGui::ShowTestWindow();
-
-    ImGui::RadioButton("Orbital", &cameraSelector, 0);
-    ImGui::SameLine();
-    ImGui::RadioButton("FPS", &cameraSelector, 1);
-    ImGui::SameLine();
-    ImGui::RadioButton("TPS", &cameraSelector, 2);
-
-    //m_TextureManager->GetTexture("data/textures/Box001LightingMap.tga");
-    //ImTextureID tex_id = m_TextureManager->GetTexture();
-    //ImGui::Image(tex_id, ImVec2(500, 500), ImVec2(0, 0), ImVec2(1, 1), ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
-
-    m_ConstantBufferManager->mFrameDesc.m_View = m_RenderManager->GetViewMatrix();
-    m_ConstantBufferManager->mFrameDesc.m_Projection = m_RenderManager->GetProjectionMatrix();
-    m_ConstantBufferManager->mFrameDesc.m_ViewProjection = m_RenderManager->GetViewProjectionMatrix();
-
-    ID3D11DeviceContext* lContext = m_RenderManager->GetDeviceContext();
-    m_ConstantBufferManager->BindVSBuffer(lContext, CConstantBufferManager::CB_Frame);
-    m_SceneManager->Render("opaque");
-
-    m_RenderManager->DrawGrid(1, 1, 1, CColor(0, 0, 0, 1));
-
-    switch (cameraSelector)
-    {
-    case 0: //Orbital
-        m_RenderManager->DrawSphere(1, CColor(1, 1, 0, 1));
-        break;
-
-    case 1: //FPS
-        m_RenderManager->m_SphereOffset = Vect3f(0, 3, 0);
-        m_RenderManager->DrawSphere(1, CColor(0, 1, 1, 1));
-        break;
-
-    case 2: //TPS
-        sphereRender(*m_RenderManager);
-        break;
-
-    default:
-        break;
-    }
-    // -----------------------------
-
-    // game render
-
-    // -----------------------------
-
-    if (ImGui::CollapsingHeader("Lights"))
-    {
-        //crear un render imgui del light manager
-    }
-
-    ImGui::End();
-    ImGui::Render();
-
-    m_RenderManager->EndRender();
+    m_RenderPipeline->Execute();
 }
 
 void CEngine::fpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt)

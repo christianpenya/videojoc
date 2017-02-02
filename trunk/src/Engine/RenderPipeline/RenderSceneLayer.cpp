@@ -1,6 +1,7 @@
 #include "RenderSceneLayer.h"
 #include "XML\XML.h"
-
+#include "Scenes\SceneManager.h"
+#include "Engine\engine.h"
 
 CRenderSceneLayer::CRenderSceneLayer()
 {
@@ -26,5 +27,9 @@ bool CRenderSceneLayer::Load(const CXMLElement* aElement)
 
 void CRenderSceneLayer::Execute(CRenderManager& lRM)
 {
-    //
+    if (CEngine::GetInstance().ExistSceneManager())
+    {
+        CSceneManager& lSceneManager = CEngine::GetInstance().GetSceneManager();
+        lSceneManager.Render(m_LayerName);
+    }
 }
