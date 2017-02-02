@@ -6,6 +6,7 @@
 #include "Utils\Defines.h"
 #include "Utils\EnumToString.h"
 #include <d3d11.h>
+#include <vector>
 
 class CShader : public CName
 {
@@ -25,6 +26,7 @@ public:
     virtual ~CShader();
     virtual bool Load();
     virtual void Bind(ID3D11DeviceContext*) = 0;
+    bool Reload();
 
     GET_SET(EShaderStage, Type)
     GET_SET_REF(std::string, Preprocessor)
@@ -40,7 +42,12 @@ protected:
     std::string  m_EntryPoint;
     std::string  m_Filename;
     std::string  m_ShaderCode;
+    D3D_SHADER_MACRO *m_ShaderMacros;
+    std::vector<std::string> m_PreprocessorMacros;
+
     ID3DBlob	*m_pBlob;
+
+    void CreateShaderMacro();
     virtual std::string GetShaderModel() = 0;
 };
 
