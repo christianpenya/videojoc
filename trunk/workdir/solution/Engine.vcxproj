@@ -390,6 +390,8 @@
     <ClCompile Include="..\..\src\Engine\RenderPipeline\UnSetRenderTarget.cpp" />
     <ClCompile Include="..\..\src\Engine\RenderPipeline\clearCmd.cpp" />
     <ClCompile Include="..\..\src\Engine\RenderPipeline\endRenderCmd.cpp" />
+    <ClCompile Include="..\..\src\Engine\Scenes\ConstantBuffer.cpp" />
+    <ClCompile Include="..\..\src\Engine\Scenes\ConstantBufferManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Scenes\Frustum.cpp" />
     <ClCompile Include="..\..\src\Engine\Scenes\Layer.cpp" />
     <ClCompile Include="..\..\src\Engine\Scenes\Scene.cpp" />
