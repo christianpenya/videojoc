@@ -1,0 +1,13 @@
+Texture2D T0Texture: register( t0 ); // Diffuse
+SamplerState S0Sampler: register( s0 );
+
+struct Vertex2Pixel
+{
+	float4 pos : SV_POSITION;
+	float2 UV : TEXCOORD0;
+};
+
+float4 mainPixelShader( Vertex2Pixel pix ) : SV_Target
+{
+	return T0Texture.Sample(S0Sampler, pix.UV);
+}

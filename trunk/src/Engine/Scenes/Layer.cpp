@@ -4,6 +4,8 @@
 #include "SceneBasicPrimitive.h"
 #include "Render/RenderManager.h"
 #include "Engine/Engine.h"
+#include "Animation/SceneAnimatedModel.h"
+#include "Animation/AnimatedModelManager.h"
 
 CLayer::CLayer(const std::string& aName) : CName(aName) {}
 CLayer::~CLayer() {}
@@ -19,6 +21,16 @@ bool CLayer::Load(CXMLElement* aElement)
         {
             lNode = new CSceneMesh(iSceneMesh);
         }
+        else if (strcmp(iSceneMesh->Name(), "scene_animated_model") == 0)
+        {
+            std::string l_CoreName = iSceneMesh->GetAttribute<std::string>("core", "");
+            CAnimatedCoreModel *l_AnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_CoreName);
+            if (l_AnimatedCoreModel != nullptr)
+            {
+                lNode = new CSceneAnimatedModel(*iSceneMesh);
+                ((CSceneAnimatedModel *)lNode)->Initialize(l_AnimatedCoreModel);
+            }
+        }
         else if (strcmp(iSceneMesh->Name(), "scene_basic_primitive") == 0)
         {
             lNode = new  CSceneBasicPrimitive(iSceneMesh);
@@ -32,7 +44,7 @@ bool CLayer::Load(CXMLElement* aElement)
 bool CLayer::Update(float elapsedTime)
 {
     bool lOk = true;
-    for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode)
+    for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode) //RECORRER VECTOR
     {
         lOk &= iSceneNode->second.m_Value->Update(elapsedTime);
     }
@@ -46,10 +58,7 @@ bool CLayer::Render()
 
     for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode)
     {
-        if (CSceneMesh* lSceneMesh = dynamic_cast<CSceneMesh*>(iSceneNode->second.m_Value))
-        {
-            lOk &= lSceneMesh->Render(lRenderManager);
-        }
+        lOk &= iSceneNode->second.m_Value->Render(lRenderManager);
     }
 
     return lOk;

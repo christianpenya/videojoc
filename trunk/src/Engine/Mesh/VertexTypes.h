@@ -20,6 +20,7 @@ enum EFlags
     eColor = 0x0040,
     ePosition4 = 0x0080,
     eDummy = 0x0100,
+    eWeightIndexes = 0x0200,
     eBump = eNormal | eTangent | eBinormal,
 };
 
@@ -105,6 +106,25 @@ struct PositionBumpUVUV2
         LAYOUT_BUMP(12),
         LAYOUT_UV(56),
         LAYOUT_UV2(64),
+    }
+    END_INPUT_LAYOUT
+};
+
+struct PositionWeightIndicesNormalUV
+{
+    POSITION;
+    WEIGHT;
+    INDICES;
+    NORMAL;
+    UV;
+    GET_VERTEX_FLAGS(ePosition | eWeightIndexes | eNormal | eUV );
+    BEGIN_INPUT_LAYOUT
+    {
+        LAYOUT_POSITION(0),
+        LAYOUT_WEIGHT(12),
+        LAYOUT_INDICES(28),
+        LAYOUT_NORMAL(44),
+        LAYOUT_UV(56),
     }
     END_INPUT_LAYOUT
 };

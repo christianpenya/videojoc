@@ -28,6 +28,10 @@ uint32 VertexTypes::GetVertexSize(uint32 aVertexFlags)
     {
         return sizeof(PositionBumpUVUV2);
     }
+    else if (aVertexFlags == PositionWeightIndicesNormalUV::GetVertexFlags())
+    {
+        return sizeof(PositionWeightIndicesNormalUV);
+    }
 
     assert(!"Invalid vertex flags");
 
@@ -44,69 +48,80 @@ bool CreateInputLayout(CRenderManager &aRenderManager, uint32 aVertexFlags, ID3D
     }
     else if (aVertexFlags == PositionNormalUV::GetVertexFlags())
     {
-        VertexTypes::PositionNormalUV::GetVertexFlags();
+        VertexTypes::PositionNormalUV::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
         lOk = true;
     }
     else if (aVertexFlags == PositionUV::GetVertexFlags())
     {
-        VertexTypes::PositionUV::GetVertexFlags();
+        VertexTypes::PositionUV::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
         lOk = true;
     }
     else if (aVertexFlags == PositionBump::GetVertexFlags())
     {
-        VertexTypes::PositionBump::GetVertexFlags();
+        VertexTypes::PositionBump::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
         lOk = true;
     }
     else if (aVertexFlags == PositionBumpUV::GetVertexFlags())
     {
-        VertexTypes::PositionBumpUV::GetVertexFlags();
+        VertexTypes::PositionBumpUV::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
         lOk = true;
     }
     else if (aVertexFlags == PositionBumpUVUV2::GetVertexFlags())
     {
-        VertexTypes::PositionBumpUVUV2::GetVertexFlags();
+        VertexTypes::PositionBumpUVUV2::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
+        lOk = true;
+    }
+    else if (aVertexFlags == PositionWeightIndicesNormalUV::GetVertexFlags())
+    {
+        VertexTypes::PositionWeightIndicesNormalUV::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
         lOk = true;
     }
 
-	if (!lOk)
-		assert(!"Error creating input layout");
+    if (!lOk)
+        assert(!"Error creating input layout");
 
     return lOk;
 }
 
 uint32 GetFlagsFromString(const std::string& aString)
 {
-	uint32 lOut;
-	
-	if (aString == "PositionUV")
+    uint32 lOut;
+
+    if (aString == "PositionUV")
     {
-		lOut = PositionUV::GetVertexFlags();
+        lOut = PositionUV::GetVertexFlags();
     }
     else if (aString == "PositionNormal")
     {
-		lOut = PositionNormal::GetVertexFlags();
+        lOut = PositionNormal::GetVertexFlags();
     }
     else if (aString == "PositionNormalUV")
     {
-		lOut = PositionNormalUV::GetVertexFlags();
+        lOut = PositionNormalUV::GetVertexFlags();
     }
     else if (aString == "PositionBump")
     {
-		lOut = PositionBump::GetVertexFlags();
+        lOut = PositionBump::GetVertexFlags();
     }
     else if (aString == "PositionBumpUV")
     {
-		lOut = PositionBumpUV::GetVertexFlags();
+        lOut = PositionBumpUV::GetVertexFlags();
     }
     else if (aString == "PositionBumpUVUV2")
     {
-		lOut = PositionBumpUVUV2::GetVertexFlags();
+        lOut = PositionBumpUVUV2::GetVertexFlags();
+    }
+    else if (aString == "PositionWeightIndicesNormalUV")
+    {
+
+        lOut = PositionWeightIndicesNormalUV::GetVertexFlags();
+
     }
 
-	if (!lOut)
-	    assert(!"Wrong string flags!");
+    if (!lOut)
+        assert(!"Wrong string flags!");
 
-	return lOut;
+    return lOut;
 
 }
 }

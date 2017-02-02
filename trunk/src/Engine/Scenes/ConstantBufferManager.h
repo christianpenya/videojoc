@@ -7,6 +7,8 @@
 #include "Engine/Engine.h"
 #include "ConstantBuffer.h"
 
+#define MAXBONES		40
+
 struct PerFrameDesc
 {
     Mat44f m_View;
@@ -17,14 +19,20 @@ struct PerObjectDesc
 {
     Mat44f m_World;
 };
+struct PerAniamtedModelDesc
+{
+    Mat44f m_Bones[MAXBONES];
+};
+
 
 class CConstantBufferManager
 {
 public:
-    enum ConstanBufferVS    { CB_Frame, CB_Object, NumConstantBuffersVS };
+    enum ConstanBufferVS    { CB_Frame, CB_Object, CB_AnimatedModel, NumConstantBuffersVS };
     enum ConstanBufferPS    { CB_Material, CB_Light, NumConstantBuffersPS };
     PerObjectDesc      mObjDesc;
     PerFrameDesc       mFrameDesc;
+    PerAniamtedModelDesc mAnimatedModelDesc;
 public:
     CConstantBufferManager()
     {
@@ -33,6 +41,7 @@ public:
         // Create all the engine constant buffers, note that we only need to init the size of the buffer, the data will be update for each frame.
         m_VSConstantBuffers[CB_Frame]    = new CConstantBuffer(lRM, sizeof(PerFrameDesc));
         m_VSConstantBuffers[CB_Object]   = new CConstantBuffer(lRM, sizeof(PerObjectDesc));
+        m_VSConstantBuffers[CB_AnimatedModel] = new CConstantBuffer(lRM, sizeof(PerAniamtedModelDesc));
         // TODO: Create PS buffers
         m_PSConstantBuffers[CB_Material] = new CConstantBuffer(lRM, sizeof(Mat44f));
         m_PSConstantBuffers[CB_Light]    = new CConstantBuffer(lRM, sizeof(Mat44f));
@@ -52,6 +61,9 @@ public:
             break;
         case CB_Object:
             lRawData = &mObjDesc;
+            break;
+        case CB_AnimatedModel:
+            lRawData = &mAnimatedModelDesc;
             break;
         }
         lConstantBuffer->Update(aContext, lRawData);

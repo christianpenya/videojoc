@@ -2,6 +2,7 @@
 #include "AnimatedCoreModel.h"
 #include "XML\XML.h"
 #include "coremodel.h"
+#include "Materials/Material.h"
 
 
 CAnimatedCoreModel::CAnimatedCoreModel(const std::string& aName)
@@ -34,17 +35,23 @@ void CAnimatedCoreModel::Load(const std::string &Path)
                 if (strcmp(iAnimatedModel->Name(), "mesh") == 0)
                 {
                     // std::string lName = iAnimatedModel->GetAttribute<std::string>("name", "");
-                    LoadMesh(iAnimatedModel->GetAttribute<std::string>("filename", ""));
+                    LoadMesh(m_Path + iAnimatedModel->GetAttribute<std::string>("filename", ""));
                 }
                 else if (strcmp(iAnimatedModel->Name(), "skeleton") == 0)
                 {
                     //std::string lName = iAnimatedModel->GetAttribute<std::string>("name", "");
-                    LoadSkeleton(iAnimatedModel->GetAttribute<std::string>("filename", ""));
+                    LoadSkeleton(m_Path + iAnimatedModel->GetAttribute<std::string>("filename", ""));
+                }
+                else if (strcmp(iAnimatedModel->Name(), "material") == 0)
+                {
+                    //std::string lName = iAnimatedModel->GetAttribute<std::string>("name", "");
+                    CMaterial * l_Material = new CMaterial(iAnimatedModel);
+                    m_Materials.push_back(l_Material);
                 }
                 else if (strcmp(iAnimatedModel->Name(), "animation") == 0)
                 {
                     std::string lName = iAnimatedModel->GetAttribute<std::string>("name", "");
-                    LoadAnimation(lName, iAnimatedModel->GetAttribute<std::string>("filename",""));
+                    LoadAnimation(lName, m_Path + iAnimatedModel->GetAttribute<std::string>("filename", ""));
 
                 }
 
@@ -87,3 +94,7 @@ bool CAnimatedCoreModel::LoadAnimation(const std::string &Name, const std::strin
 
 }
 
+CalCoreModel * CAnimatedCoreModel::GetCoreModel()
+{
+    return m_CalCoreModel;
+}

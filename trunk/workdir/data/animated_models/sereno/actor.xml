@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<actor name="sereno" radius_bs="2.0" pos_bs="0.0 1.0 0.0">
+	<skeleton filename="SerenoSkeleton.CSF"/>
+	<mesh filename="SerenoMesh.CMF"/>
+	
+	<material name="sereno_material_1" vertex_type="PositionWeightIndicesNormalUV">
+		<texture type="diffuse" filename="data/animated_models/sereno/GSereno.dds"/>
+		<texture type="bump" filename="data/animated_models/sereno/GSerenoNrm.dds"/>
+		<parameter type="float" name="specular" value="1.0"/>
+		<parameter type="float" name="gloss" value="10.0"/>
+		<parameter type="float" name="bump" value="2.0"/>
+		<parameter type="float" name="environment_factor" value="0.4"/>
+		<parameter type="float" name="cutout_factor" value="1.0"/>
+	</material>
+	<animation name="walk" filename="SerenoWalk.CAF" />
+	<animation name="idle" filename="SerenoStaticIdle.CAF" />
+	<animation name="attack_idle" filename="SerenoCombatIdle.CAF" />
+	<animation name="attackNormal" filename="SerenoAttack.CAF" />
+	<animation name="onHit" filename="SerenoHit.CAF" />
+	<animation name="die" filename="SerenoDie.CAF" />
+</actor>

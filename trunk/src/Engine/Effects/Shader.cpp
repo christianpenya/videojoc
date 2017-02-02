@@ -5,7 +5,8 @@
 
 CShader::CShader(const std::string& aShaderCode, EShaderStage aType) :
     m_ShaderCode(aShaderCode),
-    m_Type(aType)
+    m_Type(aType),
+    m_pBlob(nullptr)
 {
 }
 

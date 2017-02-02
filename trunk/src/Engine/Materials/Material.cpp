@@ -22,7 +22,8 @@ CMaterial::~CMaterial()
 CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
 {
     // #TODO mes robustesa aqui
-	mTechnique = CEngine::GetInstance().GetTechniquePoolManager()(aElement->GetAttribute<std::string>("vertex_type", ""));
+    CEngine &l_Engine = CEngine::GetInstance();
+    mTechnique = l_Engine.GetTechniquePoolManager()(aElement->GetAttribute<std::string>("vertex_type", ""));
 
     for (tinyxml2::XMLElement *iTextureOrParameter = aElement->FirstChildElement(); iTextureOrParameter != nullptr; iTextureOrParameter = iTextureOrParameter->NextSiblingElement())
     {
@@ -32,7 +33,7 @@ CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
             std::string textureName = iTextureOrParameter->GetAttribute<std::string>("type", "");
             std::string textureFilename = iTextureOrParameter->GetAttribute<std::string>("filename", "");
 
-            CTextureManager lTextureManager;
+            CTextureManager &lTextureManager = l_Engine.GetTextureManager();
             CTexture * lTexture = lTextureManager.GetTexture(textureFilename);
             mTextures.push_back(lTexture);
         }
