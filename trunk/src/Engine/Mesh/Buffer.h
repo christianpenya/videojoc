@@ -8,14 +8,22 @@
 class CBuffer
 {
 public:
-    CBuffer() {}
+    enum BufferUsage
+    {
+        eDefault = 0,
+        eImmutable,
+        eDynamic,
+        eStaging
+    };
+
+public:
+    CBuffer() : m_pBuffer(nullptr) {}
     virtual ~CBuffer() {}
     GET_SET_PTR(ID3D11Buffer, Buffer);
-
+    virtual void Update(ID3D11DeviceContext*, void*) {}
     virtual void Bind(ID3D11DeviceContext*) = 0;
 
 protected:
-
     ID3D11Buffer* m_pBuffer;
 
 };
