@@ -21,7 +21,7 @@ CShader::CShader(const CXMLElement* aElement, EShaderStage aType) :
 
 CShader::~CShader()
 {
-    m_pBlob->Release();
+    //m_pBlob->Release();
 }
 
 bool CShader::Load()

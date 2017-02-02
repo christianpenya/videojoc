@@ -33,7 +33,7 @@ C##Manager* m_##Manager = nullptr; \
 public: \
 void Set##Manager(C##Manager* a##Manager) { m_##Manager = a##Manager;  } \
 C##Manager& Get##Manager() { return *m_##Manager; } \
-bool Has##Manager() { return m_##Manager != nullptr; } \
+bool Exist##Manager() { return m_##Manager != nullptr; } \
 
 class CEngine : public base::utils::CSingleton<CEngine>
 {
@@ -70,7 +70,7 @@ public:
     CFpsCameraController fpsCam;
     CTpsCameraController tpsCam;
     CSphericalCameraController orbitalCam;
-private:
+//private:
 
     std::chrono::monotonic_clock m_Clock;
     std::chrono::monotonic_clock::time_point m_PrevTime;

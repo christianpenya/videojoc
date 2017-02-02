@@ -47,7 +47,4 @@ project "Cal3D"
   characterset ("MBCS")
     files { "../src/Cal3D/**.h", "../src/Cal3D/**.cpp", "../src/Cal3D/**.inl" }
 	defines { "WIN32", "_WINDOWS", "_USRDLL", "CAL3D_EXPORTS"}
-  configuration "Debug"
-    targetname "Cal3D_d"
-  configuration "Release"
-    targetname "Cal3D"
+  
