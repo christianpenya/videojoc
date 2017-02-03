@@ -21,7 +21,7 @@ bool CScene::Load(const std::string& aFilename)
 
         if (lScene)
         {
-            for (tinyxml2::XMLElement *iLayer = lScene->FirstChildElement(); iLayer != nullptr; iLayer = lScene->NextSiblingElement())
+            for (tinyxml2::XMLElement *iLayer = lScene->FirstChildElement(); iLayer != nullptr; iLayer = iLayer->NextSiblingElement())
             {
                 if (strcmp(iLayer->Name(), "layer") == 0)
                 {

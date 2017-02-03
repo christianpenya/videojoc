@@ -30,8 +30,6 @@ bool CSceneMesh::Render(CRenderManager& aRendermanager)
         CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
         lCB.mObjDesc.m_World = GetMatrix();
 
-        // memcpy(&lCB.mObjDesc, mGeometries[i], sizeof(mGeometries[i]));
-
         lCB.BindVSBuffer(aRendermanager.GetDeviceContext(), CConstantBufferManager::CB_Object);
         lOk = mMesh->Render(aRendermanager);
     }
