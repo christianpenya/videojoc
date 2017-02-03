@@ -13,6 +13,8 @@
 #define UV        Vect2f uv;
 #define UV2       Vect2f uv2;
 #define POSITION4 Vect4f position;
+#define WEIGHT    Vect4f weight;
+#define INDICES   Vect4f indices;
 
 // FORMAT
 #define INPUT_SLOT0 0
@@ -34,6 +36,8 @@
 #define LAYOUT_BUMP(Offset)     LAYOUT_NORMAL(Offset), LAYOUT_TANGENT(Offset + 16), LAYOUT_BINORMAL(Offset + 16 + 16)
 #define LAYOUT_UV(Offset)       { "TEXCOORD", SEMANTIC_INDEX0, RG_32F,   INPUT_SLOT0, Offset, PER_VERTEX }
 #define LAYOUT_UV2(Offset)      { "TEXCOORD", SEMANTIC_INDEX1, RG_32F,   INPUT_SLOT0, Offset, PER_VERTEX }
+#define LAYOUT_WEIGHT(Offset)   { "BLENDWEIGHT", SEMANTIC_INDEX0, RGBA_32F,   INPUT_SLOT0, Offset, PER_VERTEX }
+#define LAYOUT_INDICES(Offset)   { "BLENDINDICES", SEMANTIC_INDEX0, RGBA_32F,   INPUT_SLOT0, Offset, PER_VERTEX }
 
 // VERTEX_TYPE
 #define GET_VERTEX_FLAGS( Flags ) \

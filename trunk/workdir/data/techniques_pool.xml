@@ -5,6 +5,7 @@
  <technique vertex_type="PositionBump"/>
  <technique vertex_type="PositionBumpUV" />
  <technique vertex_type="PositionBumpUVUV2" />
+ <technique vertex_type="PositionWeightIndicesNormalUV" />
 </default_pool>
 
 <pool name="forward">
@@ -13,6 +14,7 @@
  <technique vertex_type="PositionBump" effect="PositionBumpTechniqueForward"/>
  <technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueForward"/>
  <technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
+ <technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
 </pool>
 
 <pool name="deferred">

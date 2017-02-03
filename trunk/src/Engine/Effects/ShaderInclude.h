@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include "Utils\CheckedDelete.h"
+#include "Utils\CheckedRelease.h"
 #include "Render\RenderManager.h"
 
 static std::string sShadersDirectory = "data/shaders/";
@@ -67,8 +68,9 @@ ID3DBlob* CompileShader( const std::string& aShader,
         {
             //LOG_ERROR_APPLICATION("%s\n --------- %s \n ---------", (char*)lErrorBlob->GetBufferPointer(), aShader.c_str());
         }
-        lErrorBlob->Release();
-        lShaderBlob->Release();
+        char *l_Error = (char*)lErrorBlob->GetBufferPointer();
+        base::utils::CheckedRelease(lErrorBlob);
+        base::utils::CheckedRelease(lShaderBlob);
     }
     base::utils::CheckedDelete(lShaderInclude);
     return lShaderBlob;

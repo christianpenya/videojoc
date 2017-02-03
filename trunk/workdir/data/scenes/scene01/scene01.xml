@@ -1,8 +1,13 @@
 <scene>
   <layer name="opaque" >
+  <!--
    <scene_mesh name="Teapot001" mesh="data/meshes/Teapot001.mesh" >
 		<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
 	</scene_mesh>
+	-->
+	<scene_animated_model name="sereno01" core="sereno" >
+		<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
+	</scene_animated_model>
   </layer>
    <!--
    

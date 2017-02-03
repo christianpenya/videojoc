@@ -3,5 +3,9 @@
    <shader stage="vertex"   name="PositionNormalForward"/>
    <shader stage="pixel"    name="PositionNormalForward"/>
   </effect>
+  <effect name="AnimatedModelTechniqueForward">
+	<shader stage="vertex" name="AnimatedModelForward"/>
+	<shader stage="pixel" name="AnimatedModelForward"/>
+</effect>
  </effects>
  

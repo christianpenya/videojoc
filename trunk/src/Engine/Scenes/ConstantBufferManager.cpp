@@ -16,6 +16,8 @@ CConstantBufferManager::CConstantBufferManager()
     m_PSConstantBuffers[CB_LightPS] = new CConstantBuffer(lRM, sizeof(PerLightsDesc));
 }
 
+
+
 CConstantBufferManager::~CConstantBufferManager() {}
 
 void CConstantBufferManager::BindVSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID)
@@ -44,6 +46,7 @@ void CConstantBufferManager::BindVSBuffer(ID3D11DeviceContext* aContext, uint32 
     lConstantBuffer->Update(aContext, lRawData);
     lConstantBuffer->BindVS(aContext, aConstantBufferID);
 }
+
 
 void CConstantBufferManager::BindPSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID)
 {
