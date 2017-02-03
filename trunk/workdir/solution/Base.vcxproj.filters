@@ -84,10 +84,19 @@
     <ClInclude Include="..\..\src\Base\Utils\CheckedDelete.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\CheckedRelease.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Base\Utils\Defines.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\Enable.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Base\Utils\EnumToString.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\Logger.h">
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Base\Utils\MemLeaks\MemLeaks.h">
@@ -151,6 +160,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Base\Math\Transform.cpp">
       <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\Utils\Enable.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\Utils\Logger.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Base\Utils\MemLeaks\MemLeaks.cpp">
       <Filter>Utils\MemLeaks</Filter>

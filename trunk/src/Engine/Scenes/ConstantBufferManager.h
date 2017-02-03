@@ -8,6 +8,8 @@
 
 #include "Math/Matrix44.h"
 #include "ConstantBuffer.h"
+#include "Render/RenderManager.h"
+#include "Engine/Engine.h"
 
 struct PerFrameDesc
 {
@@ -50,53 +52,23 @@ class CConstantBufferManager
 {
 public:
 
-    enum ConstanBufferVS    { CB_Frame, CB_Object, CB_AnimatedModel, NumConstantBuffersVS };
-    enum ConstanBufferPS    { CB_Material, CB_Light, NumConstantBuffersPS };
+    enum ConstanBufferVS    { CB_Frame, CB_Object, CB_AnimatedModel, CB_LightVS, NumConstantBuffersVS };
+    enum ConstanBufferPS    { CB_Material, CB_LightPS, NumConstantBuffersPS };
     PerObjectDesc      mObjDesc;
     PerFrameDesc       mFrameDesc;
     PerAnimatedModelDesc mAnimatedModelDesc;
+    PerMaterialDesc mMaterialDesc;
+    PerLightsDesc mLightsDesc;
 public:
-    CConstantBufferManager()
-    {
+    CConstantBufferManager();
+    virtual ~CConstantBufferManager();
 
-        // Create all the engine constant buffers, note that we only need to init the size of the buffer, the data will be update for each frame.
-        m_VSConstantBuffers[CB_Frame]    = new CConstantBuffer(lRM, sizeof(PerFrameDesc));
-        m_VSConstantBuffers[CB_Object]   = new CConstantBuffer(lRM, sizeof(PerObjectDesc));
-		m_VSConstantBuffers[CB_AnimatedModel] = new CConstantBuffer(lRM, sizeof(PerAnimatedModelDesc));
-        // TODO: Create PS buffers
-        m_PSConstantBuffers[CB_Material] = new CConstantBuffer(lRM, sizeof(Mat44f));
-        m_PSConstantBuffers[CB_Light]    = new CConstantBuffer(lRM, sizeof(Mat44f));
-    }
-    virtual void BindVSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID)
-    {
-        // Update the data of the buffer        
-CConstantBuffer* lConstantBuffer = m_VSConstantBuffers[aConstantBufferID];
+    virtual void BindVSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID);
 
-        void *lRawData = nullptr;
-        switch (aConstantBufferID)
-        {
-        case CB_Frame:
-            lRawData = &mFrameDesc;
-            break;
-        case CB_Object:
-            lRawData = &mObjDesc;
-            break;
-        case CB_AnimatedModel:
-            lRawData = &mAnimatedModelDesc;
-            break;
-        }
-        lConstantBuffer->Update(aContext, lRawData);
-        lConstantBuffer->BindVS(aContext, aConstantBufferID);
-    }
+    virtual void BindPSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID);
 
-    virtual void BindPSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID)
-    {
-        CConstantBuffer* lConstantBuffer = m_PSConstantBuffers[aConstantBufferID];
-        // TODO: Update constant buffers of PS
-        lConstantBuffer->BindPS(aContext, aConstantBufferID);
-    }
 
-    virtual ~CConstantBufferManager()  {  }
+
 
 protected:
     CConstantBuffer* m_VSConstantBuffers[NumConstantBuffersVS];

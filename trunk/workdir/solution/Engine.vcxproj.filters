@@ -515,6 +515,12 @@
     <ClCompile Include="..\..\src\Engine\RenderPipeline\endRenderCmd.cpp">
       <Filter>RenderPipeline</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Scenes\ConstantBuffer.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Scenes\ConstantBufferManager.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Scenes\Frustum.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
