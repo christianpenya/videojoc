@@ -24,7 +24,7 @@ bool CClearCmd::Load(const CXMLElement* aElement)
     {
         m_RenderTarget = aElement->GetAttribute<bool>("render_target", "false");
         m_DepthStencil = aElement->GetAttribute<bool>("depth_stencil", "true");
-        m_Color = aElement->GetAttribute<CColor>("color", CColor(1, 1, 1));
+        m_Color = aElement->GetAttribute<CColor>("color", CColor(1, 1, 1, 1));
     }
     return lOk;
 }

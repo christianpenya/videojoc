@@ -18,7 +18,7 @@ public:
         return static_cast<TShaderType*>(mShaders[aType]);
     }
     void Bind(ID3D11DeviceContext* aContext);
-
+    void Refresh();
 private:
     DISALLOW_COPY_AND_ASSIGN(CEffect);
     std::vector< CShader* > mShaders;

@@ -4,9 +4,7 @@
 #include "Utils\EnumToString.h"
 #include "Effects\ShaderManager.h"
 
-CEffect::CEffect()
-{
-}
+CEffect::CEffect() {}
 
 CEffect::~CEffect() {}
 
@@ -44,4 +42,8 @@ void CEffect::Bind(ID3D11DeviceContext* aContext)
 void CEffect::SetShader(CShader::EShaderStage aType, CShader* aShader)
 {
     mShaders[aType] = aShader;
+}
+void CEffect::Refresh()
+{
+    // #TODO
 }
