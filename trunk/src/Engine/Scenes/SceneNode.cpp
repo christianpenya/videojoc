@@ -11,8 +11,12 @@ CSceneNode::CSceneNode(const CXMLElement* aElement)
     : CName(aElement->GetAttribute<std::string>("name", ""))
     , CTransform((strcmp(aElement->FirstChildElement()->Name(), "transform") == 0) ? aElement->FirstChildElement() : nullptr)
 {
-    // #ALEX Que hacemos en caso de que el nodo transform no este como toca?
-    // #ALEX como es el nodo este?
+    if (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0)
+    {
+        tinyxml2::XMLElement const *iTransformNode = aElement->FirstChildElement();
+        m_Position = iTransformNode->GetAttribute<Vect3f>("position", Vect3f(0.0f, 0.0f, 0.0f));
+        m_PrevPos = iTransformNode->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
+    }
 }
 
 CSceneNode::~CSceneNode() {}
@@ -24,11 +28,5 @@ bool CSceneNode::Update(float aDeltaTime)
 
 bool CSceneNode::Render(CRenderManager& lRM)
 {
-
-    bool lOk = true;
-    CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
-
-    lCB.BindVSBuffer(lRM.GetDeviceContext(), lCB.CB_LightVS);
-
-    return lOk;
+    return false;
 }

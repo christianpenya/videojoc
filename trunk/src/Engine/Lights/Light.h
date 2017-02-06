@@ -38,7 +38,6 @@ protected:
     float m_SpecularIntensity;
     CColor m_Color;
     Vect2f m_RangeAttenuation;
-    bool m_Enabled;
     std::string m_Name;
 };
 

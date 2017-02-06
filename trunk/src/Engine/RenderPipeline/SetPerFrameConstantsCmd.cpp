@@ -40,7 +40,6 @@ void CSetPerFrameConstantsCmd::UpdateConstants()
     if (CEngine::GetInstance().ExistConstantBufferManager())
     {
         CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
-        l_lightManager.SetLightsConstants();
         lConstanBufferManager.mFrameDesc.m_View = lRM.GetViewMatrix();
         lConstanBufferManager.mFrameDesc.m_Projection = lRM.GetProjectionMatrix();
         lConstanBufferManager.mFrameDesc.m_ViewProjection = lRM.GetViewProjectionMatrix();
