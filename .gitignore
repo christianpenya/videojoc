@@ -1,6 +1,4 @@
-trunk/workdir/solution/bin/
-trunk/workdir/solution/obj/
-
+trunk/workdir/solution
 *.opensdf
 *.sdf
 trunk/src/Engine/ReadMe.txt
