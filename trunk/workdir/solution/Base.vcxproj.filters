@@ -84,6 +84,9 @@
     <ClInclude Include="..\..\src\Base\Utils\CheckedDelete.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\CheckedRelease.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Base\Utils\Defines.h">
       <Filter>Utils</Filter>
     </ClInclude>

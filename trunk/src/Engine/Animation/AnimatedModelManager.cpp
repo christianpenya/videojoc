@@ -2,9 +2,11 @@
 #include "XML\tinyxml2\tinyxml2.h"
 #include "XML\XML.h"
 #include "AnimatedCoreModel.h"
+#include "cal3d.h"
 
 CAnimatedModelManager::CAnimatedModelManager()
 {
+    CalLoader::setLoadingMode(LOADER_ROTATE_X_AXIS | LOADER_INVERT_V_COORD);
     CAnimatedModelManager::m_Filename = "";
 }
 CAnimatedModelManager::~CAnimatedModelManager() {}

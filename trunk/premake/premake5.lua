@@ -46,5 +46,4 @@ project "Cal3D"
     kind "SharedLib"
   characterset ("MBCS")
     files { "../src/Cal3D/**.h", "../src/Cal3D/**.cpp", "../src/Cal3D/**.inl" }
-	defines { "WIN32", "_WINDOWS", "_USRDLL", "CAL3D_EXPORTS"}
-  
+	defines { "WIN32", "_WINDOWS", "_USRDLL", "CAL3D_EXPORTS"}  

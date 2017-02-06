@@ -17,6 +17,7 @@
 #include "Scenes\ConstantBufferManager.h"
 
 #include "RenderPipeline\RenderPipeline.h"
+#include "Animation/AnimatedModelManager.h"
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
@@ -61,10 +62,16 @@ void CEngine::Init(HWND hWnd)
 
     std::string lLevelMaterialsFilename = "reclusion.xml"; // #TODO nombres hardcoded
     std::string lDefaultMaterialsFilename = "default.xml";
+
+    m_TextureManager = new CTextureManager();
+
     m_MaterialManager = new CMaterialManager();
     m_MaterialManager->Load(lLevelMaterialsFilename, lDefaultMaterialsFilename);
 
-    m_TextureManager = new CTextureManager();
+
+
+    m_AnimatedModelManager = new CAnimatedModelManager();
+    m_AnimatedModelManager->Load("data/animated_models.xml");
 
     m_MeshManager = new CMeshManager();
 
@@ -123,6 +130,8 @@ void CEngine::Update()
 
     m_CameraController->Update((float)m_DeltaTime);
     m_CameraController->SetToRenderManager(*m_RenderManager);
+
+    m_SceneManager->Update(dt);
 }
 
 void CEngine::Render()
