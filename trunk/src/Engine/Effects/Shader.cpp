@@ -11,11 +11,11 @@ CShader::CShader(const std::string& aShaderCode, EShaderStage aType) :
 {
 }
 
-CShader::CShader(const CXMLElement* aElement, EShaderStage aType) :
+CShader::CShader(const CXMLElement* aElement, const std::string aPath, EShaderStage aType) :
     m_Type(aType),
     CName(aElement->GetAttribute<std::string>("name", ""))
 {
-    m_Filename = aElement->GetAttribute<std::string>("file", "");
+    m_Filename = aPath + aElement->GetAttribute<std::string>("file", "");
     m_EntryPoint = aElement->GetAttribute<std::string>("entry_point", "");
     m_Preprocessor = aElement->GetAttribute<std::string>("preprocessor", "");
     m_Type = aType;
@@ -23,7 +23,8 @@ CShader::CShader(const CXMLElement* aElement, EShaderStage aType) :
 
 CShader::~CShader()
 {
-    //m_pBlob->Release();
+    // #TODO
+    m_pBlob->CheckedRelease();
 }
 
 bool CShader::Load()

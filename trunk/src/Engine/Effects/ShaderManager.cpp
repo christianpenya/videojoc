@@ -28,6 +28,7 @@ bool CShaderManager::Load(const std::string& aFilename)
     if (base::xml::SucceedLoad(error))
     {
         CXMLElement * lShaders = document.FirstChildElement("shaders");
+        std::string l_Path = lShaders->GetAttribute<std::string>("path", "");
 
         if (lShaders)
         {
@@ -39,9 +40,8 @@ bool CShaderManager::Load(const std::string& aFilename)
                     {
                         if (strcmp(iVertexShader->Name(), "shader") == 0)
                         {
-                            CVertexShader *lVertexShader = new CVertexShader(iVertexShader);
+                            CVertexShader *lVertexShader = new CVertexShader(iVertexShader, l_Path);
                             lVertexShader->Load();
-                            TShadersLibrary tmp;
                             m_Library[CShader::EShaderStage::eVertexShader].Add(lVertexShader->GetName(), lVertexShader);
                         }
                     }
@@ -52,7 +52,7 @@ bool CShaderManager::Load(const std::string& aFilename)
                     {
                         if (strcmp(iPixelShader->Name(), "shader") == 0)
                         {
-                            CPixelShader *lPixelShader = new CPixelShader(iPixelShader);
+                            CPixelShader *lPixelShader = new CPixelShader(iPixelShader, l_Path);
                             lPixelShader->Load();
                             m_Library[CShader::EShaderStage::ePixelShader].Add(lPixelShader->GetName(), lPixelShader);
                         }

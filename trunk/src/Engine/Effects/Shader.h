@@ -22,7 +22,7 @@ public:
 
 public:
     CShader(const std::string& aShaderCode, EShaderStage aType);
-    CShader(const CXMLElement* aElement, EShaderStage aType);
+    CShader(const CXMLElement* aElement, const std::string aPath, EShaderStage aType);
     virtual ~CShader();
     virtual bool Load();
     virtual void Bind(ID3D11DeviceContext*) = 0;
