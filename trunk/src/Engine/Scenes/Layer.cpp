@@ -6,6 +6,7 @@
 #include "Engine/Engine.h"
 #include "Animation/SceneAnimatedModel.h"
 #include "Animation/AnimatedModelManager.h"
+#include "Lights/LightManager.h"
 
 CLayer::CLayer(const std::string& aName) : CName(aName) {}
 CLayer::~CLayer() {}
@@ -35,6 +36,16 @@ bool CLayer::Load(CXMLElement* aElement)
         {
             lNode = new  CSceneBasicPrimitive(iSceneMesh);
         }
+        else if (strcmp(iSceneMesh->Name(), "scene_light") == 0)
+        {
+            std::string l_lightName = iSceneMesh->GetAttribute<std::string>("name", "");
+            CLight *l_light = CEngine::GetInstance().GetLightManager()(l_lightName);
+            if (l_light != nullptr)
+            {
+                lNode = new CSceneNode(iSceneMesh);
+            }
+        }
+
         if ( lNode )
             lOk &= Add(lNode->GetName(), lNode);
     }

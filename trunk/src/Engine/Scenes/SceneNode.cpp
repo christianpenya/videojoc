@@ -1,6 +1,9 @@
 #include "SceneNode.h"
 #include "XML/tinyxml2/tinyxml2.h"
 #include "Render/RenderManager.h"
+#include "ConstantBufferManager.h"
+#include <d3d11.h>
+
 
 CSceneNode::CSceneNode() {}
 
@@ -19,7 +22,13 @@ bool CSceneNode::Update(float aDeltaTime)
     return false;
 }
 
-bool CSceneNode::Render(CRenderManager& aRendermanager)
+bool CSceneNode::Render(CRenderManager& lRM)
 {
-    return false;
+
+    bool lOk = true;
+    CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
+
+    lCB.BindVSBuffer(lRM.GetDeviceContext(), lCB.CB_LightVS);
+
+    return lOk;
 }

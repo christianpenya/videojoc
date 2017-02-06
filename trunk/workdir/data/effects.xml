@@ -1,4 +1,9 @@
 <effects>
+  <effect name="PositionNormal">
+	<shader stage="vertex" name="PositionNormal"/>
+	<shader stage="pixel" name="PositionNormal"/>
+  </effect>  
+
   <effect name="PositionNormalTechniqueForward">
    <shader stage="vertex"   name="PositionNormalForward"/>
    <shader stage="pixel"    name="PositionNormalForward"/>
@@ -6,6 +11,7 @@
   <effect name="AnimatedModelTechniqueForward">
 	<shader stage="vertex" name="AnimatedModelForward"/>
 	<shader stage="pixel" name="AnimatedModelForward"/>
-</effect>
+  </effect>
+
  </effects>
  

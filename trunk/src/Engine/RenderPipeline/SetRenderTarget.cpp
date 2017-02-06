@@ -27,6 +27,17 @@ CSetRenderTarget::~CSetRenderTarget()
 bool CSetRenderTarget::Load(const CXMLElement* aElement)
 {
     bool lOk = CRenderStagedTexture::Load(aElement);
+
+    for (tinyxml2::XMLElement const *iDynamicTexture = aElement->FirstChildElement(); iDynamicTexture != nullptr; iDynamicTexture = iDynamicTexture->NextSiblingElement())
+    {
+        if (strcmp(iDynamicTexture->Name(), "dynamic_texture") == 0)
+        {
+            /*CDynamicTexture* l_DynamicTexture = new CDynamicTexture(iDynamicTexture);
+            m_DynamicTextures.push_back(l_DynamicTexture);
+            lOk = true;*/
+            //if (iDynamicTexture->GetAttribute<std::string>("name", "") == "DiffuseMapTexture")
+        }
+    }
     return lOk;
 }
 

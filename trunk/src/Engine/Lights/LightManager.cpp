@@ -3,6 +3,8 @@
 #include "PointLight.h"
 #include "DirectionalLight.h"
 #include "SpotLight.h"
+#include "Engine\engine.h"
+#include "Scenes\ConstantBufferManager.h"
 
 CLightManager::CLightManager()
 {
@@ -65,6 +67,54 @@ bool CLightManager::Load()
     }
 
     return lOk;
+}
+
+
+void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
+{
+    CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
+    CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
+
+
+    lConstanBufferManager.mLightsDesc.m_LightType[idLight] = alight->GetType();
+    lConstanBufferManager.mLightsDesc.m_LightColor[idLight] = alight->GetColor();
+    lConstanBufferManager.mLightsDesc.m_LightEnabled[idLight] = true;//alight->IsVisible();
+    lConstanBufferManager.mLightsDesc.m_LightIntensity[idLight] = alight->GetIntensity();
+    lConstanBufferManager.mLightsDesc.m_LightPosition[idLight] = Vect3f(alight->GetPrevPosition().x, alight->GetPrevPosition().y, alight->GetPrevPosition().z);
+    lConstanBufferManager.mLightsDesc.m_LightAttenuationStartRange[idLight] = alight->GetRangeAttenuation().x;
+    lConstanBufferManager.mLightsDesc.m_LightAttenuationEndRange[idLight] = alight->GetRangeAttenuation().y;
+    lConstanBufferManager.mLightsDesc.m_LightDirection[idLight] = Vect3f(alight->GetPosition().x, alight->GetPosition().y, alight->GetPosition().z);
+    lConstanBufferManager.mLightsDesc.m_LightFallOffAngle[idLight] = 40.0f;
+    lConstanBufferManager.mLightsDesc.m_LightAngle[idLight] = 50.0f;
+    lConstanBufferManager.mLightsDesc.m_LightAmbient = 0.25f;
+    lConstanBufferManager.BindVSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_LightVS);
+
+//
+
+    /*
+    	*/
+
+    /*    if (ltype == 1) //Spot
+        {
+    		lConstanBufferManager.mLightsDesc.m_LightFallOffAngle[idLight] =
+    		lConstanBufferManager.mLightsDesc.m_LightAngle[idLight] = alight->;
+        }
+        else if (ltype == 2) //Directional
+        {
+        }
+
+        lConstanBufferManager.mLightsDesc.m_LightAmbient = alight->GetSpecularIntensity;*/
+
+}
+
+void CLightManager::SetLightsConstants()
+{
+    for (TMapResources::iterator iLightMapEntry = m_ResourcesMap.begin(); iLightMapEntry != m_ResourcesMap.end(); ++iLightMapEntry)
+    {
+        CLight* lLight = iLightMapEntry->second.m_Value;
+        SetLightConstants(iLightMapEntry->second.m_Id, lLight);
+    }
+
 }
 
 

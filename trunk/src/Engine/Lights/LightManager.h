@@ -13,6 +13,8 @@ public:
     CLightManager();
     ~CLightManager();
     bool Load(const std::string& aFileName);
+    void SetLightConstants(size_t idLight, CLight* alight);
+    void SetLightsConstants();
     bool ReLoad();
     GET_SET(Vect4f, AmbientLightColor)
 private:

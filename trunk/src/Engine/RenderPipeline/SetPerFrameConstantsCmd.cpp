@@ -2,6 +2,7 @@
 #include "XML\XML.h"
 #include "Engine\Engine.h"
 #include "Scenes\ConstantBufferManager.h"
+#include "Lights\lightManager.h"
 
 CSetPerFrameConstantsCmd::CSetPerFrameConstantsCmd()
 {
@@ -28,13 +29,23 @@ void CSetPerFrameConstantsCmd::Execute(CRenderManager& lRM)
     lRM.SetModelMatrix(lRM.m_ModelMatrix);
     lRM.SetProjectionMatrix(lRM.m_ProjectionMatrix);
 
-    if (CEngine::GetInstance().ExistConstantBufferManager ())
+    UpdateConstants();
+}
+
+void CSetPerFrameConstantsCmd::UpdateConstants()
+{
+    CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
+    CLightManager& l_lightManager = CEngine::GetInstance().GetLightManager();
+
+    if (CEngine::GetInstance().ExistConstantBufferManager())
     {
         CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
+        l_lightManager.SetLightsConstants();
         lConstanBufferManager.mFrameDesc.m_View = lRM.GetViewMatrix();
         lConstanBufferManager.mFrameDesc.m_Projection = lRM.GetProjectionMatrix();
         lConstanBufferManager.mFrameDesc.m_ViewProjection = lRM.GetViewProjectionMatrix();
         lConstanBufferManager.BindVSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Frame);
     }
+
 
 }

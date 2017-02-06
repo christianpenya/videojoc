@@ -1,6 +1,8 @@
 #include "PixelShader.h"
 #include "Render\RenderManager.h"
 #include "Engine\Engine.h"
+#include "ShaderManager.h"
+#include "RenderPipeline\RenderPipeline.h"
 
 CPixelShader::CPixelShader(const std::string& aShaderCode) : CShader(aShaderCode, EShaderStage::ePixelShader) {}
 
@@ -11,9 +13,12 @@ CPixelShader::~CPixelShader() {}
 bool CPixelShader::Load()
 {
     bool lOk = CShader::Load();
+
     if (lOk)
     {
+        bool lOk=false;
         CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
+
         ID3D11Device *l_Device = lRenderManager.GetDevice();
         HRESULT lHR = l_Device->CreatePixelShader(m_pBlob->GetBufferPointer(), m_pBlob->GetBufferSize(), nullptr, &m_pPixelShader);
         lOk = SUCCEEDED(lHR);

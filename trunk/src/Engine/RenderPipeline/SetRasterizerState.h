@@ -10,25 +10,20 @@
 
 class CSetRasterizerState : public CRenderCmd
 {
-public:
-    enum EFillMode
-    {
-        eSolid=0,
-        eWireFrame=1
-    };
+
 public:
     CSetRasterizerState();
     virtual ~CSetRasterizerState();
     bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager& lRM);
-    virtual void DrawIMGUI();
+//    virtual void DrawIMGUI();
 private:
     DISALLOW_COPY_AND_ASSIGN(CSetRasterizerState);
     ID3D11RasterizerState* m_RasterizerState;
     int m_CullMode;
     bool m_ClockWise;
     int m_FillMode;
-    bool CreateRasterizerState();
+    bool CreateRasterizerState(CRenderManager& lRM);
 };
 
 
@@ -39,5 +34,13 @@ Begin_Enum_String(D3D11_FILL_MODE)
 }
 End_Enum_String;
 
+Begin_Enum_String(D3D11_CULL_MODE)
+{
+    Enum_String_Id(D3D11_CULL_MODE::D3D11_CULL_NONE, "none");
+    Enum_String_Id(D3D11_CULL_MODE::D3D11_CULL_FRONT, "front");
+    Enum_String_Id(D3D11_CULL_MODE::D3D11_CULL_BACK, "back");
+
+}
+End_Enum_String;
 
 #endif

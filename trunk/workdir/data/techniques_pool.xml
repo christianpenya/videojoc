@@ -8,6 +8,16 @@
  <technique vertex_type="PositionWeightIndicesNormalUV" />
 </default_pool>
 
+<pool name="defaultPool">
+ <technique vertex_type="PositionUV" effect="PositionUV"/>
+ <technique vertex_type="PositionNormal" effect="PositionNormal"/>
+ <technique vertex_type="PositionBump" effect="PositionBump"/>
+ <technique vertex_type="PositionBumpUV" effect="PositionBumpUV"/>
+ <technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2"/>
+ <technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
+</pool>
+
+
 <pool name="forward">
  <technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>
  <technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>

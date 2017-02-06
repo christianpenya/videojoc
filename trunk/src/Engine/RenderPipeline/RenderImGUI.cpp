@@ -74,11 +74,11 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     }
     */
 
-    /*CLightManager& lLightManager = CEngine::GetInstance().GetLightManager();
 
+    /*
     if (lLightManager.GetCount() > 0)
     {
-
+    	CLightManager& lLightManager = CEngine::GetInstance().GetLightManager();
         if (ImGui::CollapsingHeader("Lights"))
         {
             /*			for (size_t i = 0; i < lLightManager.GetCount(); ++i)

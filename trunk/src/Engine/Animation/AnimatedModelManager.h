@@ -2,6 +2,7 @@
 #ifndef _ENGINE_ANIMATEDMODELMANAGER_20170117
 #define _ENGINE_ANIMATEDMODELMANAGER_20170117
 #include "Utils\TemplatedMap.h"
+#include "AnimatedCoreModel.h"
 
 class CAnimatedCoreModel;
 class CAnimatedModelManager : public base::utils::CTemplatedMap<CAnimatedCoreModel>

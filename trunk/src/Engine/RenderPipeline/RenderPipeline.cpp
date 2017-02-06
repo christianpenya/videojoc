@@ -1,3 +1,4 @@
+#pragma once
 #include "RenderPipeline.h"
 #include "XML\XML.h"
 #include "BeginRenderCmd.h"
@@ -11,6 +12,11 @@
 #include <map>
 #include <functional>
 #include "Engine\Engine.h"
+#include "SetRasterizerState.h"
+#include "SetDepthStencilStateCmd.h"
+#include "SetAlphaBlendState.h"
+#include "SetRenderTarget.h"
+#include "RenderStagedTexture.h"
 
 #define RENDER_CMD_ENTRY(tag, command_class_name)  { tag, [] { return new  command_class_name();}},
 std::map<std::string, std::function<CRenderCmd*(void) >> sComandsFactory =
@@ -19,6 +25,10 @@ std::map<std::string, std::function<CRenderCmd*(void) >> sComandsFactory =
     RENDER_CMD_ENTRY("end_render", CEndRenderCmd)
     RENDER_CMD_ENTRY("set_per_frame_constants", CSetPerFrameConstantsCmd)
     RENDER_CMD_ENTRY("apply_technique_pool", CApplyTechniquePool)
+    RENDER_CMD_ENTRY("set_rasterizer_state", CSetRasterizerState)
+    RENDER_CMD_ENTRY("set_depth_stencil_state", CSetDepthStencilStateCmd)
+    RENDER_CMD_ENTRY("set_alpha_blend_state", CSetAlphaBlendState)
+    RENDER_CMD_ENTRY("set_render_target", CSetRenderTarget)
     RENDER_CMD_ENTRY("render_layer", CRenderSceneLayer)
     RENDER_CMD_ENTRY("draw_quad", CDrawQuad)
     RENDER_CMD_ENTRY("render_imgui", CRenderImGUI)
