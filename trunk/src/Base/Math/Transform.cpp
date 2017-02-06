@@ -99,7 +99,7 @@ const Vect3f & CTransform::GetPrevPosition() const
     return m_PrevPos;
 }
 
-inline Vect3f CTransform::GetForward() const
+Vect3f CTransform::GetForward() const
 {
     return  Vect3f( mathUtils::Cos(m_Yaw) * mathUtils::Cos(m_Pitch),
                     mathUtils::Sin(m_Pitch),

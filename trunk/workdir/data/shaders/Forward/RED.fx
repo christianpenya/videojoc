@@ -12,7 +12,7 @@ struct VS_INPUT
 struct PS_INPUT
 {
 	float4 Pos : SV_POSITION;
-	//float4 Normal : NORMAL;
+	float3 Normal : NORMAL;
 	//float2 UV : TEXCOORD0;
 	float3 WorldNormal : TEXCOORD1;
 };
@@ -25,13 +25,22 @@ PS_INPUT VS( VS_INPUT IN )
 	l_Output.Pos = mul( lPos, m_World );
 	l_Output.Pos = mul( l_Output.Pos, m_View );
 	l_Output.Pos = mul( l_Output.Pos, m_Projection );
-	//l_Output.Normal=normalize(mul(normalize(IN.Normal).xyz, (float3x3)m_World));
+
+	l_Output.Normal=normalize(mul(normalize(IN.Normal).xyz, (float3x3)m_World));
 	l_Output.WorldNormal = normalize(mul(normalize(IN.Normal).xyz, (float3x3)m_World));
 	return l_Output;
 }
 
-float4 PS( PS_INPUT pix ) : SV_Target
+float4 PS( PS_INPUT IN ) : SV_Target
 {
+
+
+
+
+
+
+	return float4(normalize(mPS_LightDirection[1].xyz),1.0);
+	return float4(IN.Normal.xyz, 1.0);
 	return Red();
 }
 

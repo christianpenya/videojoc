@@ -40,7 +40,7 @@ bool CLayer::Load(CXMLElement* aElement)
         {
             std::string l_lightName = iSceneMesh->GetAttribute<std::string>("name", "");
             CLight *l_light = CEngine::GetInstance().GetLightManager()(l_lightName);
-            if (l_light != nullptr)
+            if (l_light != nullptr)//VER
             {
                 lNode = new CSceneNode(iSceneMesh);
             }

@@ -83,11 +83,13 @@ void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
     lConstanBufferManager.mLightsDesc.m_LightPosition[idLight] = Vect3f(alight->GetPrevPosition().x, alight->GetPrevPosition().y, alight->GetPrevPosition().z);
     lConstanBufferManager.mLightsDesc.m_LightAttenuationStartRange[idLight] = alight->GetRangeAttenuation().x;
     lConstanBufferManager.mLightsDesc.m_LightAttenuationEndRange[idLight] = alight->GetRangeAttenuation().y;
-    lConstanBufferManager.mLightsDesc.m_LightDirection[idLight] = Vect3f(alight->GetPosition().x, alight->GetPosition().y, alight->GetPosition().z);
+    lConstanBufferManager.mLightsDesc.m_LightDirection[idLight] = Vect3f(0.0f, 0.0f, 1.0f);//Vect3f(alight->GetForward().x, alight->GetForward().y, alight->GetForward().z);
     lConstanBufferManager.mLightsDesc.m_LightFallOffAngle[idLight] = 40.0f;
     lConstanBufferManager.mLightsDesc.m_LightAngle[idLight] = 50.0f;
     lConstanBufferManager.mLightsDesc.m_LightAmbient = 0.25f;
     lConstanBufferManager.BindVSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_LightVS);
+    lConstanBufferManager.BindPSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_LightPS);
+
 
 //
 

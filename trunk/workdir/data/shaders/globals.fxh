@@ -58,22 +58,24 @@ cbuffer PerAnimatedInstance : register( b2 )
 {
 	float4x4 m_Bones[MAX_BONES];
 }
-
+*/
 cbuffer PerLightsVS : register( b3 )
 {
-	float4 m_LightAmbient;
-	float4 m_LightEnabled;
-	float4 m_LightType;
-	float4 m_LightPosition[MAX_LIGHTS_BY_SHADER];
-	float4 m_LightDirection[MAX_LIGHTS_BY_SHADER];
-	float4 m_LightAngle;
-	float4 m_LightFallOffAngle;
-	float4 m_LightAttenuationStartRange;
-	float4 m_LightAttenuationEndRange;
-	float4 m_LightIntensity;
-	float4 m_LightColor[MAX_LIGHTS_BY_SHADER];
+	float4 mVS_LightAmbient;	
+	float4 mVS_LightEnabled;	
+	float4 mVS_LightType;
+	float4 mVS_LightPosition[MAX_LIGHTS_BY_SHADER];
+	float4 mVS_LightDirection[MAX_LIGHTS_BY_SHADER];
+	float4 mVS_LightAngle;
+	float4 mVS_LightFallOffAngle;
+	float4 mVS_LightAttenuationStartRange;
+	float4 mVS_LightAttenuationEndRange;
+	float4 mVS_LightIntensity;
+	float4 mVS_LightColor[MAX_LIGHTS_BY_SHADER];
 }
 
+
+/*
 
 
 //PIXEL SHADER
@@ -82,21 +84,20 @@ cbuffer PerMaterial : register( b0 )
 {
 	float4 m_RawData[MAX_OBJECT_RAW_PARAMETER];
 }
-
+*/
 cbuffer PerLightPS : register( b1 )
 {
-	float4 m_LightAmbient;
-	float4 m_LightEnabled;
-	float4 m_LightType;
-	float4 m_LightPosition[MAX_LIGHTS_BY_SHADER];
-	float4 m_LightDirection[MAX_LIGHTS_BY_SHADER];
-	float4 m_LightAngle;
-	float4 m_LightFallOffAngle;
-	float4 m_LightAttenuationStartRange;
-	float4 m_LightAttenuationEndRange;
-	float4 m_LightIntensity;
-	float4 m_LightColor[MAX_LIGHTS_BY_SHADER];
+	float4 mPS_LightAmbient;
+	float4 mPS_LightEnabled;
+	float4 mPS_LightType;
+	float4 mPS_LightPosition[MAX_LIGHTS_BY_SHADER];
+	float4 mPS_LightDirection[MAX_LIGHTS_BY_SHADER];
+	float4 mPS_LightAngle;
+	float4 mPS_LightFallOffAngle;
+	float4 mPS_LightAttenuationStartRange;
+	float4 mPS_LightAttenuationEndRange;
+	float4 mPS_LightIntensity;
+	float4 mPS_LightColor[MAX_LIGHTS_BY_SHADER];
 }
 
-static float m_RawDataValues[64]=((float[64])m_RawData);
-*/
+//static float m_RawDataValues[64]=((float[64])m_RawData);

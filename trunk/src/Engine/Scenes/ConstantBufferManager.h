@@ -51,8 +51,9 @@ struct PerMaterialDesc
 class CConstantBufferManager
 {
 public:
-
+    //enum ConstanBufferVS    { CB_Frame, CB_Object, CB_LightVS, CB_AnimatedModel, NumConstantBuffersVS };
     enum ConstanBufferVS    { CB_Frame, CB_Object, CB_AnimatedModel, CB_LightVS, NumConstantBuffersVS };
+    //enum ConstanBufferPS    { CB_LightPS, CB_Material, NumConstantBuffersPS };
     enum ConstanBufferPS    { CB_Material, CB_LightPS, NumConstantBuffersPS };
     PerObjectDesc      mObjDesc;
     PerFrameDesc       mFrameDesc;
