@@ -106,8 +106,6 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
     l_RenderManager.SetViewMatrix(m_vpos, m_vtarget, m_vup);
     l_RenderManager.Init(hWnd, (int)m_width, (int)m_height, debug);
 
-    CRenderPipeline l_RenderPipeline;
-    l_RenderPipeline.Load("data/render_pipeline.xml");
 
     CInputManager l_InputManager(hWnd);
     CActionManager l_ActionManager(l_InputManager);
@@ -124,16 +122,18 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
     CTpsCameraController l_TpsCamera(Vect3f(0, 0, 0), 1.5f, -1.5f, 20.0f, 4.0f);
 
     CEngine& l_Engine = CEngine::GetInstance();
-
     l_Engine.SetActionManager(&l_ActionManager);
     l_Engine.SetCameraController(&l_SphericalCamera);
     l_Engine.SetRenderManager(&l_RenderManager);
-    l_Engine.SetRenderPipeline(&l_RenderPipeline);
 
     l_Engine.Init(hWnd);
     l_Engine.fpsCam = l_FpsCamera;
     l_Engine.orbitalCam = l_SphericalCamera;
     l_Engine.tpsCam = l_TpsCamera;
+
+    CRenderPipeline l_RenderPipeline;
+    l_RenderPipeline.Load("data/render_pipeline.xml");
+    l_Engine.SetRenderPipeline(&l_RenderPipeline);
 
     ShowWindow(hWnd, SW_SHOWDEFAULT);
     UpdateWindow(hWnd);

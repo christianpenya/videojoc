@@ -2,10 +2,10 @@
 	<begin_render name="begin_render_main_loop"/>
 	<clear name="clear_cmd" render_target="false" depth_stencil="true" color="1.0 0.1 1.0 1.0" />
 	<set_per_frame_constants name="set_per_frame_cmd"/>
-	<!--<draw_quad name = "draw_quad_pipeline" viewport_position = "0 0" viewport_size = "800 600" pixel_shader = "PositionNormalForward" />-->
 	<set_depth_stencil_state enable_z_test = "false"  write_z_buffer="false" enable_stencil="false"/>
-	<set_rasterizer_state name="set_rasterizer_state" cull_mode="front" clock_wise="1" type="solid"/> <!-- type wireframe -->
-	<apply_technique_pool name="apply_forward_technique" pool_name="forward"/>
+	<set_rasterizer_state name="set_rasterizer_state" cull_mode="back" clock_wise="1" type="solid"/> <!-- type  -->
+	<apply_technique_pool name="apply_forward_technique" pool_name="forward"/>	
+	<!--<draw_quad name = "draw_quad_pipeline" viewport_position = "0 0" viewport_size = "800 600" pixel_shader = "PositionNormalForward" />-->
 	<render_layer name="render_opaque" layer="opaque"/>
 	<render_layer name="render_sereno" layer="sereno"/>
 	<render_layer name="render_sereno" layer="sereno"/>

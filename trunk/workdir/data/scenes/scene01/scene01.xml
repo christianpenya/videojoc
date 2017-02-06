@@ -4,7 +4,7 @@
 			<transform position="1.0 1.0 1.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
 		</scene_mesh>
 	</layer>
-	<layer name="sereno" >
+ 	<layer name="sereno" >
 		<scene_animated_model name="sereno01" core="sereno" >
 			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
 		</scene_animated_model>
@@ -20,8 +20,8 @@
 			<transform position="-16.9906 0.0 -12.3406" forward="0.0 -1.0 0.0" />
 		</scene_light>
 	</layer>
+  
    <!--
-   
    <scene_mesh name="Box001" mesh="data/meshes/Box001.mesh">
     <transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
    </scene_mesh>

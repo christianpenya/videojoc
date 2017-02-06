@@ -1,15 +1,15 @@
 <shaders>
 	<!--VERTEX SHADERS-->
 	<vertex_shaders>
-		<shader name="PositionNormalForward" file="data/shaders/Forward/PositionNormal.vs" entry_point="mainVertexShader" vertex_type="PositionNormal" preprocessor=""/>
+		<!--<shader name="PositionNormalForward" file="data/shaders/Forward/PositionNormal.vs" entry_point="mainVertexShader" vertex_type="PositionNormal" preprocessor=""/>-->
+		<shader name="PositionNormalForward" file="data/shaders/Forward/RED.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/>		
 		<shader name="AnimatedModelForward" file="data/shaders/Forward/AnimatedModel.vs" entry_point="mainVertexShader" vertex_type="PositionWeightIndicesNormalUV" preprocessor=""/>
-		<shader name="PositionNormal" file="data/shaders/Forward/PositionNormalEloi.vs" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/>
 	</vertex_shaders>     
 	<!--PIXEL SHADERS-->  
 	<pixel_shaders>
-		<shader name="PositionNormalForward" file="data/shaders/Forward/PositionNormal.ps" entry_point="mainPixelShader" preprocessor=""/>
+		<!--<shader name="PositionNormalForward" file="data/shaders/Forward/PositionNormal.ps" entry_point="mainPixelShader" preprocessor=""/>-->
+		<shader name="PositionNormalForward" file="data/shaders/Forward/RED.fx" entry_point="PS" preprocessor=""/>
 		<shader name="AnimatedModelForward" file="data/shaders/Forward/AnimatedModel.ps" entry_point="mainPixelShader" preprocessor=""/>
-		<shader name="PositionNormal" file="data/shaders/Forward/PositionNormalEloi.ps" entry_point="PS" preprocessor=""/>
 
 	</pixel_shaders>
 </shaders> 

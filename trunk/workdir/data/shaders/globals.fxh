@@ -2,7 +2,7 @@
 #define MAXBONES 40
 #define MAX_LIGHTS_BY_SHADER 4
 #define MAX_OBJECT_RAW_PARAMETER 16
-
+/*
 cbuffer SceneConstantBuffer : register( b0 )
 {
 	float4x4 m_World;
@@ -39,27 +39,27 @@ static float m_LightAttenuationStartRangeArray[4]=(float[4])m_LightAttenuationSt
 static float m_LightAttenuationEndRangeArray[4]=(float[4])m_LightAttenuationEndRange;
 static float m_LightIntensityArray[4]=(float[4])m_LightIntensity;
 
-
+*/
 //VERTEX SHADER
 
-cbuffer PerFrame : register(vs, b0 )
+cbuffer PerFrame : register( b0 )
 {
 	float4x4 m_View;
 	float4x4 m_Projection;
 	float4x4 m_ViewProjection;
 }
 
-cbuffer PerObject : register(vs, b1 )
+cbuffer PerObject : register( b1 )
 {
 	float4x4 m_World;
 }
-
-cbuffer PerAnimatedInstance : register(vs, b2 )
+/*
+cbuffer PerAnimatedInstance : register( b2 )
 {
 	float4x4 m_Bones[MAX_BONES];
 }
 
-cbuffer PerLightsVS : register(vs, b3 )
+cbuffer PerLightsVS : register( b3 )
 {
 	float4 m_LightAmbient;
 	float4 m_LightEnabled;
@@ -78,11 +78,12 @@ cbuffer PerLightsVS : register(vs, b3 )
 
 //PIXEL SHADER
 
-cbuffer PerMaterial : register(ps, b0 )
+cbuffer PerMaterial : register( b0 )
 {
 	float4 m_RawData[MAX_OBJECT_RAW_PARAMETER];
 }
-cbuffer PerLightPS : register(ps, b1 )
+
+cbuffer PerLightPS : register( b1 )
 {
 	float4 m_LightAmbient;
 	float4 m_LightEnabled;
@@ -98,3 +99,4 @@ cbuffer PerLightPS : register(ps, b1 )
 }
 
 static float m_RawDataValues[64]=((float[64])m_RawData);
+*/
