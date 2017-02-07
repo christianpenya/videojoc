@@ -28,7 +28,7 @@ bool CSceneNode::Render(CRenderManager& lRM)
     bool lOk = true;
     CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
 
-    lCB.BindVSBuffer(lRM.GetDeviceContext(), lCB.CB_LightVS);
+    lCB.BindBuffer(lRM.GetDeviceContext(), lCB.CB_Light);
 
     return lOk;
 }

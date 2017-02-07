@@ -1,8 +1,8 @@
 <render_pipeline>
 	<begin_render name="begin_render_main_loop"/>
-	<clear name="clear_cmd" render_target="false" depth_stencil="true" color="1.0 0.1 1.0 1.0" />
+	<clear name="clear_cmd" render_target="true" depth_stencil="true" color="1.0 0.1 1.0 1.0" />
 	<set_per_frame_constants name="set_per_frame_cmd"/>
-	<set_depth_stencil_state enable_z_test = "false"  write_z_buffer="false" enable_stencil="false"/>
+	<set_depth_stencil_state enable_z_test = "true"  write_z_buffer="true" enable_stencil="false" comparison_func="4"/>
 	<set_rasterizer_state name="set_rasterizer_state" cull_mode="front" clock_wise="1" type="solid"/> <!-- type  -->
 	<apply_technique_pool name="apply_forward_technique" pool_name="forward"/>	
 	<!--<draw_quad name = "draw_quad_pipeline" viewport_position = "0 0" viewport_size = "800 600" pixel_shader = "PositionNormalForward" />-->
@@ -20,8 +20,8 @@
 	<!--<capture_frame_buffer> 
 		<capture_texture name="DeferredCapturedTexture" texture_width_as_frame_buffer="true"/>
 	</capture_frame_buffer>
-	-->
 	<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />
+	-->
 	<render_imgui name="imediate_gui_render"/>
 	<end_render name="end_render_main_loop"/>
 </render_pipeline>

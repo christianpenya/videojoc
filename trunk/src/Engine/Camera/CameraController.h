@@ -27,6 +27,10 @@ public:
     {
         return m_Up;
     }
+    Vect3f getPosition()
+    {
+        return m_Position;
+    }
 
 protected:
     Vect3f 					m_Position;

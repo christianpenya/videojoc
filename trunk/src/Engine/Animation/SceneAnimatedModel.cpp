@@ -137,8 +137,8 @@ bool CSceneAnimatedModel::Render(CRenderManager &RenderManager)
         return false;
     CConstantBufferManager &l_CB = CEngine::GetInstance().GetConstantBufferManager();
     l_CB.mObjDesc.m_World = GetMatrix();
-    l_CB.BindVSBuffer(RenderManager.GetDeviceContext(),
-                      CConstantBufferManager::CB_Object);
+    l_CB.BindBuffer(RenderManager.GetDeviceContext(),
+                    CConstantBufferManager::CB_Object);
     ID3D11DeviceContext* l_DeviceContext = RenderManager.GetDeviceContext();
     for (int l_HardwareMeshId = 0; l_HardwareMeshId<m_CalHardwareModel ->getHardwareMeshCount(); ++l_HardwareMeshId)
     {
@@ -160,8 +160,8 @@ bool CSceneAnimatedModel::Render(CRenderManager &RenderManager)
             }
             memcpy(&l_CB.mAnimatedModelDesc, l_Transformations,
                    MAXBONES*sizeof(float) * 4 * 4);
-            l_CB.BindVSBuffer(RenderManager.GetDeviceContext(),
-                              CConstantBufferManager::CB_AnimatedModel);
+            l_CB.BindBuffer(RenderManager.GetDeviceContext(),
+                            CConstantBufferManager::CB_AnimatedModel);
             m_Geometry->RenderIndexed(l_DeviceContext, m_CalHardwareModel->getFaceCount() * 3, m_CalHardwareModel->getStartIndex(), m_CalHardwareModel->getBaseVertexIndex());
         }
     }

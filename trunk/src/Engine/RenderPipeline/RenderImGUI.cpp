@@ -27,6 +27,7 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 {
     CEngine& lEngine = CEngine::GetInstance();
 
+    /*
     static bool show_app_auto_resize = false;
     ImGui::Begin("Motor3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
 
@@ -41,7 +42,12 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     ImGui::SameLine();
     ImGui::RadioButton("TPS", &lEngine.cameraSelector, 2);
 
+
+    */
     lRM.DrawGrid(1, 1, 1, CColor(0, 0, 0, 1));
+
+
+
     /*switch (lEngine.cameraSelector)
     {
     case 0: //Orbital
@@ -91,6 +97,9 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     	}
     }*/
 
+
+    /*
     ImGui::End();
     ImGui::Render();
+    */
 }

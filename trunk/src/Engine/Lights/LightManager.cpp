@@ -87,8 +87,9 @@ void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
     lConstanBufferManager.mLightsDesc.m_LightFallOffAngle[idLight] = 40.0f;
     lConstanBufferManager.mLightsDesc.m_LightAngle[idLight] = 50.0f;
     lConstanBufferManager.mLightsDesc.m_LightAmbient = 0.25f;
-    lConstanBufferManager.BindVSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_LightVS);
-    lConstanBufferManager.BindPSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_LightPS);
+    //lConstanBufferManager.BindVSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_LightVS);
+    //lConstanBufferManager.BindPSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_LightPS);
+    lConstanBufferManager.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Light);
 
 
 //

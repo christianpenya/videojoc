@@ -35,6 +35,7 @@ void CSetPerFrameConstantsCmd::Execute(CRenderManager& lRM)
 void CSetPerFrameConstantsCmd::UpdateConstants()
 {
     CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
+    CCameraController& lCC = CEngine::GetInstance().GetCameraController();
     CLightManager& l_lightManager = CEngine::GetInstance().GetLightManager();
 
     if (CEngine::GetInstance().ExistConstantBufferManager())
@@ -44,7 +45,10 @@ void CSetPerFrameConstantsCmd::UpdateConstants()
         lConstanBufferManager.mFrameDesc.m_View = lRM.GetViewMatrix();
         lConstanBufferManager.mFrameDesc.m_Projection = lRM.GetProjectionMatrix();
         lConstanBufferManager.mFrameDesc.m_ViewProjection = lRM.GetViewProjectionMatrix();
-        lConstanBufferManager.BindVSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Frame);
+        lConstanBufferManager.mFrameDesc.m_CameraPosition = lCC.getPosition();
+        lConstanBufferManager.mFrameDesc.m_CameraFrontVector = lCC.getFront();
+        lConstanBufferManager.mFrameDesc.m_CameraUpVector = lCC.getUp();
+        lConstanBufferManager.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Frame);
     }
 
 
