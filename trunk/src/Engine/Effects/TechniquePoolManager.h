@@ -14,6 +14,7 @@ public:
     bool Load(const std::string& aFilename);
     bool Reload();
     bool Apply(const std::string& aPoolName);
+    std::vector<std::string> GetPoolNames();
 private:
     DISALLOW_COPY_AND_ASSIGN(CTechniquePoolManager);
     std::string m_Filename;

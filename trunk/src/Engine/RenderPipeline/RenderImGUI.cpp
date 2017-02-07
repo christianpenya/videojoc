@@ -1,27 +1,23 @@
 #include "RenderImGUI.h"
 #include "ImGUI\imgui.h"
-#include "Engine\engine.h"
-#include "Lights\LightManager.h"
-#include "Scenes\SceneManager.h"
+
 #include "RenderSceneLayer.h"
 #include "Utils\TemplatedMapVector.h"
 
-CRenderImGUI::CRenderImGUI()
-{
+#include "Lights\LightManager.h"
+#include "Scenes\SceneManager.h"
+#include "Effects\ShaderManager.h"
+#include "Effects\EffectManager.h"
 
-}
+#include "RenderPipeline\RenderPipeline.h"
 
-CRenderImGUI::~CRenderImGUI()
-{
-
-}
+CRenderImGUI::CRenderImGUI() {}
+CRenderImGUI::~CRenderImGUI() {}
 
 bool CRenderImGUI::Load(const CXMLElement* aElement)
 {
-    bool lOk = CRenderCmd::Load(aElement);
-    return lOk;
+    return CRenderCmd::Load(aElement);
 }
-
 
 void CRenderImGUI::Execute(CRenderManager& lRM)
 {
@@ -29,73 +25,43 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 
 
     static bool show_app_auto_resize = false;
-    ImGui::Begin("Motor3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::Begin("Bodegon3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
 
-    ImGui::Text("Frame rate: ");
-    ImGui::SameLine();
-    ImGui::Text("FPS", 1 / lEngine.deltaTime, 0.0f, -1, 0);
     //ImGui::ShowTestWindow();
+    //FPS
+    ImGui::Text("%.1f FPS", lEngine.m_FPS);
+    //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+    // #TODO el contador de fps de imgui es bueno?
 
-    ImGui::RadioButton("Orbital", &lEngine.cameraSelector, 0);
-    ImGui::SameLine();
-    ImGui::RadioButton("FPS", &lEngine.cameraSelector, 1);
-    ImGui::SameLine();
-    ImGui::RadioButton("TPS", &lEngine.cameraSelector, 2);
+    // TECHNIQUES
+    if (ImGui::CollapsingHeader("Cameras"))
+    {
+        // CAMERA SELECTION
+        ImGui::RadioButton("Orbital", &lEngine.m_CameraSelector, 0);
+        ImGui::SameLine();
+        ImGui::RadioButton("FPS", &lEngine.m_CameraSelector, 1);
+        ImGui::SameLine();
+        ImGui::RadioButton("TPS", &lEngine.m_CameraSelector, 2);
+    }
 
+    // TECHNIQUES
+    if (ImGui::CollapsingHeader("Reload"))
+    {
+        ImGui::PushID(RELOAD_SHADER_BUTTON_ID);
+        ImGui::PushStyleColor(ImGuiCol_Button, GREEN);
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, GREEN_HOVER);
 
+        if (ImGui::Button("Shaders"))
+        {
+            lEngine.GetShaderManager().Reload();
+            lEngine.GetEffectManager().Refresh();
+        }
+
+        ImGui::PopStyleColor(2);
+        ImGui::PopID();
+    }
 
     lRM.DrawGrid(1, 1, 1, CColor(0, 0, 0, 1));
-    lRM.DrawAxis(10.0f, CColor(1, 1,  1, 1));
-
-    /*
-    switch (lEngine.cameraSelector)
-    {
-    case 0: //Orbital
-        lRM.DrawSphere(1, CColor(1, 1, 0, 1));
-
-        break;
-    case 1: //FPS
-        lRM.m_SphereOffset = Vect3f(0, 3, 0);
-        lRM.DrawSphere(1, CColor(0, 1, 1, 1));
-
-        break;
-    case 2: //TPS
-        lEngine.sphereRender(lRM);
-        break;
-    default:
-        break;
-    }
-
-    if (CEngine::GetInstance().ExistSceneManager())
-    {
-        CSceneManager& lSceneManager = CEngine::GetInstance().GetSceneManager();
-        if (ImGui::CollapsingHeader("Scene"))
-        {
-            //              for (size_t i = 0; i < lSceneManager.GetCount(); ++i)
-            //            {
-
-
-            //          }
-        }
-    }
-
-
-
-
-    if (lLightManager.GetCount() > 0)
-    {
-    	CLightManager& lLightManager = CEngine::GetInstance().GetLightManager();
-        if (ImGui::CollapsingHeader("Lights"))
-        {
-            /*			for (size_t i = 0; i < lLightManager.GetCount(); ++i)
-            			{
-            				//m_ResourcesVector[i]->Execute(lLightManager);
-
-            				ImGui::Begin("Lights", &lLightManager, ImGuiWindowFlags_AlwaysAutoResize);
-            				ImGui::End();
-            			}
-    	}
-    }*/
 
 
 

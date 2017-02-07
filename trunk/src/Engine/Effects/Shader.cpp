@@ -4,19 +4,19 @@
 #include "XML\tinyxml2\tinyxml2.h"
 #include <vector>
 #include "Utils/StringUtils.h"
+#include "Utils/CheckedRelease.h"
 
 CShader::CShader(const std::string& aShaderCode, EShaderStage aType) :
     m_ShaderCode(aShaderCode),
     m_Type(aType),
     m_pBlob(nullptr)
-{
-}
+{}
 
-CShader::CShader(const CXMLElement* aElement, EShaderStage aType) :
+CShader::CShader(const CXMLElement* aElement, const std::string aPath, EShaderStage aType) :
     m_Type(aType),
     CName(aElement->GetAttribute<std::string>("name", ""))
 {
-    m_Filename = aElement->GetAttribute<std::string>("file", "");
+    m_Filename = aPath + aElement->GetAttribute<std::string>("file", "");
     m_EntryPoint = aElement->GetAttribute<std::string>("entry_point", "");
     m_Preprocessor = aElement->GetAttribute<std::string>("preprocessor", "");
     m_Type = aType;
@@ -24,7 +24,7 @@ CShader::CShader(const CXMLElement* aElement, EShaderStage aType) :
 
 CShader::~CShader()
 {
-    //m_pBlob->Release();
+    base::utils::CheckedRelease(m_pBlob);
 }
 
 bool CShader::Load()
@@ -43,12 +43,6 @@ bool CShader::Load()
     }
 
     return m_pBlob != nullptr;
-}
-
-bool CShader::Reload()
-{
-    // #TODO
-    return false;
 }
 
 void CShader::CreateShaderMacro()
@@ -84,11 +78,13 @@ void CShader::CreateShaderMacro()
             return;
         }
     }
+
     for (size_t i = 0; i < l_PreprocessorItems.size(); ++i)
     {
         m_ShaderMacros[i].Name = m_PreprocessorMacros[i * 2].c_str();
         m_ShaderMacros[i].Definition = m_PreprocessorMacros[(i * 2) + 1].c_str();
     }
+
     m_ShaderMacros[l_PreprocessorItems.size()].Name = NULL;
     m_ShaderMacros[l_PreprocessorItems.size()].Definition = NULL;
 }

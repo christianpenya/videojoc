@@ -106,15 +106,11 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
     l_RenderManager.SetViewMatrix(m_vpos, m_vtarget, m_vup);
     l_RenderManager.Init(hWnd, (int)m_width, (int)m_height, debug);
 
-
     CInputManager l_InputManager(hWnd);
     CActionManager l_ActionManager(l_InputManager);
 
     std::string inputConfigPath = "data/config/input_config.xml";
     l_ActionManager.LoadActions(inputConfigPath);
-
-    // Setup iMGui binding
-    //ImGui_ImplDX11_Init(hWnd, l_RenderManager.GetDevice(), l_RenderManager.GetDeviceContext());
 
     // Setup Cameras
     CSphericalCameraController l_SphericalCamera(Vect3f(0, 0, 0), 1.5f, -1.5f, 20.0f, 1.0f);
@@ -122,14 +118,17 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
     CTpsCameraController l_TpsCamera(Vect3f(0, 0, 0), 1.5f, -1.5f, 20.0f, 4.0f);
 
     CEngine& l_Engine = CEngine::GetInstance();
+    l_Engine.SetRenderManager(&l_RenderManager);
+    l_Engine.Init(hWnd);
     l_Engine.SetActionManager(&l_ActionManager);
     l_Engine.SetCameraController(&l_SphericalCamera);
-    l_Engine.SetRenderManager(&l_RenderManager);
 
-    l_Engine.Init(hWnd);
-    l_Engine.fpsCam = l_FpsCamera;
-    l_Engine.orbitalCam = l_SphericalCamera;
-    l_Engine.tpsCam = l_TpsCamera;
+    /*CRenderPipeline l_RenderPipeline;
+    l_RenderPipeline.Load("data/render_pipeline.xml");*/
+
+    l_Engine.m_FpsCam = l_FpsCamera;
+    l_Engine.m_OrbitalCam = l_SphericalCamera;
+    l_Engine.m_TpsCam = l_TpsCamera;
 
     CRenderPipeline l_RenderPipeline;
     l_RenderPipeline.Load("data/render_pipeline.xml");
@@ -140,15 +139,8 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
     MSG msg;
     ZeroMemory(&msg, sizeof(msg));
 
-    std::chrono::monotonic_clock l_Clock;
-    std::chrono::monotonic_clock::time_point l_PrevTime;
-    std::string s_fps("");
-
     while (msg.message != WM_QUIT)
     {
-        auto currentTime = l_Clock.now();
-        std::chrono::duration<float> chronoDeltaTime = currentTime - l_PrevTime;
-        l_PrevTime = currentTime;
 
         l_InputManager.PreUpdate(s_WindowActive);
 

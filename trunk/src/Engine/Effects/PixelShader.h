@@ -4,11 +4,11 @@
 
 #include "Shader.h"
 
-class CPixelShader : public CShader 
+class CPixelShader : public CShader
 {
 public:
     CPixelShader(const std::string& aShaderCode);
-    CPixelShader(const CXMLElement* aElement);
+    CPixelShader(const CXMLElement* aElement, const std::string& aPath);
     virtual ~CPixelShader();
     virtual bool Load();
     virtual void Bind(ID3D11DeviceContext* aContext);

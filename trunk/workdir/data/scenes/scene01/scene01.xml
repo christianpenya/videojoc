@@ -23,7 +23,6 @@
 		</scene_light>
 		-->
   
-   <!--
    <scene_mesh name="Box001" mesh="data/meshes/Box001.mesh">
     <transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
    </scene_mesh>

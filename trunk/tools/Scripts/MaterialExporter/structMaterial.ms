@@ -40,7 +40,9 @@ struct sMaterial (
 	m_glossinessEnabled = false,
 	m_glossinessMap = undefined,
 	m_glossinessBitmap = undefined,
-	m_glossinessAmount = 0
+	m_glossinessAmount = 0,
+
+	m_vertexType = ""
 
 	/*m_emissionEnabled = false,
 	m_emissionMap = undefined,
@@ -55,9 +57,9 @@ fn colorToString color =(
 
 	local l_Text = stringstream ""
 	format "%," color.r to:l_Text
-	format "%," color.g to:l_Text
-	format "%," color.b to:l_Text
-	format "%," color.a to:l_Text
+	format "%," color.r to:l_Text
+	format "%," color.r to:l_Text
+	format "%," color.r to:l_Text
 	return (l_Text as string)
 
 )

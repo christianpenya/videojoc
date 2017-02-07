@@ -4,9 +4,11 @@
 #include "ShaderManager.h"
 #include "RenderPipeline\RenderPipeline.h"
 
-CPixelShader::CPixelShader(const std::string& aShaderCode) : CShader(aShaderCode, EShaderStage::ePixelShader) {}
+CPixelShader::CPixelShader(const std::string& aShaderCode)
+    : CShader(aShaderCode, EShaderStage::ePixelShader) {}
 
-CPixelShader::CPixelShader(const CXMLElement* aElement) : CShader(aElement, EShaderStage::ePixelShader) {}
+CPixelShader::CPixelShader(const CXMLElement* aElement, const std::string& aPath)
+    : CShader(aElement, aPath, EShaderStage::ePixelShader) {}
 
 CPixelShader::~CPixelShader() {}
 
@@ -21,8 +23,9 @@ bool CPixelShader::Load()
 
         ID3D11Device *l_Device = lRenderManager.GetDevice();
         HRESULT lHR = l_Device->CreatePixelShader(m_pBlob->GetBufferPointer(), m_pBlob->GetBufferSize(), nullptr, &m_pPixelShader);
-        lOk = SUCCEEDED(lHR);
+        lOk &= SUCCEEDED(lHR);
     }
+
     return lOk;
 }
 

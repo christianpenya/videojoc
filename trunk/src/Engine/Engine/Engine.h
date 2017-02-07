@@ -56,8 +56,8 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(RenderManager);
     BUILD_GET_SET_ENGINE_MANAGER(CameraController);
     BUILD_GET_SET_ENGINE_MANAGER(SceneManager);
-	BUILD_GET_SET_ENGINE_MANAGER(InputManager);
-	BUILD_GET_SET_ENGINE_MANAGER(ActionManager);
+    BUILD_GET_SET_ENGINE_MANAGER(InputManager);
+    BUILD_GET_SET_ENGINE_MANAGER(ActionManager);
     BUILD_GET_SET_ENGINE_MANAGER(ShaderManager);
     BUILD_GET_SET_ENGINE_MANAGER(EffectManager);
     BUILD_GET_SET_ENGINE_MANAGER(MeshManager);
@@ -67,16 +67,17 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(ConstantBufferManager);
     BUILD_GET_SET_ENGINE_MANAGER(AnimatedModelManager);
 
-    CFpsCameraController fpsCam;
-    CTpsCameraController tpsCam;
-    CSphericalCameraController orbitalCam;
-//private:
+    double m_DeltaTime;
+    clock_t m_DeltaTimeAcum = 0;
+    unsigned int m_Frames;
+    double m_FPS;
 
-    std::chrono::monotonic_clock m_Clock;
-    std::chrono::monotonic_clock::time_point m_PrevTime;
-    float deltaTime;
-    int cameraSelector;
-    int l_prevCameraSelector;
+    CFpsCameraController m_FpsCam;
+    CTpsCameraController m_TpsCam;
+    CSphericalCameraController m_OrbitalCam;
+    int m_CameraSelector;
+    int m_PrevCameraSelector;
+
     void fpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt);
     void tpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, Vect3f sphereCenter, float dt);
     void orbitalCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt);
