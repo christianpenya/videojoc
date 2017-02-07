@@ -40,6 +40,14 @@ bool CLayer::Load(CXMLElement* aElement)
         {
             std::string l_lightName = iSceneMesh->GetAttribute<std::string>("name", "");
             CLight *l_light = CEngine::GetInstance().GetLightManager()(l_lightName);
+
+            if (strcmp(iSceneMesh->FirstChildElement()->Name(), "transform") == 0)
+            {
+                l_light->SetPosition(iSceneMesh->FirstChildElement()->GetAttribute<Vect3f>("position", l_light->GetPosition()));
+                l_light->SetPosition(iSceneMesh->FirstChildElement()->GetAttribute<Vect3f>("forward", l_light->GetPrevPosition()));
+            }
+            CEngine::GetInstance().GetLightManager().SetLightConstants(iSceneMesh->GetAttribute<int>("id_light",0), l_light);
+
             if (l_light != nullptr)//VER
             {
                 lNode = new CSceneNode(iSceneMesh);
@@ -69,7 +77,15 @@ bool CLayer::Render()
 
     for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode)
     {
+
+        CLight *lLight = CEngine::GetInstance().GetLightManager()(iSceneNode->second.m_Value->GetName());
+        if (lLight != nullptr)
+        {
+            CEngine::GetInstance().GetLightManager().SetLightConstants(iSceneNode->second.m_Id, lLight);
+        }
+
         lOk &= iSceneNode->second.m_Value->Render(lRenderManager);
+
     }
 
     return lOk;

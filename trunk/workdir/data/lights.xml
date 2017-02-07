@@ -1,11 +1,11 @@
 <lights >
-	<!--<light angle="43.0" fall_off="45.0" type="spot" name="Spot001" color="1.0 0.0 0.0 1.0" enabled="true" intensity="1.0" attenuation_range="80.0 200.0" >
+	<light angle="43.0" fall_off="45.0" type="spot" name="Spot001" color="1.0 0.0 0.0 1.0" enabled="true" intensity="1.0" attenuation_range="80.0 200.0" >
 		<transform position="-23.5966 0.0 15.2906" forward="0.921628 0.0 -0.388076" />
-	</light>-->
+	</light>
 	<light type="directional" name="Direct001" color="0.0 1.0 0.0 1.0" enabled="true" intensity="1.0" attenuation_range="40.0 100.0" >
 		<transform position="10 0.0 0.0" forward="0.0 0.0 1.0" />
 	</light>
-	<!--<light type="point" name="Omni001" color="0.0 0.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="20.0 80.0" >
+	<light type="point" name="Omni001" color="0.0 0.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="20.0 80.0" >
 		<transform position="-16.9906 0.0 -12.3406" forward="0.0 -1.0 0.0" />
-	</light>-->
+	</light>
 </lights>

@@ -10,13 +10,13 @@
 		</scene_animated_model>
 	</layer>
 	<layer name="lights">
-		<scene_light name="Direct001" light="1" >
-			<transform position="53.9702 0.0 -6.66563" forward="0.0 0.0 1.0" />
+		<scene_light name="Direct001" id_light="0" >
+			<transform position="0.0 1.0 0.0" forward="0.0 0.0 1.0" />
 		</scene_light>
-		<!--<scene_light name="Spot001" light="2" >
+		<scene_light name="Spot001" id_light="1" >
 			<transform position="-23.5966 0.0 15.2906" forward="0.921628 0.0 -0.388076" />
 		</scene_light>
-		<scene_light name="Omni001" light="3" >
+		<!--<scene_light name="Omni001" id_light="2" >
 			<transform position="-16.9906 0.0 -12.3406" forward="0.0 -1.0 0.0" />
 		</scene_light>-->
 	</layer>
