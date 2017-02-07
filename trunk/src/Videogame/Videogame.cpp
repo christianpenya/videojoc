@@ -118,19 +118,21 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
     CTpsCameraController l_TpsCamera(Vect3f(0, 0, 0), 1.5f, -1.5f, 20.0f, 4.0f);
 
     CEngine& l_Engine = CEngine::GetInstance();
-
     l_Engine.SetRenderManager(&l_RenderManager);
     l_Engine.Init(hWnd);
     l_Engine.SetActionManager(&l_ActionManager);
     l_Engine.SetCameraController(&l_SphericalCamera);
 
-    CRenderPipeline l_RenderPipeline;
-    l_RenderPipeline.Load("data/render_pipeline.xml");
-    l_Engine.SetRenderPipeline(&l_RenderPipeline);
+    /*CRenderPipeline l_RenderPipeline;
+    l_RenderPipeline.Load("data/render_pipeline.xml");*/
 
     l_Engine.m_FpsCam = l_FpsCamera;
     l_Engine.m_OrbitalCam = l_SphericalCamera;
     l_Engine.m_TpsCam = l_TpsCamera;
+
+    CRenderPipeline l_RenderPipeline;
+    l_RenderPipeline.Load("data/render_pipeline.xml");
+    l_Engine.SetRenderPipeline(&l_RenderPipeline);
 
     ShowWindow(hWnd, SW_SHOWDEFAULT);
     UpdateWindow(hWnd);

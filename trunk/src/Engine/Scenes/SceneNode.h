@@ -14,7 +14,7 @@ public:
     CSceneNode(const CXMLElement* aElement);
     virtual ~CSceneNode();
     virtual bool Update(float aDeltaTime);
-    virtual bool Render(CRenderManager& aRendermanager);
+    virtual bool Render(CRenderManager& lRM);
     GET_SET_BOOL(Visible)
 protected:
     bool m_Visible;

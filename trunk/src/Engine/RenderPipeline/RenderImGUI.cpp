@@ -23,6 +23,7 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 {
     CEngine& lEngine = CEngine::GetInstance();
 
+
     static bool show_app_auto_resize = false;
     ImGui::Begin("Bodegon3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
 
@@ -62,6 +63,9 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 
     lRM.DrawGrid(1, 1, 1, CColor(0, 0, 0, 1));
 
+
+
     ImGui::End();
     ImGui::Render();
+
 }

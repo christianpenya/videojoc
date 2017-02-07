@@ -39,28 +39,28 @@ mGeometry = new CGeometryTriangleStrip< Vertex::Dummy >(lVB);
 
 
 static CVertexShader sQuadVertexShader(
-    "struct VS_INPUT\n"
-    "{\n"
-    "  float3 Pos : POSITION;\n"
-    "  float2 UV  : TEXCOORD0; \n"
-    "};\n"
-    "struct PS_INPUT\n"
-    "{\n"
-    "  float4 Pos : SV_POSITION;\n"
-    "  float2 UV : TEXCOORD0;\n"
-    "};\n"
-    "PS_INPUT quadVS(VS_INPUT IN)\n"
-    "{\n"
-    "  PS_INPUT l_Output = (PS_INPUT)0;\n"
-    "  l_Output.Pos = float4( IN.Pos.xyz, 1.0);\n"
-    "  l_Output.UV = IN.UV;\n"
-    "  return l_Output;\n"
-    "}\n",
-    Vertex::PositionUV::GetVertexFlags());
+"struct VS_INPUT\n"
+"{\n"
+"  float3 Pos : POSITION;\n"
+"  float2 UV  : TEXCOORD0; \n"
+"};\n"
+"struct PS_INPUT\n"
+"{\n"
+"  float4 Pos : SV_POSITION;\n"
+"  float2 UV : TEXCOORD0;\n"
+"};\n"
+"PS_INPUT quadVS(VS_INPUT IN)\n"
+"{\n"
+"  PS_INPUT l_Output = (PS_INPUT)0;\n"
+"  l_Output.Pos = float4( IN.Pos.xyz, 1.0);\n"
+"  l_Output.UV = IN.UV;\n"
+"  return l_Output;\n"
+"}\n",
+Vertex::PositionUV::GetVertexFlags());
 */
 CQuad::CQuad()
-    : mGeometry( nullptr )
-    , mEffect( new CEffect() )
+    : mGeometry(nullptr)
+    , mEffect(new CEffect())
 {
 }
 
@@ -75,10 +75,10 @@ bool CQuad::Init(CPixelShader* aPS)
     CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
     VertexTypes::PositionUV lScreenVertexsQuad[4] =
     {
-        { Vect3f(-1.0f, 1.0f, 0.5f),  Vect2f(0.0f, 0.0f) },
+        { Vect3f(-1.0f, 1.0f, 0.5f), Vect2f(0.0f, 0.0f) },
         { Vect3f(-1.0f, -1.0f, 0.5f), Vect2f(0.0f, 1.0f) },
-        { Vect3f(1.0f, 1.0f, 0.5f),   Vect2f(1.0f, 0.0f) },
-        { Vect3f(1.0f, -1.0f, 0.5f),  Vect2f(1.0f, 1.0f) }
+        { Vect3f(1.0f, 1.0f, 0.5f), Vect2f(1.0f, 0.0f) },
+        { Vect3f(1.0f, -1.0f, 0.5f), Vect2f(1.0f, 1.0f) }
     };
 
     CVertexBuffer<VertexTypes::PositionUV> * lVB = new CVertexBuffer<VertexTypes::PositionUV>(lRenderManager, lScreenVertexsQuad, 4);
@@ -102,6 +102,5 @@ bool CQuad::Render()
     ID3D11DeviceContext* lContext = lRenderManager.GetDeviceContext();
     mEffect->Bind(lContext);
     return mGeometry->Render(lContext);
-    return false;
 }
 

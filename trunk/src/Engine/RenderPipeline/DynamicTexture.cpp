@@ -1,8 +1,9 @@
 #include "DynamicTexture.h"
 #include "XML\XML.h"
-//#include "Logger\Logger.h"
+#include "Utils\Logger.h"
 #include "Engine\Engine.h"
 #include "Render\RenderManager.h"
+
 
 CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     : CTexture(TreeNode->GetAttribute<std::string>("name", ""))
@@ -10,12 +11,13 @@ CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
 {
     assert(TreeNode);
 
-    // if (!EnumString<TFormatType>::ToEnum(m_FormatType, TreeNode->GetAttribute<std::string>("format", "")))
-    //     LOG_ERROR_APPLICATION("Invalid format type for dynamic texture");
+    if (!EnumString<TFormatType>::ToEnum(m_FormatType, TreeNode->GetAttribute<std::string>("format", "RGBA8_UNORM")))
+        LOG_ERROR_APPLICATION("Invalid format type for dynamic texture");
 
     if (TreeNode->GetAttribute<bool>("texture_width_as_frame_buffer", false))
     {
-        // TODO: Obtain the size of the FB from the render manager
+        CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
+        mSize = lRenderManager.DebugVertexBufferSize; // TODO: Obtain the size of the FB from the render manager No se si es esto correcto
     }
     else
     {
@@ -27,6 +29,11 @@ CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
 CDynamicTexture::~CDynamicTexture()
 {
     // TODO:Release the data
+    /*m_pDepthStencilBuffer->Release();
+    m_pDepthStencilView->Release();
+    m_pRenderTargetTexture->Release();
+    m_pRenderTargetView->Release();
+    m_pTexture->Release();*/
 }
 
 void CDynamicTexture::Init()

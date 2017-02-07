@@ -1,17 +1,28 @@
 <scene>
-  <layer name="opaque" >
+    <layer name="opaque" >
+		<scene_mesh name="Teapot001" mesh="data/meshes/Teapot001.mesh" >
+			<transform position="1.0 1.0 1.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
+		</scene_mesh>
+	</layer>
+ 	<layer name="sereno" >
+		<scene_animated_model name="sereno01" core="sereno" >
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
+		</scene_animated_model>
+	</layer>
+	<layer name="lights">
+		<scene_light name="Direct001" id_light="0" >
+			<transform position="0.0 1.0 0.0" forward="0.0 0.0 1.0" />
+		</scene_light>
+	</layer>
+		<!--
+		<scene_light name="Spot001" id_light="1" >
+			<transform position="-23.5966 0.0 15.2906" forward="0.921628 0.0 -0.388076" />
+		</scene_light>
+		<scene_light name="Omni001" id_light="2" >
+			<transform position="-16.9906 0.0 -12.3406" forward="0.0 -1.0 0.0" />
+		</scene_light>
+		-->
   
-   <scene_mesh name="Teapot001" mesh="data/meshes/Teapot001.mesh" >
-		<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
-	</scene_mesh>
-</layer>
-	   <!--
-
-	<scene_animated_model name="sereno01" core="sereno" >
-		<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
-	</scene_animated_model>
-  </layer>
-   
    <scene_mesh name="Box001" mesh="data/meshes/Box001.mesh">
     <transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
    </scene_mesh>
@@ -32,8 +43,6 @@
   </layer>
   <layer name="animated_models"/>
   <layer name="particles"/>
-  <layer name="lights">
-   <scene_light name="PL" light="FSpot001" />
-  </layer>
+
   <layer name="cameras"/>-->
  </scene>

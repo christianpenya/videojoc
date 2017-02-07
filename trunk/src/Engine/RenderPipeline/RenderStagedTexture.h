@@ -14,8 +14,9 @@ public:
     CRenderStagedTexture();
     virtual ~CRenderStagedTexture();
     bool Load(const CXMLElement* aElement);
-    virtual void Execute(CRenderManager& lRM) = 0;
-    void CreateRenderTargetViewVector();
+    //virtual void Execute(CRenderManager& lRM) = 0;
+    virtual void Execute(CRenderManager& lRM);
+    void CreateRenderTargetViewVector(CRenderManager& lRM);
     void ActivateTextures ();
 private:
     DISALLOW_COPY_AND_ASSIGN(CRenderStagedTexture);

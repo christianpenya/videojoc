@@ -6,6 +6,8 @@
   <effect name="AnimatedModelTechniqueForward"  shader_family="AnimatedModelForward">
 	<shader stage="vertex" name="AnimatedModelForward"/>
 	<shader stage="pixel" name="AnimatedModelForward"/>
-</effect>
+
+  </effect>
+
  </effects>
  

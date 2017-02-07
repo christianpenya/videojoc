@@ -16,6 +16,9 @@ struct PerFrameDesc
     Mat44f m_View;
     Mat44f m_Projection;
     Mat44f m_ViewProjection;
+    Vect4f m_CameraPosition;
+    Vect4f m_CameraFrontVector;
+    Vect4f m_CameraUpVector;
 };
 
 struct PerLightsDesc
@@ -51,9 +54,13 @@ struct PerMaterialDesc
 class CConstantBufferManager
 {
 public:
+    //enum ConstanBufferVS    { CB_Frame, CB_Object, CB_LightVS, CB_AnimatedModel, NumConstantBuffersVS };
+    //enum ConstanBufferVS    { CB_Frame, CB_Object, CB_AnimatedModel, CB_LightVS, NumConstantBuffersVS };
+    //enum ConstanBufferPS    { CB_LightPS, CB_Material, NumConstantBuffersPS };
+    // enum ConstanBufferPS    { CB_Material, CB_LightPS, NumConstantBuffersPS };
 
-    enum ConstanBufferVS    { CB_Frame, CB_Object, CB_AnimatedModel, CB_LightVS, NumConstantBuffersVS };
-    enum ConstanBufferPS    { CB_Material, CB_LightPS, NumConstantBuffersPS };
+    enum CConstanBufferDEF {CB_Frame, CB_Object,CB_Material, CB_AnimatedModel, CB_Light, NumConstantBuffers};
+
     PerObjectDesc      mObjDesc;
     PerFrameDesc       mFrameDesc;
     PerAnimatedModelDesc mAnimatedModelDesc;
@@ -63,16 +70,20 @@ public:
     CConstantBufferManager();
     virtual ~CConstantBufferManager();
 
-    virtual void BindVSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID);
+    //virtual void BindVSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID);
 
-    virtual void BindPSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID);
+    // virtual void BindPSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID);
+
+    virtual void BindBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID);
 
 
 
 
 protected:
-    CConstantBuffer* m_VSConstantBuffers[NumConstantBuffersVS];
-    CConstantBuffer* m_PSConstantBuffers[NumConstantBuffersPS];
+    // CConstantBuffer* m_VSConstantBuffers[NumConstantBuffers];
+    // CConstantBuffer* m_PSConstantBuffers[NumConstantBuffers];
+
+    CConstantBuffer* m_ConstantBuffers[NumConstantBuffers];
 };
 
 #endif //_ENGINE_CONSTANTBUFFERMANAGER_20170118_H

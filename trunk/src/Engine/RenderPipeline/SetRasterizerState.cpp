@@ -19,19 +19,21 @@ bool CSetRasterizerState::Load(const CXMLElement* aElement)
     bool lOk = CRenderCmd::Load(aElement);
     if (lOk)
     {
-        m_CullMode = aElement->GetAttribute<int>("cull_mode", 0);
-        m_ClockWise = aElement->GetAttribute<bool>("clock_wise", false);
+        D3D11_CULL_MODE lCullMode;
+        EnumString<D3D11_CULL_MODE>::ToEnum(lCullMode, aElement->GetAttribute<std::string>("cull_mode", "front"));
+        m_CullMode = lCullMode;
+
+        m_ClockWise = aElement->GetAttribute<bool>("clock_wise",0);
 
         D3D11_FILL_MODE lFillMode;
         EnumString<D3D11_FILL_MODE>::ToEnum(lFillMode, aElement->GetAttribute<std::string>("type", "solid"));
         m_FillMode = lFillMode;
-        CreateRasterizerState();
     }
     return lOk;
 }
 
 
-bool CSetRasterizerState::CreateRasterizerState()
+bool CSetRasterizerState::CreateRasterizerState(CRenderManager& lRM)
 {
     D3D11_RASTERIZER_DESC lRasterDesc;
     ZeroMemory(&lRasterDesc, sizeof(D3D11_RASTERIZER_DESC));
@@ -46,6 +48,13 @@ bool CSetRasterizerState::CreateRasterizerState()
     lRasterDesc.ScissorEnable =	false;
     lRasterDesc.SlopeScaledDepthBias = 0.0f;
     // Create rasterizer state
-    HRESULT	lHR = CEngine::GetInstance().GetRenderManager().GetDevice()->CreateRasterizerState(&lRasterDesc,&m_RasterizerState);
+
+    HRESULT	lHR = lRM.GetDevice()->CreateRasterizerState(&lRasterDesc,&m_RasterizerState);
     return SUCCEEDED(lHR);
+}
+
+void CSetRasterizerState::Execute(CRenderManager& lRM)
+{
+    CreateRasterizerState(lRM);
+    lRM.GetDeviceContext()->RSSetState(m_RasterizerState);
 }

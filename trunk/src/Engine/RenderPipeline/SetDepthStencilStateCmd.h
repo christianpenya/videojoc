@@ -13,7 +13,7 @@ public:
     virtual ~CSetDepthStencilStateCmd();
     bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager& lRM);
-    virtual void DrawIMGUI();
+    //virtual void DrawIMGUI();
 private:
     DISALLOW_COPY_AND_ASSIGN(CSetDepthStencilStateCmd);
     ID3D11DepthStencilState *m_DepthStencilState;
@@ -21,7 +21,7 @@ private:
     bool m_WriteZBuffer;
     bool m_EnableStencil;
     int m_ComparisonFunc;
-    bool CreateDepthStencilState();
+    bool CreateDepthStencilState(CRenderManager& lRM);
 };
 
 #endif

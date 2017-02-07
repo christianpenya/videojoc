@@ -89,17 +89,17 @@ inline void CTransform::SetPosition(const Vect3f &Position)
     m_Position = Position;
 }
 
-inline const Vect3f & CTransform::GetPosition() const
+const Vect3f & CTransform::GetPosition() const
 {
     return m_Position;
 }
 
-inline const Vect3f & CTransform::GetPrevPosition() const
+const Vect3f & CTransform::GetPrevPosition() const
 {
     return m_PrevPos;
 }
 
-inline Vect3f CTransform::GetForward() const
+Vect3f CTransform::GetForward() const
 {
     return  Vect3f( mathUtils::Cos(m_Yaw) * mathUtils::Cos(m_Pitch),
                     mathUtils::Sin(m_Pitch),
@@ -109,7 +109,7 @@ inline Vect3f CTransform::GetForward() const
 Vect3f CTransform::GetUp() const
 {
     return  Vect3f(-mathUtils::Cos(m_Yaw) * mathUtils::Sin(m_Pitch),
-                    mathUtils::Cos(m_Pitch),
+                   mathUtils::Cos(m_Pitch),
                    -mathUtils::Sin(m_Yaw) * mathUtils::Sin(m_Pitch));
 }
 

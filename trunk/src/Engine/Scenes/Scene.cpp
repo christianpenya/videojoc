@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "XML/tinyxml2/tinyxml2.h"
 #include "XML/XML.h"
+#include "Lights/lightManager.h"
 
 CScene::CScene(const std::string& aName)
     : CName(aName)
@@ -57,6 +58,18 @@ bool CScene::Render()
     for (TMapResources::iterator iLayer = m_ResourcesMap.begin(); iLayer != m_ResourcesMap.end(); ++iLayer)
     {
         lOk &= iLayer->second.m_Value->Render();
+
+        /*std::string l_lightName = iLayer->second.m_Value;
+        CLight *l_light = CEngine::GetInstance().GetLightManager()(l_lightName);
+
+
+        CLight* lLight = iLayer->second.m_Value;
+        SetLightConstants(iLayer->second.m_Id, lLight);
+
+        CLight* lLight = iLayer->second.m_Value;
+        SetLightConstants(m_ResourcesMap.find(aLayerName)->second.m_Id, lLight);
+        */
+
     }
 
     return lOk;
@@ -65,8 +78,6 @@ bool CScene::Render()
 bool CScene::Render(const std::string& aLayerName)
 {
     bool lOk = true;
-
     lOk &= m_ResourcesMap.find(aLayerName)->second.m_Value->Render();
-
     return lOk;
 }

@@ -20,18 +20,18 @@ CSetDepthStencilStateCmd::~CSetDepthStencilStateCmd()
 bool CSetDepthStencilStateCmd::Load(const CXMLElement* aElement)
 {
     bool lOk = CRenderCmd::Load(aElement);
-    if (lOk) //(strcmp(aElement->Name(), "set_depth_stencil_state") == 0)
+    if (lOk)
     {
-        m_EnableZTest = aElement->GetAttribute<bool>("enable_z_test", "false");
-        m_WriteZBuffer = aElement->GetAttribute<bool>("write_z_buffer", "false");
-        m_EnableStencil = aElement->GetAttribute<bool>("enable_stencil", "false");
-        CreateDepthStencilState();
+        m_EnableZTest = aElement->GetAttribute<bool>("enable_z_test", false);
+        m_WriteZBuffer = aElement->GetAttribute<bool>("write_z_buffer", false);
+        m_EnableStencil = aElement->GetAttribute<bool>("enable_stencil", false);
+        m_ComparisonFunc = aElement->GetAttribute<int>("comparison_func", 1);
     }
     return lOk;
 }
 
 
-bool CSetDepthStencilStateCmd::CreateDepthStencilState()
+bool CSetDepthStencilStateCmd::CreateDepthStencilState(CRenderManager& lRM)
 {
     D3D11_DEPTH_STENCIL_DESC dsDesc;
     // Depth test parameters
@@ -53,11 +53,12 @@ bool CSetDepthStencilStateCmd::CreateDepthStencilState()
     dsDesc.BackFace.StencilPassOp =	D3D11_STENCIL_OP_KEEP;
     dsDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
     // Create depth stencil state
-    HRESULT lHR = CEngine::GetInstance().GetRenderManager().GetDevice()->CreateDepthStencilState(&dsDesc,&m_DepthStencilState);
+    HRESULT lHR = lRM.GetDevice()->CreateDepthStencilState(&dsDesc,&m_DepthStencilState);
     return SUCCEEDED(lHR);
 }
 
 void CSetDepthStencilStateCmd::Execute(CRenderManager& lRM)
 {
+    CreateDepthStencilState(lRM);
     lRM.GetDeviceContext()->OMSetDepthStencilState(m_DepthStencilState,0);
 }

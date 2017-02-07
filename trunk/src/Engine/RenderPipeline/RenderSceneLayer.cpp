@@ -2,6 +2,7 @@
 #include "XML\XML.h"
 #include "Scenes\SceneManager.h"
 #include "Engine\engine.h"
+#include "Utils\TemplatedMapVector.h"
 
 CRenderSceneLayer::CRenderSceneLayer()
 {

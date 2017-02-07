@@ -1,4 +1,5 @@
 #include "ConstantBuffer.h"
+#include "Engine/Engine.h"
 
 CConstantBuffer::CConstantBuffer(CRenderManager& RenderManager, uint32 aByteWidth) : CBuffer()
 {
