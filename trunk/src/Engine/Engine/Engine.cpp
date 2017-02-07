@@ -131,7 +131,7 @@ void CEngine::Update()
     m_CameraController->Update((float)m_DeltaTime);
     m_CameraController->SetToRenderManager(*m_RenderManager);
 
-    m_SceneManager->Update(dt);
+    m_SceneManager->Update(m_DeltaTime);
 }
 
 void CEngine::Render()

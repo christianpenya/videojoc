@@ -12,7 +12,9 @@ public:
     CShaderManager();
     virtual ~CShaderManager();
     bool Load(const std::string& aFilename);
+    bool Reload();
     CShader* GetShader(CShader::EShaderStage aStage, const std::string& aShaderName);
+    std::vector<CShader*> GetShaders(CShader::EShaderStage aStage);
 private:
     DISALLOW_COPY_AND_ASSIGN(CShaderManager);
     typedef base::utils::CTemplatedMapVector<CShader> TShadersLibrary;

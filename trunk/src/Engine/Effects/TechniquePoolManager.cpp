@@ -76,3 +76,16 @@ bool  CTechniquePoolManager::Apply(const std::string& aPoolName)
 
     return lOk;
 }
+
+std::vector<std::string> CTechniquePoolManager::GetPoolNames()
+{
+    std::vector<std::string> lOut;
+    lOut.reserve(mPools.GetCount());
+
+    for (unsigned int i = 0; i < mPools.GetCount(); ++i)
+    {
+        lOut.push_back(mPools[i]->GetName());
+    }
+
+    return lOut;
+}

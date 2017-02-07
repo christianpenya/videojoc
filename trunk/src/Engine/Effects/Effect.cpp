@@ -11,6 +11,7 @@ CEffect::~CEffect() {}
 CEffect::CEffect(CXMLElement* aElement) :
     CName(aElement->GetAttribute<std::string>("name", ""))
 {
+    mShaderFamily = aElement->GetAttribute<std::string>("shader_family", "");
     mShaders.resize(CShader::EShaderStage::EStageCount);
     CShaderManager& l_ShaderManager = CEngine::GetInstance().GetShaderManager();
 
@@ -43,7 +44,13 @@ void CEffect::SetShader(CShader::EShaderStage aType, CShader* aShader)
 {
     mShaders[aType] = aShader;
 }
+
 void CEffect::Refresh()
 {
-    // #TODO
+    CShaderManager& l_ShaderManager = CEngine::GetInstance().GetShaderManager();
+
+    for (int i = 0; i < CShader::EShaderStage::EStageCount; ++i)
+    {
+        mShaders[i] = l_ShaderManager.GetShader(CShader::EShaderStage(i), mShaderFamily);
+    }
 }

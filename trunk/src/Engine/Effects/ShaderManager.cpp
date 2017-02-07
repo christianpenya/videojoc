@@ -36,12 +36,14 @@ bool CShaderManager::Load(const std::string& aFilename)
             {
                 if (strcmp(iShaderType->Name(), "vertex_shaders") == 0)
                 {
+                    m_Library[CShader::EShaderStage::eVertexShader].Clear();
                     for (tinyxml2::XMLElement *iVertexShader = iShaderType->FirstChildElement(); iVertexShader != nullptr; iVertexShader = iVertexShader->NextSiblingElement())
                     {
                         if (strcmp(iVertexShader->Name(), "shader") == 0)
                         {
                             CVertexShader *lVertexShader = new CVertexShader(iVertexShader, l_Path);
                             lVertexShader->Load();
+
                             m_Library[CShader::EShaderStage::eVertexShader].Add(lVertexShader->GetName(), lVertexShader);
                         }
                     }
@@ -64,6 +66,13 @@ bool CShaderManager::Load(const std::string& aFilename)
     }
 
     return out;
+}
+
+bool CShaderManager::Reload()
+{
+    m_Library.clear();
+    m_Library.resize(CShader::EShaderStage::EStageCount);
+    return Load(m_Filename);
 }
 
 CShader* CShaderManager::GetShader(CShader::EShaderStage aStage, const std::string& aShaderName)

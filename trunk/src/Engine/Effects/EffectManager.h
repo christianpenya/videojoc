@@ -12,6 +12,7 @@ public:
     virtual ~CEffectManager();
     bool Load(const std::string& aFilename);
     bool Reload();
+    bool Refresh();
 
 private:
     bool Load();

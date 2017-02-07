@@ -6,12 +6,10 @@
 
 #include "Lights\LightManager.h"
 #include "Scenes\SceneManager.h"
-#include "Effects\Technique.h"
-#include "Effects\TechniquePoolManager.h"
+#include "Effects\ShaderManager.h"
+#include "Effects\EffectManager.h"
 
 #include "RenderPipeline\RenderPipeline.h"
-#include "RenderPipeline\RenderCmd.h"
-#include "RenderPipeline\ApplyTechniquePool.h"
 
 CRenderImGUI::CRenderImGUI() {}
 CRenderImGUI::~CRenderImGUI() {}
@@ -29,43 +27,41 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     ImGui::Begin("Bodegon3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
 
     //ImGui::ShowTestWindow();
-
     //FPS
     ImGui::Text("%.1f FPS", lEngine.m_FPS);
     //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+    // #TODO el contador de fps de imgui es bueno?
 
     // TECHNIQUES
-    ImGui::Text("Techniques");
-    std::vector<std::string> lPoolNames = lEngine.GetTechniquePoolManager().GetPoolNames();
-
-    //for (std::vector<std::string>::const_iterator iTechniquePoolName = lPoolNames.begin();
-    //	iTechniquePoolName != lPoolNames.end();
-    //	++iTechniquePoolName)
-    for (int i = 0; i < lPoolNames.size(); ++i)
+    if (ImGui::CollapsingHeader("Cameras"))
     {
-        ImGui::RadioButton(lPoolNames[i].c_str(), &lTechnique, i);
+        // CAMERA SELECTION
+        ImGui::RadioButton("Orbital", &lEngine.m_CameraSelector, 0);
+        ImGui::SameLine();
+        ImGui::RadioButton("FPS", &lEngine.m_CameraSelector, 1);
+        ImGui::SameLine();
+        ImGui::RadioButton("TPS", &lEngine.m_CameraSelector, 2);
     }
 
-    CRenderCmd* temare = lEngine.GetRenderPipeline()("apply_forward_technique");
-    (dynamic_cast<CApplyTechniquePool*> (temare))->SetPoolName(lPoolNames[lTechnique]);
+    // TECHNIQUES
+    if (ImGui::CollapsingHeader("Reload"))
+    {
+        ImGui::PushID(RELOAD_SHADER_BUTTON_ID);
+        ImGui::PushStyleColor(ImGuiCol_Button, GREEN);
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, GREEN_HOVER);
+
+        if (ImGui::Button("Shaders"))
+        {
+            lEngine.GetShaderManager().Reload();
+            lEngine.GetEffectManager().Refresh();
+        }
+
+        ImGui::PopStyleColor(2);
+        ImGui::PopID();
+    }
 
     lRM.DrawGrid(1, 1, 1, CColor(0, 0, 0, 1));
 
     ImGui::End();
     ImGui::Render();
 }
-
-// CAMERA SELECTION
-/*ImGui::RadioButton("Orbital", (*mEngine).m_CameraSelector, 0);
-ImGui::SameLine();
-ImGui::RadioButton("FPS", &lEngine.m_CameraSelector, 1);
-ImGui::SameLine();
-ImGui::RadioButton("TPS", &lEngine.m_CameraSelector, 2);*/
-
-// DEBUG OBJECTS
-
-// LAYERS
-
-// SCENES
-
-// SHADERS
