@@ -55,5 +55,11 @@ static float m_LightIntensityArray[4]=(float[4])m_LightIntensity;
 
 static float m_RawDataValues[64]=((float[64])m_RawData);
 
-//void CalculateSingleLight(IdLight, NormalPixel, WorldPos,ColorPixel, out float3 DiffuseColor, out float3 SpecularColor);
+
+/*void CalculateSingleLight(uint IdLight,float3 NormalPixel : NORMAL, float3 WorldPos : TEXCOORD2, float3 ColorPixel : COLOR, out float3 DiffuseColor : COLOR , out float3 SpecularColor : COLOR){
+//	DiffuseColor = SpecularColor;
+
+};*/
+
+
 // Check if enabled

@@ -27,7 +27,7 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 {
     CEngine& lEngine = CEngine::GetInstance();
 
-    /*
+
     static bool show_app_auto_resize = false;
     ImGui::Begin("Motor3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
 
@@ -43,12 +43,12 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     ImGui::RadioButton("TPS", &lEngine.cameraSelector, 2);
 
 
-    */
+
     lRM.DrawGrid(1, 1, 1, CColor(0, 0, 0, 1));
+    lRM.DrawAxis(10.0f, CColor(1, 1,  1, 1));
 
-
-
-    /*switch (lEngine.cameraSelector)
+    /*
+    switch (lEngine.cameraSelector)
     {
     case 0: //Orbital
         lRM.DrawSphere(1, CColor(1, 1, 0, 1));
@@ -68,7 +68,7 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 
     if (CEngine::GetInstance().ExistSceneManager())
     {
-    	CSceneManager& lSceneManager = CEngine::GetInstance().GetSceneManager();
+        CSceneManager& lSceneManager = CEngine::GetInstance().GetSceneManager();
         if (ImGui::CollapsingHeader("Scene"))
         {
             //              for (size_t i = 0; i < lSceneManager.GetCount(); ++i)
@@ -78,10 +78,10 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
             //          }
         }
     }
-    */
 
 
-    /*
+
+
     if (lLightManager.GetCount() > 0)
     {
     	CLightManager& lLightManager = CEngine::GetInstance().GetLightManager();
@@ -98,8 +98,8 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     }*/
 
 
-    /*
+
     ImGui::End();
     ImGui::Render();
-    */
+
 }

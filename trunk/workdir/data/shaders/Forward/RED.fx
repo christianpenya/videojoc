@@ -43,8 +43,10 @@ float4 PS( PS_INPUT IN ) : SV_Target{
 
 	float3 l_ViewDir = normalize(l_Eye - IN.WorldPosition);
 	
-	float3 Hn = normalize(l_ViewDir-m_LightDirection[0].xyz);
+	//float3 Hn = normalize(l_ViewDir-m_LightDirection[0].xyz);
 	float3 l_Normal = normalize(IN.Normal);
+
+	
 	float l_DiffuseContrib = saturate(dot(-m_LightDirection[0],l_Normal));
 	float l_SpecularContrib = pow(saturate(dot(Hn,l_Normal)), 20.0 ) ;
 	float4 l_DiffuseColor =	float4(1.0 , 1.0 , 1.0, 1.0);

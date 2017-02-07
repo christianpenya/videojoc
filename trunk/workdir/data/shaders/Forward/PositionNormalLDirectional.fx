@@ -35,6 +35,8 @@ PS_INPUT VS( VS_INPUT IN )
 }
 
 float4 PS( PS_INPUT IN ) : SV_Target{
+
+	
 	float g_SpecularExponent = 80.0;
 
 	float g_SpecularContrib = 1.0;
@@ -49,13 +51,17 @@ float4 PS( PS_INPUT IN ) : SV_Target{
 	float l_SpecularContrib = pow(saturate(dot(Hn,l_Normal)), 20.0 ) ;
 	float4 l_DiffuseColor =	float4(1.0 , 1.0 , 1.0, 1.0);
 
-
+	float4 m_LightAmbient2 = float4(0.5, 0.5, 0.5, 1.0);
 	float3 l_LAmbient = m_LightAmbient.xyz * l_DiffuseColor.xyz;
 
 	float3 l_LDiffuse = l_DiffuseContrib * m_LightIntensity[0] * m_LightColor[0].xyz * l_DiffuseColor.xyz;
 
 
 	float3 l_LSpecular = l_SpecularContrib* m_LightIntensity[0] *	m_LightColor[0].xyz *g_SpecularContrib;
+
+	//return float4(l_LAmbient, 1.0);
+
+
 
 	//return float4(l_SpecularContrib, l_SpecularContrib, l_SpecularContrib, 1.0);
 	//return float4(1.0 ,0.0 ,0.0 ,1.0);
