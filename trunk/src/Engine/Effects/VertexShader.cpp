@@ -9,7 +9,7 @@ CVertexShader::CVertexShader(const std::string& aShaderCode, uint32 aVertexFlags
 {
 }
 
-CVertexShader::CVertexShader(const CXMLElement* aElement) : CShader(aElement, EShaderStage::eVertexShader)
+CVertexShader::CVertexShader(const CXMLElement* aElement, const std::string& aPath) : CShader(aElement, aPath, EShaderStage::eVertexShader)
 {
     m_VertexFlags = VertexTypes::GetFlagsFromString(aElement->GetAttribute<std::string>("vertex_type", ""));
 }

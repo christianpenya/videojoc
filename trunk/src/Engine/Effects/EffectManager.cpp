@@ -19,7 +19,17 @@ bool CEffectManager::Load(const std::string& aFilename)
 
 bool CEffectManager::Reload()
 {
-    Clear();
+    //#TODO o no TODO
+    return true;
+}
+
+bool CEffectManager::Refresh()
+{
+    for (std::vector<CEffect*>::iterator iEffect = m_ResourcesVector.begin(); iEffect != m_ResourcesVector.end(); ++iEffect)
+    {
+        (*iEffect)->Refresh();
+    }
+
     return Load();
 }
 

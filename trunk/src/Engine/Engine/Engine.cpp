@@ -22,7 +22,6 @@
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
 CEngine::CEngine()
-
     : m_RenderManager(nullptr)
     , m_InputManager(nullptr)
     , m_ActionManager(nullptr)
@@ -38,13 +37,13 @@ CEngine::CEngine()
     , m_ConstantBufferManager(nullptr)
     , m_RenderPipeline(nullptr)
     , m_AnimatedModelManager(nullptr)
-    , m_Clock()
-    , m_PrevTime(m_Clock.now())
-{
-    deltaTime = 0;
-    cameraSelector = 0;
-    l_prevCameraSelector = 0;
-}
+    , m_DeltaTime(0)
+    , m_DeltaTimeAcum (0)
+    , m_FPS (0.0)
+    , m_Frames(0)
+    , m_CameraSelector(0)
+    , m_PrevCameraSelector(0)
+{}
 
 void CEngine::Init(HWND hWnd)
 {
@@ -60,7 +59,6 @@ void CEngine::Init(HWND hWnd)
 
     m_TechniquePoolManager = new CTechniquePoolManager();
     m_TechniquePoolManager->Load("data/techniques_pool.xml");
-    m_TechniquePoolManager->Apply("forward");
 
     std::string lLevelMaterialsFilename = "reclusion.xml"; // #TODO nombres hardcoded
     std::string lDefaultMaterialsFilename = "default.xml";
@@ -76,7 +74,6 @@ void CEngine::Init(HWND hWnd)
     m_AnimatedModelManager->Load("data/animated_models.xml");
 
     m_MeshManager = new CMeshManager();
-    // m_MeshManager->GetMesh("data/meshes/Plane001.mesh"); // #TODO
 
     m_LightManager = new CLightManager();
     m_LightManager->Load("data/lights.xml");
@@ -91,64 +88,74 @@ void CEngine::ProcessInputs()
     m_ActionManager->Update();
 }
 
+double clockToMilliseconds(clock_t ticks)
+{
+    // units/(units/time) => time (seconds) * 1000 = milliseconds
+    return (ticks / (double)CLOCKS_PER_SEC)*1000.0;
+}
+
 void CEngine::Update()
 {
-
-    auto currentTime = m_Clock.now();
-    std::chrono::duration<float> chronoDeltaTime = currentTime - m_PrevTime;
-    m_PrevTime = currentTime;
-
-    float dt = chronoDeltaTime.count() > 0.5f ? 0.5f : chronoDeltaTime.count();
-    deltaTime = dt;
+    m_DeltaTime = m_DeltaTime > 0.5f ? 0.5f : m_DeltaTime;
 
     // Reiniciem posició de l'esfera quan canviem de camera
-    if (cameraSelector != l_prevCameraSelector)
+    if (m_CameraSelector != m_PrevCameraSelector)
     {
         m_RenderManager->m_SphereOffset = Vect3f(0, 0, 0);
     }
 
-    l_prevCameraSelector = cameraSelector;
+    m_PrevCameraSelector = m_CameraSelector;
 
-    switch (cameraSelector)
+    switch (m_CameraSelector)
     {
     case 0: //Orbital
-        SetCameraController(&orbitalCam);
-        orbitalCameraUpdate(*m_CameraController, m_ActionManager, dt);
+        SetCameraController(&m_OrbitalCam);
+        orbitalCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
 
         break;
     case 1: //FPS
-        SetCameraController(&fpsCam);
-        fpsCameraUpdate( *m_CameraController,m_ActionManager, dt);
+        SetCameraController(&m_FpsCam);
+        fpsCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
 
         break;
     case 2: //TPS
-        SetCameraController(&tpsCam);
+        SetCameraController(&m_TpsCam);
         sphereUpdate(*m_RenderManager, m_ActionManager, m_CameraController->getFront(), m_CameraController->getUp());
-        tpsCameraUpdate(*m_CameraController, m_ActionManager, m_RenderManager->m_SphereOffset, dt);
+        tpsCameraUpdate(*m_CameraController, m_ActionManager, m_RenderManager->m_SphereOffset, (float)m_DeltaTime);
 
         break;
     default:
         break;
     }
 
-    m_CameraController->Update(dt);
-
+    m_CameraController->Update((float)m_DeltaTime);
     m_CameraController->SetToRenderManager(*m_RenderManager);
 
-    m_SceneManager->Update(dt);
+    m_SceneManager->Update(m_DeltaTime);
 }
 
 void CEngine::Render()
 {
+    clock_t l_BeginFrame = clock();
+
     m_RenderPipeline->Execute();
+
+    clock_t l_EndFrame = clock();
+    m_DeltaTime = l_EndFrame - l_BeginFrame;
+    m_DeltaTimeAcum += l_EndFrame - l_BeginFrame;
+    ++m_Frames;
+
+    if (clockToMilliseconds(m_DeltaTimeAcum) > 1000.0)  //every second
+    {
+        m_FPS = (double)m_Frames*0.5 + m_FPS*0.5; //more stable
+        m_Frames = 0;
+        m_DeltaTimeAcum -= CLOCKS_PER_SEC;
+        //averageFrameTimeMilliseconds = 1000.0 / (frameRate == 0 ? 0.001 : frameRate);
+    }
 }
 
 void CEngine::fpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt)
 {
-
-    /*ImGui::Text("Mou la camera amb WASD.");
-    ImGui::Text("Orienta't amb el ratoli.");
-    ImGui::Text("Vigila el cap.");*/
     CFpsCameraController *fpsCamera = static_cast<CFpsCameraController*>(&camera);
     fpsCamera->xSpeed = 0.1f * (*actionManager)("x_move")->value;
     fpsCamera->zSpeed = 0.1f * (*actionManager)("z_move")->value;
@@ -161,9 +168,6 @@ void CEngine::fpsCameraUpdate(CCameraController& camera, CActionManager* actionM
 
 void CEngine::orbitalCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt)
 {
-
-    /*ImGui::Text("Gira la roda del mouse per controlar el zoom.");
-    ImGui::Text("Apreta qualsevol boto del ratoli per habilitar la rotacio.");*/
     CSphericalCameraController *sphericalCamera = static_cast<CSphericalCameraController*>(&camera);
     sphericalCamera->zoomSpeed = (*actionManager)("zoom")->value;
 
@@ -183,10 +187,6 @@ void CEngine::orbitalCameraUpdate(CCameraController& camera, CActionManager* act
 
 void CEngine::tpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, Vect3f sphereCenter, float dt)
 {
-
-    /*ImGui::Text("Mou l'esfera amb WASD");
-    ImGui::Text("Orienta't amb el ratoli.");
-    ImGui::Text("Amb la roda del ratoli pots controlar el zoom.");*/
     CTpsCameraController *tpsCamera = static_cast<CTpsCameraController*>(&camera);
     tpsCamera->center = sphereCenter;
 
@@ -198,14 +198,13 @@ void CEngine::tpsCameraUpdate(CCameraController& camera, CActionManager* actionM
     tpsCamera->Update(dt);
 }
 
-
 float clamp(float x, float upper, float lower)
 {
     return min(upper, max(x, lower));
 }
+
 void CEngine::sphereUpdate(CRenderManager& renderManager, CActionManager* actionManager, Vect3f front, Vect3f up)
 {
-
     Vect3f right = front ^ up;
     float smoother = 0.1f;
 
@@ -215,7 +214,6 @@ void CEngine::sphereUpdate(CRenderManager& renderManager, CActionManager* action
     renderManager.m_SphereOffset.x = clamp(renderManager.m_SphereOffset.x, 5.0, -5.0);
     renderManager.m_SphereOffset.y = 1;
     renderManager.m_SphereOffset.z = clamp(renderManager.m_SphereOffset.z, 5.0, -5.0);
-
 }
 
 void CEngine::sphereRender(CRenderManager& renderManager)

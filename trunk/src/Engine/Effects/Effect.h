@@ -22,6 +22,7 @@ public:
 private:
     DISALLOW_COPY_AND_ASSIGN(CEffect);
     std::vector< CShader* > mShaders;
+    std::string mShaderFamily;
 };
 
 #endif //_ENGINE_EFFECT_20170104
