@@ -37,31 +37,40 @@ PS_INPUT VS( VS_INPUT IN )
 float4 PS( PS_INPUT IN ) : SV_Target{
 
 
-	float g_SpecularExponent = 80.0;
 
-	float g_SpecularContrib = 1.0;
 
-	float3 l_Eye=m_CameraPosition.xyz;
-
-	float3 l_ViewDir = normalize(l_Eye - IN.WorldPosition);
-	
-	float3 Hn = normalize(l_ViewDir-m_LightDirection[0].xyz);
 	float3 l_Normal = normalize(IN.Normal);
-	float l_DiffuseContrib = saturate(dot(-m_LightDirection[0],l_Normal));
-	float l_SpecularContrib = pow(saturate(dot(Hn,l_Normal)), 20.0 ) ;
-	float4 l_DiffuseColor =	float4(1.0 , 1.0 , 1.0, 1.0);
 
+	float3 l_WorldPos = IN.WorldPosition;
+	float4 l_DiffuseColor =	float4(1.0 , 1.0 , 1.0, 1.0);
 
 	float3 l_LAmbient = m_LightAmbient.xyz * l_DiffuseColor.xyz;
 
-	float3 l_LDiffuse = l_DiffuseContrib * m_LightIntensity[0] * m_LightColor[0].xyz * l_DiffuseColor.xyz;
 
 
-	float3 l_LSpecular = l_SpecularContrib* m_LightIntensity[0] *	m_LightColor[0].xyz *g_SpecularContrib;
+	float3 l_DiffuseTmp =	float3(0.0 , 0.0 , 0.0);
+	float3 l_SpecularTmp =	float3(0.0 , 0.0 , 0.0);
+
+	float3 l_LDiffuseSpecular = float3(0.0 , 0.0 , 0.0);
+	float3 l_LDiffuseSpecularTmp = float3(0.0 , 0.0 , 0.0);
+
+	for(int i = 0; i<MAX_LIGHTS_BY_SHADER;i++){
 
 
+		CalculateSingleLight(i, l_Normal, l_WorldPos, l_DiffuseColor,l_DiffuseTmp, l_SpecularTmp);
+		l_LDiffuseSpecularTmp = l_DiffuseTmp + l_SpecularTmp;
 
-	return float4(l_LAmbient+l_LDiffuse+l_LSpecular,1.0);
+		l_LDiffuseSpecular =l_LDiffuseSpecular + l_LDiffuseSpecularTmp;
 	
+
+
+		l_DiffuseTmp =	float3(0.0 , 0.0 , 0.0);
+		l_SpecularTmp =	float3(0.0 , 0.0 , 0.0);
+
+	}
+	
+
+
+	return float4(l_LAmbient+l_LDiffuseSpecular,1.0);
 
 }

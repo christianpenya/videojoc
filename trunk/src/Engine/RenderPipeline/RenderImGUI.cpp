@@ -62,6 +62,7 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     }
 
     lRM.DrawGrid(1, 1, 1, CColor(0, 0, 0, 1));
+    lRM.DrawAxis(10, 10, 10);
 
 
 
