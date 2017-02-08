@@ -38,30 +38,45 @@ float4 PS( PS_INPUT IN ) : SV_Target{
 	float g_SpecularExponent = 80.0;
 	float g_SpecularContrib = 1.0;
 
+	//return float4(1.0, 0.0, 0.0, 1.0);
+	
 	float4 l_DiffuseColor =	float4(1.0 , 1.0 , 1.0, 1.0);
+	
+	float l_DistanceToPixel = length(IN.WorldPosition - m_LightPosition[0]);
+	
+
+	float3 l_LightDirection = (IN.WorldPosition - m_LightPosition[0])/l_DistanceToPixel;
+
+	float l_DistanceAtten = 1.0 - saturate((l_DistanceToPixel - m_LightAttenuationStartRangeArray[0])/(m_LightAttenuationEndRangeArray[0]-m_LightAttenuationStartRangeArray[0]));
+
+	float l_SpotAngle=cos(m_LightAngleArray[0]*0.5*(3.1416/180.0));
+	float l_SpotFallOff=cos(m_LightFallOffAngleArray[0]*0.5*(3.1416/180.0));
+	float l_DotAngle=dot(l_LightDirection, m_LightDirection[0]);
+
+	float l_AngleAtenuation = 1;// saturate((l_DotAngle-l_SpotFallOff)/(l_SpotAngle-l_SpotFallOff));
+	
+	
 
 	float3 l_Eye=m_CameraPosition.xyz;
 	float3 l_ViewDir = normalize(l_Eye - IN.WorldPosition);
 	
-	float3 Hn = normalize(l_ViewDir-m_LightDirection[0].xyz);
+	float3 Hn = normalize(l_ViewDir-l_LightDirection.xyz);
 	float3 l_Normal = normalize(IN.Normal);
 
 	
-	float l_DiffuseContrib = saturate(dot(-m_LightDirection[0],l_Normal));
+	float l_DiffuseContrib = saturate(dot(-l_LightDirection,l_Normal));
 	float l_SpecularContrib = pow(saturate(dot(Hn,l_Normal)), 20.0 ) ;
 
-
-
+	
 	float3 l_LAmbient = m_LightAmbient.xyz * l_DiffuseColor.xyz;
 
-	float3 l_LDiffuse = l_DiffuseContrib * m_LightIntensity[0] * m_LightColor[0].xyz * l_DiffuseColor.xyz;
+	float3 l_LDiffuse = l_DiffuseContrib * m_LightIntensity[0] * m_LightColor[0].xyz * l_DiffuseColor.xyz * l_DistanceAtten *l_AngleAtenuation;
 
-	float3 l_LSpecular = l_SpecularContrib* m_LightIntensity[0] *	m_LightColor[0].xyz *g_SpecularContrib;
+	float3 l_LSpecular = l_SpecularContrib* m_LightIntensity[0] *	m_LightColor[0].xyz *g_SpecularContrib * l_DistanceAtten * l_AngleAtenuation;
 
 
 
 	return float4(l_LAmbient+l_LDiffuse+l_LSpecular,1.0);
 	
+	
 }
-
-
