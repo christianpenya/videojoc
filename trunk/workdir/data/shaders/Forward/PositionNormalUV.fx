@@ -1,5 +1,5 @@
 #include "Colors.fxh"
-#include "globals.fxh"
+#include "globals.fx"
 
 Texture2D DiffuseTexture :
 register(t0);
@@ -18,7 +18,7 @@ float2 UV :
 struct PS_INPUT
 {
 float4 Pos :
-    SV_POSITION; // COMENTAR JORDI
+    SV_POSITION;
 float3 Normal :
     NORMAL;
 float2 UV :
@@ -48,27 +48,30 @@ PS_INPUT VS( VS_INPUT IN )
 
 float4 PS( PS_INPUT IN ) : SV_Target
 {
-    float g_SpecularExponent = 40.0;
-    float g_SpecularContrib = 0.5;
+    float3 NormalPixel = normalize(IN.Normal);
 
-    float4 l_DiffuseColor = DiffuseTexture.Sample(LinearSampler, IN.UV);
+    float3 WorldPos = IN.WorldPosition;
+    float4 ColorPixel = DiffuseTexture.Sample(LinearSampler, IN.UV);
 
-    float3 l_Eye=m_CameraPosition.xyz;
-    float3 l_ViewDir = normalize(l_Eye - IN.WorldPosition);
+    float3 l_LAmbient = m_LightAmbient.xyz * ColorPixel.xyz;
 
-    float3 Hn = normalize(l_ViewDir-m_LightDirection[0].xyz);
-    float3 l_Normal = normalize(IN.Normal);
 
-    float l_DiffuseContrib = saturate(dot(-m_LightDirection[0],l_Normal));
-    float l_SpecularContrib = pow(saturate(dot(Hn,l_Normal)), 20.0 ) ;
+    float3 DiffuseColor = float3(0.0, 0.0, 0.0);
+    float3 SpecularColor = float3(0.0, 0.0, 0.0);
 
-    float3 l_LAmbient = m_LightAmbient.xyz * l_DiffuseColor.xyz;
+    float3 l_LDiffuseSpecular = float3(0.0, 0.0, 0.0);
+    float3 l_LDiffuseSpecularTmp = float3(0.0, 0.0, 0.0);
 
-    float3 l_LDiffuse = l_DiffuseContrib * m_LightIntensity[0] * m_LightColor[0].xyz * l_DiffuseColor.xyz;
+    for (int IdLight = 0; IdLight<MAX_LIGHTS_BY_SHADER; IdLight++)
+    {
+        CalculateSingleLight(IdLight, NormalPixel, WorldPos, ColorPixel, DiffuseColor, SpecularColor);
 
-    float3 l_LSpecular = l_SpecularContrib* m_LightIntensity[0] *	m_LightColor[0].xyz *g_SpecularContrib;
+        l_LDiffuseSpecularTmp = DiffuseColor + SpecularColor;
+        l_LDiffuseSpecular = l_LDiffuseSpecular + l_LDiffuseSpecularTmp;
 
-    return float4(l_LAmbient+l_LDiffuse+l_LSpecular,1.0);
+        DiffuseColor = float3(0.0, 0.0, 0.0);
+        SpecularColor = float3(0.0, 0.0, 0.0);
+    }
+
+    return float4(l_LAmbient + l_LDiffuseSpecular, 1.0);
 }
-
-

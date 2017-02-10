@@ -1,5 +1,5 @@
 #include "Colors.fxh"
-#include "globals.fxh"
+#include "globals.fx"
 
 
 
