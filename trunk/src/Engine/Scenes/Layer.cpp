@@ -46,7 +46,7 @@ bool CLayer::Load(CXMLElement* aElement)
                 l_light->SetPosition(iSceneMesh->FirstChildElement()->GetAttribute<Vect3f>("position", l_light->GetPosition()));
                 l_light->SetPosition(iSceneMesh->FirstChildElement()->GetAttribute<Vect3f>("forward", l_light->GetPrevPosition()));
             }
-            CEngine::GetInstance().GetLightManager().SetLightConstants(iSceneMesh->GetAttribute<int>("id_light",0), l_light);
+            CEngine::GetInstance().GetLightManager().SetLightConstants(iSceneMesh->GetAttribute<int>("id_light", 0), l_light);
 
             if (l_light != nullptr)//VER
             {
@@ -54,7 +54,7 @@ bool CLayer::Load(CXMLElement* aElement)
             }
         }
 
-        if ( lNode )
+        if (lNode)
             lOk &= Add(lNode->GetName(), lNode);
     }
     return lOk;
@@ -75,9 +75,11 @@ bool CLayer::Render()
     bool lOk = true;
     CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
 
+    //for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
+    // #TODO: potencialmente ineficiente: estamos iterando un mapa en método render.
+    //Set Light constants debe setearse en cada frame?? Qué pasa si desactivamos luces?
     for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode)
     {
-
         CLight *lLight = CEngine::GetInstance().GetLightManager()(iSceneNode->second.m_Value->GetName());
         if (lLight != nullptr)
         {
@@ -85,8 +87,12 @@ bool CLayer::Render()
         }
 
         lOk &= iSceneNode->second.m_Value->Render(lRenderManager);
-
     }
 
     return lOk;
+}
+
+std::vector<CSceneNode*> CLayer::GetNodes()
+{
+    return m_ResourcesVector;
 }

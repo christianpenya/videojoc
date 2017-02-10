@@ -15,11 +15,11 @@ public:
     bool Render();
     bool Render(const std::string& aLayerName);
     GET_SET_BOOL(Active)
+    std::vector<CLayer*> GetLayers();
 protected:
     bool m_Active;
 private:
     DISALLOW_COPY_AND_ASSIGN(CScene);
 };
-
 
 #endif //_ENGINE_SCENE_20170110_H

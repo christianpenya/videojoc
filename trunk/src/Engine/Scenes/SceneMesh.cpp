@@ -25,7 +25,7 @@ bool CSceneMesh::Render(CRenderManager& aRendermanager)
 {
     bool lOk = false;
 
-    if (mMesh)
+    if (mMesh && IsVisible())
     {
         CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
         lCB.mObjDesc.m_World = GetMatrix();

@@ -5,7 +5,6 @@
 #include "VertexTypes.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
-#include <iostream>
 #include <memory>
 #include "Materials/Material.h"
 #include "Materials/MaterialManager.h"

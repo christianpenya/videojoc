@@ -28,11 +28,5 @@ bool CSceneNode::Update(float aDeltaTime)
 
 bool CSceneNode::Render(CRenderManager& lRM)
 {
-    /*  bool lOk = true;
-      CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
-
-      lCB.BindBuffer(lRM.GetDeviceContext(), lCB.CB_Light);
-
-      return lOk;*/
     return false;
 }
