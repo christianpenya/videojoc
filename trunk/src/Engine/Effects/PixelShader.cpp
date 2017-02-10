@@ -18,7 +18,6 @@ bool CPixelShader::Load()
 
     if (lOk)
     {
-        bool lOk=false;
         CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
 
         ID3D11Device *l_Device = lRenderManager.GetDevice();

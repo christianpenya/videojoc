@@ -52,7 +52,7 @@ void CEngine::Init(HWND hWnd)
     m_ConstantBufferManager = new CConstantBufferManager();
 
     m_ShaderManager = new CShaderManager();
-    m_ShaderManager->Load("data/shaders.xml"); // #TODO properties
+    m_ShaderManager->Load("data/shaders.xml");
 
     m_EffectManager = new CEffectManager();
     m_EffectManager->Load("data/effects.xml");
@@ -60,15 +60,13 @@ void CEngine::Init(HWND hWnd)
     m_TechniquePoolManager = new CTechniquePoolManager();
     m_TechniquePoolManager->Load("data/techniques_pool.xml");
 
-    std::string lLevelMaterialsFilename = "reclusion.xml"; // #TODO nombres hardcoded
+    std::string lLevelMaterialsFilename = "reclusion.xml";
     std::string lDefaultMaterialsFilename = "default.xml";
 
     m_TextureManager = new CTextureManager();
 
     m_MaterialManager = new CMaterialManager();
     m_MaterialManager->Load(lLevelMaterialsFilename, lDefaultMaterialsFilename);
-
-
 
     m_AnimatedModelManager = new CAnimatedModelManager();
     m_AnimatedModelManager->Load("data/animated_models.xml");

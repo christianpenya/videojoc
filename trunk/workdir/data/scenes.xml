@@ -1,4 +1,5 @@
 <scenes>
-	<scene name="scene01" folder="data/scenes/scene01/" active="true"/>
+	<!--<scene name="scene01" folder="data/scenes/scene01/" active="false"/>-->
+	<scene name="christian_scene" folder="data/scenes/christian/" active="true"/>
 </scenes>
  
