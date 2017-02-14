@@ -5,19 +5,13 @@
 	
 	<material name="01 - Default" vertex_type="PositionNormalUV" >
 		<texture type="diffuse" filename="data\textures\rock.tga" />
-		<color type="diffuse" value="150.0,150.0,150.0,255.0," />
-		<parameter type="float" name="diffuse" value="100.0" />
-	</material>
-	
-	<material name="03 - Default" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\text_2.dds" />
 		<color type="diffuse" value="150.0,150.0,150.0,150.0," />
 		<parameter type="float" name="diffuse" value="100.0" />
 	</material>
 	
-	<material name="Standard_7" vertex_type="PositionNormalUVUV2" >
+	<material name="Standard_7" vertex_type="PositionNormalUV" >
 		<texture type="diffuse" filename="data\textures\text_1.dds" />
-		<color type="diffuse" value="149.94,149.94,149.94,255.0," />
+		<color type="diffuse" value="149.94,149.94,149.94,149.94," />
 		<parameter type="float" name="diffuse" value="100.0" />
 		<texture type="selfIllum" filename="data\textures\light_map_box.dds" />
 		<parameter type="float" name="selfIllum" value="100.0" />

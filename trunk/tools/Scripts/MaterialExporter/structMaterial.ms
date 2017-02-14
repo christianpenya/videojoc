@@ -57,9 +57,9 @@ fn colorToString color =(
 
 	local l_Text = stringstream ""
 	format "%," color.r to:l_Text
-	format "%," color.r to:l_Text
-	format "%," color.r to:l_Text
-	format "%," color.r to:l_Text
+	format "%," color.g to:l_Text
+	format "%," color.b to:l_Text
+	format "%," color.a to:l_Text
 	return (l_Text as string)
 
 )

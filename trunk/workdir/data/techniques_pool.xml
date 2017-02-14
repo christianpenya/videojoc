@@ -1,42 +1,15 @@
 <technique_pools>
-<default_pool>
- <technique vertex_type="PositionNormal"/>
- <technique vertex_type="PositionNormalUV"/>
- <technique vertex_type="PositionBump"/>
- <technique vertex_type="PositionBumpUV" />
- <technique vertex_type="PositionBumpUVUV2" />
- <technique vertex_type="PositionWeightIndicesNormalUV" />
-</default_pool>
+	<default_pool>
+	 <technique vertex_type="PositionNormal" />
+	 <technique vertex_type="PositionNormalUV" />
+	 <technique vertex_type="PositionNormalUVUV2" />
+	 <technique vertex_type="PositionWeightIndicesNormalUV" />
+	</default_pool>
 
-<pool name="forward">
- <technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
- <technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
- <technique vertex_type="PositionBump" effect="PositionBumpTechniqueForward"/>
- <technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueForward"/>
- <technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
- <technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
-</pool>
-
-<pool name="deferred">
- <technique vertex_type="PositionUV" effect="PositionUVTechniqueDeferred"/>
- <technique vertex_type="PositionNormal" effect="PositionNormalTechniqueDeferred"/>
- <technique vertex_type="PositionBump" effect="PositionBumpTechniqueDeferred"/>
- <technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueDeferred"/>
- <technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueDeferred"/>
-</pool>
-
-<pool name="cutout">
- <technique vertex_type="PositionUV" effect="PositionUVTechniqueCutout"/>
- <technique vertex_type="PositionNormal" effect="PositionNormalTechniqueCutout"/>
- <technique vertex_type="PositionBump" effect="PositionBumpTechniqueCutout"/>
- <technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueCutout"/>
- <technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueCutout"/>
-</pool>
-
-<pool name="transparent">
- <technique vertex_type="PositionUV" effect="PositionUVTechniqueTransparent"/>
- <technique vertex_type="PositionNormal" effect="PositionNormalTechniqueTransparent"/>
- <technique vertex_type="PositionBump" effect="PositionBumpTechniqueTransparent"/>
- <technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueTransparent"/>
- <technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueTransparent"/>
-</pool> </technique_pools>
+	<pool name="forward">
+	 <technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
+	 <technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
+	 <technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2TechniqueForward"/>
+	 <technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
+	</pool>
+</technique_pools>

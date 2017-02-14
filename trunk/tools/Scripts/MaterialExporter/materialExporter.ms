@@ -29,92 +29,129 @@ function process = (
 		
 		--Creamos un objeto con la estructura y añadimos el nombre
 		local lSMaterial = sMaterial()
+
 		lSMaterial.m_name = mMaterial.name
 		lSMaterial.m_vertexType = "PositionNormal"
-		
 		lSMaterial.m_opacity = mMaterial.opacity
-		
+		print("1: " + lSMaterial.m_vertexType)
+
 
 		--Datos bump
 		lSMaterial.m_bumpEnabled = mMaterial.bumpMapEnable
-		if lSMaterial.m_bumpEnabled == true then (
+		
+		if lSMaterial.m_bumpEnabled == true then 
+		(
 			lSMaterial.m_bumpMap = mMaterial.bumpMap
 			lSMaterial.m_bumpBitmap = mMaterial.bumpMap.bitmap
-			if lSMaterial.m_bumpBitmap != undefined then (				
+			
+			if lSMaterial.m_bumpBitmap != undefined then 
+			(				
 					lSMaterial.m_bumpAmount = mMaterial.bumpMapAmount
 					lSMaterial.m_vertexType = "PositionBump"			
-			)else (
+			)
+			else 
+			(
 					lSMaterial.m_bumpEnabled = false
 			)
-			
 		)
+		print("2: " + lSMaterial.m_vertexType)
 
 		--Obtenemos los datos referentes al diffuse del material
 		lSMaterial.m_diffuseEnabled = mMaterial.diffuseMapEnable
-		if lSMaterial.m_diffuseEnabled == true then (
+		
+		if lSMaterial.m_diffuseEnabled == true then 
+		(
 			lSMaterial.m_diffuseMap = mMaterial.diffuseMap
 			lSMaterial.m_diffuseBitmap = mMaterial.diffuseMap.bitmap
-			if lSMaterial.m_diffuseBitmap != undefined then(
+			
+			if lSMaterial.m_diffuseBitmap != undefined then
+			(
 				--lSMaterial.m_diffuseBitmapTexture = iMaterial.diffuseMap.bitmap .filename
 				lSMaterial.m_diffuseColor = mMaterial.diffuse
 				lSMaterial.m_diffuseAmount = mMaterial.diffuseMapAmount
-			)else (
+			)
+			else 
+			(
 				lSMaterial.m_diffuseEnabled == false
 			)
 		)	
 		
-		
 		--Datos ambient map
 		lSMaterial.m_ambientEnabled = mMaterial.ambientMapEnable
-		if lSMaterial.m_ambientEnabled == true then (
+		
+		if lSMaterial.m_ambientEnabled == true then 
+		(
 			lSMaterial.m_ambientMap = mMaterial.ambientMap
 			lSMaterial.m_ambientBitmap = mMaterial.ambientMap.bitmap
-			if lSMaterial.m_ambientBitmap != undefined then(
+			
+			if lSMaterial.m_ambientBitmap != undefined then
+			(
 				lSMaterial.m_ambientAmount = mMaterial.ambientMapAmount
 				lSMaterial.m_ambientColor = mMaterial.ambient
-			)else(
+			)
+			else
+			(
 				lSMaterial.m_ambientMapEnabled = false
 			)
 		)		
 		
 		--Datos specular level
 		lSMaterial.m_specularLevelEnabled = mMaterial.specularLevelMapEnable
-		if lSMaterial.m_specularLevelEnabled == true then (
+		
+		if lSMaterial.m_specularLevelEnabled == true then 
+		(
 			lSMaterial.m_specularLevelMap = mMaterial.specularLevelMap
 			lSMaterial.m_specularLevelBitmap = mMaterial.specularLevelMap.bitmap
-			if lSMaterial.m_specularLevelBitmap != undefined then(
+			
+			if lSMaterial.m_specularLevelBitmap != undefined then
+			(
 				lSMaterial.m_specularLevelAmount = mMaterial.specularLevelMapAmount
-			)else(
+			)
+			else
+			(
 				lSMaterial.m_specularLevelEnabled = false
 			)
 		)		
 		
 		--Datos specular
 		lSMaterial.m_specularEnabled = mMaterial.specularMapEnable
-		if lSMaterial.m_specularEnabled == true then (
+		
+		if lSMaterial.m_specularEnabled == true then 
+		(
 			lSMaterial.m_specularMap = mMaterial.specularMap
 			lSMaterial.m_specularBitmap = mMaterial.specularMap.bitmap
-			if lSMaterial.m_specularBitmap != undefined then(
+			
+			if lSMaterial.m_specularBitmap != undefined then
+			(
 				lSMaterial.m_specularAmount = mMaterial.specularMapAmount
 				lSMaterial.m_specularColor = mMaterial.specular
-			)else(
+			)
+			else
+			(
 				lSMaterial.m_specularEnabled = false
 			)
 		)	
 		
 		--Datos glossiness
 		lSMaterial.m_glossinessEnabled = mMaterial.glossinessMapEnable
-		if lSMaterial.m_glossinessEnabled == true then (
+		
+		if lSMaterial.m_glossinessEnabled == true then 
+		(
 			lSMaterial.m_glossinessMap = mMaterial.glossinessMap
 			lSMaterial.m_glossinessBitmap = mMaterial.glossinessMap.bitmap
-			if lSMaterial.m_glossinessBitmap != undefined then(
+			
+			if lSMaterial.m_glossinessBitmap != undefined then
+			(
 				lSMaterial.m_glossinessAmount = mMaterial.glossinessMapAmount
-			)else(
+			)
+			else
+			(
 				lSMaterial.m_glossinessEnabled = false
 			)
 		)
 
-		if lSMaterial.m_glossinessEnabled or lSMaterial.m_specularEnabled or lSMaterial.m_diffuseEnabled then(
+		if lSMaterial.m_glossinessEnabled or lSMaterial.m_specularEnabled or lSMaterial.m_diffuseEnabled then
+		(
 			lSMaterial.m_vertexType = lSMaterial.m_vertexType + "UV"
 		)
 
@@ -126,10 +163,7 @@ function process = (
 			lSMaterial.m_selfIllumBitmap = mMaterial.selfIllumMap.bitmap
 			if lSMaterial.m_selfIllumBitmap != undefined then(
 				lSMaterial.m_selfIllumAmount = mMaterial.selfIllumMapAmount
-				if lSMaterial.m_vertexType == "PositionBumpUV" then(
 					lSMaterial.m_vertexType = lSMaterial.m_vertexType + "UV2"
-
-					)
 			)else (
 				lSMaterial.m_selfIllumEnabled = false
 			)
