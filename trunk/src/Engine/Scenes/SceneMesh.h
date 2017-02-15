@@ -9,9 +9,10 @@ class CRenderManager;
 class CSceneMesh : public CSceneNode
 {
 public:
-    CSceneMesh(CXMLElement* aElement);
+    explicit CSceneMesh(CXMLElement* aElement);
     CSceneMesh(CXMLElement* aElement, CMesh* aMesh);
     virtual ~CSceneMesh();
+    bool Update(float aDeltaTime);
     virtual bool Render(CRenderManager& aRendermanager);
 protected:
     CMesh* mMesh;

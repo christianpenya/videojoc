@@ -23,10 +23,17 @@ CSceneNode::~CSceneNode() {}
 
 bool CSceneNode::Update(float aDeltaTime)
 {
-    return false;
+    return true;
 }
 
 bool CSceneNode::Render(CRenderManager& lRM)
 {
-    return false;
+    Vector4<float> lBSCenter(mBS.GetCenter().x, mBS.GetCenter().y, mBS.GetCenter().z, 0);
+    lBSCenter = lRM.GetViewProjectionMatrix() * lBSCenter;
+    mBS.SetCenter(Vect3f(lBSCenter.x, lBSCenter.y, lBSCenter.z));
+
+    m_Visible = lRM.m_Frustum->IsVisible(mBS);
+
+    // Todo: Check BS with currentfrustum
+    return m_Visible;
 }

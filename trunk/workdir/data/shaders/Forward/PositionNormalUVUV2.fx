@@ -3,7 +3,7 @@
 
 Texture2D DiffuseTexture :
 register(t0);
-SamplerState LinearSampler :
+SamplerState DiffuseSampler :
 register(s0);
 
 Texture2D LightmapTexture :
@@ -62,17 +62,18 @@ float4 PS( PS_INPUT IN ) : SV_Target
     float3 NormalPixel = normalize(IN.Normal);
 
     float3 WorldPos = IN.WorldPosition;
-    float4 ColorPixel = DiffuseTexture.Sample(LinearSampler, IN.UV);
+    float4 ColorPixel = DiffuseTexture.Sample(DiffuseSampler, IN.UV);
+    float4 l_LightmapPixel = LightmapTexture.Sample(LightmapSampler, IN.UV) * 2;
+    //Doblamos contribucion del lightmap para equiparar efecto de 3DSMax
 
-    float3 l_LAmbient = m_LightAmbient.xyz * ColorPixel.xyz;
-
+    float3 l_LAmbient = l_LightmapPixel.xyz * ColorPixel.xyz;
     float3 DiffuseColor = float3(0.0, 0.0, 0.0);
     float3 SpecularColor = float3(0.0, 0.0, 0.0);
 
     float3 l_LDiffuseSpecular = float3(0.0, 0.0, 0.0);
     float3 l_LDiffuseSpecularTmp = float3(0.0, 0.0, 0.0);
 
-    for (int IdLight = 0; IdLight<MAX_LIGHTS_BY_SHADER; IdLight++)
+    for (int IdLight = 0; IdLight<MAX_LIGHTS_BY_SHADER; ++IdLight)
     {
         CalculateSingleLight(IdLight, NormalPixel, WorldPos, ColorPixel, DiffuseColor, SpecularColor);
 
@@ -83,5 +84,5 @@ float4 PS( PS_INPUT IN ) : SV_Target
         SpecularColor = float3(0.0, 0.0, 0.0);
     }
 
-    return float4(l_LAmbient + l_LDiffuseSpecular, 1.0) * LightmapTexture.Sample(LinearSampler, IN.UV);;
+    return float4(l_LAmbient + l_LDiffuseSpecular, 1.0);
 }

@@ -63,7 +63,7 @@ bool CLayer::Load(CXMLElement* aElement)
 bool CLayer::Update(float elapsedTime)
 {
     bool lOk = true;
-    for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode) //RECORRER VECTOR
+    for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode) // #TODO RECORRER VECTOR
     {
         lOk &= iSceneNode->second.m_Value->Update(elapsedTime);
     }

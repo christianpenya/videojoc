@@ -19,14 +19,17 @@ public:
     {
         _RenderManager.SetViewMatrix(m_Position, m_Position + m_Front, m_Up);
     }
+
     Vect3f getFront()
     {
         return m_Front;
     }
+
     Vect3f getUp()
     {
         return m_Up;
     }
+
     Vect3f getPosition()
     {
         return m_Position;

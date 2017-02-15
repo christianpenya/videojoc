@@ -12,7 +12,6 @@
 #include "Engine\Engine.h"
 #include "Effects\Technique.h"
 #include "Effects\TechniquePoolManager.h"
-#include "Engine\Engine.h"
 
 CMaterial::~CMaterial()
 {

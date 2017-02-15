@@ -11,6 +11,7 @@
 #include "dxgi.h"
 #include "Math/Color.h"
 #include "Math/Matrix44.h"
+#include "Camera/Frustum.h"
 #define MAX_RENDER_TARGETS 5
 
 
@@ -40,7 +41,6 @@ protected:
     releaser_ptr<ID3D11Texture2D>					m_DepthStencil;
     releaser_ptr<ID3D11DepthStencilView>			m_DepthStencilView;
     releaser_ptr<ID3D11Debug>						m_D3DDebug;
-
 
     releaser_ptr<ID3D11Buffer	>						m_DebugVertexBuffer;
     int										*m_DebugVertexBufferCurrentIndex;
@@ -145,19 +145,19 @@ public:
     void SetModelMatrix(const Mat44f &Model);
 
     void SetViewMatrix(const Mat44f &View);
-    Mat44f GetViewMatrix()
+    Mat44f GetViewMatrix() const
     {
         return m_ViewMatrix;
     }
 
     void SetProjectionMatrix(const Mat44f &Projection);
-    Mat44f GetProjectionMatrix()
+    Mat44f GetProjectionMatrix() const
     {
         return m_ProjectionMatrix;
     }
 
     void SetViewProjectionMatrix(const Mat44f &View, const Mat44f &Projection);
-    Mat44f GetViewProjectionMatrix()
+    Mat44f GetViewProjectionMatrix() const
     {
         return m_ViewProjectionMatrix;
     }
@@ -165,26 +165,28 @@ public:
     void SetViewMatrix(const Vect3f& vPos, const Vect3f& vTarget, const Vect3f& vUp);
     void SetProjectionMatrix(float fovy, float aspect, float zn, float zf);
 
-    ID3D11Device* GetDevice()
+    ID3D11Device* GetDevice() const
     {
         return m_Device.get();
     }
-    ID3D11DeviceContext* GetDeviceContext()
+    ID3D11DeviceContext* GetDeviceContext() const
     {
         return m_DeviceContext.get();
     }
     void Resize(float Width, float Height, HWND hWnd);
-    void CreateBackBuffers(float Width, float Height, HWND hWnd);
     void ClearAltIntro(HWND hWnd);
     void ToggleFullscreen(HWND Window, WINDOWPLACEMENT &WindowPosition);
 
-
     void Clear(bool renderTarget, bool depthStencil, const CColor& backgroundColor);
-    void SetViewport(const Vect2u & aPosition, const Vect2u & aSize);
-    void ResetViewport();
+    void SetViewport(const Vect2u & aPosition, const Vect2u & aSize) const;
+    void ResetViewport() const;
     void UnsetRenderTargets();
     void SetRenderTargets(int aNumViews, ID3D11RenderTargetView **aRenderTargetViews, ID3D11DepthStencilView *aDepthStencilViews);
-    Mat44f m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix; // se movio de protected para render pipeline
+    void Update();
+
+    Mat44f m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix; //#TODO, tienen getter y setter publico, no se pueden devolver a private? Render pipeline.
+
+    CFrustum* m_Frustum;
 
 private:
     ID3D11RenderTargetView* m_CurrentRenderTargetViews[MAX_RENDER_TARGETS];

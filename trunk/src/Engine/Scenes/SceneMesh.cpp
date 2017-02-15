@@ -4,7 +4,6 @@
 #include "Render\RenderManager.h"
 #include "XML\tinyxml2\tinyxml2.h"
 #include "Engine\Engine.h"
-#include "Utils\Name.h"
 #include "Scenes\ConstantBufferManager.h"
 
 CSceneMesh::CSceneMesh(CXMLElement* aElement)
@@ -21,11 +20,20 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement, CMesh* aMesh)
 
 CSceneMesh::~CSceneMesh() {}
 
+bool CSceneMesh::Update(float aDeltaTime)
+{
+    bool lOk = true;
+
+    mBS = mMesh->GetBoundingSphere();
+
+    return lOk;
+}
+
 bool CSceneMesh::Render(CRenderManager& aRendermanager)
 {
-    bool lOk = false;
+    bool lOk = CSceneNode::Render(aRendermanager);
 
-    if (mMesh && IsVisible())
+    if (mMesh && lOk)
     {
         CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
         lCB.mObjDesc.m_World = GetMatrix();

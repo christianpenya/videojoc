@@ -7,7 +7,7 @@
 			<transform position="3.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
 		</scene_mesh>-->
 		<scene_mesh name="Box01" mesh="data/meshes/BOX_Lightmap.mesh" >
-			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="4.0 4.0 4.0" />
 		</scene_mesh>
 	</layer>
  	<layer name="sereno" active = "false">
@@ -19,7 +19,7 @@
 		<scene_light name="Omni001" id_light="3" >
 			<transform position="0.0 10.0 0.0" forward="0.0 1.0 0.0" />
 		</scene_light>
-		<scene_light name="Spot001" id_light="2" >
+		<!--<scene_light name="Spot001" id_light="2" >
 			<transform position="0.0 0.0 10.0" forward="0.0 0.0 -1.0" />
 		</scene_light>
 		<scene_light name="Direct001" id_light="0" >
@@ -27,6 +27,6 @@
 		</scene_light>
 		<scene_light name="Direct002" id_light="1" >
 			<transform position="-10.0 0.0 0.0" forward="1.0 0.0 0.0" />
-		</scene_light>
-	</layer>
+		</scene_light> -->
+	</layer> 
  </scene>

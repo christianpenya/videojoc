@@ -15,6 +15,7 @@ float3 Normal :
 float2 UV :
     TEXCOORD0;
 };
+
 struct PS_INPUT
 {
 float4 Pos :
@@ -54,7 +55,6 @@ float4 PS( PS_INPUT IN ) : SV_Target
     float4 ColorPixel = DiffuseTexture.Sample(LinearSampler, IN.UV);
 
     float3 l_LAmbient = m_LightAmbient.xyz * ColorPixel.xyz;
-
 
     float3 DiffuseColor = float3(0.0, 0.0, 0.0);
     float3 SpecularColor = float3(0.0, 0.0, 0.0);

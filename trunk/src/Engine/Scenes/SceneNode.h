@@ -4,6 +4,7 @@
 
 #include "Math\Transform.h"
 #include "Utils\Name.h"
+#include "Mesh/BoundingSphere.h"
 
 class CRenderManager;
 
@@ -18,6 +19,7 @@ public:
     GET_SET_BOOL(Visible)
 protected:
     bool m_Visible;
+    CBoundingSphere mBS;
 };
 
 #endif //_ENGINE_SCENENODE_20170110_H

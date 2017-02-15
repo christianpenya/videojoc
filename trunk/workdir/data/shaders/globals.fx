@@ -70,6 +70,7 @@ void CalculateSingleLight(
 {
     if (m_LightEnabledArray[IdLight] == 1)
     {
+        // TODO pasar como parametro del material
         float g_SpecularExponent = 80.0;
         float g_SpecularContrib = 1.0;
 

@@ -159,7 +159,6 @@ bool CMesh::Load(const std::string& aFilename)
 bool CMesh::Render(CRenderManager& aRM)
 {
     bool lOk = true;
-    CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
 
     for (size_t i = 0, lCount = mGeometries.size(); i < lCount; ++i)
     {

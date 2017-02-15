@@ -2,7 +2,6 @@
 
 void CRenderManager::Init(HWND hWnd, int Width, int Height, bool debugD3D=false)
 {
-
     InitDevice_SwapChain_DeviceContext(hWnd, Width, Height, debugD3D);
     Get_RendertargetView();
     Create_DepthStencil(hWnd, Width, Height);
@@ -12,13 +11,12 @@ void CRenderManager::Init(HWND hWnd, int Width, int Height, bool debugD3D=false)
     SetViewProjectionMatrix(m_ViewMatrix, m_ProjectionMatrix);
     CreateDebugShader();
 
-    //CMaterialManager materialManager;
-    //materialManager.Load("reclusion.xml","default.xml");
-
     m_BackgroundColor = { 1, 0, 1, 1 };
     m_SphereOffset(0.0f, 0.0f, 0.0f);
 
     CreateDebugObjects();
+
+    m_Frustum = new CFrustum();
 }
 
 bool CRenderManager::InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height, bool debugD3D)
@@ -161,7 +159,7 @@ bool CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height)
     descDSV.Format = descDepth.Format;
     descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
     descDSV.Texture2D.MipSlice = 0;
-//	auto ds = m_DepthStencil.get();
+    //	auto ds = m_DepthStencil.get();
     //auto dsv = m_DepthStencilView.get();
     ID3D11DepthStencilView			*l_DepthStencilView;
     hr = m_Device->CreateDepthStencilView(l_DepthStencil, &descDSV, &l_DepthStencilView);
@@ -201,7 +199,6 @@ void CRenderManager::Set_Viewport(float Width, float Height)
 
 void CRenderManager::SetRendertarget()
 {
-
     auto dsv = m_DepthStencilView.get();
     auto rtv = m_RenderTargetView.get();
     m_DeviceContext->OMSetRenderTargets(1, &rtv, dsv);
@@ -309,7 +306,6 @@ bool CRenderManager::CreateDebugShader()
     return true;
 }
 
-
 void CRenderManager::Draw_Triangle()
 {
     CDebugVertex resultBuffer[] =
@@ -332,12 +328,10 @@ void CRenderManager::Draw_Triangle()
 #endif
 
     memcpy(resource.pData, resultBuffer, 3 * sizeof(CDebugVertex));
-    //auto dvb = m_DebugVertexBuffer.get();
     m_DeviceContext->Unmap(dvb, 0);
 
     UINT stride = sizeof(CDebugVertex);
     UINT offset = 0;
-//	auto dvb = m_DebugVertexBuffer.get();
     m_DeviceContext->IASetVertexBuffers(0, 1, &dvb, &stride, &offset);
     m_DeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     auto dvl = m_DebugVertexLayout.get();
@@ -367,7 +361,6 @@ void CRenderManager::CreateDebugObjects()
 
     m_AxisRenderableVertexs = l_AxisVtxs;
     m_NumVerticesAxis = 6;
-
 
     //CUBE
     const float l_SizeCube = 1.0f;
@@ -526,7 +519,6 @@ void CRenderManager::SetProjectionMatrix(float fovy, float aspect, float zn, flo
     SetProjectionMatrix(Projection);
 }
 
-
 void CRenderManager::DebugRender(const Mat44f& modelViewProj, const CDebugVertex* modelVertices, int numVertices, CColor colorTint)
 {
     CDebugVertex *resultBuffer = (CDebugVertex *)alloca(numVertices * sizeof(CDebugVertex));
@@ -627,18 +619,7 @@ void CRenderManager::Resize(float Width, float Height, HWND hWnd)
         Create_DepthStencil(hWnd, Width, Height);
         SetProjectionMatrix(45.0f, (float)Width / (float)Height, 0.5f, 100.0f);
     }
-
 }
-
-/*void CRenderManager::CreateBackBuffers(float Width, float Height, HWND hWnd)
-{
-    //Create_DepthStencil(hWnd, Width, Height);
-    Set_Viewport(Width, Height);
-    SetProjectionMatrix(45.0f, Width / Height, 0.5f, 100.0f);
-    SetRendertarget();
-    SetViewProjectionMatrix(m_ViewMatrix, m_ProjectionMatrix);
-    CreateDebugShader();
-}*/
 
 void CRenderManager::ClearAltIntro(HWND hWnd)
 {
@@ -651,7 +632,6 @@ void CRenderManager::ClearAltIntro(HWND hWnd)
 
     dxgiFactory->Release();
 }
-
 
 void CRenderManager::ToggleFullscreen(HWND Window, WINDOWPLACEMENT &WindowPosition)
 {
@@ -691,7 +671,6 @@ void CRenderManager::ReportLive()
 
 }
 
-
 // Rendering
 void CRenderManager::BeginRender()
 {
@@ -701,7 +680,6 @@ void CRenderManager::BeginRender()
     m_DeviceContext->ClearDepthStencilView(dsv, D3D11_CLEAR_DEPTH, 1.0f, 0);
     this->SetSolidRenderState();
 }
-
 
 void CRenderManager::SetSolidRenderState()
 {
@@ -713,8 +691,6 @@ void CRenderManager::EndRender()
 {
     m_SwapChain->Present(1, 0);
 }
-
-
 
 void CRenderManager::Clear(bool renderTarget, bool depthStencil, const CColor& backgroundColor)
 {
@@ -734,7 +710,7 @@ void CRenderManager::Clear(bool renderTarget, bool depthStencil, const CColor& b
         m_DeviceContext->ClearDepthStencilView(m_DepthStencilView.get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
-void CRenderManager::SetViewport(const Vect2u & aPosition, const Vect2u & aSize)
+void CRenderManager::SetViewport(const Vect2u & aPosition, const Vect2u & aSize) const
 {
     D3D11_VIEWPORT l_Viewport;
     l_Viewport.Width = aSize.x*m_Viewport.Width;
@@ -746,7 +722,7 @@ void CRenderManager::SetViewport(const Vect2u & aPosition, const Vect2u & aSize)
     m_DeviceContext->RSSetViewports(1, &l_Viewport);
 }
 
-void CRenderManager::ResetViewport()
+void CRenderManager::ResetViewport() const
 {
     m_DeviceContext->RSSetViewports(1, &m_Viewport);
 }
@@ -769,4 +745,9 @@ void CRenderManager::SetRenderTargets(int aNumViews, ID3D11RenderTargetView **aR
         m_DeviceContext->OMSetRenderTargets(m_NumViews, m_CurrentRenderTargetViews, aDepthStencilViews);
     else
         m_DeviceContext->OMSetRenderTargets(m_NumViews, m_CurrentRenderTargetViews, m_DepthStencilView.get());
+}
+
+void CRenderManager::Update()
+{
+    m_Frustum->Update(m_ViewProjectionMatrix);
 }
