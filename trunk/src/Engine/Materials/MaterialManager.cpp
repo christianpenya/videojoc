@@ -22,7 +22,7 @@ bool CMaterialManager::Load(const std::string &Filename, bool UpdateFlag)
     bool out = false;
 
     CXMLDocument document;
-    EXMLParseError error = document.LoadFile((m_materialsFolderPath + Filename).c_str());
+    EXMLParseError error = document.LoadFile(Filename.c_str());
 
     if (base::xml::SucceedLoad(error))
     {
