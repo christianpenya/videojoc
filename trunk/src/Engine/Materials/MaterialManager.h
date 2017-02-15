@@ -24,8 +24,6 @@ public:
     void Save();
 
 private:
-    const std::string m_materialsFolderPath = "data/materials/";
-
     std::string m_LevelMaterialsFilename;
     std::string m_DefaultMaterialsFilename;
     bool Load(const std::string &Filename, bool Update = false);

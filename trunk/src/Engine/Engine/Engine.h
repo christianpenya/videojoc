@@ -10,6 +10,8 @@
 #include <chrono>
 #include "ImGUI\imgui.h"
 #include "imgui_impl_dx11.h"
+#include "Utils\StringUtils.h"
+
 
 class CRenderManager;
 class CInputManager;
@@ -26,11 +28,13 @@ class CLightManager;
 class CRenderPipeline;
 class CConstantBufferManager;
 class CAnimatedModelManager;
+class CScriptManager;
 
 #define BUILD_GET_SET_ENGINE_MANAGER( Manager ) \
 private: \
 C##Manager* m_##Manager = nullptr; \
 public: \
+std::string m_File##Manager; \
 void Set##Manager(C##Manager* a##Manager) { m_##Manager = a##Manager;  } \
 C##Manager& Get##Manager() { return *m_##Manager; } \
 bool Exist##Manager() { return m_##Manager != nullptr; } \
@@ -50,6 +54,8 @@ public:
     void Update();
     void Render();
     void Init(HWND hWnd);
+    void LoadFiles();
+    std::string m_FileDefaultMaterial;
 
     BUILD_GET_SET_ENGINE_MANAGER(MaterialManager);
     BUILD_GET_SET_ENGINE_MANAGER(TextureManager);
@@ -66,6 +72,7 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(RenderPipeline);
     BUILD_GET_SET_ENGINE_MANAGER(ConstantBufferManager);
     BUILD_GET_SET_ENGINE_MANAGER(AnimatedModelManager);
+    BUILD_GET_SET_ENGINE_MANAGER(ScriptManager);
 
     double m_DeltaTime;
     clock_t m_DeltaTimeAcum = 0;
