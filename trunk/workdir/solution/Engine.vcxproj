@@ -131,8 +131,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>DEBUG;LUA_REAL_FLOAT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
     </ClCompile>
@@ -148,8 +148,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>DEBUG;LUA_REAL_FLOAT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
     </ClCompile>
@@ -165,8 +165,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NO_DEBUG;LUA_REAL_FLOAT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NO_DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -183,8 +183,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NO_DEBUG;LUA_REAL_FLOAT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NO_DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -201,8 +201,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NO_DEBUG;NO_LOG;LUA_REAL_FLOAT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NO_DEBUG;NO_LOG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -219,8 +219,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NO_DEBUG;NO_LOG;LUA_REAL_FLOAT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NO_DEBUG;NO_LOG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -316,6 +316,9 @@
     <ClInclude Include="..\..\src\Engine\Scenes\SceneManager.h" />
     <ClInclude Include="..\..\src\Engine\Scenes\SceneMesh.h" />
     <ClInclude Include="..\..\src\Engine\Scenes\SceneNode.h" />
+    <ClInclude Include="..\..\src\Engine\Script\Script.h" />
+    <ClInclude Include="..\..\src\Engine\Script\ScriptManager.h" />
+    <ClInclude Include="..\..\src\Engine\Script\lua_utils.h" />
     <ClInclude Include="..\..\src\Engine\Textures\Texture.h" />
     <ClInclude Include="..\..\src\Engine\Textures\TextureManager.h" />
   </ItemGroup>
@@ -401,6 +404,9 @@
     <ClCompile Include="..\..\src\Engine\Scenes\SceneManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Scenes\SceneMesh.cpp" />
     <ClCompile Include="..\..\src\Engine\Scenes\SceneNode.cpp" />
+    <ClCompile Include="..\..\src\Engine\Script\Bindings\EngineBindings.cpp" />
+    <ClCompile Include="..\..\src\Engine\Script\Script.cpp" />
+    <ClCompile Include="..\..\src\Engine\Script\ScriptManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Textures\Texture.cpp" />
     <ClCompile Include="..\..\src\Engine\Textures\TextureManager.cpp" />
   </ItemGroup>
