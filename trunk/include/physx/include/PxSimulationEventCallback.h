@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -41,7 +24,7 @@
 #include "PxFiltering.h"
 #include "PxContact.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -49,7 +32,6 @@ namespace physx
 class PxShape;
 class PxActor;
 class PxRigidActor;
-class PxRigidBody;
 class PxConstraint;
 
 
@@ -326,7 +308,10 @@ struct PxContactPairHeaderFlag
 	enum Enum
 	{
 		eREMOVED_ACTOR_0				= (1<<0),			//!< The actor with index 0 has been removed from the scene.
-		eREMOVED_ACTOR_1				= (1<<1)			//!< The actor with index 1 has been removed from the scene.
+		eREMOVED_ACTOR_1				= (1<<1),			//!< The actor with index 1 has been removed from the scene.
+		PX_DEPRECATED eDELETED_ACTOR_0	= eREMOVED_ACTOR_0,	//!< \deprecated use eREMOVED_ACTOR_0 instead
+		PX_DEPRECATED eDELETED_ACTOR_1	= eREMOVED_ACTOR_1	//!< \deprecated use eREMOVED_ACTOR_1 instead
+		
 	};
 };
 
@@ -383,16 +368,6 @@ struct PxContactPairHeader
 	@see PxContactPairHeaderFlag
 	*/
 	PxContactPairHeaderFlags	flags;
-
-	/**
-	\brief pointer to the contact pairs
-	*/
-	const struct PxContactPair*	pairs;
-
-	/**
-	\brief number of contact pairs
-	*/
-	PxU32						nbPairs;
 };
 
 
@@ -416,6 +391,16 @@ struct PxContactPairFlag
 		eREMOVED_SHAPE_1				= (1<<1),
 
 		/**
+		\deprecated use eREMOVED_SHAPE_0 instead
+		*/
+		PX_DEPRECATED eDELETED_SHAPE_0	= eREMOVED_SHAPE_0,
+
+		/**
+		\deprecated use eREMOVED_SHAPE_1 instead
+		*/
+		PX_DEPRECATED eDELETED_SHAPE_1	= eREMOVED_SHAPE_1,
+		
+		/**
 		\brief First actor pair contact.
 
 		The provided shape pair marks the first contact between the two actors, no other shape pair has been touching prior to the current simulation frame.
@@ -434,17 +419,24 @@ struct PxContactPairFlag
 		/**
 		\brief Internal flag, used by #PxContactPair.extractContacts()
 
+		For meshes/heightfields the flag indicates that the contact points provide internal triangle index information.
+		*/
+		eINTERNAL_HAS_FACE_INDICES		= (1<<4),
+
+		/**
+		\brief Internal flag, used by #PxContactPair.extractContacts()
+
 		The applied contact impulses are provided for every contact point. 
 		This is the case if #PxPairFlag::eSOLVE_CONTACT has been set for the pair.
 		*/
-		eINTERNAL_HAS_IMPULSES			= (1<<4),
+		eINTERNAL_HAS_IMPULSES			= (1<<5),
 
 		/**
 		\brief Internal flag, used by #PxContactPair.extractContacts()
 
 		The provided contact point information is flipped with regards to the shapes of the contact pair. This mainly concerns the order of the internal triangle indices.
 		*/
-		eINTERNAL_CONTACTS_ARE_FLIPPED	= (1<<5)
+		eINTERNAL_CONTACTS_ARE_FLIPPED	= (1<<6)
 	};
 };
 
@@ -521,28 +513,12 @@ struct PxContactPair
 	PxShape*				shapes[2];
 
 	/**
-	\brief Pointer to first patch header in contact stream containing contact patch data
+	\brief Contact stream containing contact point data
 
 	This pointer is only valid if contact point information has been requested for the contact report pair (see #PxPairFlag::eNOTIFY_CONTACT_POINTS).
 	Use #extractContacts() as a reference for the data layout of the stream.
 	*/
-	const PxU8* contactPatches;
-
-	/**
-	\brief Pointer to first contact point in contact stream containing contact data
-
-	This pointer is only valid if contact point information has been requested for the contact report pair (see #PxPairFlag::eNOTIFY_CONTACT_POINTS).
-	Use #extractContacts() as a reference for the data layout of the stream.
-	*/
-	const PxU8* contactPoints;
-
-	/**
-	\brief Buffer containing applied impulse data.
-
-	This pointer is only valid if contact point information has been requested for the contact report pair (see #PxPairFlag::eNOTIFY_CONTACT_POINTS).
-	Use #extractContacts() as a reference for the data layout of the stream.
-	*/
-	const PxReal*			contactImpulses;
+	const PxU8*				contactStream;
 
 	/**
 	\brief Size of the contact stream [bytes] including force buffer
@@ -552,13 +528,7 @@ struct PxContactPair
 	/**
 	\brief Number of contact points stored in the contact stream
 	*/
-	PxU8					contactCount;
-
-	/**
-	\brief Number of contact patches stored in the contact stream
-	*/
-
-	PxU8					patchCount;
+	PxU16					contactCount;
 
 	/**
 	\brief Size of the contact stream [bytes] not including force buffer
@@ -602,7 +572,7 @@ struct PxContactPair
 	/**
 	\brief Extracts the contact points from the stream and stores them in a convenient format.
 	
-	\param[out] userBuffer Array of PxContactPairPoint structures to extract the contact points to. The number of contacts for a pair is defined by #contactCount
+	\param[in] userBuffer Array of PxContactPairPoint structures to extract the contact points to. The number of contacts for a pair is defined by #contactCount
 	\param[in] bufferSize Number of PxContactPairPoint structures the provided buffer can store.
 	\return Number of contact points written to the buffer.
 
@@ -616,27 +586,30 @@ struct PxContactPair
 	The contact data stream is only accessible during the contact report callback. This helper function provides copy functionality
 	to buffer the contact stream information such that it can get accessed at a later stage.
 
-	\param[out] newPair The contact pair info will get copied to this instance. The contact data stream pointer of the copy will be redirected to the provided user buffer. Use NULL to skip the contact pair copy operation.
-	\param[out] bufferMemory Memory block to store the contact data stream to. At most #requiredBufferSize bytes will get written to the buffer.
+	\param[in] newPair The contact pair info will get copied to this instance. The contact data stream pointer of the copy will be redirected to the provided user buffer. Use NULL to skip the contact pair copy operation.
+	\param[in] bufferMemory Memory block to store the contact data stream to. At most #requiredBufferSize bytes will get written to the buffer.
 	*/
-	PX_INLINE void				bufferContacts(PxContactPair* newPair, PxU8* bufferMemory) const;
-
-	PX_INLINE const PxU32*		getInternalFaceIndices() const;
+	PX_INLINE void			bufferContacts(PxContactPair* newPair, PxU8* bufferMemory) const;
 };
 
 
 PX_INLINE PxU32 PxContactPair::extractContacts(PxContactPairPoint* userBuffer, PxU32 bufferSize) const
 {
+	const PxU8* stream = contactStream;
+
 	PxU32 nbContacts = 0;
 
 	if(contactCount && bufferSize)
 	{
-		PxContactStreamIterator iter(contactPatches, contactPoints, getInternalFaceIndices(), patchCount, contactCount);
+		PxContactStreamIterator iter((PxU8*)stream, contactStreamSize);
 
-		const PxReal* impulses = contactImpulses;
+		stream += ((contactStreamSize + 15) & ~15);
 
-		const PxU32 flippedContacts = (flags & PxContactPairFlag::eINTERNAL_CONTACTS_ARE_FLIPPED);
-		const PxU32 hasImpulses = (flags & PxContactPairFlag::eINTERNAL_HAS_IMPULSES);
+		const PxReal* impulses = reinterpret_cast<const PxReal*>(stream);
+
+		PxU32 flippedContacts = (flags & PxContactPairFlag::eINTERNAL_CONTACTS_ARE_FLIPPED);
+		PxU32 hasImpulses = (flags & PxContactPairFlag::eINTERNAL_HAS_IMPULSES);
+
 
 		while(iter.hasNextPatch())
 		{
@@ -648,7 +621,7 @@ PX_INLINE PxU32 PxContactPair::extractContacts(PxContactPairPoint* userBuffer, P
 				dst.position = iter.getContactPoint();
 				dst.separation = iter.getSeparation();
 				dst.normal = iter.getContactNormal();
-				if(!flippedContacts)
+				if (!flippedContacts)
 				{
 					dst.internalFaceIndex0 = iter.getFaceIndex0();
 					dst.internalFaceIndex1 = iter.getFaceIndex1();
@@ -659,9 +632,9 @@ PX_INLINE PxU32 PxContactPair::extractContacts(PxContactPairPoint* userBuffer, P
 					dst.internalFaceIndex1 = iter.getFaceIndex0();
 				}
 
-				if(hasImpulses)
+				if (hasImpulses)
 				{
-					const PxReal impulse = impulses[nbContacts];
+					PxReal impulse = impulses[nbContacts];
 					dst.impulse = dst.normal * impulse;
 				}
 				else
@@ -679,33 +652,16 @@ PX_INLINE PxU32 PxContactPair::extractContacts(PxContactPairPoint* userBuffer, P
 
 PX_INLINE void PxContactPair::bufferContacts(PxContactPair* newPair, PxU8* bufferMemory) const
 {
-	PxU8* patches = bufferMemory;
-	PxU8* contacts = NULL;
-	if(patches)
-	{
-		contacts = bufferMemory + patchCount * sizeof(PxContactPatch);
-		PxMemCopy(patches, contactPatches, sizeof(PxContactPatch)*patchCount);
-		PxMemCopy(contacts, contactPoints, contactStreamSize - (sizeof(PxContactPatch)*patchCount));
-	}
-
-	if(contactImpulses)
-	{
-		PxMemCopy(bufferMemory + ((contactStreamSize + 15) & (~15)), contactImpulses, sizeof(PxReal) * contactCount);
-	}
-
 	if (newPair)
 	{
 		*newPair = *this;
-		newPair->contactPatches = patches;
-		newPair->contactPoints = contacts;
+		newPair->contactStream = bufferMemory;
 	}
+
+	if (contactStream)
+		PxMemCopy(bufferMemory, contactStream, requiredBufferSize);
 }
 
-
-PX_INLINE const PxU32* PxContactPair::getInternalFaceIndices() const
-{
-	return reinterpret_cast<const PxU32*>(contactImpulses + contactCount);
-}
 
 /**
 \brief Collection of flags providing information on trigger report pairs.
@@ -718,6 +674,8 @@ struct PxTriggerPairFlag
 	{
 		eREMOVED_SHAPE_TRIGGER					= (1<<0),					//!< The trigger shape has been removed from the actor/scene.
 		eREMOVED_SHAPE_OTHER					= (1<<1),					//!< The shape causing the trigger event has been removed from the actor/scene.
+		PX_DEPRECATED eDELETED_SHAPE_TRIGGER	= eREMOVED_SHAPE_TRIGGER,	//!< \deprecated use eREMOVED_SHAPE_TRIGGER instead
+		PX_DEPRECATED eDELETED_SHAPE_OTHER		= eREMOVED_SHAPE_OTHER,		//!< \deprecated use eREMOVED_SHAPE_OTHER instead
 		eNEXT_FREE								= (1<<2)					//!< For internal use only.
 	};
 };
@@ -749,7 +707,7 @@ struct PxTriggerPair
 
 	PxShape*				triggerShape;	//!< The shape that has been marked as a trigger.
 	PxRigidActor*			triggerActor;	//!< The actor to which triggerShape is attached
-	PxShape*				otherShape;		//!< The shape causing the trigger event. \deprecated (see #PxSimulationEventCallback::onTrigger()) If collision between trigger shapes is enabled, then this member might point to a trigger shape as well.
+	PxShape*				otherShape;		//!< The shape causing the trigger event. If collision between trigger shapes is enabled, then this member might point to a trigger shape as well.
 	PxRigidActor*			otherActor;		//!< The actor to which otherShape is attached
 	PxPairFlag::Enum		status;			//!< Type of trigger event (eNOTIFY_TOUCH_FOUND or eNOTIFY_TOUCH_LOST). eNOTIFY_TOUCH_PERSISTS events are not supported.
 	PxTriggerPairFlags		flags;			//!< Additional information on the pair (see #PxTriggerPairFlag)
@@ -777,16 +735,14 @@ struct PxConstraintInfo
 /**
 \brief An interface class that the user can implement in order to receive simulation events.
 
-With the exception of #onAdvance(), the events get sent during the call to either #PxScene::fetchResults() or 
-#PxScene::flushSimulation() with sendPendingReports=true. #onAdvance() gets called while the simulation
-is running (that is between PxScene::simulate()/::advance() and PxScene::fetchResults()).
+The events get sent during the call to either #PxScene::fetchResults() or #PxScene::flushSimulation() with sendPendingReports=true.
 
 \note SDK state should not be modified from within the callbacks. In particular objects should not
 be created or destroyed. If state modification is needed then the changes should be stored to a buffer
 and performed after the simulation step.
 
-<b>Threading:</b> With the exception of #onAdvance(), it is not necessary to make these callbacks thread safe as 
-they will only be called in the context of the user thread.
+<b>Threading:</b> It is not necessary to make this class thread safe as it will only be called in the context of the
+user thread.
 
 @see PxScene.setSimulationEventCallback() PxScene.getSimulationEventCallback()
 */
@@ -868,48 +824,17 @@ class PxSimulationEventCallback
 	Shapes which have been marked as triggers using PxShapeFlag::eTRIGGER_SHAPE will send events
 	according to the pair flag specification in the filter shader (see #PxPairFlag, #PxSimulationFilterShader).
 
-	\note Trigger shapes will no longer send notification events for interactions with other trigger shapes.
-	For PhysX 3.4 there is the option to re-enable the reports by raising #PxSceneFlag::eDEPRECATED_TRIGGER_TRIGGER_REPORTS.
-	In PhysX 3.5 there will be no support for these reports any longer. See the 3.4 migration guide for more information.
-
-	\param[in] pairs - The trigger pair events.
-	\param[in] count - The number of trigger pair events.
+	\param[in] pairs - The trigger pairs which caused events.
+	\param[in] count - The number of trigger pairs.
 
 	@see PxScene.setSimulationEventCallback() PxSceneDesc.simulationEventCallback PxPairFlag PxSimulationFilterShader PxShapeFlag PxShape.setFlag()
 	*/
 	virtual void onTrigger(PxTriggerPair* pairs, PxU32 count) = 0;
 
-	/**
-	\brief Provides early access to the new pose of moving rigid bodies.
-
-	When this call occurs, rigid bodies having the #PxRigidBodyFlag::eENABLE_POSE_INTEGRATION_PREVIEW 
-	flag set, were moved by the simulation and their new poses can be accessed through the provided buffers.
-	
-	\note The provided buffers are valid and can be read until the next call to #PxScene::simulate() or #PxScene::collide().
-	
-	\note Buffered user changes to the rigid body pose will not yet be reflected in the provided data. More important,
-	the provided data might contain bodies that have been deleted while the simulation was running. It is the user's
-	responsibility to detect and avoid dereferencing such bodies.
-
-	\note This callback gets triggered while the simulation is running. If the provided rigid body references are used to
-	read properties of the object, then the callback has to guarantee no other thread is writing to the same body at the same
-	time.
-	
-	\note The code in this callback should be lightweight as it can block the simulation, that is, the
-	#PxScene::fetchResults() call.
-
-	\param[in] bodyBuffer The rigid bodies that moved and requested early pose reporting.
-	\param[in] poseBuffer The integrated rigid body poses of the bodies listed in bodyBuffer.
-	\param[in] count The number of entries in the provided buffers.
-
-	@see PxScene.setSimulationEventCallback() PxSceneDesc.simulationEventCallback PxRigidBodyFlag::eENABLE_POSE_INTEGRATION_PREVIEW
-	*/
-	virtual void onAdvance(const PxRigidBody*const* bodyBuffer, const PxTransform* poseBuffer, const PxU32 count) = 0;
-
 	virtual ~PxSimulationEventCallback() {}
 	};
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

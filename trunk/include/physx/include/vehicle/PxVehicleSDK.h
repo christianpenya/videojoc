@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -36,7 +19,7 @@
 #include "foundation/Px.h"
 #include "common/PxTypeInfo.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -161,75 +144,7 @@ Call this function before using PxVehicleUpdates for the first time if the defau
 */
 void PxVehicleSetUpdateMode(PxVehicleUpdateMode::Enum vehicleUpdateMode);
 
-/** 
-
-\brief Set threshold angles that are used to determine if a wheel hit is to be resolved by vehicle suspension or by rigid body collision.
-
-
-\note	                ^
-		                N  ___
-		                  |**
-                              **
-		                         **
-			   %%%    %%%           **
-		  %%%              %%%		   **	/
-										   /
-	  %%%                      %%%        /
-										 /
-	 %%%                         %%%    /
-	                C                  /
-	 %%%            | **         %%%  /
-	                |      **        /
-	 %%%            |          **%%%/
-	                |              X**     
-		%%%         |        %%%  /      **_|  ^
-		            |            /             D
-			  %%%   | %%%       /
-			        |          /
-					|		  /
-                    |        /
-                    |                   
-               ^    |
-		       S   \|/   
-
-The diagram above depicts a wheel centered at "C" that has hit an inclined plane at point "X".  
-The inclined plane has unit normal "N", while the suspension direction has unit vector "S".
-The unit vector from the wheel center to the hit point is "D".
-Hit points are analyzed by comparing the unit vectors D and N with the suspension direction S.
-This analysis is performed in the contact modification callback PxVehicleModifyWheelContacts (when enabled) and in 
-PxVehicleUpdates (when non-blocking sweeps are enabled).
-If the angle between D and S is less than pointRejectAngle the hit is accepted by the suspension in PxVehicleUpdates and rejected 
-by the contact modification callback PxVehicleModifyWheelContacts.
-If the angle between -N and S is less than normalRejectAngle the hit is accepted by the suspension in PxVehicleUpdates and rejected
-by the contact modification callback PxVehicleModifyWheelContacts.
-
-\param pointRejectAngle is the threshold angle used when comparing the angle between D and S.
-
-\param normalRejectAngle is the threshold angle used when comparing the angle between -N and S.
-
-\note PxVehicleUpdates ignores the rejection angles for raycasts and for sweeps that return blocking hits.
-
-\note Both angles have default values of Pi/4.
-
-@see PxVehicleSuspensionSweeps, PxVehicleModifyWheelContacts
-*/
-void PxVehicleSetSweepHitRejectionAngles(const PxF32 pointRejectAngle, const PxF32 normalRejectAngle);
-
-
-/**
-\brief Determine the maximum acceleration experienced by PxRigidDynamic instances that are found to be in contact 
-with a wheel.
-
-\note Newton's Third Law states that every force has an equal and opposite force.  As a consequence, forces applied to 
-the suspension must be applied to dynamic objects that lie under the wheel. This can lead to instabilities, particularly
-when a heavy wheel is driving on a light object.  The value of maxHitActorAcceleration clamps the applied force so that it never 
-generates an acceleration greater than the specified value.
-
-\note Default value of maxHitActorAcceleration is PX_MAX_REAL
-*/
-void PxVehicleSetMaxHitActorAcceleration(const PxF32 maxHitActorAcceleration);
-
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

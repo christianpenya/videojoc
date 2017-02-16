@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -37,17 +20,17 @@
 #include "PxPhysXConfig.h"
 #include "PxRigidBody.h"
 #include "PxQueryReport.h"
+#include "PxFiltering.h"
 #include "PxQueryFiltering.h"
-#include "extensions/PxMassProperties.h"
+#include "PxScene.h"
+#include "PxClient.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
 
 class PxScene;
-struct PxQueryCache;
-class PxShape;
 
 /**
 \brief utility functions for use with PxRigidBody and subclasses
@@ -89,7 +72,7 @@ public:
 	\param[in] includeNonSimShapes True if all kind of shapes (PxShapeFlag::eSCENE_QUERY_SHAPE, PxShapeFlag::eTRIGGER_SHAPE, PxShapeFlag::ePARTICLE_DRAIN) should be taken into account.
 	\return Boolean. True on success else false.
 
-	@see PxRigidBody::setMassLocalPose PxRigidBody::setMassSpaceInertiaTensor PxRigidBody::setMass
+	@see PxRigidBody::setMassLocalPose PxRigidBody::setMassSpaceInertia PxRigidBody::setMass
 	*/
 	static		bool			updateMassAndInertia(PxRigidBody& body, const PxReal* shapeDensities, PxU32 shapeDensityCount, const PxVec3* massLocalPose = NULL, bool includeNonSimShapes = false);
 
@@ -105,7 +88,7 @@ public:
 	\param[in] includeNonSimShapes True if all kind of shapes (PxShapeFlag::eSCENE_QUERY_SHAPE, PxShapeFlag::eTRIGGER_SHAPE, PxShapeFlag::ePARTICLE_DRAIN) should be taken into account.
 	\return Boolean. True on success else false.
 
-	@see PxRigidBody::setMassLocalPose PxRigidBody::setMassSpaceInertiaTensor PxRigidBody::setMass
+	@see PxRigidBody::setMassLocalPose PxRigidBody::setMassSpaceInertia PxRigidBody::setMass
 	*/
 	static		bool			updateMassAndInertia(PxRigidBody& body, PxReal density, const PxVec3* massLocalPose = NULL, bool includeNonSimShapes = false);
 	
@@ -122,14 +105,14 @@ public:
 
 	@see updateMassAndInertia for more details.
 
-	\param[in,out] body The rigid body for which to set the mass and centre of mass local pose properties.
+	\param[in,out] body The the rigid body for which to set the mass and centre of mass local pose properties.
 	\param[in] shapeMasses The per shape mass values. There must be one entry for each shape which has the PxShapeFlag::eSIMULATION_SHAPE set. Other shapes are ignored. The mass values must be greater than 0.
 	\param[in] shapeMassCount The number of provided mass values.
 	\param[in] massLocalPose The center of mass relative to the actor frame. If set to null then (0,0,0) is assumed.
 	\param[in] includeNonSimShapes True if all kind of shapes (PxShapeFlag::eSCENE_QUERY_SHAPE, PxShapeFlag::eTRIGGER_SHAPE, PxShapeFlag::ePARTICLE_DRAIN) should be taken into account.
 	\return Boolean. True on success else false.
 
-	@see PxRigidBody::setCMassLocalPose PxRigidBody::setMassSpaceInertiaTensor PxRigidBody::setMass
+	@see PxRigidBody::setCMassLocalPose PxRigidBody::setMassSpaceInertia PxRigidBody::setMass
 	*/
 	static		bool			setMassAndUpdateInertia(PxRigidBody& body, const PxReal* shapeMasses, PxU32 shapeMassCount, const PxVec3* massLocalPose = NULL, bool includeNonSimShapes = false);
 
@@ -144,27 +127,15 @@ public:
 
 	@see updateMassAndInertia for more details.
 
-	\param[in,out] body The rigid body for which to set the mass and centre of mass local pose properties.
+	\param[in,out] body The the rigid body for which to set the mass and centre of mass local pose properties.
 	\param[in] mass The mass of the body. Must be greater than 0.
 	\param[in] massLocalPose The center of mass relative to the actor frame. If set to null then (0,0,0) is assumed.
 	\param[in] includeNonSimShapes True if all kind of shapes (PxShapeFlag::eSCENE_QUERY_SHAPE, PxShapeFlag::eTRIGGER_SHAPE, PxShapeFlag::ePARTICLE_DRAIN) should be taken into account.
 	\return Boolean. True on success else false.
 
-	@see PxRigidBody::setCMassLocalPose PxRigidBody::setMassSpaceInertiaTensor PxRigidBody::setMass
+	@see PxRigidBody::setCMassLocalPose PxRigidBody::setMassSpaceInertia PxRigidBody::setMass
 	*/
 	static		bool			setMassAndUpdateInertia(PxRigidBody& body, PxReal mass, const PxVec3* massLocalPose = NULL, bool includeNonSimShapes = false);
-
-
-	/**
-	\brief Compute the mass, inertia tensor and center of mass from a list of shapes.
-
-	\param[in] shapes The shapes to compute the mass properties from.
-	\param[in] shapeCount The number of provided shapes.
-	\return The mass properties from the combined shapes.
-
-	@see PxRigidBody::setCMassLocalPose PxRigidBody::setMassSpaceInertiaTensor PxRigidBody::setMass
-	*/
-	static		PxMassProperties	computeMassPropertiesFromShapes(const PxShape* const* shapes, PxU32 shapeCount);
 	
 
 	/**
@@ -452,7 +423,7 @@ public:
 
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

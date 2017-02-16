@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -38,7 +21,7 @@
 #include "foundation/PxTransform.h"
 #include "foundation/PxPlane.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -182,57 +165,10 @@ PxRigidStatic*	PxCreateStatic(PxPhysics& sdk,
 							   PxShape& shape);
 
 
-/** \brief simple method to create a PxRigidStatic actor with a single PxShape. 
-
-	\param[in] sdk the PxPhysics object
-	\param[in] transform the global pose of the new object
-	\param[in] shape the new object's shape
-
-	\return a new static actor, or NULL if it could not be constructed
-
-	@see PxRigidStatic
-*/
-
-PxRigidStatic*	PxCreateStatic(PxPhysics& sdk,
-							   const PxTransform& transform,
-							   PxShape& shape);
-
-
-/**
-\brief create a shape by copying attributes from another shape
-
-The function clones a PxShape. The following properties are copied:
-- geometry
-- flags
-- materials
-- actor-local pose
-- contact offset
-- rest offset
-- simulation filter data
-- query filter data
-
-The following are not copied and retain their default values:
-- name
-- user data
-
-\param[in] physicsSDK - the physics SDK used to allocate the shape
-\param[in] shape the shape from which to take the attributes.
-\param[in] isExclusive whether the new shape should be an exclusive or shared shape.
-
-\return the newly-created rigid static
-
-*/
-
-PxShape* PxCloneShape(PxPhysics& physicsSDK,
-					  const PxShape& shape,
-					  bool isExclusive);
-
-
-
 /**
 \brief create a static body by copying attributes from another rigid actor
 
-The function clones a PxRigidDynamic or PxRigidStatic as a PxRigidStatic. A uniform scale is applied. The following properties are copied:
+The function clones a PxRigidDynamic as a PxRigidStatic. A uniform scale is applied. The following properties are copied:
 - shapes
 - actor flags 
 - owner client and client behavior bits
@@ -269,12 +205,10 @@ The following properties are copied:
 - linear and angular damping
 - maximum angular velocity
 - position and velocity solver iterations
-- maximum depenetration velocity
 - sleep threshold
 - contact report threshold
 - dominance group
 - owner client and client behavior bits
-- name pointer
 
 The following are not copied and retain their default values:
 - name
@@ -322,14 +256,14 @@ articulation link and the scaleMassProps value is true, the mass properties are 
 center of mass is linearly scaled, the mass is multiplied by the cube of the scale, and the inertia tensor by the fifth power of the scale. 
 
 \param[in] actor a rigid actor
-\param[in] scale the scale by which to multiply the actor. Must be >0.
+\param[in] scale the scale by which to multiply the actor
 \param[in] scaleMassProps whether to scale the mass properties
 */
 
 void PxScaleRigidActor(PxRigidActor& actor, PxReal scale, bool scaleMassProps = true);
 
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

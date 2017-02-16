@@ -31,6 +31,9 @@
     <Filter Include="Mesh">
       <UniqueIdentifier>{9205897C-7E3C-8A0D-2729-7010133F060F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physx">
+      <UniqueIdentifier>{E1C1E10D-4DD6-09BF-1658-AD1E822B06F0}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Render">
       <UniqueIdentifier>{C5BB87CE-B15D-B2A4-9A18-C6F8865939F5}</UniqueIdentifier>
     </Filter>
@@ -200,6 +203,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Mesh\VertexsTypes_HelperMacros.h">
       <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Physx\PhysxManager.h">
+      <Filter>Physx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Physx\PhysxManagerImplementation.h">
+      <Filter>Physx</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Render\RenderManager.h">
       <Filter>Render</Filter>
@@ -451,6 +460,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Mesh\VertexTypes.cpp">
       <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physx\PhysxManager.cpp">
+      <Filter>Physx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physx\PhysxManagerImplementation.cpp">
+      <Filter>Physx</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Render\RenderManager.cpp">
       <Filter>Render</Filter>

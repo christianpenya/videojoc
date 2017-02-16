@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -37,15 +20,13 @@
 #include "PxPhysXConfig.h"
 #include "foundation/PxFlags.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
 
 class PxActor;
 class PxShape;
-
-static const PxU32 INVALID_FILTER_PAIR_INDEX = 0xffffffff;
 
 
 /**
@@ -264,6 +245,19 @@ struct PxPairFlag
 		eNEXT_FREE							= (1<<15),        //!< For internal use only.
 
 		/**
+		\deprecated
+		\brief Provides default flag for resolving contacts
+		*/
+
+		PX_DEPRECATED eRESOLVE_CONTACTS		= eSOLVE_CONTACT | eDETECT_DISCRETE_CONTACT,
+
+		/**
+		\deprecated
+		\brief Provided default flag to enable performing linear CCD sweeps and response for this collision pair.
+		*/
+		PX_DEPRECATED eCCD_LINEAR			= eSOLVE_CONTACT | eDETECT_CCD_CONTACT,
+
+		/**
 		\brief Provided default flag to do simple contact processing for this collision pair.
 		*/
 		eCONTACT_DEFAULT					= eSOLVE_CONTACT | eDETECT_DISCRETE_CONTACT,
@@ -378,7 +372,7 @@ struct PxFilterData
 // accordingly.
 //==================================================================================================
 
-	PX_INLINE PxFilterData(const PxEMPTY)
+	PX_INLINE PxFilterData(const PxEMPTY&)
 	{
 	}
 
@@ -401,22 +395,6 @@ struct PxFilterData
 	PX_INLINE void setToDefault()
 	{
 		*this = PxFilterData();
-	}
-
-	/**
-	\brief Comparison operator to allow use in Array.
-	*/
-	PX_INLINE bool operator == (const PxFilterData& a) const
-	{
-		return a.word0 == word0 && a.word1 == word1 && a.word2 == word2 && a.word3 == word3;
-	}
-
-	/**
-	\brief Comparison operator to allow use in Array.
-	*/
-	PX_INLINE bool operator != (const PxFilterData& a) const
-	{
-		return !(a == *this);
 	}
 
 	PxU32 word0;
@@ -448,18 +426,16 @@ struct PxFilterObjectType
 		eRIGID_DYNAMIC,
 
 		/**
-		\brief A particle system (deprecated)
-		\deprecated The PhysX particle feature has been deprecated in PhysX version 3.4
+		\brief A particle system
 		@see PxParticleSystem
 		*/
-		ePARTICLE_SYSTEM PX_DEPRECATED,
+		ePARTICLE_SYSTEM,
 
 		/**
-		\brief A particle fluid (deprecated)
-		\deprecated The PhysX particle feature has been deprecated in PhysX version 3.4
+		\brief A particle fluid
 		@see PxParticleFluid
 		*/
-		ePARTICLE_FLUID PX_DEPRECATED,
+		ePARTICLE_FLUID,
 
 		/**
 		\brief An articulation
@@ -622,7 +598,7 @@ and performed after the simulation step.
 may have been deleted by the application earlier in the frame. It is the application's responsibility to prevent race conditions
 arising from using the SDK API in the callback while an application thread is making write calls to the scene, and to ensure that
 the callbacks are thread-safe. Return values which depend on when the callback is called during the frame will introduce nondeterminism 
-into the simulation.
+into the simulation. On PS3 use of this callback may compromise simulation performance.
 
 @see PxSceneDesc.filterCallback PxSimulationFilterShader
 */
@@ -708,18 +684,7 @@ protected:
 	virtual						~PxSimulationFilterCallback() {}
 };
 
-
-struct PxFilterInfo
-{
-	PX_FORCE_INLINE	PxFilterInfo()							:	filterFlags(0), pairFlags(0), filterPairIndex(INVALID_FILTER_PAIR_INDEX)			{}
-	PX_FORCE_INLINE	PxFilterInfo(PxFilterFlags filterFlags_)	:	filterFlags(filterFlags_), pairFlags(0), filterPairIndex(INVALID_FILTER_PAIR_INDEX)	{}
-
-	PxFilterFlags	filterFlags;
-	PxPairFlags		pairFlags;
-	PxU32			filterPairIndex;
-};
-
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

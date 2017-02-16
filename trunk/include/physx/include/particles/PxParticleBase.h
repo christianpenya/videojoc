@@ -1,38 +1,18 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
 
 #ifndef PX_PHYSICS_PX_PARTICLEBASE
 #define PX_PHYSICS_PX_PARTICLEBASE
-
-/** \defgroup particles particles (deprecated)*/
-
 /** \addtogroup particles
   @{
 */
@@ -46,13 +26,13 @@
 #include "particles/PxParticleReadData.h"
 #include "PxForceMode.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
 
 /**
-\brief The particle base class represents the shared module for particle based simulation. This class can't be instantiated. (deprecated)
+\brief The particle base class represents the shared module for particle based simulation. This class can't be instantiated.
 
 The particle base class manages a set of particles.  Particles can be created, released and updated directly through the API.
 When a particle is created the user gets an index for it which can be used to address the particle until it is released again.
@@ -62,11 +42,9 @@ as well as global velocity damping.  When a particle collides, a particle flag i
 actor, static or dynamic, it collided with.  Additionally a shape can be flagged as a drain (See PxShapeFlag), in order to get a corresponding 
 particle flag raised when a collision occurs.  This information can be used to delete particles.
 
-\deprecated The PhysX particle feature has been deprecated in PhysX version 3.4
-
 @see PxParticleCreationData, PxParticleReadData, PxShapeFlag, PxParticleSystem, PxParticleFluid
 */
-class PX_DEPRECATED PxParticleBase : public PxActor
+class PxParticleBase : public PxActor
 {
 
 	public:
@@ -339,6 +317,14 @@ class PX_DEPRECATED PxParticleBase : public PxActor
 	*/
 	virtual		PxFilterData				getSimulationFilterData()									const	= 0;
 
+	/**
+	\deprecated
+	\brief Marks the object to reset interactions and re-run collision filters in the next simulation step.
+	
+	\note This method has been deprecated. Please use #PxScene::resetFiltering() instead.
+	*/
+	PX_DEPRECATED virtual void				resetFiltering() = 0;
+
 //@}
 /************************************************************************************************/
 
@@ -453,13 +439,17 @@ protected:
 	PX_INLINE								PxParticleBase(PxType concreteType, PxBaseFlags baseFlags) : PxActor(concreteType, baseFlags) {}
 	PX_INLINE								PxParticleBase(PxBaseFlags baseFlags) : PxActor(baseFlags) {}
 	virtual									~PxParticleBase() {}
-	virtual		bool						isKindOf(const char* name) const { return !::strcmp("PxParticleBase", name) || PxActor::isKindOf(name); }
+	virtual		bool						isKindOf(const char* name) const { return !strcmp("PxParticleBase", name) || PxActor::isKindOf(name); }
 
 //@}
 /************************************************************************************************/
 };
 
-#if !PX_DOXYGEN
+PX_DEPRECATED PX_INLINE PxParticleBase*			PxActor::isParticleBase()			{ return is<PxParticleBase>();			}
+PX_DEPRECATED PX_INLINE const PxParticleBase*	PxActor::isParticleBase()	const	{ return is<PxParticleBase>();			}
+
+
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

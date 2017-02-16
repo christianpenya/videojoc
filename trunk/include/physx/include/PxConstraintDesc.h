@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -37,18 +20,19 @@
 
 #include "PxPhysXConfig.h"
 #include "foundation/PxFlags.h"
+#include "foundation/PxMath.h"
 #include "foundation/PxVec3.h"
 #include "common/PxBase.h"
 
-#if !PX_DOXYGEN
-namespace physx { namespace pvdsdk {
+#ifndef PX_DOXYGEN
+namespace physx { namespace debugger { namespace comm {
 #endif
 	class PvdDataStream;
-#if !PX_DOXYGEN
-}}
+#ifndef PX_DOXYGEN
+}}}
 #endif
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -60,6 +44,7 @@ class PxConstraintConnector;
 class PxRenderBuffer;
 class PxDeletionListener;
 
+
 /**
  \brief constraint row flags
 
@@ -68,8 +53,6 @@ class PxDeletionListener;
 
 struct Px1DConstraintFlag
 {
-	PX_CUDA_CALLABLE Px1DConstraintFlag(){}
-
 	enum Type
 	{
 		eSPRING						= 1<<0,		//!< whether the constraint is a spring. Mutually exclusive with eRESTITUTION. If set, eKEEPBIAS is ignored.
@@ -165,7 +148,7 @@ struct Px1DConstraint
 		} bounce;
 	} mods;
 
-	PxReal				forInternalUse;			//!< for internal use only
+	PxReal				forInternalUse;			//< for internal use only
 	PxU16				flags;					//!< a set of Px1DConstraintFlags
 	PxU16				solveHint;				//!< constraint optimization hint, should be an element of PxConstraintSolveHint
 } 
@@ -186,7 +169,6 @@ struct PxConstraintVisualizationFlag
 	};
 };
 
-PX_ALIGN_PREFIX(16)
 struct PxConstraintInvMassScale
 {
 //= ATTENTION! =====================================================================================
@@ -200,16 +182,12 @@ struct PxConstraintInvMassScale
 	PxReal angular0;	//!< multiplier for inverse MoI of body0
 	PxReal linear1;		//!< multiplier for inverse mass of body1
 	PxReal angular1;	//!< multiplier for inverse MoI of body1
-
-	PxConstraintInvMassScale(){}
-	PxConstraintInvMassScale(PxReal lin0, PxReal ang0, PxReal lin1, PxReal ang1) : linear0(lin0), angular0(ang0), linear1(lin1), angular1(ang1){}
-}
-PX_ALIGN_SUFFIX(16);
+};
 
 /** solver constraint generation shader
 
 This function is called by the constraint solver framework. The function must be reentrant, since it may be called simultaneously
-from multiple threads, and should access only the arguments passed into it.
+from multiple threads, and should access only the arguments passed into it, since on PS3 this function may execute on SPU. 
 
 Developers writing custom constraints are encouraged to read the documentation in the user guide and the implementation code in PhysXExtensions.
 
@@ -235,12 +213,12 @@ typedef PxU32 (*PxConstraintSolverPrep)(Px1DConstraint* constraints,
 /** solver constraint projection shader
 
 This function is called by the constraint post-solver framework. The function must be reentrant, since it may be called simultaneously
-from multiple threads and should access only the arguments passed into it.
+from multiple threads and should access only the arguments passed into it, since on PS3 this function may execute on SPU.
 
 \param[in] constantBlock the constant data block
 \param[out] bodyAToWorld The center of mass frame of the first constrained body (the identity if the actor is static or a NULL pointer was provided for it)
 \param[out] bodyBToWorld The center of mass frame of the second constrained body (the identity if the actor is static or a NULL pointer was provided for it)
-\param[in] projectToA true if the constraint should be projected by moving the second body towards the first, false if the converse
+\param[in] true if the constraint should be projected by moving the second body towards the first, false if the converse
 */
 
 typedef void (*PxConstraintProject)(const void* constantBlock,
@@ -271,10 +249,12 @@ public:
 
 This function is called by the constraint post-solver framework to visualize the constraint
 
-\param[out] visualizer the render buffer to render to
+\param[out] out the render buffer to render to
 \param[in] constantBlock the constant data block
 \param[in] body0Transform The center of mass frame of the first constrained body (the identity if the actor is static, or a NULL pointer was provided for it)
 \param[in] body1Transform The center of mass frame of the second constrained body (the identity if the actor is static, or a NULL pointer was provided for it)
+\param[in] frameScale the visualization scale for the constraint frames
+\param[in] limitScale the visualization scale for the constraint limits
 \param[in] flags the visualization flags
 
 @see PxRenderBuffer 
@@ -321,7 +301,7 @@ public:
 	this function is called by the SDK to update PVD's view of it
 	*/
 	
-	virtual bool			updatePvdProperties(physx::pvdsdk::PvdDataStream& pvdConnection,
+	virtual bool			updatePvdProperties(physx::debugger::comm::PvdDataStream& pvdConnection,
 												const PxConstraint* c,
 												PxPvdUpdateType::Enum updateType) const		= 0;
 
@@ -385,16 +365,6 @@ public:
 
 	virtual PxBase* getSerializable()												= 0;
 
-	/**
-	\brief Obtain the shader function pointer used to prep rows for this constraint
-	*/
-	virtual PxConstraintSolverPrep getPrep() const									= 0;
-
-	/**
-	\brief Obtain the pointer to the constraint's constant data
-	*/
-	virtual const void* getConstantBlock() const									= 0;
-
 
 	/**
 	\brief virtual destructor
@@ -402,7 +372,7 @@ public:
 	virtual ~PxConstraintConnector() {}
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

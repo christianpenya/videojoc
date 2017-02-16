@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -37,7 +20,7 @@
 #include "common/PxPhysXCommonConfig.h"
 #include "foundation/PxVec3.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -85,14 +68,9 @@ class PxTriangle
 	PX_FORCE_INLINE			~PxTriangle() {}
 
 	/**
-	\brief Assignment operator
+	\brief Array of Vertices.
 	*/
-	PX_FORCE_INLINE void operator=(const PxTriangle& triangle)
-	{
-		verts[0] = triangle.verts[0];
-		verts[1] = triangle.verts[1];
-		verts[2] = triangle.verts[2];
-	}
+	PxVec3		verts[3];
 
 	/**
 	\brief Compute the normal of the Triangle.
@@ -110,7 +88,11 @@ class PxTriangle
 
 	\param[out] _normal Triangle normal (not normalized).
 	*/
+#ifdef __SPU__
+	void	denormalizedNormal(PxVec3& _normal) const
+#else
 	PX_FORCE_INLINE	void	denormalizedNormal(PxVec3& _normal) const
+#endif
 	{
 		_normal = (verts[1]-verts[0]).cross(verts[2]-verts[0]);
 	}
@@ -128,20 +110,10 @@ class PxTriangle
 		return ((p0 - p1).cross(p0 - p2)).magnitude() * 0.5f;
 	}
 
-	/**
-	\return Computes a point on the triangle from u and v barycentric coordinates.
-	*/
-	PxVec3 pointFromUV(PxReal u, PxReal v) const { return (1.0f-u-v)*verts[0] + u*verts[1] + v*verts[2]; }
-
-	/**
-	\brief Array of Vertices.
-	*/
-	PxVec3		verts[3];
-
 };
 
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 }
 #endif
 

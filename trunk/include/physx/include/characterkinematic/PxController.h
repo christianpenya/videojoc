@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -39,9 +22,10 @@
 #include "characterkinematic/PxExtended.h"
 #include "characterkinematic/PxControllerObstacles.h"
 #include "PxQueryFiltering.h"
+#include "foundation/PxFoundation.h"
 #include "foundation/PxErrorCallback.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -92,9 +76,13 @@ struct PxControllerNonWalkableMode
 	enum Enum
 	{
 		ePREVENT_CLIMBING,						//!< Stops character from climbing up non-walkable slopes, but doesn't move it otherwise
-		ePREVENT_CLIMBING_AND_FORCE_SLIDING		//!< Stops character from climbing up non-walkable slopes, and forces it to slide down those slopes
+		ePREVENT_CLIMBING_AND_FORCE_SLIDING,	//!< Stops character from climbing up non-walkable slopes, and forces it to slide down those slopes
+
+		eFORCE_SLIDING = ePREVENT_CLIMBING_AND_FORCE_SLIDING	//!< \deprecated PX_DEPRECATED
 	};
 };
+/** \deprecated Deprecated definition for backwards compatibility with PhysX 3.2 */
+typedef PX_DEPRECATED PxControllerNonWalkableMode PxCCTNonWalkableMode;
 
 /**
 \brief specifies which sides a character is colliding with.
@@ -116,6 +104,11 @@ struct PxControllerCollisionFlag
 */
 typedef PxFlags<PxControllerCollisionFlag::Enum, PxU8> PxControllerCollisionFlags;
 PX_FLAGS_OPERATORS(PxControllerCollisionFlag::Enum, PxU8)
+
+/** \deprecated Deprecated definition for backwards compatibility with PhysX 3.2 */
+typedef PX_DEPRECATED PxControllerCollisionFlag PxControllerFlag;
+/** \deprecated Deprecated definition for backwards compatibility with PhysX 3.2 */
+typedef PX_DEPRECATED PxControllerCollisionFlags PxControllerFlags;
 
 
 /**
@@ -155,13 +148,15 @@ struct PxControllerHit
 	PxVec3			dir;			//!< Motion direction
 	PxF32			length;			//!< Motion length
 };
+/** \deprecated Deprecated definition for backwards compatibility with PhysX 3.2 */
+typedef PX_DEPRECATED PxControllerHit PxCCTHit;
 
 /**
 \brief Describes a hit between a CCT and a shape. Passed to onShapeHit()
 
 @see PxUserControllerHitReport.onShapeHit()
 */
-struct PxControllerShapeHit : public PxControllerHit
+struct PxControllerShapeHit : PxControllerHit
 {
 	PxShape*		shape;			//!< Touched shape
 	PxRigidActor*	actor;			//!< Touched actor
@@ -173,7 +168,7 @@ struct PxControllerShapeHit : public PxControllerHit
 
 @see PxUserControllerHitReport.onControllerHit()
 */
-struct PxControllersHit : public PxControllerHit
+struct PxControllersHit : PxControllerHit
 {
 	PxController*	other;			//!< Touched controller
 };
@@ -183,7 +178,7 @@ struct PxControllersHit : public PxControllerHit
 
 @see PxUserControllerHitReport.onObstacleHit() PxObstacleContext
 */
-struct PxControllerObstacleHit : public PxControllerHit
+struct PxControllerObstacleHit : PxControllerHit
 {
 	const void*		userData;
 };
@@ -279,6 +274,16 @@ all other CCTs.
 class PxControllerFilters
 {
 	public:
+	//*********************************************************************
+	// DEPRECATED MEMBERS:
+	//
+	//	PX_DEPRECATED PxU32		mActiveGroups;
+	//
+	//	=> replaced with:
+	//
+	//	PxControllerFilters::mCCTFilterCallback. Please define a PxControllerFilterCallback object and emulate the old interaction mode there.
+	//
+	//*********************************************************************
 
 	PX_INLINE					PxControllerFilters(const PxFilterData* filterData=NULL, PxQueryFilterCallback* cb=NULL, PxControllerFilterCallback* cctFilterCb=NULL) :
 									mFilterData			(filterData),
@@ -296,6 +301,7 @@ class PxControllerFilters
 	PxControllerFilterCallback*	mCCTFilterCallback;		//!< CCT-vs-CCT filter callback. If NULL, all CCT-vs-CCT collisions are kept.
 };
 
+
 /**
 \brief Descriptor class for a character controller.
 
@@ -304,6 +310,25 @@ class PxControllerFilters
 class PxControllerDesc
 {
 public:
+	//*********************************************************************
+	// DEPRECATED MEMBERS:
+	//
+	//	PX_DEPRECATED PxUserControllerHitReport*	callback;
+	//
+	//	=> replaced with:
+	//
+	//	PxUserControllerHitReport*	reportCallback;
+	//
+	// ----------------------------
+	//
+	//	PX_DEPRECATED PxCCTInteractionMode::Enum	interactionMode;
+	//	PX_DEPRECATED PxU32							groupsBitmask;
+	//
+	//	=> replaced with:
+	//
+	//	PxControllerFilters::mCCTFilterCallback. Please define a PxControllerFilterCallback object and emulate the old interaction mode there.
+	//
+	//*********************************************************************
 
 	/**
 	\brief returns true if the current settings are valid
@@ -461,6 +486,7 @@ public:
 	@see PxUserControllerHitReport
 	*/
 	PxUserControllerHitReport*	reportCallback;
+	PX_DEPRECATED PxUserControllerHitReport*	callback;  //!< \deprecated
 
 	/**
 	\brief Specifies a user behavior callback.
@@ -496,19 +522,6 @@ public:
 	@see PxMaterial
 	*/
 	PxMaterial*					material;
-
-	/**
-	\brief Use a deletion listener to get informed about released objects and clear internal caches if needed.
-
-	If a character controller registers a deletion listener, it will get informed about released objects. That allows the
-	controller to invalidate cached data that connects to a released object. If a deletion listener is not
-	registered, PxController::invalidateCache has to be called manually after objects have been released.
-
-	@see PxController::invalidateCache
-
-	<b>Default:</b> true
-	*/
-	bool						registerDeletionListener;
 
 	/**
 	\brief User specified data associated with the controller.
@@ -549,6 +562,7 @@ PX_INLINE PxControllerDesc::PxControllerDesc(PxControllerShapeType::Enum t) : mT
 	scaleCoeff			= 0.8f;
 	volumeGrowth		= 1.5f;
 	reportCallback		= NULL;
+	callback			= NULL;
 	behaviorCallback	= NULL;
 	userData			= NULL;
 	nonWalkableMode		= PxControllerNonWalkableMode::ePREVENT_CLIMBING;
@@ -558,7 +572,6 @@ PX_INLINE PxControllerDesc::PxControllerDesc(PxControllerShapeType::Enum t) : mT
 	material			= NULL;
 	invisibleWallHeight	= 0.0f;
 	maxJumpHeight		= 0.0f;
-	registerDeletionListener = true;
 }
 
 PX_INLINE PxControllerDesc::PxControllerDesc(const PxControllerDesc& other) : mType(other.mType)
@@ -582,6 +595,7 @@ PX_INLINE void PxControllerDesc::copy(const PxControllerDesc& other)
 	scaleCoeff			= other.scaleCoeff;
 	volumeGrowth		= other.volumeGrowth;
 	reportCallback		= other.reportCallback;
+	callback			= other.callback;
 	behaviorCallback	= other.behaviorCallback;
 	userData			= other.userData;
 	nonWalkableMode		= other.nonWalkableMode;
@@ -591,7 +605,6 @@ PX_INLINE void PxControllerDesc::copy(const PxControllerDesc& other)
 	material			= other.material;
 	invisibleWallHeight	= other.invisibleWallHeight;
 	maxJumpHeight		= other.maxJumpHeight;
-	registerDeletionListener = other.registerDeletionListener;
 }
 
 PX_INLINE PxControllerDesc::~PxControllerDesc()
@@ -611,6 +624,11 @@ PX_INLINE bool PxControllerDesc::isValid() const
 	if(contactOffset<=0.0f)	return false;
 	if(!material)			return false;
 
+	if(callback && !reportCallback)
+	{
+		(const_cast<PxControllerDesc*>(this))->reportCallback = callback;
+		PxGetFoundation().getErrorCallback().reportError(PxErrorCode::eDEBUG_WARNING, "PxControllerDesc::callback is deprecated, please use PxControllerDesc::reportCallback instead.", __FILE__, __LINE__);
+	}
 	return true;
 }
 
@@ -903,7 +921,7 @@ protected:
 	virtual								~PxController()					{}
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

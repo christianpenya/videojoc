@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -39,7 +22,7 @@
 #include "common/PxBase.h"
 
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -47,16 +30,15 @@ namespace physx
 class PxActor;
 
 /**
-\brief Class to aggregate actors into a single broad-phase entry.
+\brief Class to aggregate actors into a single broad phase entry.
 
 A PxAggregate object is a collection of PxActors, which will exist as a single entry in the
 broad-phase structures. This has 3 main benefits:
 
-1) it reduces "broad phase pollution" by allowing a collection of spatially coherent broad-phase 
-entries to be replaced by a single aggregated entry (e.g. a ragdoll or a single actor with a 
-large number of attached shapes).
+1) it reduces "broad phase pollution", where multiple objects of a single entity often overlap
+   all the time (e.g. typically in a ragdoll).
 
-2) it reduces broad-phase memory usage
+2) it reduces broad-phase memory usage (which can be vital e.g. on SPU)
 
 3) filtering can be optimized a lot if self-collisions within an aggregate are not needed. For
    example if you don't need collisions between ragdoll bones, it's faster to simply disable
@@ -194,10 +176,10 @@ protected:
 	PX_INLINE			PxAggregate(PxType concreteType, PxBaseFlags baseFlags) : PxBase(concreteType, baseFlags) {}
 	PX_INLINE			PxAggregate(PxBaseFlags baseFlags) : PxBase(baseFlags) {}
 	virtual				~PxAggregate() {}
-	virtual	bool		isKindOf(const char* name) const { return !::strcmp("PxAggregate", name) || PxBase::isKindOf(name); }
+	virtual	bool		isKindOf(const char* name) const { return !strcmp("PxAggregate", name) || PxBase::isKindOf(name); }
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

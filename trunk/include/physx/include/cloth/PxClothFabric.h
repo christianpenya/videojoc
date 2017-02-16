@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -37,7 +20,7 @@
 
 #include "common/PxBase.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -117,11 +100,6 @@ public:
 	/** \brief Array of rest distance between tethered particle pairs. See #PxClothFabric.getTetherLengths(). */
 	const PxReal* tetherLengths;
 
-	/** \brief Array of triangle indices used to calculate air friction. */
-	const PxU32* triangles;
-	/** \brief The number of triangles in the triangles array. (1 triangle means 3 indices in the array) */
-	PxU32 nbTriangles;
-
 	/**
 	\brief constructor sets to default.
 	*/
@@ -152,8 +130,7 @@ PX_INLINE void PxClothFabricDesc::setToDefault()
 PX_INLINE bool PxClothFabricDesc::isValid() const
 {
 	return nbParticles && nbPhases && phases && restvalues && nbSets 
-		&& sets && indices && (!nbTethers || (tetherAnchors && tetherLengths))
-		&& (!nbTriangles || triangles);
+		&& sets && indices && (!nbTethers || (tetherAnchors && tetherLengths));
 }
 
 
@@ -181,8 +158,9 @@ class PxClothFabric	: public PxBase
 {
 public:
 	/**
-	\brief Decrements the cloth fabric's reference count, and releases it if the new reference count is zero.
-	
+	\brief Release the cloth fabric.
+	\details Releases the application's reference to the cloth fabric.
+	The fabric is destroyed when the application's reference is released and all cloth instances referencing the fabric are destroyed.
 	\see PxPhysics.createClothFabric()
 	*/
 	virtual void release() = 0;
@@ -302,6 +280,14 @@ public:
     */
 	virtual PxU32 getTetherLengths(PxReal* userLengthBuffer, PxU32 bufferSize) const = 0;
 
+	/**
+	\deprecated
+	\brief Returns the type of a phase.
+	\param [in] phaseIndex The index of the phase to return the type for.
+	\return The phase type as PxClothFabricPhaseType::Enum.
+    \note If phase index is invalid, PxClothFabricPhaseType::eINVALID is returned.
+    */
+	PX_DEPRECATED virtual PxClothFabricPhaseType::Enum getPhaseType(PxU32 phaseIndex) const = 0;
 
     /**
     \brief Scale all rest values of length dependent constraints.
@@ -317,14 +303,6 @@ public:
 	*/
 	virtual	PxU32 getReferenceCount() const = 0;
 
-	/**
-	\brief Acquires a counted reference to a cloth fabric.
-
-	This method increases the reference count of the cloth fabric by 1. Decrement the reference count by calling release()
-	*/
-	virtual void acquireReference() = 0;
-
-
 	virtual	const char*	getConcreteTypeName() const	{ return "PxClothFabric";	}
 
 protected:
@@ -332,10 +310,10 @@ protected:
 	PX_INLINE PxClothFabric(PxType concreteType, PxBaseFlags baseFlags) : PxBase(concreteType, baseFlags) {}
 	PX_INLINE PxClothFabric(PxBaseFlags baseFlags) : PxBase(baseFlags) {}
 	virtual	~PxClothFabric() {}
-	virtual	bool isKindOf(const char* name) const { return !::strcmp("PxClothFabric", name) || PxBase::isKindOf(name); }
+	virtual	bool isKindOf(const char* name) const { return !strcmp("PxClothFabric", name) || PxBase::isKindOf(name); }
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

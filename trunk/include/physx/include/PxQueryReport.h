@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -37,7 +20,7 @@
 #include "foundation/PxVec3.h"
 #include "foundation/PxFlags.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -50,36 +33,38 @@ class PxRigidActor;
 
 PxHitFlags are used for 3 different purposes:
 
-1) To request hit fields to be filled in by scene queries (such as hit position, normal, face index or UVs).
+1) To request hit fields to be filled in by scene queries (such as hit position, normal, distance or UVs).
 2) Once query is completed, to indicate which fields are valid (note that a query may produce more valid fields than requested).
 3) To specify additional options for the narrow phase and mid-phase intersection routines.
 
 All these flags apply to both scene queries and geometry queries (PxGeometryQuery).
 
-@see PxRaycastHit PxSweepHit PxOverlapHit PxScene.raycast PxScene.sweep PxScene.overlap PxGeometryQuery PxFindFaceIndex
+@see PxRaycastHit PxSweepHit PxOverlapHit PxScene.raycast PxScene.sweep PxScene.overlap PxGeometryQuery
 */
 struct PxHitFlag
 {
 	enum Enum
 	{
 		ePOSITION					= (1<<0),	//!< "position" member of #PxQueryHit is valid
+		eIMPACT						= ePOSITION,//!< \deprecated Deprecated alias PX_DEPRECATED
 		eNORMAL						= (1<<1),	//!< "normal" member of #PxQueryHit is valid
-		PX_DEPRECATED eDISTANCE		= (1<<2),	//!< "distance" member of #PxQueryHit is valid. Deprecated: the system will always compute & return the distance.
+		eDISTANCE					= (1<<2),	//!< "distance" member of #PxQueryHit is valid
 		eUV							= (1<<3),	//!< "u" and "v" barycentric coordinates of #PxQueryHit are valid. Not applicable to sweep queries.
 		eASSUME_NO_INITIAL_OVERLAP	= (1<<4),	//!< Performance hint flag for sweeps when it is known upfront there's no initial overlap.
 												//!< NOTE: using this flag may cause undefined results if shapes are initially overlapping.
 		eMESH_MULTIPLE				= (1<<5),	//!< Report all hits for meshes rather than just the first. Not applicable to sweep queries.
+												//!< On SPU the number of reported hits per mesh is limited to 16 in no specific order.
 		eMESH_ANY					= (1<<6),	//!< Report any first hit for meshes. If neither eMESH_MULTIPLE nor eMESH_ANY is specified,
 												//!< a single closest hit will be reported for meshes.
 		eMESH_BOTH_SIDES			= (1<<7),	//!< Report hits with back faces of mesh triangles. Also report hits for raycast
 												//!< originating on mesh surface and facing away from the surface normal. Not applicable to sweep queries.
 												//!< Please refer to the user guide for heightfield-specific differences.
 		ePRECISE_SWEEP				= (1<<8),	//!< Use more accurate but slower narrow phase sweep tests.
-												//!< May provide better compatibility with PhysX 3.2 sweep behavior.
-		eMTD						= (1<<9),	//!< Report the minimum translation depth, normal and contact point.
-		eFACE_INDEX					= (1<<10),	//!< "face index" member of #PxQueryHit is valid
+												//!< May provide better compatibility with PhysX 3.2 sweep behavior. Ignored on SPU.
+		eMTD						= (1<<9),	//!< Report the minimum translation depth, normal and contact point. Ignored on SPU.
+		eDIRECT_SWEEP				= ePRECISE_SWEEP, //!< \deprecated Deprecated alias. PX_DEPRECATED
 
-		eDEFAULT					= ePOSITION|eNORMAL|eDISTANCE|eFACE_INDEX,
+		eDEFAULT					= ePOSITION|eNORMAL|eDISTANCE,
 
 		/** \brief Only this subset of flags can be modified by pre-filter. Other modifications will be discarded. */
 		eMODIFIABLE_FLAGS			= eMESH_MULTIPLE|eMESH_BOTH_SIDES|eASSUME_NO_INITIAL_OVERLAP|ePRECISE_SWEEP
@@ -93,6 +78,11 @@ struct PxHitFlag
 @see PxHitFlag
 */
 PX_FLAGS_TYPEDEF(PxHitFlag, PxU16)
+
+/** \deprecated Deprecated definition for backwards compatibility with PhysX 3.2 */
+#define PxSceneQueryFlag PxHitFlag // PX_DEPRECATED
+/** \deprecated Deprecated definition for backwards compatibility with PhysX 3.2 */
+#define PxSceneQueryFlags PxHitFlags // PX_DEPRECATED
 
 /**
 \brief Combines a shape pointer and the actor the shape belongs to into one memory location.
@@ -114,7 +104,7 @@ struct PxActorShape
 /**
 \brief Scene query hit information.
 */
-struct PxQueryHit : public PxActorShape
+struct PxQueryHit : PxActorShape
 {
 	PX_INLINE			PxQueryHit() : faceIndex(0xFFFFffff) {}
 
@@ -128,6 +118,9 @@ struct PxQueryHit : public PxActorShape
 	*/
 	PxU32				faceIndex;
 };
+
+/** \deprecated Deprecated definition for backwards compatibility with PhysX 3.2 */
+#define PxSceneQueryHit PxQueryHit
 
 /**
 \brief Scene query hit information for raycasts and sweeps returning hit position and normal information.
@@ -179,7 +172,7 @@ struct PxRaycastHit : public PxLocationHit
 	// the following fields are set in accordance with the #PxHitFlags
 
 	PxReal	u, v;			//!< barycentric coordinates of hit point, for triangle mesh and height field (flag: #PxHitFlag::eUV)
-#if !PX_P64_FAMILY
+#if !defined(PX_P64)
 	PxU32	padTo16Bytes[3];
 #endif
 };
@@ -233,10 +226,10 @@ User overrides the virtual processTouches function to receive hits in (possibly 
 template<typename HitType>
 struct PxHitCallback
 {
-	HitType		block;			//!< Holds the closest blocking hit result for the query. Invalid if hasBlock is false.
-	bool		hasBlock;		//!< Set to true if there was a blocking hit during query.
+	HitType		block;			//<! Holds the closest blocking hit result for the query. Invalid if hasBlock is false.
+	bool		hasBlock;		//<! Set to true if there was a blocking hit during query.
 
-	HitType*	touches;		//!< User specified buffer for touching hits.
+	HitType*	touches;		//<! User specified buffer for touching hits.
 
 	/**
 	\brief	Size of the user specified touching hits buffer.
@@ -267,11 +260,11 @@ struct PxHitCallback
 	/**
 	\brief virtual callback function used to communicate query results to the user.
 
-	This callback will always be invoked with #touches as a buffer if #touches was specified as non-NULL.
+	This callback will always be invoked with aTouches as a buffer if aTouches was specified as non-NULL.
 	All reported touch hits are guaranteed to be closer than the closest blocking hit.
 
-	\param[in]	buffer	Callback will report touch hits to the user in this buffer. This pointer will be the same as #touches.
-	\param[in]	nbHits	Number of touch hits reported in buffer. This number will not exceed #maxNbTouches.
+	\param[in]	buffer	Callback will report touch hits to the user in this buffer. This pointer will be the same as aTouches parameter.
+	\param[in]	nbHits	Number of touch hits reported in buffer. This number will not exceed aMaxNbTouches constructor parameter.
 
 	\note	There is a significant performance penalty in case multiple touch callbacks are issued (up to 2x)
 	\note	to avoid the penalty use a bigger buffer so that all touching hits can be reported in a single buffer.
@@ -286,7 +279,7 @@ struct PxHitCallback
 	@see PxAgain PxRaycastHit PxSweepHit PxOverlapHit */
 	virtual PxAgain processTouches(const HitType* buffer, PxU32 nbHits) = 0;
 
-	virtual void finalizeQuery() {} //!< Query finalization callback, called after the last processTouches callback.
+	virtual void finalizeQuery() {} //<! Query finalization callback, called after the last processTouches callback.
 
 	virtual ~PxHitCallback() {}
 
@@ -362,7 +355,7 @@ typedef PxHitBuffer<PxSweepHit> PxSweepBuffer;
 
 /** \brief	Returns touching raycast hits to the user in a fixed size array embedded in the buffer class. **/
 template <int N>
-struct PxRaycastBufferN : public PxHitBuffer<PxRaycastHit>
+struct PxRaycastBufferN : PxHitBuffer<PxRaycastHit>
 {
 	PxRaycastHit hits[N];
 	PxRaycastBufferN() : PxHitBuffer<PxRaycastHit>(hits, N) {}
@@ -370,7 +363,7 @@ struct PxRaycastBufferN : public PxHitBuffer<PxRaycastHit>
 
 /** \brief	Returns touching overlap hits to the user in a fixed size array embedded in the buffer class. **/
 template <int N>
-struct PxOverlapBufferN : public PxHitBuffer<PxOverlapHit>
+struct PxOverlapBufferN : PxHitBuffer<PxOverlapHit>
 {
 	PxOverlapHit hits[N];
 	PxOverlapBufferN() : PxHitBuffer<PxOverlapHit>(hits, N) {}
@@ -378,13 +371,13 @@ struct PxOverlapBufferN : public PxHitBuffer<PxOverlapHit>
 
 /** \brief	Returns touching sweep hits to the user in a fixed size array embedded in the buffer class. **/
 template <int N>
-struct PxSweepBufferN : public PxHitBuffer<PxSweepHit>
+struct PxSweepBufferN : PxHitBuffer<PxSweepHit>
 {
 	PxSweepHit hits[N];
 	PxSweepBufferN() : PxHitBuffer<PxSweepHit>(hits, N) {}
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

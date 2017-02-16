@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.
 
@@ -39,43 +22,27 @@
 
 #include "cooking/PxConvexMeshDesc.h"
 #include "cooking/PxTriangleMeshDesc.h"
-#include "cooking/PxMidphaseDesc.h"
-#include "geometry/PxTriangleMesh.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
 
+class PxOutputStream;
 class PxBinaryConverter;
 class PxPhysicsInsertionCallback;
-class PxFoundation;
 
-struct PX_DEPRECATED PxPlatform
+struct PxPlatform
 {
 	enum Enum
 	{
 		ePC,
-		eARM
+		eXENON,
+		ePLAYSTATION3,
+		eARM,
+		eWIIU
 	};
 };
-
-PX_DEPRECATED PX_FORCE_INLINE PxU32 PxGetGaussMapVertexLimitForPlatform(PxPlatform::Enum targetPlatform)
-{
-	PX_ASSERT_WITH_MESSAGE(	(targetPlatform >= PxPlatform::ePC) && 
-							(targetPlatform <= PxPlatform::eARM),
-							"Unexpected platform in PxGetGaussMapVertexLimitForPlatform");
-
-	PxU32 limit = 0;
-	switch(targetPlatform)
-	{
-		case PxPlatform::ePC:
-			limit = 32;		break;
-		case PxPlatform::eARM:
-			limit = 32;		break;
-	}
-	return limit;
-}
 
 /**
 \brief Result from convex cooking.
@@ -95,67 +62,6 @@ struct PxConvexMeshCookingResult
 		@see PxCookingParams::areaTestEpsilon PxConvexFlag::eCHECK_ZERO_AREA_TRIANGLES
 		*/
 		eZERO_AREA_TEST_FAILED,
-
-		/**
-		\brief Convex mesh cooking succeeded, but the algorithm has reached the 255 polygons limit.
-			The produced hull does not contain all input vertices. Try to simplify the input vertices
-			or try to use the eINFLATE_CONVEX or the eQUANTIZE_INPUT flags.
-
-		@see PxConvexFlag::eINFLATE_CONVEX PxConvexFlag::eQUANTIZE_INPUT
-		*/
-		ePOLYGONS_LIMIT_REACHED,
-
-		/**
-		\brief Something unrecoverable happened. Check the error stream to find out what.
-		*/
-		eFAILURE
-	};
-};
-
-/** \brief Enumeration for convex mesh cooking algorithms. */
-struct PxConvexMeshCookingType
-{
-	enum Enum
-	{
-		/**
-		\brief Legacy incremental algorithm using the inflation skinWidth parameter.
-
-		The algorithm produces a hull with inflated planes. The hull's vertices are not the input vertices; 
-		new vertices are created from the inflated plane's intersections. 
-
-		\note This algorithm is less stable and produces worse results than eQUICK_HULL; it is recommended to use
-		the eQUICKHULL algorithm.
-
-		\note This legacy algorithm will be removed in future releases.
-
-		*/
-		eINFLATION_INCREMENTAL_HULL PX_DEPRECATED = 0,
-
-		/**
-		\brief The Quickhull algorithm constructs the hull from the given input points. The resulting hull
-		will only contain a subset of the input points. 
-		
-		*/
-		eQUICKHULL
-	};
-};
-
-/**
-\brief Result from triangle mesh cooking
-*/
-struct PxTriangleMeshCookingResult
-{
-	enum Enum
-	{
-		/**
-		\brief Everything is A-OK.
-		*/
-		eSUCCESS			= 0,
-
-		/**
-		\brief a triangle is too large for well-conditioned results. Tessellate the mesh for better behavior, see the user guide section on cooking for more details.
-		*/
-		eLARGE_TRIANGLE,
 
 		/**
 		\brief Something unrecoverable happened. Check the error stream to find out what.
@@ -180,6 +86,16 @@ struct PxMeshPreprocessingFlag
 		eWELD_VERTICES					=	1 << 0, 
 
 		/**
+		\brief When set, unreferenced vertices are removed during clean mesh. Clean mesh must be enabledt.
+		*/
+		PX_DEPRECATED	eREMOVE_UNREFERENCED_VERTICES	=	1 << 1,
+
+		/**
+		\brief When set, duplicit vertices are removed during clean mesh. Clean mesh must be enabled.
+		*/
+		PX_DEPRECATED   eREMOVE_DUPLICATED_TRIANGLES	=	1 << 2,
+
+		/**
 		\brief When set, mesh cleaning is disabled. This makes cooking faster.
 
 		When clean mesh is not performed, mesh welding is also not performed. 
@@ -187,23 +103,33 @@ struct PxMeshPreprocessingFlag
 		It is recommended to use only meshes that passed during validateTriangleMesh. 
 
 		*/
-		eDISABLE_CLEAN_MESH								=	1 << 1, 
+		eDISABLE_CLEAN_MESH								=	1 << 3, 
 
 		/**
 		\brief When set, active edges are set for each triangle edge. This makes cooking faster but slow up contact generation.
 		*/
-		eDISABLE_ACTIVE_EDGES_PRECOMPUTE				=	1 << 2,
+		eDISABLE_ACTIVE_EDGES_PRECOMPUTE				=	1 << 4,
 
 		/**
 		\brief When set, 32-bit indices will always be created regardless of triangle count.
 
 		\note By default mesh will be created with 16-bit indices for triangle count <= 0xFFFF and 32-bit otherwise.
 		*/
-		eFORCE_32BIT_INDICES							=	1 << 3
+		eFORCE_32BIT_INDICES							=	1 << 5
 	};
 };
 
 typedef PxFlags<PxMeshPreprocessingFlag::Enum,PxU32> PxMeshPreprocessingFlags;
+
+/** \brief Enumeration for mesh cooking hints. */
+struct PxMeshCookingHint
+{
+	enum Enum
+	{
+		eSIM_PERFORMANCE = 0,		//!< Default value. Favors higher quality hierarchy with higher runtime performance over cooking speed.
+		eCOOKING_PERFORMANCE = 1	//!< Enables fast cooking path at the expense of somewhat lower quality hierarchy construction.
+	};
+};
 
 /**
 
@@ -223,10 +149,11 @@ struct PxCookingParams
 	<b>Default value:</b> Same as the platform on which the SDK is running.
 	*/
 	PxPlatform::Enum	targetPlatform;
+
 	/**
 	\brief Skin width for convexes.
 
-	Specifies the amount to inflate the convex mesh when the inflation algorithm is used.
+	Specifies the amount to inflate the convex mesh when the PxConvexFlag::eINFLATE_CONVEX is used.
 
 	The value is used for moving planes outward, and beveling sharp edges. This helps the hull generator
 	code produce more stable convexes for collision detection. Please note that the resulting hull will
@@ -237,15 +164,11 @@ struct PxCookingParams
 	Change the value if the produced hulls are too thin or improper for your usage. Increasing the value
 	too much will result in incorrect hull size and a large separation between shapes.
 
-	\note skinWidth is only used when PxConvexMeshCookingType::eINFLATION_INCREMENTAL_HULL is enabled.
-
-	@see PxConvexMeshCookingType PxConvexFlag::eINFLATE_CONVEX
-
 	<b>Default value:</b> 0.025f*PxTolerancesScale.length
 
 	<b>Range:</b> (0.0f, PX_MAX_F32)
 	*/
-	PX_DEPRECATED float		skinWidth;
+	float		skinWidth;
 
 	/**
 	\brief Zero-size area epsilon used in convex hull computation.
@@ -260,15 +183,6 @@ struct PxCookingParams
 	<b>Range:</b> (0.0f, PX_MAX_F32)
 	*/
 	float		areaTestEpsilon;
-
-	/**
-	\brief Convex hull creation algorithm.
-
-	<b>Default value:</b> PxConvexMeshCookingType::eQUICKHULL
-
-	@see PxConvexMeshCookingType
-	*/
-	PxConvexMeshCookingType::Enum convexMeshCookingType;
 
 	/**
 	\brief When true, the face remap table is not created.  This saves a significant amount of memory, but the SDK will
@@ -286,13 +200,6 @@ struct PxCookingParams
 	<b>Default value:</b> false
 	*/
 	bool		buildTriangleAdjacencies;
-
-	/**
-	\brief When true, addigional information required for GPU-accelerated rigid body simulation is created. This can increase memory usage and cooking times for convex meshes and triangle meshes.
-
-	<b>Default value:</b> false
-	*/
-	bool		buildGPUData;
 
 	/**
 	\brief Tolerance scale is used to check if cooked triangles are not too huge. This check will help with simulation stability.
@@ -313,28 +220,9 @@ struct PxCookingParams
 	/**
 	\brief Mesh cooking hint. Used to specify mesh hierarchy construction preference.
 
-	\note Deprecated in 3.4, parameter moved to PxBVH33MidphaseDesc.
-
-	@see PxBVH33MidphaseDesc, PxMidphaseDescUnion
-
 	<b>Default value:</b> PxMeshCookingHint::eSIM_PERFORMANCE
 	*/
-	PX_DEPRECATED PxMeshCookingHint::Enum			meshCookingHint;
-
-	/**
-	\brief Controls the trade-off between mesh size and runtime performance.
-
-	Using a value of 1.0 will produce a larger cooked mesh with generally higher runtime performance,
-	using 0.0 will produce a smaller cooked mesh, with generally lower runtime performance.
-
-	Values outside of [0,1] range will be clamped and cause a warning when any mesh gets cooked.
-
-	\note Deprecated in 3.4, parameter moved to PxBVH33MidphaseDesc.
-
-	<b>Default value:</b> 0.55
-	<b>Range:</b> [0.0f, 1.0f]
-	*/
-	PX_DEPRECATED PxF32 meshSizePerformanceTradeOff;
+	PxMeshCookingHint::Enum			meshCookingHint;
 
 	/**
 	\brief Mesh weld tolerance. If mesh welding is enabled, this controls the distance at which vertices are welded.
@@ -354,47 +242,42 @@ struct PxCookingParams
 	PxReal		meshWeldTolerance;
 
 	/**
-	\brief Controls the desired midphase desc structure for triangle meshes.
+	\brief Controls the trade-off between mesh size and runtime performance.
 
-	\note If PxMeshMidPhase::eINVALID is used, the default PxMeshMidPhase::eBVH33 is used and the deprecated parameters PxCookingParams::meshCookingHint and
-	PxCookingParams::meshSizePerformanceTradeOff are used.
+	Using a value of 1.0 will produce a larger cooked mesh with generally higher runtime performance,
+	using 0.0 will produce a smaller cooked mesh, with generally lower runtime performance.
 
-	@see PxBVH33MidphaseDesc, PxBVH34MidphaseDesc, PxMidphaseDesc
+	Values outside of [0,1] range will be clamped and cause a warning when any mesh gets cooked.
 
-	<b>Default value:</b> PxMeshMidPhase::eINVALID
+	<b>Default value:</b> 0.55
+	<b>Range:</b> [0.0f, 1.0f]
 	*/
-	PxMidphaseDesc midphaseDesc;
-
-	/**
-	\brief Vertex limit beyond which additional acceleration structures are computed for each convex mesh. Increase that limit to reduce memory usage.
-	Computing the extra structures all the time does not guarantee optimal performance. There is a per-platform break-even point below which the
-	extra structures actually hurt performance.
-
-	<b>Default value:</b> 32
-	*/
-	PxU32	gaussMapLimit;
+	PxF32 meshSizePerformanceTradeOff;
 
 	PxCookingParams(const PxTolerancesScale& sc):
-		skinWidth						(0.025f*sc.length),
-		areaTestEpsilon					(0.06f*sc.length*sc.length),
-		convexMeshCookingType			(PxConvexMeshCookingType::eQUICKHULL),
-		suppressTriangleMeshRemapTable	(false),
-		buildTriangleAdjacencies		(false),
-		buildGPUData					(false),
-		scale							(sc),
-		meshPreprocessParams			(0),
-		meshCookingHint					(PxMeshCookingHint::eSIM_PERFORMANCE),
-		meshSizePerformanceTradeOff		(0.55f),
-		meshWeldTolerance				(0.f)
+		skinWidth(0.025f*sc.length),
+		areaTestEpsilon(0.06f*sc.length*sc.length),
+		suppressTriangleMeshRemapTable(false),
+		buildTriangleAdjacencies(false),
+		scale(sc),
+		meshPreprocessParams(0),
+		meshCookingHint(PxMeshCookingHint::eSIM_PERFORMANCE),
+		meshWeldTolerance(0.f),
+		meshSizePerformanceTradeOff(0.55f)
 	{
-#if PX_INTEL_FAMILY
+#if defined(PX_X86) || defined(PX_X64)
 		targetPlatform = PxPlatform::ePC;
-#elif PX_ARM_FAMILY
+#elif defined(PX_X360)
+		targetPlatform = PxPlatform::eXENON;
+#elif defined(PX_PS3)
+		targetPlatform = PxPlatform::ePLAYSTATION3;
+#elif defined(PX_ARM) || defined(PX_A64)
 		targetPlatform = PxPlatform::eARM;
+#elif defined(PX_WIIU)
+		targetPlatform = PxPlatform::eWIIU;
 #else
 #error Unknown platform
 #endif
-		gaussMapLimit = PxGetGaussMapVertexLimitForPlatform(targetPlatform);
 	}
 };
 
@@ -451,23 +334,20 @@ public:
 
 	\param[in] desc The triangle mesh descriptor to read the mesh from.
 	\param[in] stream User stream to output the cooked data.
-	\param[out] condition Result from triangle mesh cooking.
 	\return true on success
 
-	@see cookConvexMesh() setParams() PxPhysics.createTriangleMesh() PxTriangleMeshCookingResult::Enum
+	@see cookConvexMesh() setParams() PxPhysics.createTriangleMesh()
 	*/
-	virtual bool  cookTriangleMesh(const PxTriangleMeshDesc& desc, PxOutputStream& stream, PxTriangleMeshCookingResult::Enum* condition = NULL) = 0;
+	virtual bool  cookTriangleMesh(const PxTriangleMeshDesc& desc, PxOutputStream& stream) = 0;
 
 	/**
 	\brief Cooks and creates a triangle mesh and inserts it into PxPhysics.
 
-	\note PxPhysicsInsertionCallback can be obtained through PxPhysics::getPhysicsInsertionCallback().
-
 	\param[in] desc The triangle mesh descriptor to read the mesh from.
 	\param[in] insertionCallback The insertion interface from PxPhysics.
-	\return PxTriangleMesh pointer on success.	
+	\return PxTriangleMesh pointer on success	
 
-	@see cookTriangleMesh() setParams() PxPhysics.createTriangleMesh() PxPhysicsInsertionCallback
+	@see cookConvexMesh() setParams() PxPhysics.createTriangleMesh() PxPhysicsInsertionCallback
 	*/
 	virtual PxTriangleMesh*    createTriangleMesh(const PxTriangleMeshDesc& desc, PxPhysicsInsertionCallback& insertionCallback) = 0;
 
@@ -499,49 +379,18 @@ public:
 
 	\include PxCookConvexMesh_Example.cpp
 
-	\note The number of vertices and the number of convex polygons in a cooked convex mesh is limited to 255.
+	\note The number of vertices and the number of convex polygons in a cooked convex mesh is limited to 256.
 	\note If those limits are exceeded in either the user-provided data or the final cooked mesh, an error is reported.
+	\note If the number of polygons exceed, using the #PxConvexFlag::eINFLATE_CONVEX can help you to obtain a valid convex.
 
 	\param[in] desc The convex mesh descriptor to read the mesh from.
 	\param[in] stream User stream to output the cooked data.
 	\param[out] condition Result from convex mesh cooking.
-	\return true on success.
+	\return true on success
 
 	@see cookTriangleMesh() setParams() PxConvexMeshCookingResult::Enum
 	*/
-	virtual bool  cookConvexMesh(const PxConvexMeshDesc& desc, PxOutputStream& stream, PxConvexMeshCookingResult::Enum* condition = NULL) = 0;
-
-	/**
-	\brief Cooks and creates a convex mesh and inserts it into PxPhysics.
-
-	\note This method does the same as cookConvexMesh, but the produced convex mesh is not stored
-	into a stream but is directly inserted in PxPhysics. Use this method if you are unable to cook offline.
-
-	\note PxPhysicsInsertionCallback can be obtained through PxPhysics::getPhysicsInsertionCallback().
-
-	\param[in] desc The convex mesh descriptor to read the mesh from.
-	\param[in] insertionCallback The insertion interface from PxPhysics.
-	\return PxConvexMesh pointer on success	
-
-	@see cookConvexMesh() setParams() PxPhysicsInsertionCallback
-	*/
-	virtual PxConvexMesh*    createConvexMesh(const PxConvexMeshDesc& desc, PxPhysicsInsertionCallback& insertionCallback) = 0;
-
-	/**
-	\brief Verifies if the convex mesh is valid. Prints an error message for each inconsistency found.
-
-	The convex mesh descriptor must contain an already created convex mesh - the vertices, indices and polygons must be provided.	
-
-	\note This function should be used if PxConvexFlag::eDISABLE_MESH_VALIDATION is planned to be used in release builds.
-
-	\param[in] desc The convex mesh descriptor to read the mesh from.
-
-	\return true if all the validity conditions hold, false otherwise.
-
-	@see cookConvexMesh()
-	*/
-	virtual bool  validateConvexMesh(const PxConvexMeshDesc& desc) = 0;
-
+	virtual bool  cookConvexMesh(const PxConvexMeshDesc& desc, PxOutputStream& stream, PxConvexMeshCookingResult::Enum* condition = NULL) = 0;	
 
 	/**
 	\brief Computed hull polygons from given vertices and triangles. Polygons are needed for PxConvexMeshDesc rather than triangles.
@@ -583,7 +432,7 @@ public:
 	*/
 	virtual bool  cookHeightField(const PxHeightFieldDesc& desc, PxOutputStream& stream) = 0;
 
-	/**
+		/**
 	\brief Cooks and creates a heightfield mesh and inserts it into PxPhysics.
 
 	\param[in] desc The heightfield descriptor to read the HF from.
@@ -599,7 +448,7 @@ protected:
 	virtual ~PxCooking(){}
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

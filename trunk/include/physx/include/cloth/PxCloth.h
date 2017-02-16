@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -42,7 +25,7 @@
 #include "cloth/PxClothTypes.h"
 #include "cloth/PxClothCollisionData.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -225,7 +208,7 @@ public:
 	Requesting multiple concurrent read-only locks is supported, but no other lock may be active
 	when requesting a write lock.
 	
-	If PxDataAccessFlag::eDEVICE is set in flags then the returned pointers will be to CUDA 
+	If PxDataAccessFlag::eDEVICE is set in flags then the returned pointers will be to GPU 
 	device memory, this can be used for direct interop with graphics APIs. Note that these pointers
 	should only be considered valid until PxClothParticleData::unlock() is called and should not
 	be stored. PxDataAccessFlag::eDEVICE implies read and write access, and changing the 
@@ -462,31 +445,6 @@ public:
 	\return Number of particle accelerations (same as getNbParticles() if enabled, 0 otherwise).
 	*/
 	virtual PxU32 getNbParticleAccelerations() const = 0; 
-
-	/**
-	\brief Returns the velocity of the wind affecting the fabric's triangles.
-	*/
-	virtual PxVec3 getWindVelocity() const = 0;
-	/**
-	\brief Sets the velocity of the wind affecting the fabric's triangles.
-	*/
-	virtual void setWindVelocity(PxVec3) = 0;
-	/**
-	\brief Returns the coefficient of the air drag on the fabric's triangles.
-	*/
-	virtual PxReal getWindDrag() const = 0;
-	/**
-	\brief Sets the coefficient of the air drag on the fabric's triangles.
-	*/
-	virtual void setWindDrag(PxReal) = 0;
-	/**
-	\brief Returns the coefficient of the air lift on the fabric's triangles.
-	*/
-	virtual PxReal getWindLift() const = 0;
-	/**
-	\brief Sets the coefficient of the air lift on the fabric's triangles.
-	*/
-	virtual void setWindLift(PxReal) = 0;
 
 	/// @}
 
@@ -993,10 +951,13 @@ protected:
 	PX_INLINE PxCloth(PxType concreteType, PxBaseFlags baseFlags) : PxActor(concreteType, baseFlags) {}
 	PX_INLINE PxCloth(PxBaseFlags baseFlags) : PxActor(baseFlags) {}
 	virtual ~PxCloth() {}
-	virtual bool isKindOf(const char* name)	const {	return !::strcmp("PxCloth", name) || PxActor::isKindOf(name); }
+	virtual bool isKindOf(const char* name)	const {	return !strcmp("PxCloth", name) || PxActor::isKindOf(name); }
 };
 
-#if !PX_DOXYGEN
+PX_DEPRECATED PX_INLINE PxCloth*		PxActor::isCloth()       { return is<PxCloth>(); }
+PX_DEPRECATED PX_INLINE const PxCloth*	PxActor::isCloth() const { return is<PxCloth>(); }
+
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

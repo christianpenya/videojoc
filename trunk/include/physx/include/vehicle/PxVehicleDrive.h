@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -36,7 +19,7 @@
 #include "vehicle/PxVehicleWheels.h"
 #include "vehicle/PxVehicleComponents.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -158,7 +141,7 @@ protected:
 //serialization
 public:
 	PxVehicleDriveSimData() {}
-	PxVehicleDriveSimData(const PxEMPTY) :  mEngine(PxEmpty), mGears(PxEmpty), mClutch(PxEmpty), mAutoBox(PxEmpty) {}
+	PxVehicleDriveSimData(const PxEMPTY&) :  mEngine(PxEmpty), mGears(PxEmpty), mClutch(PxEmpty), mAutoBox(PxEmpty) {}
 	static void getBinaryMetaData(PxOutputStream& stream);
 //~serialization
 };
@@ -480,7 +463,7 @@ private:
 //serialization
 public:
 	PxVehicleDriveDynData();
-	PxVehicleDriveDynData(const PxEMPTY)  {}
+	PxVehicleDriveDynData(const PxEMPTY&)  {}
 	PxU32 getNbAnalogInput() const { return eMAX_NB_ANALOG_INPUTS; }
 	PX_FORCE_INLINE void setGearChange(const PxU32 gearChange) { mTargetGear= gearChange; }
 	PX_FORCE_INLINE PxU32 getGearChange() const { return mTargetGear; }
@@ -527,9 +510,12 @@ protected:
 	/**
 	@see PxVehicleDrive4W::allocate, PxVehicleDriveTank::allocate
 	*/
-	static PxU32 computeByteSize(const PxU32 numWheels);
-	static PxU8* patchupPointers(const PxU32 nbWheels, PxVehicleDrive* vehDrive, PxU8* ptr);
-	virtual void init(const PxU32 numWheels);
+	static PxU32 computeByteSize(const PxU32 nbWheels4);
+
+	/**
+	@see PxVehicleDrive4W::allocate, PxVehicleDriveTank::allocate
+	*/
+	static PxU8* patchupPointers(PxVehicleDrive* vehDrive, PxU8* ptr, const PxU32 nbWheels4, const PxU32 nbWheels);
 
 	/**
 	\brief Deallocate a PxVehicle4WDrive instance.
@@ -553,12 +539,12 @@ public:
 protected:
 	PxVehicleDrive(PxType concreteType, PxBaseFlags baseFlags) : PxVehicleWheels(concreteType, baseFlags) {}	
 	~PxVehicleDrive() {}
-	virtual bool isKindOf(const char* name)	const { return !::strcmp("PxVehicleDrive", name) || PxBase::isKindOf(name); }
+	virtual bool isKindOf(const char* name)	const { return !strcmp("PxVehicleDrive", name) || PxBase::isKindOf(name); }
 //~serialization
 };
 PX_COMPILE_TIME_ASSERT(0==(sizeof(PxVehicleDrive) & 15));
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

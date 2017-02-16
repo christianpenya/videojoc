@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -40,7 +23,7 @@
 #include "PxClient.h"
 #include "common/PxBase.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -104,6 +87,7 @@ struct PxActorFlag
 		to sleep and wake up all touching actors from the previous frame.
 		*/
 		eDISABLE_SIMULATION				= (1<<3)
+
 	};
 };
 
@@ -112,8 +96,8 @@ struct PxActorFlag
 
 @see PxActorFlag
 */
-typedef PxFlags<PxActorFlag::Enum,PxU8> PxActorFlags;
-PX_FLAGS_OPERATORS(PxActorFlag::Enum,PxU8)
+typedef PxFlags<PxActorFlag::Enum,PxU16> PxActorFlags;
+PX_FLAGS_OPERATORS(PxActorFlag::Enum,PxU16)
 
 /**
 \brief Identifies each type of actor.
@@ -137,18 +121,16 @@ struct PxActorType
 
 #if PX_USE_PARTICLE_SYSTEM_API
 		/**
-		\brief A particle system (deprecated)
-		\deprecated The PhysX particle feature has been deprecated in PhysX version 3.4
+		\brief A particle system
 		@see PxParticleSystem
 		*/
-		ePARTICLE_SYSTEM PX_DEPRECATED,
+		ePARTICLE_SYSTEM,
 
 		/**
-		\brief A particle fluid (deprecated)
-		\deprecated The PhysX particle feature has been deprecated in PhysX version 3.4
+		\brief A particle fluid
 		@see PxParticleFluid
 		*/
-		ePARTICLE_FLUID PX_DEPRECATED,
+		ePARTICLE_FLUID,
 #endif
 		
 		/**
@@ -200,6 +182,38 @@ public:
 	@see PxActorType
 	*/
 	virtual		PxActorType::Enum	getType()	const = 0;
+
+
+	/**
+	\deprecated
+	\brief Attempts to cast to specific actor type.
+
+	\return NULL if the actor is not of the appropriate type. Otherwise a pointer to the specific actor type.
+
+	\note Since PxParticleFluid inherits from PxParticleSystem, calling isParticleSystem() on a PxParticleFluid instance will
+	succeed and return the upcast to PxParticleSystem.
+
+	@see PxActorType PxRigidActor PxRigidBody PxRigidStatic PxRigidDynamic PxParticleBase PxParticleSystem PxParticleFluid
+	*/
+	PX_DEPRECATED	PX_INLINE	PxRigidStatic*				isRigidStatic();
+	PX_DEPRECATED	PX_INLINE	const PxRigidStatic*		isRigidStatic()			const;
+	PX_DEPRECATED	PX_INLINE	PxRigidDynamic*				isRigidDynamic();
+	PX_DEPRECATED	PX_INLINE	const PxRigidDynamic*		isRigidDynamic()		const;
+	PX_DEPRECATED	PX_INLINE	PxParticleSystem*			isParticleSystem();
+	PX_DEPRECATED	PX_INLINE	const PxParticleSystem*		isParticleSystem()		const;
+	PX_DEPRECATED	PX_INLINE	PxParticleFluid*			isParticleFluid();
+	PX_DEPRECATED	PX_INLINE	const PxParticleFluid*		isParticleFluid()		const;
+	PX_DEPRECATED	PX_INLINE	PxArticulationLink*			isArticulationLink();
+	PX_DEPRECATED	PX_INLINE	const PxArticulationLink*	isArticulationLink()	const;
+	PX_DEPRECATED	PX_INLINE	PxCloth*					isCloth();
+	PX_DEPRECATED	PX_INLINE	const PxCloth*				isCloth()				const;
+
+	PX_DEPRECATED	PX_INLINE	PxRigidActor*				isRigidActor();
+	PX_DEPRECATED	PX_INLINE	const PxRigidActor*			isRigidActor()			const;
+	PX_DEPRECATED	PX_INLINE	PxRigidBody*				isRigidBody();
+	PX_DEPRECATED	PX_INLINE	const PxRigidBody*			isRigidBody()			const;
+	PX_DEPRECATED	PX_INLINE	PxParticleBase*				isParticleBase();
+	PX_DEPRECATED	PX_INLINE	const PxParticleBase*		isParticleBase()		const;
 
 	/**
 	\brief Retrieves the scene which this actor belongs to.
@@ -335,26 +349,22 @@ public:
 	The actor will always send notice for all possible events to its own owner client.  By default
 	it will not send any events to any other clients.  If the user however raises a bit flag for
 	any event type using this function, that event will then be sent also to any other clients which
-	are programmed to listed to foreign actor events of that type. 
-
-	\deprecated PxActorClientBehaviorFlag feature has been deprecated in PhysX version 3.4
+	are programmed to listed to foreign actor events of that type.  
 
 	<b>Default:</b> 0
 
 	@see PxClientID PxActorClientBehaviorFlag PxScene::setClientBehaviorFlags()
 	*/
-	PX_DEPRECATED virtual		void			setClientBehaviorFlags(PxActorClientBehaviorFlags) = 0;
+	virtual		void			setClientBehaviorFlags(PxActorClientBehaviorFlags) = 0;
 
 	/**
 	\brief Retrieves the behavior bits of the actor.
 
 	The behavior bits determine which types of events the actor will broadcast to foreign clients.
 
-	\deprecated PxActorClientBehaviorFlag feature has been deprecated in PhysX version 3.4
-
 	@see PxActorClientBehaviorFlag setClientBehaviorFlags()
 	*/
-	PX_DEPRECATED virtual		PxActorClientBehaviorFlags	getClientBehaviorFlags()	const = 0;
+	virtual		PxActorClientBehaviorFlags	getClientBehaviorFlags()	const = 0;
 
 	/**
 	\brief Retrieves the aggregate the actor might be a part of.
@@ -373,12 +383,12 @@ protected:
 	PX_INLINE					PxActor(PxType concreteType, PxBaseFlags baseFlags) : PxBase(concreteType, baseFlags), userData(NULL) {}
 	PX_INLINE					PxActor(PxBaseFlags baseFlags) : PxBase(baseFlags) {}
 	virtual						~PxActor()	{}
-	virtual		bool			isKindOf(const char* name)	const		{	return !::strcmp("PxActor", name) || PxBase::isKindOf(name); }
+	virtual		bool			isKindOf(const char* name)	const		{	return !strcmp("PxActor", name) || PxBase::isKindOf(name); }
 
 
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

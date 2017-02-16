@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -39,7 +22,7 @@
 #include "PxConstraintDesc.h"
 #include "common/PxBase.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -69,11 +52,11 @@ struct PxConstraintFlag
 		ePROJECT_TO_ACTOR1			= 1<<2,			//!< whether actor0 should get projected to actor1 for this constraint (note: projection of a static/kinematic actor to a dynamic actor will be ignored)
 		ePROJECTION					= ePROJECT_TO_ACTOR0 | ePROJECT_TO_ACTOR1,	//!< whether the actors should get projected for this constraint (the direction will be chosen by PhysX)
 		eCOLLISION_ENABLED			= 1<<3,			//!< whether contacts should be generated between the objects this constraint constrains
-		eVISUALIZATION				= 1<<4,			//!< whether this constraint should be visualized, if constraint visualization is turned on
-		eDRIVE_LIMITS_ARE_FORCES	= 1<<5,			//!< limits for drive strength are forces rather than impulses
-		eIMPROVED_SLERP				= 1<<7,			//!< perform preprocessing for improved accuracy on D6 Slerp Drive (this flag will be removed in a future release when preprocessing is no longer required)
-		eDISABLE_PREPROCESSING		= 1<<8,			//!< suppress constraint preprocessing, intended for use with rowResponseThreshold. May result in worse solver accuracy for ill-conditioned constraints.
-		eGPU_COMPATIBLE				= 1<<9			//!< the constraint type is supported by gpu dynamic
+		eREPORTING					= 1<<4,			//!< whether this constraint should generate force reports. DEPRECATED, as constraints always generate reports
+		eVISUALIZATION				= 1<<5,			//!< whether this constraint should be visualized, if constraint visualization is turned on
+		eDRIVE_LIMITS_ARE_FORCES	= 1<<6,			//!< limits for drive strength are forces rather than impulses
+		eDEPRECATED_32_COMPATIBILITY= 1<<7,			//!< legacy compatibility flag for 3.3; see user guide. This flag must not be set in order for drives to conform to an implicit spring model
+		eIMPROVED_SLERP				= 1<<8			//!< perform preprocessing for improved accuracy on D6 Slerp Drive (this flag will be removed in a future release when preprocessing is no longer required)
 	};
 };
 
@@ -90,13 +73,19 @@ struct PxConstraintShaderTable
 {
 	enum
 	{
+		eMAX_SOLVERPREPSPU_BYTESIZE=19056
+	};
+
+	enum
+	{
 		eMAX_SOLVERPRPEP_DATASIZE=400
 	};
 
-	PxConstraintSolverPrep			solverPrep;					//!< solver constraint generation function
-	PxConstraintProject				project;					//!< constraint projection function
-	PxConstraintVisualize			visualize;					//!< constraint visualization function
-	PxConstraintFlag::Enum			flag;						//!< gpu constraint
+	PxConstraintSolverPrep			solverPrep;					//< solver constraint generation function
+	void*							solverPrepSpu;				//< spu-optimized solver constraint generation function
+	PxU32							solverPrepSpuByteSize;		//< code size of the spu-optimized solver constraint generation function
+	PxConstraintProject				project;					//< constraint projection function
+	PxConstraintVisualize			visualize;					//< constraint visualization function
 };
 
 
@@ -234,31 +223,6 @@ public:
 
 
 	/**
-	\brief Set the minimum response threshold for a constraint row 
-	
-	When using mass modification for a joint or infinite inertia for a jointed body, very stiff solver constraints can be generated which 
-	can destabilize simulation. Setting this value to a small positive value (e.g. 1e-8) will cause constraint rows to be ignored if very 
-	large changes in impulses will generate only small changes in velocity. When setting this value, also set 
-	PxConstraintFlag::eDISABLE_PREPROCESSING. The solver accuracy for this joint may be reduced.
-
-	\param[in] threshold the minimum response threshold
-
-	@see PxConstraintFlag::eDISABLE_PREPROCESSING
-	*/
-
-
-	virtual	void				setMinResponseThreshold(PxReal threshold)					= 0;
-
-	/**
-	\brief Retrieve the constraint break force and torque thresholds
-
-	\return the minimum response threshold for a constraint row
-
-	*/
-	virtual	PxReal				getMinResponseThreshold()							const	= 0;
-
-
-	/**
 	\brief Fetch external owner of the constraint.
 	
 	Provides a reference to the external owner of a constraint and a unique owner type ID.
@@ -287,11 +251,11 @@ protected:
 	PX_INLINE					PxConstraint(PxType concreteType, PxBaseFlags baseFlags) : PxBase(concreteType, baseFlags) {}
 	PX_INLINE					PxConstraint(PxBaseFlags baseFlags) : PxBase(baseFlags) {}
 	virtual						~PxConstraint() {}
-	virtual	bool				isKindOf(const char* name) const { return !::strcmp("PxConstraint", name) || PxBase::isKindOf(name); }
+	virtual	bool				isKindOf(const char* name) const { return !strcmp("PxConstraint", name) || PxBase::isKindOf(name); }
 
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

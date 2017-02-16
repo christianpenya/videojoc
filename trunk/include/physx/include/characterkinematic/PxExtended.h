@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -38,14 +21,13 @@
 
 #include "PxPhysXConfig.h"
 #include "foundation/PxTransform.h"
-#include "foundation/PxAssert.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
 
-// This has to be done here since it also changes the top-level "Px" and "Np" APIs
+// This has to be done here since it also changes the top-level "Nx" API (as well as "Nv" and "Np" ones)
 #define PX_BIG_WORLDS
 
 #ifdef PX_BIG_WORLDS
@@ -66,7 +48,7 @@ struct PxExtendedVec3
 
 	PX_INLINE PxExtended	dot(const PxVec3& v) const
 	{
-		return x * PxExtended(v.x) + y * PxExtended(v.y) + z * PxExtended(v.z);
+		return x * v.x + y * v.y + z * v.z;
 	}
 
 	PX_INLINE	PxExtended distanceSquared(const PxExtendedVec3& v) const
@@ -90,7 +72,7 @@ struct PxExtendedVec3
 	PX_INLINE	PxExtended	normalize()
 	{
 		PxExtended m = magnitude();
-		if (m != 0.0)
+		if (m)
 		{
 			const PxExtended il =  PxExtended(1.0) / m;
 			x *= il;
@@ -140,9 +122,9 @@ struct PxExtendedVec3
 	PX_INLINE void	cross(const PxExtendedVec3& left, const PxVec3& right)
 	{
 		// temps needed in case left or right is this.
-		PxExtended a = (left.y * PxExtended(right.z)) - (left.z * PxExtended(right.y));
-		PxExtended b = (left.z * PxExtended(right.x)) - (left.x * PxExtended(right.z));
-		PxExtended c = (left.x * PxExtended(right.y)) - (left.y * PxExtended(right.x));
+		PxExtended a = (left.y * right.z) - (left.z * right.y);
+		PxExtended b = (left.z * right.x) - (left.x * right.z);
+		PxExtended c = (left.x * right.y) - (left.y * right.x);
 
 		x = a;
 		y = b;
@@ -171,9 +153,9 @@ struct PxExtendedVec3
 	PX_INLINE void	cross(const PxVec3& left, const PxExtendedVec3& right)
 	{
 		// temps needed in case left or right is this.
-		PxExtended a = (PxExtended(left.y) * right.z) - (PxExtended(left.z) * right.y);
-		PxExtended b = (PxExtended(left.z) * right.x) - (PxExtended(left.x) * right.z);
-		PxExtended c = (PxExtended(left.x) * right.y) - (PxExtended(left.y) * right.x);
+		PxExtended a = (left.y * right.z) - (left.z * right.y);
+		PxExtended b = (left.z * right.x) - (left.x * right.z);
+		PxExtended c = (left.x * right.y) - (left.y * right.x);
 
 		x = a;
 		y = b;
@@ -267,7 +249,7 @@ typedef	PxReal		PxExtended;
 #define PxExtendedAbs(x)	fabsf(x)
 #endif
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

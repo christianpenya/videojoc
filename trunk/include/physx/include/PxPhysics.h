@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -40,31 +23,58 @@
 #include "PxDeletionListener.h"
 #include "foundation/PxTransform.h"
 #include "PxShape.h"
-
+#include "physxvisualdebuggersdk/PvdConnectionManager.h"
 
 #if PX_USE_CLOTH_API
 #include "cloth/PxClothTypes.h"
 #include "cloth/PxClothFabric.h"
 #endif
 
-
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
 
-class PxPvd;
+class PxInputStream;
+class PxOutputStream;
 class PxPhysicsInsertionCallback;
 
 class PxRigidActor;
 class PxConstraintConnector;
 struct PxConstraintShaderTable;
 
+class PxProfileZone;
+class PxProfileZoneManager;
+
 class PxGeometry;
-class PxFoundation;
+
 class PxSerializationRegistry;
 
-class PxPruningStructure;
+struct PxCookingValue
+{
+	enum Enum
+	{
+		/**
+		Version numbers follow this format:
+
+		Version = 16bit|16bit
+
+		The high part is increased each time the format changes so much that
+		pre-cooked files become incompatible with the system (and hence must
+		be re-cooked)
+
+		The low part is increased each time the format changes but the code
+		can still read old files. You don't need to re-cook the data in that
+		case, unless you want to make sure cooked files are optimal.
+		*/
+		eCONVEX_VERSION_PC,
+		eMESH_VERSION_PC,
+		eCONVEX_VERSION_XENON,
+		eMESH_VERSION_XENON,
+		eCONVEX_VERSION_PLAYSTATION3,
+		eMESH_VERSION_PLAYSTATION3
+	};
+};
 
 /**
 \brief Abstract singleton factory class used for instancing objects in the Physics SDK.
@@ -114,7 +124,33 @@ public:
 	\return A reference to the Foundation object.
 	*/
 	virtual PxFoundation&		getFoundation() = 0;
-		
+
+	/**
+	\brief Retrieves the PhysX Visual Debugger.
+	\return A pointer to the PxVisualDebugger. Can be NULL if PVD is not supported on this platform.
+	*/
+	virtual PxVisualDebugger*	getVisualDebugger()	= 0;
+
+	/**
+		The factory manager allows notifications when a new
+		connection to pvd is made.  It also allows the users to specify
+		a scheme to handle the read-side of a network connection.  By default, 
+		the SDK specifies that a thread gets launched which blocks reading
+		on the network socket.
+	
+		\return A valid manager *if* the SDK was compiled with PVD support.  Null otherwise.
+	*/
+	virtual PxVisualDebuggerConnectionManager* getPvdConnectionManager() = 0;
+
+	/*
+	\brief Retrieves the profile sdk manager.
+	*	The profile sdk manager manages collections of SDKs and objects that are interested in 
+	*	receiving events from them.  This is the hook if you want to write the profiling events
+	*	from multiple SDK's out to a file.
+	\return The SDK's profiling system manager.
+	*/
+	virtual PxProfileZoneManager* getProfileZoneManager() = 0;	
+
 	/**
 	\brief Creates an aggregate with the specified maximum size and selfCollision property.
 
@@ -176,6 +212,20 @@ public:
 	@see getNbTriangleMeshes() PxTriangleMesh
 	*/
 	virtual	PxU32				getTriangleMeshes(PxTriangleMesh** userBuffer, PxU32 bufferSize, PxU32 startIndex=0) const = 0;
+
+	/**
+	\brief Creates a PxHeightField object.
+
+	Deprecated please use PxCooking::createHeightField
+
+	This can then be instanced into #PxShape objects.
+
+	\param[in] heightFieldDesc The descriptor to load the object from.
+	\return The new height field object.
+
+	@see PxHeightField PxHeightField.release() PxHeightFieldDesc PxHeightFieldGeometry PxShape PxRegisterHeightFields PxRegisterUnifiedHeightFields
+	*/
+	PX_DEPRECATED virtual PxHeightField*		createHeightField(const PxHeightFieldDesc& heightFieldDesc) = 0;
 
 	/**
 	\brief Creates a heightfield object from previously cooked stream.
@@ -376,30 +426,26 @@ public:
 
 #if PX_USE_PARTICLE_SYSTEM_API
 	/**
-	\brief Creates a particle system. (deprecated)
+	\brief Creates a particle system.
 
 	\param maxParticles the maximum number of particles that may be placed in the particle system
 	\param perParticleRestOffset whether the ParticleSystem supports perParticleRestOffset
 	\return The new particle system.
 
-	\deprecated The PhysX particle feature has been deprecated in PhysX version 3.4
-
 	@see PxParticleSystem PxRegisterParticles
 	*/
-	PX_DEPRECATED virtual PxParticleSystem*	createParticleSystem(PxU32 maxParticles, bool perParticleRestOffset = false) = 0;
+	virtual PxParticleSystem*	createParticleSystem(PxU32 maxParticles, bool perParticleRestOffset = false) = 0;
 
 	/**
-	\brief Creates a particle fluid. (deprecated)
+	\brief Creates a particle fluid. 
 	
 	\param maxParticles the maximum number of particles that may be placed in the particle fluid
 	\param perParticleRestOffset whether the ParticleFluid supports perParticleRestOffset
 	\return The new particle fluid.
 
-	\deprecated The PhysX particle feature has been deprecated in PhysX version 3.4
-
 	@see PxParticleFluid PxRegisterParticles
 	*/
-	PX_DEPRECATED virtual PxParticleFluid*	createParticleFluid(PxU32 maxParticles, bool perParticleRestOffset = false) = 0;
+	virtual PxParticleFluid*	createParticleFluid(PxU32 maxParticles, bool perParticleRestOffset = false) = 0;
 #endif
 
 
@@ -417,21 +463,6 @@ public:
 	*/
 	virtual PxCloth*			createCloth(const PxTransform& globalPose, PxClothFabric& fabric, const PxClothParticle* particles, PxClothFlags flags) = 0;
 #endif
-
-	/**
-	\brief Creates a pruning structure from actors.
-
-	\note Every provided actor needs at least one shape with the eSCENE_QUERY_SHAPE flag set.
-	\note Both static and dynamic actors can be provided.
-	\note It is not allowed to pass in actors which are already part of a scene.
-	\note Articulation links cannot be provided.
-
-	\param[in] actors Array of actors to add to the pruning structure. Must be non NULL.
-	\param[in] nbActors Number of actors in the array. Must be >0.
-	\return Pruning structure created from given actors, or NULL if any of the actors did not comply with the above requirements.
-	@see PxActor PxPruningStructure
-	*/
-	virtual PxPruningStructure*	createPruningStructure(PxRigidActor*const* actors, PxU32 nbActors)	= 0;
 	
 	//@}
 	/** @name Shapes
@@ -661,7 +692,7 @@ public:
 	/**
 	\brief Gets PxPhysics object insertion interface. 
 
-	The insertion interface is needed ie. for PxCooking::createTriangleMesh, this allows runtime mesh creation. This is not advised to do, please 
+	The insertion interface is needed ie. for PxCooking::createTriangleMesh, this allows runtime mesh creation. This is not adviced to do, please 
 	use offline cooking if possible.
 
 	@see PxCooking::createTriangleMesh PxCooking::createHeightfield
@@ -671,9 +702,17 @@ public:
 	//@}
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
+
+/**
+\brief Reads an internal value (cooking format version).
+
+\param[in] cookValue See #PxCookingValue
+*/
+PX_C_EXPORT PX_PHYSX_CORE_API physx::PxU32 PX_CALL_CONV PxGetValue(physx::PxCookingValue::Enum cookValue);
+
 
 /**
 \brief Enables the usage of the articulations feature.  This function is called automatically inside PxCreatePhysics().
@@ -685,50 +724,37 @@ component, you shoud call PxCreateBasePhysics() followed by this call.
 PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxRegisterArticulations(physx::PxPhysics& physics);
 
 /**
-\brief Enables the usage of the heightfield feature.  
-
-This call will link the default 'unified' implementation of heightfields which is identical to the narrow phase of triangle meshes.
-This function is called automatically inside PxCreatePhysics().
-
+\brief Enables the usage of the default heightfield feature.  This function is called automatically inside PxCreatePhysics().
 On resource constrained platforms, it is possible to call PxCreateBasePhysics() and then NOT call this function
 to save on code memory if your application does not use heightfields.  In this case the linker should strip out
 the relevant implementation code from the library.  If you need to use heightfield but not some other optional
 component, you shoud call PxCreateBasePhysics() followed by this call.
 
-You must call this function at a time where no ::PxScene instance exists, typically before calling PxPhysics::createScene().
-This is to prevent a change to the heightfield implementation code at runtime which would have undefined results.
-
-Calling PxCreateBasePhysics() and then attempting to create a heightfield shape without first calling 
-::PxRegisterHeightFields(), ::PxRegisterUnifiedHeightFields() or ::PxRegisterLegacyHeightFields() will result in an error.
-*/
-PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxRegisterHeightFields(physx::PxPhysics& physics);
-
-/**
-\brief Enables the usage of the legacy heightfield feature.
-
-This call will link the default 'legacy' implementation of heightfields which uses a special purpose collison code
+This call will link the default 'legacy' implementation of heightfields which uses a special purpose collison code 
 path distinct from triangle meshes.
 
 You must call this function at a time where no ::PxScene instance exists, typically before calling PxPhysics::createScene().
 This is to prevent a change to the heightfield implementation code at runtime which would have undefined results.
 
-Calling PxCreateBasePhysics() and then attempting to create a heightfield shape without first calling
-::PxRegisterHeightFields(), ::PxRegisterLegacyHeightFields() or ::PxRegisterUnifiedHeightFields() will result in an error.
+Calling PxCreateBasePhysics() and then attempting to create a heightfield shape without first calling 
+::PxRegisterHeightFields() or ::PxRegisterUnifiedHeightFields() will result in an error.
 */
-PX_DEPRECATED PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxRegisterLegacyHeightFields(physx::PxPhysics& physics);
+PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxRegisterHeightFields(physx::PxPhysics& physics);
 
 /**
-\brief Enables the usage of the unified heightfield feature.
+\brief Enables the usage of the unified heightfield feature.  
 
-This method is deprecated and provided only for compatibility with legacy applications. It will be removed in future releases. 
-Call PxRegisterHeightFields instead, which also registers unified heightfields.
+This call will enable the new implementation of heightfields which is identical to the narrow phase of triangle meshes.
+
+You can call this after either PxCreatePhysics() or after PxCreateBasePhysics(), but you must call it at a time where 
+no ::PxScene instance exists, typically before calling PxPhysics::createScene().  This is to prevent a change to the 
+heightfield implementation code at runtime which would have undefined results.
+
+Calling PxCreateBasePhysics() and then attempting to create a heightfield shape without first calling
+::PxRegisterHeightFields() or ::PxRegisterUnifiedHeightFields() will result in an error.
 */
 
-PX_DEPRECATED PX_INLINE void PX_CALL_CONV PxRegisterUnifiedHeightFields(physx::PxPhysics& physics)
-{
-	PxRegisterHeightFields(physics);
-}
-
+PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxRegisterUnifiedHeightFields(physx::PxPhysics& physics);
 
 /**
 \brief Enables the usage of the cloth feature.  This function is called automatically inside PxCreatePhysics().
@@ -740,15 +766,13 @@ component, you shoud call PxCreateBasePhysics() followed by this call.
 PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxRegisterCloth(physx::PxPhysics& physics);
 
 /**
-\brief Enables the usage of the particles feature.  This function is called automatically inside PxCreatePhysics(). (deprecated)
+\brief Enables the usage of the particles feature.  This function is called automatically inside PxCreatePhysics().
 On resource constrained platforms, it is possible to call PxCreateBasePhysics() and then NOT call this function
 to save on code memory if your application does not use particles.  In this case the linker should strip out
 the relevant implementation code from the library.  If you need to use particles but not some other optional
 component, you shoud call PxCreateBasePhysics() followed by this call.
-
-\deprecated The PhysX particle feature has been deprecated in PhysX version 3.4
 */
-PX_DEPRECATED PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxRegisterParticles(physx::PxPhysics& physics);
+PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxRegisterParticles(physx::PxPhysics& physics);
 
 /**
 \brief Creates an instance of the physics SDK with minimal additional components registered
@@ -765,17 +789,16 @@ has been created already will result in an error message and NULL will be return
 			so a debugger connection partway through your physics simulation will get
 			an accurate map of everything that has been allocated so far.  This could have a memory
 			and performance impact on your simulation hence it defaults to off.
-\param pvd When pvd points to a valid PxPvd instance (PhysX Visual Debugger), a connection to the specified PxPvd instance is created.
-			If pvd is NULL no connection will be attempted.
+\param profileZoneManager If profiling information is required, a profile zone manager has to be provided.
 \return PxPhysics instance on success, NULL if operation failed
 
-@see PxPhysics, PxFoundation, PxTolerancesScale, PxProfileZoneManager, PxPvd
+@see PxPhysics, PxFoundation, PxTolerancesScale, PxProfileZoneManager
 */
 PX_C_EXPORT PX_PHYSX_CORE_API physx::PxPhysics* PX_CALL_CONV PxCreateBasePhysics(physx::PxU32 version,
 																			     physx::PxFoundation& foundation,
 																			     const physx::PxTolerancesScale& scale,																				 
 																			     bool trackOutstandingAllocations = false,
-																				 physx::PxPvd* pvd = NULL);
+																				 physx::PxProfileZoneManager* profileZoneManager = NULL);
 
 /**
 \brief Creates an instance of the physics SDK.
@@ -798,8 +821,9 @@ with a call to ::PxRegisterUnifiedHeightFields().
 			so a debugger connection partway through your physics simulation will get
 			an accurate map of everything that has been allocated so far.  This could have a memory
 			and performance impact on your simulation hence it defaults to off.
-\param pvd When pvd points to a valid PxPvd instance (PhysX Visual Debugger), a connection to the specified PxPvd instance is created.
-			If pvd is NULL no connection will be attempted.
+\param profileZoneManager If profiling information is required, a profile zone manager has to be provided.
+			Additionally, for profiling with the Physx Visual Debugger the PVD connection flag 
+			PxVisualDebuggerConnectionFlag::ePROFILE needs to be set.
 \return PxPhysics instance on success, NULL if operation failed
 
 @see PxPhysics, PxCreateBasePhysics, PxRegisterArticulations, PxRegisterHeightFields, PxRegisterCloth, PxRegisterParticles 
@@ -808,9 +832,9 @@ PX_INLINE physx::PxPhysics* PxCreatePhysics(physx::PxU32 version,
 											physx::PxFoundation& foundation,
 											const physx::PxTolerancesScale& scale,											
 											bool trackOutstandingAllocations = false,
-											physx::PxPvd* pvd = NULL )
+											physx::PxProfileZoneManager* profileZoneManager = NULL)
 {
-	physx::PxPhysics* physics = PxCreateBasePhysics(version, foundation, scale, trackOutstandingAllocations, pvd);
+	physx::PxPhysics* physics = PxCreateBasePhysics(version, foundation, scale, trackOutstandingAllocations, profileZoneManager);
 	if(!physics)
 		return NULL;
 
@@ -830,6 +854,42 @@ Before using this function the user must call #PxCreatePhysics().
 \note The behavior of this method is undefined if the Physics SDK instance has not been created already.
 */
 PX_C_EXPORT PX_PHYSX_CORE_API physx::PxPhysics& PX_CALL_CONV PxGetPhysics();
+
+#ifndef PX_DOXYGEN
+/**
+\brief Retrieves the PhysX SDK metadata.
+This function is used to implement PxSerialization.dumpBinaryMetaData() and is not intended to be needed otherwise.
+@see PxSerialization.dumpBinaryMetaData()
+*/
+PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxGetPhysicsBinaryMetaData(physx::PxOutputStream& stream);
+
+/**
+\brief Registers physics classes for serialization.
+This function is used to implement PxSerialization.createSerializationRegistry() and is not intended to be needed otherwise.
+@see PxSerializationRegistry
+*/
+PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxRegisterPhysicsSerializers(physx::PxSerializationRegistry& sr);
+
+/**
+\brief Unregisters physics classes for serialization.
+This function is used in the release implementation of PxSerializationRegistry and in not intended to be used otherwise.
+@see PxSerializationRegistry
+*/
+PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxUnregisterPhysicsSerializers(physx::PxSerializationRegistry& sr);
+
+
+/**
+\brief Adds collected objects to PxPhysics.
+
+This function adds all objects contained in the input collection to the PxPhysics instance. This is used after deserializing 
+the collection, to populate the physics with inplace deserialized objects.
+\param[in] collection Objects to add to the PxPhysics instance.
+
+@see PxCollection
+*/
+PX_C_EXPORT PX_PHYSX_CORE_API void PX_CALL_CONV PxAddCollectionToPhysics(const physx::PxCollection& collection);
+
+#endif
 
 /** @} */
 #endif

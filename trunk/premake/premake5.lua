@@ -40,7 +40,7 @@ project "Engine"
     kind "StaticLib"
 	characterset ("MBCS")
     files { "../src/Engine/**.h", "../src/Engine/**.cpp", "../src/Engine/**.inl" }
-	includedirs { "../src/Engine", "../src/Base", "../src/Cal3D/"}
+	includedirs { "../src/Engine", "../src/Base", "../src/Cal3D/", "../include/physx/include/"}
 
 project "Cal3D"
     kind "SharedLib"

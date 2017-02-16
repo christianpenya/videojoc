@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -37,7 +20,7 @@
 #include "PxPhysXConfig.h"
 #include "common/PxBase.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -134,6 +117,8 @@ public:
 	/**
 	\brief Decrements the reference count of a material and releases it if the new reference count is zero.		
 	
+	The material is destroyed when the application's reference is released and all shapes referencing the material are destroyed.
+
 	@see PxPhysics.createMaterial()
 	*/
 	virtual		void			release() = 0;
@@ -147,13 +132,6 @@ public:
 	\return the current reference count.
 	*/
 	virtual PxU32				getReferenceCount() const = 0;
-
-	/**
-	\brief Acquires a counted reference to a material.
-
-	This method increases the reference count of the material by 1. Decrement the reference count by calling release()
-	*/
-	virtual void				acquireReference() = 0;
 
 	/**
 	\brief Sets the coefficient of dynamic friction.
@@ -312,11 +290,11 @@ protected:
 	PX_INLINE					PxMaterial(PxType concreteType, PxBaseFlags baseFlags) : PxBase(concreteType, baseFlags), userData(NULL) {}
 	PX_INLINE					PxMaterial(PxBaseFlags baseFlags) : PxBase(baseFlags) {}
 	virtual						~PxMaterial() {}
-	virtual		bool			isKindOf(const char* name) const { return !::strcmp("PxMaterial", name) || PxBase::isKindOf(name); }
+	virtual		bool			isKindOf(const char* name) const { return !strcmp("PxMaterial", name) || PxBase::isKindOf(name); }
 
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

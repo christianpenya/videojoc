@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -35,10 +18,9 @@
 */
 
 #include "PxPhysXConfig.h"
-#include "foundation/PxAssert.h"
 #include "geometry/PxGeometry.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -64,11 +46,10 @@ public:
 		eRIGID_BODY,
 
 		/**
-		\brief A volume belonging to a particle system (deprecated)
-		\deprecated The PhysX particle feature has been deprecated in PhysX version 3.4
+		\brief A volume belonging to a particle system
 		@see PxParticleSystem PxParticleFluid
 		*/
-		ePARTICLE_SYSTEM PX_DEPRECATED,
+		ePARTICLE_SYSTEM,
 
 		/**
 		\brief A volume belonging to a cloth
@@ -155,16 +136,6 @@ public:
 
 	PxU32	nbShapes[PxGeometryType::eGEOMETRY_COUNT];
 
-	/**
-	\brief Number of aggregates in the scene.
-	*/
-	PxU32	nbAggregates;
-	
-	/**
-	\brief Number of articulations in the scene.
-	*/
-	PxU32	nbArticulations;
-
 //solver:
 	/**
 	\brief The number of 1D axis constraints(joints+contact) present in the current simulation step.
@@ -193,7 +164,7 @@ public:
 	\param[in] type The volume type for which to get the number
 	\return Number of broadphase volumes added.
 
-	@see VolumeType
+	@see VolumType
 	*/
 	PxU32 getNbBroadPhaseAdds(VolumeType type) const
 	{
@@ -212,7 +183,7 @@ public:
 	\param[in] type The volume type for which to get the number
 	\return Number of broadphase volumes removed.
 
-	@see VolumeType
+	@see VolumType
 	*/
 	PxU32 getNbBroadPhaseRemoves(VolumeType type) const
 	{
@@ -241,99 +212,33 @@ public:
 	*/
 	PxU32 getRbPairStats(RbPairStatsType pairType, PxGeometryType::Enum g0, PxGeometryType::Enum g1) const
 	{
-		PX_ASSERT_WITH_MESSAGE(	(pairType >= eDISCRETE_CONTACT_PAIRS) &&
-								(pairType <= eTRIGGER_PAIRS),
-								"Invalid pairType in PxSimulationStatistics::getRbPairStats");
-
 		if (g0 >= PxGeometryType::eGEOMETRY_COUNT || g1 >= PxGeometryType::eGEOMETRY_COUNT)
 		{
 			PX_ASSERT(false);
 			return 0;
 		}
 
-		PxU32 nbPairs = 0;
 		switch(pairType)
 		{
 			case eDISCRETE_CONTACT_PAIRS:
-				nbPairs = nbDiscreteContactPairs[g0][g1];
-				break;
+				return nbDiscreteContactPairs[g0][g1];
+
 			case eCCD_PAIRS:
-				nbPairs = nbCCDPairs[g0][g1];
-				break;
+				return nbCCDPairs[g0][g1];
+
 			case eMODIFIED_CONTACT_PAIRS:
-				nbPairs = nbModifiedContactPairs[g0][g1];
-				break;
+				return nbModifiedContactPairs[g0][g1];
+
 			case eTRIGGER_PAIRS:
-				nbPairs = nbTriggerPairs[g0][g1];
-				break;
+				return nbTriggerPairs[g0][g1];
+
+			default:
+				PX_ASSERT(false);
+				return 0;
 		}
-		return nbPairs;
 	}
 
-	/**
-	\brief Total number of (non CCD) pairs reaching narrow phase
-	*/
-	PxU32	nbDiscreteContactPairsTotal;
-
-	/**
-	\brief Total number of (non CCD) pairs for which contacts are successfully cached (<=nbDiscreteContactPairsTotal)
-	\note This includes pairs for which no contacts are generated, it still counts as a cache hit.
-	*/
-	PxU32	nbDiscreteContactPairsWithCacheHits;
-
-	/**
-	\brief Total number of (non CCD) pairs for which at least 1 contact was generated (<=nbDiscreteContactPairsTotal)
-	*/
-	PxU32	nbDiscreteContactPairsWithContacts;
-
-	/**
-	\brief Number of new pairs found by BP this frame
-	*/
-	PxU32	nbNewPairs;
-
-	/**
-	\brief Number of lost pairs from BP this frame
-	*/
-	PxU32	nbLostPairs;
-
-	/**
-	\brief Number of new touches found by NP this frame
-	*/
-	PxU32	nbNewTouches;
-
-	/**
-	\brief Number of lost touches from NP this frame
-	*/
-	PxU32	nbLostTouches;
-
-	/**
-	\brief Number of partitions used by the solver this frame
-	*/
-	PxU32	nbPartitions;
-
-	PxSimulationStatistics() :
-		nbActiveConstraints					(0),
-		nbActiveDynamicBodies				(0),
-		nbActiveKinematicBodies				(0),
-		nbStaticBodies						(0),
-		nbDynamicBodies						(0),
-		nbAggregates						(0),
-		nbArticulations						(0),
-		nbAxisSolverConstraints				(0),
-		compressedContactSize				(0),
-		requiredContactConstraintMemory		(0),
-		peakConstraintMemory				(0),
-		nbDiscreteContactPairsTotal			(0),
-		nbDiscreteContactPairsWithCacheHits	(0),
-		nbDiscreteContactPairsWithContacts	(0),
-		nbNewPairs							(0),
-		nbLostPairs							(0),
-		nbNewTouches						(0),
-		nbLostTouches						(0),
-		nbPartitions						(0),
-		particlesGpuMeshCacheSize			(0),
-		particlesGpuMeshCacheUsed			(0),
-		particlesGpuMeshCacheHitrate		(0.0f)
+	PxSimulationStatistics()
 	{
 		for(PxU32 i=0; i < eVOLUME_COUNT; i++)
 		{
@@ -356,6 +261,23 @@ public:
 		{
 			nbShapes[i] = 0;
 		}
+
+		totalDiscreteContactPairsAnyShape = 0;
+
+		nbActiveConstraints = 0;
+		nbActiveDynamicBodies = 0;
+		nbActiveKinematicBodies = 0;
+		nbStaticBodies = 0;
+		nbDynamicBodies = 0;
+		compressedContactSize = 0;
+		requiredContactConstraintMemory = 0;
+		peakConstraintMemory = 0;
+
+		nbAxisSolverConstraints = 0;
+
+		particlesGpuMeshCacheSize = 0;
+		particlesGpuMeshCacheUsed = 0;
+		particlesGpuMeshCacheHitrate = 0.0f;
 	}
 
 
@@ -371,6 +293,7 @@ public:
 	PxU32   nbCCDPairs[PxGeometryType::eGEOMETRY_COUNT][PxGeometryType::eGEOMETRY_COUNT];
 	PxU32   nbModifiedContactPairs[PxGeometryType::eGEOMETRY_COUNT][PxGeometryType::eGEOMETRY_COUNT];
 	PxU32   nbTriggerPairs[PxGeometryType::eGEOMETRY_COUNT][PxGeometryType::eGEOMETRY_COUNT];
+	PxU32	totalDiscreteContactPairsAnyShape;
 
 //triangle mesh cache statistics
 	PxU32	particlesGpuMeshCacheSize;
@@ -378,7 +301,7 @@ public:
 	PxReal	particlesGpuMeshCacheHitrate;
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

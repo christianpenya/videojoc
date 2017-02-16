@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.
 
@@ -37,7 +20,7 @@
 #include "foundation/Px.h"
 #include "common/PxBase.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -125,26 +108,21 @@ public:
 	/**
 	\brief Decrements the reference count of a convex mesh and releases it if the new reference count is zero.	
 	
+	The mesh is destroyed when the application's reference is released and all shapes referencing the mesh are destroyed.
+
 	@see PxPhysics.createConvexMesh() PxConvexMeshGeometry PxShape
 	*/
-	PX_PHYSX_COMMON_API virtual	void				release()													= 0;
+	PX_PHYSX_COMMON_API virtual	void				release() = 0;
 
 	/**
-	\brief Returns the reference count of a convex mesh.
+	\brief Returns the reference count for shared meshes.
 
 	At creation, the reference count of the convex mesh is 1. Every shape referencing this convex mesh increments the
 	count by 1.	When the reference count reaches 0, and only then, the convex mesh gets destroyed automatically.
 
 	\return the current reference count.
 	*/
-	PX_PHYSX_COMMON_API virtual PxU32				getReferenceCount()									const	= 0;
-
-	/**
-	\brief Acquires a counted reference to a convex mesh.
-
-	This method increases the reference count of the convex mesh by 1. Decrement the reference count by calling release()
-	*/
-	PX_PHYSX_COMMON_API virtual void				acquireReference()											= 0;
+	PX_PHYSX_COMMON_API virtual PxU32				getReferenceCount()			const	= 0;
 
 	/**
 	\brief Returns the mass properties of the mesh assuming unit density.
@@ -173,23 +151,14 @@ public:
 
 	PX_PHYSX_COMMON_API virtual	const char*			getConcreteTypeName() const	{ return "PxConvexMesh"; }
 
-	/**
-	\brief This method decides whether a convex mesh is gpu compatible. If the total number of vertices are more than 64 or any number of vertices in a polygon is more than 32, or
-	convex hull data was not cooked with GPU data enabled during cooking or was loaded from a serialized collection, the convex hull is incompatible with GPU collision detection. Otherwise
-	it is compatible.
-
-	\return True if the convex hull is gpu compatible
-	*/
-	PX_PHYSX_COMMON_API virtual bool				isGpuCompatible() const = 0;
-
 protected:
 						PX_INLINE					PxConvexMesh(PxType concreteType, PxBaseFlags baseFlags) : PxBase(concreteType, baseFlags) {}
 						PX_INLINE					PxConvexMesh(PxBaseFlags baseFlags) : PxBase(baseFlags) {}
 	PX_PHYSX_COMMON_API virtual						~PxConvexMesh() {}
-	PX_PHYSX_COMMON_API virtual	bool				isKindOf(const char* name) const { return !::strcmp("PxConvexMesh", name) || PxBase::isKindOf(name); }
+	PX_PHYSX_COMMON_API virtual	bool				isKindOf(const char* name) const { return !strcmp("PxConvexMesh", name) || PxBase::isKindOf(name); }
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

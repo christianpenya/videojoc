@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -38,12 +21,12 @@
 #include "vehicle/PxVehicleDriveTank.h"
 
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
 
-#if PX_CHECKED
+#ifdef PX_CHECKED
 	void testValidAnalogValue(const PxF32 actualValue, const PxF32 minVal, const PxF32 maxVal, const char* errorString);
 #endif
 
@@ -179,7 +162,7 @@ public:
 	*/
 	void setAnalogAccel(const PxReal accel)						
 	{
-#if PX_CHECKED
+#ifdef PX_CHECKED
 		testValidAnalogValue(accel, 0.0f, 1.0f, "Analog accel must be in range (0,1)");
 #endif
 		mRawAnalogInputs[PxVehicleDrive4WControl::eANALOG_INPUT_ACCEL]=accel;
@@ -191,7 +174,7 @@ public:
 	*/
 	void setAnalogBrake(const PxReal brake)						
 	{
-#if PX_CHECKED
+#ifdef PX_CHECKED
 		testValidAnalogValue(brake, 0.0f, 1.0f, "Analog brake must be in range (0,1)");
 #endif
 		mRawAnalogInputs[PxVehicleDrive4WControl::eANALOG_INPUT_BRAKE]=brake;
@@ -203,7 +186,7 @@ public:
 	*/
 	void setAnalogHandbrake(const PxReal handbrake)				
 	{
-#if PX_CHECKED
+#ifdef PX_CHECKED
 		testValidAnalogValue(handbrake, 0.0f, 1.0f, "Analog handbrake must be in range (0,1)");
 #endif
 		mRawAnalogInputs[PxVehicleDrive4WControl::eANALOG_INPUT_HANDBRAKE]=handbrake;
@@ -215,7 +198,7 @@ public:
 	*/
 	void setAnalogSteer(const PxReal steer)						
 	{
-#if PX_CHECKED
+#ifdef PX_CHECKED
 		testValidAnalogValue(steer, -1.0f, 1.0f, "Analog steer must be in range (-1,1)");
 #endif
 		mRawAnalogInputs[PxVehicleDrive4WControl::eANALOG_INPUT_STEER_RIGHT]=steer;
@@ -461,7 +444,7 @@ public:
 	*/
 	void setAnalogAccel(const PxF32 accel)					
 	{
-#if PX_CHECKED
+#ifdef PX_CHECKED
 		testValidAnalogValue(accel, 0.0f, 1.0f, "Tank analog accel must be in range (-1,1)");
 #endif
 		mRawAnalogInputs[PxVehicleDriveTankControl::eANALOG_INPUT_ACCEL]=accel;
@@ -474,7 +457,7 @@ public:
 	*/
 	void setAnalogLeftThrust(const PxF32 leftThrust)			
 	{
-#if PX_CHECKED
+#ifdef PX_CHECKED
 		if(mMode == PxVehicleDriveTankControlModel::eSPECIAL)
 		{
 			testValidAnalogValue(leftThrust, -1.0f, 1.0f, "Tank left thrust must be in range (-1,1) in eSPECIAL mode.");
@@ -494,7 +477,7 @@ public:
 	*/
 	void setAnalogRightThrust(const PxF32 rightThrust)			
 	{
-#if PX_CHECKED
+#ifdef PX_CHECKED
 		if(mMode == PxVehicleDriveTankControlModel::eSPECIAL)
 		{
 			testValidAnalogValue(rightThrust, -1.0f, 1.0f, "Tank right thrust must be in range (-1,1) in eSPECIAL mode.");
@@ -514,7 +497,7 @@ public:
 	*/
 	void setAnalogLeftBrake(const PxF32 leftBrake)			
 	{
-#if PX_CHECKED
+#ifdef PX_CHECKED
 		testValidAnalogValue(leftBrake, 0.0f, 1.0f, "Tank left brake must be in range (0,1).");
 #endif
 		mRawAnalogInputs[PxVehicleDriveTankControl::eANALOG_INPUT_BRAKE_LEFT]=leftBrake;
@@ -527,7 +510,7 @@ public:
 	*/
 	void setAnalogRightBrake(const PxF32 rightBrake)			
 	{
-#if PX_CHECKED
+#ifdef PX_CHECKED
 		testValidAnalogValue(rightBrake, 0.0f, 1.0f, "Tank right brake must be in range (0,1).");
 #endif
 		mRawAnalogInputs[PxVehicleDriveTankControl::eANALOG_INPUT_BRAKE_RIGHT]=rightBrake;
@@ -643,7 +626,7 @@ void PxVehicleDriveTankSmoothAnalogRawInputsAndSetAnalogInputs
  PxVehicleDriveTank& focusVehicle);
 
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

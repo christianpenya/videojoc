@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -37,7 +20,7 @@
 #include "vehicle/PxVehicleComponents.h"
 
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -178,7 +161,7 @@ private:
 	PxReal* mDriveTorques;
 	PxReal* mBrakeTorques;
 
-#if PX_P64_FAMILY
+#if defined(PX_P64)
 	PxU32 mPad[2];
 #else 
 	PxU32 mPad[1];
@@ -198,7 +181,7 @@ public:
 	static		PxVehicleNoDrive*	createObject(PxU8*& address, PxDeserializationContext& context);
 	static		void				getBinaryMetaData(PxOutputStream& stream);
 	virtual		const char*			getConcreteTypeName() const			{ return "PxVehicleNoDrive";	}
-	virtual		bool				isKindOf(const char* name)	const	{ return !::strcmp("PxVehicleNoDrive", name) || PxBase::isKindOf(name); }
+	virtual		bool				isKindOf(const char* name)	const	{ return !strcmp("PxVehicleNoDrive", name) || PxBase::isKindOf(name); }
 				PxU32				getNbSteerAngle() const { return mWheelsSimData.getNbWheels();	}
 				PxU32				getNbDriveTorque() const	{ return mWheelsSimData.getNbWheels();	}
 				PxU32				getNbBrakeTorque() const	{ return mWheelsSimData.getNbWheels();	}
@@ -209,7 +192,7 @@ protected:
 };
 PX_COMPILE_TIME_ASSERT(0==(sizeof(PxVehicleNoDrive) & 15));
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

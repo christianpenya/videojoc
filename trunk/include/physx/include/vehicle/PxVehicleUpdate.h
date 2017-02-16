@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -40,13 +23,12 @@
 #include "foundation/PxTransform.h"
 #include "PxBatchQueryDesc.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
 
 	class PxBatchQuery;
-	class PxContactModifyPair;
 	class PxVehicleWheels;
 	class PxVehicleDrivableSurfaceToTireFrictionPairs;
 	class PxVehicleTelemetryData;
@@ -62,57 +44,57 @@ namespace physx
 		{
 			PxMemZero(this, sizeof(PxWheelQueryResult));
 			isInAir=true;
-			tireSurfaceType = PxU32(PxVehicleDrivableSurfaceType::eSURFACE_TYPE_UNKNOWN);
+			tireSurfaceType = (PxU32)PxVehicleDrivableSurfaceType::eSURFACE_TYPE_UNKNOWN;
 			localPose = PxTransform(PxIdentity);
 		}
 
 		/**
-		\brief Start point of suspension line raycast/sweep used in the raycast/sweep completed immediately before PxVehicleUpdates.
-		\note If no raycast/sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then (0,0,0) is stored.
-		@see PxVehicleSuspensionRaycasts, PxVehicleSuspensionRaycasts
+		\brief Start point of suspension line raycast used in raycast completed immediately before PxVehicleUpdates.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then (0,0,0) is stored.
+		@see PxVehicle4WSuspensionRaycasts
 		*/
 		PxVec3 suspLineStart;
 
 		/**
-		\brief Directions of suspension line raycast/sweep used in the raycast/sweep completed immediately before PxVehicleUpdates.
-		\note If no raycast/sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then (0,0,0) is stored.
-		@see PxVehicleSuspensionRaycasts, PxVehicleSuspensionRaycasts
+		\brief Directions of suspension line raycast used in raycast completed immediately before PxVehicleUpdates.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then (0,0,0) is stored.
+		@see PxVehicle4WSuspensionRaycasts
 		*/
 		PxVec3 suspLineDir;
 
 		/**
-		\brief Lengths of suspension line raycast/sweep used in raycast/sweep completed immediately before PxVehicleUpdates.
-		\note If no raycast/sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then 0 is stored.
-		@see PxVehicleSuspensionRaycasts, PxVehicleSuspensionRaycasts
+		\brief Lengths of suspension line raycast used in raycast completed immediately before PxVehicleUpdates.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then 0 is stored.
+		@see PxVehicle4WSuspensionRaycasts
 		*/
 		PxReal suspLineLength;
 
 		/**
 		\brief If suspension travel limits forbid the wheel from touching the drivable surface then isInAir is true.
-		\note If the wheel can be placed on the contact plane of the most recent suspension line raycast/sweep then isInAir is false.
-		\note If no raycast/sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then isInAir
-		is computed using the contact plane that was hit by the most recent suspension line raycast/sweep.
+		\note If the wheel can be placed on the contact plane of the most recent suspension line raycast then isInAir is false.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then isInAir
+		is computed using the contact plane that was hit by the most recent suspension line raycast.
 		*/
 		bool isInAir;
 
 		/**
 		\brief PxActor instance of the driving surface under the corresponding vehicle wheel.
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then tireContactActor is NULL.
-		\note If no raycast/sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then NULL is stored.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then NULL is stored.
 		*/
 		PxActor* tireContactActor;
 
 		/**
 		\brief PxShape instance of the driving surface under the corresponding vehicle wheel.
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then tireContactShape is NULL.
-		\note If no raycast/sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then NULL is stored.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then NULL is stored.
 		*/
 		PxShape* tireContactShape;
 
 		/**
 		\brief PxMaterial instance of the driving surface under the corresponding vehicle wheel.
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then tireSurfaceMaterial is NULL.
-		\note If no raycast/sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then NULL is stored.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then NULL is stored.
 		*/	
 		const PxMaterial* tireSurfaceMaterial;
 
@@ -121,23 +103,23 @@ namespace physx
 		described in PxVehicleDrivableSurfaceToTireFrictionPairs.
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then tireSurfaceType is 
 		PxVehicleDrivableSurfaceType::eSURFACE_TYPE_UNKNOWN.
-		\note If no raycast/sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then 
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then 
 		PxVehicleDrivableSurfaceType::eSURFACE_TYPE_UNKNOWN is stored.
 		@see PxVehicleDrivableSurfaceToTireFrictionPairs
 		*/	
 		PxU32 tireSurfaceType;
 
 		/**
-		\brief Point on the drivable surface hit by the most recent suspension raycast or sweep.
+		\brief Point on the drivable surface hit by the most recent suspension raycast.
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then the contact point is (0,0,0).
-		\note If no raycast or sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then (0,0,0) is stored.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then (0,0,0) is stored.
 		*/
 		PxVec3 tireContactPoint;
 
 		/**
-		\brief Normal on the drivable surface at the hit point of the most recent suspension raycast or sweep.
+		\brief Normal on the drivable surface at the hit point of the most recent suspension raycast.
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then the contact normal is (0,0,0).
-		\note If no raycast or sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then (0,0,0) is stored.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then (0,0,0) is stored.
 		*/
 		PxVec3 tireContactNormal;
 
@@ -145,8 +127,8 @@ namespace physx
 		\brief Friction experienced by the tire for the combination of tire type and surface type after accounting 
 		for the friction vs slip graph.
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then the tire friction is 0.
-		\note If no raycast or sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
-		stored tire friction is the value computed in PxVehicleUpdates that immediately followed the last raycast or sweep.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
+		stored tire friction is the value computed in PxVehicleUpdates that immediately followed the last raycast.
 		@see PxVehicleDrivableSurfaceToTireFrictionPairs, PxVehicleTireData
 		*/	
 		PxReal tireFriction;
@@ -156,16 +138,16 @@ namespace physx
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then the jounce is -PxVehicleSuspensionData.mMaxDroop
 		The jounce can never exceed PxVehicleSuspensionData.mMaxCompression. Positive values result when the suspension is compressed from 
 		the rest position, while negative values mean the suspension is elongated from the rest position.
-		\note If no raycast or sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
-		suspension compression is computed using the contact plane that was hit by the most recent suspension line raycast or sweep.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
+		suspension compression is computed using the contact plane that was hit by the most recent suspension line raycast.
 		*/	
 		PxReal suspJounce;
 
 		/**
 		\brief Magnitude of force applied by the suspension spring along the direction of suspension travel.
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then the force is 0
-		\note If no raycast or sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
-		suspension spring force is computed using the contact plane that was hit by the most recent suspension line raycast or sweep.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
+		suspension spring force is computed using the contact plane that was hit by the most recent suspension line raycast.
 		@see PxVehicleWheelsSimData::getSuspTravelDirection
 		*/
 		PxReal suspSpringForce;
@@ -173,16 +155,16 @@ namespace physx
 		/**
 		\brief Forward direction of the wheel/tire accounting for steer/toe/camber angle projected on to the contact plane of the drivable surface.
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then tireLongitudinalDir is (0,0,0)
-		\note If no raycast or sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
-		tire longitudinal direction is computed using the contact plane that was hit by the most recent suspension line raycast or sweep.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
+		tire longitudinal direction is computed using the contact plane that was hit by the most recent suspension line raycast.
 		*/
 		PxVec3 tireLongitudinalDir;
 
 		/**
 		\brief Lateral direction of the wheel/tire accounting for steer/toe/camber angle projected on to the contact plan of the drivable surface.
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then tireLateralDir is (0,0,0)
-		\note If no raycast or sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
-		tire lateral direction is computed using the contact plane that was hit by the most recent suspension line raycast or sweep.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
+		tire lateral direction is computed using the contact plane that was hit by the most recent suspension line raycast.
 		*/
 		PxVec3 tireLateralDir;
 
@@ -191,8 +173,8 @@ namespace physx
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then longitudinalSlip is 0.0
 		\note The longitudinal slip is approximately (w*r - vz) / PxAbs(vz) where w is the angular speed of the wheel, r is the radius of the wheel, and 
 		vz component of rigid body velocity computed at the wheel base along the longitudinal direction of the tire.
-		\note If no raycast or sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
-		tire longitudinal slip is computed using the contact plane that was hit by the most recent suspension line raycast or sweep.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
+		tire longitudinal slip is computed using the contact plane that was hit by the most recent suspension line raycast.
 		*/	
 		PxReal longitudinalSlip;
 
@@ -201,8 +183,8 @@ namespace physx
 		\note If suspension travel limits forbid the wheel from touching the drivable surface then lateralSlip is 0.0
 		\note The lateral slip angle is approximately PxAtan(vx / PxAbs(vz)) where vx and vz are the components of rigid body velocity at the wheel base 
 		along the wheel's lateral and longitudinal directions, respectively.
-		\note If no raycast or sweep for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
-		tire lateral slip is computed using the contact plane that was hit by the most recent suspension line raycast or sweep.
+		\note If no raycast for the corresponding suspension was performed immediately prior to PxVehicleUpdates then the 
+		tire lateral slip is computed using the contact plane that was hit by the most recent suspension line raycast.
 		*/	
 		PxReal lateralSlip;
 
@@ -326,128 +308,23 @@ namespace physx
 
 	\note If vehiclesToRaycast is NULL then raycasts are performed for all vehicles in the vehicles array.
 
-	\note If vehiclesToRaycast[i] is false then the vehicle stored in vehicles[i] will automatically use the raycast or sweep hit planes recorded by the most recent
-	suspension sweeps or raycasts for that vehicle.  For vehicles far from the camera or not visible on the screen it can be 
+	\note If vehiclesToRaycast[i] is false then the vehicle stored in vehicles[i] will automatically use the raycast hit planes recorded by the most recent
+	suspension line raycasts for that vehicle.  For vehicles far from the camera or not visible on the screen it can be 
 	optimal to only perform suspension line raycasts every Nth update rather than every single update.  The accuracy of the cached contact plane
 	naturally diminishes as N increase, meaning that wheels might start to hover or intersect the ground for large values of N or even with values close to 1 in
 	conjunction with large vehicle speeds and/or geometry that has low spatial coherence.
 
 	\note Calling setToRestState invalidates any cached hit planes. Prior to calling PxVehicleUpdates each vehicle needs to perform suspension line raycasts 
-	or sweeps at least once after instantiation and at least once after calling setToRestState.
+	at least once after instantiation and at least once after calling setToRestState.
 
 	\note Each raycast casts along the suspension travel direction from the position of the top of the wheel at maximum suspension compression
 	to the position of the base of the wheel at maximum droop.  Raycasts that start inside a PxShape are subsequently ignored by the
 	corresponding vehicle.
 
-	\note Only blocking hits are supported (PxQueryHitType::eBLOCK).
-
 	@see PxVehicleDrive4W::setToRestState, PxVehicleDriveNW::setToRestState, PxVehicleDriveTank::setToRestState, PxVehicleNoDrive::setToRestState
 	*/
 	void PxVehicleSuspensionRaycasts
-		(PxBatchQuery* batchQuery, 
-		 const PxU32 nbVehicles, PxVehicleWheels** vehicles,
-		 const PxU32 nbSceneQueryResults, PxRaycastQueryResult* sceneQueryResults, 
-		 const bool* vehiclesToRaycast = NULL);
-
-
-	/**
-	\brief Perform sweeps for all suspension lines for all vehicles.  
-
-	\param[in] batchQuery is a PxBatchQuery instance used to specify shader data and functions for the sweep scene queries.
-
-	\param[in] nbVehicles is the number of vehicles in the vehicles array.
-
-	\param[in] vehicles is an array of all vehicles that are to have a sweep issued from each wheel. 
-
-	\param[in] nbSceneQueryResults must be greater than or equal to the total number of wheels of all the vehicles in the vehicles array; that is,
-	sceneQueryResults must have dimensions large enough for one sweep hit result per wheel for all the vehicles in the vehicles array.
-
-	\param[in] sceneQueryResults must persist without being overwritten until the end of the next PxVehicleUpdates call. 
-
-	\param[in] nbHitsPerQuery is the maximum numbers of hits that will be returned for each query.  
-
-	\param[in] vehiclesToSweep is an array of bools of length nbVehicles that is used to decide if sweeps will be performed for the corresponding vehicle
-	in the vehicles array. If vehiclesToSweep[i] is true then suspension sweeps will be performed for vehicles[i].  If vehiclesToSweep[i] is 
-	false then suspension sweeps will not be performed for vehicles[i].  
-
-	\param[in] sweepWidthScale scales the geometry of the wheel used in the sweep.  Values < 1 result in a thinner swept wheel, while values > 1 result in a fatter swept wheel.
-
-	\param[in] sweepRadiusScale scales the geometry of the wheel used in the sweep.  Values < 1 result in a larger swept wheel, while values > 1 result in a smaller swept wheel.
-
-	\note If vehiclesToSweep is NULL then sweeps are performed for all vehicles in the vehicles array.
-
-	\note If vehiclesToSweep[i] is false then the vehicle stored in vehicles[i] will automatically use the most recent sweep or raycast hit planes 
-	recorded by the most recent suspension sweeps or raycasts for that vehicle.  For vehicles far from the camera or not visible on the screen it can be 
-	optimal to only perform suspension queries every Nth update rather than every single update.  The accuracy of the cached contact plane
-	naturally diminishes as N increase, meaning that wheels might start to hover or intersect the ground for large values of N or even with values close to 1 in
-	conjunction with large vehicle speeds and/or geometry that has low spatial coherence.
-
-	\note Calling setToRestState invalidates any cached hit planes. Prior to calling PxVehicleUpdates each vehicle needs to perform suspension raycasts 
-	or sweeps at least once after instantiation and at least once after calling setToRestState.
-
-	\note Each sweep casts the wheel's shape along the suspension travel direction from the position of the top of the wheel at maximum suspension compression
-	to the position of the base of the wheel at maximum droop.  Sweeps that start inside a PxShape are subsequently ignored by the
-	corresponding vehicle. 
-	
-	\note A scale can be applied to the shape so that a modified shape is swept through the scene.  The parameters sweepWidthScale and sweepRadiusScale scale the 
-	swept wheel shape in the width and radial directions.  It is sometimes a good idea to sweep a thinner wheel to allow contact with other dynamic actors to be resolved 
-	first before attempting to drive on them. 
-
-	\note Blocking hits (PxQueryHitType::eBLOCK) and non-blocking hits (PxQueryHitType::TOUCH) are supported.  If the pre-and post-filter functions of the PxBatchQuery 
-	instance are set up to return blocking hits it is recommended to set nbHitsPerQuery = 1.  If the filter functions returns touch hits then it is recommended to 
-	set nbHitsPerQuery > 1.  The exact value depends on the expected complexity of the geometry that lies under the wheel.  For complex geometry, especially with dynamic 
-	objects, it is recommended to use non-blocking hits.  The vehicle update function will analyze all returned hits and choose the most appropriate using the thresholds 
-	set in PxVehicleSetSweepHitRejectionAngles.
-
-	@see PxVehicleDrive4W::setToRestState, PxVehicleDriveNW::setToRestState, PxVehicleDriveTank::setToRestState, PxVehicleNoDrive::setToRestState
-
-	@see PxBatchQuery::sweep
-
-	@see PxVehicleSetSweepHitRejectionAngles
-	*/
-	void PxVehicleSuspensionSweeps
-		(PxBatchQuery* batchQuery, 
-		 const PxU32 nbVehicles, PxVehicleWheels** vehicles, 
-		 const PxU32 nbSceneQueryResults, PxSweepQueryResult* sceneQueryResults,  const PxU16 nbHitsPerQuery, 
-		 const bool* vehiclesToSweep = NULL,
-		 const PxF32 sweepWidthScale = 1.0f, const PxF32 sweepRadiusScale = 1.0f);
-
-	/**
-	\brief A function called from PxContactModifyCallback::onContactModify.  The function determines if rigid body contact points
-	recorded for the wheel's PxShape are likely to be duplicated and resolved by the wheel's suspension raycast.   Contact points that will be
-	resolved by the suspension are ignored.  Contact points that are accepted (rather than ignored) are modified to account for the effect of the
-	suspension geometry and the angular speed of the wheel.
-
-	\param[in] vehicle is a reference to the PxVehicleWheels instance that owns the wheel
-
-	\param[in] wheelId is the id of the wheel
-
-	\param[in] wheelTangentVelocityMultiplier determines the amount of wheel angular velocity that is used to modify the target relative velocity of the contact.
-	The target relative velocity is modified by adding a vector equal to the tangent velocity of the rotating wheel at the contact point and scaled by
-	wheelTangentVelocityMultiplier.  The value of wheelTangentVelocityMultiplier is limited to the range (0,1).  Higher values mimic higher values of friction
-	and tire load, while lower values mimic lower values of friction and tire load.
-
-	\param[in] maxImpulse determines the maximum impulse strength that the contacts can apply when a wheel is in contact with a PxRigidDynamic.  This value is ignored for
-	contacts with PxRigidStatic instances.
-
-	\param[in,out] contactModifyPair describes the set of contacts involving the PxShape of the specified wheel and one other shape.  The contacts in the contact set are
-	ignored or modified as required.
-
-	\note[in] Contact points are accepted or rejected using the threshold angles specified in the function PxVehicleSetSweepHitRejectionAngles.
-
-	\note If a contact point is not rejected it is modified to account for the wheel rotation speed.
-
-	\note Set maxImpulse to PX_MAX_F32 to allow any impulse value to be applied.
-
-	\note Reduce maxImpulse if the wheels are frequently colliding with light objects with mass much less than the vehicle's mass.
-	Reducing this value encourages numerical stability.
-
-	@see PxContactModifyCallback::onContactModify, PxVehicleSetSweepHitRejectionAngles
-	*/
-	PxU32 PxVehicleModifyWheelContacts
-		(const PxVehicleWheels& vehicle, const PxU32 wheelId,
-		const PxF32 wheelTangentVelocityMultiplier, const PxReal maxImpulse,
-		PxContactModifyPair& contactModifyPair);
+		(PxBatchQuery* batchQuery, const PxU32 nbVehicles, PxVehicleWheels** vehicles, const PxU32 nbSceneQueryResults, PxRaycastQueryResult* sceneQueryResults, const bool* vehiclesToRaycast = NULL);
 
 
 	/**
@@ -465,7 +342,7 @@ namespace physx
 
 	\param[in] nbVehicles is the number of vehicles pointers in the vehicles array
 
-	\param[in,out] vehicles is an array of length nbVehicles containing all vehicles to be updated by the specified timestep
+	\param[in, out] vehicles is an array of length nbVehicles containing all vehicles to be updated by the specified timestep
 
 	\param[out] vehicleWheelQueryResults is an array of length nbVehicles storing the wheel query results of each corresponding vehicle and wheel in the 
 	vehicles array.  A NULL pointer is permitted.  
@@ -508,7 +385,7 @@ namespace physx
 
 	\param[in] nbVehicles is the number of vehicles pointers in the vehicles array
 
-	\param[in,out] vehicles is an array of length nbVehicles containing all vehicles that were partially updated in concurrent calls to PxVehicleUpdates.
+	\param[in, out] vehicles is an array of length nbVehicles containing all vehicles that were partially updated in concurrent calls to PxVehicleUpdates.
 
 	@see PxVehicleUpdates
 	*/
@@ -530,7 +407,7 @@ namespace physx
 
 	\param[in] nbVehicles is the number of vehicles in the vehicles array.
 
-	\param[in,out] vehicles is an array of all vehicles that should be updated to map to the new scene origin.
+	\param[in, out] vehicles is an array of all vehicles that should be updated to map to the new scene origin.
 	*/
 	void PxVehicleShiftOrigin(const PxVec3& shift, const PxU32 nbVehicles, PxVehicleWheels** vehicles);
 
@@ -549,7 +426,7 @@ namespace physx
 	\param[in] vehicleDrivableSurfaceToTireFrictionPairs describes the mapping between each PxMaterial ptr and an integer representing a 
 	surface type. It also stores the friction value for each combination of surface and tire type.
 
-	\param[in,out] focusVehicle is the vehicle to be updated and have its telemetry data recorded
+	\param[in, out] focusVehicle is the vehicle to be updated and have its telemetry data recorded
 
 	\param[out] vehicleWheelQueryResults is an array of length 1 storing the wheel query results of each wheel of the vehicle/ 
 	A NULL pointer is permitted.  
@@ -571,7 +448,7 @@ namespace physx
 		 PxVehicleTelemetryData& telemetryData);
 #endif
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

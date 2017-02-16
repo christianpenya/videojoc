@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -37,11 +20,8 @@
 
 #include "PxSerialFramework.h"
 #include "PxCollection.h"
-#include "common/PxTypeInfo.h"
-#include "foundation/PxFlags.h"
-#include <string.h>	// For strcmp
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -88,7 +68,7 @@ public:
 	\brief Returns string name of dynamic type.
 	\return	Class name of most derived type of this object.
 	*/
-	virtual		const char*					getConcreteTypeName() const						= 0;
+	virtual		const char*					getConcreteTypeName() const						{ return NULL; }
 
 	/* brief Implements dynamic cast functionality. 
 
@@ -116,7 +96,7 @@ public:
 
 	@see PxConcreteType
 	*/
-	PX_FORCE_INLINE	PxType					getConcreteType() const							{ return mConcreteType;	}
+	PX_INLINE	PxType						getConcreteType() const							{ return mConcreteType;	}
 				
 	/**
 	\brief Set PxBaseFlag	
@@ -124,7 +104,7 @@ public:
 	\param[in] flag The flag to be set
 	\param[in] value The flags new value
 	*/
-	PX_FORCE_INLINE	void					setBaseFlag(PxBaseFlag::Enum flag, bool value)	{ mBaseFlags = value ? mBaseFlags|flag : mBaseFlags&~flag; }
+	PX_INLINE	void						setBaseFlag(PxBaseFlag::Enum flag, bool value)	{ mBaseFlags = value ? mBaseFlags|flag : mBaseFlags&~flag; }
 	
 	/**
 	\brief Set PxBaseFlags	
@@ -133,7 +113,7 @@ public:
 
 	@see PxBaseFlags
 	*/
-	PX_FORCE_INLINE	void					setBaseFlags(PxBaseFlags inFlags )				{ mBaseFlags = inFlags; }
+	PX_INLINE	void						setBaseFlags(PxBaseFlags inFlags )				{ mBaseFlags = inFlags; }
 	
 	/**
 	\brief Returns PxBaseFlags 
@@ -142,7 +122,7 @@ public:
 
 	@see PxBaseFlags
 	*/
-	PX_FORCE_INLINE	PxBaseFlags				getBaseFlags() const							{ return mBaseFlags; }
+	PX_INLINE	PxBaseFlags					getBaseFlags() const							{ return mBaseFlags; }
 
 	/**
 	\brief Whether the object is subordinate.
@@ -175,7 +155,7 @@ protected:
 	/**
 	\brief Returns whether a given type name matches with the type of this instance
 	*/	
-	virtual				bool				isKindOf(const char* superClass) const { return !::strcmp(superClass, "PxBase"); }
+	virtual				bool				isKindOf(const char* superClass) const { return !strcmp(superClass, "PxBase"); }
 
 	template<class T>	bool				typeMatch() const
 											{
@@ -193,7 +173,7 @@ protected:
 
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

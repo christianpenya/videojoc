@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -46,7 +29,7 @@ The reason for this is GJK support cannot be evaluated near infinity. A viable a
 #include "common/PxPhysXCommonConfig.h"
 #include "PxQueryReport.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -130,7 +113,10 @@ public:
 	\param[in] hitFlags Specification of the kind of information to retrieve on hit. Combination of #PxHitFlag flags
 	\param[in] maxHits max number of returned hits = size of 'rayHits' buffer
 	\param[out] rayHits Raycast hits information
+	\param[in] anyHit Set to false if the closest hit point should be computed, else the query aborts as soon as any hit point along the ray is found.
 	\return Number of hits between the ray and the geometry object
+
+	\note PX_DEPRECATED: The 'anyHit' parameter is deprecated. Please use PxHitFlag::eMESH_ANY instead.
 
 	@see PxRaycastHit PxGeometry PxTransform
 	*/
@@ -141,7 +127,8 @@ public:
 							PxReal maxDist,
 							PxHitFlags hitFlags,
 							PxU32 maxHits,
-							PxRaycastHit* PX_RESTRICT rayHits);
+							PxRaycastHit* PX_RESTRICT rayHits,
+							bool anyHit = false);
 
 	/**
 	\brief Compute minimum translational distance (MTD) between two geometry objects.
@@ -204,20 +191,10 @@ public:
 	@see PxGeometry PxTransform
 	*/
 	PX_PHYSX_COMMON_API static PxBounds3 getWorldBounds(const PxGeometry& geom, const PxTransform& pose, float inflation=1.01f);
-
-	/**
-	\brief Checks if provided geometry is valid.
-
-	\param[in] geom The geometry object.
-	\return True if geometry is valid.
-
-	@see PxGeometry PxSphereGeometry, PxCapsuleGeometry, PxBoxGeometry, PxConvexGeometry
-	*/
-	PX_PHYSX_COMMON_API static bool isValid(const PxGeometry& geom);
 };
 
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 }
 #endif
 

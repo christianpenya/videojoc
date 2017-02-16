@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -36,9 +19,10 @@
 #include "PxPhysXConfig.h"
 #include "PxShape.h"
 #include "PxBatchQueryDesc.h"
+#include "PxQueryReport.h"
 #include "PxQueryFiltering.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -50,11 +34,9 @@ struct PxQueryCache;
 /**
 \brief Batched queries object. This is used to perform several queries at the same time. 
 
-\deprecated The batched query feature has been deprecated in PhysX version 3.4
-
 @see PxScene, PxScene.createBatchQuery
 */
-class PX_DEPRECATED PxBatchQuery
+class PxBatchQuery
 {
 	public:
 
@@ -108,7 +90,7 @@ class PX_DEPRECATED PxBatchQuery
 
 	@see PxBatchQueryDesc::ownerClient
 	*/
-	PX_DEPRECATED virtual PxClientID		getOwnerClient() const = 0;
+	virtual PxClientID						getOwnerClient() const = 0;
 
 	/**
  	\brief Sets new user memory pointers.
@@ -132,6 +114,21 @@ class PX_DEPRECATED PxBatchQuery
 	@see PxScene, PxScene.createBatchQuery
 	*/
 	virtual	void							release() = 0;
+
+
+	/**
+	\brief PS3 only. Enables or disables SPU execution for this query.
+
+	@see PxBatchQueryDesc
+	*/
+	virtual void							setRunOnSpu(bool runOnSpu) = 0;
+
+	/**
+	\brief PS3 only. Returns true if this query should run on SPU.
+
+	@see PxBatchQueryDesc
+	*/
+	virtual bool							getRunOnSpu() = 0;
 
 	/**
 	\brief Performs a raycast against objects in the scene, returns results in PxBatchQueryMemory::userRaycastResultBuffer
@@ -158,7 +155,7 @@ class PX_DEPRECATED PxBatchQuery
 	*/
 	virtual void raycast(
 		const PxVec3& origin, const PxVec3& unitDir, PxReal distance = PX_MAX_F32, PxU16 maxTouchHits = 0,
-		PxHitFlags hitFlags = PxHitFlag::eDEFAULT,
+		PxHitFlags hitFlags = PxHitFlag::ePOSITION|PxHitFlag::eNORMAL|PxHitFlag::eDISTANCE,
 		const PxQueryFilterData& filterData = PxQueryFilterData(),
 		void* userData = NULL, const PxQueryCache* cache = NULL) = 0;
 
@@ -218,7 +215,7 @@ class PX_DEPRECATED PxBatchQuery
 	*/
 	virtual void sweep(
 		const PxGeometry& geometry, const PxTransform& pose, const PxVec3& unitDir, const PxReal distance,
-		PxU16 maxTouchHits = 0, PxHitFlags hitFlags = PxHitFlag::eDEFAULT,
+		PxU16 maxTouchHits = 0, PxHitFlags hitFlags = PxHitFlag::ePOSITION|PxHitFlag::eNORMAL|PxHitFlag::eDISTANCE,
 		const PxQueryFilterData& filterData = PxQueryFilterData(), void* userData=NULL, const PxQueryCache* cache = NULL,
 		const PxReal inflation = 0.f) = 0;
 
@@ -226,7 +223,7 @@ protected:
 	virtual	~PxBatchQuery() {}
 };
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

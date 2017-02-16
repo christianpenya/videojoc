@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -35,7 +18,7 @@
 #include "foundation/PxSimpleTypes.h"
 #include "vehicle/PxVehicleSDK.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -52,9 +35,9 @@ class PxVehicleWheels;
 \note The rear-left wheel is removed and the rear-right wheel is positioned at the centre of the rear axle.
 The suspension of the rear-right wheel is modified to support the entire mass of the front car while preserving its natural frequency and damping ratio.
 
-\param[in,out] wheelsSimData is the data describing the wheels/suspensions/tires of the vehicle.
-\param[in,out] wheelsDynData is the data describing the dynamic state of the wheels of the vehicle.
-\param[in,out] driveSimData is the data describing the drive model of the vehicle.
+\param[in, out] wheelsSimData is the data describing the wheels/suspensions/tires of the vehicle.
+\param[in, out] wheelsDynData is the data describing the dynamic state of the wheels of the vehicle.
+\param[in, out] driveSimData is the data describing the drive model of the vehicle.
 */
 void PxVehicle4WEnable3WTadpoleMode(PxVehicleWheelsSimData& wheelsSimData, PxVehicleWheelsDynData& wheelsDynData, PxVehicleDriveSimData4W& driveSimData);
 
@@ -64,14 +47,14 @@ void PxVehicle4WEnable3WTadpoleMode(PxVehicleWheelsSimData& wheelsSimData, PxVeh
 \note The front-left wheel is removed and the front-right wheel is positioned at the centre of the front axle.
 The suspension of the front-right wheel is modified to support the entire mass of the front car while preserving its natural frequency and damping ratio.
 
-\param[in,out] wheelsSimData is the data describing the wheels/suspensions/tires of the vehicle.
-\param[in,out] wheelsDynData is the data describing the dynamic state of the wheels of the vehicle.
-\param[in,out] driveSimData is the data describing the drive model of the vehicle.
+\param[in, out] wheelsSimData is the data describing the wheels/suspensions/tires of the vehicle.
+\param[in, out] wheelsDynData is the data describing the dynamic state of the wheels of the vehicle.
+\param[in, out] driveSimData is the data describing the drive model of the vehicle.
 */
 void PxVehicle4WEnable3WDeltaMode(PxVehicleWheelsSimData& wheelsSimData, PxVehicleWheelsDynData& wheelsDynData, PxVehicleDriveSimData4W& driveSimData);
 
 /**
-\brief Compute the sprung masses of the suspension springs given (i) the number of sprung masses, 
+\brief Compute the sprung masses of the suspension springs given given (i) the number of sprung masses, 
 (ii) coordinates of the sprung masses, (iii) the center of mass offset of the rigid body, (iv) the 
 total mass of the rigid body, and (v) the direction of gravity (0 for x-axis, 1 for y-axis, 2 for z-axis).
 
@@ -152,7 +135,7 @@ speed of all enabled src wheels.
 void PxVehicleCopyDynamicsData(const PxVehicleCopyDynamicsMap& wheelMap, const PxVehicleWheels& src, PxVehicleWheels* trg);
 
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

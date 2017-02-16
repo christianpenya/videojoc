@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.
 
@@ -39,7 +22,7 @@
 #include "geometry/PxHeightFieldFlag.h"
 #include "common/PxCoreUtilityTypes.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
@@ -50,7 +33,7 @@ namespace physx
 \note The heightfield data is *copied* when a PxHeightField object is created from this descriptor. After the call the
 user may discard the height data.
 
-@see PxHeightField PxHeightFieldGeometry PxShape PxPhysics.createHeightField() PxCooking.createHeightField()
+@see PxHeightField PxHeightFieldGeometry PxShape PxPhysics.createHeightField()
 */
 class PxHeightFieldDesc
 {
@@ -124,7 +107,7 @@ public:
 	<b>Range:</b> (-PX_MAX_BOUNDS_EXTENTS, PX_MAX_BOUNDS_EXTENTS)<br>
 	<b>Default:</b> -1
 	*/
-	PX_DEPRECATED PxReal					thickness;
+	PxReal					thickness;
 
 	/**
 	This threshold is used by the collision detection to determine if a height field edge is convex
@@ -189,10 +172,15 @@ PX_INLINE bool PxHeightFieldDesc::isValid() const
 		return false;
 	if (nbRows < 2)
 		return false;
-	if(format != PxHeightFieldFormat::eS16_TM)
+	switch (format)
+	{
+	case PxHeightFieldFormat::eS16_TM:
+		if (samples.stride < 4)
+			return false;
+		break;
+	default:
 		return false;
-	if (samples.stride < 4)
-		return false;
+	}
 	if (convexEdgeThreshold < 0)
 		return false;
 	if ((flags & PxHeightFieldFlag::eNO_BOUNDARY_EDGES) != flags)
@@ -202,7 +190,7 @@ PX_INLINE bool PxHeightFieldDesc::isValid() const
 	return true;
 }
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 

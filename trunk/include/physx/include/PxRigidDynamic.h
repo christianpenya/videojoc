@@ -1,29 +1,12 @@
-// This code contains NVIDIA Confidential Information and is disclosed to you
-// under a form of NVIDIA software license agreement provided separately to you.
-//
-// Notice
-// NVIDIA Corporation and its licensors retain all intellectual property and
-// proprietary rights in and to this software and related documentation and
-// any modifications thereto. Any use, reproduction, disclosure, or
-// distribution of this software and related documentation without an express
-// license agreement from NVIDIA Corporation is strictly prohibited.
-//
-// ALL NVIDIA DESIGN SPECIFICATIONS, CODE ARE PROVIDED "AS IS.". NVIDIA MAKES
-// NO WARRANTIES, EXPRESSED, IMPLIED, STATUTORY, OR OTHERWISE WITH RESPECT TO
-// THE MATERIALS, AND EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF NONINFRINGEMENT,
-// MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE.
-//
-// Information and code furnished is believed to be accurate and reliable.
-// However, NVIDIA Corporation assumes no responsibility for the consequences of use of such
-// information or for any infringement of patents or other rights of third parties that may
-// result from its use. No license is granted by implication or otherwise under any patent
-// or patent rights of NVIDIA Corporation. Details are subject to change without notice.
-// This code supersedes and replaces all information previously supplied.
-// NVIDIA Corporation products are not authorized for use as critical
-// components in life support devices or systems without express written approval of
-// NVIDIA Corporation.
-//
-// Copyright (c) 2008-2017 NVIDIA Corporation. All rights reserved.
+/*
+ * Copyright (c) 2008-2015, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * NVIDIA CORPORATION and its licensors retain all intellectual property
+ * and proprietary rights in and to this software, related documentation
+ * and any modifications thereto.  Any use, reproduction, disclosure or
+ * distribution of this software and related documentation without an express
+ * license agreement from NVIDIA CORPORATION is strictly prohibited.
+ */
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
@@ -36,32 +19,10 @@
 
 #include "PxRigidBody.h"
 
-#if !PX_DOXYGEN
+#ifndef PX_DOXYGEN
 namespace physx
 {
 #endif
-
-
-/**
-\brief Collection of flags providing a mechanism to lock motion along/around a specific axis.
-
-@see PxRigidDynamic.setRigidDynamicLockFlag(), PxRigidBody.getRigidDynamicLockFlags()
-*/
-struct PxRigidDynamicLockFlag
-{
-	enum Enum
-	{
-		eLOCK_LINEAR_X = (1 << 0),
-		eLOCK_LINEAR_Y = (1 << 1),
-		eLOCK_LINEAR_Z = (1 << 2),
-		eLOCK_ANGULAR_X = (1 << 3),
-		eLOCK_ANGULAR_Y = (1 << 4),
-		eLOCK_ANGULAR_Z = (1 << 5)
-	};
-};
-
-typedef PxFlags<PxRigidDynamicLockFlag::Enum, PxU16> PxRigidDynamicLockFlags;
-PX_FLAGS_OPERATORS(PxRigidDynamicLockFlag::Enum, PxU16)
 
 /**
 \brief PxRigidDynamic represents a dynamic rigid simulation object in the physics SDK.
@@ -125,7 +86,7 @@ public:
 
 	@see setKinematicTarget() PxRigidBodyFlag setRigidBodyFlag()
 	*/
-	virtual		bool				getKinematicTarget(PxTransform& target)	const	= 0;
+	virtual		bool				getKinematicTarget(PxTransform& target) = 0;
 
 /************************************************************************************************/
 /** @name Damping
@@ -282,7 +243,7 @@ public:
 
 	<b>Default:</b> 1e-5f * PxTolerancesScale::speed * PxTolerancesScale::speed
 
-	\param[in] threshold Energy below which an actor may participate in stabilization. <b>Range:</b> [0,inf)
+	\param[in] threshold Energy below which an actor may participate in stabilization. <b>Range:</b> (0,inf]
 
 	@see  getStabilizationThreshold() PxSceneFlag::eENABLE_STABILIZATION
 	*/
@@ -298,35 +259,6 @@ public:
 	@see setStabilizationThreshold() PxSceneFlag::eENABLE_STABILIZATION
 	*/
 	virtual		PxReal				getStabilizationThreshold() const = 0;
-
-
-	/**
-	\brief Reads the PxRigidDynamic lock flags.
-
-	See the list of flags #PxRigidDynamicLockFlag
-
-	\return The values of the PxRigidDynamicLock flags.
-
-	@see PxRigidDynamicLockFlag setRigidDynamicLockFlag()
-	*/
-	virtual		PxRigidDynamicLockFlags getRigidDynamicLockFlags() const = 0;
-
-	/**
-	\brief Raises or clears a particular rigid dynamic lock flag.
-
-	See the list of flags #PxRigidDynamicLockFlag
-
-	<b>Default:</b> no flags are set
-
-
-	\param[in] flag		The PxRigidDynamicLockBody flag to raise(set) or clear. See #PxRigidBodyFlag.
-	\param[in] value	The new boolean value for the flag.
-
-	@see PxRigidDynamicLockFlag getRigidDynamicLockFlags()
-	*/
-	virtual		void				setRigidDynamicLockFlag(PxRigidDynamicLockFlag::Enum flag, bool value) = 0;
-	virtual		void				setRigidDynamicLockFlags(PxRigidDynamicLockFlags flags) = 0;
-	
 
 
 	/**
@@ -459,11 +391,15 @@ protected:
 	PX_INLINE						PxRigidDynamic(PxType concreteType, PxBaseFlags baseFlags) : PxRigidBody(concreteType, baseFlags) {}
 	PX_INLINE						PxRigidDynamic(PxBaseFlags baseFlags) : PxRigidBody(baseFlags) {}
 	virtual							~PxRigidDynamic() {}
-	virtual		bool				isKindOf(const char* name) const { return !::strcmp("PxRigidDynamic", name) || PxRigidBody::isKindOf(name); }
+	virtual		bool				isKindOf(const char* name) const { return !strcmp("PxRigidDynamic", name) || PxRigidBody::isKindOf(name); }
 
 };
 
-#if !PX_DOXYGEN
+PX_DEPRECATED PX_INLINE	PxRigidDynamic*			PxActor::isRigidDynamic()				{ return is<PxRigidDynamic>();		}
+PX_DEPRECATED PX_INLINE	const PxRigidDynamic*	PxActor::isRigidDynamic()		const	{ return is<PxRigidDynamic>();		}
+
+
+#ifndef PX_DOXYGEN
 } // namespace physx
 #endif
 
