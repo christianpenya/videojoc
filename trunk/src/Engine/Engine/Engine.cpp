@@ -1,9 +1,9 @@
 #include "Engine.h"
 #include "imgui_impl_dx11.h"
 #include "ImGUI\imgui.h"
+#include "Utils/Logger.h"
 
 #include "Camera\CameraController.h"
-#include "Mesh\Mesh.h"
 #include "Input\ActionManager.h"
 #include "Materials\MaterialManager.h"
 #include "Textures\TextureManager.h"
@@ -17,7 +17,6 @@
 #include "RenderPipeline\RenderPipeline.h"
 #include "Animation/AnimatedModelManager.h"
 #include "Script/ScriptManager.h"
-
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
@@ -48,55 +47,68 @@ CEngine::CEngine()
 
 void CEngine::LoadFiles()
 {
-
     m_ActionManager = new CActionManager(*m_InputManager);
     m_ActionManager->LoadActions(m_FileActionManager);
+    LOG_INFO_APPLICATION("Engine -> Action Manager Loaded! \\(^-^)/");
 
     m_ConstantBufferManager = new CConstantBufferManager();
+    LOG_INFO_APPLICATION("Engine -> Constant Buffer Loaded! \\(^-^)/");
 
     m_ShaderManager = new CShaderManager();
     m_ShaderManager->Load(m_FileShaderManager);
+    LOG_INFO_APPLICATION("Engine -> Shaders Loaded! \\(^-^)/");
 
     m_EffectManager = new CEffectManager();
     m_EffectManager->Load(m_FileEffectManager);
+    LOG_INFO_APPLICATION("Engine -> Effects Loaded! \\(^-^)/");
 
     m_TechniquePoolManager = new CTechniquePoolManager();
     m_TechniquePoolManager->Load(m_FileTechniquePoolManager);
+    LOG_INFO_APPLICATION("Engine -> Technique Pool Loaded! \\(^-^)/");
 
     std::string lLevelMaterialsFilename = m_FileMaterialManager;
     std::string lDefaultMaterialsFilename = m_FileDefaultMaterial;
 
     m_TextureManager = new CTextureManager();
+    LOG_INFO_APPLICATION("Engine -> Textures Manager Initiated! \\(^-^)/");
 
     m_MaterialManager = new CMaterialManager();
     m_MaterialManager->Load(lLevelMaterialsFilename, lDefaultMaterialsFilename);
+    LOG_INFO_APPLICATION("Engine -> Materials Loaded! \\(^-^)/");
 
     m_AnimatedModelManager = new CAnimatedModelManager();
     m_AnimatedModelManager->Load(m_FileAnimatedModelManager);
+    LOG_INFO_APPLICATION("Engine -> Animated Models Loaded! \\(^-^)/");
 
     m_MeshManager = new CMeshManager();
+    LOG_INFO_APPLICATION("Engine -> Mesh Manager Initiated! \\(^-^)/");
 
     m_LightManager = new CLightManager();
     m_LightManager->Load(m_FileLightManager);
+    LOG_INFO_APPLICATION("Engine -> Lights Loaded! \\(^-^)/");
 
     m_SceneManager = new CSceneManager();
     m_SceneManager->Load(m_FileSceneManager);
+    LOG_INFO_APPLICATION("Engine -> Scenes Loaded! \\(^-^)/");
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
-
+    LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
 }
 
 void CEngine::Init(HWND hWnd)
 {
+    LOG_INFO_APPLICATION("Engine -> Init -.-");
+
     ImGui_ImplDX11_Init(hWnd, m_RenderManager->GetDevice(), m_RenderManager->GetDeviceContext());
     m_InputManager = new CInputManager(hWnd);
 
     m_ScriptManager = new CScriptManager();
     if (m_ScriptManager->Load("data/scripts/engine.lua"))
     {
-
         lua_State* mLS = m_ScriptManager->GetScript("data/scripts/engine.lua")->GetState();
+
+        LOG_INFO_APPLICATION("Engine -> Lua Loaded! (-(-_(-_-)_-)-)");
 
         m_FileAnimatedModelManager = call_function<std::string>(mLS, "getFileAnimatedModel");
         m_FileDefaultMaterial = call_function<std::string>(mLS, "getFileDefaultMaterial");
@@ -109,6 +121,8 @@ void CEngine::Init(HWND hWnd)
         m_FileTextureManager = call_function<std::string>(mLS, "getFileTexture");
         m_FileActionManager = call_function<std::string>(mLS, "getActionManager");
         m_FileRenderPipeline = call_function<std::string>(mLS, "getRenderPipeline");
+        LOG_INFO_APPLICATION("Engine -> Lua Finished! (/.__.)/ \\(.__.\\)");
+
         LoadFiles();
     }
 }
@@ -161,6 +175,7 @@ void CEngine::Update()
 
     m_CameraController->Update((float)m_DeltaTime);
     m_CameraController->SetToRenderManager(*m_RenderManager);
+    m_RenderManager->Update();
 
     m_SceneManager->Update(m_DeltaTime);
 }

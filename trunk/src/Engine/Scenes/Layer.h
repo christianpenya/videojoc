@@ -13,7 +13,10 @@ public:
     bool Load(CXMLElement* aElement);
     bool Update(float elapsedTime);
     bool Render();
+    GET_SET_BOOL(Active);
+    std::vector<CSceneNode*> GetNodes();
 protected:
+    bool m_Active;
 private:
     DISALLOW_COPY_AND_ASSIGN(CLayer);
 };

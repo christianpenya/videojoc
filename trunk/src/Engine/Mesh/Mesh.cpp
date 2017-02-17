@@ -5,19 +5,14 @@
 #include "VertexTypes.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
-#include <iostream>
 #include <memory>
 #include "Materials/Material.h"
 #include "Materials/MaterialManager.h"
 #include "Mesh/TemplatedIndexedGeometry.h"
 #include "Scenes/ConstantBufferManager.h"
 
-CMesh::CMesh()
-{
-}
-CMesh::~CMesh()
-{
-}
+CMesh::CMesh() {}
+CMesh::~CMesh() {}
 
 CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsigned short aNumVertices, unsigned short aNumIndices, void* aVertexData, void* aIndexData)
 {
@@ -42,6 +37,14 @@ CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsi
         return new CIndexedGeometryTriangleList<VertexTypes::PositionNormalUV>
                (
                    new CVertexBuffer<VertexTypes::PositionNormalUV>(aRM, aVertexData, aNumVertices),
+                   new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
+               );
+    }
+    else if (aVertexFlags == VertexTypes::PositionNormalUVUV2::GetVertexFlags())
+    {
+        return new CIndexedGeometryTriangleList<VertexTypes::PositionNormalUVUV2>
+               (
+                   new CVertexBuffer<VertexTypes::PositionNormalUVUV2>(aRM, aVertexData, aNumVertices),
                    new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
                );
     }
@@ -83,11 +86,11 @@ bool CMesh::Load(const std::string& aFilename)
     {
         unsigned short lHeader = lBinFileReader->Read<unsigned short>();
 
-        CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
-        CMaterialManager& lMM = CEngine::GetInstance().GetMaterialManager();
-
         if (lHeader == HEADER)
         {
+            CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
+            CMaterialManager& lMM = CEngine::GetInstance().GetMaterialManager();
+
             unsigned short lNumMaterialesMallas = lBinFileReader->Read<unsigned short>();
             if (lNumMaterialesMallas > 0)
             {
@@ -158,7 +161,6 @@ bool CMesh::Load(const std::string& aFilename)
 bool CMesh::Render(CRenderManager& aRM)
 {
     bool lOk = true;
-    CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
 
     for (size_t i = 0, lCount = mGeometries.size(); i < lCount; ++i)
     {

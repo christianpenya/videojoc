@@ -27,6 +27,7 @@ bool CScene::Load(const std::string& aFilename)
                 if (strcmp(iLayer->Name(), "layer") == 0)
                 {
                     CLayer* lLayer = new CLayer(iLayer->GetAttribute<std::string>("name", ""));
+                    lLayer->SetActive(iLayer->GetAttribute<bool>("active", false));
                     lLayer->Load(iLayer);
                     lOk &= Add(lLayer->GetName(), lLayer);
                 }
@@ -39,7 +40,6 @@ bool CScene::Load(const std::string& aFilename)
 
 bool CScene::Update(float elapsedTime)
 {
-    // #ALEX: las layers tienen booleano para mantenerlas activas?
     bool lOk = true;
 
     for (TMapResources::iterator iLayer = m_ResourcesMap.begin(); iLayer != m_ResourcesMap.end(); ++iLayer)
@@ -52,24 +52,12 @@ bool CScene::Update(float elapsedTime)
 
 bool CScene::Render()
 {
-    // #ALEX: este render debe pintar todas las layers?
+    // #TODO: este render debe pintar todas las layers?
     bool lOk = true;
 
     for (TMapResources::iterator iLayer = m_ResourcesMap.begin(); iLayer != m_ResourcesMap.end(); ++iLayer)
     {
         lOk &= iLayer->second.m_Value->Render();
-
-        /*std::string l_lightName = iLayer->second.m_Value;
-        CLight *l_light = CEngine::GetInstance().GetLightManager()(l_lightName);
-
-
-        CLight* lLight = iLayer->second.m_Value;
-        SetLightConstants(iLayer->second.m_Id, lLight);
-
-        CLight* lLight = iLayer->second.m_Value;
-        SetLightConstants(m_ResourcesMap.find(aLayerName)->second.m_Id, lLight);
-        */
-
     }
 
     return lOk;
@@ -78,6 +66,21 @@ bool CScene::Render()
 bool CScene::Render(const std::string& aLayerName)
 {
     bool lOk = true;
-    lOk &= m_ResourcesMap.find(aLayerName)->second.m_Value->Render();
+
+    if (Exist(aLayerName))
+    {
+        CLayer* lLayer = m_ResourcesMap.find(aLayerName)->second.m_Value;
+
+        if (lLayer->IsActive())
+        {
+            lOk &= lLayer->Render();
+        }
+    }
+
     return lOk;
+}
+
+std::vector<CLayer*> CScene::GetLayers()
+{
+    return m_ResourcesVector;
 }

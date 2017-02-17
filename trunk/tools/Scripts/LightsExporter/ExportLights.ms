@@ -5,10 +5,8 @@ fn ExportLight =
 	local xmlDoc = XmlDocument()
 	local rootNode = XmlNode tag:"lights"
 	xmlDoc.rootNode = rootNode
-	
 	local f = getSaveFilename "lights.xml" filename:( (getdir #userScripts) + "\\" + (getFilenameFile maxFilename)) \
 																 types:"XML File(.xml)|*.xml|All|*.*|"
-
 	if (f!=undefined) then
 	(
 		xmlDoc.filename = f
@@ -24,14 +22,14 @@ fn ExportLight =
 	
 				local lightNode = XmlNode tag:"light"
 				rootNode.AddChild lightNode
-					
-				if (type == #targetDirect) then
+								
+				if (type == #targetDirect or type == #freeDirect) then
 				(
 					type = "directional"
 				)else if (type == #omni) then
 				(
 					type = "point"
-				)else if (type == #targetSpot) then
+				)else if (type == #targetSpot or type == #freeSpot) then
 				(
 					lightNode.AddAttribute "angle" s.hotspot
 					lightNode.AddAttribute "fall_off" s.falloff
@@ -41,7 +39,7 @@ fn ExportLight =
 				lightNode.AddAttribute "type" type
 				lightNode.AddAttribute "name" s.name
 				local l_Text = stringstream "" 
-				format "% % %" s.rgb.r s.rgb.g s.rgb.b s.rgb.a to:l_Text 
+				format "% % %" (s.rgb.r/255.0) (s.rgb.g/255.0) (s.rgb.b/255.0)  to:l_Text 
 				aux =  (l_Text as string) 
 				lightNode.AddAttribute "color" aux
 				lightNode.AddAttribute "enabled" s.enabled
@@ -70,3 +68,5 @@ fn ExportLight =
 		xmlDoc.SaveXmlDocument()
 	)
 )
+
+ExportLight()

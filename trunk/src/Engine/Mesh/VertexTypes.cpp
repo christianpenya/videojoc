@@ -16,6 +16,10 @@ uint32 VertexTypes::GetVertexSize(uint32 aVertexFlags)
     {
         return sizeof(PositionNormalUV);
     }
+    else if (aVertexFlags == PositionNormalUVUV2::GetVertexFlags())
+    {
+        return sizeof(PositionNormalUVUV2);
+    }
     else if (aVertexFlags == PositionBump::GetVertexFlags())
     {
         return sizeof(PositionBump);
@@ -49,6 +53,11 @@ bool CreateInputLayout(CRenderManager &aRenderManager, uint32 aVertexFlags, ID3D
     else if (aVertexFlags == PositionNormalUV::GetVertexFlags())
     {
         VertexTypes::PositionNormalUV::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
+        lOk = true;
+    }
+    else if (aVertexFlags == PositionNormalUVUV2::GetVertexFlags())
+    {
+        VertexTypes::PositionNormalUVUV2::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
         lOk = true;
     }
     else if (aVertexFlags == PositionUV::GetVertexFlags())
@@ -98,6 +107,10 @@ uint32 GetFlagsFromString(const std::string& aString)
     else if (aString == "PositionNormalUV")
     {
         lOut = PositionNormalUV::GetVertexFlags();
+    }
+    else if (aString == "PositionNormalUVUV2")
+    {
+        lOut = PositionNormalUVUV2::GetVertexFlags();
     }
     else if (aString == "PositionBump")
     {

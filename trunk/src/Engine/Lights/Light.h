@@ -47,6 +47,8 @@ Begin_Enum_String(CLight::ELightType)
     Enum_String_Id(CLight::ePoint, "point");
     Enum_String_Id(CLight::eSpot, "spot");
     Enum_String_Id(CLight::eDirectional, "directional");
+    Enum_String_Id(CLight::eSpot, "#freeSpot");
+    Enum_String_Id(CLight::eDirectional, "#freeDirect");
 }
 End_Enum_String;
 
