@@ -4,7 +4,6 @@
 
 #include "Camera\CameraController.h"
 #include "Mesh\Mesh.h"
-
 #include "Input\ActionManager.h"
 #include "Materials\MaterialManager.h"
 #include "Textures\TextureManager.h"
@@ -15,9 +14,10 @@
 #include "Scenes\SceneManager.h"
 #include "Lights\LightManager.h"
 #include "Scenes\ConstantBufferManager.h"
-
 #include "RenderPipeline\RenderPipeline.h"
 #include "Animation/AnimatedModelManager.h"
+#include "Script/ScriptManager.h"
+
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
@@ -37,6 +37,7 @@ CEngine::CEngine()
     , m_ConstantBufferManager(nullptr)
     , m_RenderPipeline(nullptr)
     , m_AnimatedModelManager(nullptr)
+    , m_ScriptManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
     , m_FPS (0.0)
@@ -45,41 +46,71 @@ CEngine::CEngine()
     , m_PrevCameraSelector(0)
 {}
 
-void CEngine::Init(HWND hWnd)
+void CEngine::LoadFiles()
 {
-    ImGui_ImplDX11_Init(hWnd, m_RenderManager->GetDevice(), m_RenderManager->GetDeviceContext());
+
+    m_ActionManager = new CActionManager(*m_InputManager);
+    m_ActionManager->LoadActions(m_FileActionManager);
 
     m_ConstantBufferManager = new CConstantBufferManager();
 
     m_ShaderManager = new CShaderManager();
-    m_ShaderManager->Load("data/shaders.xml"); // #TODO properties
+    m_ShaderManager->Load(m_FileShaderManager);
 
     m_EffectManager = new CEffectManager();
-    m_EffectManager->Load("data/effects.xml");
+    m_EffectManager->Load(m_FileEffectManager);
 
     m_TechniquePoolManager = new CTechniquePoolManager();
-    m_TechniquePoolManager->Load("data/techniques_pool.xml");
+    m_TechniquePoolManager->Load(m_FileTechniquePoolManager);
 
-    std::string lLevelMaterialsFilename = "reclusion.xml"; // #TODO nombres hardcoded
-    std::string lDefaultMaterialsFilename = "default.xml";
+    std::string lLevelMaterialsFilename = m_FileMaterialManager;
+    std::string lDefaultMaterialsFilename = m_FileDefaultMaterial;
 
     m_TextureManager = new CTextureManager();
 
     m_MaterialManager = new CMaterialManager();
     m_MaterialManager->Load(lLevelMaterialsFilename, lDefaultMaterialsFilename);
 
-
-
     m_AnimatedModelManager = new CAnimatedModelManager();
-    m_AnimatedModelManager->Load("data/animated_models.xml");
+    m_AnimatedModelManager->Load(m_FileAnimatedModelManager);
 
     m_MeshManager = new CMeshManager();
 
     m_LightManager = new CLightManager();
-    m_LightManager->Load("data/lights.xml");
+    m_LightManager->Load(m_FileLightManager);
 
     m_SceneManager = new CSceneManager();
-    m_SceneManager->Load("data/scenes.xml");
+    m_SceneManager->Load(m_FileSceneManager);
+
+    m_RenderPipeline = new CRenderPipeline();
+    m_RenderPipeline->Load(m_FileRenderPipeline);
+
+}
+
+void CEngine::Init(HWND hWnd)
+{
+    ImGui_ImplDX11_Init(hWnd, m_RenderManager->GetDevice(), m_RenderManager->GetDeviceContext());
+    m_InputManager = new CInputManager(hWnd);
+
+    m_ScriptManager = new CScriptManager();
+    if (m_ScriptManager->Load("data/scripts/engine.lua"))
+    {
+
+        lua_State* mLS = m_ScriptManager->GetScript("data/scripts/engine.lua")->GetState();
+
+        m_FileAnimatedModelManager = call_function<std::string>(mLS, "getFileAnimatedModel");
+        m_FileDefaultMaterial = call_function<std::string>(mLS, "getFileDefaultMaterial");
+        m_FileEffectManager = call_function<std::string>(mLS, "getFileEffects");
+        m_FileMaterialManager = call_function<std::string>(mLS, "getFileLevelMaterial");
+        m_FileLightManager = call_function<std::string>(mLS, "getFileLightManager");
+        m_FileSceneManager = call_function<std::string>(mLS, "getFileSceneManager");
+        m_FileShaderManager = call_function<std::string>(mLS, "getFileShaderManager");
+        m_FileTechniquePoolManager = call_function<std::string>(mLS, "getFileTechniquePoolManager");
+        m_FileTextureManager = call_function<std::string>(mLS, "getFileTexture");
+        m_FileActionManager = call_function<std::string>(mLS, "getActionManager");
+        m_FileRenderPipeline = call_function<std::string>(mLS, "getRenderPipeline");
+        LoadFiles();
+    }
 }
 
 void CEngine::ProcessInputs()

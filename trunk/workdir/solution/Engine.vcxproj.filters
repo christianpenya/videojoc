@@ -43,6 +43,12 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{86EEB3D0-7290-DEA6-5B4B-F2FA478C65F7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{9AFBBAD0-869D-E5A6-6F58-F9FA5B996CF7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Bindings">
+      <UniqueIdentifier>{37B2F9F2-A33D-67B7-AC4E-EAAB1859C3B7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Textures">
       <UniqueIdentifier>{A95C6780-9529-C28B-BE42-B033AA6EF719}</UniqueIdentifier>
     </Filter>
@@ -318,6 +324,15 @@
     <ClInclude Include="..\..\src\Engine\Scenes\SceneNode.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Script\Script.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Script\ScriptManager.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Script\lua_utils.h">
+      <Filter>Script</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Textures\Texture.h">
       <Filter>Textures</Filter>
     </ClInclude>
@@ -592,6 +607,15 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Scenes\SceneNode.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Script\Bindings\EngineBindings.cpp">
+      <Filter>Script\Bindings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Script\Script.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Script\ScriptManager.cpp">
+      <Filter>Script</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Textures\Texture.cpp">
       <Filter>Textures</Filter>

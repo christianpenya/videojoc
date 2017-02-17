@@ -69,6 +69,8 @@ CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsi
                    new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
                );
     }
+
+    return false;
 }
 
 bool CMesh::Load(const std::string& aFilename)
