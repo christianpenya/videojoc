@@ -10,13 +10,13 @@
 class CTextureManager
 {
 public:
-	CTextureManager();
-	virtual ~CTextureManager();
-	CTexture* GetTexture(const std::string& aFilename);
-	bool Reload();
+    CTextureManager();
+    virtual ~CTextureManager();
+    CTexture* GetTexture(const std::string& aFilename);
+    bool Reload();
 private:
-	base::utils::CTemplatedMapVector<CTexture> mTextures;
-	bool Load(const std::string& aFilename);
+    base::utils::CTemplatedMapVector<CTexture> mTextures;
+    bool Load(const std::string& aFilename);
 };
 
 #endif

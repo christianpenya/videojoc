@@ -171,8 +171,8 @@ bool CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height)
     m_DepthStencilView.reset(l_DepthStencilView);
 
     D3D11_VIEWPORT vp;
-    vp.Width = Width;
-    vp.Height = Height;
+    vp.Width = (float) Width;
+    vp.Height = (float) Height;
     vp.MinDepth = 0.0f;
     vp.MaxDepth = 1.0f;
     vp.TopLeftX = 0;
@@ -183,6 +183,8 @@ bool CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height)
     auto dsv = m_DepthStencilView.get();
     auto rtv = m_RenderTargetView.get();
     m_DeviceContext->OMSetRenderTargets(1, &l_RenderTargetView, l_DepthStencilView);
+
+    return true;
 }
 
 void CRenderManager::Set_Viewport(float Width, float Height)
@@ -615,8 +617,8 @@ void CRenderManager::Resize(float Width, float Height, HWND hWnd)
         m_DepthStencilView.reset(nullptr);
 
         auto l_SwapChain = m_SwapChain.get();
-        l_SwapChain->ResizeBuffers(0, Width, Height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
-        Create_DepthStencil(hWnd, Width, Height);
+        l_SwapChain->ResizeBuffers(0, (UINT)Width, (UINT) Height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+        Create_DepthStencil(hWnd, (int) Width, (int) Height);
         SetProjectionMatrix(45.0f, (float)Width / (float)Height, 0.5f, 100.0f);
     }
 }

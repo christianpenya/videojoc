@@ -76,12 +76,8 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 //-----------------------------------------------------------------------
 // WinMain
 //-----------------------------------------------------------------------
-int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCmdLine, int _nCmdShow)
+int main()
 {
-    _hInstance = _hInstance;
-    _hPrevInstance = _hPrevInstance;
-    _lpCmdLine = _lpCmdLine;
-    _nCmdShow = _nCmdShow;
 
 #ifdef _DEBUG
     MemLeaks::MemoryBegin();
@@ -106,12 +102,6 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
     l_RenderManager.SetViewMatrix(m_vpos, m_vtarget, m_vup);
     l_RenderManager.Init(hWnd, (int)m_width, (int)m_height, debug);
 
-    CInputManager l_InputManager(hWnd);
-    CActionManager l_ActionManager(l_InputManager);
-
-    std::string inputConfigPath = "data/config/input_config.xml";
-    l_ActionManager.LoadActions(inputConfigPath);
-
     // Setup Cameras
     CSphericalCameraController l_SphericalCamera(Vect3f(0, 0, 0), 1.5f, -1.5f, 20.0f, 1.0f);
     CFpsCameraController l_FpsCamera(Vect3f(0, 1.0, 0), 1.5f, -1.5f);
@@ -120,24 +110,18 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
     CEngine& l_Engine = CEngine::GetInstance();
     l_Engine.SetRenderManager(&l_RenderManager);
     l_Engine.Init(hWnd);
-    l_Engine.SetActionManager(&l_ActionManager);
     l_Engine.SetCameraController(&l_SphericalCamera);
-
-    /*CRenderPipeline l_RenderPipeline;
-    l_RenderPipeline.Load("data/render_pipeline.xml");*/
 
     l_Engine.m_FpsCam = l_FpsCamera;
     l_Engine.m_OrbitalCam = l_SphericalCamera;
     l_Engine.m_TpsCam = l_TpsCamera;
 
-    CRenderPipeline l_RenderPipeline;
-    l_RenderPipeline.Load("data/render_pipeline.xml");
-    l_Engine.SetRenderPipeline(&l_RenderPipeline);
-
     ShowWindow(hWnd, SW_SHOWDEFAULT);
     UpdateWindow(hWnd);
     MSG msg;
     ZeroMemory(&msg, sizeof(msg));
+
+    CInputManager& l_InputManager = CEngine::GetInstance().GetInputManager();
 
     while (msg.message != WM_QUIT)
     {
