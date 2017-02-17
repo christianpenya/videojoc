@@ -1,15 +1,17 @@
 
 
 struct sCinematic(
+	mName = "",
 	mTotal_time= "",
 	mLoop = false,
 	mReverse = false,
-	mCameras[] = #(),
-	mObjects[] = #()
+	mCameras = #(),
+	mObjects = #()
 )
 
 struct sCamera(	
-	mKeys = #()
+	mKeys = #(),
+	mName = ""
 )
 
 struct sCameraKey(
@@ -25,10 +27,10 @@ struct sCameraKey(
 )
 
 struct sObject(
-	mSceneNode = ""
-	mLayer = ""
-	mScene=""
-
+	mName = "",
+	mSceneNode = "",
+	mLayer = "",
+	mScene="",
 	mKeys = #()
 	)
 
@@ -46,4 +48,12 @@ struct sObjectKey(
 fn TranslationToRH translation = (
 	return point3 -translation.x translation.z translation.y
 )
+
+fn Vect3ToStr vect3 = (
+
+	local l_Text = stringstream ""
+	local pos = vect3
+	format "% % %" pos.x pos.y pos.z to:l_Text
+	return (l_Text as string)
+	)
 

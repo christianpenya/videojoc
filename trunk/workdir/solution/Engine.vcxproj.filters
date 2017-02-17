@@ -7,6 +7,9 @@
     <Filter Include="Camera">
       <UniqueIdentifier>{CE7141AB-BA13-6C81-A3CE-7FD58F0FF3D1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Cinematics">
+      <UniqueIdentifier>{65A2DEF3-515A-2041-BA61-F99CA638BB31}</UniqueIdentifier>
+    </Filter>
     <Filter Include="DirectXTex">
       <UniqueIdentifier>{A90EE592-95C6-26E0-FECD-FF3BEAA4C1D0}</UniqueIdentifier>
     </Filter>
@@ -65,6 +68,30 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Camera\TpsCameraController.h">
       <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Cinematics\Cinematic.h">
+      <Filter>Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicCameraKey.h">
+      <Filter>Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicCameraPlayer.h">
+      <Filter>Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicKey.h">
+      <Filter>Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicObjectKey.h">
+      <Filter>Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicObjectPlayer.h">
+      <Filter>Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicPlayer.h">
+      <Filter>Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicsManager.h">
+      <Filter>Cinematics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\DirectXTex\BC.h">
       <Filter>DirectXTex</Filter>
@@ -316,6 +343,30 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Camera\TpsCameraController.cpp">
       <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Cinematics\Cinematic.cpp">
+      <Filter>Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicCameraKey.cpp">
+      <Filter>Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicCameraPlayer.cpp">
+      <Filter>Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicKey.cpp">
+      <Filter>Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicObjectKey.cpp">
+      <Filter>Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicObjectPlayer.cpp">
+      <Filter>Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicPlayer.cpp">
+      <Filter>Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicsManager.cpp">
+      <Filter>Cinematics</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\DirectXTex\BC.cpp">
       <Filter>DirectXTex</Filter>

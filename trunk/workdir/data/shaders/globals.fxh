@@ -82,7 +82,7 @@ void CalculateSingleLight(uint IdLight,float3 NormalPixel : NORMAL, float3 World
 			float l_SpotFallOff=cos(m_LightFallOffAngleArray[IdLight]*0.5*(3.1416/180.0));
 			float l_DotAngle=dot(l_LightDirection, m_LightDirection[IdLight]);
 
-			float l_AngleAtenuation = saturate((l_DotAngle-l_SpotFallOff)/(l_SpotAngle-l_SpotFallOff));
+			l_AngleAtenuation = saturate((l_DotAngle-l_SpotFallOff)/(l_SpotAngle-l_SpotFallOff));
 
 		}else{  //DIRECTIONAL
 
