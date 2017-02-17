@@ -1,7 +1,6 @@
 fileIn "xml.ms"
 fileIn "structMaterial.ms"
 
-
 function preProcess = (
 	for object in $ do (
 		iMaterial = object.material
@@ -33,8 +32,7 @@ function process = (
 		lSMaterial.m_name = mMaterial.name
 		lSMaterial.m_vertexType = "PositionNormal"
 		lSMaterial.m_opacity = mMaterial.opacity
-		print("1: " + lSMaterial.m_vertexType)
-
+		lSMaterial.m_diffuseColor = mMaterial.diffuse
 
 		--Datos bump
 		lSMaterial.m_bumpEnabled = mMaterial.bumpMapEnable
@@ -54,7 +52,6 @@ function process = (
 					lSMaterial.m_bumpEnabled = false
 			)
 		)
-		print("2: " + lSMaterial.m_vertexType)
 
 		--Obtenemos los datos referentes al diffuse del material
 		lSMaterial.m_diffuseEnabled = mMaterial.diffuseMapEnable
@@ -67,7 +64,7 @@ function process = (
 			if lSMaterial.m_diffuseBitmap != undefined then
 			(
 				--lSMaterial.m_diffuseBitmapTexture = iMaterial.diffuseMap.bitmap .filename
-				lSMaterial.m_diffuseColor = mMaterial.diffuse
+				
 				lSMaterial.m_diffuseAmount = mMaterial.diffuseMapAmount
 			)
 			else 
@@ -186,27 +183,32 @@ function process = (
 )
 
 
-function parse outPath = (
+function parse outPath = 
+(
 	local rootNode = XmlNode tag:"materials"
 	local dataStr = "data\\"
 	xmlDoc.rootNode = rootNode
-	for object in mArrayMaterialStruct do(
+	
+	for object in mArrayMaterialStruct do
+	(
 		local matNode = XmlNode tag:"material"
 		rootNode.addChild matNode
 		matNode.AddAttribute "name" object.m_name
 		matNode.AddAttribute "vertex_type" object.m_vertexType
-		if object.m_diffuseEnabled == true then(
+		
+		local colorNode = XmlNode tag:"color"
+		matNode.addChild colorNode
+		colorNode.addAttribute "type" "diffuse"
+		local strColor = colorToString(object.m_diffuseColor)
+		colorNode.addAttribute "value" strColor
+		
+		if object.m_diffuseEnabled == true then
+		(
 			local textNode = XmlNode tag:"texture"
 			matNode.addChild textNode
 			textNode.addAttribute "type" "diffuse"			
 			local filename = copyTexture object.m_diffuseBitmap outPath
 			textNode.addAttribute "filename" (dataStr + filename)
-			
-			local colorNode = XmlNode tag:"color"
-			matNode.addChild colorNode
-			colorNode.addAttribute "type" "diffuse"
-			local strColor = colorToString(object.m_diffuseColor)
-			colorNode.addAttribute "value" strColor
 			
 			local paramNode = XmlNode tag:"parameter"
 			matNode.addChild paramNode

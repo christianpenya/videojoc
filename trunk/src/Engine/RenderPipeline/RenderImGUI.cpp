@@ -10,8 +10,6 @@
 #include "Effects\ShaderManager.h"
 #include "Effects\EffectManager.h"
 
-#include "RenderPipeline\RenderPipeline.h"
-
 CRenderImGUI::CRenderImGUI() {}
 CRenderImGUI::~CRenderImGUI() {}
 
@@ -116,8 +114,6 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
         ImGui::SameLine();
         ImGui::RadioButton("TPS", &lEngine.m_CameraSelector, 2);
     }
-
-    lRM.DrawGrid(1, 1, 1, CColor(0, 0, 0, 1));
 
     ImGui::End();
     ImGui::Render();

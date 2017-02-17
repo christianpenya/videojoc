@@ -66,11 +66,15 @@ bool CScene::Render()
 bool CScene::Render(const std::string& aLayerName)
 {
     bool lOk = true;
-    CLayer* lLayer = m_ResourcesMap.find(aLayerName)->second.m_Value;
 
-    if (lLayer->IsActive())
+    if (Exist(aLayerName))
     {
-        lOk &= lLayer->Render();
+        CLayer* lLayer = m_ResourcesMap.find(aLayerName)->second.m_Value;
+
+        if (lLayer->IsActive())
+        {
+            lOk &= lLayer->Render();
+        }
     }
 
     return lOk;

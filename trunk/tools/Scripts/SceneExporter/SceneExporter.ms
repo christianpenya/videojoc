@@ -23,8 +23,8 @@ fn Point3ToString aPoint3 =
 (		
 	local l_Text = stringstream ""
 	format "% " aPoint3.x to:l_Text
- 	format "% " aPoint3.y to:l_Text
- 	format "%" aPoint3.z to:l_Text
+ 	format "% " aPoint3.z to:l_Text
+ 	format "%" aPoint3.y to:l_Text
 	return (l_Text as string)
 )
 
@@ -42,6 +42,8 @@ fn ExportScene =
 		xmlDoc.filename = f
 		
 		--print(LayerManager.count)
+		
+		local id_light = 0;
 		
 		for i = 0 to LayerManager.count - 1 do
 		(
@@ -92,7 +94,17 @@ fn ExportScene =
   					local sceneLightNode = XmlNode tag:"scene_light" 
   					layerNode.AddChild sceneLightNode
  					sceneLightNode.AddAttribute "name" o.name
- 					sceneLightNode.AddAttribute "light" o.name
+ 					sceneLightNode.AddAttribute "id_light" id_light
+					id_light = id_light + 1
+					
+					-- transform
+					local transformNode = XmlNode tag:"transform"
+ 					sceneLightNode.AddChild transformNode
+					
+					local tmp = Point3ToString(o.transform.position)
+					transformNode.AddAttribute "position" tmp
+					tmp = Point3ToString(o.dir)
+					transformNode.AddAttribute "forward"  tmp
   				)
  			)
 		)

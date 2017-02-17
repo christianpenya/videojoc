@@ -56,10 +56,10 @@ struct sMaterial (
 fn colorToString color =(
 
 	local l_Text = stringstream ""
-	format "%," color.r to:l_Text
-	format "%," color.g to:l_Text
-	format "%," color.b to:l_Text
-	format "%," color.a to:l_Text
+	format "% " (color.r/255.0) to:l_Text
+	format "% " (color.g/255.0) to:l_Text
+	format "% " (color.b/255.0) to:l_Text
+	format "% " (color.a/255.0) to:l_Text
 	return (l_Text as string)
 
 )
