@@ -196,9 +196,10 @@ function parse outPath =
 		matNode.AddAttribute "name" object.m_name
 		matNode.AddAttribute "vertex_type" object.m_vertexType
 		
-		local colorNode = XmlNode tag:"color"
+		local colorNode = XmlNode tag:"parameter"
 		matNode.addChild colorNode
-		colorNode.addAttribute "type" "diffuse"
+		colorNode.addAttribute "type" "color"
+		colorNode.addAttribute "type" "diffuse_color"
 		local strColor = colorToString(object.m_diffuseColor)
 		colorNode.addAttribute "value" strColor
 		
