@@ -3,7 +3,6 @@
 #define _ENGINE_MESH_20161222
 
 #include "Utils\Name.h"
-#include "Math\MathUtils.h"
 #include <vector>
 #include "BoundingSphere.h"
 #include "AxisAlignedBoundingBox.h"
@@ -25,6 +24,13 @@ protected:
     std::vector< CGeometry* > mGeometries;
     CAxisAlignedBoundingBox mAABB;
     CBoundingSphere mBoundingSphere;
+
+public:
+
+    CBoundingSphere GetBoundingSphere()
+    {
+        return mBoundingSphere;
+    }
 };
 
 #define HEADER 0xFE55

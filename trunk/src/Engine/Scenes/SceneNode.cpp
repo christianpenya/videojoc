@@ -23,16 +23,17 @@ CSceneNode::~CSceneNode() {}
 
 bool CSceneNode::Update(float aDeltaTime)
 {
-    return false;
+    return true;
 }
 
 bool CSceneNode::Render(CRenderManager& lRM)
 {
-    /*  bool lOk = true;
-      CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
+    Vector4<float> lBSCenter(mBS.GetCenter().x, mBS.GetCenter().y, mBS.GetCenter().z, 0);
+    lBSCenter = lRM.GetViewProjectionMatrix() * lBSCenter;
+    mBS.SetCenter(Vect3f(lBSCenter.x, lBSCenter.y, lBSCenter.z));
 
-      lCB.BindBuffer(lRM.GetDeviceContext(), lCB.CB_Light);
+    m_Visible = lRM.m_Frustum->IsVisible(mBS);
 
-      return lOk;*/
-    return false;
+    // Todo: Check BS with currentfrustum
+    return m_Visible;
 }

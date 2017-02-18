@@ -98,3 +98,8 @@ bool CSceneManager::Load()
     }
     return lOk;
 }
+
+std::vector<CScene*> CSceneManager::GetScenes()
+{
+    return m_ResourcesVector;
+}

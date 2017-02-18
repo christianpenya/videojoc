@@ -65,6 +65,23 @@ struct PositionNormalUV
     END_INPUT_LAYOUT
 };
 
+struct PositionNormalUVUV2
+{
+    POSITION;
+    NORMAL;
+    UV;
+    UV2;
+    GET_VERTEX_FLAGS(ePosition | eNormal | eUV | eUV2);
+    BEGIN_INPUT_LAYOUT
+    {
+        LAYOUT_POSITION(0),
+        LAYOUT_NORMAL(12),
+        LAYOUT_UV(24),
+        LAYOUT_UV2(32),
+    }
+    END_INPUT_LAYOUT
+};
+
 struct PositionBump
 {
     POSITION;

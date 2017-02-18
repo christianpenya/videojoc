@@ -15,6 +15,7 @@ public:
     bool Render(const std::string& aLayer);
     bool Reload();
     void Activate(const std::string& aScene, bool aBool);
+    std::vector<CScene*> GetScenes();
 private:
     bool Load();
 protected:

@@ -32,7 +32,7 @@ bool CCinematicObjectPlayer::Load(const CXMLElement *aElement)
             Add(Convert(lObjKey->GetTime()), lObjKey);
             if (m_CurrentKey == NULL)
             {
-                m_CurrentKey = lObjKey;
+               // m_CurrentKey = lObjKey;
             }
 
         }
