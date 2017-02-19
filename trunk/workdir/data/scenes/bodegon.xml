@@ -31,12 +31,5 @@
 			<transform position="-9.25808 1.64795 5.38194" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>-->
 	</layer>
-	<layer name="sereno" active="true" >
-		<scene_animated_model name="sereno01" core="sereno" >
-			<transform position="0.0 0.0 1.0" rotation="0.0 0.0 0.0" scale="0.5 0.5 0.5" />
-		</scene_animated_model>		
-	</layer>
-			
-
 </scene>
 
