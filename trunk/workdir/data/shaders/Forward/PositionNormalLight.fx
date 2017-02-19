@@ -41,7 +41,7 @@ float4 PS( PS_INPUT IN ) : SV_Target
     float3 l_Normal = normalize(IN.Normal);
 
     float3 l_WorldPos = IN.WorldPosition;
-    float4 l_DiffuseColor =	float4(1.0, 1.0, 1.0, 1.0);
+    float4 l_DiffuseColor = float4(m_RawData[0].xyz, 1.0);
 
     float3 l_LAmbient = m_LightAmbient.xyz * l_DiffuseColor.xyz;
 
@@ -56,7 +56,7 @@ float4 PS( PS_INPUT IN ) : SV_Target
         CalculateSingleLight(i, l_Normal, l_WorldPos, l_DiffuseColor,l_DiffuseTmp, l_SpecularTmp);
 
         l_LDiffuseSpecularTmp = l_DiffuseTmp + l_SpecularTmp;
-        l_LDiffuseSpecular =l_LDiffuseSpecular + l_LDiffuseSpecularTmp;
+        l_LDiffuseSpecular = l_LDiffuseSpecular + l_LDiffuseSpecularTmp;
 
         l_DiffuseTmp =	float3(0.0, 0.0, 0.0);
         l_SpecularTmp =	float3(0.0, 0.0, 0.0);
