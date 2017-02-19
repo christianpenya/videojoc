@@ -2,6 +2,7 @@
 #include "XML/tinyxml2/tinyxml2.h"
 #include "XML/XML.h"
 #include "Lights/lightManager.h"
+#include "Imgui/imgui.h"
 
 CScene::CScene(const std::string& aName)
     : CName(aName)
@@ -83,4 +84,24 @@ bool CScene::Render(const std::string& aLayerName)
 std::vector<CLayer*> CScene::GetLayers()
 {
     return m_ResourcesVector;
+}
+
+void CScene::DrawImGui()
+{
+    ImGui::Checkbox("Active", &m_Active);
+    if (m_Active == true)
+    {
+        ImGui::BeginChild("#Layer", ImVec2(400, 400), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::PushItemWidth(-130);
+
+        for (TMapResources::iterator iLayer = m_ResourcesMap.begin(); iLayer != m_ResourcesMap.end(); ++iLayer)
+        {
+            CLayer* llayer = iLayer->second.m_Value;
+            ImGui::PushID(iLayer->second.m_Id);
+            llayer->DrawImgui();
+            ImGui::PopID();
+        }
+        ImGui::PopItemWidth();
+        ImGui::EndChild();
+    }
 }

@@ -12,6 +12,7 @@
 #include "Engine\Engine.h"
 #include "Effects\Technique.h"
 #include "Effects\TechniquePoolManager.h"
+#include "Scenes/ConstantBufferManager.h"
 
 CMaterial::~CMaterial()
 {
@@ -20,7 +21,6 @@ CMaterial::~CMaterial()
 
 CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
 {
-    // #TODO mes robustesa aqui
     CEngine &l_Engine = CEngine::GetInstance();
     mTechnique = l_Engine.GetTechniquePoolManager()(aElement->GetAttribute<std::string>("vertex_type", ""));
 
@@ -85,6 +85,28 @@ void CMaterial::Apply()
         if (mTextures[i])
         {
             mTextures[i]->Bind(i, lContext);
+        }
+    }
+
+    CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
+
+    for (size_t i = 0, lCount = mParameters.size(); i < lCount; ++i)
+    {
+        switch (mParameters[i]->GetType())
+        {
+        case eFloat:
+            break;
+        case eFloat2:
+            break;
+        case eFloat3:
+            break;
+        case eFloat4:
+            break;
+        case eColor:
+            /*            void* lColor = mParameters[i]->GetAddr();
+                        const Vector4<float> flt = static_cast<Vector4<float>&lColor;
+                        lCBM.mMaterialDesc.m_RawData[0] = flt; */
+            break;
         }
     }
 }

@@ -98,3 +98,8 @@ CalCoreModel * CAnimatedCoreModel::GetCoreModel()
 {
     return m_CalCoreModel;
 }
+
+void CAnimatedCoreModel::DrawImgui()
+{
+
+}

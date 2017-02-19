@@ -37,7 +37,9 @@ uint32 VertexTypes::GetVertexSize(uint32 aVertexFlags)
         return sizeof(PositionWeightIndicesNormalUV);
     }
 
+#ifdef _DEBUG
     assert(!"Invalid vertex flags");
+#endif
 
     return 0;
 }
@@ -86,8 +88,10 @@ bool CreateInputLayout(CRenderManager &aRenderManager, uint32 aVertexFlags, ID3D
         lOk = true;
     }
 
+#ifdef _DEBUG
     if (!lOk)
         assert(!"Error creating input layout");
+#endif
 
     return lOk;
 }
@@ -131,8 +135,10 @@ uint32 GetFlagsFromString(const std::string& aString)
 
     }
 
+#ifdef _DEBUG
     if (!lOut)
         assert(!"Wrong string flags!");
+#endif
 
     return lOut;
 

@@ -65,7 +65,7 @@ public:
     Vect4f									m_BackgroundColor;
 
 public:
-    CRenderManager() {};
+    CRenderManager();
     ~CRenderManager()
     {
         releasePointers();

@@ -16,6 +16,7 @@ public:
     bool Reload();
     void Activate(const std::string& aScene, bool aBool);
     std::vector<CScene*> GetScenes();
+    void DrawImgui();
 private:
     bool Load();
 protected:

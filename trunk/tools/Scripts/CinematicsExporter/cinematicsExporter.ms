@@ -228,6 +228,11 @@ function main = (
 					local lFrameRate = framerate
 					
 					lCinematic.mTotal_time = (((animRange.end as float)/ticketsPerFrame)/lFrameRate)
+					
+
+					obj = getActiveCamera()
+					print(SuperclassOf obj)
+					print(ClassOf obj)					
 					if SuperclassOf obj == Camera then(
 						format "Cam\n"
 						processCamera $ lCinematic

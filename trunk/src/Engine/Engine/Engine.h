@@ -46,10 +46,7 @@ class CEngine : public base::utils::CSingleton<CEngine>
 public:
 
     CEngine();
-    virtual ~CEngine()
-    {
-        ImGui_ImplDX11_Shutdown();
-    };
+    ~CEngine();
 
     void ProcessInputs();
     void Update();

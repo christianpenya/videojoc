@@ -14,7 +14,6 @@ CSceneNode::CSceneNode(const CXMLElement* aElement)
     if (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0)
     {
         tinyxml2::XMLElement const *iTransformNode = aElement->FirstChildElement();
-        m_Position = iTransformNode->GetAttribute<Vect3f>("position", Vect3f(0.0f, 0.0f, 0.0f));
         m_PrevPos = iTransformNode->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
     }
 }
@@ -33,7 +32,16 @@ bool CSceneNode::Render(CRenderManager& lRM)
     mBS.SetCenter(Vect3f(lBSCenter.x, lBSCenter.y, lBSCenter.z));
 
     m_Visible = lRM.m_Frustum->IsVisible(mBS);
-
     // Todo: Check BS with currentfrustum
     return m_Visible;
+}
+
+void CSceneNode::DrawImgui()
+{
+    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    {
+        ImGui::SliderFloat3("Position", (float*)&m_Position, -100.0f, 100.0f);
+        ImGui::SliderFloat3("Forward", (float*)&m_PrevPos, -100.0f, 100.0f);
+        ImGui::SliderFloat3("Scale", (float*)&m_Scale, -100.0f, 100.0f);
+    }
 }

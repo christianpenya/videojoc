@@ -31,10 +31,12 @@ bool CLayer::Load(CXMLElement* aElement)
                 lNode = new CSceneAnimatedModel(*iSceneMesh);
                 ((CSceneAnimatedModel *)lNode)->Initialize(l_AnimatedCoreModel);
             }
+            lNode->Settype(1); //SceneAnimatedModel
         }
         else if (strcmp(iSceneMesh->Name(), "scene_basic_primitive") == 0)
         {
             lNode = new  CSceneBasicPrimitive(iSceneMesh);
+            lNode->Settype(2); //SceneBasicPrimitive
         }
         else if (strcmp(iSceneMesh->Name(), "scene_light") == 0)
         {
@@ -57,6 +59,7 @@ bool CLayer::Load(CXMLElement* aElement)
             if (l_light != nullptr)//VER
             {
                 lNode = new CSceneNode(iSceneMesh);
+                lNode->Settype(3); //SceneLight
             }
         }
 
@@ -101,4 +104,44 @@ bool CLayer::Render()
 std::vector<CSceneNode*> CLayer::GetNodes()
 {
     return m_ResourcesVector;
+}
+
+void CLayer::DrawImgui()
+{
+    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    {
+        ImGui::Checkbox("Active", &m_Active);
+        if (m_Active == true)
+        {
+
+            ImGui::BeginChild("#layer", ImVec2(400, 400), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+            ImGui::PushItemWidth(-130);
+
+            for (TMapResources::iterator iLayerMapEntry = m_ResourcesMap.begin(); iLayerMapEntry != m_ResourcesMap.end(); ++iLayerMapEntry)
+            {
+                CSceneNode* lSceneNode = iLayerMapEntry->second.m_Value;
+                ImGui::PushID(iLayerMapEntry->second.m_Id);
+                if (lSceneNode->Gettype() == 0) //Mesh
+                    ((CSceneMesh *)lSceneNode)->DrawImgui();
+                else if (lSceneNode->Gettype() == 1) // "scene_animated_model"
+                {
+                    ((CSceneAnimatedModel *)lSceneNode)->DrawImgui();
+                    CAnimatedCoreModel *lAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(lSceneNode->GetName());
+                    if (lAnimatedCoreModel != nullptr)
+                        lAnimatedCoreModel->DrawImgui();
+                }
+                else if (lSceneNode->Gettype() == 2) // "scene_basic_primitive"
+                    ((CSceneBasicPrimitive *)lSceneNode)->DrawImgui();
+                else if (lSceneNode->Gettype() == 3) //"scene_light"
+                {
+                    CLight *lLight = CEngine::GetInstance().GetLightManager()(lSceneNode->GetName());
+                    if (lLight != nullptr)
+                        lLight->DrawImgui();
+                }
+                ImGui::PopID();
+            }
+            ImGui::PopItemWidth();
+            ImGui::EndChild();
+        }
+    }
 }
