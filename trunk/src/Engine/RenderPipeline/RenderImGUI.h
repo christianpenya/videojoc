@@ -20,6 +20,7 @@ private:
 
     //BUTTON IDS
     const int RELOAD_SHADER_BUTTON_ID = 0;
+    const int RELOAD_RENDERPIPELINE_BUTTON_ID = 1;
 
     //BUTTON COLOR PALETTE
     const ImColor GREEN = ImColor::HSV(0.35f, 0.8f, 0.6f);

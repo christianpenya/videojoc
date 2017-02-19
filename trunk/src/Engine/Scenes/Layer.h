@@ -15,10 +15,13 @@ public:
     bool Render();
     GET_SET_BOOL(Active);
     std::vector<CSceneNode*> GetNodes();
+    void DrawImgui();
+
 protected:
     bool m_Active;
 private:
     DISALLOW_COPY_AND_ASSIGN(CLayer);
+
 };
 
 #endif //_ENGINE_LAYER_20170110_H

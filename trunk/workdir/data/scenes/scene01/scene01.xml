@@ -9,11 +9,11 @@
 			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
 		</scene_animated_model>
 	</layer>
-	<layer name="lights">
+<!--	<layer name="lights">
 		<scene_light name="Spot001" id_light="2" >
 			<transform position="0.0 0.0 10.0" forward="0.0 0.0 -1.0" />
 		</scene_light>
-	</layer>
+	</layer>-->
 		<!--
 		<scene_light name="Omni001" id_light="3" >
 			<transform position="0.0 10.0 0.0" forward="0.0 1.0 0.0" />
@@ -26,7 +26,7 @@
 		</scene_light>
 		-->
   
-   <scene_mesh name="Box001" mesh="data/meshes/Box001.mesh">
+<!--   <scene_mesh name="Box001" mesh="data/meshes/Box001.mesh">
     <transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 2.0 1.0" />
    </scene_mesh>
    
@@ -48,5 +48,5 @@
   <layer name="animated_models"/>
   <layer name="particles"/>
 
-  <layer name="cameras"/>
+  <layer name="cameras"/>-->
  </scene>

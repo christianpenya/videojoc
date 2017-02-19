@@ -1,15 +1,33 @@
 <technique_pools>
-	<default_pool>
-	 <technique vertex_type="PositionNormal" />
-	 <technique vertex_type="PositionNormalUV" />
-	 <technique vertex_type="PositionNormalUVUV2" />
-	 <technique vertex_type="PositionWeightIndicesNormalUV" />
-	</default_pool>
 
-	<pool name="forward">
+<!--	<pool name="forward">
 	 <technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
 	 <technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
 	 <technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2TechniqueForward"/>
 	 <technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
+	</pool>-->
+	
+	<default_pool>
+		<technique vertex_type="PositionUV"/>
+		<technique vertex_type="PositionNormal"/>
+		<technique vertex_type="PositionNormal" />
+		<technique vertex_type="PositionNormalUV" />
+		<technique vertex_type="PositionNormalUVUV2" />
+		<technique vertex_type="PositionBump"/>
+		<technique vertex_type="PositionBumpUV" />
+		<technique vertex_type="PositionBumpUVUV2" />
+		<technique vertex_type="PositionWeightIndicesNormalUV"/>
+	</default_pool>
+
+	<pool name="forward">
+		<technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>
+		<technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
+		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
+		<technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2TechniqueForward"/>
+		<technique vertex_type="PositionBump" effect="PositionBumpTechniqueForward"/>
+		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueForward"/>
+		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
+		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
 	</pool>
+
 </technique_pools>

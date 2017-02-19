@@ -1,6 +1,8 @@
 #pragma once
 #include "Light.h"
 #include "Utils\EnumToString.h"
+#include "ImGUI\imgui.h"
+#include "SpotLight.h"
 
 CLight::~CLight()
 {
@@ -29,6 +31,22 @@ CLight::CLight(const CXMLElement* aElement)
     m_PrevPos = iTransformLight->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
 
     assert(lOk&&"This kind of light does not exist!!");
+}
+
+void CLight::DrawImgui()
+{
+    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    {
+        ImGui::ColorEdit4("Color", (float*)&m_Color, true);
+        ImGui::SliderFloat("Intensity", &m_Intensity, 0.25f, 1.0f);
+        ImGui::SliderFloat2("Attenuation Range", (float*)&m_RangeAttenuation, 0.25f, 100.0f);
+        ImGui::SliderFloat3("Position", (float*)&m_Position, -100.0f, 100.0f);
+        ImGui::SliderFloat3("Forward", (float*)&m_PrevPos, -100.0f, 100.0f);
+        ImGui::Checkbox("Visible", &m_Visible);
+        if (m_Type == 1) //Spot
+            ((CSpotLight *)this)->DrawImgui();
+    }
+
 }
 
 
