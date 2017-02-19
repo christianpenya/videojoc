@@ -155,7 +155,7 @@ double clockToMilliseconds(clock_t ticks)
 
 void CEngine::Update()
 {
-    m_DeltaTime = m_DeltaTime > 0.5f ? 0.5f : m_DeltaTime;
+    //m_DeltaTime = m_DeltaTime > 0.5f ? 0.5f : m_DeltaTime;
 
     // Reiniciem posició de l'esfera quan canviem de camera
     if (m_CameraSelector != m_PrevCameraSelector)

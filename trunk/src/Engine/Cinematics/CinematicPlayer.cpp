@@ -15,6 +15,9 @@ CCinematicPlayer::~CCinematicPlayer()
 
 void CCinematicPlayer::PlayFoward(float currentTime)
 {
+	if (m_NextKey->GetTime() >= currentTime){
+		m_CurrentKey = m_ResourcesMap.begin()->second.m_Value;
+	}
 	if (m_NextKey->GetTime() <= currentTime){
 		m_CurrentKey = m_NextKey;
 	}
@@ -38,6 +41,12 @@ void CCinematicPlayer::PlayFoward(float currentTime)
 
 void CCinematicPlayer::PlayBackward(float currentTime)
 {
+	if (m_NextKey->GetTime() <= currentTime){
+		m_CurrentKey = m_ResourcesMap.begin()->second.m_Value;
+	}
+	if (m_NextKey->GetTime() >= currentTime){
+		m_CurrentKey = m_NextKey;
+	}
 	for (TMapResources::iterator iKeyMapEntry = m_ResourcesMap.end(); iKeyMapEntry != m_ResourcesMap.begin(); --iKeyMapEntry)
 	{
 		if ((*iKeyMapEntry).second.m_Value == m_CurrentKey){
@@ -47,8 +56,8 @@ void CCinematicPlayer::PlayBackward(float currentTime)
 			else
 				m_NextKey = (*m_ResourcesMap.end()).second.m_Value;
 			float l_CurrentP = (currentTime - m_CurrentKey->GetTime())/(m_NextKey->GetTime() - m_CurrentKey->GetTime());
-			return Apply(l_CurrentP/100, m_CurrentKey, m_NextKey);
-			
+			 Apply(l_CurrentP/100, m_CurrentKey, m_NextKey);
+			 return;
 		}
 	}
 
