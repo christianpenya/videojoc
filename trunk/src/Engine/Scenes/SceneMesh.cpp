@@ -10,6 +10,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     : CSceneNode(aElement)
     , mMesh( CEngine::GetInstance().GetMeshManager().GetMesh(aElement->GetAttribute<std::string>("mesh", "")) )
 {
+    m_type = 0;
 }
 
 CSceneMesh::CSceneMesh(CXMLElement* aElement, CMesh* aMesh)
@@ -43,4 +44,15 @@ bool CSceneMesh::Render(CRenderManager& aRendermanager)
     }
 
     return lOk;
+}
+
+void CSceneMesh::DrawImgui()
+{
+    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    {
+        ImGui::SliderFloat3("Position", (float*)&m_Position, -100.0f, 100.0f);
+        ImGui::SliderFloat3("Scale", (float*)&m_Scale, 0.0f, 100.0f);
+        //ImGui::Checkbox("Visible", &m_Visible);
+    }
+
 }

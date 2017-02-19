@@ -14,6 +14,7 @@ public:
     virtual ~CSceneMesh();
     bool Update(float aDeltaTime);
     virtual bool Render(CRenderManager& aRendermanager);
+    void DrawImgui();
 protected:
     CMesh* mMesh;
 };

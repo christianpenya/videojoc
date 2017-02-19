@@ -32,6 +32,7 @@ public:
     GET_SET(float, SpecularIntensity);
     GET_SET_REF(CColor, Color);
     GET_SET_REF(Vect2f, RangeAttenuation);
+    void DrawImgui();
 protected:
     ELightType m_Type;
     float m_Intensity;

@@ -115,3 +115,24 @@ bool CLightManager::ReLoad()
     Clear();
     return Load();
 }
+
+void CLightManager::DrawImgui()
+{
+    if (ImGui::CollapsingHeader("Lights"))
+    {
+        ImGui::BeginChild("#lights", ImVec2(400, 400), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::PushItemWidth(-130);
+        ImGui::ColorEditMode(ImGuiColorEditMode_RGB);
+
+        for (TMapResources::iterator iLightMapEntry = m_ResourcesMap.begin(); iLightMapEntry != m_ResourcesMap.end(); ++iLightMapEntry)
+        {
+            CLight* lLight = iLightMapEntry->second.m_Value;
+            ImGui::PushID(iLightMapEntry->second.m_Id);
+            lLight->DrawImgui();
+            ImGui::PopID();
+        }
+        ImGui::PopItemWidth();
+        ImGui::EndChild();
+    }
+
+}

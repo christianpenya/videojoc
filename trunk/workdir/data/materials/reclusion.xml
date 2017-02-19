@@ -23,5 +23,6 @@
 	<material name="07 - Default" vertex_type="PositionNormal" >
 		<color type="diffuse" value="0.588235 0.690196 0.94902 1.0 " />
 	</material>
-	
+
+
 </materials>
