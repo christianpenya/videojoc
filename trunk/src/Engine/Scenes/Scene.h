@@ -16,6 +16,7 @@ public:
     bool Render(const std::string& aLayerName);
     GET_SET_BOOL(Active)
     std::vector<CLayer*> GetLayers();
+    void DrawImGui();
 protected:
     bool m_Active;
 private:

@@ -14,6 +14,7 @@ public:
     virtual ~CSpotLight();
     GET_SET(float, Angle);
     GET_SET(float, FallOff);
+    void DrawImgui();
 private:
     float m_Angle;
     float m_FallOff;

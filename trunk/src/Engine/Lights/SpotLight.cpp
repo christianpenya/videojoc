@@ -1,4 +1,5 @@
 #include "SpotLight.h"
+#include "ImGui/imgui.h"
 
 CSpotLight::~CSpotLight()
 {
@@ -13,3 +14,8 @@ CSpotLight::CSpotLight(const CXMLElement* aElement)
 
 }
 
+void CSpotLight::DrawImgui()
+{
+    ImGui::SliderFloat("Fall Off Angle",&m_FallOff, 0.0f, 360.0f);
+    ImGui::SliderFloat("Angle", &m_Angle, 0.0f, 360.0f);
+}

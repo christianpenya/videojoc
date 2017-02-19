@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include "XML/tinyxml2/tinyxml2.h"
 #include "XML/XML.h"
+#include "Imgui/imgui.h"
 
 CSceneManager::CSceneManager() {}
 CSceneManager::~CSceneManager() {}
@@ -102,4 +103,24 @@ bool CSceneManager::Load()
 std::vector<CScene*> CSceneManager::GetScenes()
 {
     return m_ResourcesVector;
+}
+
+
+void CSceneManager::DrawImgui()
+{
+    if (ImGui::CollapsingHeader("Scenes Manager"))
+    {
+        ImGui::BeginChild("#Scenes", ImVec2(400, 400), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::PushItemWidth(-130);
+        for (TMapResources::iterator iSceneMapEntry = m_ResourcesMap.begin(); iSceneMapEntry != m_ResourcesMap.end(); ++iSceneMapEntry)
+        {
+            CScene* lScene = iSceneMapEntry->second.m_Value;
+            ImGui::PushID(iSceneMapEntry->second.m_Id);
+            if (ImGui::CollapsingHeader(lScene->GetName().c_str()))
+                lScene->DrawImGui();
+            ImGui::PopID();
+        }
+        ImGui::PopItemWidth();
+        ImGui::EndChild();
+    }
 }

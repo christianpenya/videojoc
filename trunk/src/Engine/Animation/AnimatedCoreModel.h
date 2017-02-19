@@ -30,6 +30,7 @@ public:
         return m_Materials;
     }
     void Load(const std::string &Path);
+    void DrawImgui();
 };
 
 #endif //_ENGINE_ANIMATEDCOREMODEL_20170107
