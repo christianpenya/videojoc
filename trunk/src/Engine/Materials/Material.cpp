@@ -103,10 +103,22 @@ void CMaterial::Apply()
         case eFloat4:
             break;
         case eColor:
-            /*            void* lColor = mParameters[i]->GetAddr();
-                        const Vector4<float> flt = static_cast<Vector4<float>&lColor;
-                        lCBM.mMaterialDesc.m_RawData[0] = flt; */
+
+
+            //unsigned char *charBuf = (unsigned char*)voidBuf;
+            /* create a vector by copying out the contents of charBuf */
+            //std::vector<unsigned char> v(charBuf, charBuf + len);
+
+            float *r = (float*) mParameters[i]->GetAddr(0);
+            float *g = (float*) mParameters[i]->GetAddr(1);
+            float *b = (float*) mParameters[i]->GetAddr(2);
+//          float *a = (float*)mParameters[i]->GetAddr(3);
+            const Vector4<float> flt = Vector4<float>(*r, *g, *b, 1.0f);
+            //const Vector4<float> flt = Vector4<float>(1.0, 0.0, 0.0, 1.0f);
+            lCBM.mMaterialDesc.m_RawData[0] = flt;
             break;
         }
     }
+
+    lCBM.BindBuffer(lContext, CConstantBufferManager::CB_Material);
 }

@@ -50,8 +50,8 @@ fn processCamera cam  lCinematic = (
 				lCameraKey.mTime = (((t as float) / ticksPerFrame) / framerate)
 				lCameraKey.mPos = TranslationToRH(cam.transform.translation) --Pasar a RH
 				lCameraKey.mFov=cam.curFOV	
-				lCameraKey.mLookAt = -cam.transform[1] --
-				lCameraKey.mUp = cam.transform[2] --
+				lCameraKey.mLookAt = TranslationToRH(-cam.transform[1])
+				lCameraKey.mUp = TranslationToRH(cam.transform[2])
 				lCameraKey.mNear_plane = cam.nearrange
 				lCameraKey.mFar_plane = cam.farrange
 				append lCamera.mKeys lCameraKey
@@ -231,8 +231,8 @@ function main = (
 					
 
 					obj = getActiveCamera()
-					print(SuperclassOf obj)
-					print(ClassOf obj)					
+					--print(SuperclassOf obj)
+					
 					if SuperclassOf obj == Camera then(
 						format "Cam\n"
 						processCamera $ lCinematic

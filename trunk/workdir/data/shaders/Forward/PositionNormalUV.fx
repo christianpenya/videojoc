@@ -52,7 +52,7 @@ float4 PS( PS_INPUT IN ) : SV_Target
     float3 NormalPixel = normalize(IN.Normal);
 
     float3 WorldPos = IN.WorldPosition;
-    float4 ColorPixel = DiffuseTexture.Sample(LinearSampler, IN.UV);
+    float4 ColorPixel = DiffuseTexture.Sample(LinearSampler, IN.UV) * float4(m_RawData[0].xyz, 1.0);
 
     float3 l_LAmbient = m_LightAmbient.xyz * ColorPixel.xyz;
 

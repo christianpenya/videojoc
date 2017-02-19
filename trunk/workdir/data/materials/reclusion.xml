@@ -1,5 +1,4 @@
 <materials >
-	
 	<material name="01 - Default" vertex_type="PositionNormalUV" >
 		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
 		<texture type="diffuse" filename="data\textures\text_1.dds" />
