@@ -86,6 +86,7 @@ void CCinematic::Update(float elapsedTime)
             else
             {
                 m_Finish = true;
+				m_CurrentTime = 0.0f;
 
             }
 
@@ -123,7 +124,9 @@ void CCinematic::Update(float elapsedTime)
 
 void CCinematic::Play()
 {
+	//m_CurrentTime = 0.0f;
     m_Finish = false;
+	m_Active = true;
 
 
 }

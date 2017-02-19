@@ -10,7 +10,6 @@
 #include <Windows.h>
 #include <chrono>
 #include <memory>
-#include "Cinematics\CinematicsManager.h"
 
 #define APPLICATION_NAME	"ESCAPE FROM ALCATRAZ"
 
@@ -96,9 +95,6 @@ int main()
     // Create the application's window
     HWND hWnd = CreateWindow(APPLICATION_NAME, APPLICATION_NAME, WS_OVERLAPPEDWINDOW, 0, 0, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, wc.hInstance, NULL);
 
-
-    CCinematicManager l_CinematicManager;
-    l_CinematicManager.Load("data/cinematics.xml");
 
     //RENDER MANAGER
     CRenderManager l_RenderManager;

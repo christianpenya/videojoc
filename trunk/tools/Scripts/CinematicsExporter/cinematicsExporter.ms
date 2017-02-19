@@ -67,6 +67,7 @@ fn processObject obj lCinematic = (
 
 	local lObject = sObject()
 	local lNFrames = getUserNFrames obj
+	lObject.mSceneNode = obj.name
 	lObject.mName = obj.name
 	lObject.mLayer = getUserPropertiesLayer obj
 	lObject.mScene = getUserPropertiesScene obj
@@ -227,7 +228,7 @@ function main = (
 					local lFrameRate = framerate
 					
 					lCinematic.mTotal_time = (((animRange.end as float)/ticketsPerFrame)/lFrameRate)
-					if SuperclassOf ojb == Camera then(
+					if SuperclassOf obj == Camera then(
 						format "Cam\n"
 						processCamera $ lCinematic
 					)else (

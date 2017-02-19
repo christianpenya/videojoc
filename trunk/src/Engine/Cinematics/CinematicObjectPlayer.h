@@ -14,6 +14,7 @@ public:
 private:
     DISALLOW_COPY_AND_ASSIGN(CCinematicObjectPlayer);
     CSceneNode* m_SceneNode;
+	CSceneNode* GetSceneNode(std::string sceneName, std::string layerName, std::string nodeName);
 protected:
     virtual void Apply(float aPercentage, CCinematicKey* A, CCinematicKey* B);
 };

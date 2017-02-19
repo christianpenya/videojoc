@@ -1,6 +1,109 @@
 <cinematics >
 	<cinematic name="Animation01" total_time="3.33333" loop="false" reverse="false" >
-		<cinematic_object_player name="BOX_Lightmap" scene_node="" layer="Opaque" scene="Scene001" >
+	<cinematic_camera_player name="Camera001" >
+			<key time="0.0" pos="14.8426 12.9504 -29.4978" look_at="-0.893289 0.449482 0.0" up="0.164109 0.326147 0.930965" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.0333333" pos="14.7094 12.9504 -29.4978" look_at="-0.894906 0.446254 0.0" up="0.163186 0.32725 0.930741" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.0666667" pos="14.3209 12.9504 -29.4978" look_at="-0.899587 0.436742 0.0" up="0.160431 0.33045 0.930089" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.1" pos="13.6939 12.9504 -29.4978" look_at="-0.907026 0.421074 0.0" up="0.15578 0.335562 0.929048" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.133333" pos="12.8451 12.9504 -29.4978" look_at="-0.916842 0.399249 0.0" up="0.149083 0.342355 0.927668" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.166667" pos="11.7913 12.9504 -29.4978" look_at="-0.928562 0.371178 0.0" up="0.140121 0.350535 0.926008" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.2" pos="10.5491 12.9504 -29.4978" look_at="-0.941599 0.336737 0.0" up="0.128645 0.359723 0.924148" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.233333" pos="9.13527 12.9504 -29.4978" look_at="-0.95524 0.295832 0.0" up="0.114412 0.369436 0.922186" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.266667" pos="7.56657 12.9504 -29.4978" look_at="-0.96864 0.248469 0.0" up="0.0972373 0.379073 0.920244" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.3" pos="5.85971 12.9504 -29.4978" look_at="-0.980835 0.194842 0.0" up="0.0770613 0.387926 0.918463" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.333333" pos="4.03142 12.9504 -29.4978" look_at="-0.99079 0.13541 0.0" up="0.0540129 0.39521 0.917001" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.366667" pos="2.09843 12.9504 -29.4978" look_at="-0.997479 0.0709592 0.0" up="0.028465 0.400134 0.916014" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.4" pos="0.0774601 12.9504 -29.4978" look_at="-0.999997 0.00262596 0.0" up="0.00105562 0.401993 0.915642" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.433333" pos="-2.01476 12.9504 -29.4978" look_at="-0.997676 -0.0681432 0.0" up="-0.0273398 0.400279 0.915985" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.466667" pos="-4.16149 12.9504 -29.4978" look_at="-0.990195 -0.139695 0.0" up="-0.0556939 0.394774 0.917089" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.5" pos="-6.34602 12.9504 -29.4978" look_at="-0.977632 -0.210323 0.0" up="-0.0829548 0.385593 0.918932" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.533333" pos="-8.55161 12.9504 -29.4978" look_at="-0.960453 -0.278442 0.0" up="-0.108186 0.373174 0.921432" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.566667" pos="-10.7615 12.9504 -29.4978" look_at="-0.939434 -0.342729 0.0" up="-0.130677 0.358191 0.924458" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.6" pos="-12.9591 12.9504 -29.4978" look_at="-0.915543 -0.40222 0.0" up="-0.150008 0.341453 0.927851" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.633333" pos="-15.1275 12.9504 -29.4978" look_at="-0.889812 -0.456327 0.0" up="-0.166046 0.323781 0.931448" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.666667" pos="-17.25 12.9504 -29.4978" look_at="-0.863231 -0.50481 0.0" up="-0.178899 0.305919 0.935098" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.7" pos="-19.31 12.9504 -29.4978" look_at="-0.83667 -0.547707 0.0" up="-0.188849 0.288483 0.938677" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.733333" pos="-21.2907 12.9504 -29.4978" look_at="-0.810852 -0.585252 0.0" up="-0.196277 0.271937 0.942086" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.766667" pos="-23.1754 12.9504 -29.4978" look_at="-0.786337 -0.617798 0.0" up="-0.201605 0.256604 0.945257" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.8" pos="-24.9472 12.9504 -29.4978" look_at="-0.763545 -0.645755 0.0" up="-0.205245 0.242683 0.948145" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.833333" pos="-26.5896 12.9504 -29.4978" look_at="-0.742772 -0.669544 0.0" up="-0.20758 0.230283 0.950726" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.866667" pos="-28.0858 12.9504 -29.4978" look_at="-0.724227 -0.689561 0.0" up="-0.208944 0.219448 0.952987" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.9" pos="-29.4191 12.9504 -29.4978" look_at="-0.708051 -0.706162 0.0" up="-0.20962 0.210181 0.954926" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.933333" pos="-30.5726 12.9504 -29.4978" look_at="-0.694343 -0.719644 0.0" up="-0.209842 0.202464 0.956543" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="0.966667" pos="-31.5298 12.9504 -29.4978" look_at="-0.683184 -0.730247 0.0" up="-0.209796 0.196275 0.957842" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.0" pos="-32.2738 12.9504 -29.4978" look_at="-0.674648 -0.73814 0.0" up="-0.209629 0.191597 0.958826" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.03333" pos="-32.788 12.9504 -29.4978" look_at="-0.668821 -0.743423 0.0" up="-0.209451 0.188433 0.959491" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.06667" pos="-33.0556 12.9504 -29.4978" look_at="-0.665812 -0.746119 0.0" up="-0.20934 0.186808 0.959833" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.1" pos="-33.1896 12.9504 -29.3101" look_at="-0.66194 -0.749556 0.0" up="-0.210411 0.185816 0.959792" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.13333" pos="-33.3144 12.9504 -28.7647" look_at="-0.653531 -0.7569 0.0" up="-0.213649 0.184471 0.959336" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.16667" pos="-33.4302 12.9504 -27.8881" look_at="-0.640585 -0.767887 0.0" up="-0.218942 0.182645 0.958491" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.2" pos="-33.5375 12.9504 -26.7068" look_at="-0.62294 -0.782269 0.0" up="-0.226206 0.180134 0.957279" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.23333" pos="-33.6366 12.9504 -25.2472" look_at="-0.600302 -0.799774 0.0" up="-0.235362 0.17666 0.955717" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.26667" pos="-33.7277 12.9504 -23.536" look_at="-0.572264 -0.820069 0.0" up="-0.246304 0.171877 0.953831" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.3" pos="-33.8112 12.9504 -21.5995" look_at="-0.538352 -0.84272 0.0" up="-0.258862 0.165368 0.951653" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.33333" pos="-33.8875 12.9504 -19.4643" look_at="-0.498068 -0.867138 0.0" up="-0.27277 0.156674 0.949236" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.36667" pos="-33.9568 12.9504 -17.1569" look_at="-0.450963 -0.892543 0.0" up="-0.287613 0.145318 0.946658" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.4" pos="-34.0195 12.9504 -14.7037" look_at="-0.396742 -0.91793 0.0" up="-0.302802 0.130875 0.944025" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.43333" pos="-34.076 12.9504 -12.1313" look_at="-0.335388 -0.94208 0.0" up="-0.317556 0.113052 0.941476" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.46667" pos="-34.1265 12.9504 -9.46618" look_at="-0.267292 -0.963616 0.0" up="-0.330938 0.0917972 0.939177" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.5" pos="-34.1715 12.9504 -6.7348" look_at="-0.193368 -0.981126 0.0" up="-0.34194 0.0673924 0.937302" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.53333" pos="-34.2111 12.9504 -3.96367" look_at="-0.115089 -0.993355 0.0" up="-0.349629 0.0405078 0.936012" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.56667" pos="-34.2458 12.9504 -1.1793" look_at="-0.0344159 -0.999408 0.0" up="-0.353322 0.0121671 0.935423" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.6" pos="-34.2759 12.9504 1.59182" look_at="0.0463915 -0.998923 0.0" up="-0.35273 -0.0163813 0.935582" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.63333" pos="-34.3017 12.9504 4.32321" look_at="0.125046 -0.992151 0.0" up="-0.348027 -0.0438635 0.936458" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.66667" pos="-34.3235 12.9504 6.98834" look_at="0.199509 -0.979896 0.0" up="-0.339806 -0.0691853 0.937947" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.7" pos="-34.3417 12.9504 9.56074" look_at="0.268201 -0.963363 0.0" up="-0.328945 -0.0915784 0.939898" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.73333" pos="-34.3566 12.9504 12.0139" look_at="0.330083 -0.943952 0.0" up="-0.316438 -0.110653 0.942138" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.76667" pos="-34.3685 12.9504 14.3213" look_at="0.384641 -0.923066 0.0" up="-0.303243 -0.126361 0.944498" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.8" pos="-34.3778 12.9504 16.4565" look_at="0.431775 -0.901981 0.0" up="-0.290185 -0.138911 0.946835" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.83333" pos="-34.3848 12.9504 18.393" look_at="0.471675 -0.881773 0.0" up="-0.277915 -0.148661 0.949033" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.86667" pos="-34.3898 12.9504 20.1043" look_at="0.504686 -0.863303 0.0" up="-0.26691 -0.156035 0.951006" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.9" pos="-34.3932 12.9504 21.5638" look_at="0.531204 -0.847244 0.0" up="-0.257503 -0.161449 0.952694" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.93333" pos="-34.3952 12.9504 22.7451" look_at="0.55159 -0.834116 0.0" up="-0.249927 -0.165273 0.954055" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="1.96667" pos="-34.3963 12.9504 23.6217" look_at="0.56611 -0.824329 0.0" up="-0.244346 -0.167805 0.955058" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.0" pos="-34.3966 12.9504 24.1671" look_at="0.57489 -0.818231 0.0" up="-0.240897 -0.169255 0.955678" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.03333" pos="-34.3967 12.9504 24.3548" look_at="0.577867 -0.816131 0.0" up="-0.239715 -0.169732 0.955891" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.06667" pos="-34.3352 13.0063 24.2098" look_at="0.576258 -0.817268 0.0" up="-0.241696 -0.170421 0.955269" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.1" pos="-34.1575 13.1679 23.7909" look_at="0.571536 -0.820577 0.0" up="-0.247491 -0.172379 0.953433" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.13333" pos="-33.8736 13.426 23.1217" look_at="0.563771 -0.825931 0.0" up="-0.25696 -0.175398 0.950372" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.16667" pos="-33.4938 13.7713 22.2262" look_at="0.552925 -0.833231 0.0" up="-0.27005 -0.179203 0.946023" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.2" pos="-33.028 14.1948 21.1282" look_at="0.538877 -0.842384 0.0" up="-0.286763 -0.183443 0.940274" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.23333" pos="-32.4864 14.6872 19.8514" look_at="0.521423 -0.853298 0.0" up="-0.307122 -0.187673 0.932982" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.26667" pos="-31.8792 15.2393 18.4198" look_at="0.500292 -0.865857 0.0" up="-0.331141 -0.191333 0.923979" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.3" pos="-31.2163 15.842 16.8571" look_at="0.475156 -0.879902 0.0" up="-0.358768 -0.193739 0.913099" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.33333" pos="-30.508 16.486 15.1872" look_at="0.445646 -0.895209 0.0" up="-0.389843 -0.194068 0.9002" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.36667" pos="-29.7643 17.1622 13.4339" look_at="0.411383 -0.911462 0.0" up="-0.424028 -0.191382 0.885197" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.4" pos="-28.9953 17.8613 11.6211" look_at="0.372024 -0.928223 0.0" up="-0.460749 -0.184664 0.868107" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.43333" pos="-28.2111 18.5742 9.77245" look_at="0.327322 -0.944913 0.0" up="-0.499147 -0.172907 0.849091" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.46667" pos="-27.4219 19.2918 7.91194" look_at="0.277218 -0.960807 0.0" up="-0.538061 -0.155245 0.828486" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.5" pos="-26.6378 20.0047 6.06333" look_at="0.221944 -0.975059 0.0" up="-0.576065 -0.131125 0.806818" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.53333" pos="-25.8688 20.7038 4.25047" look_at="0.162135 -0.986769 0.0" up="-0.611578 -0.100487 0.784777" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.56667" pos="-25.1251 21.38 2.49717" look_at="0.0989022 -0.995097 0.0" up="-0.643048 -0.0639122 0.763154" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.6" pos="-24.4167 22.024 0.827268" look_at="0.0338617 -0.999427 0.0" up="-0.669191 -0.022673 0.742745" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.63333" pos="-23.7539 22.6267 -0.735408" look_at="-0.0309446 -0.999521 0.0" up="-0.689215 0.0213377 0.724243" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.66667" pos="-23.1466 23.1788 -2.16703" look_at="-0.0932145 -0.995646 0.0" up="-0.70298 0.0658145 0.708157" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.7" pos="-22.605 23.6712 -3.44378" look_at="-0.150608 -0.988594 0.0" up="-0.711032 0.108323 0.694766" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.73333" pos="-22.1393 24.0946 -4.54183" look_at="-0.200963 -0.979599 0.0" up="-0.714482 0.146575 0.684128" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.76667" pos="-21.7594 24.44 -5.43734" look_at="-0.24243 -0.970169 0.0" up="-0.714798 0.178617 0.676136" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.8" pos="-21.4756 24.6981 -6.10649" look_at="-0.273504 -0.961871 0.0" up="-0.713535 0.202891 0.670599" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.83333" pos="-21.2978 24.8596 -6.52545" look_at="-0.292948 -0.956128 0.0" up="-0.712087 0.218177 0.667331" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.86667" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.9" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.93333" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="2.96667" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="3.0" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="3.03333" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="3.06667" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="3.1" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="3.13333" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="3.16667" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="3.2" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="3.23333" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="3.26667" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="3.3" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+			<key time="3.33333" pos="-21.2364 24.9156 -6.6704" look_at="-0.299668 -0.954044 0.0" up="-0.711468 0.223474 0.666237" fov="45.0" near_plane="0.0" far_plane="1000.0" />
+		</cinematic_camera_player>
+		<cinematic_object_player name="BOX_Lightmap" scene_node="BOX_Lightmap" layer="0" scene="bodegon" >
 			<key time="0.0" pos="0.0 0.0 2.05304" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="0.0 0.00525688 2.05304" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="0.0 0.020725 2.05304" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -103,7 +206,7 @@
 			<key time="3.3" pos="0.0 3.29236 -2.12733" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="0.0 3.29236 -2.12733" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</cinematic_object_player>
-		<cinematic_object_player name="Box01" scene_node="" layer="Opaque" scene="Scene001" >
+		<cinematic_object_player name="Box01" scene_node="Box01" layer="0" scene="bodegon" >
 			<key time="0.0" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="0.0 0.0443173 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="0.0 0.169024 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -206,7 +309,7 @@
 			<key time="3.3" pos="0.0 2.13135 -2.15424" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="0.0 2.13135 -2.15424" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</cinematic_object_player>
-		<cinematic_object_player name="Camera001" scene_node="" layer="Opaque" scene="Scene001" >
+		<!--<cinematic_object_player name="Camera001" scene_node="Camera001" layer="0" scene="bodegon" >
 			<key time="0.0" pos="14.8426 12.9504 -29.4978" yaw="-26.7104" pitch="8.53774e-07" roll="68.5858" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="14.7094 12.9504 -29.4978" yaw="-26.5036" pitch="-1.70755e-06" roll="68.5505" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="14.3209 12.9504 -29.4978" yaw="-25.8962" pitch="0.0" roll="68.4486" scale="-1.0 1.0 1.0" />
@@ -308,8 +411,8 @@
 			<key time="3.26667" pos="-21.2364 24.9156 -6.6704" yaw="72.5623" pitch="-1.70755e-06" roll="41.7773" scale="-1.0 1.0 1.0" />
 			<key time="3.3" pos="-21.2364 24.9156 -6.6704" yaw="72.5623" pitch="-1.70755e-06" roll="41.7773" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="-21.2364 24.9156 -6.6704" yaw="72.5623" pitch="-1.70755e-06" roll="41.7773" scale="-1.0 1.0 1.0" />
-		</cinematic_object_player>
-		<cinematic_object_player name="Camera001.Target" scene_node="" layer="Opaque" scene="Scene001" >
+		</cinematic_object_player>-->
+		<!--<cinematic_object_player name="Camera001.Target" scene_node="Camera001.Target" layer="0" scene="bodegon" >
 			<key time="0.0" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -411,8 +514,8 @@
 			<key time="3.26667" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.3" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</cinematic_object_player>
-		<cinematic_object_player name="Cylinder01" scene_node="" layer="Opaque" scene="Scene001" >
+		</cinematic_object_player>-->
+		<cinematic_object_player name="Cylinder01" scene_node="Cylinder01" layer="0" scene="bodegon" >
 			<key time="0.0" pos="0.0 0.0 -2.26677" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="0.0 0.0 -2.26677" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="0.0 0.0 -2.26677" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -514,8 +617,8 @@
 			<key time="3.26667" pos="0.0 0.0 -2.26677" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.3" pos="0.0 0.0 -2.26677" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="0.0 0.0 -2.26677" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</cinematic_object_player>
-		<cinematic_object_player name="FDirect001" scene_node="" layer="Opaque" scene="Scene001" >
+		</cinematic_object_player>-->
+		<!--<cinematic_object_player name="FDirect001" scene_node="" layer="0" scene="bodegon" >
 			<key time="0.0" pos="16.8491 37.0663 26.6353" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="16.8491 37.0663 26.6353" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="16.8491 37.0663 26.6353" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -618,7 +721,7 @@
 			<key time="3.3" pos="16.8491 37.0663 26.6353" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="16.8491 37.0663 26.6353" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</cinematic_object_player>
-		<cinematic_object_player name="Fspot001" scene_node="" layer="Opaque" scene="Scene001" >
+		<cinematic_object_player name="Fspot001" scene_node="Fspot001" layer="0" scene="bodegon" >
 			<key time="0.0" pos="-8.01362 192.481 -0.183954" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="-8.01362 192.481 -0.183954" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="-8.01362 192.481 -0.183954" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -721,7 +824,7 @@
 			<key time="3.3" pos="-8.01362 192.481 -0.183954" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="-8.01362 192.481 -0.183954" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</cinematic_object_player>
-		<cinematic_object_player name="Omni001" scene_node="" layer="Opaque" scene="Scene001" >
+		<cinematic_object_player name="Omni001" scene_node="Omni001" layer="0" scene="bodegon" >
 			<key time="0.0" pos="13.8572 7.78125 -16.0357" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="13.8572 7.78125 -16.0357" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="13.8572 7.78125 -16.0357" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -824,7 +927,7 @@
 			<key time="3.3" pos="13.8572 7.78125 -16.0357" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="13.8572 7.78125 -16.0357" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</cinematic_object_player>
-		<cinematic_object_player name="Omni002" scene_node="" layer="Opaque" scene="Scene001" >
+		<cinematic_object_player name="Omni002" scene_node="Omni002" layer="0" scene="bodegon" >
 			<key time="0.0" pos="-18.0355 15.3003 28.6497" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="-18.0355 15.3003 28.6497" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="-18.0355 15.3003 28.6497" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -926,8 +1029,8 @@
 			<key time="3.26667" pos="-18.0355 15.3003 28.6497" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.3" pos="-18.0355 15.3003 28.6497" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="-18.0355 15.3003 28.6497" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</cinematic_object_player>
-		<cinematic_object_player name="Plane01" scene_node="" layer="Opaque" scene="Scene001" >
+		</cinematic_object_player>-->
+		<cinematic_object_player name="Plane01" scene_node="Plane01" layer="0" scene="bodegon" >
 			<key time="0.0" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-2.26624 1.0 6.78096" />
 			<key time="0.0333333" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-2.26624 1.0 6.78096" />
 			<key time="0.0666667" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-2.26624 1.0 6.78096" />
