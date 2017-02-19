@@ -4,6 +4,7 @@
 
 #include "CinematicPlayer.h"
 #include "Scenes/SceneNode.h"
+#include "CinematicObjectKey.h"
 
 class CCinematicObjectPlayer : public CCinematicPlayer
 {

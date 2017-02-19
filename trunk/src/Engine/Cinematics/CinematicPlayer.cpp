@@ -47,7 +47,7 @@ void CCinematicPlayer::PlayBackward(float currentTime)
 			else
 				m_NextKey = (*m_ResourcesMap.end()).second.m_Value;
 			float l_CurrentP = (currentTime - m_CurrentKey->GetTime())/(m_NextKey->GetTime() - m_CurrentKey->GetTime());
-			return Apply(l_CurrentP, m_CurrentKey, m_NextKey);
+			return Apply(l_CurrentP/100, m_CurrentKey, m_NextKey);
 			
 		}
 	}

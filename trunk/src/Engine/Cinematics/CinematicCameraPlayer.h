@@ -5,6 +5,7 @@
 #include "CinematicPlayer.h"
 #include "Engine\Engine.h"
 #include "Camera\CameraController.h"
+#include "CinematicCameraKey.h"
 
 
 

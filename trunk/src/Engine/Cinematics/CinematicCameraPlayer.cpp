@@ -43,10 +43,23 @@ bool CCinematicCameraPlayer::Load(const CXMLElement *aElement)
 
 void CCinematicCameraPlayer::Apply(float aPercentage, CCinematicKey* A, CCinematicKey* B)
 {
+	CCinematicCameraKey* a = dynamic_cast<CCinematicCameraKey*>(A);
+	CCinematicCameraKey* b = dynamic_cast<CCinematicCameraKey*>(B);
+	
 	CCameraController *cam = &(CEngine::GetInstance().GetCameraController());
 	Vect3f lPos = cam->getPosition();
-	lPos = A->GetPosition()*aPercentage + B->GetPosition()*(1 - aPercentage);
+	Vect3f lUp = cam->getUp();
+	Vect3f lFront = cam->getFront();
+	lPos = a->GetPosition()*aPercentage + b->GetPosition()*(1 - aPercentage);
+	lUp = a->GetUp()*aPercentage + b->GetUp()*(1 - aPercentage);
+	lFront = a->GetLookAt()*aPercentage + b->GetLookAt()*(1 - aPercentage);
+	
+	
 	cam->setPosition(lPos);
+	cam->setUp(lUp);
+	cam->setFront(lFront);
+
+
 
 
 

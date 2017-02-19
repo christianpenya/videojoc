@@ -55,12 +55,23 @@ bool CCinematicObjectPlayer::Load(const CXMLElement *aElement)
 
 void CCinematicObjectPlayer::Apply(float aPercentage, CCinematicKey* A, CCinematicKey* B)
 {
-
+	CCinematicObjectKey* a = dynamic_cast<CCinematicObjectKey*>(A);
+	CCinematicObjectKey* b = dynamic_cast<CCinematicObjectKey*>(B);
 	Vect3f l_pos = m_SceneNode->GetPosition();
-	l_pos = (A->GetPosition()*aPercentage) + (B->GetPosition()*(1 - aPercentage));
+	float l_yaw = m_SceneNode->GetYaw();
+	float l_pitch = m_SceneNode->GetPitch();
+	float l_roll = m_SceneNode->GetPitch();
+	Vect3f l_scale = m_SceneNode->GetScale();
+	l_pos = (a->GetPosition()*aPercentage) + (b->GetPosition()*(1 - aPercentage));
+	l_yaw = (a->GetRotation().x*aPercentage) + (b->GetRotation().x*(1 - aPercentage));
+	l_pitch = (a->GetRotation().y*aPercentage) + (b->GetRotation().y*(1 - aPercentage));
+	l_roll = (a->GetRotation().z*aPercentage) + (b->GetRotation().z*(1 - aPercentage));
+	l_scale = (a->GetScale()*aPercentage) + (b->GetScale()*(1 - aPercentage));
 	m_SceneNode->SetPosition(l_pos);
-
-	//TODO
+	m_SceneNode->SetYaw(l_yaw);
+	m_SceneNode->SetPitch(l_pitch);
+	m_SceneNode->SetRoll(l_roll);
+	//m_SceneNode->SetScale(l_scale);
 
 }
 
