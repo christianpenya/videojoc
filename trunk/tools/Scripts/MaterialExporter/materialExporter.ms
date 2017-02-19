@@ -359,7 +359,7 @@ function main = (
 		preProcess()
 		if mArrayMaterial.count > 0 then(			
 			global mArrayMaterialStruct = #()
-			global file = getSaveFilename "Save XML File" filename:( (getdir #userscripts) + "\\" + (getFilenameFile "materials.xml")) \
+			global file = getSaveFilename "Save XML File" filename:( (getdir #userscripts) + "\\" + (getFilenameFile "animation.xml")) \
 			types:"XML File(.xml)|*.xml|All|*.*|"
 			global xmlDoc = XmlDocument()
 			if file != undefined then (

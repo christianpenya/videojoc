@@ -18,6 +18,8 @@
 #include "Animation/AnimatedModelManager.h"
 #include "Script/ScriptManager.h"
 
+#include "Cinematics\CinematicsManager.h"
+
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
 CEngine::CEngine()
@@ -37,6 +39,7 @@ CEngine::CEngine()
     , m_RenderPipeline(nullptr)
     , m_AnimatedModelManager(nullptr)
     , m_ScriptManager(nullptr)
+	, m_CinematicManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
     , m_FPS (0.0)
@@ -96,6 +99,11 @@ void CEngine::LoadFiles()
     m_SceneManager = new CSceneManager();
     m_SceneManager->Load(m_FileSceneManager);
     LOG_INFO_APPLICATION("Engine -> Scenes Loaded! \\(^-^)/");
+
+
+	m_CinematicManager = new CCinematicManager;
+	m_CinematicManager->Load("data/cinematics.xml");
+	LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
@@ -182,8 +190,13 @@ void CEngine::Update()
     m_CameraController->Update((float)m_DeltaTime);
     m_CameraController->SetToRenderManager(*m_RenderManager);
     m_RenderManager->Update();
+	m_SceneManager->Update(m_DeltaTime);
+	m_CinematicManager->Update(m_DeltaTime);
+	
 
-    m_SceneManager->Update(m_DeltaTime);
+	
+	
+
 }
 
 void CEngine::Render()

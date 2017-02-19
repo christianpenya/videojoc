@@ -10,6 +10,7 @@
 #include "Effects\ShaderManager.h"
 #include "Effects\EffectManager.h"
 #include "RenderPipeline\RenderPipeline.h"
+#include "Cinematics\CinematicsManager.h"
 
 
 CRenderImGUI::CRenderImGUI() {}
@@ -22,6 +23,7 @@ bool CRenderImGUI::Load(const CXMLElement* aElement)
 
 void CRenderImGUI::Execute(CRenderManager& lRM)
 {
+	
     CEngine& lEngine = CEngine::GetInstance();
 
     static bool show_app_auto_resize = false;
@@ -29,6 +31,11 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 
     //FPS
     ImGui::Text("%.1f FPS", lEngine.m_FPS);
+	if (ImGui::Button("PLAY"))
+	{
+		lEngine.GetCinematicManager().Play("Animation01");
+		
+	}
     //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
     // #TODO el contador de fps de imgui es bueno?
 

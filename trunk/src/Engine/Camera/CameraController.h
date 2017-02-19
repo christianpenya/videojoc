@@ -35,6 +35,21 @@ public:
         return m_Position;
     }
 
+	void setFront(Vect3f front)
+	{
+		m_Front = front;
+	}
+
+	void setUp(Vect3f up)
+	{
+		m_Up = up;
+	}
+
+	void setPosition(Vect3f pos)
+	{
+		m_Position = pos;
+	}
+
 protected:
     Vect3f 					m_Position;
     Vect3f 					m_Front;
