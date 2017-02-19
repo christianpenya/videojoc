@@ -45,6 +45,12 @@ CEngine::CEngine()
     , m_PrevCameraSelector(0)
 {}
 
+CEngine::~CEngine()
+{
+    ImGui_ImplDX11_Shutdown();
+}
+
+
 void CEngine::LoadFiles()
 {
     m_ActionManager = new CActionManager(*m_InputManager);

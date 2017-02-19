@@ -199,7 +199,7 @@ function parse outPath =
 		local colorNode = XmlNode tag:"parameter"
 		matNode.addChild colorNode
 		colorNode.addAttribute "type" "color"
-		colorNode.addAttribute "type" "diffuse_color"
+		colorNode.addAttribute "name" "diffuse_color"
 		local strColor = colorToString(object.m_diffuseColor)
 		colorNode.addAttribute "value" strColor
 		

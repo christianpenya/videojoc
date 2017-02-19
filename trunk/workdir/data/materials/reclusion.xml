@@ -1,27 +1,26 @@
 <materials >
 	
 	<material name="01 - Default" vertex_type="PositionNormalUV" >
-		<color type="diffuse" value="0.588235 0.588235 0.588235 1.0 " />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
 		<texture type="diffuse" filename="data\textures\text_1.dds" />
 		<parameter type="float" name="diffuse" value="100.0" />
 	</material>
 	<material name="03 - Default" vertex_type="PositionNormalUV" >
-		<color type="diffuse" value="0.588235 0.588235 0.588235 1.0 " />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
 		<texture type="diffuse" filename="data\textures\text_2.dds" />
 		<parameter type="float" name="diffuse" value="100.0" />
 	</material>
-	<material name="02 - Default" vertex_type="PositionNormal" >
-		<color type="diffuse" value="1.0 0.588235 0.588235 1.0 " />
-	</material>
 	<material name="Standard_7" vertex_type="PositionNormalUVUV2" >
-		<color type="diffuse" value="0.588 0.588 0.588 1.0 " />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
 		<texture type="diffuse" filename="data\textures\text_1.dds" />
 		<parameter type="float" name="diffuse" value="100.0" />
 		<texture type="selfIllum" filename="data\textures\light_map_box.dds" />
 		<parameter type="float" name="selfIllum" value="100.0" />
 	</material>
-	<material name="07 - Default" vertex_type="PositionNormal" >
-		<color type="diffuse" value="0.588235 0.690196 0.94902 1.0 " />
+	<material name="02 - Default" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="1.0 0.588235 0.588235 1.0 " />
 	</material>
-	
+	<material name="07 - Default" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.588235 0.690196 0.94902 1.0 " />
+	</material>
 </materials>
