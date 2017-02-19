@@ -103,7 +103,7 @@
 			<key time="3.3" pos="-21.2364 24.9156 -6.6704" look_at="0.299668 0.0 -0.954044" up="0.711468 0.666237 0.223474" fov="45.0" near_plane="0.0" far_plane="1000.0" />
 			<key time="3.33333" pos="-21.2364 24.9156 -6.6704" look_at="0.299668 0.0 -0.954044" up="0.711468 0.666237 0.223474" fov="45.0" near_plane="0.0" far_plane="1000.0" />
 		</cinematic_camera_player>
-		<cinematic_object_player name="BOX_Lightmap" scene_node="BOX_Lightmap" layer="0" scene="bodegon" >
+		<cinematic_object_player name="BOX_Lightmap" scene_node="BOX_Lightmap" layer="Principal" scene="bodegon" >
 			<key time="0.0" pos="0.0 0.0 2.05304" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="0.0 0.00525688 2.05304" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="0.0 0.020725 2.05304" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -206,7 +206,7 @@
 			<key time="3.3" pos="0.0 3.29236 -2.12733" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="0.0 3.29236 -2.12733" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</cinematic_object_player>
-		<cinematic_object_player name="Box01" scene_node="Box01" layer="0" scene="bodegon" >
+		<cinematic_object_player name="Box01" scene_node="Box01" layer="Principal" scene="bodegon" >
 			<key time="0.0" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="0.0 0.0443173 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="0.0 0.169024 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -515,7 +515,7 @@
 			<key time="3.3" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</cinematic_object_player>-->
-		<cinematic_object_player name="Cylinder01" scene_node="Cylinder01" layer="0" scene="bodegon" >
+		<cinematic_object_player name="Cylinder01" scene_node="Cylinder01" layer="Principal" scene="bodegon" >
 			<key time="0.0" pos="0.0 0.0 -2.26677" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0333333" pos="0.0 0.0 -2.26677" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="0.0666667" pos="0.0 0.0 -2.26677" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -1030,7 +1030,7 @@
 			<key time="3.3" pos="-18.0355 15.3003 28.6497" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<key time="3.33333" pos="-18.0355 15.3003 28.6497" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</cinematic_object_player>-->
-		<cinematic_object_player name="Plane01" scene_node="Plane01" layer="0" scene="bodegon" >
+		<cinematic_object_player name="Plane01" scene_node="Plane01" layer="Principal" scene="bodegon" >
 			<key time="0.0" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-2.26624 1.0 6.78096" />
 			<key time="0.0333333" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-2.26624 1.0 6.78096" />
 			<key time="0.0666667" pos="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-2.26624 1.0 6.78096" />

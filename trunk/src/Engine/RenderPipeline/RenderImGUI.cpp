@@ -10,6 +10,7 @@
 #include "Effects\ShaderManager.h"
 #include "Effects\EffectManager.h"
 #include "RenderPipeline\RenderPipeline.h"
+#include "Cinematics\CinematicsManager.h"
 
 
 CRenderImGUI::CRenderImGUI() {}
