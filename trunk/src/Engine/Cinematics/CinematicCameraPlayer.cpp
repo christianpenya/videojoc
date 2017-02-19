@@ -27,12 +27,16 @@ bool CCinematicCameraPlayer::Load(const CXMLElement *aElement)
             CCinematicCameraKey *lCamKey = new CCinematicCameraKey();
             lOk = false || lCamKey->Load(iCamKey);
             Add(Convert(lCamKey->GetTime()),lCamKey);
-
+			if (m_CurrentKey == m_NextKey)
+			{
+				m_CurrentKey = lCamKey;
+			}
         }
 
 
-    }
-    return lOk;
+	}	
+	m_NextKey = m_CurrentKey;
+	return lOk;
 
 
 }
