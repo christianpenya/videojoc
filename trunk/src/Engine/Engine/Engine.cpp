@@ -45,6 +45,12 @@ CEngine::CEngine()
     , m_PrevCameraSelector(0)
 {}
 
+CEngine::~CEngine()
+{
+    ImGui_ImplDX11_Shutdown();
+}
+
+
 void CEngine::LoadFiles()
 {
     m_ActionManager = new CActionManager(*m_InputManager);
@@ -188,6 +194,7 @@ void CEngine::Render()
 
     clock_t l_EndFrame = clock();
     m_DeltaTime = l_EndFrame - l_BeginFrame;
+    m_DeltaTime = m_DeltaTime / 400.0f;
     m_DeltaTimeAcum += l_EndFrame - l_BeginFrame;
     ++m_Frames;
 

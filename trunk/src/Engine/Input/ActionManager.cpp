@@ -1,8 +1,9 @@
 #include "ActionManager.h"
 #include <assert.h>
+#include "Utils/Logger.h"
 
-CActionManager::CActionManager(CInputManager &inputManager)
-    :m_InputManager(inputManager)
+CActionManager::CActionManager(CInputManager& inputManager)
+    : m_InputManager(inputManager)
 {
 }
 
@@ -42,11 +43,14 @@ ActionTrigger::ButtonActionType ActionTrigger::GetButtonActionTypeFromString(con
 
 void CActionManager::Update()
 {
-
-    for (auto &actionIt : m_ResourcesMap)
+    if (m_ResourcesMap.empty())
     {
+        LOG_INFO_APPLICATION("[{-_-}] ZZZzz zz z...");
+    }
 
-        InputAction *action = actionIt.second;
+    for (auto& actionIt : m_ResourcesMap)
+    {
+        InputAction* action = actionIt.second;
         action->active = false;
         action->value = 0;
 
@@ -223,7 +227,7 @@ inline unsigned char GetKeyCode(const std::string& str)
     }
 }
 
-bool CActionManager::LoadActions(const std::string &path)
+bool CActionManager::LoadActions(const std::string& path)
 {
     bool ok = false;
 
@@ -231,18 +235,18 @@ bool CActionManager::LoadActions(const std::string &path)
     tinyxml2::XMLError error = document.LoadFile(path.c_str());
     if (base::xml::SucceedLoad(error))
     {
-        tinyxml2::XMLElement *actions = document.FirstChildElement("actions");
+        tinyxml2::XMLElement* actions = document.FirstChildElement("actions");
         if (actions)
         {
-            for (tinyxml2::XMLElement *action = actions->FirstChildElement(); action != nullptr; action = action->NextSiblingElement())
+            for (tinyxml2::XMLElement* action = actions->FirstChildElement(); action != nullptr; action = action->NextSiblingElement())
             {
                 if (strcmp(action->Name(), "action") == 0)
                 {
                     InputAction inputAction = {};
-                    const char *actionName = action->Attribute("name");
+                    const char* actionName = action->Attribute("name");
                     assert(actionName != nullptr);
 
-                    for (tinyxml2::XMLElement *trigger = action->FirstChildElement(); trigger != nullptr; trigger = trigger->NextSiblingElement())
+                    for (tinyxml2::XMLElement* trigger = action->FirstChildElement(); trigger != nullptr; trigger = trigger->NextSiblingElement())
                     {
                         if (strcmp(trigger->Name(), "trigger") == 0)
                         {

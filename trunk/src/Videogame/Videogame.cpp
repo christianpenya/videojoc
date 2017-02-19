@@ -1,7 +1,6 @@
 #include "Utils/MemLeaks/MemLeaks.h"
 #include "Materials\MaterialManager.h"
 #include "Render\RenderManager.h"
-#include "RenderPipeline\RenderPipeline.h"
 #include "Input\InputManager.h"
 #include "Input\ActionManager.h"
 #include "Engine\imgui_impl_dx11.h"
@@ -10,6 +9,7 @@
 #include <Windows.h>
 #include <chrono>
 #include <memory>
+#include "Utils/Logger.h"
 
 #define APPLICATION_NAME	"ESCAPE FROM ALCATRAZ"
 
@@ -83,6 +83,8 @@ int main()
     MemLeaks::MemoryBegin();
     debug=true;
 #endif
+
+    bool lQuit = false;
 
     // Register the window class
     WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, MsgProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, APPLICATION_NAME, NULL };
@@ -171,14 +173,18 @@ int main()
 
             if (msg.message == WM_QUIT)
             {
+                lQuit = true;
                 break;
             }
         }
 
-        l_InputManager.PostUpdate();
-        l_Engine.ProcessInputs();
-        l_Engine.Update();
-        l_Engine.Render();
+        if (!lQuit)
+        {
+            l_InputManager.PostUpdate();
+            l_Engine.ProcessInputs();
+            l_Engine.Update();
+            l_Engine.Render();
+        }
     }
 
     // TODO Añadir una llamada a la alicación para finalizar/liberar memoria de todos sus datos

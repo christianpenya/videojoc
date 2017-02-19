@@ -1,4 +1,22 @@
 #include "RenderManager.h"
+#include "Utils/Logger.h"
+#include <string>
+
+CRenderManager::CRenderManager():
+    m_DebugVertexBufferCurrentIndex(nullptr),
+    m_AxisRenderableVertexs(nullptr),
+    m_GridRenderableVertexs(nullptr),
+    m_CubeRenderableVertexs(nullptr),
+    m_SphereRenderableVertexs(nullptr),
+    m_NumVerticesAxis(0),
+    m_NumVerticesGrid(0),
+    m_NumVerticesCube(0),
+    m_NumVerticesSphere(0),
+    m_Frustum(nullptr),
+    m_NumViews(0),
+    m_CurrentDepthStencilView(nullptr)
+{
+}
 
 void CRenderManager::Init(HWND hWnd, int Width, int Height, bool debugD3D=false)
 {
@@ -540,7 +558,10 @@ void CRenderManager::DebugRender(const Mat44f& modelViewProj, const CDebugVertex
     if (FAILED(hr))
         return; // TODO log
 
+#ifdef _DEBUG
     assert(numVertices * sizeof(CDebugVertex) < DebugVertexBufferSize * sizeof(CDebugVertex));
+#endif
+
     memcpy(resource.pData, resultBuffer, numVertices * sizeof(CDebugVertex));
 
     //auto dvb = m_DebugVertexBuffer.get();
@@ -627,10 +648,16 @@ void CRenderManager::ClearAltIntro(HWND hWnd)
 {
     IDXGIFactory* dxgiFactory;
     HRESULT hr = m_SwapChain->GetParent(__uuidof(IDXGIFactory), (void **)&dxgiFactory);
+
+#ifdef _DEBUG
     assert(hr == S_OK);
+#endif
 
     hr = dxgiFactory->MakeWindowAssociation(hWnd, DXGI_MWA_NO_ALT_ENTER);
+
+#ifdef _DEBUG
     assert(hr == S_OK);
+#endif
 
     dxgiFactory->Release();
 }
@@ -700,7 +727,10 @@ void CRenderManager::Clear(bool renderTarget, bool depthStencil, const CColor& b
     {
         for (int i = 0; i < m_NumViews; ++i)
         {
-            m_DeviceContext->ClearRenderTargetView(m_CurrentRenderTargetViews[i], &backgroundColor.x);
+            if (m_CurrentRenderTargetViews[i] != 0)
+            {
+                m_DeviceContext->ClearRenderTargetView(m_CurrentRenderTargetViews[i], &backgroundColor.x);
+            }
         }
     }
     else
