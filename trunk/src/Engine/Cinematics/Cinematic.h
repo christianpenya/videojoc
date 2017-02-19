@@ -11,6 +11,7 @@
 
 #include "CinematicCameraPlayer.h"
 #include "CinematicObjectPlayer.h"
+#include "Camera\CameraController.h"
 
 
 XML_FORWARD_DECLARATION
@@ -40,6 +41,7 @@ protected:
     bool m_PlayingBackward;
     float m_CurrentTime;
 private:
+	CCameraController *m_lastCameraState;
     DISALLOW_COPY_AND_ASSIGN(CCinematic);
 };
 

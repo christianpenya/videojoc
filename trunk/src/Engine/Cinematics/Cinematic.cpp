@@ -87,6 +87,7 @@ void CCinematic::Update(float elapsedTime)
             {
                 m_Finish = true;
 				m_CurrentTime = 0.0f;
+				CEngine::GetInstance().SetCameraController(m_lastCameraState);
 
             }
 
@@ -112,6 +113,7 @@ void CCinematic::Update(float elapsedTime)
                 else
                 {
                     m_Finish = true;
+					m_CurrentTime = m_TotalTime;
                 }
             }
 
@@ -124,7 +126,8 @@ void CCinematic::Update(float elapsedTime)
 
 void CCinematic::Play()
 {
-	//m_CurrentTime = 0.0f;
+	m_lastCameraState = &CEngine::GetInstance().GetCameraController();
+	m_CurrentTime = 0.0f;
     m_Finish = false;
 	m_Active = true;
 
