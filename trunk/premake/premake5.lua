@@ -7,8 +7,8 @@ workspace "UAB"
    
    filter "configurations:Debug"
       defines { "DEBUG" , "LUA_32BITS" }
-      flags { "Symbols" }
-	  libdirs { "$(DXSDK_DIR)Lib/x86/"}
+      flags { "Symbols"}
+	  libdirs { "$(DXSDK_DIR)Lib/x86/","../include/physx/lib/"}
 	  targetsuffix "_debug"
 
    filter "configurations:Release"
@@ -24,31 +24,32 @@ project "Videogame"
     kind "ConsoleApp"
     characterset ("MBCS")
     flags { "ExtraWarnings", "NoRTTI" }
-    files { "../src/Videogame/**.h", "../src/Videogame/**.cpp" }
-    links {"Engine", "Base", "d3d11", "d3dcompiler", "Cal3D", "lua", "luabind" }
-    includedirs { "../src/Engine", "../src/Base", "../include/", "../src/", "../src/lua/", "../src/luabind/"}
+    files { "../src/Videogame/**.h", "../src/Videogame/**.cpp"}
+    links {"Engine", "Base", "d3d11", "d3dcompiler", "Cal3D", "lua", "luabind", "DirectXTex"}
+    includedirs { "../src/Engine", "../src/Base", "../src/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/"}
 	
 group "3rdParty"
 project "Cal3D"
     kind "SharedLib"
   characterset ("MBCS")
-    files { "../src/Cal3D/**.h", "../src/Cal3D/**.cpp", "../src/Cal3D/**.inl" }
+    files { "../src/3rdParty/Cal3D/**.h", "../src/3rdParty/Cal3D/**.cpp", "../src/3rdParty/Cal3D/**.inl" }
 	defines { "WIN32", "_WINDOWS", "_USRDLL", "CAL3D_EXPORTS"}
 
 project "lua"
     kind "StaticLib"
-    files { "../src/lua/**.h", "../src/lua/**.c", "../src/lua/**.hpp" }
-	includedirs { "../src/lua" }
+    files { "../src/3rdParty/lua/**.h", "../src/3rdParty/lua/**.c", "../src/3rdParty/lua/**.hpp" }
+	includedirs { "../src/3rdParty/lua", "../src/3rdParty/"}
 	
 project "luabind"
     kind "StaticLib"
-    files { "../src/luabind/**.hpp'",  "../src/luabind/**.cpp" }
-	includedirs { "../src/luabind", "../src" }
+    files { "../src/3rdParty/luabind/**.hpp'",  "../src/3rdParty/luabind/**.cpp" }
+	includedirs { "../src/3rdParty/luabind", "../src/3rdParty/" }
 
-project "luabind"
+project "DirectXTex"
     kind "StaticLib"
-    files { "../src/luabind/**.hpp'",  "../src/luabind/**.cpp" }
-	includedirs { "../src/luabind", "../src" }
+    files { "../src/3rdParty/DirectXTex/**.h", "../src/3rdParty/DirectXTex/**.cpp", "../src/3rdParty/DirectXTex/**.inl" }
+	includedirs { "../src/3rdParty/DirectXTex", "../src/3rdParty/" }
+	defines {"_WIN32_WINNT=0x0600","WIN32", "_WINDOWS"}
 
 	
 group "Engine"
@@ -61,5 +62,5 @@ project "Base"
 project "Engine"
     kind "StaticLib"
 	characterset ("MBCS")
-    files { "../src/Engine/**.h", "../src/Engine/**.cpp", "../src/Engine/**.inl" }
-	includedirs { "../src/Engine", "../src/Base", "../src/Cal3D/", "../src/lua/", "../src/luabind/", "../src/"}
+    files { "../src/Engine/**.h", "../src/Engine/**.cpp", "../src/Engine/**.inl"}
+	includedirs { "../src/Engine", "../src/Base", "../src/3rdParty/Cal3D/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/", "../src/3rdParty/", "../include/physx/"}

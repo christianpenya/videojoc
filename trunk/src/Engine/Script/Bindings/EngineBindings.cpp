@@ -1,7 +1,7 @@
 #include "Script/lua_utils.h"
 #include "Script/Script.h"
 #include "Engine/Engine.h"
-#include "Base/Utils/Logger.h"
+#include "Utils/Logger.h"
 #include "Camera/CameraController.h"
 
 namespace lua

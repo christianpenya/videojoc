@@ -30,6 +30,7 @@ class CRenderPipeline;
 class CConstantBufferManager;
 class CAnimatedModelManager;
 class CScriptManager;
+class CPhysXManager;
 
 #define BUILD_GET_SET_ENGINE_MANAGER( Manager ) \
 private: \
@@ -71,7 +72,8 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(ConstantBufferManager);
     BUILD_GET_SET_ENGINE_MANAGER(AnimatedModelManager);
     BUILD_GET_SET_ENGINE_MANAGER(ScriptManager);
-	BUILD_GET_SET_ENGINE_MANAGER(CinematicManager);
+    BUILD_GET_SET_ENGINE_MANAGER(CinematicManager);
+    BUILD_GET_SET_ENGINE_MANAGER(PhysXManager);
 
     double m_DeltaTime;
     clock_t m_DeltaTimeAcum = 0;

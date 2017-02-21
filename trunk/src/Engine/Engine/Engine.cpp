@@ -17,8 +17,8 @@
 #include "RenderPipeline\RenderPipeline.h"
 #include "Animation/AnimatedModelManager.h"
 #include "Script/ScriptManager.h"
-
 #include "Cinematics\CinematicsManager.h"
+#include "Physx/PhysxManager.h"
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
@@ -39,7 +39,8 @@ CEngine::CEngine()
     , m_RenderPipeline(nullptr)
     , m_AnimatedModelManager(nullptr)
     , m_ScriptManager(nullptr)
-	, m_CinematicManager(nullptr)
+    , m_CinematicManager(nullptr)
+    , m_PhysXManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
     , m_FPS (0.0)
@@ -101,13 +102,16 @@ void CEngine::LoadFiles()
     LOG_INFO_APPLICATION("Engine -> Scenes Loaded! \\(^-^)/");
 
 
-	m_CinematicManager = new CCinematicManager;
-	m_CinematicManager->Load("data/cinematics.xml");
-	LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
+    m_CinematicManager = new CCinematicManager;
+    m_CinematicManager->Load("data/cinematics.xml");
+    LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
+
+    m_PhysXManager = CPhysXManager::CreatePhysXManager();
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
+
 }
 
 void CEngine::Init(HWND hWnd)
@@ -190,12 +194,12 @@ void CEngine::Update()
     m_CameraController->Update((float)m_DeltaTime);
     m_CameraController->SetToRenderManager(*m_RenderManager);
     m_RenderManager->Update();
-	m_SceneManager->Update(m_DeltaTime);
-	m_CinematicManager->Update(m_DeltaTime);
-	
+    m_SceneManager->Update(m_DeltaTime);
+    m_CinematicManager->Update(m_DeltaTime);
 
-	
-	
+
+
+
 
 }
 

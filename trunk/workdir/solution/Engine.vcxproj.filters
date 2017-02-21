@@ -10,9 +10,6 @@
     <Filter Include="Cinematics">
       <UniqueIdentifier>{65A2DEF3-515A-2041-BA61-F99CA638BB31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DirectXTex">
-      <UniqueIdentifier>{A90EE592-95C6-26E0-FECD-FF3BEAA4C1D0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Effects">
       <UniqueIdentifier>{C5078FB8-31E7-0D54-3AFF-982AA65D74B5}</UniqueIdentifier>
     </Filter>
@@ -30,6 +27,9 @@
     </Filter>
     <Filter Include="Mesh">
       <UniqueIdentifier>{9205897C-7E3C-8A0D-2729-7010133F060F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physx">
+      <UniqueIdentifier>{E1C1E10D-4DD6-09BF-1658-AD1E822B06F0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Render">
       <UniqueIdentifier>{C5BB87CE-B15D-B2A4-9A18-C6F8865939F5}</UniqueIdentifier>
@@ -98,27 +98,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Cinematics\CinematicsManager.h">
       <Filter>Cinematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\BC.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\BCDirectCompute.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\DDS.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\DirectXTex.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\DirectXTexP.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\Filters.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\scoped.h">
-      <Filter>DirectXTex</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Effects\Effect.h">
       <Filter>Effects</Filter>
@@ -230,6 +209,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Mesh\VertexsTypes_HelperMacros.h">
       <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Physx\PhysxManager.h">
+      <Filter>Physx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Physx\PhysxManagerImplementation.h">
+      <Filter>Physx</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Render\RenderManager.h">
       <Filter>Render</Filter>
@@ -383,66 +368,6 @@
     <ClCompile Include="..\..\src\Engine\Cinematics\CinematicsManager.cpp">
       <Filter>Cinematics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BC.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BC4BC5.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BC6HBC7.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BCDirectCompute.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexCompress.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexCompressGPU.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexConvert.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexD3D11.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexDDS.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexFlipRotate.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexHDR.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexImage.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexMipmaps.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexMisc.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexNormalMaps.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexPMAlpha.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexResize.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexTGA.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexUtil.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexWIC.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Effects\Effect.cpp">
       <Filter>Effects</Filter>
     </ClCompile>
@@ -514,6 +439,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Mesh\VertexTypes.cpp">
       <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physx\PhysxManager.cpp">
+      <Filter>Physx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physx\PhysxManagerImplementation.cpp">
+      <Filter>Physx</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Render\RenderManager.cpp">
       <Filter>Render</Filter>
@@ -617,10 +548,5 @@
     <ClCompile Include="..\..\src\Engine\Textures\TextureManager.cpp">
       <Filter>Textures</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\src\Engine\DirectXTex\DirectXTex.inl">
-      <Filter>DirectXTex</Filter>
-    </None>
   </ItemGroup>
 </Project>

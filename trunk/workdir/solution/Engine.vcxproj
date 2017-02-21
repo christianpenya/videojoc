@@ -132,7 +132,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
     </ClCompile>
@@ -141,7 +141,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;..\..\include\physx\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -149,7 +149,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
     </ClCompile>
@@ -158,7 +158,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;..\..\include\physx\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -166,7 +166,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -184,7 +184,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -202,7 +202,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;NO_LOG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -220,7 +220,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;NO_LOG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\Cal3D;..\..\src\lua;..\..\src\luabind;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -250,13 +250,6 @@
     <ClInclude Include="..\..\src\Engine\Cinematics\CinematicObjectPlayer.h" />
     <ClInclude Include="..\..\src\Engine\Cinematics\CinematicPlayer.h" />
     <ClInclude Include="..\..\src\Engine\Cinematics\CinematicsManager.h" />
-    <ClInclude Include="..\..\src\Engine\DirectXTex\BC.h" />
-    <ClInclude Include="..\..\src\Engine\DirectXTex\BCDirectCompute.h" />
-    <ClInclude Include="..\..\src\Engine\DirectXTex\DDS.h" />
-    <ClInclude Include="..\..\src\Engine\DirectXTex\DirectXTex.h" />
-    <ClInclude Include="..\..\src\Engine\DirectXTex\DirectXTexP.h" />
-    <ClInclude Include="..\..\src\Engine\DirectXTex\Filters.h" />
-    <ClInclude Include="..\..\src\Engine\DirectXTex\scoped.h" />
     <ClInclude Include="..\..\src\Engine\Effects\Effect.h" />
     <ClInclude Include="..\..\src\Engine\Effects\EffectManager.h" />
     <ClInclude Include="..\..\src\Engine\Effects\PixelShader.h" />
@@ -294,6 +287,8 @@
     <ClInclude Include="..\..\src\Engine\Mesh\VertexBuffer.h" />
     <ClInclude Include="..\..\src\Engine\Mesh\VertexTypes.h" />
     <ClInclude Include="..\..\src\Engine\Mesh\VertexsTypes_HelperMacros.h" />
+    <ClInclude Include="..\..\src\Engine\Physx\PhysxManager.h" />
+    <ClInclude Include="..\..\src\Engine\Physx\PhysxManagerImplementation.h" />
     <ClInclude Include="..\..\src\Engine\Render\RenderManager.h" />
     <ClInclude Include="..\..\src\Engine\RenderPipeline\ApplyTechniquePool.h" />
     <ClInclude Include="..\..\src\Engine\RenderPipeline\BeginRenderCmd.h" />
@@ -346,26 +341,6 @@
     <ClCompile Include="..\..\src\Engine\Cinematics\CinematicObjectPlayer.cpp" />
     <ClCompile Include="..\..\src\Engine\Cinematics\CinematicPlayer.cpp" />
     <ClCompile Include="..\..\src\Engine\Cinematics\CinematicsManager.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BC.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BC4BC5.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BC6HBC7.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BCDirectCompute.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexCompress.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexCompressGPU.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexConvert.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexD3D11.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexDDS.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexFlipRotate.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexHDR.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexImage.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexMipmaps.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexMisc.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexNormalMaps.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexPMAlpha.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexResize.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexTGA.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexUtil.cpp" />
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexWIC.cpp" />
     <ClCompile Include="..\..\src\Engine\Effects\Effect.cpp" />
     <ClCompile Include="..\..\src\Engine\Effects\EffectManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Effects\PixelShader.cpp" />
@@ -390,6 +365,8 @@
     <ClCompile Include="..\..\src\Engine\Mesh\MeshManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Mesh\Plane.cpp" />
     <ClCompile Include="..\..\src\Engine\Mesh\VertexTypes.cpp" />
+    <ClCompile Include="..\..\src\Engine\Physx\PhysxManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Physx\PhysxManagerImplementation.cpp" />
     <ClCompile Include="..\..\src\Engine\Render\RenderManager.cpp" />
     <ClCompile Include="..\..\src\Engine\RenderPipeline\ApplyTechniquePool.cpp" />
     <ClCompile Include="..\..\src\Engine\RenderPipeline\BeginRenderCmd.cpp" />
@@ -424,9 +401,6 @@
     <ClCompile Include="..\..\src\Engine\Script\ScriptManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Textures\Texture.cpp" />
     <ClCompile Include="..\..\src\Engine\Textures\TextureManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\src\Engine\DirectXTex\DirectXTex.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
