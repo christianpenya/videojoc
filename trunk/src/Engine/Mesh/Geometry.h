@@ -5,6 +5,7 @@
 #include<assert.h>
 #include "d3d11.h"
 #include "Math\MathUtils.h"
+
 class CGeometry
 {
 public:

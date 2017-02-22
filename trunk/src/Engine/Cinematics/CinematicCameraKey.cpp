@@ -1,19 +1,13 @@
 #include "CinematicCameraKey.h"
+#include "XML\tinyxml2\tinyxml2.h"
 
+CCinematicCameraKey::CCinematicCameraKey():
+    m_NearPlane(0),
+    m_FarPlane(0),
+    m_FOV(0)
+{}
 
-CCinematicCameraKey::CCinematicCameraKey()
-{
-
-
-
-}
-
-
-CCinematicCameraKey::~CCinematicCameraKey()
-{
-
-
-}
+CCinematicCameraKey::~CCinematicCameraKey() {}
 
 bool CCinematicCameraKey::Load(const CXMLElement* aElement)
 {
@@ -24,6 +18,6 @@ bool CCinematicCameraKey::Load(const CXMLElement* aElement)
     m_FOV = aElement->GetAttribute<float>("fov", 0.0f);
     m_NearPlane = aElement->GetAttribute<float>("near_plane", 0.0f);
     m_FarPlane = aElement->GetAttribute<float>("far_plane", 0.0f);
-    return true;
 
+    return true;
 }

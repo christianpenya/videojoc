@@ -103,7 +103,6 @@ public:
     // Rendering
     void BeginRender();
     void SetSolidRenderState();
-    void DoRender();
     void EndRender();
 
     // Drawing

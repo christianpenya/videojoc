@@ -2,8 +2,8 @@
 #ifndef _RENDERCMD_H_
 #define _RENDERCMD_H_
 
-#include "Render\RenderManager.h"
 #include "Utils\Name.h"
+#include "Render/RenderManager.h"
 
 class CRenderCmd : public CName
 {

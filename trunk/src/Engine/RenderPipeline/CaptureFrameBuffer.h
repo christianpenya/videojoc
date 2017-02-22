@@ -2,11 +2,9 @@
 #ifndef _CAPTUREFRAMEBUFFER_H_
 #define _CAPTUREFRAMEBUFFER_H_
 
-#include "RenderCmd.h"
 #include "Render\RenderManager.h"
 #include "RenderStagedTexture.h"
 #include "CaptureFrameBufferTexture.h"
-#include "Utils\Name.h"
 
 class CCaptureFrameBuffer : public CRenderStagedTexture
 {

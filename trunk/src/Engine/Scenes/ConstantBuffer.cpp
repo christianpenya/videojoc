@@ -1,10 +1,13 @@
 #include "ConstantBuffer.h"
 #include "Engine/Engine.h"
+#include "Render/RenderManager.h"
 
-CConstantBuffer::CConstantBuffer(CRenderManager& RenderManager, uint32 aByteWidth) : CBuffer()
+CConstantBuffer::CConstantBuffer(CRenderManager& RenderManager, uint32 aByteWidth) :
+    CBuffer(),
+    m_RawData(nullptr)
 {
     assert(aByteWidth % 16 == 0);
-    ID3D11Device * lDevice = RenderManager.GetDevice();
+    ID3D11Device* lDevice = RenderManager.GetDevice();
 
     // Create the constant buffers for the variables defined in the vertex shader.
     D3D11_BUFFER_DESC constantBufferDesc;

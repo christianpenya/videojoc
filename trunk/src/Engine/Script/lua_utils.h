@@ -2,15 +2,11 @@
 #define _LUA_UTILS_HH_
 #pragma once
 
-#include <string>
-#include <sstream>
-
 // Lua Library includes
 #include <lua/lua.hpp>
 
 // LuaBind Library includes
 #include <luabind/luabind.hpp>
-#include <luabind/function.hpp>
 #include <luabind/class.hpp>
 #include <luabind/operator.hpp>
 

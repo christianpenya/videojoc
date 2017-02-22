@@ -1,4 +1,5 @@
 #include "InputManager.h"
+#include <cassert>
 
 typedef DWORD WINAPI TInputGetState(DWORD dwUserIndex, XINPUT_STATE *pState);
 typedef DWORD WINAPI TInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION *pVibration);
@@ -516,4 +517,16 @@ float CInputManager::GetGamepadAxis(InputDefinitions::GamepadAxis axis) const
         assert(false);
         return 0;
     }
+}
+
+bool CInputManager::UpdateKeyboard()
+{
+    //TODO
+    return false;
+}
+
+bool CInputManager::UpdateMouse()
+{
+    //TODO
+    return false;
 }

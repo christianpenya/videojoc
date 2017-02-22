@@ -16,6 +16,10 @@ void CMaterialManager::Reload()
     Load(m_DefaultMaterialsFilename, true);
 }
 
+void CMaterialManager::Save()
+{
+    //TODO
+}
 
 bool CMaterialManager::Load(const std::string &Filename, bool UpdateFlag)
 {

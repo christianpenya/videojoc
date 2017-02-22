@@ -3,9 +3,7 @@
 #define _RENDERSTAGEDTEXTURE_H_
 
 #include "RenderCmd.h"
-#include "Render\RenderManager.h"
-#include "Utils\Name.h"
-#include "Utils\TemplatedMapVector.h"
+#include <vector>
 #include "DynamicTexture.h"
 
 class CRenderStagedTexture: public CRenderCmd

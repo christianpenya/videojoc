@@ -1,24 +1,27 @@
 #include "Cinematic.h"
-
 #include "Utils/CheckedRelease.h"
+#include "CinematicPlayer.h"
+#include "CinematicCameraPlayer.h"
+#include "CinematicObjectPlayer.h"
+#include "XML\tinyxml2\tinyxml2.h"
+#include "Engine/Engine.h"
 
-CCinematic::CCinematic(): m_lastCameraState(nullptr)
-{
-    m_Name = "";
-    m_Active = false;
-    m_Finish = true;
-    m_Loop = false;
-    m_Reversed = false;
-    m_TotalTime = 0.0f;
-    m_PlayingForward = true;
-    m_PlayingBackward = false;
-    m_CurrentTime = 0.0f;
-}
+CCinematic::CCinematic():
+    CName(""),
+    m_lastCameraState(nullptr),
+    m_Active(false),
+    m_Finish(true),
+    m_Loop(false),
+    m_Reversed(false),
+    m_TotalTime(0.0f),
+    m_PlayingForward(true),
+    m_PlayingBackward(false),
+    m_CurrentTime(0.0f)
+{}
 
 CCinematic::~CCinematic()
 {
-    Clear();
-
+    CTemplatedMapVector<CCinematicPlayer>::Clear();
 }
 
 bool CCinematic::Load(const CXMLElement* aElement)
@@ -31,35 +34,29 @@ bool CCinematic::Load(const CXMLElement* aElement)
 
     for (tinyxml2::XMLElement const *lCinematic_player = aElement->FirstChildElement(); lCinematic_player != nullptr; lCinematic_player = lCinematic_player->NextSiblingElement())
     {
-
         CCinematicPlayer *lCinematicPlayer = nullptr;
 
         if (strcmp(lCinematic_player->Name(),"cinematic_camera_player")==0)
         {
             lCinematicPlayer = new CCinematicCameraPlayer();
             lCinematicPlayer->Load(lCinematic_player);
-
-
         }
         else if (strcmp(lCinematic_player->Name(), "cinematic_object_player")==0)
         {
             lCinematicPlayer = new CCinematicObjectPlayer();
             lCinematicPlayer->Load(lCinematic_player);
-
-
         }
-        if (lCinematicPlayer!=nullptr)
+        if (lCinematicPlayer != nullptr)
+        {
             Add(lCinematicPlayer->mName, lCinematicPlayer);
-
+        }
     }
 
     return true;
-
 }
 
 void CCinematic::Update(float elapsedTime)
 {
-
     if (m_PlayingForward && !m_Finish)
     {
         m_CurrentTime += elapsedTime;
@@ -67,7 +64,6 @@ void CCinematic::Update(float elapsedTime)
         {
             CCinematicPlayer* lCinematPlay = iPlayerMapEntry->second.m_Value;
             lCinematPlay->PlayFoward(m_CurrentTime);
-
         }
         if (m_CurrentTime >= m_TotalTime)
         {
@@ -79,16 +75,13 @@ void CCinematic::Update(float elapsedTime)
             else if (m_Loop)
             {
                 m_CurrentTime = 0.0f;
-
             }
             else
             {
                 m_Finish = true;
                 m_CurrentTime = 0.0f;
                 CEngine::GetInstance().SetCameraController(m_lastCameraState);
-
             }
-
         }
         else if (m_PlayingBackward && !m_Finish)
         {
@@ -97,7 +90,6 @@ void CCinematic::Update(float elapsedTime)
             {
                 CCinematicPlayer* lCinematPlay = iPlayerMapEntry->second.m_Value;
                 lCinematPlay->PlayFoward(m_CurrentTime);
-
             }
             if (m_CurrentTime <= 0.0f)
             {
@@ -106,7 +98,6 @@ void CCinematic::Update(float elapsedTime)
                     m_CurrentTime = 0.0f;
                     m_PlayingForward = true;
                     m_PlayingBackward = false;
-
                 }
                 else
                 {
@@ -114,12 +105,8 @@ void CCinematic::Update(float elapsedTime)
                     m_CurrentTime = m_TotalTime;
                 }
             }
-
         }
     }
-
-
-
 }
 
 void CCinematic::Play()
@@ -128,6 +115,4 @@ void CCinematic::Play()
     m_CurrentTime = 0.0f;
     m_Finish = false;
     m_Active = true;
-
-
 }

@@ -1,7 +1,6 @@
 #include "TechniquePoolManager.h"
 #include "XML\tinyxml2\tinyxml2.h"
 #include "XML\XML.h"
-#include "Utils\EnumToString.h"
 #include "Engine\Engine.h"
 #include "Effects\EffectManager.h"
 #include "TechniquePool.h"

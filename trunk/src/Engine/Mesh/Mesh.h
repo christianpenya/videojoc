@@ -10,6 +10,7 @@
 class CRenderManager;
 class CMaterial;
 class CGeometry;
+
 class CMesh : public CName
 {
 public:

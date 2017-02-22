@@ -6,11 +6,9 @@
 #include "Utils\TemplatedMap.h"
 #include "InputDefinitions.h"
 #include "InputManager.h"
-#include "XML/XML.h"
 
 struct ActionTrigger
 {
-
     enum ButtonActionType
     {
         IsPressed, IsReleased, BecomesPressed, BecomesReleased

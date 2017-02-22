@@ -8,7 +8,11 @@
 #include "Animation/AnimatedModelManager.h"
 #include "Lights/LightManager.h"
 
-CLayer::CLayer(const std::string& aName) : CName(aName) {}
+CLayer::CLayer(const std::string& aName) :
+    CName(aName),
+    m_Active(false)
+{}
+
 CLayer::~CLayer() {}
 
 bool CLayer::Load(CXMLElement* aElement)

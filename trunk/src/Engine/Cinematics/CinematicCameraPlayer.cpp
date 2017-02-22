@@ -1,25 +1,16 @@
 #include "CinematicCameraPlayer.h"
 #include "CinematicCameraKey.h"
+#include "Engine\Engine.h"
+#include "XML\tinyxml2\tinyxml2.h"
 
-
-
-
-CCinematicCameraPlayer::CCinematicCameraPlayer()
-{
-
-
-}
-
-CCinematicCameraPlayer::~CCinematicCameraPlayer()
-{
-
-}
+CCinematicCameraPlayer::CCinematicCameraPlayer() {}
+CCinematicCameraPlayer::~CCinematicCameraPlayer() {}
 
 bool CCinematicCameraPlayer::Load(const CXMLElement *aElement)
 {
-
     bool lOk = false;
     mName = aElement->GetAttribute<std::string>("name", "");
+
     for (tinyxml2::XMLElement const *iCamKey = aElement->FirstChildElement(); iCamKey != nullptr; iCamKey = iCamKey->NextSiblingElement())
     {
         if (strcmp(iCamKey->Name(), "key")==0)
@@ -32,13 +23,10 @@ bool CCinematicCameraPlayer::Load(const CXMLElement *aElement)
                 m_CurrentKey = lCamKey;
             }
         }
-
-
     }
+
     m_NextKey = m_CurrentKey;
     return lOk;
-
-
 }
 
 void CCinematicCameraPlayer::Apply(float aPercentage, CCinematicKey* A, CCinematicKey* B)
@@ -54,13 +42,7 @@ void CCinematicCameraPlayer::Apply(float aPercentage, CCinematicKey* A, CCinemat
     lUp = a->GetUp()*aPercentage + b->GetUp()*(1 - aPercentage);
     lFront = a->GetLookAt()*aPercentage + b->GetLookAt()*(1 - aPercentage);
 
-
     cam->setPosition(lPos);
     cam->setUp(lUp);
     cam->setFront(lFront);
-
-
-
-
-
 }

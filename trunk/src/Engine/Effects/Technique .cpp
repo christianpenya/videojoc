@@ -1,6 +1,9 @@
 #include "Technique.h"
 
-CTechnique::CTechnique() {}
+CTechnique::CTechnique():
+    mEffect(nullptr)
+{}
+
 CTechnique::~CTechnique() {}
 
 void CTechnique::SetEffect(CEffect* aEffect)

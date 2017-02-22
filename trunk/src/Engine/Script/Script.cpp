@@ -6,9 +6,7 @@ CScript::CScript()
     Init();
 }
 
-CScript::~CScript()
-{
-}
+CScript::~CScript() {}
 
 void CScript::Release()
 {

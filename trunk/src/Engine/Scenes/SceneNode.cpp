@@ -2,18 +2,22 @@
 #include "XML/tinyxml2/tinyxml2.h"
 #include "Render/RenderManager.h"
 #include "ConstantBufferManager.h"
-#include <d3d11.h>
+#include "ImGUI/imgui.h"
 
-
-CSceneNode::CSceneNode() {}
+CSceneNode::CSceneNode():
+    m_Visible(false),
+    m_type(0)
+{}
 
 CSceneNode::CSceneNode(const CXMLElement* aElement)
-    : CName(aElement->GetAttribute<std::string>("name", ""))
-    , CTransform((strcmp(aElement->FirstChildElement()->Name(), "transform") == 0) ? aElement->FirstChildElement() : nullptr)
+    : CTransform((strcmp(aElement->FirstChildElement()->Name(), "transform") == 0) ? aElement->FirstChildElement() : nullptr)
+    , CName(aElement->GetAttribute<std::string>("name", "")),
+      m_Visible(false),
+      m_type(0)
 {
     if (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0)
     {
-        tinyxml2::XMLElement const *iTransformNode = aElement->FirstChildElement();
+        tinyxml2::XMLElement const* iTransformNode = aElement->FirstChildElement();
         m_PrevPos = iTransformNode->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
     }
 }
@@ -33,6 +37,7 @@ bool CSceneNode::Render(CRenderManager& lRM)
 
     m_Visible = lRM.m_Frustum->IsVisible(mBS);
     // Todo: Check BS with currentfrustum
+
     return m_Visible;
 }
 

@@ -1,17 +1,9 @@
 #include "RenderCmd.h"
 #include "XML\XML.h"
 
+CRenderCmd::CRenderCmd(): m_Active(false) {}
 
-CRenderCmd::CRenderCmd()
-{
-
-}
-
-CRenderCmd::~CRenderCmd()
-{
-
-}
-
+CRenderCmd::~CRenderCmd() {}
 
 bool CRenderCmd::Load(const CXMLElement* aElement)
 {

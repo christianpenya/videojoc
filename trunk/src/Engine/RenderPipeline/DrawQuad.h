@@ -4,8 +4,9 @@
 
 #include "RenderStagedTexture.h"
 #include "Quad.h"
-#include "Render\RenderManager.h"
-#include "Utils\Name.h"
+
+class CQuad;
+class CRenderManager;
 
 class CDrawQuad : public CRenderStagedTexture
 {

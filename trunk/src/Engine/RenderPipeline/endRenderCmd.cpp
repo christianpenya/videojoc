@@ -1,16 +1,9 @@
 #include "EndRenderCmd.h"
 #include "XML\XML.h"
+#include "Render\RenderManager.h"
 
-
-CEndRenderCmd::CEndRenderCmd()
-{
-
-}
-
-CEndRenderCmd::~CEndRenderCmd()
-{
-
-}
+CEndRenderCmd::CEndRenderCmd() {}
+CEndRenderCmd::~CEndRenderCmd() {}
 
 //Leerá el siguiente nodo del xml: <end_render name="end_render_main_loop"/>
 

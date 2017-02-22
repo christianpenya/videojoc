@@ -61,6 +61,8 @@ break;\
                     CASE_CREATE_MATERIAL_PARAMETER(CMaterial::eFloat3, Vect3f, Vect3f(0.0f, 0.0f, 0.0f));
                     CASE_CREATE_MATERIAL_PARAMETER(CMaterial::eFloat4, Vect4f, Vect4f(0.0f, 0.0f, 0.0f, 0.0f));
                     CASE_CREATE_MATERIAL_PARAMETER(CMaterial::eColor, CColor, CColor());
+                default:
+                    break;
                 }
 
 #undef CASE_CREATE_MATERIAL_PARAMETER
@@ -103,18 +105,11 @@ void CMaterial::Apply()
         case eFloat4:
             break;
         case eColor:
-
-
-            //unsigned char *charBuf = (unsigned char*)voidBuf;
-            /* create a vector by copying out the contents of charBuf */
-            //std::vector<unsigned char> v(charBuf, charBuf + len);
-
             float *r = (float*) mParameters[i]->GetAddr(0);
             float *g = (float*) mParameters[i]->GetAddr(1);
             float *b = (float*) mParameters[i]->GetAddr(2);
-//          float *a = (float*)mParameters[i]->GetAddr(3);
+            //float *a = (float*)mParameters[i]->GetAddr(3);
             const Vector4<float> flt = Vector4<float>(*r, *g, *b, 1.0f);
-            //const Vector4<float> flt = Vector4<float>(1.0, 0.0, 0.0, 1.0f);
             lCBM.mMaterialDesc.m_RawData[0] = flt;
             break;
         }

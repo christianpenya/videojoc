@@ -1,8 +1,6 @@
 #include "TechniquePool.h"
-#include <string>
 #include "XML\tinyxml2\tinyxml2.h"
 #include "Engine\Engine.h"
-#include "Mesh\VertexTypes.h"
 #include "Effects\EffectManager.h"
 
 CTechniquePool::~CTechniquePool() {}
@@ -19,7 +17,7 @@ CTechniquePool::CTechniquePool(CXMLElement* aElement) :
             std::string lVertexType = iTechnique->GetAttribute<std::string>("vertex_type", "");
             std::string lEffect = iTechnique->GetAttribute<std::string>("effect", "");
 
-            Add(lVertexType,lEM(lEffect));
+            CTemplatedMapVector<CEffect>::Add(lVertexType,lEM(lEffect));
         }
     }
 }

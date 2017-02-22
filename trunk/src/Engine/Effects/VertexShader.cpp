@@ -3,20 +3,23 @@
 #include "Render\RenderManager.h"
 #include "Engine\Engine.h"
 #include "XML\tinyxml2\tinyxml2.h"
-#include "Mesh\VertexTypes.h"
 
-CVertexShader::CVertexShader(const std::string& aShaderCode, uint32 aVertexFlags) : CShader(aShaderCode, EShaderStage::eVertexShader)
-{
-}
+CVertexShader::CVertexShader(const std::string& aShaderCode, uint32 aVertexFlags) :
+    CShader(aShaderCode, EShaderStage::eVertexShader),
+    m_VertexFlags(0),
+    m_pVertexShader(nullptr),
+    m_pVertexLayout(nullptr)
+{}
 
-CVertexShader::CVertexShader(const CXMLElement* aElement, const std::string& aPath) : CShader(aElement, aPath, EShaderStage::eVertexShader)
+CVertexShader::CVertexShader(const CXMLElement* aElement, const std::string& aPath) :
+    CShader(aElement, aPath, EShaderStage::eVertexShader),
+    m_pVertexShader(nullptr),
+    m_pVertexLayout(nullptr)
 {
     m_VertexFlags = VertexTypes::GetFlagsFromString(aElement->GetAttribute<std::string>("vertex_type", ""));
 }
 
-CVertexShader::~CVertexShader()
-{
-}
+CVertexShader::~CVertexShader() {}
 
 bool CVertexShader::Load()
 {

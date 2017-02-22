@@ -2,9 +2,10 @@
 #ifndef _ENGINE_CONSTANTBUFFER_20170118_H
 #define _ENGINE_CONSTANTBUFFER_20170118_H
 
-#include "Render/RenderManager.h"
 #include "Mesh/Buffer.h"
 #include "Utils/Logger.h"
+
+class CRenderManager;
 
 class CConstantBuffer : public CBuffer
 {

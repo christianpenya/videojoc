@@ -6,7 +6,7 @@
 
 
 CAnimatedCoreModel::CAnimatedCoreModel(const std::string& aName)
-    : CName(aName)
+    : CName(aName), m_BSRadius(0)
 {
     m_Path = "";
     m_CalCoreModel = new CalCoreModel(aName);

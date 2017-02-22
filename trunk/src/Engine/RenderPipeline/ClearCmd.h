@@ -3,8 +3,7 @@
 #define _CLEARCMD_H_
 
 #include "RenderCmd.h"
-#include "Render\RenderManager.h"
-#include "Utils\Name.h"
+class CRenderManager;
 
 class CClearCmd : public CRenderCmd
 {

@@ -3,8 +3,8 @@
 #define _ENDRENDERCMD_H_
 
 #include "RenderCmd.h"
-#include "Render\RenderManager.h"
-#include "Utils\Name.h"
+
+class CRenderManager;
 
 class CEndRenderCmd : public CRenderCmd
 {

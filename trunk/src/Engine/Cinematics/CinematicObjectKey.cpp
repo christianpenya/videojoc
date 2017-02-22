@@ -1,19 +1,8 @@
 #include "CinematicObjectKey.h"
+#include "XML\tinyxml2\tinyxml2.h"
 
-
-CCinematicObjectKey::CCinematicObjectKey()
-{
-
-
-
-}
-
-
-CCinematicObjectKey::~CCinematicObjectKey()
-{
-
-
-}
+CCinematicObjectKey::CCinematicObjectKey() {}
+CCinematicObjectKey::~CCinematicObjectKey() {}
 
 bool CCinematicObjectKey::Load(const CXMLElement* aElement)
 {
@@ -26,5 +15,4 @@ bool CCinematicObjectKey::Load(const CXMLElement* aElement)
     m_Scale = aElement->GetAttribute<Vect3f>("scale", Vect3f(0.0f, 0.0f, 0.0f));
 
     return true;
-
 }

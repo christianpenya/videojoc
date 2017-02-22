@@ -1,15 +1,10 @@
 #include "CaptureFrameBuffer.h"
 
+CCaptureFrameBuffer::CCaptureFrameBuffer():
+    m_CapturedFrameBufferTexture(nullptr)
+{}
 
-CCaptureFrameBuffer::CCaptureFrameBuffer()
-{
-
-}
-
-CCaptureFrameBuffer::~CCaptureFrameBuffer()
-{
-
-}
+CCaptureFrameBuffer::~CCaptureFrameBuffer() {}
 
 /*Leerá el nodo :
 <capture_frame_buffer>
@@ -21,6 +16,7 @@ bool CCaptureFrameBuffer::Load(const CXMLElement* aElement)
 {
     bool lOk = false;
 
+    // TODO esto k ase?
     /*    CCaptureFrameBufferTexture * lCaptureFrameBufferTexture = new CCaptureFrameBufferTexture(aElement);
         if (lCaptureFrameBufferTexture->Load())
         {

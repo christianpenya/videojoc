@@ -4,7 +4,6 @@
 
 #include "Utils\TemplatedMapVector.h"
 #include "Light.h"
-#include "Utils\StringUtils.h"
 #include "Math\Vector4.h"
 
 class CLightManager : public base::utils::CTemplatedMapVector<CLight>

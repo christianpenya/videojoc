@@ -1,15 +1,10 @@
 #pragma once
-
 #ifndef _ENGINE_MATERIALMANAGER_CPB_1611241620428_H
 #define _ENGINE_MATERIALMANAGER_CPB_1611241620428_H
 
-#include "XML\tinyxml2\tinyxml2.h"
-#include <list>
 #include "Utils\TemplatedMap.h"
-#include "Utils\Name.h"
 #include "Utils\Defines.h"
 #include "Material.h"
-#include <assert.h>
 
 XML_FORWARD_DECLARATION
 

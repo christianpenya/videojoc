@@ -34,7 +34,7 @@ bool CSceneMesh::Render(CRenderManager& aRendermanager)
 {
     bool lOk = CSceneNode::Render(aRendermanager);
 
-    if (mMesh && lOk)
+    if (lOk && mMesh)
     {
         CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
         lCB.mObjDesc.m_World = GetMatrix();
@@ -54,5 +54,4 @@ void CSceneMesh::DrawImgui()
         ImGui::SliderFloat3("Scale", (float*)&m_Scale, 0.0f, 100.0f);
         //ImGui::Checkbox("Visible", &m_Visible);
     }
-
 }

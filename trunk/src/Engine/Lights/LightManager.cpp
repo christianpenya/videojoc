@@ -5,23 +5,20 @@
 #include "SpotLight.h"
 #include "Engine\engine.h"
 #include "Scenes\ConstantBufferManager.h"
+#include "XML\xml.h"
 
-CLightManager::CLightManager()
-{
-}
+CLightManager::CLightManager() {}
 
 CLightManager::~CLightManager()
 {
-    Destroy();
+    CTemplatedMapVector<CLight>::Destroy();
 }
-
 
 bool CLightManager::Load(const std::string& aFilename)
 {
     m_LevelLightsFilename = aFilename;
     return Load();
 }
-
 
 bool CLightManager::Load()
 {
@@ -40,7 +37,6 @@ bool CLightManager::Load()
             {
                 if (strcmp(iLight->Name(), "light") == 0)
                 {
-
                     EnumString<CLight::ELightType>::ToEnum(lLightType, iLight->GetAttribute<std::string>("type", ""));
 
                     if (lLightType == 0) //Point
@@ -69,12 +65,10 @@ bool CLightManager::Load()
     return lOk;
 }
 
-
 void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
 {
     CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
     CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
-
 
     lConstanBufferManager.mLightsDesc.m_LightType[idLight] = alight->GetType();
     lConstanBufferManager.mLightsDesc.m_LightColor[idLight] = alight->GetColor();
@@ -96,7 +90,6 @@ void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
     //lConstanBufferManager.BindVSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_LightVS);
     //lConstanBufferManager.BindPSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_LightPS);
     lConstanBufferManager.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Light);
-
 }
 
 void CLightManager::SetLightsConstants()
@@ -106,9 +99,7 @@ void CLightManager::SetLightsConstants()
         CLight* lLight = iLightMapEntry->second.m_Value;
         SetLightConstants(iLightMapEntry->second.m_Id, lLight);
     }
-
 }
-
 
 bool CLightManager::ReLoad()
 {
@@ -134,5 +125,4 @@ void CLightManager::DrawImgui()
         ImGui::PopItemWidth();
         ImGui::EndChild();
     }
-
 }

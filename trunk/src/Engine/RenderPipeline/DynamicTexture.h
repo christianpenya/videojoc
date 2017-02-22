@@ -5,7 +5,6 @@
 #include "Textures\Texture.h"
 #include "Utils\EnumToString.h"
 
-
 XML_FORWARD_DECLARATION
 
 #include "Utils\Defines.h"
@@ -20,7 +19,7 @@ public:
         RGBA8_UNORM = 28,
         R32_FLOAT = 41
     };
-public:
+
     CDynamicTexture(const CXMLElement *TreeNode);
     virtual ~CDynamicTexture();
 

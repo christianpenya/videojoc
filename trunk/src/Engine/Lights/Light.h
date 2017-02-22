@@ -3,12 +3,9 @@
 #define _LIGHT_H_
 
 #include "Utils\TemplatedMapVector.h"
-#include "Light.h"
 #include "Math\Color.h"
-#include "Math\Vector2.h"
 #include "Utils\StringUtils.h"
 #include "Scenes\SceneNode.h"
-#include "XML\XML.h"
 #include "Utils\EnumToString.h"
 
 class CLight : public CSceneNode

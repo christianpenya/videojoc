@@ -8,8 +8,6 @@
 
 #include "Math/Matrix44.h"
 #include "ConstantBuffer.h"
-#include "Render/RenderManager.h"
-#include "Engine/Engine.h"
 
 struct PerFrameDesc
 {
@@ -54,11 +52,6 @@ struct PerMaterialDesc
 class CConstantBufferManager
 {
 public:
-    //enum ConstanBufferVS    { CB_Frame, CB_Object, CB_LightVS, CB_AnimatedModel, NumConstantBuffersVS };
-    //enum ConstanBufferVS    { CB_Frame, CB_Object, CB_AnimatedModel, CB_LightVS, NumConstantBuffersVS };
-    //enum ConstanBufferPS    { CB_LightPS, CB_Material, NumConstantBuffersPS };
-    // enum ConstanBufferPS    { CB_Material, CB_LightPS, NumConstantBuffersPS };
-
     enum CConstanBufferDEF {CB_Frame, CB_Object,CB_Material, CB_AnimatedModel, CB_Light, NumConstantBuffers};
 
     PerObjectDesc      mObjDesc;
@@ -66,23 +59,12 @@ public:
     PerAnimatedModelDesc mAnimatedModelDesc;
     PerMaterialDesc mMaterialDesc;
     PerLightsDesc mLightsDesc;
-public:
+
     CConstantBufferManager();
     virtual ~CConstantBufferManager();
-
-    //virtual void BindVSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID);
-
-    // virtual void BindPSBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID);
-
     virtual void BindBuffer(ID3D11DeviceContext* aContext, uint32 aConstantBufferID);
 
-
-
-
 protected:
-    // CConstantBuffer* m_VSConstantBuffers[NumConstantBuffers];
-    // CConstantBuffer* m_PSConstantBuffers[NumConstantBuffers];
-
     CConstantBuffer* m_ConstantBuffers[NumConstantBuffers];
 };
 

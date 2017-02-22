@@ -3,8 +3,6 @@
 #define _SDSTENCILSTATECMD_H_
 
 #include "RenderCmd.h"
-#include "Render\RenderManager.h"
-#include "Utils\Name.h"
 
 class CSetDepthStencilStateCmd: public CRenderCmd
 {

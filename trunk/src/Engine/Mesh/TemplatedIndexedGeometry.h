@@ -14,8 +14,7 @@ public:
         CGeometry(PrimitiveTopology),
         m_VertexBuffer(aVertexBuffer),
         m_IndexBuffer(aIndexBuffer)
-    {
-    }
+    {}
 
     virtual ~CTemplatedIndexedGeometry()
     {

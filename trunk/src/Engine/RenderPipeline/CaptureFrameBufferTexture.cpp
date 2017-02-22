@@ -1,9 +1,7 @@
 #include "CaptureFrameBufferTexture.h"
 #include "XML\XML.h"
-//#include "Logger\Logger.h"
 #include "Engine\Engine.h"
 #include "Render\RenderManager.h"
-#include "CaptureFrameBufferTexture.h"
 
 CCaptureFrameBufferTexture::CCaptureFrameBufferTexture(const CXMLElement *TreeNode)
     : CTexture(""/*TODO*/)

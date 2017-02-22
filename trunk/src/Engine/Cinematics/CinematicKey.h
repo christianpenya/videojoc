@@ -2,13 +2,10 @@
 #ifndef _ENGINE_CINEMATIC_KEY_20170213
 #define _ENGINE_CINEMATIC_KEY_20170213
 
-#include "XML\tinyxml2\tinyxml2.h"
-#include "Utils\TemplatedMapVector.h"
 #include "Utils\Name.h"
-#include <vector>
-#include "Math\MathTypes.h"
 #include "Math\Vector3.h"
 
+XML_FORWARD_DECLARATION
 
 class CCinematicKey
 {
@@ -24,6 +21,5 @@ protected:
     float m_Time;
     Vect3f m_Position;
 };
-
 
 #endif

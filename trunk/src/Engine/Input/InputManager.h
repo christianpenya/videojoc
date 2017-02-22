@@ -4,7 +4,6 @@
 
 #include "InputDefinitions.h"
 #include <Windows.h>
-#include <assert.h>
 #include <Xinput.h>
 
 class CInputManager

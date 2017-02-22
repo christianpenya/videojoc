@@ -17,33 +17,32 @@
 #include "RenderPipeline\RenderPipeline.h"
 #include "Animation/AnimatedModelManager.h"
 #include "Script/ScriptManager.h"
-
 #include "Cinematics\CinematicsManager.h"
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
 CEngine::CEngine()
-    : m_RenderManager(nullptr)
+    : m_MaterialManager(nullptr)
+    , m_TextureManager(nullptr)
+    , m_RenderManager(nullptr)
+    , m_CameraController(nullptr)
+    , m_SceneManager(nullptr)
     , m_InputManager(nullptr)
     , m_ActionManager(nullptr)
-    , m_CameraController(nullptr)
-    , m_MaterialManager(nullptr)
-    , m_TextureManager(nullptr)
-    , m_MeshManager(nullptr)
     , m_ShaderManager(nullptr)
     , m_EffectManager(nullptr)
+    , m_MeshManager(nullptr)
     , m_TechniquePoolManager(nullptr)
     , m_LightManager(nullptr)
-    , m_SceneManager(nullptr)
-    , m_ConstantBufferManager(nullptr)
     , m_RenderPipeline(nullptr)
+    , m_ConstantBufferManager(nullptr)
     , m_AnimatedModelManager(nullptr)
     , m_ScriptManager(nullptr)
-	, m_CinematicManager(nullptr)
+    , m_CinematicManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
-    , m_FPS (0.0)
     , m_Frames(0)
+    , m_FPS (0.0)
     , m_CameraSelector(0)
     , m_PrevCameraSelector(0)
 {}
@@ -101,9 +100,9 @@ void CEngine::LoadFiles()
     LOG_INFO_APPLICATION("Engine -> Scenes Loaded! \\(^-^)/");
 
 
-	m_CinematicManager = new CCinematicManager;
-	m_CinematicManager->Load("data/cinematics.xml");
-	LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
+    m_CinematicManager = new CCinematicManager;
+    m_CinematicManager->Load("data/cinematics.xml");
+    LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
@@ -141,7 +140,7 @@ void CEngine::Init(HWND hWnd)
     }
 }
 
-void CEngine::ProcessInputs()
+void CEngine::ProcessInputs() const
 {
     ImGui_ImplDX11_NewFrame();
     m_ActionManager->Update();
@@ -150,7 +149,8 @@ void CEngine::ProcessInputs()
 double clockToMilliseconds(clock_t ticks)
 {
     // units/(units/time) => time (seconds) * 1000 = milliseconds
-    return (ticks / (double)CLOCKS_PER_SEC)*1000.0;
+    // TODO evitar casts en update o render
+    return (ticks / static_cast<double>(CLOCKS_PER_SEC))*1000.0;
 }
 
 void CEngine::Update()
@@ -190,13 +190,8 @@ void CEngine::Update()
     m_CameraController->Update((float)m_DeltaTime);
     m_CameraController->SetToRenderManager(*m_RenderManager);
     m_RenderManager->Update();
-	m_SceneManager->Update(m_DeltaTime);
-	m_CinematicManager->Update(m_DeltaTime);
-	
-
-	
-	
-
+    m_SceneManager->Update(m_DeltaTime);
+    m_CinematicManager->Update(m_DeltaTime);
 }
 
 void CEngine::Render()

@@ -2,18 +2,13 @@
 #include "Mesh\TemplatedGeometry.h"
 #include "Mesh\VertexTypes.h"
 #include "Engine\Engine.h"
-#include "Utils\CheckedDelete.h"
 
 #include "Materials\Material.h"
 #include "Materials\MaterialManager.h"
 
 #include "Effects\Effect.h"
-#include "Effects\Technique.h"
 #include "Effects\PixelShader.h"
 #include "Effects\VertexShader.h"
-#include "Mesh\VertexTypes.h"
-
-
 
 static CVertexShader sQuadVertexShader(
     "struct PS_INPUT\n"

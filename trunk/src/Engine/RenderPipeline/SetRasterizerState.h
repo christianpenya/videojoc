@@ -3,10 +3,7 @@
 #define _SETRASTERIZERSTATE_H_
 
 #include "RenderCmd.h"
-#include "Render\RenderManager.h"
-#include "Utils\Name.h"
 #include "Utils\EnumToString.h"
-
 
 class CSetRasterizerState : public CRenderCmd
 {

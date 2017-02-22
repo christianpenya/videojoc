@@ -1,13 +1,9 @@
 #include "MeshManager.h"
 #include "Mesh.h"
 
-CMeshManager::CMeshManager()
-{
-}
+CMeshManager::CMeshManager() {}
 
-CMeshManager::~CMeshManager()
-{
-}
+CMeshManager::~CMeshManager() {}
 
 CMesh* CMeshManager::GetMesh(const std::string& aFilename)
 {

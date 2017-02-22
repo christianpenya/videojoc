@@ -1,18 +1,10 @@
 #include "ClearCmd.h"
 #include "XML\XML.h"
-#include "Utils\EnumToString.h"
 #include "Utils\StringUtils.h"
+#include "Render\RenderManager.h"
 
-
-CClearCmd::CClearCmd()
-{
-
-}
-
-CClearCmd::~CClearCmd()
-{
-
-}
+CClearCmd::CClearCmd(): m_RenderTarget(false), m_DepthStencil(false) {}
+CClearCmd::~CClearCmd() {}
 
 //Leerá el siguiente nodo :
 //<clear name = "clear_cmd" render_target = "false" depth_stencil = "true" color = "0.25 0.25 0.25 0" / >

@@ -3,10 +3,7 @@
 #define _SETALPHABLENDSTATE_H_
 
 #include "RenderCmd.h"
-#include "Render\RenderManager.h"
-#include "Utils\Name.h"
 #include "Utils\EnumToString.h"
-
 
 class CSetAlphaBlendState : public CRenderCmd
 {

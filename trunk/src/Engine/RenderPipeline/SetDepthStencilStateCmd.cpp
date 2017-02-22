@@ -2,16 +2,15 @@
 #include "Engine\Engine.h"
 #include "XML\XML.h"
 
+CSetDepthStencilStateCmd::CSetDepthStencilStateCmd():
+    m_DepthStencilState(nullptr),
+    m_EnableZTest(false),
+    m_WriteZBuffer(false),
+    m_EnableStencil(false),
+    m_ComparisonFunc(0)
+{}
 
-CSetDepthStencilStateCmd::CSetDepthStencilStateCmd()
-{
-
-}
-
-CSetDepthStencilStateCmd::~CSetDepthStencilStateCmd()
-{
-
-}
+CSetDepthStencilStateCmd::~CSetDepthStencilStateCmd() {}
 
 //Leerá el siguiente nodo :
 //<set_depth_stencil_state enable_z_test="false" write_z_buffer="false" enable_stencil = "false" / >

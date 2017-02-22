@@ -5,10 +5,14 @@
 #include "RenderPipeline\RenderPipeline.h"
 
 CPixelShader::CPixelShader(const std::string& aShaderCode)
-    : CShader(aShaderCode, EShaderStage::ePixelShader) {}
+    : CShader(aShaderCode, EShaderStage::ePixelShader),
+      m_pPixelShader(nullptr)
+{}
 
 CPixelShader::CPixelShader(const CXMLElement* aElement, const std::string& aPath)
-    : CShader(aElement, aPath, EShaderStage::ePixelShader) {}
+    : CShader(aElement, aPath, EShaderStage::ePixelShader),
+      m_pPixelShader(nullptr)
+{}
 
 CPixelShader::~CPixelShader() {}
 

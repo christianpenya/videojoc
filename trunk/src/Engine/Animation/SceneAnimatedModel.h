@@ -3,9 +3,6 @@
 #define _ENGINE_SCENEANIMATEDMODEL_20170117
 
 #include "Scenes\SceneNode.h"
-#include "XML\tinyxml2\tinyxml2.h"
-#include "XML\XML.h"
-
 #include <vector>
 
 class CalModel;

@@ -2,15 +2,18 @@
 #include "XML\XML.h"
 #include "Engine\Engine.h"
 
-CSetAlphaBlendState::CSetAlphaBlendState()
-{
+CSetAlphaBlendState::CSetAlphaBlendState():
+    m_AlphaBlendState(nullptr),
+    m_enabled(false), m_SrcBlend(),
+    m_DestBlend(),
+    m_BlendOp(),
+    m_SrcBlendAlpha(),
+    m_DestBlendAlpha(),
+    m_BlendOpAlpha(),
+    m_render_target_write_mask()
+{}
 
-}
-
-CSetAlphaBlendState::~CSetAlphaBlendState()
-{
-
-}
+CSetAlphaBlendState::~CSetAlphaBlendState() {}
 
 //Leerá el nodo:
 /*<set_alpha_blend_state state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add"

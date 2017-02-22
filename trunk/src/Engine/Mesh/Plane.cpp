@@ -26,13 +26,11 @@ CPlane::CPlane()
         { Vect3f(-0.5f, 0.0f, -0.5f),   Vect3f(0.0f, 1.0f, 0.0f) }
     };
 
-    uint16 lIndices[6] = { 0, 3 , 1, 3, 2, 1 };
+    uint16 lIndices[6] = { 0, 3, 1, 3, 2, 1 };
     CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
     CVertexBuffer<VertexTypes::PositionNormal> * lVB = new CVertexBuffer<VertexTypes::PositionNormal>(lRenderManager, lPlaneVertex, 4);
     CIndexBuffer* lIB = new CIndexBuffer(lRenderManager, &lIndices, 6, 16);
     mGeometries[0] = new CIndexedGeometryTriangleList< VertexTypes::PositionNormal >(lVB, lIB);
 }
 
-CPlane::~CPlane()
-{
-}
+CPlane::~CPlane() {}

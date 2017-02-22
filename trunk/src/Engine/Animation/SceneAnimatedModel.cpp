@@ -9,13 +9,17 @@
 #include "Materials/Material.h"
 #include "Math/MathTypes.h"
 #include "Math/Quaternion.h"
-#include "Effects/Effect.h"
 #include "Effects/Technique.h"
 
 CSceneAnimatedModel::CSceneAnimatedModel(const CXMLElement &TreeNode)
-    : CSceneNode(&TreeNode)
+    : CSceneNode(&TreeNode),
+      m_CalModel(nullptr),
+      m_AnimatedCoreModel(nullptr),
+      m_CalHardwareModel(nullptr),
+      m_Geometry(nullptr),
+      m_NumVertices(0),
+      m_NumFaces(0)
 {
-
 }
 
 CSceneAnimatedModel::~CSceneAnimatedModel() {}

@@ -8,7 +8,6 @@
 #include "Camera\FpsCameraController.h"
 #include "Camera\TpsCameraController.h"
 #include <chrono>
-#include "ImGUI\imgui.h"
 #include "imgui_impl_dx11.h"
 #include "Utils\StringUtils.h"
 
@@ -48,7 +47,7 @@ public:
     CEngine();
     ~CEngine();
 
-    void ProcessInputs();
+    void ProcessInputs() const;
     void Update();
     void Render();
     void Init(HWND hWnd);
@@ -71,7 +70,7 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(ConstantBufferManager);
     BUILD_GET_SET_ENGINE_MANAGER(AnimatedModelManager);
     BUILD_GET_SET_ENGINE_MANAGER(ScriptManager);
-	BUILD_GET_SET_ENGINE_MANAGER(CinematicManager);
+    BUILD_GET_SET_ENGINE_MANAGER(CinematicManager);
 
     double m_DeltaTime;
     clock_t m_DeltaTimeAcum = 0;

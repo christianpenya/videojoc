@@ -10,14 +10,14 @@ public:
     CPixelShader(const std::string& aShaderCode);
     CPixelShader(const CXMLElement* aElement, const std::string& aPath);
     virtual ~CPixelShader();
-    virtual bool Load();
-    virtual void Bind(ID3D11DeviceContext* aContext);
+    bool Load() override;
+    void Bind(ID3D11DeviceContext* aContext) override;
     GET_SET_PTR(ID3D11PixelShader, PixelShader);
 
 private:
     DISALLOW_COPY_AND_ASSIGN(CPixelShader);
     ID3D11PixelShader *m_pPixelShader;
-    virtual std::string GetShaderModel();
+    std::string GetShaderModel() override;
 };
 
 #endif //_ENGINE_PIXELSHADER_20170104

@@ -2,16 +2,8 @@
 #include "XML\XML.h"
 #include "Engine\engine.h"
 
-CRenderStagedTexture::CRenderStagedTexture()
-{
-
-}
-
-CRenderStagedTexture::~CRenderStagedTexture()
-{
-
-}
-
+CRenderStagedTexture::CRenderStagedTexture() {}
+CRenderStagedTexture::~CRenderStagedTexture() {}
 
 //Leera el nodo
 //<dynamic_texture name="DiffuseMapTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format_type="RGBA8_UNORM"/>
@@ -56,6 +48,11 @@ CRenderStagedTexture::CStagedTexture::CStagedTexture(uint32 aStageId, CTexture *
 {
     m_StageId = aStageId;
     m_Texture = aTexture;
+}
+
+void CRenderStagedTexture::CStagedTexture::Activate()
+{
+    //TODO
 }
 
 void CRenderStagedTexture::CreateRenderTargetViewVector(CRenderManager& lRM)

@@ -3,8 +3,6 @@
 #define _SPFCONSTANTSCMD_H_
 
 #include "RenderCmd.h"
-#include "Render\RenderManager.h"
-#include "Utils\Name.h"
 
 class CSetPerFrameConstantsCmd: public CRenderCmd
 {

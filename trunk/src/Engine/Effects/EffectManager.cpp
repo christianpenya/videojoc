@@ -2,13 +2,11 @@
 #include "XML/tinyxml2/tinyxml2.h"
 #include "XML/XML.h"
 
-CEffectManager::CEffectManager()
-{
-}
+CEffectManager::CEffectManager() {}
 
 CEffectManager::~CEffectManager()
 {
-    Destroy();
+    CTemplatedMapVector<CEffect>::Destroy();
 }
 
 bool CEffectManager::Load(const std::string& aFilename)

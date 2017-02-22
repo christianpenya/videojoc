@@ -2,17 +2,14 @@
 #include "Engine\Engine.h"
 #include "XML\XML.h"
 
+CSetRasterizerState::CSetRasterizerState():
+    m_RasterizerState(nullptr),
+    m_CullMode(0),
+    m_ClockWise(false),
+    m_FillMode(0)
+{}
 
-CSetRasterizerState::CSetRasterizerState()
-{
-
-}
-
-CSetRasterizerState::~CSetRasterizerState()
-{
-
-}
-
+CSetRasterizerState::~CSetRasterizerState() {}
 
 bool CSetRasterizerState::Load(const CXMLElement* aElement)
 {
@@ -31,7 +28,6 @@ bool CSetRasterizerState::Load(const CXMLElement* aElement)
     }
     return lOk;
 }
-
 
 bool CSetRasterizerState::CreateRasterizerState(CRenderManager& lRM)
 {

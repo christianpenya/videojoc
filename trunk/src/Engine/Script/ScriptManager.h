@@ -1,3 +1,7 @@
+#pragma once
+#ifndef _SCRIPTMANAGER_20170222_HH_
+#define _SCRIPTMANAGER_20170222_HH_
+
 #include "Utils\TemplatedMapVector.h"
 #include "Script.h"
 
@@ -13,3 +17,5 @@ private:
     base::utils::CTemplatedMapVector<CScript> mScripts;
 
 };
+
+#endif //_SCRIPTMANAGER_20170222_HH_

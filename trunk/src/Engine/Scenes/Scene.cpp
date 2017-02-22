@@ -5,7 +5,8 @@
 #include "Imgui/imgui.h"
 
 CScene::CScene(const std::string& aName)
-    : CName(aName)
+    : CName(aName),
+      m_Active(false)
 {}
 
 CScene::~CScene() {}

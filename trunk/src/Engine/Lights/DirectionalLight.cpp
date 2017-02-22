@@ -1,11 +1,7 @@
 #include "DirectionalLight.h"
 
-CDirectionalLight::~CDirectionalLight()
-{
-}
+CDirectionalLight::CDirectionalLight(const CXMLElement* aElement) :
+    CLight(aElement)
+{}
 
-CDirectionalLight::CDirectionalLight(const CXMLElement* aElement) : CLight(aElement)
-{
-
-}
-
+CDirectionalLight::~CDirectionalLight() {}

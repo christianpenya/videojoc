@@ -3,11 +3,6 @@
 #define _ENGINE_CINEMATIC_CAMERA_PLAYER_20170213
 
 #include "CinematicPlayer.h"
-#include "Engine\Engine.h"
-#include "Camera\CameraController.h"
-#include "CinematicCameraKey.h"
-
-
 
 class CCinematicCameraPlayer : public CCinematicPlayer
 {

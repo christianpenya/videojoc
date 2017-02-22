@@ -1,7 +1,10 @@
+#pragma once
+
+#ifndef _SCRIPT_20170222_HH_
+#define _SCRIPT_20170222_HH_
+
 #include "Utils\Name.h"
 #include "lua_utils.h"
-#include <stdio.h>
-
 
 class CScript: public CName
 {
@@ -13,8 +16,11 @@ public:
     bool operator()(const std::string& aCode);
     bool Reload();
     lua_State* GetState();
+
 private:
     lua_State* mLS;
     std::string mFilename;
     void Init();
 };
+
+#endif //_SCRIPT_20170222_HH_

@@ -3,7 +3,6 @@
 #define _ENGINE_SHADERMANAGER_20170104
 
 #include "Shader.h"
-#include <string>
 #include "Utils\TemplatedMapVector.h"
 
 class CShaderManager

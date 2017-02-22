@@ -5,6 +5,7 @@
 #include "Geometry.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "Utils/CheckedDelete.h"
 
 template< class TVertexType >
 class CTemplatedGeometry : public CGeometry
@@ -13,8 +14,7 @@ public:
     CTemplatedGeometry(CVertexBuffer<TVertexType>* VertexBuffer, D3D11_PRIMITIVE_TOPOLOGY PrimitiveTopology):
         CGeometry(PrimitiveTopology),
         m_VertexBuffer(VertexBuffer)
-    {
-    }
+    {}
 
     virtual ~CTemplatedGeometry()
     {

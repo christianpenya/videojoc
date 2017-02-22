@@ -11,7 +11,10 @@
 #include "Mesh/TemplatedIndexedGeometry.h"
 #include "Scenes/ConstantBufferManager.h"
 
-CMesh::CMesh() {}
+CMesh::CMesh():
+    mCount(0)
+{}
+
 CMesh::~CMesh() {}
 
 CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsigned short aNumVertices, unsigned short aNumIndices, void* aVertexData, void* aIndexData)

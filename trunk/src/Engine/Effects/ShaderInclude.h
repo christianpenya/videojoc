@@ -2,7 +2,6 @@
 #ifndef _ENGINE_SHADERINCLUDE_20170104
 #define _ENGINE_SHADERINCLUDE_20170104
 
-#include <string>
 #include <fstream>
 #include "Utils\CheckedDelete.h"
 #include "Utils\CheckedRelease.h"
@@ -15,6 +14,7 @@ namespace ShaderUtils
 class CShaderInclude : public ID3DInclude
 {
 public:
+    virtual ~CShaderInclude() = default;
     CShaderInclude() {}
 
     HRESULT __stdcall Open(D3D_INCLUDE_TYPE IncludeType, LPCSTR pFileName, LPCVOID pParentData, LPCVOID *ppData, UINT *pBytes)

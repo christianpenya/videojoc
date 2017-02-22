@@ -4,7 +4,6 @@
 #include "Engine\Engine.h"
 #include "Render\RenderManager.h"
 
-
 CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     : CTexture(TreeNode->GetAttribute<std::string>("name", ""))
     , m_CreateDepthStencilBuffer( TreeNode->GetAttribute<bool>("create_depth_stencil_buffer", false) )

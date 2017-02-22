@@ -7,19 +7,21 @@
 #include "Utils/CheckedRelease.h"
 
 CShader::CShader(const std::string& aShaderCode, EShaderStage aType) :
-    m_ShaderCode(aShaderCode),
     m_Type(aType),
+    m_ShaderCode(aShaderCode),
+    m_ShaderMacros(nullptr),
     m_pBlob(nullptr)
 {}
 
 CShader::CShader(const CXMLElement* aElement, const std::string aPath, EShaderStage aType) :
     m_Type(aType),
-    CName(aElement->GetAttribute<std::string>("name", ""))
+    m_ShaderMacros(nullptr),
+    m_pBlob(nullptr),
+    CName(aElement->GetAttribute<std::string>("name", "")),
+    m_Filename(aPath + aElement->GetAttribute<std::string>("file", "")),
+    m_EntryPoint(aElement->GetAttribute<std::string>("entry_point", "")),
+    m_Preprocessor(aElement->GetAttribute<std::string>("preprocessor", ""))
 {
-    m_Filename = aPath + aElement->GetAttribute<std::string>("file", "");
-    m_EntryPoint = aElement->GetAttribute<std::string>("entry_point", "");
-    m_Preprocessor = aElement->GetAttribute<std::string>("preprocessor", "");
-    m_Type = aType;
 }
 
 CShader::~CShader()
@@ -43,6 +45,12 @@ bool CShader::Load()
     }
 
     return m_pBlob != nullptr;
+}
+
+bool CShader::Reload()
+{
+    // TODO
+    return false;
 }
 
 void CShader::CreateShaderMacro()

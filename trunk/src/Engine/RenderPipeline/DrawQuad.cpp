@@ -1,15 +1,9 @@
 #include "DrawQuad.h"
 #include "Effects\PixelShader.h"
+#include "Render\RenderManager.h"
 
-CDrawQuad::CDrawQuad()
-{
-
-}
-
-CDrawQuad::~CDrawQuad()
-{
-
-}
+CDrawQuad::CDrawQuad(): mQuad(nullptr), mPixelShader(nullptr) {}
+CDrawQuad::~CDrawQuad() {}
 
 bool CDrawQuad::Load(const CXMLElement * aElement)
 {

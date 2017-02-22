@@ -1,15 +1,11 @@
 #include "CinematicPlayer.h"
 
-CCinematicPlayer::CCinematicPlayer(): m_CurrentKey(nullptr), m_NextKey(nullptr)
-{
-}
+CCinematicPlayer::CCinematicPlayer():
+    m_CurrentKey(nullptr),
+    m_NextKey(nullptr)
+{}
 
-CCinematicPlayer::~CCinematicPlayer()
-{
-
-
-}
-
+CCinematicPlayer::~CCinematicPlayer() {}
 
 void CCinematicPlayer::PlayFoward(float currentTime)
 {

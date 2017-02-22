@@ -6,7 +6,6 @@
 #include "Render\RenderManager.h"
 #include "Utils\Name.h"
 
-
 class CRenderSceneLayer : public CRenderCmd
 {
 public:

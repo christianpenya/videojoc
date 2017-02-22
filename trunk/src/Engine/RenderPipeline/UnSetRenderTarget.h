@@ -2,10 +2,7 @@
 #ifndef _UNSETRENDERTARGET_H_
 #define _UNSETRENDERTARGET_H_
 
-#include "Render\RenderManager.h"
-#include "Utils\Name.h"
 #include "RenderStagedTexture.h"
-
 
 class CUnSetRenderTarget : public CRenderStagedTexture
 {

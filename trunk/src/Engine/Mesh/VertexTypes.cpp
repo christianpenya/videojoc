@@ -98,7 +98,7 @@ bool CreateInputLayout(CRenderManager &aRenderManager, uint32 aVertexFlags, ID3D
 
 uint32 GetFlagsFromString(const std::string& aString)
 {
-    uint32 lOut;
+    uint32 lOut = 0;
 
     if (aString == "PositionUV")
     {

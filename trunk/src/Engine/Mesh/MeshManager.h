@@ -2,7 +2,6 @@
 #ifndef _ENGINE_MESHMANAGER_20161222
 #define _ENGINE_MESHMANAGER_20161222
 
-#include <string>
 #include "Utils\TemplatedMapVector.h"
 #include "Mesh.h"
 
