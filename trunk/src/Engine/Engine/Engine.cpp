@@ -222,6 +222,11 @@ void CEngine::Render()
         m_DeltaTimeAcum -= CLOCKS_PER_SEC;
         //averageFrameTimeMilliseconds = 1000.0 / (frameRate == 0 ? 0.001 : frameRate);
     }
+
+    m_PhysXManager->CreatePlane("Default", 0, 1, 0, 0, 1);
+    m_PhysXManager->CreatePlane("Default", -1, 0, 0, 0, 2);
+    //m_PhysXManager->CreateShape("Default", Quatf(0.0f, 0.0f, 0.0f, 0.0f), Vect3f(0.0f, 1.0f, 0.0f));
+    m_PhysXManager->CreateDynamicObject("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 1.0f, 0.0f), 1, 1, 1, 1, 0.5f);
 }
 
 void CEngine::fpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt)

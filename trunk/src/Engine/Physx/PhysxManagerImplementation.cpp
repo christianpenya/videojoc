@@ -16,6 +16,8 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
 
     m_Foundation = PxCreateFoundation(PX_PHYSICS_VERSION, gDefaultAllocatorCallback, gDefaultErrorCallback);
     assert(m_Foundation);
+
+
     physx::PxProfileZoneManager* profileZoneManager = nullptr;
 #	if USE_PHYSX_DEBUG
     profileZoneManager = &physx::PxProfileZoneManager::createProfileZoneManager(m_Foundation);
@@ -40,10 +42,11 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
     }
 #	endif
 
-    m_Dispatcher = physx::PxDefaultCpuDispatcherCreate(2);
 
     physx::PxSceneDesc sceneDesc(m_PhysX->getTolerancesScale());
     sceneDesc.gravity = physx::PxVec3(0.0f, -9.81f, 0.0f);
+
+    m_Dispatcher = physx::PxDefaultCpuDispatcherCreate(2);
     sceneDesc.cpuDispatcher = m_Dispatcher;
     sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
     sceneDesc.flags = physx::PxSceneFlag::eENABLE_ACTIVETRANSFORMS;
@@ -67,7 +70,6 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
     RegisterMaterial("Default", 0.5f, 0.5f, 0.6f);
 
     m_LeftoverSeconds = 0.0f;
-
 }
 
 void CPhysXManagerImplementation::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 count)

@@ -7,6 +7,7 @@ corregir en la versión final ya que estas son más lentas que las librerías “rele
 de PhysX al llevar más comprobaciones de errores.Hay además otro tipo de librerías, las
 “ CHECKED ”, que son un intermedio de las anteriores.*/
 
+#ifdef _DEBUG
 #pragma comment(lib, "PhysX3DEBUG_x86.lib")
 #pragma comment(lib, "PhysX3CommonDEBUG_x86.lib")
 #pragma comment(lib, "PhysX3ExtensionsDEBUG.lib")
@@ -15,7 +16,15 @@ de PhysX al llevar más comprobaciones de errores.Hay además otro tipo de librerí
 #pragma comment(lib, "PhysX3CharacterKinematicDEBUG_x86.lib")
 #pragma comment(lib, "PhysX3CookingDEBUG_x86.lib")
 
-
+#else //Else load libraries for Release mode
+#pragma comment(lib, "PhysX3_x86.lib")
+#pragma comment(lib, "PhysX3Common_x86.lib")
+#pragma comment(lib, "PhysX3Extensions.lib")
+#pragma comment(lib, "PhysXProfileSDK.lib")
+#pragma comment(lib, "PhysXVisualDebuggerSDK.lib")
+#pragma comment(lib, "PhysX3CharacterKinematic_x86.lib")
+#pragma comment(lib, "PhysX3Cooking_x86.lib")
+#endif
 
 
 #if USE_PHYSX_DEBUG
@@ -27,10 +36,6 @@ de PhysX al llevar más comprobaciones de errores.Hay además otro tipo de librerí
 #endif
 #define CHECKED_RELEASE(x) if(x!=nullptr) {x->release(); x=nullptr;}
 
-CPhysXManager* CPhysXManager::CreatePhysXManager()
-{
-    return new CPhysXManagerImplementation();
-}
 
 CPhysXManager::CPhysXManager()
 {}
@@ -56,6 +61,13 @@ CPhysXManager::~CPhysXManager()
     }
     m_CharacterControllers.clear();
 }
+
+
+CPhysXManager* CPhysXManager::CreatePhysXManager()
+{
+    return new CPhysXManagerImplementation();
+}
+
 
 inline physx::PxVec3 CastVec(const Vect3f& v)
 {
@@ -97,13 +109,12 @@ Quatf CPhysXManager::GetActorOrientation(const std::string& actorName)
 
 void CPhysXManager::RegisterMaterial(const std::string &name, float staticFriction, float dynamicFriction, float restitution)
 {
-    /*
-     auto it = m_Materials.find(name);
+
+    auto it = m_Materials.find(name);
     if (it != m_Materials.end())
     {
-    	it->second->release(); // if a material with taht name exist, we remove it
+        it->second->release(); // if a material with taht name exist, we remove it
     }
-     */
 
     assert(m_Materials.find(name) == m_Materials.end()); //duplicated key!
     m_Materials[name] = m_PhysX->createMaterial(staticFriction, dynamicFriction, restitution);
@@ -126,7 +137,7 @@ void CPhysXManager::CreateStaticObject(std::string aMaterialName, const Quatf or
 void CPhysXManager::CreatePlane(std::string aMaterialName, float x, float y, float z, float d, size_t index)
 {
     physx::PxMaterial* l_Material = m_Materials[aMaterialName];
-    physx::PxRigidStatic* groundPlane = PxCreatePlane(*m_PhysX, physx::PxPlane(x, y, z, d), (*l_Material));
+    physx::PxRigidStatic* groundPlane = physx::PxCreatePlane(*m_PhysX, physx::PxPlane(x, y, z, d), (*l_Material));
     groundPlane->userData = (void*)index;
     m_Scene->addActor(*groundPlane);
 
@@ -135,13 +146,12 @@ void CPhysXManager::CreatePlane(std::string aMaterialName, float x, float y, flo
     assert(numShapes == 1);
 }
 
-//#TODO mismo que el anterior
 void CPhysXManager::CreateDynamicObject(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index, physx::PxReal density)
 {
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
 
-    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
     physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
     body->attachShape(*shape);
     body->userData = (void*)index;
     physx::PxRigidBodyExt::updateMassAndInertia(*body, density);
@@ -154,12 +164,17 @@ void CPhysXManager::CreateDynamicObject(std::string aMaterialName, const Quatf o
 void CPhysXManager::CreateShape(std::string aMaterialName, const Quatf orientation, const Vect3f position)
 {
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
-    std::vector<Vect3f> vertices;
+    //std::vector<Vect3f> vertices; //old
+
+    static const PxVec3 vertices[] = { PxVec3(0, 1, 0), PxVec3(1, 0, 0), PxVec3(-1, 0, 0), PxVec3(0, 0, 1), PxVec3(0, 0, -1) };
 
     physx::PxConvexMeshDesc convexDesc;
-    convexDesc.points.count = vertices.size();
-    convexDesc.points.stride = sizeof(Vect3f);
-    convexDesc.points.data = &vertices[0];
+    convexDesc.points.count = 5;
+    //convexDesc.points.count = vertices.size(); //old
+    convexDesc.points.stride = sizeof(PxVec3);
+    //convexDesc.points.stride = sizeof(Vect3f); //old
+    convexDesc.points.data = vertices;
+    //convexDesc.points.data = &vertices[0]; //old
     convexDesc.flags = physx::PxConvexFlag::eCOMPUTE_CONVEX;
 
     physx::PxDefaultMemoryOutputStream buf;

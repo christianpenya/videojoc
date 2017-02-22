@@ -10,21 +10,6 @@
 
 using namespace physx;
 
-/*#include <foundation/PxFoundation.h>
-#include <PxPhysics.h>
-#include <extensions/PxDefaultCpuDispatcher.h>
-#include <PxPhysics.h>
-#include <PxScene.h>
-#include <cooking/PxCooking.h>
-#include <PxMaterial.h>
-#include <PxActor.h>
-#include <PxRigidActor.h>
-#include <characterkinematic/PxControllerManager.h>
-#include <extensions/PxJoint.h>
-#include <characterkinematic/PxController.h>
-#include <extensions/PxDefaultErrorCallback.h>
-#include <extensions/PxDefaultAllocator.h>
-*/
 namespace physx
 {
 class PxFoundation;
@@ -103,7 +88,7 @@ protected:
     std::map<std::string, physx::PxController*> m_CharacterControllers;
 
     float m_LeftoverSeconds;
-
+public:
     //void Update(float _dt);
     void RegisterMaterial(const std::string &name, float staticFriction, float dynamicFriction, float restitution);
     void CreateStaticObject(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index);
