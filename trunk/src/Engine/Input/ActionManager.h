@@ -73,7 +73,7 @@ class CActionManager : public base::utils::CTemplatedMap < InputAction >
 
 public:
     CActionManager(CInputManager& inputManager);
-    virtual ~CActionManager() {};
+    virtual ~CActionManager();
 
     bool LoadActions(const std::string &path);
     void Update();

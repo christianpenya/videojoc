@@ -7,6 +7,11 @@ CActionManager::CActionManager(CInputManager& inputManager)
     : m_InputManager(inputManager)
 {}
 
+CActionManager::~CActionManager()
+{
+    CTemplatedMap<InputAction>::Destroy();
+}
+
 ActionTrigger::TriggerType ActionTrigger::GetTriggerTypeFromString(const char* str, TriggerType defaultValue)
 {
     if (str == nullptr)

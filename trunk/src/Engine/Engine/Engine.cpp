@@ -1,23 +1,23 @@
 #include "Engine.h"
-#include "imgui_impl_dx11.h"
+#include "ImGUI/imgui_impl_dx11.h"
 #include "ImGUI\imgui.h"
 #include "Utils/Logger.h"
 
-#include "Camera\CameraController.h"
+#include "Graphics/Camera/CameraController.h"
 #include "Input\ActionManager.h"
-#include "Materials\MaterialManager.h"
-#include "Textures\TextureManager.h"
-#include "Mesh\MeshManager.h"
-#include "Effects\ShaderManager.h"
-#include "Effects\EffectManager.h"
-#include "Effects\TechniquePoolManager.h"
-#include "Scenes\SceneManager.h"
-#include "Lights\LightManager.h"
-#include "Scenes\ConstantBufferManager.h"
-#include "RenderPipeline\RenderPipeline.h"
-#include "Animation/AnimatedModelManager.h"
-#include "Script/ScriptManager.h"
-#include "Cinematics\CinematicsManager.h"
+#include "Graphics/Materials/MaterialManager.h"
+#include "Graphics/Textures/TextureManager.h"
+#include "Graphics/Mesh/MeshManager.h"
+#include "Graphics/Effects/ShaderManager.h"
+#include "Graphics/Effects/EffectManager.h"
+#include "Graphics/Effects/TechniquePoolManager.h"
+#include "Graphics/Scenes/SceneManager.h"
+#include "Graphics/Lights/LightManager.h"
+#include "Graphics/Buffers/ConstantBufferManager.h"
+#include "Render/RenderPipeline/RenderPipeline.h"
+#include "Graphics/Animation/AnimatedModelManager.h"
+#include "Scripts/ScriptManager.h"
+#include "Graphics/Cinematics\CinematicsManager.h"
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
@@ -50,6 +50,21 @@ CEngine::CEngine()
 CEngine::~CEngine()
 {
     ImGui_ImplDX11_Shutdown();
+    base::utils::CheckedDelete(m_RenderPipeline);
+    base::utils::CheckedDelete(m_CinematicManager);
+    base::utils::CheckedDelete(m_SceneManager);
+    base::utils::CheckedDelete(m_LightManager);
+    base::utils::CheckedDelete(m_MeshManager);
+    base::utils::CheckedDelete(m_AnimatedModelManager);
+    base::utils::CheckedDelete(m_MaterialManager);
+    base::utils::CheckedDelete(m_TextureManager);
+    base::utils::CheckedDelete(m_TechniquePoolManager);
+    base::utils::CheckedDelete(m_EffectManager);
+    base::utils::CheckedDelete(m_ShaderManager);
+    base::utils::CheckedDelete(m_ConstantBufferManager);
+    base::utils::CheckedDelete(m_ActionManager);
+    base::utils::CheckedDelete(m_InputManager);
+    base::utils::CheckedDelete(m_ScriptManager);
 }
 
 
@@ -98,7 +113,6 @@ void CEngine::LoadFiles()
     m_SceneManager = new CSceneManager();
     m_SceneManager->Load(m_FileSceneManager);
     LOG_INFO_APPLICATION("Engine -> Scenes Loaded! \\(^-^)/");
-
 
     m_CinematicManager = new CCinematicManager;
     m_CinematicManager->Load("data/cinematics.xml");

@@ -2,15 +2,16 @@
 
 #ifndef _ENGINE_ENGINE_CPB_20161127_H
 #define _ENGINE_ENGINE_CPB_20161127_H
-#include "Render\RenderManager.h"
-#include "Utils\Singleton.h"
-#include "Camera\SphericalCameraController.h"
-#include "Camera\FpsCameraController.h"
-#include "Camera\TpsCameraController.h"
-#include <chrono>
-#include "imgui_impl_dx11.h"
-#include "Utils\StringUtils.h"
 
+#include "Utils/MemLeaks/MemLeaks.h"
+#include "Render/RenderManager.h"
+#include "Utils/Singleton.h"
+#include "Graphics/Camera/SphericalCameraController.h"
+#include "Graphics/Camera/FpsCameraController.h"
+#include "Graphics/Camera/TpsCameraController.h"
+#include <chrono>
+#include "Imgui/imgui_impl_dx11.h"
+#include "Utils/StringUtils.h"
 
 class CRenderManager;
 class CInputManager;

@@ -1,104 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Animation">
-      <UniqueIdentifier>{859E00A2-F108-B518-3A47-66BEA6F0926D}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Camera">
-      <UniqueIdentifier>{CE7141AB-BA13-6C81-A3CE-7FD58F0FF3D1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Cinematics">
-      <UniqueIdentifier>{65A2DEF3-515A-2041-BA61-F99CA638BB31}</UniqueIdentifier>
-    </Filter>
     <Filter Include="DirectXTex">
       <UniqueIdentifier>{A90EE592-95C6-26E0-FECD-FF3BEAA4C1D0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Effects">
-      <UniqueIdentifier>{C5078FB8-31E7-0D54-3AFF-982AA65D74B5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine">
       <UniqueIdentifier>{DBC7D3B0-C769-FE86-B024-12DB9C6585D7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{1653CE33-0220-293F-2B39-17E717655ECD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Animation">
+      <UniqueIdentifier>{855FDEBF-7143-9F15-DAA3-9968C6A68997}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Buffers">
+      <UniqueIdentifier>{92C817CE-7EC1-3620-A7F3-1BA5934B162C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Camera">
+      <UniqueIdentifier>{CED20E8B-3A5E-7C4F-436F-FF43AF79D84F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Cinematics">
+      <UniqueIdentifier>{658374CD-D1E4-51DB-5A52-988DC6B2889A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Effects">
+      <UniqueIdentifier>{C5880892-B181-27E4-DAB3-0C69C60B07F0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Lights">
+      <UniqueIdentifier>{50C79AA0-BC52-0865-C563-8B59316E6465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Materials">
+      <UniqueIdentifier>{67A9A073-538D-61C9-BCED-5B1CA8F04B4B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Mesh">
+      <UniqueIdentifier>{92268A97-FEE6-05CE-C721-4F4B33A14AAA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Scenes">
+      <UniqueIdentifier>{864F81B0-F2DA-EE74-FBEB-716967F64A75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Textures">
+      <UniqueIdentifier>{A9FD1089-1514-0F1F-5E8B-9A40CAE0DFA6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{953A660D-014F-8EBE-CAD0-311E36A48AEF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lights">
-      <UniqueIdentifier>{5066CDC0-3C08-F896-25C3-0BEB11047FE7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Materials">
-      <UniqueIdentifier>{67E8C255-D352-77CC-1C91-2872883A5521}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mesh">
-      <UniqueIdentifier>{9205897C-7E3C-8A0D-2729-7010133F060F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Render">
       <UniqueIdentifier>{C5BB87CE-B15D-B2A4-9A18-C6F8865939F5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RenderPipeline">
-      <UniqueIdentifier>{BB99AD63-A767-A169-90FB-11907C687DCE}</UniqueIdentifier>
+    <Filter Include="Render\RenderPipeline">
+      <UniqueIdentifier>{8A479D90-F6B3-588B-BFA7-F0E82BD37AF3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scenes">
-      <UniqueIdentifier>{86EEB3D0-7290-DEA6-5B4B-F2FA478C65F7}</UniqueIdentifier>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{4D6F1AE8-B94E-9983-C266-245A2EC5FFE4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Script">
-      <UniqueIdentifier>{9AFBBAD0-869D-E5A6-6F58-F9FA5B996CF7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Script\Bindings">
-      <UniqueIdentifier>{37B2F9F2-A33D-67B7-AC4E-EAAB1859C3B7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Textures">
-      <UniqueIdentifier>{A95C6780-9529-C28B-BE42-B033AA6EF719}</UniqueIdentifier>
+    <Filter Include="Scripts\Bindings">
+      <UniqueIdentifier>{4AFFCD57-36F8-ECA9-5F2A-D22E4B82CCB5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Engine\Animation\AnimatedCoreModel.h">
-      <Filter>Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Animation\AnimatedModelManager.h">
-      <Filter>Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Animation\SceneAnimatedModel.h">
-      <Filter>Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Camera\CameraController.h">
-      <Filter>Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Camera\FpsCameraController.h">
-      <Filter>Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Camera\Frustum.h">
-      <Filter>Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Camera\SphericalCameraController.h">
-      <Filter>Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Camera\TpsCameraController.h">
-      <Filter>Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Cinematics\Cinematic.h">
-      <Filter>Cinematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicCameraKey.h">
-      <Filter>Cinematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicCameraPlayer.h">
-      <Filter>Cinematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicKey.h">
-      <Filter>Cinematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicObjectKey.h">
-      <Filter>Cinematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicObjectPlayer.h">
-      <Filter>Cinematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicPlayer.h">
-      <Filter>Cinematics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Cinematics\CinematicsManager.h">
-      <Filter>Cinematics</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Engine\DirectXTex\BC.h">
       <Filter>DirectXTex</Filter>
     </ClInclude>
@@ -120,41 +78,185 @@
     <ClInclude Include="..\..\src\Engine\DirectXTex\scoped.h">
       <Filter>DirectXTex</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Effects\Effect.h">
-      <Filter>Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Effects\EffectManager.h">
-      <Filter>Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Effects\PixelShader.h">
-      <Filter>Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Effects\Shader.h">
-      <Filter>Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Effects\ShaderInclude.h">
-      <Filter>Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Effects\ShaderManager.h">
-      <Filter>Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Effects\Technique.h">
-      <Filter>Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Effects\TechniquePool.h">
-      <Filter>Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Effects\TechniquePoolManager.h">
-      <Filter>Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Effects\VertexShader.h">
-      <Filter>Effects</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Engine\Engine.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Engine\imgui_impl_dx11.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="..\..\src\Engine\Graphics\Animation\AnimatedCoreModel.h">
+      <Filter>Graphics\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Animation\AnimatedModelManager.h">
+      <Filter>Graphics\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Animation\SceneAnimatedModel.h">
+      <Filter>Graphics\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Buffers\ConstantBuffer.h">
+      <Filter>Graphics\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Buffers\ConstantBufferManager.h">
+      <Filter>Graphics\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Camera\CameraController.h">
+      <Filter>Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Camera\FpsCameraController.h">
+      <Filter>Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Camera\Frustum.h">
+      <Filter>Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Camera\SphericalCameraController.h">
+      <Filter>Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Camera\TpsCameraController.h">
+      <Filter>Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Cinematics\Cinematic.h">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Cinematics\CinematicCameraKey.h">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Cinematics\CinematicCameraPlayer.h">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Cinematics\CinematicKey.h">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Cinematics\CinematicObjectKey.h">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Cinematics\CinematicObjectPlayer.h">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Cinematics\CinematicPlayer.h">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Cinematics\CinematicsManager.h">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\Effect.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\EffectManager.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\PixelShader.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\Shader.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\ShaderInclude.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\ShaderManager.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\Technique.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\TechniquePool.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\TechniquePoolManager.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\VertexShader.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Lights\DirectionalLight.h">
+      <Filter>Graphics\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Lights\Light.h">
+      <Filter>Graphics\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Lights\LightManager.h">
+      <Filter>Graphics\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Lights\PointLight.h">
+      <Filter>Graphics\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Lights\SpotLight.h">
+      <Filter>Graphics\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Materials\Material.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Materials\MaterialManager.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Materials\MaterialParameter.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Materials\TemplatedMaterialParameter.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\AxisAlignedBoundingBox.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\BoundingSphere.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\Buffer.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\Geometry.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\IndexBuffer.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\Mesh.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\MeshManager.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\Plane.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\TemplatedGeometry.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\TemplatedIndexedGeometry.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\VertexBuffer.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\VertexTypes.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\VertexsTypes_HelperMacros.h">
+      <Filter>Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Scenes\ConstantBuffer.h">
+      <Filter>Graphics\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Scenes\Layer.h">
+      <Filter>Graphics\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Scenes\Scene.h">
+      <Filter>Graphics\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneBasicPrimitive.h">
+      <Filter>Graphics\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneManager.h">
+      <Filter>Graphics\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneMesh.h">
+      <Filter>Graphics\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneNode.h">
+      <Filter>Graphics\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Textures\Texture.h">
+      <Filter>Graphics\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Textures\TextureManager.h">
+      <Filter>Graphics\Textures</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Input\ActionManager.h">
       <Filter>Input</Filter>
@@ -165,224 +267,80 @@
     <ClInclude Include="..\..\src\Engine\Input\InputManager.h">
       <Filter>Input</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Lights\DirectionalLight.h">
-      <Filter>Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Lights\Light.h">
-      <Filter>Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Lights\LightManager.h">
-      <Filter>Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Lights\PointLight.h">
-      <Filter>Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Lights\SpotLight.h">
-      <Filter>Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Materials\Material.h">
-      <Filter>Materials</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Materials\MaterialManager.h">
-      <Filter>Materials</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Materials\MaterialParameter.h">
-      <Filter>Materials</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Materials\TemplatedMaterialParameter.h">
-      <Filter>Materials</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\AxisAlignedBoundingBox.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\BoundingSphere.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\Buffer.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\Geometry.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\IndexBuffer.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\Mesh.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\MeshManager.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\Plane.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\TemplatedGeometry.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\TemplatedIndexedGeometry.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\VertexBuffer.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\VertexTypes.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Mesh\VertexsTypes_HelperMacros.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Render\RenderManager.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\ApplyTechniquePool.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\ApplyTechniquePool.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\BeginRenderCmd.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\BeginRenderCmd.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\CaptureFrameBuffer.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\CaptureFrameBuffer.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\CaptureFrameBufferTexture.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\CaptureFrameBufferTexture.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\ClearCmd.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\ClearCmd.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\DrawQuad.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\DrawQuad.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\DynamicTexture.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\DynamicTexture.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\EndRenderCmd.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\EndRenderCmd.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\Quad.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\Quad.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\RenderCmd.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderCmd.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\RenderImGUI.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderImGUI.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\RenderPipeline.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderPipeline.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\RenderSceneLayer.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderSceneLayer.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\RenderStagedTexture.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderStagedTexture.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\SetAlphaBlendState.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\SetAlphaBlendState.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\SetDepthStencilStateCmd.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\SetDepthStencilStateCmd.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\SetPerFrameConstantsCmd.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\SetPerFrameConstantsCmd.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\SetRasterizerState.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\SetRasterizerState.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\SetRenderTarget.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\SetRenderTarget.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\RenderPipeline\UnSetRenderTarget.h">
-      <Filter>RenderPipeline</Filter>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\UnSetRenderTarget.h">
+      <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Scenes\ConstantBuffer.h">
-      <Filter>Scenes</Filter>
+    <ClInclude Include="..\..\src\Engine\Scripts\Script.h">
+      <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Scenes\ConstantBufferManager.h">
-      <Filter>Scenes</Filter>
+    <ClInclude Include="..\..\src\Engine\Scripts\ScriptManager.h">
+      <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Scenes\Layer.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Scenes\Scene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Scenes\SceneBasicPrimitive.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Scenes\SceneManager.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Scenes\SceneMesh.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Scenes\SceneNode.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Script\Script.h">
-      <Filter>Script</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Script\ScriptManager.h">
-      <Filter>Script</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Script\lua_utils.h">
-      <Filter>Script</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Textures\Texture.h">
-      <Filter>Textures</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Textures\TextureManager.h">
-      <Filter>Textures</Filter>
+    <ClInclude Include="..\..\src\Engine\Scripts\lua_utils.h">
+      <Filter>Scripts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Engine\Animation\AnimatedCoreModel.cpp">
-      <Filter>Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Animation\AnimatedModelManager.cpp">
-      <Filter>Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Animation\SceneAnimatedModel.cpp">
-      <Filter>Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Camera\CameraController.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Camera\FpsCameraController.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Camera\Frustum.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Camera\SphericalCameraController.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Camera\TpsCameraController.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Cinematics\Cinematic.cpp">
-      <Filter>Cinematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicCameraKey.cpp">
-      <Filter>Cinematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicCameraPlayer.cpp">
-      <Filter>Cinematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicKey.cpp">
-      <Filter>Cinematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicObjectKey.cpp">
-      <Filter>Cinematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicObjectPlayer.cpp">
-      <Filter>Cinematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicPlayer.cpp">
-      <Filter>Cinematics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Cinematics\CinematicsManager.cpp">
-      <Filter>Cinematics</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Engine\DirectXTex\BC.cpp">
       <Filter>DirectXTex</Filter>
     </ClCompile>
@@ -443,38 +401,146 @@
     <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexWIC.cpp">
       <Filter>DirectXTex</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Effects\Effect.cpp">
-      <Filter>Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Effects\EffectManager.cpp">
-      <Filter>Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Effects\PixelShader.cpp">
-      <Filter>Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Effects\Shader.cpp">
-      <Filter>Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Effects\ShaderManager.cpp">
-      <Filter>Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Effects\Technique .cpp">
-      <Filter>Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Effects\TechniquePool.cpp">
-      <Filter>Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Effects\TechniquePoolManager.cpp">
-      <Filter>Effects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Effects\VertexShader.cpp">
-      <Filter>Effects</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Engine\imgui_impl_dx11.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="..\..\src\Engine\Graphics\Animation\AnimatedCoreModel.cpp">
+      <Filter>Graphics\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Animation\AnimatedModelManager.cpp">
+      <Filter>Graphics\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Animation\SceneAnimatedModel.cpp">
+      <Filter>Graphics\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Buffers\ConstantBuffer.cpp">
+      <Filter>Graphics\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Buffers\ConstantBufferManager.cpp">
+      <Filter>Graphics\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Camera\CameraController.cpp">
+      <Filter>Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Camera\FpsCameraController.cpp">
+      <Filter>Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Camera\Frustum.cpp">
+      <Filter>Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Camera\SphericalCameraController.cpp">
+      <Filter>Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Camera\TpsCameraController.cpp">
+      <Filter>Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Cinematics\Cinematic.cpp">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Cinematics\CinematicCameraKey.cpp">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Cinematics\CinematicCameraPlayer.cpp">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Cinematics\CinematicKey.cpp">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Cinematics\CinematicObjectKey.cpp">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Cinematics\CinematicObjectPlayer.cpp">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Cinematics\CinematicPlayer.cpp">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Cinematics\CinematicsManager.cpp">
+      <Filter>Graphics\Cinematics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Effects\Effect.cpp">
+      <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Effects\EffectManager.cpp">
+      <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Effects\PixelShader.cpp">
+      <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Effects\Shader.cpp">
+      <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Effects\ShaderManager.cpp">
+      <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Effects\Technique .cpp">
+      <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Effects\TechniquePool.cpp">
+      <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Effects\TechniquePoolManager.cpp">
+      <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Effects\VertexShader.cpp">
+      <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Lights\DirectionalLight.cpp">
+      <Filter>Graphics\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Lights\Light.cpp">
+      <Filter>Graphics\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Lights\LightManager.cpp">
+      <Filter>Graphics\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Lights\PointLight.cpp">
+      <Filter>Graphics\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Lights\SpotLight.cpp">
+      <Filter>Graphics\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Materials\Material.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Materials\MaterialManager.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Mesh\Mesh.cpp">
+      <Filter>Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Mesh\MeshManager.cpp">
+      <Filter>Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Mesh\Plane.cpp">
+      <Filter>Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Mesh\VertexTypes.cpp">
+      <Filter>Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Scenes\Layer.cpp">
+      <Filter>Graphics\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Scenes\Scene.cpp">
+      <Filter>Graphics\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneBasicPrimitive.cpp">
+      <Filter>Graphics\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneManager.cpp">
+      <Filter>Graphics\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneMesh.cpp">
+      <Filter>Graphics\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneNode.cpp">
+      <Filter>Graphics\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Textures\Texture.cpp">
+      <Filter>Graphics\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Textures\TextureManager.cpp">
+      <Filter>Graphics\Textures</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Input\ActionManager.cpp">
       <Filter>Input</Filter>
@@ -482,140 +548,77 @@
     <ClCompile Include="..\..\src\Engine\Input\InputManager.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Lights\DirectionalLight.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Lights\Light.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Lights\LightManager.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Lights\PointLight.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Lights\SpotLight.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Materials\Material.cpp">
-      <Filter>Materials</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Materials\MaterialManager.cpp">
-      <Filter>Materials</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Mesh\Mesh.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Mesh\MeshManager.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Mesh\Plane.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Mesh\VertexTypes.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Render\RenderManager.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\ApplyTechniquePool.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\ApplyTechniquePool.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\BeginRenderCmd.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\BeginRenderCmd.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\CaptureFrameBuffer.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\CaptureFrameBuffer.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\CaptureFrameBufferTexture.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\CaptureFrameBufferTexture.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\DrawQuad.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\DrawQuad.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\DynamicTexture.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\DynamicTexture.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\Quad.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\Quad.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\RenderCmd.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderCmd.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\RenderImGUI.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderImGUI.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\RenderPipeline.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderPipeline.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\RenderSceneLayer.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderSceneLayer.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\RenderStagedTexture.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderStagedTexture.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\SetAlphaBlendState.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\SetAlphaBlendState.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\SetDepthStencilStateCmd.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\SetDepthStencilStateCmd.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\SetPerFrameConstantsCmd.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\SetPerFrameConstantsCmd.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\SetRasterizerState.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\SetRasterizerState.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\SetRenderTarget.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\SetRenderTarget.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\UnSetRenderTarget.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\UnSetRenderTarget.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\clearCmd.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\clearCmd.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\RenderPipeline\endRenderCmd.cpp">
-      <Filter>RenderPipeline</Filter>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\endRenderCmd.cpp">
+      <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Scenes\ConstantBuffer.cpp">
-      <Filter>Scenes</Filter>
+    <ClCompile Include="..\..\src\Engine\Scripts\Bindings\EngineBindings.cpp">
+      <Filter>Scripts\Bindings</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Scenes\ConstantBufferManager.cpp">
-      <Filter>Scenes</Filter>
+    <ClCompile Include="..\..\src\Engine\Scripts\Script.cpp">
+      <Filter>Scripts</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Scenes\Layer.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Scenes\Scene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Scenes\SceneBasicPrimitive.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Scenes\SceneManager.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Scenes\SceneMesh.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Scenes\SceneNode.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Script\Bindings\EngineBindings.cpp">
-      <Filter>Script\Bindings</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Script\Script.cpp">
-      <Filter>Script</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Script\ScriptManager.cpp">
-      <Filter>Script</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Textures\Texture.cpp">
-      <Filter>Textures</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Textures\TextureManager.cpp">
-      <Filter>Textures</Filter>
+    <ClCompile Include="..\..\src\Engine\Scripts\ScriptManager.cpp">
+      <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
