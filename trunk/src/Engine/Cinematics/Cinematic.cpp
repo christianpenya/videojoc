@@ -63,12 +63,6 @@ void CCinematic::Update(float elapsedTime)
     if (m_PlayingForward && !m_Finish)
     {
         m_CurrentTime += elapsedTime;
-        for (TMapResources::iterator iPlayerMapEntry = m_ResourcesMap.begin(); iPlayerMapEntry != m_ResourcesMap.end(); ++iPlayerMapEntry)
-        {
-            CCinematicPlayer* lCinematPlay = iPlayerMapEntry->second.m_Value;
-            lCinematPlay->PlayFoward(m_CurrentTime);
-
-        }
         if (m_CurrentTime >= m_TotalTime)
         {
             if (m_Reversed)
@@ -90,33 +84,44 @@ void CCinematic::Update(float elapsedTime)
             }
 
         }
-        else if (m_PlayingBackward && !m_Finish)
+        else
         {
-            m_CurrentTime -= elapsedTime;
             for (TMapResources::iterator iPlayerMapEntry = m_ResourcesMap.begin(); iPlayerMapEntry != m_ResourcesMap.end(); ++iPlayerMapEntry)
             {
                 CCinematicPlayer* lCinematPlay = iPlayerMapEntry->second.m_Value;
                 lCinematPlay->PlayFoward(m_CurrentTime);
 
             }
-            if (m_CurrentTime <= 0.0f)
-            {
-                if (m_Loop && m_Reversed)
-                {
-                    m_CurrentTime = 0.0f;
-                    m_PlayingForward = true;
-                    m_PlayingBackward = false;
+        }
 
-                }
-                else
-                {
-                    m_Finish = true;
-                    m_CurrentTime = m_TotalTime;
-                }
-            }
+    }
+    else if (m_PlayingBackward && !m_Finish)
+    {
+        m_CurrentTime -= elapsedTime;
+        for (TMapResources::iterator iPlayerMapEntry = m_ResourcesMap.begin(); iPlayerMapEntry != m_ResourcesMap.end(); ++iPlayerMapEntry)
+        {
+            CCinematicPlayer* lCinematPlay = iPlayerMapEntry->second.m_Value;
+            lCinematPlay->PlayFoward(m_CurrentTime);
 
         }
+        if (m_CurrentTime <= 0.0f)
+        {
+            if (m_Loop && m_Reversed)
+            {
+                m_CurrentTime = 0.0f;
+                m_PlayingForward = true;
+                m_PlayingBackward = false;
+
+            }
+            else
+            {
+                m_Finish = true;
+                m_CurrentTime = m_TotalTime;
+            }
+        }
+
     }
+
 
 
 
