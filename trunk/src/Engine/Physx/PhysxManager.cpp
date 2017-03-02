@@ -107,6 +107,13 @@ Quatf CPhysXManager::GetActorOrientation(const std::string& actorName)
     return m_ActorOrientations[index];
 }
 
+
+void CPhysXManager::GetActorTransform(const std::string& actorName, Vect3f& position, Quatf& orientation) const
+{
+
+}
+
+
 void CPhysXManager::RegisterMaterial(const std::string &name, float staticFriction, float dynamicFriction, float restitution)
 {
 
@@ -120,17 +127,41 @@ void CPhysXManager::RegisterMaterial(const std::string &name, float staticFricti
     m_Materials[name] = m_PhysX->createMaterial(staticFriction, dynamicFriction, restitution);
 }
 
-// #TODO este método es una mierda, no entieno donde tiene que ir ni cómo se va a usar. está hecho de manera que compile y ya.
+
 void CPhysXManager::CreateStaticObject(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index)
 {
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
 
-    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
+    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material)); //funciona
     physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
     body->attachShape(*shape);
     body->userData = (void*)index;
     m_Scene->addActor(*body);
 
+    shape->release();
+}
+
+
+void CPhysXManager::CreateBox(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index)
+{
+    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
+    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
+    physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+    body->attachShape(*shape);
+    body->userData = (void*)index;
+    m_Scene->addActor(*body);
+    shape->release();
+}
+
+
+void CPhysXManager::CreateSphere(std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius, size_t index)
+{
+    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
+    physx::PxShape* shape = m_PhysX->createShape(physx::PxSphereGeometry(radius), (*l_Material));
+    physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+    body->attachShape(*shape);
+    body->userData = (void*)index;
+    m_Scene->addActor(*body);
     shape->release();
 }
 
@@ -146,19 +177,52 @@ void CPhysXManager::CreatePlane(std::string aMaterialName, float x, float y, flo
     assert(numShapes == 1);
 }
 
-void CPhysXManager::CreateDynamicObject(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index, physx::PxReal density)
+
+void CPhysXManager::CreateDynamicObject(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density, std::string actorName)
 {
+    size_t index = GetActorSize(actorName);
+
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
 
     physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
-    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
-    body->attachShape(*shape);
+    body->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
+    /*body->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
+    body->setAngularVelocity(PxVec3(0.f, 0.f, 5.f));
+    body->setAngularDamping(0.f);*/ //Esto solo son ejemplos que vi en el tutorial,por si nos interesa
     body->userData = (void*)index;
     physx::PxRigidBodyExt::updateMassAndInertia(*body, density);
-
     m_Scene->addActor(*body);
 
-    shape->release();
+    AddActor(actorName, index, body, orientation, position);
+}
+
+size_t CPhysXManager::GetActorSize(const std::string& actorName)
+{
+    assert(m_ActorIndexs.find(actorName) == m_ActorIndexs.end()); // duplicated key!
+    assert(m_Actors.size() == m_ActorNames.size()); // AOS sync fail
+    assert(m_Actors.size() == m_ActorPositions.size()); // AOS sync fail
+    assert(m_Actors.size() == m_ActorOrientations.size()); // AOS sync fail
+    assert(m_Actors.size() == m_ActorIndexs.size()); // AOS sync fail
+
+    return m_Actors.size();
+}
+
+void CPhysXManager::AddActor(std::string actorName, size_t index, physx::PxRigidDynamic* body, const Quatf orientation, const Vect3f position)
+{
+    m_ActorIndexs[actorName] = index;
+    m_ActorNames.push_back(actorName);
+    m_ActorPositions.push_back(position);
+    m_ActorOrientations.push_back(orientation);
+    m_Actors.push_back(body);
+}
+
+void CPhysXManager::AddActor(std::string actorName, size_t index, physx::PxRigidStatic* body, const Quatf orientation, const Vect3f position)
+{
+    m_ActorIndexs[actorName] = index;
+    m_ActorNames.push_back(actorName);
+    m_ActorPositions.push_back(position);
+    m_ActorOrientations.push_back(orientation);
+    m_Actors.push_back(body);
 }
 
 void CPhysXManager::CreateShape(std::string aMaterialName, const Quatf orientation, const Vect3f position)
@@ -213,16 +277,8 @@ void CPhysXManager::Update(float _dt)
 
 void CPhysXManager::AddTriggerBox(const std::string& actorName, float sizeX, float sizeY, float sizeZ, const Vect3f& position, const Quatf& orientation)
 {
-    assert(m_ActorIndexs.find(actorName) == m_ActorIndexs.end()); // duplicated key!
-
-    assert(m_Actors.size() == m_ActorNames.size()); // AOS sync fail
-    assert(m_Actors.size() == m_ActorPositions.size()); // AOS sync fail
-    assert(m_Actors.size() == m_ActorOrientations.size()); // AOS sync fail
-    assert(m_Actors.size() == m_ActorIndexs.size()); // AOS sync fail
-
-
     auto *l_Material = m_Materials["Default"];
-    size_t index = m_Actors.size();
+    size_t index = GetActorSize(actorName);
 
     physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), *l_Material);
     shape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, false);
@@ -233,12 +289,7 @@ void CPhysXManager::AddTriggerBox(const std::string& actorName, float sizeX, flo
     m_Scene->addActor(*body);
 
     shape->release();
-
-    m_ActorIndexs[actorName] = index;
-    m_ActorNames.push_back(actorName);
-    m_ActorPositions.push_back(position);
-    m_ActorOrientations.push_back(orientation);
-    m_Actors.push_back(body);
+    AddActor(actorName, index, body, orientation, position);
 }
 
 
@@ -356,3 +407,41 @@ void CPhysXManager::DeleteActor(std::string actorName, size_t index)
 
 
 
+
+/* OLD
+void CPhysXManager::CreateDynamicObject(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index, physx::PxReal density)
+{
+	    std::string actorName = "Prueba";
+
+	assert(m_ActorIndexs.find(actorName) == m_ActorIndexs.end()); // duplicated key!
+
+	assert(m_Actors.size() == m_ActorNames.size()); // AOS sync fail
+	assert(m_Actors.size() == m_ActorPositions.size()); // AOS sync fail
+	assert(m_Actors.size() == m_ActorOrientations.size()); // AOS sync fail
+	assert(m_Actors.size() == m_ActorIndexs.size()); // AOS sync fail*/
+/*
+const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
+
+physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+//physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
+//body->attachShape(*shape);
+//index = m_Actors.size();
+
+body->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
+/*body->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
+body->setAngularVelocity(PxVec3(0.f, 0.f, 5.f));
+body->setAngularDamping(0.f);
+body->userData = (void*)index;
+physx::PxRigidBodyExt::updateMassAndInertia(*body, density);
+
+m_Scene->addActor(*body);
+
+//shape->release();
+
+/* m_ActorIndexs[actorName] = index;
+m_ActorNames.push_back(actorName);
+m_ActorPositions.push_back(position);
+m_ActorOrientations.push_back(orientation);
+m_Actors.push_back(body);*/
+
+//}

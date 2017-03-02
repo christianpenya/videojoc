@@ -107,6 +107,12 @@ void CEngine::LoadFiles()
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
     m_PhysXManager = CPhysXManager::CreatePhysXManager();
+    m_PhysXManager->CreatePlane("Default", 0, 1, 0, 0, 1); //Funciona
+    //m_PhysXManager->CreateStaticObject("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 1, 1, 1, 2); //Funciona
+    //m_PhysXManager->CreateBox("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 1, 1, 1, 3); //Funciona
+    //m_PhysXManager->CreateSphere("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 0.5, 4); //Funciona
+    //m_PhysXManager->CreateDynamicObject("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 1, 1, 1, 0.5f,"CajaDinamica"); //Funciona
+    m_PhysXManager->AddTriggerBox("CajaEstatica", 1, 1, 1, Vect3f(0.0f, 2.0f, 0.0f), Quatf(0, 0, 0, 1)); //estaba probando recien esta
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
@@ -223,10 +229,8 @@ void CEngine::Render()
         //averageFrameTimeMilliseconds = 1000.0 / (frameRate == 0 ? 0.001 : frameRate);
     }
 
-    m_PhysXManager->CreatePlane("Default", 0, 1, 0, 0, 1);
-    m_PhysXManager->CreatePlane("Default", -1, 0, 0, 0, 2);
-    //m_PhysXManager->CreateShape("Default", Quatf(0.0f, 0.0f, 0.0f, 0.0f), Vect3f(0.0f, 1.0f, 0.0f));
-    m_PhysXManager->CreateDynamicObject("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 1.0f, 0.0f), 1, 1, 1, 1, 0.5f);
+    m_PhysXManager->Update(m_DeltaTimeAcum);
+
 }
 
 void CEngine::fpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt)
