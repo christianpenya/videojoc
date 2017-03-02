@@ -9,7 +9,10 @@
 CCinematicObjectPlayer::CCinematicObjectPlayer():
     m_SceneNode(nullptr) {}
 
-CCinematicObjectPlayer::~CCinematicObjectPlayer() {}
+CCinematicObjectPlayer::~CCinematicObjectPlayer()
+{
+    CTemplatedMapVector<CCinematicKey>::Destroy();
+}
 
 bool CCinematicObjectPlayer::Load(const CXMLElement *aElement)
 {
@@ -30,14 +33,11 @@ bool CCinematicObjectPlayer::Load(const CXMLElement *aElement)
             CCinematicObjectKey *lObjKey = new CCinematicObjectKey();
             lObjKey->Load(iObjKey);
             Add(Convert(lObjKey->GetTime()), lObjKey);
-            if (m_CurrentKey == nullptr)
-            {
-                m_CurrentKey = lObjKey;
-            }
+
         }
     }
 
-    m_NextKey = m_CurrentKey;
+
     return lOk;
 }
 

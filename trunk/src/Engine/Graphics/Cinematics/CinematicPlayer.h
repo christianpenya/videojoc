@@ -19,8 +19,8 @@ public:
     std::string mName;
 protected:
 
-    //size_t m_CurrentKey, m_NextKey;
-    CCinematicKey *m_CurrentKey, *m_NextKey;
+    size_t m_CurrentKey, m_NextKey ;
+    //CCinematicKey *m_CurrentKey, *m_NextKey;
     void GetCurrentKeyForward(float currentTime);
     void GetCurrentKeyBackward(float currentTime);
     virtual void Apply(float aPercentage, CCinematicKey* A, CCinematicKey* B) = 0;

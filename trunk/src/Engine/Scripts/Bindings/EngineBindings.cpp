@@ -1,7 +1,7 @@
 #include "Scripts/lua_utils.h"
 #include "Scripts/Script.h"
 #include "Engine/Engine.h"
-#include "Base/Utils/Logger.h"
+#include "Utils/Logger.h"
 
 namespace lua
 {

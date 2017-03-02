@@ -18,6 +18,7 @@
 #include "Graphics/Animation/AnimatedModelManager.h"
 #include "Scripts/ScriptManager.h"
 #include "Graphics/Cinematics\CinematicsManager.h"
+#include "Physx/PhysxManager.h"
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
@@ -39,6 +40,7 @@ CEngine::CEngine()
     , m_AnimatedModelManager(nullptr)
     , m_ScriptManager(nullptr)
     , m_CinematicManager(nullptr)
+    , m_PhysXManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
@@ -118,9 +120,22 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load("data/cinematics.xml");
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
+    m_CinematicManager = new CCinematicManager;
+    m_CinematicManager->Load("data/cinematics.xml");
+    LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
+
+    m_PhysXManager = CPhysXManager::CreatePhysXManager();
+    m_PhysXManager->CreatePlane("Default", 0, 1, 0, 0, 1); //Funciona
+    //m_PhysXManager->CreateStaticObject("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 1, 1, 1, 2); //Funciona
+    //m_PhysXManager->CreateBox("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 1, 1, 1, 3); //Funciona
+    //m_PhysXManager->CreateSphere("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 0.5, 4); //Funciona
+    //m_PhysXManager->CreateDynamicObject("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 1, 1, 1, 0.5f,"CajaDinamica"); //Funciona
+    m_PhysXManager->AddTriggerBox("CajaEstatica", 1, 1, 1, Vect3f(0.0f, 2.0f, 0.0f), Quatf(0, 0, 0, 1)); //estaba probando recien esta
+
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
+
 }
 
 void CEngine::Init(HWND hWnd)
@@ -206,6 +221,11 @@ void CEngine::Update()
     m_RenderManager->Update();
     m_SceneManager->Update(m_DeltaTime);
     m_CinematicManager->Update(m_DeltaTime);
+
+
+
+
+
 }
 
 void CEngine::Render()
@@ -227,6 +247,9 @@ void CEngine::Render()
         m_DeltaTimeAcum -= CLOCKS_PER_SEC;
         //averageFrameTimeMilliseconds = 1000.0 / (frameRate == 0 ? 0.001 : frameRate);
     }
+
+    m_PhysXManager->Update(m_DeltaTimeAcum);
+
 }
 
 void CEngine::fpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt)

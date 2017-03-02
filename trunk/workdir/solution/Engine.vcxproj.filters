@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="DirectXTex">
-      <UniqueIdentifier>{A90EE592-95C6-26E0-FECD-FF3BEAA4C1D0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine">
       <UniqueIdentifier>{DBC7D3B0-C769-FE86-B024-12DB9C6585D7}</UniqueIdentifier>
     </Filter>
@@ -43,6 +40,9 @@
     <Filter Include="Input">
       <UniqueIdentifier>{953A660D-014F-8EBE-CAD0-311E36A48AEF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physx">
+      <UniqueIdentifier>{E1C1E10D-4DD6-09BF-1658-AD1E822B06F0}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Render">
       <UniqueIdentifier>{C5BB87CE-B15D-B2A4-9A18-C6F8865939F5}</UniqueIdentifier>
     </Filter>
@@ -57,27 +57,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\BC.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\BCDirectCompute.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\DDS.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\DirectXTex.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\DirectXTexP.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\Filters.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\DirectXTex\scoped.h">
-      <Filter>DirectXTex</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Engine\Engine.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -267,6 +246,12 @@
     <ClInclude Include="..\..\src\Engine\Input\InputManager.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Physx\PhysxManager.h">
+      <Filter>Physx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Physx\PhysxManagerImplementation.h">
+      <Filter>Physx</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Render\RenderManager.h">
       <Filter>Render</Filter>
     </ClInclude>
@@ -341,66 +326,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BC.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BC4BC5.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BC6HBC7.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\BCDirectCompute.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexCompress.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexCompressGPU.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexConvert.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexD3D11.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexDDS.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexFlipRotate.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexHDR.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexImage.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexMipmaps.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexMisc.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexNormalMaps.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexPMAlpha.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexResize.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexTGA.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexUtil.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\DirectXTex\DirectXTexWIC.cpp">
-      <Filter>DirectXTex</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
@@ -548,6 +473,12 @@
     <ClCompile Include="..\..\src\Engine\Input\InputManager.cpp">
       <Filter>Input</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physx\PhysxManager.cpp">
+      <Filter>Physx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physx\PhysxManagerImplementation.cpp">
+      <Filter>Physx</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Render\RenderManager.cpp">
       <Filter>Render</Filter>
     </ClCompile>
@@ -620,10 +551,5 @@
     <ClCompile Include="..\..\src\Engine\Scripts\ScriptManager.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\src\Engine\DirectXTex\DirectXTex.inl">
-      <Filter>DirectXTex</Filter>
-    </None>
   </ItemGroup>
 </Project>
