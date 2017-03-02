@@ -11,12 +11,13 @@
 #include "dxgi.h"
 #include "Math/Color.h"
 #include "Math/Matrix44.h"
-#include "Camera/Frustum.h"
+#include "Graphics/Camera/Frustum.h"
 #define MAX_RENDER_TARGETS 5
 
 
 #ifdef _DEBUG
 #include <assert.h>
+#include "Utils/MemLeaks/MemLeaks.h"
 #endif
 
 // Render Manager Class
@@ -66,27 +67,9 @@ public:
 
 public:
     CRenderManager();
-    ~CRenderManager()
-    {
-        releasePointers();
-    }
+    ~CRenderManager();
 
-    void CRenderManager::releasePointers()
-    {
-        m_D3DDebug.reset(nullptr);
-        m_Device.reset(nullptr);
-        m_DeviceContext.reset(nullptr);
-        m_SwapChain.reset(nullptr);
-        m_RenderTargetView.reset(nullptr);
-        m_DepthStencil.reset(nullptr);
-        m_DepthStencilView.reset(nullptr);
-        m_SolidRenderState.reset(nullptr);
-
-        m_DebugVertexBuffer.reset(nullptr);
-        m_DebugVertexShader.reset(nullptr);
-        m_DebugVertexLayout.reset(nullptr);
-        m_DebugPixelShader.reset(nullptr);
-    };
+    void ReleasePointers();
 
     void Init(HWND hWnd, int Width, int Height, bool debugD3D);
     bool InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height, bool debugD3D);
@@ -103,7 +86,6 @@ public:
     // Rendering
     void BeginRender();
     void SetSolidRenderState();
-    void DoRender();
     void EndRender();
 
     // Drawing

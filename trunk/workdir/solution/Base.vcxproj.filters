@@ -33,6 +33,9 @@
     <ClInclude Include="..\..\src\Base\ImGUI\imgui.h">
       <Filter>ImGUI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Base\ImGUI\imgui_impl_dx11.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Base\ImGUI\imgui_internal.h">
       <Filter>ImGUI</Filter>
     </ClInclude>
@@ -153,6 +156,9 @@
       <Filter>ImGUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Base\ImGUI\imgui_draw.cpp">
+      <Filter>ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base\ImGUI\imgui_impl_dx11.cpp">
       <Filter>ImGUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Base\Math\MathConstants.cpp">

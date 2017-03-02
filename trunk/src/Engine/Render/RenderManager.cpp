@@ -1,6 +1,7 @@
 #include "RenderManager.h"
 #include "Utils/Logger.h"
 #include <string>
+#include "Utils/CheckedDelete.h"
 
 CRenderManager::CRenderManager():
     m_DebugVertexBufferCurrentIndex(nullptr),
@@ -17,6 +18,29 @@ CRenderManager::CRenderManager():
     m_CurrentDepthStencilView(nullptr)
 {
 }
+
+CRenderManager::~CRenderManager()
+{
+    ReleasePointers();
+    base::utils::CheckedDelete(m_Frustum);
+}
+
+void CRenderManager::ReleasePointers()
+{
+    m_D3DDebug.reset(nullptr);
+    m_Device.reset(nullptr);
+    m_DeviceContext.reset(nullptr);
+    m_SwapChain.reset(nullptr);
+    m_RenderTargetView.reset(nullptr);
+    m_DepthStencil.reset(nullptr);
+    m_DepthStencilView.reset(nullptr);
+    m_SolidRenderState.reset(nullptr);
+
+    m_DebugVertexBuffer.reset(nullptr);
+    m_DebugVertexShader.reset(nullptr);
+    m_DebugVertexLayout.reset(nullptr);
+    m_DebugPixelShader.reset(nullptr);
+};
 
 void CRenderManager::Init(HWND hWnd, int Width, int Height, bool debugD3D=false)
 {

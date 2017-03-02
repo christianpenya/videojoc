@@ -1,10 +1,15 @@
 #include "ActionManager.h"
 #include <assert.h>
 #include "Utils/Logger.h"
+#include "XML/XML.h"
 
 CActionManager::CActionManager(CInputManager& inputManager)
     : m_InputManager(inputManager)
+{}
+
+CActionManager::~CActionManager()
 {
+    CTemplatedMap<InputAction>::Destroy();
 }
 
 ActionTrigger::TriggerType ActionTrigger::GetTriggerTypeFromString(const char* str, TriggerType defaultValue)
