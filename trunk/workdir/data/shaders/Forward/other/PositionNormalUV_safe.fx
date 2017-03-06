@@ -1,5 +1,10 @@
 #include "Colors.fxh"
-#include "globals.fx"
+#include "globals.fxh"
+
+Texture2D DiffuseTexture :
+register(t0);
+SamplerState LinearSampler :
+register(s0);
 
 struct VS_INPUT
 {
@@ -7,6 +12,8 @@ float3 Pos :
     POSITION;
 float3 Normal :
     NORMAL;
+float2 UV :
+    TEXCOORD0;
 };
 struct PS_INPUT
 {
@@ -14,12 +21,13 @@ float4 Pos :
     SV_POSITION; // COMENTAR JORDI
 float3 Normal :
     NORMAL;
+float2 UV :
+    TEXCOORD0;
 float3 WorldNormal :
     TEXCOORD1;
 float3 WorldPosition :
     TEXCOORD2;
 };
-
 
 PS_INPUT VS( VS_INPUT IN )
 {
@@ -33,34 +41,34 @@ PS_INPUT VS( VS_INPUT IN )
     l_Output.Normal=normalize(mul(normalize(IN.Normal).xyz, (float3x3)m_World));
     l_Output.WorldNormal = normalize(mul(normalize(IN.Normal).xyz, (float3x3)m_World));
 
+    l_Output.UV = IN.UV;
+
     return l_Output;
 }
 
 float4 PS( PS_INPUT IN ) : SV_Target
 {
+    float g_SpecularExponent = 40.0;
+    float g_SpecularContrib = 0.5;
+
+    float4 l_DiffuseColor = DiffuseTexture.Sample(LinearSampler, IN.UV);
+
+    float3 l_Eye=m_CameraPosition.xyz;
+    float3 l_ViewDir = normalize(l_Eye - IN.WorldPosition);
+
+    float3 Hn = normalize(l_ViewDir-m_LightDirection[0].xyz);
     float3 l_Normal = normalize(IN.Normal);
 
-    float3 l_WorldPos = IN.WorldPosition;
-    float4 l_DiffuseColor = float4(m_RawData[0].xyz, 1.0);
+    float l_DiffuseContrib = saturate(dot(-m_LightDirection[0],l_Normal));
+    float l_SpecularContrib = pow(saturate(dot(Hn,l_Normal)), 20.0 ) ;
 
     float3 l_LAmbient = m_LightAmbient.xyz * l_DiffuseColor.xyz;
 
-    float3 l_DiffuseTmp =	float3(0.0, 0.0, 0.0);
-    float3 l_SpecularTmp =	float3(0.0, 0.0, 0.0);
+    float3 l_LDiffuse = l_DiffuseContrib * m_LightIntensity[0] * m_LightColor[0].xyz * l_DiffuseColor.xyz;
 
-    float3 l_LDiffuseSpecular = float3(0.0, 0.0, 0.0);
-    float3 l_LDiffuseSpecularTmp = float3(0.0, 0.0, 0.0);
+    float3 l_LSpecular = l_SpecularContrib* m_LightIntensity[0] *	m_LightColor[0].xyz *g_SpecularContrib;
 
-    for(int i = 0; i<MAX_LIGHTS_BY_SHADER; i++)
-    {
-        CalculateSingleLight(i, l_Normal, l_WorldPos, l_DiffuseColor,l_DiffuseTmp, l_SpecularTmp);
-
-        l_LDiffuseSpecularTmp = l_DiffuseTmp + l_SpecularTmp;
-        l_LDiffuseSpecular = l_LDiffuseSpecular + l_LDiffuseSpecularTmp;
-
-        l_DiffuseTmp =	float3(0.0, 0.0, 0.0);
-        l_SpecularTmp =	float3(0.0, 0.0, 0.0);
-    }
-
-    return float4(l_LAmbient+l_LDiffuseSpecular,1.0);
+    return float4(l_LAmbient+l_LDiffuse+l_LSpecular,1.0);
 }
+
+
