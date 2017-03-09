@@ -52,6 +52,10 @@ CEngine::CEngine()
 CEngine::~CEngine()
 {
     ImGui_ImplDX11_Shutdown();
+
+    // TODO Peta de mala manera
+    //base::utils::CheckedDelete(m_PhysXManager);
+
     base::utils::CheckedDelete(m_RenderPipeline);
     base::utils::CheckedDelete(m_CinematicManager);
     base::utils::CheckedDelete(m_SceneManager);
@@ -68,7 +72,6 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
 }
-
 
 void CEngine::LoadFiles()
 {
@@ -120,22 +123,31 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load("data/cinematics.xml");
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
-    m_CinematicManager = new CCinematicManager;
-    m_CinematicManager->Load("data/cinematics.xml");
-    LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
-
     m_PhysXManager = CPhysXManager::CreatePhysXManager();
-    m_PhysXManager->CreatePlane("Default", 0, 1, 0, 0, 1); //Funciona
-    //m_PhysXManager->CreateStaticObject("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 1, 1, 1, 2); //Funciona
-    //m_PhysXManager->CreateBox("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 1, 1, 1, 3); //Funciona
-    //m_PhysXManager->CreateSphere("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 0.5, 4); //Funciona
-    //m_PhysXManager->CreateDynamicObject("Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 1, 1, 1, 0.5f,"CajaDinamica"); //Funciona
-    m_PhysXManager->AddTriggerBox("CajaEstatica", 1, 1, 1, Vect3f(0.0f, 2.0f, 0.0f), Quatf(0, 0, 0, 1)); //estaba probando recien esta
+
+    const std::string material = "test";
+
+    m_PhysXManager->RegisterMaterial(material, 1.0f, 1.0f, 1.0f); // EJ.2
+    m_PhysXManager->CreatePlane("Default", 0, 1, 0, 0, 1); // EJ.3
+
+
+    std::vector<PxVec3> vertices = { PxVec3(0, 1, 0), PxVec3(1, 0, 0), PxVec3(-1, 0, 0), PxVec3(0, 0, 1), PxVec3(0, 0, -1), PxVec3(0, -1, 0) };
+
+    m_PhysXManager->CreateStaticBox("static_box","Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 1, 1, 1); //Funciona
+    m_PhysXManager->CreateStaticSphere("static_sphere", "Default", Quatf(0, 0, 0, 1), Vect3f(0.5f, 4.0f, 0.0f), 0.5); //Funciona
+    m_PhysXManager->CreateStaticShape("static_shape", "Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 1.0f, 2.0f), vertices); //Funciona
+
+    m_PhysXManager->CreateDynamicBox("dynamic_box", "Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 10.0f, 0.0f), 1, 1, 1, 0.5f); // EJ.4
+    m_PhysXManager->CreateDynamicSphere("dynamic_sphere", "Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 15.0f, 0.0f), 3.0f,
+                                        0.5f);
+    m_PhysXManager->CreateDynamicShape("dynamic_shape","Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), vertices, 0.5f);
+
+    // m_PhysXManager->AddTriggerBox("CajaEstatica", 1, 1, 1, Vect3f(0.0f, 2.0f, 0.0f), Quatf(0, 0, 0, 1)); //estaba probando recien esta
+    LOG_INFO_APPLICATION("Engine -> PhysX Loaded! \\(^-^)/");
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
-
 }
 
 void CEngine::Init(HWND hWnd)
@@ -184,8 +196,6 @@ double clockToMilliseconds(clock_t ticks)
 
 void CEngine::Update()
 {
-    //m_DeltaTime = m_DeltaTime > 0.5f ? 0.5f : m_DeltaTime;
-
     // Reiniciem posició de l'esfera quan canviem de camera
     if (m_CameraSelector != m_PrevCameraSelector)
     {
@@ -216,16 +226,13 @@ void CEngine::Update()
         break;
     }
 
+    m_PhysXManager->Update(m_DeltaTime);
+
     m_CameraController->Update((float)m_DeltaTime);
     m_CameraController->SetToRenderManager(*m_RenderManager);
     m_RenderManager->Update();
     m_SceneManager->Update(m_DeltaTime);
     m_CinematicManager->Update(m_DeltaTime);
-
-
-
-
-
 }
 
 void CEngine::Render()
@@ -248,7 +255,6 @@ void CEngine::Render()
         //averageFrameTimeMilliseconds = 1000.0 / (frameRate == 0 ? 0.001 : frameRate);
     }
 
-    m_PhysXManager->Update(m_DeltaTimeAcum);
 
 }
 

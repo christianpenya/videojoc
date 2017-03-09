@@ -7,6 +7,8 @@
 #include <map>
 #include <vector>
 #include "Math/Quaternion.h"
+#include "Utils/MemLeaks/MemLeaks.h"
+
 #define USE_PHYSX_DEBUG 1
 #define PVD_HOST "127.0.0.1"
 
@@ -58,13 +60,12 @@ class CPhysXManager
 
 protected:
     CPhysXManager();
-public:
 
+public:
     virtual ~CPhysXManager();
     static CPhysXManager* CreatePhysXManager();
 
 protected:
-
     physx::PxFoundation							*m_Foundation;
     physx::PxPhysics							*m_PhysX;
 
@@ -83,10 +84,11 @@ protected:
     std::vector<Quatf>							m_ActorOrientations;
     std::vector<physx::PxActor*>				m_Actors;
 
-    Vect3f GetActorPosition(const std::string& actorName);
-    Quatf GetActorOrientation(const std::string& actorName);
-    void GetActorTransform(const std::string& actorName, Vect3f& position, Quatf& orientation) const;
+    Vect3f GetActorPosition(const std::string& actorName) const;
+    Quatf GetActorOrientation(const std::string& actorName) const;
+    physx::PxTransform GetActorTransform(const std::string& actorName) const;
     size_t GetActorSize(const std::string& actorName);
+    size_t GetActorIndex(const std::string& actorName) const;
     void AddActor(std::string actorName, size_t index, physx::PxRigidDynamic* body, const Quatf orientation, const Vect3f position);
     void AddActor(std::string actorName, size_t index, physx::PxRigidStatic* body, const Quatf orientation, const Vect3f position);
 
@@ -94,15 +96,24 @@ protected:
     std::map<std::string, physx::PxController*> m_CharacterControllers;
 
     float m_LeftoverSeconds;
+
 public:
     void RegisterMaterial(const std::string &name, float staticFriction, float dynamicFriction, float restitution);
-    void CreateStaticObject(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index);
-    void CreateDynamicObject(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density, std::string actorName);
     void CreatePlane(std::string aMaterialName, float x, float y, float z, float d, size_t index);
-    void CreateBox(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index);
-    void CreateSphere(std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius, size_t index);
-    void CreateShape(std::string aMaterialName, const Quatf orientation, const Vect3f position);
+
+    //STATIC
+    void CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ);
+    void CreateStaticSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius);
+    void CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices);
+    void CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, int nbVerts, int stride, void* verts, int triCount, void*indices);
+
+    //DYNAMIC
+    void CreateDynamicBox(std::string actorName,std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density);
+    void CreateDynamicSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius, physx::PxReal density);
+    void CreateDynamicShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal);
+    void CreateDynamicTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal);
     void Update(float _dt);
+
     void AddTriggerBox(const std::string& actorName, float sizeX, float sizeY, float sizeZ, const Vect3f& position, const Quatf& orientation);
 
     CharacterControllerData MoveCharacterController(const std::string& characterControllerName, const Vect3f& movement, float elapsedTime);
