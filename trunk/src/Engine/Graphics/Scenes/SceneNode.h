@@ -20,6 +20,7 @@ public:
     GET_SET(int, type);
     virtual void DrawImgui();
 protected:
+    bool m_ignoreFrustum;
     bool m_Visible;
     int m_type;
     CBoundingSphere mBS;

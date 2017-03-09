@@ -7,6 +7,7 @@
 #include "Graphics/Animation/SceneAnimatedModel.h"
 #include "Graphics/Animation/AnimatedModelManager.h"
 #include "Graphics/Lights/LightManager.h"
+#include "SceneSkybox.h"
 
 CLayer::CLayer(const std::string& aName) :
     CName(aName),
@@ -69,7 +70,6 @@ bool CLayer::Load(CXMLElement* aElement)
                 lNode->Settype(3); //SceneLight
             }
         }
-
         if (lNode)
             lOk &= Add(lNode->GetName(), lNode);
     }

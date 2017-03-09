@@ -9,7 +9,9 @@
 CSceneMesh::CSceneMesh(CXMLElement* aElement)
     : CSceneNode(aElement)
     , mMesh( CEngine::GetInstance().GetMeshManager().GetMesh(aElement->GetAttribute<std::string>("mesh", "")) )
+
 {
+    m_ignoreFrustum = aElement->GetAttribute<bool>("ignore_frustum", false);
     m_type = 0;
 }
 

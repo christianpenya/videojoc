@@ -22,4 +22,14 @@
 	<material name="07 - Default" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.588235 0.690196 0.94902 1.0 " />
 	</material>
+	<material name="Skybox001Material" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+		<material name="Skybox003Material" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
 </materials>
