@@ -56,24 +56,24 @@ public:
     void LoadFiles();
     std::string m_FileDefaultMaterial;
 
-    BUILD_GET_SET_ENGINE_MANAGER(MaterialManager);
-    BUILD_GET_SET_ENGINE_MANAGER(TextureManager);
-    BUILD_GET_SET_ENGINE_MANAGER(RenderManager);
-    BUILD_GET_SET_ENGINE_MANAGER(CameraController);
-    BUILD_GET_SET_ENGINE_MANAGER(SceneManager);
-    BUILD_GET_SET_ENGINE_MANAGER(InputManager);
-    BUILD_GET_SET_ENGINE_MANAGER(ActionManager);
-    BUILD_GET_SET_ENGINE_MANAGER(ShaderManager);
-    BUILD_GET_SET_ENGINE_MANAGER(EffectManager);
-    BUILD_GET_SET_ENGINE_MANAGER(MeshManager);
-    BUILD_GET_SET_ENGINE_MANAGER(TechniquePoolManager);
-    BUILD_GET_SET_ENGINE_MANAGER(LightManager);
-    BUILD_GET_SET_ENGINE_MANAGER(RenderPipeline);
-    BUILD_GET_SET_ENGINE_MANAGER(ConstantBufferManager);
-    BUILD_GET_SET_ENGINE_MANAGER(AnimatedModelManager);
-    BUILD_GET_SET_ENGINE_MANAGER(ScriptManager);
-    BUILD_GET_SET_ENGINE_MANAGER(CinematicManager);
-    BUILD_GET_SET_ENGINE_MANAGER(PhysXManager);
+    BUILD_GET_SET_ENGINE_MANAGER(MaterialManager)
+    BUILD_GET_SET_ENGINE_MANAGER(TextureManager)
+    BUILD_GET_SET_ENGINE_MANAGER(RenderManager)
+    BUILD_GET_SET_ENGINE_MANAGER(CameraController)
+    BUILD_GET_SET_ENGINE_MANAGER(SceneManager)
+    BUILD_GET_SET_ENGINE_MANAGER(InputManager)
+    BUILD_GET_SET_ENGINE_MANAGER(ActionManager)
+    BUILD_GET_SET_ENGINE_MANAGER(ShaderManager)
+    BUILD_GET_SET_ENGINE_MANAGER(EffectManager)
+    BUILD_GET_SET_ENGINE_MANAGER(MeshManager)
+    BUILD_GET_SET_ENGINE_MANAGER(TechniquePoolManager)
+    BUILD_GET_SET_ENGINE_MANAGER(LightManager)
+    BUILD_GET_SET_ENGINE_MANAGER(RenderPipeline)
+    BUILD_GET_SET_ENGINE_MANAGER(ConstantBufferManager)
+    BUILD_GET_SET_ENGINE_MANAGER(AnimatedModelManager)
+    BUILD_GET_SET_ENGINE_MANAGER(ScriptManager)
+    BUILD_GET_SET_ENGINE_MANAGER(CinematicManager)
+    BUILD_GET_SET_ENGINE_MANAGER(PhysXManager)
 
     double m_DeltaTime;
     clock_t m_DeltaTimeAcum = 0;

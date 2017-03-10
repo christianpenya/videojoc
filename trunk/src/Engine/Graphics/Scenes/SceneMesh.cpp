@@ -5,6 +5,8 @@
 #include "XML\tinyxml2\tinyxml2.h"
 #include "Engine\Engine.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
+#include "Physx/PhysxManager.h"
+#include "Graphics/Mesh/TemplatedIndexedGeometry.h"
 
 CSceneMesh::CSceneMesh(CXMLElement* aElement)
     : CSceneNode(aElement)
@@ -13,6 +15,9 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
 {
     m_ignoreFrustum = aElement->GetAttribute<bool>("ignore_frustum", false);
     m_type = 0;
+    /*CTemplatedIndexedGeometry* hola = static_cast<CTemplatedIndexedGeometry*>(mMesh->mGeometries);
+    int nbVerts = sizeof(GetFileSize(GetLengthSid()));
+    CEngine::GetInstance().GetPhysXManager().CreateStaticTriangleMesh(m_Name, "Default", Quatf(m_Yaw, m_Pitch, m_Roll, 1.0f), m_Position, mMesh->mGeometries[0]);*/
 }
 
 CSceneMesh::CSceneMesh(CXMLElement* aElement, CMesh* aMesh)

@@ -16,7 +16,7 @@ class CPhysXManagerImplementation :
 public:
     CPhysXManagerImplementation();
     ~CPhysXManagerImplementation();
-    // CPhysXManager
+
     void AddCharacterController(const std::string& actorName, float height, float radius, const Vect3f& position, const Quatf& orientation, const std::string& material, float density);
 
     // PxSimulationEventCallback

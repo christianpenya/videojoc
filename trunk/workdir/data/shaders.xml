@@ -3,10 +3,11 @@
 	<vertex_shaders>
 	<shader name="Skybox" file="Skybox.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor=""/>
 		<shader name="AnimatedModelForward" file="Forward/AnimatedModel.fx" entry_point="mainVertexShader" vertex_type="PositionWeightIndicesNormalUV" preprocessor=""/>
-		<shader name="PositionNormalForward" file="Forward/PositionNormalLight.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/>
+		<shader name="PositionNormalForward" file="Forward/PositionNormal.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/>
 		<shader name="PositionNormalUVForward" file="Forward/PositionNormalUV.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor=""/>
 		<shader name="PositionNormalUVUV2Forward" file="Forward/PositionNormalUVUV2.fx" entry_point="VS" vertex_type="PositionNormalUVUV2" preprocessor=""/>
-		
+		<shader name="PositionBumpUVForward" file="Forward/PositionBumpUV.fx" entry_point="VS" vertex_type="PositionBumpUV" preprocessor=""/>
+
 		<!--
 		<shader name="Skybox" file="Forward/PositionNormalUV.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor=""/>
 		<shader name="PositionNormalUVUV2Forward" file="Forward/PositionNormalUVUV2.fx" entry_point="VS" vertex_type="PositionNormalUVUV2" preprocessor=""/>
@@ -16,10 +17,11 @@
 	<pixel_shaders>
 	<shader name="Skybox" file="Skybox.fx" entry_point="PS"  preprocessor=""/>
 		<shader name="AnimatedModelForward" file="Forward/AnimatedModel.fx" entry_point="mainPixelShader" preprocessor=""/>		
-		<shader name="PositionNormalForward" file="Forward/PositionNormalLight.fx" entry_point="PS" preprocessor=""/>
+		<shader name="PositionNormalForward" file="Forward/PositionNormal.fx" entry_point="PS" preprocessor=""/>
 		<shader name="PositionNormalUVForward" file="Forward/PositionNormalUV.fx" entry_point="PS" preprocessor=""/>		
 		<shader name="PositionNormalUVUV2Forward" file="Forward/PositionNormalUVUV2.fx" entry_point="PS" preprocessor=""/>
-		
+		<shader name="PositionBumpUVForward" file="Forward/PositionBumpUV.fx" entry_point="PS" preprocessor=""/>		
+
 		<!--
 		<shader name="Skybox" file="Forward/PositionNormalUV.fx" entry_point="PS"  preprocessor=""/>
 		<shader name="PositionNormalForward" file="Forward/RED.fx" entry_point="PS" preprocessor=""/>
