@@ -54,7 +54,7 @@ CEngine::~CEngine()
     ImGui_ImplDX11_Shutdown();
 
     // TODO Peta de mala manera
-    //base::utils::CheckedDelete(m_PhysXManager);
+    // base::utils::CheckedDelete(m_PhysXManager);
 
     base::utils::CheckedDelete(m_RenderPipeline);
     base::utils::CheckedDelete(m_CinematicManager);
@@ -130,16 +130,14 @@ void CEngine::LoadFiles()
     m_PhysXManager->RegisterMaterial(material, 1.0f, 1.0f, 1.0f); // EJ.2
     m_PhysXManager->CreatePlane("Default", 0, 1, 0, 0, 1); // EJ.3
 
-
     std::vector<PxVec3> vertices = { PxVec3(0, 1, 0), PxVec3(1, 0, 0), PxVec3(-1, 0, 0), PxVec3(0, 0, 1), PxVec3(0, 0, -1), PxVec3(0, -1, 0) };
 
-    m_PhysXManager->CreateStaticBox("static_box","Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), 1, 1, 1); //Funciona
+    m_PhysXManager->CreateStaticBox("static_box","Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 4.0f, 0.0f), 1, 1, 1); //Funciona
     m_PhysXManager->CreateStaticSphere("static_sphere", "Default", Quatf(0, 0, 0, 1), Vect3f(0.5f, 4.0f, 0.0f), 0.5); //Funciona
     m_PhysXManager->CreateStaticShape("static_shape", "Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 1.0f, 2.0f), vertices); //Funciona
 
     m_PhysXManager->CreateDynamicBox("dynamic_box", "Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 10.0f, 0.0f), 1, 1, 1, 0.5f); // EJ.4
-    m_PhysXManager->CreateDynamicSphere("dynamic_sphere", "Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 15.0f, 0.0f), 3.0f,
-                                        0.5f);
+    m_PhysXManager->CreateDynamicSphere("dynamic_sphere", "Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 15.0f, 0.0f), 3.0f, 0.5f);
     m_PhysXManager->CreateDynamicShape("dynamic_shape","Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 2.0f, 0.0f), vertices, 0.5f);
 
     // m_PhysXManager->AddTriggerBox("CajaEstatica", 1, 1, 1, Vect3f(0.0f, 2.0f, 0.0f), Quatf(0, 0, 0, 1)); //estaba probando recien esta
@@ -254,8 +252,6 @@ void CEngine::Render()
         m_DeltaTimeAcum -= CLOCKS_PER_SEC;
         //averageFrameTimeMilliseconds = 1000.0 / (frameRate == 0 ? 0.001 : frameRate);
     }
-
-
 }
 
 void CEngine::fpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt)

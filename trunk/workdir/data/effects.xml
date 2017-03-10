@@ -11,9 +11,13 @@
    <shader stage="vertex"   name="PositionNormalUVForward"/>
    <shader stage="pixel"    name="PositionNormalUVForward"/>
   </effect>
-    <effect name="PositionNormalUVUV2TechniqueForward" shader_family="PositionNormalUVUV2Forward">
+  <effect name="PositionNormalUVUV2TechniqueForward" shader_family="PositionNormalUVUV2Forward">
    <shader stage="vertex"   name="PositionNormalUVUV2Forward"/>
    <shader stage="pixel"    name="PositionNormalUVUV2Forward"/>
+  </effect>
+  <effect name="PositionBumpUVTechniqueForward" shader_family="PositionBumpUVForward">
+   <shader stage="vertex"   name="PositionBumpUVForward"/>
+   <shader stage="pixel"    name="PositionBumpUVForward"/>
   </effect>
   <effect name="AnimatedModelTechniqueForward"  shader_family="AnimatedModelForward">
 	<shader stage="vertex" name="AnimatedModelForward"/>

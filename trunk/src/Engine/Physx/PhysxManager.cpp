@@ -338,6 +338,8 @@ void CPhysXManager::Update(float _dt)
         m_Scene->simulate(PHYSX_UPDATE_STEP);
         m_Scene->fetchResults(true);
 
+        MoveCharacterController("player", Vect3f(0.0f, 0.0f, 0.0f), PHYSX_UPDATE_STEP);
+
         physx::PxU32 numActiveTransforms;
         const physx::PxActiveTransform* activeTransforms = m_Scene->getActiveTransforms(numActiveTransforms);
 
@@ -350,6 +352,7 @@ void CPhysXManager::Update(float _dt)
 
         m_LeftoverSeconds = fmod(m_LeftoverSeconds, PHYSX_UPDATE_STEP);
     }
+
 }
 
 void CPhysXManager::AddTriggerBox(const std::string& actorName, float sizeX, float sizeY, float sizeZ, const Vect3f& position, const Quatf& orientation)
@@ -378,7 +381,6 @@ CPhysXManager::CharacterControllerData CPhysXManager::MoveCharacterController(co
     size_t index = (size_t)actor->userData;
 
     cct->move(CastVec(movement), movement.Length() * 0.01f, elapsedTime, filters);
-
 
     physx::PxExtendedVec3 p = cct->getFootPosition();
     physx::PxVec3 v = actor->getLinearVelocity();

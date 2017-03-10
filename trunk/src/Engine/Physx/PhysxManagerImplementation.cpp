@@ -65,7 +65,8 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
 #	endif
 
     // default material
-    RegisterMaterial("Default", 0.5f, 0.5f, 0.6f); // TODO cal?
+    RegisterMaterial("Default", 0.5f, 0.5f, 0.6f);
+    AddCharacterController("player", 2.0f, 0.25f, Vect3f(0, 0, 0), Quatf(0, 0, 0, 1), "Default", 0.5f);
 
     m_LeftoverSeconds = 0.0f;
 }
