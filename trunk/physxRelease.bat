@@ -1,0 +1,1 @@
+copy include/physx/bin/*.dll workdir/solution/bin/x32/Release

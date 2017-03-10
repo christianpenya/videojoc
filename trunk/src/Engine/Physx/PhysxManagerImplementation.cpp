@@ -7,7 +7,6 @@
 #include "extensions/PxDefaultSimulationFilterShader.h"
 #include <characterkinematic/PxControllerManager.h>
 
-
 CPhysXManagerImplementation::CPhysXManagerImplementation()
 {
     static physx::PxDefaultAllocator gDefaultAllocatorCallback;
@@ -16,7 +15,6 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
 
     m_Foundation = PxCreateFoundation(PX_PHYSICS_VERSION, gDefaultAllocatorCallback, gDefaultErrorCallback);
     assert(m_Foundation);
-
 
     physx::PxProfileZoneManager* profileZoneManager = nullptr;
 #	if USE_PHYSX_DEBUG
@@ -42,7 +40,6 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
     }
 #	endif
 
-
     physx::PxSceneDesc sceneDesc(m_PhysX->getTolerancesScale());
     sceneDesc.gravity = physx::PxVec3(0.0f, -9.81f, 0.0f);
 
@@ -58,6 +55,7 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
     m_ControllerManager = PxCreateControllerManager(*m_Scene, true);
     m_ControllerManager->setOverlapRecoveryModule(true);
 
+    // TODO recolocar més amunt
 #	if USE_PHYSX_DEBUG
     if (m_DebugConnection != nullptr)
     {
@@ -68,9 +66,12 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
 
     // default material
     RegisterMaterial("Default", 0.5f, 0.5f, 0.6f);
+    AddCharacterController("player", 2.0f, 0.25f, Vect3f(0, 0, 0), Quatf(0, 0, 0, 1), "Default", 0.5f);
 
     m_LeftoverSeconds = 0.0f;
 }
+
+CPhysXManagerImplementation::~CPhysXManagerImplementation() {}
 
 void CPhysXManagerImplementation::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 count)
 {
@@ -129,6 +130,3 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
 
     cct->getActor()->userData = (void*)index;
 }
-
-CPhysXManagerImplementation::~CPhysXManagerImplementation()
-{}

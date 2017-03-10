@@ -3,12 +3,12 @@
 
 Texture2D DiffuseTexture :
 register(t0);
-SamplerState DiffuseSampler :
+SamplerState LinearSampler :
 register(s0);
 
-Texture2D LightmapTexture :
+Texture2D NormalMapTexture :
 register(t1);
-SamplerState LightmapSampler :
+SamplerState NormalMapTextureSampler :
 register(s1);
 
 struct VS_INPUT
@@ -17,10 +17,10 @@ float3 Pos :
     POSITION;
 float3 Normal :
     NORMAL;
+float4 Tangent:
+    TANGENT;
 float2 UV :
     TEXCOORD0;
-float2 UV2 :
-    TEXCOORD1;
 };
 
 struct PS_INPUT
@@ -29,14 +29,14 @@ float4 Pos :
     SV_POSITION;
 float3 Normal :
     NORMAL;
+float3 Tangent :
+    TANGENT;
+float3 Binormal :
+    BINORMAL;
 float2 UV :
     TEXCOORD0;
-float2 UV2 :
-    TEXCOORD1;
-float3 WorldNormal :
-    TEXCOORD2;
 float3 WorldPosition :
-    TEXCOORD3;
+    TEXCOORD1;
 };
 
 PS_INPUT VS( VS_INPUT IN )
@@ -44,37 +44,42 @@ PS_INPUT VS( VS_INPUT IN )
     PS_INPUT l_Output = (PS_INPUT)0;
     float4 lPos = float4( IN.Pos.xyz, 1.0 );
     l_Output.Pos = mul( lPos, m_World );
-    l_Output.WorldPosition=l_Output.Pos.xyz;
+    l_Output.WorldPosition = l_Output.Pos.xyz;
     l_Output.Pos = mul( l_Output.Pos, m_View );
     l_Output.Pos = mul( l_Output.Pos, m_Projection );
 
     l_Output.Normal=normalize(mul(normalize(IN.Normal).xyz, (float3x3)m_World));
-    l_Output.WorldNormal = normalize(mul(normalize(IN.Normal).xyz, (float3x3)m_World));
+    l_Output.Tangent = normalize(mul(IN.Tangent.xyz, (float3x3)m_World));
+    l_Output.Binormal = normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
 
     l_Output.UV = IN.UV;
-    l_Output.UV2 = IN.UV2;
 
     return l_Output;
 }
 
 float4 PS( PS_INPUT IN ) : SV_Target
 {
+    float3 Tn = normalize(IN.WorldTangent);
+    float3 Bn = normalize(IN.WorldBinormal);
+
+    float3 bump = g_Bump*(tex2D(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
+    Nn = Nn + bump.x*Tn + bump.y*Bn;
+    Nn = normalize(Nn);
+
     float3 NormalPixel = normalize(IN.Normal);
 
     float3 WorldPos = IN.WorldPosition;
-    float4 ColorPixel = DiffuseTexture.Sample(DiffuseSampler, IN.UV) * float4(m_RawData[0].xyz, 1.0);
-    float4 l_LightmapPixel = LightmapTexture.Sample(LightmapSampler, IN.UV2) * 2;
-    //Doblamos contribucion del lightmap para equiparar efecto de 3DSMax
+    float4 ColorPixel = DiffuseTexture.Sample(LinearSampler, IN.UV) * float4(m_RawData[0].xyz, 1.0);
 
-    float3 l_LAmbient = m_LightAmbient.xyz * l_LightmapPixel.xyz * ColorPixel;
-//	l_LightmapPixel.xyz * ColorPixel.xyz;
+    float3 l_LAmbient = m_LightAmbient.xyz * ColorPixel.xyz;
+
     float3 DiffuseColor = float3(0.0, 0.0, 0.0);
     float3 SpecularColor = float3(0.0, 0.0, 0.0);
 
     float3 l_LDiffuseSpecular = float3(0.0, 0.0, 0.0);
     float3 l_LDiffuseSpecularTmp = float3(0.0, 0.0, 0.0);
 
-    for (int IdLight = 0; IdLight<MAX_LIGHTS_BY_SHADER; ++IdLight)
+    for (int IdLight = 0; IdLight<MAX_LIGHTS_BY_SHADER; IdLight++)
     {
         CalculateSingleLight(IdLight, NormalPixel, WorldPos, ColorPixel, DiffuseColor, SpecularColor);
 

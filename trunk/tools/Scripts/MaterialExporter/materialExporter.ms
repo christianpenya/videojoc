@@ -311,26 +311,8 @@ function parse outPath =
 			paramNode.addAttribute "type" "float"
 			paramNode.addAttribute "name" "glossiness"
 			paramNode.addAttribute "value" object.m_glossinessAmount
-		)
-
-		/*if object.m_emissionEnabled == true then(
-			local textNode = XmlNode tag:"texture"
-			matNode.addChild textNode
-			textNode.addAttribute "type" "emission"
-			local filename = copyTexture object.m_emissionBitmap outPath
-			textNode.addAttribute "filename" (dataStr + filename)
-
-			local paramNode = XmlNode tag:"parameter"
-			matNode.addChild paramNode
-			paramNode.addAttribute "type" "float"
-			paramNode.addAttribute "name" "emission"
-			paramNode.addAttribute "value" object.m_emissionAmount
-		)*/
-
-
-	
+		)	
 	)
-	
 )
 
 function makeData outPath = (

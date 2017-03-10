@@ -5,6 +5,7 @@
 #include "Render\RenderManager.h"
 #include "Engine\Engine.h"
 #include "Utils\CheckedDelete.h"
+#include "Utils/Logger.h"
 
 CTexture::CTexture(const std::string&  aName) :
     CName(aName),
@@ -21,6 +22,7 @@ bool CTexture::Load()
     std::string lExtension = base::utils::GetFileNameExtension(m_Name);
 
     HRESULT lHR = E_FAIL;
+    lHR = CoInitializeEx(nullptr, COINITBASE_MULTITHREADED);
 
     DirectX::TexMetadata lTexMetadata;
     DirectX::ScratchImage *lScratchImage = new DirectX::ScratchImage();
