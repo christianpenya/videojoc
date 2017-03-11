@@ -84,8 +84,6 @@ protected:
     std::vector<Quatf>							m_ActorOrientations;
     std::vector<physx::PxActor*>				m_Actors;
 
-    Vect3f GetActorPosition(const std::string& actorName) const;
-    Quatf GetActorOrientation(const std::string& actorName) const;
     physx::PxTransform GetActorTransform(const std::string& actorName) const;
     size_t GetActorSize(const std::string& actorName);
     size_t GetActorIndex(const std::string& actorName) const;
@@ -105,7 +103,7 @@ public:
     void CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ);
     void CreateStaticSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius);
     void CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices);
-    void CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, int nbVerts, int stride, void* verts, int triCount, void*indices);
+    void CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices);
 
     //DYNAMIC
     void CreateDynamicBox(std::string actorName,std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density);
@@ -121,6 +119,8 @@ public:
     void AddFixedJoint(const std::string& jointName, const std::string& actor1Name, const std::string& actor2Name);
     void DeleteActor(std::string actorName, size_t index);
 
+    Vect3f GetActorPosition(const std::string& actorName) const;
+    Quatf GetActorOrientation(const std::string& actorName) const;
 };
 
 #endif //_ENGINE_RENDERMANAGER_CPB_2016110320428_H
