@@ -124,7 +124,7 @@ bool CMesh::Load(const std::string& aFilename)
                     size_t lNumBytesIndexes = lNumIndex * sizeof(unsigned short);
                     void* lIndexData = lBinFileReader->ReadRaw(lNumBytesIndexes);
 
-                    /*if (lVertexFlags == VertexTypes::PositionBumpUV::GetVertexFlags())
+                    if (lVertexFlags == VertexTypes::PositionBumpUV::GetVertexFlags())
                     {
                         unsigned short* IdxsData = (unsigned short*) lIndexData;
                         size_t lVertexStride = sizeof(VertexTypes::PositionBumpUV);
@@ -134,9 +134,15 @@ bool CMesh::Load(const std::string& aFilename)
                         size_t lBiNormalStride = lTangentStride + sizeof(Vect4f);
                         size_t TextureCoordsStride = lBiNormalStride + sizeof(Vect4f);
 
-                        CalcTangentsAndBinormals(lVertexData, IdxsData, lNumVertices, lNumIndex, lVertexStride, lGeometryStride,
+                        for (size_t i = 0; i < lNumIndex; ++i)
+                        {
+                            if (IdxsData[i] >= lNumVertices)
+                                i = i;
+                        }
+
+                        CalcTangentsAndBinormals(lVertexData, (unsigned short *)lIndexData, lNumVertices, lNumIndex, lVertexStride, lGeometryStride,
                                                  lNormalStride, lTangentStride, lBiNormalStride, TextureCoordsStride);
-                    }*/
+                    }
 
                     CGeometry* lGeometry = CreateGeometry(lRM, lVertexFlags, lNumVertices, lNumIndex, lVertexData, lIndexData);
                     mGeometries.push_back(lGeometry);
@@ -174,10 +180,11 @@ bool CMesh::Load(const std::string& aFilename)
         lOk &= lFooter == FOOTER;
 
         lBinFileReader->Close();
-        return lOk;
     }
     else
+    {
         lOk = false;
+    }
 
     return lOk;
 }
@@ -209,6 +216,13 @@ void CMesh::CalcTangentsAndBinormals(void *VtxsData, unsigned short *IdxsData, s
         unsigned short i1 = IdxsData[b];
         unsigned short i2 = IdxsData[b + 1];
         unsigned short i3 = IdxsData[b + 2];
+
+        if (i1 >= VtxCount)
+            i1 = i1;
+        if (i2 >= VtxCount)
+            i1 = i1;
+        if (i3 >= VtxCount)
+            i1 = i1;
 
         Vect3f *v1 = (Vect3f *)&l_VtxAddress[i1*VertexStride + GeometryStride];
         Vect3f *v2 = (Vect3f *)&l_VtxAddress[i2*VertexStride + GeometryStride];

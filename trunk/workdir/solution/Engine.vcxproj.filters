@@ -243,6 +243,9 @@
     <ClInclude Include="..\..\src\Engine\Input\ActionManager.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Input\CharacterController.h">
+      <Filter>Input</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Input\InputDefinitions.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -474,6 +477,9 @@
       <Filter>Graphics\Textures</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Input\ActionManager.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Input\CharacterController.cpp">
       <Filter>Input</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Input\InputManager.cpp">

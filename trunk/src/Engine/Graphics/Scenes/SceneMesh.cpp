@@ -6,24 +6,59 @@
 #include "Engine\Engine.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
 #include "Physx/PhysxManager.h"
-#include "Graphics/Mesh/TemplatedIndexedGeometry.h"
+#include "Utils\EnumToString.h"
+#include "Utils/Logger.h"
+#include "Math/Quaternion.h"
 
 CSceneMesh::CSceneMesh(CXMLElement* aElement)
     : CSceneNode(aElement)
-    , mMesh( CEngine::GetInstance().GetMeshManager().GetMesh(aElement->GetAttribute<std::string>("mesh", "")) )
-
+    , mMesh(CEngine::GetInstance().GetMeshManager().GetMesh(aElement->GetAttribute<std::string>("mesh", "")))
+    , mRigidBodyEnum(eRigidBodyCount)
 {
     m_ignoreFrustum = aElement->GetAttribute<bool>("ignore_frustum", false);
     m_type = 0;
-    /*CTemplatedIndexedGeometry* hola = static_cast<CTemplatedIndexedGeometry*>(mMesh->mGeometries);
-    int nbVerts = sizeof(GetFileSize(GetLengthSid()));
-    CEngine::GetInstance().GetPhysXManager().CreateStaticTriangleMesh(m_Name, "Default", Quatf(m_Yaw, m_Pitch, m_Roll, 1.0f), m_Position, mMesh->mGeometries[0]);*/
+
+    std::string lRigidBody = aElement->GetAttribute<std::string>("rigid_body", "");
+
+    EnumString<ERigidBody>::ToEnum(mRigidBodyEnum, lRigidBody);
+
+    float size = 1.0f;
+    Quatf rotation = Quatf();
+    std::string lDebug;
+
+    switch (mRigidBodyEnum)
+    {
+    case ePlane:
+        lDebug = "Attached physx PLANE to " + m_Name;
+        CEngine::GetInstance().GetPhysXManager().CreatePlane("Default", 0, 1, 0, 0.52, 1);
+        break;
+    case eBox:
+        lDebug = "Attached physx BOX to " + m_Name;
+        rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+        CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, m_Position, size, size, size, 0.5f);
+        break;
+    case eSphere:
+        lDebug = "Attached physx SPHERE to " + m_Name;
+        rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+        CEngine::GetInstance().GetPhysXManager().CreateDynamicSphere(m_Name, "Default", rotation, m_Position, size / 5, 0.5f);
+        break;
+    case ePlayer:
+        lDebug = "Attached physx PLAYER CONTROLLER to " + m_Name;
+        break;
+    default:
+        lDebug = "NO physx were added to " + m_Name;
+        break;
+    }
+
+    LOG_INFO_APPLICATION(lDebug.c_str());
 }
 
 CSceneMesh::CSceneMesh(CXMLElement* aElement, CMesh* aMesh)
     : CSceneMesh(aElement)
 {
     mMesh = aMesh;
+    float radius = mMesh->GetBoundingSphere().GetRadius();
+    mMesh->GetBoundingSphere().SetRadius(radius * m_Scale.x); // TODO el reescalado es muy trapero
 }
 
 CSceneMesh::~CSceneMesh() {}
@@ -33,6 +68,31 @@ bool CSceneMesh::Update(float aDeltaTime)
     bool lOk = true;
 
     mBS = mMesh->GetBoundingSphere();
+
+    if (mRigidBodyEnum < eRigidBodyCount)
+    {
+        CPhysXManager& lPM = CEngine::GetInstance().GetPhysXManager();
+        Quatf lRotation;
+        Vect3f movement;
+        switch (mRigidBodyEnum)
+        {
+        case ePlane:
+            break;
+        case eSphere:
+        case eBox:
+            m_Position = lPM.GetActorPosition(m_Name);
+            lRotation = lPM.GetActorOrientation(m_Name);
+            m_Yaw = lRotation.GetYaw();
+            m_Pitch = lRotation.GetPitch();
+            m_Roll = lRotation.GetRoll();
+            break;
+        case ePlayer:
+            m_Position = lPM.GetActorPosition(m_Name);
+            break;
+        default:
+            break;
+        }
+    }
 
     return lOk;
 }
@@ -49,6 +109,8 @@ bool CSceneMesh::Render(CRenderManager& aRendermanager)
         lCB.BindBuffer(aRendermanager.GetDeviceContext(), CConstantBufferManager::CB_Object);
         lOk = mMesh->Render(aRendermanager);
     }
+    else
+        lOk = false;
 
     return lOk;
 }

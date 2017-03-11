@@ -9,6 +9,7 @@
 #include "Graphics/Camera/SphericalCameraController.h"
 #include "Graphics/Camera/FpsCameraController.h"
 #include "Graphics/Camera/TpsCameraController.h"
+#include "Input/CharacterController.h"
 #include <chrono>
 #include "Imgui/imgui_impl_dx11.h"
 #include "Utils/StringUtils.h"
@@ -91,6 +92,9 @@ public:
     void orbitalCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt);
     void sphereUpdate(CRenderManager& renderManager, CActionManager* actionManager, Vect3f front = Vect3f(0, 0, 1), Vect3f up = Vect3f(0, 1, 0));
     void sphereRender(CRenderManager& renderManager);
+
+    CCharacterController m_CharacterController;
+    void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
 };
 
 #undef BUILD_GET_SET_ENGINE_MANAGER

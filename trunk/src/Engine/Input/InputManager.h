@@ -15,6 +15,7 @@ public:
     {
         SetupHighprecisionMouse(hWnd);
         SetupGamepad();
+        InitializeKeyboard();
     }
     virtual ~CInputManager() {}
 
@@ -195,14 +196,36 @@ private:
     struct KeyboardData
     {
         bool raw[256];
-        bool escape, space;
+        bool escape = false, space = false;
         bool numpad[10];
         bool fkey[24];
-        bool left, right, up, down;
+        bool left = false, right = false, up = false, down = false;
 
         void SetKey(unsigned char key, bool state);
 
     } m_PreviousKeyboardState, m_KeyboardState;
+
+    void InitializeKeyboard()
+    {
+        for (int i = 0; i < 256; ++i)
+        {
+            m_PreviousKeyboardState.raw[i] = false;
+            m_KeyboardState.raw[i] = false;
+        }
+
+        for (int i = 0; i < 10; ++i)
+        {
+            m_PreviousKeyboardState.numpad[i] = false;
+            m_KeyboardState.numpad[i] = false;
+        }
+
+        for (int i = 0; i < 24; ++i)
+        {
+            m_PreviousKeyboardState.fkey[i] = false;
+            m_KeyboardState.fkey[i] = false;
+        }
+
+    }
 
     bool m_HighPrecisionMouseRegistered;
 
