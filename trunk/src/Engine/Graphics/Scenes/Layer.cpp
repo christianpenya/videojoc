@@ -7,7 +7,7 @@
 #include "Graphics/Animation/SceneAnimatedModel.h"
 #include "Graphics/Animation/AnimatedModelManager.h"
 #include "Graphics/Lights/LightManager.h"
-#include "SceneSkybox.h"
+
 
 CLayer::CLayer(const std::string& aName) :
     CName(aName),
