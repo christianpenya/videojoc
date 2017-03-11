@@ -152,15 +152,17 @@ fn writeToBin = (
 			writter.PrintFloat(lVrtx.m_norm.z)
 
 			if(bit.and lMat.flag_value eTangent) == eTangent then(
-				writter.PrintFloat(lVrtx.m_tangencial.x)
-				writter.PrintFloat(lVrtx.m_tangencial.y)
-				writter.PrintFloat(lVrtx.m_tangencial.z)
+				writter.PrintFloat(0.0)
+				writter.PrintFloat(0.0)
+				writter.PrintFloat(0.0)
+				writter.PrintFloat(0.0) 
 			)
 			if(bit.and lMat.flag_value eBinormal) == eBinormal then (
-				writter.PrintFloat(lVrtx.m_binormal.x)
-				writter.PrintFloat(lVrtx.m_binormal.y)
-				writter.PrintFloat(lVrtx.m_binormal.z)
-			)
+				writter.PrintFloat(0.0)
+				writter.PrintFloat(0.0)
+				writter.PrintFloat(0.0)
+				writter.PrintFloat(0.0)
+				)
 			if(bit.and lMat.flag_value eUV)  == eUV then (
 
 				writter.PrintFloat(lVrtx.m_uv.x)

@@ -5,8 +5,6 @@
 #define MAX_LIGHTS_BY_SHADER 4
 #define MAX_OBJECT_RAW_PARAMETER 16
 
-//float g_Bump = = 2.4f;
-
 cbuffer PerFrame :
 register( b0 )
 {
