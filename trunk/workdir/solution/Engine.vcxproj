@@ -295,6 +295,7 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Textures\Texture.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Textures\TextureManager.h" />
     <ClInclude Include="..\..\src\Engine\Input\ActionManager.h" />
+    <ClInclude Include="..\..\src\Engine\Input\CharacterController.h" />
     <ClInclude Include="..\..\src\Engine\Input\InputDefinitions.h" />
     <ClInclude Include="..\..\src\Engine\Input\InputManager.h" />
     <ClInclude Include="..\..\src\Engine\Physx\PhysxManager.h" />
@@ -377,6 +378,7 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Textures\Texture.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Textures\TextureManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Input\ActionManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Input\CharacterController.cpp" />
     <ClCompile Include="..\..\src\Engine\Input\InputManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Physx\PhysxManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Physx\PhysxManagerImplementation.cpp" />

@@ -16,12 +16,12 @@
 
 CMaterial::~CMaterial()
 {
-    /*    for (std::vector< CMaterialParameter *>::iterator iMaterialParameter = mParameters.begin();
+    /*
+    for (std::vector< CMaterialParameter *>::iterator iMaterialParameter = mParameters.begin();
                 iMaterialParameter != mParameters.end();
                 ++iMaterialParameter)
-        {
-        }
-    	*/
+    {}
+    */
     base::utils::CheckedDelete(mParameters);
 }
 
@@ -103,7 +103,17 @@ void CMaterial::Apply()
         switch (mParameters[i]->GetType())
         {
         case eFloat:
-            break;
+        {
+            if (mParameters[i]->GetName() == "bump")
+            {
+                float *lBump = (float*)mParameters[i]->GetAddr(0);
+                const Vector4<float> bumpVector = Vector4<float>(*lBump, 0.0f, 0.0f, 0.0f);
+                lCBM.mMaterialDesc.m_RawData[1] = bumpVector;
+            }
+        }
+            //std::string hola = "hola";
+            //std::string *temare = mParameters[i]->GetName();
+        break;
         case eFloat2:
             break;
         case eFloat3:
@@ -114,10 +124,11 @@ void CMaterial::Apply()
             float *r = (float*) mParameters[i]->GetAddr(0);
             float *g = (float*) mParameters[i]->GetAddr(1);
             float *b = (float*) mParameters[i]->GetAddr(2);
-            //float *a = (float*)mParameters[i]->GetAddr(3);
-            const Vector4<float> flt = Vector4<float>(*r, *g, *b, 1.0f);
-            lCBM.mMaterialDesc.m_RawData[0] = flt;
+
+            const Vector4<float> lDiffuseColor = Vector4<float>(*r, *g, *b, 1.0f);
+            lCBM.mMaterialDesc.m_RawData[0] = lDiffuseColor;
             break;
+
         }
     }
 

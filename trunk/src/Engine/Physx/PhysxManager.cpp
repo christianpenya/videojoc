@@ -1,6 +1,7 @@
 #include "Math/Quaternion.h"
 #include "PhysxManagerImplementation.h"
 #include <vector>
+#include <array>
 
 /* Otro aspecto destacable es que estas librerías llevan el sufijo “ DEBUG ”. Esto se tiene que
 corregir en la versión final ya que estas son más lentas que las librerías “release”(sin sufijo)
@@ -26,7 +27,6 @@ de PhysX al llevar más comprobaciones de errores.Hay además otro tipo de librerí
 #pragma comment(lib, "PhysX3Cooking_x86.lib")
 #endif
 
-
 #if USE_PHYSX_DEBUG
 #define					PVD_HOST			"127.0.0.1"
 #endif
@@ -36,8 +36,15 @@ de PhysX al llevar más comprobaciones de errores.Hay además otro tipo de librerí
 #endif
 #define CHECKED_RELEASE(x) if(x!=nullptr) {x->release(); x=nullptr;}
 
-
-CPhysXManager::CPhysXManager()
+CPhysXManager::CPhysXManager():
+    m_Foundation(nullptr),
+    m_PhysX(nullptr),
+    m_DebugConnection(nullptr),
+    m_Dispatcher(nullptr),
+    m_Scene(nullptr),
+    m_Cooking(nullptr),
+    m_ControllerManager(nullptr),
+    m_LeftoverSeconds(0)
 {}
 
 CPhysXManager::~CPhysXManager()
@@ -59,24 +66,25 @@ CPhysXManager::~CPhysXManager()
         physx::PxController *cct = it->second;
         cct->release();
     }
+
     m_CharacterControllers.clear();
 }
-
 
 CPhysXManager* CPhysXManager::CreatePhysXManager()
 {
     return new CPhysXManagerImplementation();
 }
 
-
 inline physx::PxVec3 CastVec(const Vect3f& v)
 {
     return physx::PxVec3(v.x, v.y, v.z);
 }
+
 inline Vect3f CastVec(const physx::PxVec3& v)
 {
     return Vect3f(v.x, v.y, v.z);
 }
+
 inline Vect3f CastVec(const physx::PxExtendedVec3& v)
 {
     return Vect3f((float)v.x, (float)v.y, (float)v.z);
@@ -86,83 +94,37 @@ inline physx::PxQuat CastQuat(const Quatf& q)
 {
     return physx::PxQuat(q.x, q.y, q.z, q.w);
 }
+
 inline Quatf CastQuat(const physx::PxQuat& q)
 {
     return Quatf(q.x, q.y, q.z, q.w);
 }
 
-Vect3f CPhysXManager::GetActorPosition(const std::string& actorName)
+Vect3f CPhysXManager::GetActorPosition(const std::string& actorName) const
 {
-    auto it = m_ActorIndexs.find(actorName);
-    assert(it != m_ActorIndexs.end());
-    size_t index = it->second;
-    return m_ActorPositions[index];
+    return m_ActorPositions[GetActorIndex(actorName)];
 }
 
-Quatf CPhysXManager::GetActorOrientation(const std::string& actorName)
+Quatf CPhysXManager::GetActorOrientation(const std::string& actorName) const
 {
-    auto it = m_ActorIndexs.find(actorName);
-    assert(it != m_ActorIndexs.end());
-    size_t index = it->second;
-    return m_ActorOrientations[index];
+    return m_ActorOrientations[GetActorIndex(actorName)];
 }
 
-
-void CPhysXManager::GetActorTransform(const std::string& actorName, Vect3f& position, Quatf& orientation) const
+physx::PxTransform CPhysXManager::GetActorTransform(const std::string& actorName) const
 {
-
+    return physx::PxTransform(CastVec(GetActorPosition(actorName)), CastQuat(GetActorOrientation(actorName)));
 }
-
 
 void CPhysXManager::RegisterMaterial(const std::string &name, float staticFriction, float dynamicFriction, float restitution)
 {
-
     auto it = m_Materials.find(name);
     if (it != m_Materials.end())
     {
-        it->second->release(); // if a material with taht name exist, we remove it
+        it->second->release(); // if a material with that name exist, we remove it
     }
 
     assert(m_Materials.find(name) == m_Materials.end()); //duplicated key!
     m_Materials[name] = m_PhysX->createMaterial(staticFriction, dynamicFriction, restitution);
-}
-
-
-void CPhysXManager::CreateStaticObject(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index)
-{
-    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
-
-    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material)); //funciona
-    physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
-    body->attachShape(*shape);
-    body->userData = (void*)index;
-    m_Scene->addActor(*body);
-
-    shape->release();
-}
-
-
-void CPhysXManager::CreateBox(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index)
-{
-    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
-    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
-    physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
-    body->attachShape(*shape);
-    body->userData = (void*)index;
-    m_Scene->addActor(*body);
-    shape->release();
-}
-
-
-void CPhysXManager::CreateSphere(std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius, size_t index)
-{
-    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
-    physx::PxShape* shape = m_PhysX->createShape(physx::PxSphereGeometry(radius), (*l_Material));
-    physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
-    body->attachShape(*shape);
-    body->userData = (void*)index;
-    m_Scene->addActor(*body);
-    shape->release();
 }
 
 void CPhysXManager::CreatePlane(std::string aMaterialName, float x, float y, float z, float d, size_t index)
@@ -177,20 +139,184 @@ void CPhysXManager::CreatePlane(std::string aMaterialName, float x, float y, flo
     assert(numShapes == 1);
 }
 
-
-void CPhysXManager::CreateDynamicObject(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density, std::string actorName)
+void CPhysXManager::CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
+                                    const Vect3f position, float sizeX, float sizeY, float sizeZ)
 {
+    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
+    size_t index = GetActorSize(actorName);
+    physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+    body->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
+    body->userData = (void*)index;
+
+    m_Scene->addActor(*body);
+    AddActor(actorName, index, body, orientation, position);
+}
+
+void CPhysXManager::CreateStaticSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
+                                       const Vect3f position, float radius)
+{
+    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
     size_t index = GetActorSize(actorName);
 
+    physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+    body->createShape(physx::PxSphereGeometry(radius), (*l_Material));
+    body->userData = (void*)index;
+    m_Scene->addActor(*body);
+
+    AddActor(actorName, index, body, orientation, position);
+}
+
+void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
+                                      const Vect3f position, std::vector<PxVec3> vertices)
+{
+    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
+    size_t index = GetActorSize(actorName);
+
+    physx::PxConvexMeshDesc convexDesc;
+    convexDesc.points.count = vertices.size();
+    convexDesc.points.stride = sizeof(Vect3f);
+    convexDesc.points.data = &vertices[0];
+    convexDesc.flags = physx::PxConvexFlag::eCOMPUTE_CONVEX;
+
+    physx::PxDefaultMemoryOutputStream buf;
+    physx::PxConvexMeshCookingResult::Enum result;
+    bool success = m_Cooking->cookConvexMesh(convexDesc, buf, &result);
+    assert(success);
+    physx::PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
+    physx::PxConvexMesh* convexMesh = m_PhysX->createConvexMesh(input);
+
+    physx::PxShape* shape = m_PhysX->createShape(physx::PxConvexMeshGeometry(convexMesh), *l_Material);
+    physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+
+    body->attachShape(*shape);
+    body->userData = (void*)index;
+    m_Scene->addActor(*body);
+
+    AddActor(actorName, index, body, orientation, position);
+
+    shape->release();
+}
+
+void CPhysXManager::CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
+        const Vect3f position, std::vector<PxVec3> vertices)
+{
+    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
+    size_t index = GetActorSize(actorName);
+
+    PxTriangleMeshDesc meshDesc;
+    meshDesc.points.count = vertices.size();
+    meshDesc.points.stride = sizeof(Vect3f);
+    meshDesc.points.data = &vertices[0];
+
+    PxDefaultMemoryOutputStream writeBuffer;
+    bool status = m_Cooking->cookTriangleMesh(meshDesc, writeBuffer);
+    if (!status)
+        return;
+
+    PxDefaultMemoryInputData readBuffer(writeBuffer.getData(), writeBuffer.getSize());
+    PxTriangleMesh* lTriangleMesh = m_PhysX->createTriangleMesh(readBuffer);
+
+    physx::PxShape* shape = m_PhysX->createShape(physx::PxTriangleMeshGeometry(lTriangleMesh), *l_Material);
+    physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+
+    body->attachShape(*shape);
+    body->userData = (void*)index;
+    m_Scene->addActor(*body);
+
+    AddActor(actorName, index, body, orientation, position);
+
+    shape->release();
+}
+
+void CPhysXManager::CreateDynamicBox(std::string actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position,
+                                     float sizeX, float sizeY, float sizeZ, physx::PxReal density)
+{
+    size_t index = GetActorSize(actorName);
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
 
     physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
     body->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
-    /*body->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
+    body->userData = (void*)index;
+
+    physx::PxRigidBodyExt::updateMassAndInertia(*body, density);
+    m_Scene->addActor(*body);
+
+    AddActor(actorName, index, body, orientation, position);
+
+    /* Esto solo son ejemplos que vi en el tutorial,por si nos interesa
+    body->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
     body->setAngularVelocity(PxVec3(0.f, 0.f, 5.f));
-    body->setAngularDamping(0.f);*/ //Esto solo son ejemplos que vi en el tutorial,por si nos interesa
+    body->setAngularDamping(0.f);
+    */
+}
+
+void CPhysXManager::CreateDynamicSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
+                                        const Vect3f position, float radius, physx::PxReal density)
+{
+    size_t index = GetActorSize(actorName);
+    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
+
+    physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+    body->createShape(physx::PxSphereGeometry(radius), (*l_Material));
+    body->userData = (void*)index;
+
+    physx::PxRigidBodyExt::updateMassAndInertia(*body, density);
+    m_Scene->addActor(*body);
+
+    AddActor(actorName, index, body, orientation, position);
+}
+
+void CPhysXManager::CreateDynamicShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
+                                       const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal density)
+{
+    size_t index = GetActorSize(actorName);
+    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
+
+    physx::PxConvexMeshDesc convexDesc;
+    convexDesc.points.count = vertices.size();
+    convexDesc.points.stride = sizeof(Vect3f);
+    convexDesc.points.data = &vertices[0];
+    convexDesc.flags = physx::PxConvexFlag::eCOMPUTE_CONVEX;
+
+    physx::PxDefaultMemoryOutputStream buf;
+    physx::PxConvexMeshCookingResult::Enum result;
+    bool success = m_Cooking->cookConvexMesh(convexDesc, buf, &result);
+    assert(success);
+    physx::PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
+    physx::PxConvexMesh* convexMesh = m_PhysX->createConvexMesh(input);
+
+    physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+    physx::PxShape* shape = body->createShape(physx::PxConvexMeshGeometry(convexMesh), *l_Material);
+
     body->userData = (void*)index;
     physx::PxRigidBodyExt::updateMassAndInertia(*body, density);
+    m_Scene->addActor(*body);
+    AddActor(actorName, index, body, orientation, position);
+}
+
+void CPhysXManager::CreateDynamicTriangleMesh(const std::string& actorName, std::string aMaterialName,
+        const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal density)
+{
+    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
+    size_t index = GetActorSize(actorName);
+
+    PxTriangleMeshDesc meshDesc;
+    meshDesc.points.count = vertices.size();
+    meshDesc.points.stride = sizeof(Vect3f);
+    meshDesc.points.data = &vertices[0];
+
+    PxDefaultMemoryOutputStream writeBuffer;
+    bool status = m_Cooking->cookTriangleMesh(meshDesc, writeBuffer);
+    if (!status)
+        return;
+
+    PxDefaultMemoryInputData readBuffer(writeBuffer.getData(), writeBuffer.getSize());
+    PxTriangleMesh* lTriangleMesh = m_PhysX->createTriangleMesh(readBuffer);
+
+    physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+    physx::PxShape* shape = body->createShape(physx::PxTriangleMeshGeometry(lTriangleMesh), *l_Material);
+
+    body->userData = (void*)index;
     m_Scene->addActor(*body);
 
     AddActor(actorName, index, body, orientation, position);
@@ -205,6 +331,13 @@ size_t CPhysXManager::GetActorSize(const std::string& actorName)
     assert(m_Actors.size() == m_ActorIndexs.size()); // AOS sync fail
 
     return m_Actors.size();
+}
+
+size_t CPhysXManager::GetActorIndex(const std::string& actorName) const
+{
+    auto it = m_ActorIndexs.find(actorName);
+    assert(it != m_ActorIndexs.end());
+    return it->second;
 }
 
 void CPhysXManager::AddActor(std::string actorName, size_t index, physx::PxRigidDynamic* body, const Quatf orientation, const Vect3f position)
@@ -223,33 +356,6 @@ void CPhysXManager::AddActor(std::string actorName, size_t index, physx::PxRigid
     m_ActorPositions.push_back(position);
     m_ActorOrientations.push_back(orientation);
     m_Actors.push_back(body);
-}
-
-void CPhysXManager::CreateShape(std::string aMaterialName, const Quatf orientation, const Vect3f position)
-{
-    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
-    //std::vector<Vect3f> vertices; //old
-
-    static const PxVec3 vertices[] = { PxVec3(0, 1, 0), PxVec3(1, 0, 0), PxVec3(-1, 0, 0), PxVec3(0, 0, 1), PxVec3(0, 0, -1) };
-
-    physx::PxConvexMeshDesc convexDesc;
-    convexDesc.points.count = 5;
-    //convexDesc.points.count = vertices.size(); //old
-    convexDesc.points.stride = sizeof(PxVec3);
-    //convexDesc.points.stride = sizeof(Vect3f); //old
-    convexDesc.points.data = vertices;
-    //convexDesc.points.data = &vertices[0]; //old
-    convexDesc.flags = physx::PxConvexFlag::eCOMPUTE_CONVEX;
-
-    physx::PxDefaultMemoryOutputStream buf;
-    physx::PxConvexMeshCookingResult::Enum result;
-    bool success = m_Cooking->cookConvexMesh(convexDesc, buf, &result);
-    assert(success);
-    physx::PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
-    physx::PxConvexMesh* convexMesh = m_PhysX->createConvexMesh(input);
-
-    physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
-    physx::PxShape* shape = body->createShape(physx::PxConvexMeshGeometry(convexMesh), *l_Material);
 }
 
 void CPhysXManager::Update(float _dt)
@@ -272,8 +378,8 @@ void CPhysXManager::Update(float _dt)
 
         m_LeftoverSeconds = fmod(m_LeftoverSeconds, PHYSX_UPDATE_STEP);
     }
-}
 
+}
 
 void CPhysXManager::AddTriggerBox(const std::string& actorName, float sizeX, float sizeY, float sizeZ, const Vect3f& position, const Quatf& orientation)
 {
@@ -292,7 +398,6 @@ void CPhysXManager::AddTriggerBox(const std::string& actorName, float sizeX, flo
     AddActor(actorName, index, body, orientation, position);
 }
 
-
 CPhysXManager::CharacterControllerData CPhysXManager::MoveCharacterController(const std::string& characterControllerName, const Vect3f& movement, float elapsedTime)
 {
     physx::PxController* cct = m_CharacterControllers[characterControllerName];
@@ -302,7 +407,6 @@ CPhysXManager::CharacterControllerData CPhysXManager::MoveCharacterController(co
     size_t index = (size_t)actor->userData;
 
     cct->move(CastVec(movement), movement.Length() * 0.01f, elapsedTime, filters);
-
 
     physx::PxExtendedVec3 p = cct->getFootPosition();
     physx::PxVec3 v = actor->getLinearVelocity();
@@ -409,7 +513,7 @@ void CPhysXManager::DeleteActor(std::string actorName, size_t index)
 
 
 /* OLD
-void CPhysXManager::CreateDynamicObject(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index, physx::PxReal density)
+void CPhysXManager::CreateDynamicBox(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index, physx::PxReal density)
 {
 	    std::string actorName = "Prueba";
 

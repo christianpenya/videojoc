@@ -23,8 +23,8 @@ float2 UV :
     TEXCOORD0;
 float2 UV2 :
     TEXCOORD1;
-
 };
+
 struct PS_INPUT
 {
 float4 Pos :
@@ -69,7 +69,7 @@ float4 PS( PS_INPUT IN ) : SV_Target
 
     float3 WorldPos = IN.WorldPosition;
     float4 ColorPixel = DiffuseTexture.Sample(DiffuseSampler, IN.UV) * float4(m_RawData[0].xyz, 1.0);
-    float4 l_LightmapPixel = LightmapTexture.Sample(LightmapSampler, IN.UV) * 2;
+    float4 l_LightmapPixel = LightmapTexture.Sample(LightmapSampler, IN.UV2) * 2;
     //Doblamos contribucion del lightmap para equiparar efecto de 3DSMax
 
     float3 l_LAmbient = m_LightAmbient.xyz * l_LightmapPixel.xyz * ColorPixel;

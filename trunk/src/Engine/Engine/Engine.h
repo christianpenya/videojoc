@@ -9,6 +9,7 @@
 #include "Graphics/Camera/SphericalCameraController.h"
 #include "Graphics/Camera/FpsCameraController.h"
 #include "Graphics/Camera/TpsCameraController.h"
+#include "Input/CharacterController.h"
 #include <chrono>
 #include "Imgui/imgui_impl_dx11.h"
 #include "Utils/StringUtils.h"
@@ -56,24 +57,24 @@ public:
     void LoadFiles();
     std::string m_FileDefaultMaterial;
 
-    BUILD_GET_SET_ENGINE_MANAGER(MaterialManager);
-    BUILD_GET_SET_ENGINE_MANAGER(TextureManager);
-    BUILD_GET_SET_ENGINE_MANAGER(RenderManager);
-    BUILD_GET_SET_ENGINE_MANAGER(CameraController);
-    BUILD_GET_SET_ENGINE_MANAGER(SceneManager);
-    BUILD_GET_SET_ENGINE_MANAGER(InputManager);
-    BUILD_GET_SET_ENGINE_MANAGER(ActionManager);
-    BUILD_GET_SET_ENGINE_MANAGER(ShaderManager);
-    BUILD_GET_SET_ENGINE_MANAGER(EffectManager);
-    BUILD_GET_SET_ENGINE_MANAGER(MeshManager);
-    BUILD_GET_SET_ENGINE_MANAGER(TechniquePoolManager);
-    BUILD_GET_SET_ENGINE_MANAGER(LightManager);
-    BUILD_GET_SET_ENGINE_MANAGER(RenderPipeline);
-    BUILD_GET_SET_ENGINE_MANAGER(ConstantBufferManager);
-    BUILD_GET_SET_ENGINE_MANAGER(AnimatedModelManager);
-    BUILD_GET_SET_ENGINE_MANAGER(ScriptManager);
-    BUILD_GET_SET_ENGINE_MANAGER(CinematicManager);
-    BUILD_GET_SET_ENGINE_MANAGER(PhysXManager);
+    BUILD_GET_SET_ENGINE_MANAGER(MaterialManager)
+    BUILD_GET_SET_ENGINE_MANAGER(TextureManager)
+    BUILD_GET_SET_ENGINE_MANAGER(RenderManager)
+    BUILD_GET_SET_ENGINE_MANAGER(CameraController)
+    BUILD_GET_SET_ENGINE_MANAGER(SceneManager)
+    BUILD_GET_SET_ENGINE_MANAGER(InputManager)
+    BUILD_GET_SET_ENGINE_MANAGER(ActionManager)
+    BUILD_GET_SET_ENGINE_MANAGER(ShaderManager)
+    BUILD_GET_SET_ENGINE_MANAGER(EffectManager)
+    BUILD_GET_SET_ENGINE_MANAGER(MeshManager)
+    BUILD_GET_SET_ENGINE_MANAGER(TechniquePoolManager)
+    BUILD_GET_SET_ENGINE_MANAGER(LightManager)
+    BUILD_GET_SET_ENGINE_MANAGER(RenderPipeline)
+    BUILD_GET_SET_ENGINE_MANAGER(ConstantBufferManager)
+    BUILD_GET_SET_ENGINE_MANAGER(AnimatedModelManager)
+    BUILD_GET_SET_ENGINE_MANAGER(ScriptManager)
+    BUILD_GET_SET_ENGINE_MANAGER(CinematicManager)
+    BUILD_GET_SET_ENGINE_MANAGER(PhysXManager)
 
     double m_DeltaTime;
     clock_t m_DeltaTimeAcum = 0;
@@ -91,6 +92,9 @@ public:
     void orbitalCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt);
     void sphereUpdate(CRenderManager& renderManager, CActionManager* actionManager, Vect3f front = Vect3f(0, 0, 1), Vect3f up = Vect3f(0, 1, 0));
     void sphereRender(CRenderManager& renderManager);
+
+    CCharacterController m_CharacterController;
+    void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
 };
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
