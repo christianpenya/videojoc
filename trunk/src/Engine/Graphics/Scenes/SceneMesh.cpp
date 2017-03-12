@@ -15,6 +15,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     , mMesh(CEngine::GetInstance().GetMeshManager().GetMesh(aElement->GetAttribute<std::string>("mesh", "")))
     , mRigidBodyEnum(eRigidBodyCount)
 {
+    m_ignoreFrustum = aElement->GetAttribute<bool>("ignore_frustum", false);
     m_type = 0;
 
     std::string lRigidBody = aElement->GetAttribute<std::string>("rigid_body", "");
@@ -43,6 +44,12 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
         break;
     case ePlayer:
         lDebug = "Attached physx PLAYER CONTROLLER to " + m_Name;
+        break;
+    case eTriggerBox:
+        lDebug = "Attached physx Trigger Box to " + m_Name;
+        rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+        CEngine::GetInstance().GetPhysXManager().AddTriggerBox(m_Name, size, size, size, m_Position, rotation);
+
         break;
     default:
         lDebug = "NO physx were added to " + m_Name;

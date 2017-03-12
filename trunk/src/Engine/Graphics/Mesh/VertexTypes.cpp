@@ -15,6 +15,7 @@ uint32 VertexTypes::GetVertexSize(uint32 aVertexFlags)
     else if (aVertexFlags == PositionNormalUV::GetVertexFlags())
     {
         return sizeof(PositionNormalUV);
+
     }
     else if (aVertexFlags == PositionNormalUVUV2::GetVertexFlags())
     {

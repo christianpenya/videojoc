@@ -18,7 +18,9 @@ public:
         eShape,
         eTriangleMesh,
         ePlayer,
+        eTriggerBox,
         eRigidBodyCount
+
     };
 
     explicit CSceneMesh(CXMLElement* aElement);
@@ -41,6 +43,7 @@ Begin_Enum_String(CSceneMesh::ERigidBody)
     Enum_String_Id(CSceneMesh::eShape, "shape");
     Enum_String_Id(CSceneMesh::eTriangleMesh, "triangle_mesh");
     Enum_String_Id(CSceneMesh::ePlayer, "player");
+    Enum_String_Id(CSceneMesh::eTriggerBox, "triggerBox");
 }
 End_Enum_String;
 

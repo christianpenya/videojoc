@@ -74,27 +74,27 @@ void CalculateSingleLight(
         float g_SpecularExponent = 80.0;
         float g_SpecularContrib = 1.0;
 
-        float3 l_LightDirection = m_LightDirection[IdLight];
+        float3 l_LightDirection = m_LightDirection[IdLight].xyz;
         float l_DistanceAtten = 1.0;
         float l_AngleAtenuation = 1.0;
 
         // OMNI
         if (m_LightTypeArray[IdLight] == 0)
         {
-            float l_DistanceToPixel = length(WorldPos - m_LightPosition[IdLight]);
-            l_LightDirection = (WorldPos - m_LightPosition[IdLight]) / l_DistanceToPixel;
+            float l_DistanceToPixel = length(WorldPos - m_LightPosition[IdLight].xyz);
+            l_LightDirection = (WorldPos - m_LightPosition[IdLight].xyz) / l_DistanceToPixel;
             l_DistanceAtten = 1.0 - saturate((l_DistanceToPixel - m_LightAttenuationStartRangeArray[IdLight]) / (m_LightAttenuationEndRangeArray[IdLight] - m_LightAttenuationStartRangeArray[IdLight]));
         }
         //SPOT
         else if (m_LightTypeArray[IdLight] == 1)
         {
-            float l_DistanceToPixel = length(WorldPos - m_LightPosition[IdLight]);
-            l_LightDirection = (WorldPos - m_LightPosition[IdLight]) / l_DistanceToPixel;
+            float l_DistanceToPixel = length(WorldPos - m_LightPosition[IdLight].xyz);
+            l_LightDirection = (WorldPos - m_LightPosition[IdLight].xyz) / l_DistanceToPixel;
             l_DistanceAtten = 1.0 - saturate((l_DistanceToPixel - m_LightAttenuationStartRangeArray[IdLight]) / (m_LightAttenuationEndRangeArray[IdLight] - m_LightAttenuationStartRangeArray[IdLight]));
 
             float l_SpotAngle = cos(m_LightAngleArray[IdLight] * 0.5*(3.1416 / 180.0));
             float l_SpotFallOff = cos(m_LightFallOffAngleArray[IdLight] * 0.5*(3.1416 / 180.0));
-            float l_DotAngle = dot(l_LightDirection, m_LightDirection[IdLight]);
+            float l_DotAngle = dot(l_LightDirection, m_LightDirection[IdLight].xyz);
 
             float l_AngleAtenuation = saturate((l_DotAngle - l_SpotFallOff) / (l_SpotAngle - l_SpotFallOff));
         }

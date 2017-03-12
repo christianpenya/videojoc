@@ -23,6 +23,10 @@
 	<shader stage="vertex" name="AnimatedModelForward"/>
 	<shader stage="pixel" name="AnimatedModelForward"/>
   </effect>
+ <effect name="SkyboxTechnique" shader_family="Skybox">
+   <shader stage="vertex"   name="Skybox"/>
+   <shader stage="pixel"    name="Skybox"/>
+  </effect>
  </effects>
  
  
