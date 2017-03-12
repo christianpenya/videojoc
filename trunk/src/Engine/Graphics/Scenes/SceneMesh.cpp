@@ -45,6 +45,12 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     case ePlayer:
         lDebug = "Attached physx PLAYER CONTROLLER to " + m_Name;
         break;
+    case eTriggerBox:
+        lDebug = "Attached physx Trigger Box to " + m_Name;
+        rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+        CEngine::GetInstance().GetPhysXManager().AddTriggerBox(m_Name, size, size, size, m_Position, rotation);
+
+        break;
     default:
         lDebug = "NO physx were added to " + m_Name;
         break;

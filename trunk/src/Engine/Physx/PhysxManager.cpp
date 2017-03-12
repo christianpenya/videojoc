@@ -194,7 +194,7 @@ void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string 
 
     AddActor(actorName, index, body, orientation, position);
 
-    shape->release();
+    // shape->release();
 }
 
 void CPhysXManager::CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
@@ -225,7 +225,7 @@ void CPhysXManager::CreateStaticTriangleMesh(const std::string& actorName, std::
 
     AddActor(actorName, index, body, orientation, position);
 
-    shape->release();
+    // shape->release();
 }
 
 void CPhysXManager::CreateDynamicBox(std::string actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position,
@@ -383,18 +383,22 @@ void CPhysXManager::Update(float _dt)
 
 void CPhysXManager::AddTriggerBox(const std::string& actorName, float sizeX, float sizeY, float sizeZ, const Vect3f& position, const Quatf& orientation)
 {
+
+
+
+
     auto *l_Material = m_Materials["Default"];
     size_t index = GetActorSize(actorName);
-
-    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), *l_Material);
+    physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX, sizeY,  sizeZ), *l_Material);
     shape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, false);
     shape->setFlag(physx::PxShapeFlag::eTRIGGER_SHAPE, true);
-    physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+
     body->attachShape(*shape);
     body->userData = (void*)index;
     m_Scene->addActor(*body);
 
-    shape->release();
+    //shape->release();
     AddActor(actorName, index, body, orientation, position);
 }
 
@@ -434,7 +438,7 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
 
     physx::PxFilterData filterData;
     filterData.setToDefault();
-    filterData.word0 = 1;
+    filterData.word0 = filterMask;
 
     physx::PxRaycastBuffer hit;
     bool status = m_Scene->raycast(CastVec(origin), CastVec(dir), len, hit, physx::PxHitFlags(physx::PxHitFlag::eDEFAULT), physx::PxQueryFilterData(filterData, physx::PxQueryFlag::eDYNAMIC | physx::PxQueryFlag::eSTATIC));

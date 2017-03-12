@@ -32,7 +32,11 @@ bool CSceneNode::Update(float aDeltaTime)
 
 bool CSceneNode::Render(CRenderManager& lRM)
 {
-    if (!m_ignoreFrustum)
+    if (m_ignoreFrustum)
+    {
+        return true;
+    }
+    else
     {
         Vector4<float> lBSCenter(mBS.GetCenter().x, mBS.GetCenter().y, mBS.GetCenter().z, 0);
         lBSCenter = lRM.GetViewProjectionMatrix() * lBSCenter;
@@ -42,10 +46,6 @@ bool CSceneNode::Render(CRenderManager& lRM)
         // Todo: Check BS with currentfrustum
 
         return m_Visible;
-    }
-    else
-    {
-        return  true;
     }
 }
 
