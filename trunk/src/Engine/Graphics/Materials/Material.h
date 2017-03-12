@@ -46,6 +46,12 @@ public:
     {
         return mTechnique;
     };
+    CTexture* GetTexture(ETextureIndex aIndex);
+    const std::vector<CMaterialParameter *> & GetParmeters() const
+    {
+        return mParameters;
+    }
+    void DrawImgui();
 
 private:
     DISALLOW_COPY_AND_ASSIGN(CMaterial);

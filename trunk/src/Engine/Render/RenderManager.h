@@ -163,7 +163,8 @@ public:
     void SetViewport(const Vect2u & aPosition, const Vect2u & aSize) const;
     void ResetViewport() const;
     void UnsetRenderTargets();
-    void SetRenderTargets(int aNumViews, ID3D11RenderTargetView **aRenderTargetViews, ID3D11DepthStencilView *aDepthStencilViews);
+    void SetRenderTargets(int aNumViews, ID3D11RenderTargetView* const* aRenderTargetViews, ID3D11DepthStencilView *aDepthStencilViews);
+
     void Update();
 
     Mat44f m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix; //#TODO, tienen getter y setter publico, no se pueden devolver a private? Render pipeline.

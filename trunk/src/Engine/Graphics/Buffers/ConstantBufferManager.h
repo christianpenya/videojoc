@@ -72,4 +72,10 @@ protected:
     CConstantBuffer* m_ConstantBuffers[NumConstantBuffers];
 };
 
+class CMaterialEffectParameters
+{
+public:
+    Vect4f m_RawData[MAX_OBJECT_RAW_PARAMETER];
+};
+
 #endif //_ENGINE_CONSTANTBUFFERMANAGER_20170118_H

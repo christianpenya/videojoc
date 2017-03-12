@@ -1,0 +1,65 @@
+<render_pipeline>
+	<begin_render name="begin_render_main_loop"/>
+	<set_per_frame_constants name="set_per_frame_constants"/>
+	<set_lights_constants name="set_lights_constants_cmd"/>
+	<set_depth_stencil_state name="stencil_state_z" enable_z_test="true" write_z_buffer="true" enable_stencil="false"/>
+	<set_rasterizer_state name="solid_raster_state" fill_mode="solid" cull_mode="back" clockwise="true"/>
+	GENERATE GBUFFER
+	<set_render_target name="deferred_multiple_render_target">
+		<dynamic_texture name="AlbedoTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format="RGBA8_UNORM"/>
+		<dynamic_texture name="LightMapTexture" texture_width_as_frame_buffer="true" format="RGBA8_UNORM"/>
+		<dynamic_texture name="NormalMapTexture" texture_width_as_frame_buffer="true" format="RGBA8_UNORM"/>
+		<dynamic_texture name="DepthMapTexture" texture_width_as_frame_buffer="true" format="R32_FLOAT"/>
+	</set_render_target>
+	<clear name="clear_deferred" render_target="true" depth_stencil="true" color="0.0 0.0 0.0 0.0"/>
+	<apply_technique_pool name="apply_deferred_technique" pool_name="deferred"/>
+	<render_layer name="render_deferred_opaque" layer="deferred_opaque"/>
+	<unset_render_target name="unset_render_target"/>
+	END GENERATE GBUFFER
+	<apply_technique_pool name="apply_post_processing_technique" pool_name="PostProcessingPool"/>
+	<set_depth_stencil_state name="stencil_state_z2" enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>
+	<draw_quad name="deffered_shading_lighting" material="DrawQuadDeferredShadingMaterial">
+		<texture name="AlbedoTexture" stage="0"/>
+		<texture name="LightMapTexture" stage="1"/>
+	</draw_quad>
+	<deferred_shading name="deffered_shading" material="DrawQuadDeferredShadingPerLightMaterial">
+		<texture stage="0" name="AlbedoTexture"/>
+		<texture stage="1" name="LightMapTexture"/>
+		<texture stage="2" name="NormalMapTexture"/>
+		<texture stage="3" name="DepthMapTexture"/>
+	</deferred_shading>
+	<disable_alpha_blend/>
+	<set_depth_stencil_state name="stencil_state_z3" enable_z_test="true" write_z_buffer="true" enable_stencil="true"/>
+	<apply_technique_pool name="apply_forward_technique" pool_name="forward"/>
+	<render_layer name="render_opaque" layer="opaque"/>
+	<capture_frame_buffer name="capture_frame_buffer" texture_width_as_frame_buffer="true"/>
+	<apply_technique_pool pool_name="PostProcessingPool"/>
+	<draw_quad material="FogMaterial">
+		<texture name="capture_frame_buffer" stage="0"/>
+		<texture name="DepthMapTexture" stage="1"/>
+	</draw_quad>
+	<capture_frame_buffer name="capture_frame_buffer_fog" texture_width_as_frame_buffer="true"/>
+	<draw_quad material="ColorGradingMaterial">
+		<texture name="capture_frame_buffer_fog" stage="0"/>
+	</draw_quad>
+	<enable_alpha_blend/>
+	<draw_quad material="NoiseAndVignettingMaterial">
+		<texture stage="0" name="Data/GUI/textures/noise.dds"/>
+		<texture stage="1" name="Data/GUI/textures/vignetting.dds"/>
+	</draw_quad>
+	<disable_alpha_blend/>
+	<draw_quad material="DrawQuadMaterial" viewport_size="128 128">
+		<texture name="AlbedoTexture" stage="0"/>
+	</draw_quad>
+	<draw_quad material="DrawQuadMaterial" viewport_size="128 128" viewport_position="128 0">
+		<texture name="LightMapTexture" stage="0"/>
+	</draw_quad>
+	<draw_quad material="DrawQuadMaterial" viewport_size="128 128" viewport_position="0 128">
+		<texture name="NormalMapTexture" stage="0"/>
+	</draw_quad>
+	<draw_quad material="DrawQuadMaterial" viewport_size="128 128" viewport_position="128 128">
+		<texture name="DepthMapTexture" stage="0"/>
+	</draw_quad>
+	<render_imgui name="imediate_gui_render"/>
+	<end_render name="end_render_main_loop"/>
+</render_pipeline>

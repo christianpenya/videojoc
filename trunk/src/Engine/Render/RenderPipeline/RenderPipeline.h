@@ -17,6 +17,7 @@ public:
     bool Load(const std::string& aFilename);
     void Execute();
     void Reload();
+    void DrawImgui(const char* title, bool* open);
 private:
     std::string m_Filename;
 };

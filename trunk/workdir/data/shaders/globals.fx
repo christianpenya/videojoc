@@ -11,6 +11,7 @@ register( b0 )
     float4x4 m_View;
     float4x4 m_Projection;
     float4x4 m_ViewProjection;
+	float4x4 m_InverseView;
     float4 m_CameraPosition;
     float4 m_CameraFrontVector;
     float4 m_CameraUpVector;

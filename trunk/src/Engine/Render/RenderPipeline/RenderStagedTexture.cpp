@@ -17,15 +17,16 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
     {
         if (strcmp(iNTexture->Name(), "dynamic_texture") == 0)
         {
-//            CDynamicTexture* l_DynamicTexture = new CDynamicTexture(iNTexture);
-//            m_DynamicTextures.push_back(l_DynamicTexture);
+            CDynamicTexture* l_DynamicTexture = new CDynamicTexture(iNTexture);
+            CDynamicTextureMaterial* l_DynamicTextureMaterial = new CDynamicTextureMaterial(l_DynamicTexture);
+            m_DynamicTexturesMaterials.push_back(l_DynamicTextureMaterial);
         }
         else if (strcmp(iNTexture->Name(), "texture") == 0)
         {
-            //CTexture* l_Texture = new CTexture(iNTexture->GetAttribute<std::string>("file", "DiffuseMapTexture"));
-            //CStagedTexture* l_stagedTexture = new CStagedTexture(iNTexture->GetAttribute<uint32>("stage_id", 1), l_Texture);
-            //l_stagedTexture->m_filename = iNTexture->GetAttribute<std::string>("file", "DiffuseMapTexture");
-            //m_StagedTextures.push_back(l_stagedTexture);
+            CTexture* l_Texture = new CTexture(iNTexture->GetAttribute<std::string>("name", "AlbedoTexture"));
+            CStagedTexture* l_stagedTexture = new CStagedTexture(iNTexture->GetAttribute<uint32>("stage_id", 1), l_Texture);
+            l_stagedTexture->m_filename = iNTexture->GetAttribute<std::string>("name", "AlbedoTexture");
+            m_StagedTextures.push_back(l_stagedTexture);
         }
     }
 
@@ -33,11 +34,11 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
 
 }
 
-/*void CRenderStagedTexture::CreateRenderTargetViewVector()
+void CRenderStagedTexture::CreateRenderTargetViewVector()
 {
     CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
     lRenderManager.SetRendertarget();
-}*/
+}
 
 void CRenderStagedTexture::ActivateTextures()
 {
@@ -52,15 +53,10 @@ CRenderStagedTexture::CStagedTexture::CStagedTexture(uint32 aStageId, CTexture *
 
 void CRenderStagedTexture::CStagedTexture::Activate()
 {
-    //TODO
-}
 
-void CRenderStagedTexture::CreateRenderTargetViewVector(CRenderManager& lRM)
-{
-    lRM.SetRendertarget();
 }
 
 void CRenderStagedTexture::Execute(CRenderManager& lRM)
 {
-    CreateRenderTargetViewVector(lRM);
+    CreateRenderTargetViewVector();
 }

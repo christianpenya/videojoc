@@ -30,8 +30,7 @@ void CCaptureFrameBufferTexture::Init()
 
     ID3D11Texture2D *l_Buffer = NULL;
 
-    // TODO:
-    //l_RenderManager.GetSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&l_Buffer);
+//    l_RenderManager.GetSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&l_Buffer);
 
     D3D11_TEXTURE2D_DESC l_Texture2DDescription;
     l_Texture2DDescription.Width = mSize.x;
@@ -82,15 +81,12 @@ bool CCaptureFrameBufferTexture::CreateSamplerState()
 
 bool CCaptureFrameBufferTexture::Capture(unsigned int StageId)
 {
+
     CRenderManager &l_RenderManager = CEngine::GetInstance().GetRenderManager();
-    ID3D11Texture2D *l_Surface = NULL;
-
-
-    /*HRESULT l_HR = l_RenderManager.GetSwapChain()->GetBuffer(StageId, __uuidof(ID3D11Texture2D), reinterpret_cast< void** >(&l_Surface));
-    if (FAILED(l_HR) || l_Surface == NULL || m_DataTexture == NULL)
-        return false;
-    */
-
+    ID3D11Texture2D *l_Surface = nullptr;
+//    HRESULT l_HR = l_RenderManager.GetSwapChain()->GetBuffer(StageId, __uuidof(ID3D11Texture2D), reinterpret_cast< void** >(&l_Surface));
+//    if (FAILED(l_HR) || l_Surface == nullptr || m_DataTexture == nullptr)
+//        return false;
     l_RenderManager.GetDeviceContext()->CopyResource(m_DataTexture, l_Surface);
     return true;
 }
