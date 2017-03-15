@@ -17,7 +17,7 @@ public:
     virtual ~CSetRasterizerState();
     bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager& lRM);
-//    virtual void DrawIMGUI();
+    virtual void DrawIMGUI();
 private:
     DISALLOW_COPY_AND_ASSIGN(CSetRasterizerState);
     ID3D11RasterizerState* m_RasterizerState;

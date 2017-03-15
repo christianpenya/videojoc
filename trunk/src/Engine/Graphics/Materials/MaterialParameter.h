@@ -10,7 +10,7 @@
 class CMaterialParameter : public CName
 {
 public:
-    //CMaterialParameter(const std::string& aName, CMaterial::TParameterType aType) : CName(aName), m_Type(aType) {}; //old
+    CMaterialParameter(const std::string& aName, CMaterial::TParameterType aType) : CName(aName), m_Type(aType) {}; //old
     CMaterialParameter(const std::string& aName, float ImGuiSpeed, float ImGuiMin, float ImGuiMax, CMaterial::TParameterType aType)
         : CName(aName), m_Type(aType), m_ImGuiSpeed(ImGuiSpeed), m_ImGuiMin(ImGuiMin), m_ImGuiMax(ImGuiMax) {};
     virtual ~CMaterialParameter() {}

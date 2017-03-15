@@ -9,7 +9,7 @@ template<typename T>
 class CTemplatedMaterialParameter : public CMaterialParameter
 {
 public:
-    //CTemplatedMaterialParameter(const std::string& aName, const T &Value, CMaterial::TParameterType aType) : CMaterialParameter(aName, aType), m_Value(Value){};
+    CTemplatedMaterialParameter(const std::string& aName, const T &Value, CMaterial::TParameterType aType) : CMaterialParameter(aName, aType), m_Value(Value) {};
     CTemplatedMaterialParameter(const std::string& aName, const T &Value, float ImGuiSpeed, float ImGuiMin, float ImGuiMax, CMaterial::TParameterType aType)
         : CMaterialParameter(aName, ImGuiSpeed, ImGuiMin, ImGuiMax, aType)
         , m_Value(Value)

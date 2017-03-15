@@ -42,16 +42,7 @@ bool CDeferredShading::CreateBlendState(CRenderManager &lRM)
 bool CDeferredShading::Load(const CXMLElement* aElement)
 {
     bool lOk = CDrawQuad::Load(aElement);
-
-    for (tinyxml2::XMLElement const *iNTexture = aElement->FirstChildElement(); iNTexture != nullptr; iNTexture = iNTexture->NextSiblingElement())
-    {
-        if (strcmp(iNTexture->Name(), "texture") == 0)
-        {
-            CTexture* l_Texture = new CTexture(iNTexture->GetAttribute<std::string>("name", "AlbedoTexture"));
-            CStagedTexture* l_StagedTexture = new CStagedTexture(iNTexture->GetAttribute<uint32>("stage_id", 1), l_Texture);
-            m_StagedTextures.push_back(l_StagedTexture);
-        }
-    }
+    return lOk;
 }
 
 void CDeferredShading::Execute(CRenderManager &lRM)
