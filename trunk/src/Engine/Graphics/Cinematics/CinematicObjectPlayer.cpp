@@ -38,7 +38,7 @@ bool CCinematicObjectPlayer::Load(const CXMLElement *aElement)
     }
 
 
-    return lOk;
+    return lOk && (m_SceneNode != nullptr);
 }
 
 void CCinematicObjectPlayer::Apply(float aPercentage, CCinematicKey* A, CCinematicKey* B)
