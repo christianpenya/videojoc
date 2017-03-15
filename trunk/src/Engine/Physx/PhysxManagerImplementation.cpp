@@ -88,6 +88,17 @@ void CPhysXManagerImplementation::onTrigger(physx::PxTriggerPair* pairs, physx::
         std::string actorName = m_ActorNames[indexActor];
 
         printf("Trigger \"%s\" fired with \"%s\"", triggerName.c_str(), actorName.c_str());
+
+        if (actorName == "player")
+        {
+
+
+            bool hitted = Raycast(m_ActorPositions[indexTrigger], Vect3f(4.0, 0.0, 0.0), 0001,nullptr);//TODO Inicializar RaycastData y pasar-lo como parametro en lugar de nullptr
+            if (hitted)
+            {
+                printf("Box hitted");
+            }
+        }
     }
 }
 

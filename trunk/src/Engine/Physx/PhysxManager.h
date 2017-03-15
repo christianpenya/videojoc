@@ -56,6 +56,7 @@ class CPhysXManager
         Vect3f normal;
         float distance;
         std::string actor;
+
     };
 
 protected:

@@ -8,6 +8,7 @@
 #include "Graphics/Animation/AnimatedModelManager.h"
 #include "Graphics/Lights/LightManager.h"
 
+
 CLayer::CLayer(const std::string& aName) :
     CName(aName),
     m_Active(false)
@@ -69,7 +70,6 @@ bool CLayer::Load(CXMLElement* aElement)
                 lNode->Settype(3); //SceneLight
             }
         }
-
         if (lNode)
             lOk &= Add(lNode->GetName(), lNode);
     }

@@ -6,9 +6,11 @@
 	<set_rasterizer_state name="set_rasterizer_state" cull_mode="front" clock_wise="1" type="solid"/> <!-- type  -->
 	<apply_technique_pool name="apply_forward_technique" pool_name="forward"/>	
 	<!--<draw_quad name = "draw_quad_pipeline" viewport_position = "0 0" viewport_size = "800 600" pixel_shader = "PositionNormalForward" />-->
-	<render_layer name="render_bodegon" layer="Principal"/>
-	<render_layer name="render_sereno" layer="sereno"/>
+	<render_layer name="render_bodegon_principal" layer="Principal"/>
+	<apply_technique_pool name="apply_skybox_technique" pool_name="skybox"/>
+	<render_layer name="render_bodegon_skybox" layer="Skybox"/>
 	<!--	
+	<apply_technique_pool name="apply_forward_technique" pool_name="Skybox"/>	
 
 		<render_layer name="render_opaque" layer="opaque"/>
 		<render_layer name="render_lights" layer="lights"/>	
