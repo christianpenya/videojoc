@@ -1,5 +1,7 @@
 #include "RenderCmd.h"
 #include "XML\XML.h"
+#include "ImGUI\imgui.h"
+
 
 CRenderCmd::CRenderCmd(): m_Active(false) {}
 
@@ -11,4 +13,12 @@ bool CRenderCmd::Load(const CXMLElement* aElement)
     m_Active = aElement->GetAttribute<bool>("enable", "true");
 
     return true;
+}
+
+void CRenderCmd::DrawImgui()
+{
+    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    {
+        ImGui::Checkbox("Active", &m_Active);
+    }
 }

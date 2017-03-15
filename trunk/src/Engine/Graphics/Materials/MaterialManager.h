@@ -17,11 +17,11 @@ public:
     void Load(const std::string &LevelFilename, const std::string &DefaultsFileName = "");
     void Reload();
     void Save();
-
 private:
     std::string m_LevelMaterialsFilename;
     std::string m_DefaultMaterialsFilename;
     bool Load(const std::string &Filename, bool Update = false);
+
 };
 
 #endif //_ENGINE_MATERIALMANAGER_CPB_1611241620428_H
