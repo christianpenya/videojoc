@@ -10,7 +10,7 @@
 #include "Graphics\Effects\PixelShader.h"
 #include "Graphics\Effects\VertexShader.h"
 
-static CVertexShader sQuadVertexShader(
+/*static CVertexShader sQuadVertexShader(
     "struct PS_INPUT\n"
     "{\n"
     "  float4 Pos : SV_POSITION;\n"
@@ -24,7 +24,7 @@ static CVertexShader sQuadVertexShader(
     "  return l_Output;\n"
     "}\n", VertexTypes::PositionUV::GetVertexFlags());
 
-static bool sQuadVertexShaderLoaded = false;
+static bool sQuadVertexShaderLoaded = false;*/
 
 /* VertexTypes::Dummy::GetVertexFlags());
 Vertex::Dummy lScreenQuadVertexDummy[4] = { 0,0,0,0 };
@@ -55,47 +55,42 @@ Vertex::PositionUV::GetVertexFlags());
 */
 CQuad::CQuad()
     : mGeometry(nullptr)
-    , mEffect(new CEffect())
+      //, mEffect(new CEffect())
 {
 }
 
-CQuad::~CQuad()
-{
+CQuad::~CQuad() {}
 
-}
-
-bool CQuad::Init(CPixelShader* aPS)
+bool CQuad::Init()
 {
     bool lOk = false;
     CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
     VertexTypes::PositionUV lScreenVertexsQuad[4] =
     {
         { Vect3f(-1.0f, 1.0f, 0.5f), Vect2f(0.0f, 0.0f) },
-        { Vect3f(-1.0f, -1.0f, 0.5f), Vect2f(0.0f, 1.0f) },
         { Vect3f(1.0f, 1.0f, 0.5f), Vect2f(1.0f, 0.0f) },
+        { Vect3f(-1.0f, -1.0f, 0.5f), Vect2f(0.0f, 1.0f) },
         { Vect3f(1.0f, -1.0f, 0.5f), Vect2f(1.0f, 1.0f) }
     };
 
     CVertexBuffer<VertexTypes::PositionUV> * lVB = new CVertexBuffer<VertexTypes::PositionUV>(lRenderManager, lScreenVertexsQuad, 4);
     mGeometry = new CGeometryTriangleStrip< VertexTypes::PositionUV >(lVB);
 
-    if (!sQuadVertexShaderLoaded)
-    {
-        sQuadVertexShaderLoaded = true;
-        sQuadVertexShader.SetEntryPoint("quadVS");
-        lOk = sQuadVertexShader.Load();
-    }
-
-    mEffect->SetShader(CShader::eVertexShader, &sQuadVertexShader);
-    mEffect->SetShader(CShader::ePixelShader, aPS);
     return lOk;
 }
 
 bool CQuad::Render()
 {
-    CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
-    ID3D11DeviceContext* lContext = lRenderManager.GetDeviceContext();
-    mEffect->Bind(lContext);
-    return mGeometry->Render(lContext);
+    bool lOk = false;
+
+    ID3D11DeviceContext* lContext = CEngine::GetInstance().GetRenderManager().GetDeviceContext();
+    lOk = mGeometry->Render(lContext);
+    return lOk;
 }
 
+bool CQuad::Render(CEffect* EFfect)
+{
+    ID3D11DeviceContext* lContext = CEngine::GetInstance().GetRenderManager().GetDeviceContext();
+    EFfect->Bind(lContext);
+    return Render();
+}

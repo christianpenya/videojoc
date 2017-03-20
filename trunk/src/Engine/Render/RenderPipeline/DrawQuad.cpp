@@ -5,7 +5,8 @@
 #include "Render/RenderManager.h"
 #include "Engine/engine.h"
 
-CDrawQuad::CDrawQuad() {}
+CDrawQuad::CDrawQuad(): mQuad(nullptr), mMaterial(nullptr) {}
+
 CDrawQuad::~CDrawQuad() {}
 
 //Leera el nodo
@@ -16,19 +17,24 @@ bool CDrawQuad::Load(const CXMLElement * aElement)
     bool lOk = CRenderStagedTexture::Load(aElement);
     if (lOk)
     {
-        Vect2u m_ViewportSize = aElement->GetAttribute<Vect2u>("viewport_size", Vect2u(128, 128));
-        Vect2u m_ViewportPosition = aElement->GetAttribute<Vect2u>("viewport_position", Vect2u(128, 0));
+        m_ViewportSize = aElement->GetAttribute<Vect2u>("viewport_size", Vect2u(128, 128));
+        m_ViewportPosition = aElement->GetAttribute<Vect2u>("viewport_position", Vect2u(128, 0));
         CMaterialManager& lMaterialManager = CEngine::GetInstance().GetMaterialManager();
         mMaterial = lMaterialManager(aElement->GetAttribute<std::string>("material", ""));
-        mQuad = new CQuad();
-    }
-    return lOk;
 
+        mQuad = new CQuad();
+        mQuad->Init();
+    }
+
+    return lOk;
 }
 
 void CDrawQuad::Execute(CRenderManager& lRM)
 {
     lRM.SetViewport(m_ViewportPosition, m_ViewportSize);
+    ActivateTextures();
+    mMaterial->Apply();
+
     mQuad->Render();
     lRM.ResetViewport();
 }

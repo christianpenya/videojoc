@@ -28,6 +28,7 @@ CMaterial::~CMaterial()
 CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
 {
     CEngine &l_Engine = CEngine::GetInstance();
+
     mTechnique = l_Engine.GetTechniquePoolManager()(aElement->GetAttribute<std::string>("vertex_type", ""));
 
     for (tinyxml2::XMLElement *iTextureOrParameter = aElement->FirstChildElement(); iTextureOrParameter != nullptr; iTextureOrParameter = iTextureOrParameter->NextSiblingElement())

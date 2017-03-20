@@ -31,10 +31,10 @@ public:
     GET_SET_PTR(ID3D11DepthStencilView, DepthStencilView);
 
 protected:
-    ID3D11Texture2D         *m_pRenderTargetTexture;
-    ID3D11RenderTargetView  *m_pRenderTargetView;
-    ID3D11Texture2D         *m_pDepthStencilBuffer;
-    ID3D11DepthStencilView  *m_pDepthStencilView;
+    ID3D11Texture2D* m_pRenderTargetTexture;
+    ID3D11RenderTargetView* m_pRenderTargetView;
+    ID3D11Texture2D* m_pDepthStencilBuffer;
+    ID3D11DepthStencilView* m_pDepthStencilView;
     bool                    m_CreateDepthStencilBuffer;
     TFormatType             m_FormatType;
 

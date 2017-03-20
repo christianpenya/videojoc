@@ -27,6 +27,10 @@
    <shader stage="vertex"   name="Skybox"/>
    <shader stage="pixel"    name="Skybox"/>
   </effect>
+   <effect name="QuadTechnique" shader_family="Quad">
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="Quad"/>
+  </effect>
  </effects>
  
  
