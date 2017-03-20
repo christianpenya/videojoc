@@ -22,7 +22,7 @@ public:
 private:
     DISALLOW_COPY_AND_ASSIGN(CDrawQuad);
     CQuad* mQuad;
-    CPixelShader* mPixelShader;
+    CMaterial* mMaterial;
 };
 
 #endif

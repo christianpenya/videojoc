@@ -17,6 +17,7 @@ public:
     virtual bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager& lRM) = 0;
     GET_SET_BOOL(Active);
+    virtual void DrawImgui();
 private:
     DISALLOW_COPY_AND_ASSIGN(CRenderCmd);
     bool m_Active;

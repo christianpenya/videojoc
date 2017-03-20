@@ -5,7 +5,10 @@
 #include "Graphics/Effects/ShaderManager.h"
 #include "Utils/Logger.h"
 
-CEffect::CEffect() {}
+CEffect::CEffect()
+{
+    mShaders.resize(CShader::EShaderStage::EStageCount);
+}
 CEffect::~CEffect() {}
 
 CEffect::CEffect(CXMLElement* aElement) :

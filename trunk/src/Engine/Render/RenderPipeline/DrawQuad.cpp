@@ -1,39 +1,40 @@
 #include "DrawQuad.h"
+#include "XML/XML.h"
+#include "Utils/StringUtils.h"
 #include "Graphics/Effects/PixelShader.h"
 #include "Render/RenderManager.h"
+#include "Engine/engine.h"
 
-CDrawQuad::CDrawQuad(): mQuad(nullptr), mPixelShader(nullptr) {}
+CDrawQuad::CDrawQuad(): mQuad(nullptr), mMaterial(nullptr) {}
+
 CDrawQuad::~CDrawQuad() {}
+
+//Leera el nodo
+//<draw_quad material="DrawQuadMaterial" viewport_size="128 128" viewport_position="128 0">
 
 bool CDrawQuad::Load(const CXMLElement * aElement)
 {
     bool lOk = CRenderStagedTexture::Load(aElement);
-    // TODO: Read the PS from the shader library with the given element into the XML
-    mPixelShader = new CPixelShader(
-        "Texture2D T0Texture: register( t0 );"
-        "SamplerState S0Sampler : register(s0);"
-        "cbuffer Material : register(b0)"
-        "{"
-        "float4 color;"
-        "};"
-        "struct PS_INPUT\n"
-        "{\n"
-        " float4 Pos : SV_POSITION;\n"
-        " float2 UV : TEXCOORD0;\n"
-        "};\n"
-        "float4 quadPS(PS_INPUT IN) : SV_Target"
-        "{"
-        "return float4(1,0,0,1);"
-        "//return T0Texture.Sample(S0Sampler, IN.UV) * color;"
-        "}");
-    mPixelShader->SetEntryPoint("quadPS");
-    lOk &= mPixelShader->Load();
+    if (lOk)
+    {
+        m_ViewportSize = aElement->GetAttribute<Vect2u>("viewport_size", Vect2u(128, 128));
+        m_ViewportPosition = aElement->GetAttribute<Vect2u>("viewport_position", Vect2u(128, 0));
+        CMaterialManager& lMaterialManager = CEngine::GetInstance().GetMaterialManager();
+        mMaterial = lMaterialManager(aElement->GetAttribute<std::string>("material", ""));
+
+        mQuad = new CQuad();
+        mQuad->Init();
+    }
+
     return lOk;
 }
 
 void CDrawQuad::Execute(CRenderManager& lRM)
 {
     lRM.SetViewport(m_ViewportPosition, m_ViewportSize);
+    ActivateTextures();
+    mMaterial->Apply();
+
     mQuad->Render();
     lRM.ResetViewport();
 }

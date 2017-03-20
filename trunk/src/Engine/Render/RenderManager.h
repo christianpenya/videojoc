@@ -75,7 +75,7 @@ public:
     bool InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height, bool debugD3D);
     bool Get_RendertargetView();
     bool Create_DepthStencil(HWND hWnd, int Width, int Height);
-    void Set_Viewport(float Width, float Height);
+    void SetViewport(float Width, float Height);
     void SetRendertarget();
     void ReportLive();
 
@@ -163,7 +163,8 @@ public:
     void SetViewport(const Vect2u & aPosition, const Vect2u & aSize) const;
     void ResetViewport() const;
     void UnsetRenderTargets();
-    void SetRenderTargets(int aNumViews, ID3D11RenderTargetView **aRenderTargetViews, ID3D11DepthStencilView *aDepthStencilViews);
+    void SetRenderTargets(int aNumViews, ID3D11RenderTargetView* const* aRenderTargetViews, ID3D11DepthStencilView *aDepthStencilViews);
+
     void Update();
 
     Mat44f m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix; //#TODO, tienen getter y setter publico, no se pueden devolver a private? Render pipeline.

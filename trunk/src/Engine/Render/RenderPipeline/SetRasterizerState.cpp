@@ -54,3 +54,28 @@ void CSetRasterizerState::Execute(CRenderManager& lRM)
     CreateRasterizerState(lRM);
     lRM.GetDeviceContext()->RSSetState(m_RasterizerState);
 }
+
+void CSetRasterizerState::DrawIMGUI()
+{
+    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    {
+        if (ImGui::CollapsingHeader("Cull Mode"))
+        {
+            ImGui::RadioButton("None", &m_CullMode, 0);
+            ImGui::SameLine();
+            ImGui::RadioButton("Back", &m_CullMode, 1);
+            ImGui::SameLine();
+            ImGui::RadioButton("Front", &m_CullMode, 1);
+            ImGui::SameLine();
+        }
+        if (ImGui::CollapsingHeader("Fill Mode"))
+        {
+            ImGui::RadioButton("Solid", &m_FillMode, 0);
+            ImGui::SameLine();
+            ImGui::RadioButton("Wireframe", &m_FillMode, 1);
+            ImGui::SameLine();
+        }
+        ImGui::Checkbox("Clockwise", &m_ClockWise);
+    }
+
+}

@@ -7,7 +7,6 @@
 #endif
 
 class CGeometry;
-class CPixelShader;
 class CEffect;
 
 class CQuad
@@ -16,12 +15,12 @@ public:
     CQuad();
     virtual ~CQuad();
 
-    bool Init( CPixelShader* aPS );
+    bool Init();
     bool Render();
+    bool Render(CEffect *Effect);
 
 private:
     CGeometry* mGeometry;
-    CEffect * mEffect;
 };
 
 #endif

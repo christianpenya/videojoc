@@ -37,4 +37,8 @@
 		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
 		<texture type="diffuse" filename="data\textures\KGSkyBox.dds" />
 		<parameter type="float" name="diffuse" value="100.0" />
-	</material></materials>
+	</material>
+	<material name="DrawQuadDeferredShadingMaterial" vertex_type="Quad">
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+	</material>
+	</materials>

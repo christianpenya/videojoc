@@ -24,7 +24,7 @@ bool CSetDepthStencilStateCmd::Load(const CXMLElement* aElement)
         m_EnableZTest = aElement->GetAttribute<bool>("enable_z_test", false);
         m_WriteZBuffer = aElement->GetAttribute<bool>("write_z_buffer", false);
         m_EnableStencil = aElement->GetAttribute<bool>("enable_stencil", false);
-        m_ComparisonFunc = aElement->GetAttribute<int>("comparison_func", 1);
+        m_ComparisonFunc = aElement->GetAttribute<int>("comparison_func", 4);
     }
     return lOk;
 }
@@ -60,4 +60,15 @@ void CSetDepthStencilStateCmd::Execute(CRenderManager& lRM)
 {
     CreateDepthStencilState(lRM);
     lRM.GetDeviceContext()->OMSetDepthStencilState(m_DepthStencilState,0);
+}
+
+void CSetDepthStencilStateCmd::DrawImGUI()
+{
+    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    {
+        ImGui::Checkbox("Enable Z Test", &m_EnableZTest);
+        ImGui::Checkbox("Write Z Buffer", &m_WriteZBuffer);
+        ImGui::Checkbox("Enable Stencil", &m_EnableStencil);
+        ImGui::SliderInt2("Comparison Func", &m_ComparisonFunc, 1, 8);
+    }
 }

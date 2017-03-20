@@ -8,6 +8,7 @@
 		<shader name="PositionNormalUVUV2Forward" file="Forward/PositionNormalUVUV2.fx" entry_point="VS" vertex_type="PositionNormalUVUV2" preprocessor=""/>
 		<shader name="PositionBumpUVForward" file="Forward/PositionBumpUV.fx" entry_point="VS" vertex_type="PositionBumpUV" preprocessor=""/>
 		<shader name="Skybox" file="Skybox.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor=""/>
+		<shader name="Quad" file="Quad.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
 		<!--
 		
 		-->
@@ -20,7 +21,7 @@
 		<shader name="PositionNormalUVUV2Forward" file="Forward/PositionNormalUVUV2.fx" entry_point="PS" preprocessor=""/>
 		<shader name="PositionBumpUVForward" file="Forward/PositionBumpUV.fx" entry_point="PS" preprocessor=""/>
 		<shader name="Skybox" file="Skybox.fx" entry_point="PS"  preprocessor=""/>
-		<!--
-		-->
+		<shader name="Quad" file="Quad.fx" entry_point="PS" preprocessor=""/>
+		
 	</pixel_shaders>
 </shaders> 

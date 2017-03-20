@@ -17,9 +17,14 @@ protected:
     void Init();
     bool CreateSamplerState();
 public:
-    CCaptureFrameBufferTexture(const CXMLElement*TreeNode);
+    CCaptureFrameBufferTexture();
+    CCaptureFrameBufferTexture(const CXMLElement* TreeNode);
     virtual ~CCaptureFrameBufferTexture();
     bool Capture(unsigned int StageId);
+    ID3D11Texture2D * CapturedTexture()
+    {
+        return m_DataTexture;
+    }
 };
 
 

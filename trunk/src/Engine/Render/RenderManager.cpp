@@ -47,7 +47,7 @@ void CRenderManager::Init(HWND hWnd, int Width, int Height, bool debugD3D=false)
     InitDevice_SwapChain_DeviceContext(hWnd, Width, Height, debugD3D);
     Get_RendertargetView();
     Create_DepthStencil(hWnd, Width, Height);
-    Set_Viewport((float)Width, (float)Height);
+    SetViewport((float)Width, (float)Height);
     SetRendertarget();
 
     SetViewProjectionMatrix(m_ViewMatrix, m_ProjectionMatrix);
@@ -229,16 +229,15 @@ bool CRenderManager::Create_DepthStencil(HWND hWnd, int Width, int Height)
     return true;
 }
 
-void CRenderManager::Set_Viewport(float Width, float Height)
+void CRenderManager::SetViewport(float Width, float Height)
 {
-    D3D11_VIEWPORT vp;
-    vp.Width = Width;
-    vp.Height = Height;
-    vp.MinDepth = 0.0f;
-    vp.MaxDepth = 1.0f;
-    vp.TopLeftX = 0;
-    vp.TopLeftY = 0;
-    m_DeviceContext->RSSetViewports(1, &vp);
+    m_Viewport.Width = Width;
+    m_Viewport.Height = Height;
+    m_Viewport.MinDepth = 0.0f;
+    m_Viewport.MaxDepth = 1.0f;
+    m_Viewport.TopLeftX = 0;
+    m_Viewport.TopLeftY = 0;
+    m_DeviceContext->RSSetViewports(1, &m_Viewport);
 }
 
 void CRenderManager::SetRendertarget()
@@ -769,12 +768,12 @@ void CRenderManager::Clear(bool renderTarget, bool depthStencil, const CColor& b
 void CRenderManager::SetViewport(const Vect2u & aPosition, const Vect2u & aSize) const
 {
     D3D11_VIEWPORT l_Viewport;
-    l_Viewport.Width = aSize.x*m_Viewport.Width;
-    l_Viewport.Height = aSize.y*m_Viewport.Height;
+    l_Viewport.Width = aSize.x;
+    l_Viewport.Height = aSize.y;
     l_Viewport.MinDepth = 0.0f;
     l_Viewport.MaxDepth = 1.0f;
-    l_Viewport.TopLeftX = aPosition.x*m_Viewport.Width;
-    l_Viewport.TopLeftY = aPosition.y*m_Viewport.Height;
+    l_Viewport.TopLeftX = aPosition.x;
+    l_Viewport.TopLeftY = aPosition.y;
     m_DeviceContext->RSSetViewports(1, &l_Viewport);
 }
 
@@ -791,16 +790,21 @@ void CRenderManager::UnsetRenderTargets()
     ResetViewport();
 }
 
-void CRenderManager::SetRenderTargets(int aNumViews, ID3D11RenderTargetView **aRenderTargetViews, ID3D11DepthStencilView *aDepthStencilViews)
+void CRenderManager::SetRenderTargets(int aNumViews, ID3D11RenderTargetView* const* aRenderTargetViews, ID3D11DepthStencilView *aDepthStencilViews)
 {
     m_NumViews = aNumViews;
     m_CurrentDepthStencilView = aDepthStencilViews;
-    for (int i = 0; i<m_NumViews; ++i)
-        m_CurrentRenderTargetViews[i] = aRenderTargetViews[i];
+    for (int i = 0; i<MAX_RENDER_TARGETS; ++i)
+    {
+        if (i<m_NumViews)
+            m_CurrentRenderTargetViews[i] = aRenderTargetViews[i];
+        else
+            m_CurrentRenderTargetViews[i] = nullptr;
+    }
     if (aDepthStencilViews)
-        m_DeviceContext->OMSetRenderTargets(m_NumViews, m_CurrentRenderTargetViews, aDepthStencilViews);
+        m_DeviceContext->OMSetRenderTargets(MAX_RENDER_TARGETS, &m_CurrentRenderTargetViews[0], aDepthStencilViews);
     else
-        m_DeviceContext->OMSetRenderTargets(m_NumViews, m_CurrentRenderTargetViews, m_DepthStencilView.get());
+        m_DeviceContext->OMSetRenderTargets(MAX_RENDER_TARGETS,	&m_CurrentRenderTargetViews[0], m_DepthStencilView.get());
 }
 
 void CRenderManager::Update()
