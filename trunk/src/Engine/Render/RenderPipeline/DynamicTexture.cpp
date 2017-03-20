@@ -7,6 +7,10 @@
 CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     : CTexture(TreeNode->GetAttribute<std::string>("name", ""))
     , m_CreateDepthStencilBuffer( TreeNode->GetAttribute<bool>("create_depth_stencil_buffer", false) )
+    , m_pRenderTargetTexture(nullptr)
+    , m_pRenderTargetView(nullptr)
+    , m_pDepthStencilBuffer(nullptr)
+    , m_pDepthStencilView(nullptr)
 {
     assert(TreeNode);
 
@@ -15,8 +19,10 @@ CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
 
     if (TreeNode->GetAttribute<bool>("texture_width_as_frame_buffer", false))
     {
-        CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
-        mSize = lRenderManager.DebugVertexBufferSize; // TODO: Obtain the size of the FB from the render manager No se si es esto correcto
+        //TODO de dónde sacamos este valor
+//        CEngine::GetInstance().GetRenderManager().
+        mSize = Vect2u(1024, 768);
+        //lRenderManager.DebugVertexBufferSize; // TODO: Obtain the size of the FB from the render manager No se si es esto correcto
     }
     else
     {

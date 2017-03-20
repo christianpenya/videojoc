@@ -75,7 +75,7 @@ public:
     bool InitDevice_SwapChain_DeviceContext(HWND hWnd, int Width, int Height, bool debugD3D);
     bool Get_RendertargetView();
     bool Create_DepthStencil(HWND hWnd, int Width, int Height);
-    void Set_Viewport(float Width, float Height);
+    void SetViewport(float Width, float Height);
     void SetRendertarget();
     void ReportLive();
 

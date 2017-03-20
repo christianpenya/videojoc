@@ -6,7 +6,7 @@
 
 CVertexShader::CVertexShader(const std::string& aShaderCode, uint32 aVertexFlags) :
     CShader(aShaderCode, EShaderStage::eVertexShader),
-    m_VertexFlags(0),
+    m_VertexFlags(17),
     m_pVertexShader(nullptr),
     m_pVertexLayout(nullptr)
 {}

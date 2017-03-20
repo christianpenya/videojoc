@@ -21,5 +21,6 @@ CEffect* CTechnique::GetEffect() const
 
 void CTechnique::Bind(ID3D11DeviceContext* aContext)
 {
-    mEffect->Bind(aContext);
+    if (mEffect!=nullptr)
+        mEffect->Bind(aContext);
 }

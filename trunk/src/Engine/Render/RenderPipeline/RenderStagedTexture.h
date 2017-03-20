@@ -18,8 +18,8 @@ public:
     bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager& lRM) = 0;
     void CreateRenderTargetViewVector();
-    void ActivateTextures ();
-    void AddDynamicTextureMaterial(CDynamicTexture *DynamicTexture, CMaterial *Material);
+    void ActivateTextures();
+    void AddDynamicTextureMaterial(CDynamicTexture* DynamicTexture, CMaterial* Material);
 private:
     DISALLOW_COPY_AND_ASSIGN(CRenderStagedTexture);
 protected:
@@ -28,21 +28,23 @@ protected:
     public:
         uint32 m_StageId;
         std::string m_filename;
-        CTexture * m_Texture;
-        CStagedTexture(uint32 aStageId, CTexture * aTexture);
+        CTexture* m_Texture;
+        CStagedTexture(uint32 aStageId, CTexture* aTexture);
         void Activate();
     };
 
     class CDynamicTextureMaterial
     {
     public:
-        CDynamicTexture *m_DynamicTexture;
-        CMaterial *m_Material;
-        CDynamicTextureMaterial(CDynamicTexture *DynamicTexture, CMaterial *Material)
+        CDynamicTexture* m_DynamicTexture;
+        CMaterial* m_Material;
+
+        CDynamicTextureMaterial(CDynamicTexture* DynamicTexture, CMaterial* Material)
         {
             m_DynamicTexture = DynamicTexture;
             m_Material = Material;
         }
+
         void Activate(int StageId);
     };
 
