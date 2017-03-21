@@ -811,3 +811,8 @@ void CRenderManager::Update()
 {
     m_Frustum->Update(m_ViewProjectionMatrix);
 }
+
+Vect2u CRenderManager::GetWindowSize()
+{
+    return Vect2u(m_Viewport.Width, m_Viewport.Height);
+}

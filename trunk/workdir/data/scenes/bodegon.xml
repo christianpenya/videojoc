@@ -15,25 +15,9 @@
 		<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.26624 1.0 6.78096" />
 		</scene_mesh>		
-		<scene_mesh name="BumpBox1" mesh="data/meshes/BumpBox.mesh" rigid_body = "box" >
-			<transform position="4.0 5.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="0.1 0.1 0.1" />
-		</scene_mesh>
-		<scene_mesh name="BumpBox2" mesh="data/meshes/BumpBox.mesh" rigid_body = "box" >
-			<transform position="4.0 5.0 -8.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="0.1 0.1 0.1" />
-		</scene_mesh>
-		<scene_mesh name="BumpSphere1" mesh="data/meshes/BumpSphere.mesh" rigid_body = "sphere" >
-			<transform position="-4.0 5.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="0.5 0.5 0.5" />
-		</scene_mesh>
-			<scene_mesh name="BumpSphere2" mesh="data/meshes/BumpSphere.mesh" rigid_body = "sphere" >
-			<transform position="-8.0 5.0 -4.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="0.5 0.5 0.5" />
-		</scene_mesh>
 		<scene_mesh name="player" mesh="data/meshes/Cylinder01.mesh" rigid_body = "player">
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="triggerBox" mesh="data/meshes/Box01.mesh" rigid_body = "triggerBox">
-			<transform position="0.0 0.0 4.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0" />
-		</scene_mesh>
-
 		
 		
 		<!--
@@ -47,7 +31,15 @@
 		<!--<scene_mesh name="Camera001.Target" mesh="data/meshes/Camera001.Target.mesh" >
 			<transform position="-9.25808 1.64795 5.38194" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>-->
-	</layer>	
+	</layer>
+	
+	<layer name="deferred_opaque" active="true">
+		<scene_mesh name="SimpleBox" mesh="data/meshes/Box01.mesh">
+			<transform position="1.0 0.0 1.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+	</layer>
+
+	
 	<layer name="Skybox" active="true">
 		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true">
 			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="10.0 10.0 10.0"/>

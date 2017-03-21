@@ -31,6 +31,21 @@
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
 	</pool>
 	
+	<pool name="deferred">
+		<technique vertex_type="PositionUV" effect="PositionUVTechniqueDeferred"/>
+		<technique vertex_type="PositionNormal" effect="PositionNormalTechniqueDeferred"/>
+		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueDeferred"/>
+		<technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2TechniqueDeferred"/>
+		<technique vertex_type="PositionBump" effect="PositionBumpTechniqueDeferred"/>
+		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueDeferred"/>
+		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueDeferred"/>
+		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueDeferred"/>
+	</pool>
+	
+	<pool name="post_process">
+		<technique vertex_type="Quad" effect="NoiseVignetting"/>
+	</pool>
+	
 	<pool name="skybox">
 		<technique vertex_type="PositionNormalUV" effect="SkyboxTechnique"/>
 	</pool>
