@@ -1,7 +1,6 @@
 #include "DrawQuad.h"
 #include "XML/XML.h"
 #include "Utils/StringUtils.h"
-#include "Graphics/Effects/PixelShader.h"
 #include "Render/RenderManager.h"
 #include "Engine/engine.h"
 
