@@ -167,6 +167,8 @@ public:
 
     void Update();
 
+    Vect2u GetWindowSize();
+
     Mat44f m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix; //#TODO, tienen getter y setter publico, no se pueden devolver a private? Render pipeline.
 
     CFrustum* m_Frustum;

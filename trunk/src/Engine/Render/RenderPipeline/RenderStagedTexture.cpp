@@ -51,8 +51,6 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
 
 void CRenderStagedTexture::CreateRenderTargetViewVector()
 {
-    // TODO: Setear dynamic textures como render targets
-    //m_RenderTargetViews
     CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
     lRenderManager.SetRendertarget();
 }

@@ -1,8 +1,5 @@
 <effects>
-  <effect name="PositionNormal" shader_family="PositionNormal">
-	<shader stage="vertex" name="PositionNormal"/>
-	<shader stage="pixel" name="PositionNormal"/>
-  </effect>  
+	<!-- FORWARD -->
   <effect name="PositionNormalTechniqueForward" shader_family="PositionNormalForward">
    <shader stage="vertex"   name="PositionNormalForward"/>
    <shader stage="pixel"    name="PositionNormalForward"/>
@@ -23,11 +20,25 @@
 	<shader stage="vertex" name="AnimatedModelForward"/>
 	<shader stage="pixel" name="AnimatedModelForward"/>
   </effect>
+  
+  <!-- DEFERRED -->
+  <effect name="PositionNormalTechniqueDeferred" shader_family="PositionNormalDeferred">
+   <shader stage="vertex"   name="PositionNormalDeferred"/>
+   <shader stage="pixel"    name="PositionNormalDeferred"/>
+  </effect>
+  
+  <!-- POST PROCESS -->
+   <effect name="NoiseVignetting" shader_family="NoiseVignetting">
+   <shader stage="vertex"   name="NoiseVignetting"/>
+   <shader stage="pixel"    name="NoiseVignetting"/>
+  </effect>
+  
+  <!-- OTER -->
  <effect name="SkyboxTechnique" shader_family="Skybox">
    <shader stage="vertex"   name="Skybox"/>
    <shader stage="pixel"    name="Skybox"/>
   </effect>
-   <effect name="QuadTechnique" shader_family="Quad">
+  <effect name="QuadTechnique" shader_family="Quad">
    <shader stage="vertex"   name="Quad"/>
    <shader stage="pixel"    name="Quad"/>
   </effect>

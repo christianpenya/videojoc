@@ -112,8 +112,7 @@ void CMaterial::Apply()
                 lCBM.mMaterialDesc.m_RawData[1] = bumpVector;
             }
         }
-            //std::string hola = "hola";
-            //std::string *temare = mParameters[i]->GetName();
+
         break;
         case eFloat2:
             break;
@@ -129,7 +128,6 @@ void CMaterial::Apply()
             const Vector4<float> lDiffuseColor = Vector4<float>(*r, *g, *b, 1.0f);
             lCBM.mMaterialDesc.m_RawData[0] = lDiffuseColor;
             break;
-
         }
     }
 

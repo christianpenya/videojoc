@@ -3,7 +3,7 @@
 	<set_depth_stencil_state enable_z_test = "true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	<set_rasterizer_state name="set_rasterizer_state" cull_mode="front" clock_wise="1" type="solid"/> <!-- type  -->
 	
-	<!--GENERATE GBUFFER-->
+	<!--GENERATE GBUFFER
 	<set_render_target name="deferred_multiple_render_target">
 		<dynamic_texture name="AlbedoTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format="RGBA8_UNORM"/>
 		<dynamic_texture name="LightMapTexture" texture_width_as_frame_buffer="true" format="RGBA8_UNORM"/>
@@ -19,6 +19,9 @@
 	<clear name="clear_cmd" render_target="true" depth_stencil="true" color="1.0 0.1 1.0 1.0" />
 
 	<set_per_frame_constants name="set_per_frame_cmd"/>
+	<apply_technique_pool name="apply_deferred_technique" pool_name="deferred"/>
+	<render_layer name="render_deferred_opaque" layer="deferred_opaque"/>
+
 	<apply_technique_pool name="apply_forward_technique" pool_name="forward"/>	
 	<!--<draw_quad name = "draw_quad_pipeline" viewport_position = "0 0" viewport_size = "800 600" pixel_shader = "PositionNormalForward" />-->
 	<render_layer name="render_bodegon_principal" layer="Principal"/>
@@ -34,7 +37,11 @@
     </draw_quad>
 	
 	<!--	
-	
+	<apply_technique_pool name="apply_post_process_technique" pool_name="post_process"/>
+	<draw_quad name="noise_vignetting" material="noise_vignetting">
+		<texture name="noise" />
+		<texture name="vignetting" />
+	</draw_quad>	
 	
 	<apply_technique_pool name="apply_forward_technique" pool_name="Skybox"/>	
 
