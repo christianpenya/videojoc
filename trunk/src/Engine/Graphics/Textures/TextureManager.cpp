@@ -24,6 +24,7 @@ bool CTextureManager::Load( const std::string& aFilename)
 {
     bool lOk = false;
     CTexture * lTexture = new CTexture(aFilename);
+
     if (lTexture->Load())
     {
         lOk = mTextures.Add(aFilename, lTexture);
@@ -40,4 +41,9 @@ bool CTextureManager::Reload()
 {
     // #TODO
     return false;
+}
+
+void CTextureManager::AddTexture(CTexture &aTexture)
+{
+    mTextures.Add(aTexture.GetName(), &aTexture);
 }

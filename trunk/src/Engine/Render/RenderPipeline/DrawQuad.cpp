@@ -4,14 +4,18 @@
 #include "Render/RenderManager.h"
 #include "Engine/engine.h"
 
-CDrawQuad::CDrawQuad(): mQuad(nullptr), mMaterial(nullptr) {}
+CDrawQuad::CDrawQuad(): mQuad(nullptr), mMaterial(nullptr)
+{
+}
 
-CDrawQuad::~CDrawQuad() {}
+CDrawQuad::~CDrawQuad()
+{
+}
 
 //Leera el nodo
 //<draw_quad material="DrawQuadMaterial" viewport_size="128 128" viewport_position="128 0">
 
-bool CDrawQuad::Load(const CXMLElement * aElement)
+bool CDrawQuad::Load(const CXMLElement* aElement)
 {
     bool lOk = CRenderStagedTexture::Load(aElement);
     if (lOk)
@@ -31,8 +35,8 @@ bool CDrawQuad::Load(const CXMLElement * aElement)
 void CDrawQuad::Execute(CRenderManager& lRM)
 {
     lRM.SetViewport(m_ViewportPosition, m_ViewportSize);
-    ActivateTextures();
     mMaterial->Apply();
+    ActivateTextures();
 
     mQuad->Render();
     lRM.ResetViewport();

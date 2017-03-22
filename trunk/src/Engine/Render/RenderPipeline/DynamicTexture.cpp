@@ -19,8 +19,8 @@ CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
 
     if (TreeNode->GetAttribute<bool>("texture_width_as_frame_buffer", false))
     {
-        //TODO de dónde sacamos este valor
-//        CEngine::GetInstance().GetRenderManager().
+        // TODO de dónde sacamos este valor
+        // CEngine::GetInstance().GetRenderManager().
         mSize = Vect2u(1024, 768);
         //lRenderManager.DebugVertexBufferSize; // TODO: Obtain the size of the FB from the render manager No se si es esto correcto
     }

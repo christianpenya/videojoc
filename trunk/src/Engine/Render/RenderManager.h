@@ -144,6 +144,11 @@ public:
         return m_ViewProjectionMatrix;
     }
 
+    IDXGISwapChain* GetSwapChain() const
+    {
+        return m_SwapChain.get();
+    }
+
     void SetViewMatrix(const Vect3f& vPos, const Vect3f& vTarget, const Vect3f& vUp);
     void SetProjectionMatrix(float fovy, float aspect, float zn, float zf);
 

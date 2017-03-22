@@ -37,6 +37,5 @@
 	</material>
 	<material name="DrawQuadDeferredShadingMaterial" vertex_type="Quad">
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
-		<texture type="diffuse" filename="data\textures\text_1.dds" />
 	</material>
 	</materials>
