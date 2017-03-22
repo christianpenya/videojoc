@@ -19,7 +19,6 @@
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
 		
-		
 		<!--
 		<scene_mesh name="BOX_Lightmap" mesh="data/meshes/BOX_Lightmap.mesh" >
 			<transform position="0.0 0.0 2.05304" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
@@ -42,7 +41,7 @@
 	
 	<layer name="Skybox" active="true">
 		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true">
-			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="10.0 10.0 10.0"/>
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
 		</scene_mesh>
 	</layer>
 </scene>
