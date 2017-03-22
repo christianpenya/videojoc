@@ -9,7 +9,6 @@
 	
 	<default_pool>
 		<technique vertex_type="PositionUV"/>
-		<technique vertex_type="PositionNormal"/>
 		<technique vertex_type="PositionNormal" />
 		<technique vertex_type="PositionNormalUV" />
 		<technique vertex_type="PositionNormalUVUV2" />

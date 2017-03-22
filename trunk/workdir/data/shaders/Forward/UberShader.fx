@@ -1,6 +1,7 @@
 #include "Colors.fxh"
 #include "globals.fx"
 
+
 struct VS_INPUT
 {
 float3 Pos :
@@ -38,7 +39,12 @@ PS_INPUT VS( VS_INPUT IN )
 
 float4 PS( PS_INPUT IN ) : SV_Target
 {
-	return float4(1.0,0.0,0.0,0.0)
+    #if POSITION_NORMAL
+	return float4(1.0,0.0,0.0,1.0);
+    #else
+    return float4(1.0,1.0,0.0,1.0); 
+    #endif
+    
     float3 l_Normal = normalize(IN.Normal);
 
     float3 l_WorldPos = IN.WorldPosition;
