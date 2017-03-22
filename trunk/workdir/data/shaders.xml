@@ -3,13 +3,13 @@
 	<vertex_shaders>
 		<!--forward-->
 		<shader name="AnimatedModelForward" file="Forward/AnimatedModel.fx" entry_point="mainVertexShader" vertex_type="PositionWeightIndicesNormalUV" preprocessor=""/>
-		<shader name="PositionNormalForward" file="Forward/uberShader.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor="POSITION_NORMAL"/><!--"Forward/PositionNormal.fx"-->
+		<shader name="PositionNormalForward" file="Forward/PositionNormal.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/><!--"Forward/PositionNormal.fx"-->
 		<shader name="PositionNormalUVForward" file="Forward/PositionNormalUV.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor=""/>
 		<shader name="PositionNormalUVUV2Forward" file="Forward/PositionNormalUVUV2.fx" entry_point="VS" vertex_type="PositionNormalUVUV2" preprocessor=""/>
 		<shader name="PositionBumpUVForward" file="Forward/PositionBumpUV.fx" entry_point="VS" vertex_type="PositionBumpUV" preprocessor=""/>
 		
 		<!--deferred-->
-		<shader name="PositionNormalDeferred" file="Deferred/GBuffer.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/>
+		<shader name="PositionNormalDeferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor="POSITION_NORMAL"/>
 		
 		<!--post process-->
 		<shader name="NoiseVignetting" file="PostProcess/NoiseVignetting.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
@@ -26,13 +26,14 @@
 	<pixel_shaders>
 		<!--forward-->
 		<shader name="AnimatedModelForward" file="Forward/AnimatedModel.fx" entry_point="mainPixelShader" preprocessor=""/>		
-		<shader name="PositionNormalForward" file="Forward/uberShader.fx" entry_point="PS" preprocessor="POSITION_NORMAL"/>
+		<shader name="PositionNormalForward" file="Forward/PositionNormal.fx" entry_point="PS" preprocessor=""/>
 		<shader name="PositionNormalUVForward" file="Forward/PositionNormalUV.fx" entry_point="PS" preprocessor=""/>		
 		<shader name="PositionNormalUVUV2Forward" file="Forward/PositionNormalUVUV2.fx" entry_point="PS" preprocessor=""/>
 		<shader name="PositionBumpUVForward" file="Forward/PositionBumpUV.fx" entry_point="PS" preprocessor=""/>
 		
 		<!--deferred-->
-		<shader name="PositionNormalDeferred" file="Deferred/GBuffer.fx" entry_point="PS" preprocessor=""/>
+		<shader name="PositionNormalDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="POSITION_NORMAL"/>
+		<!--file="Deferred/GBuffer.fx" -->
 		
 		<!--post process-->
 		<shader name="NoiseVignetting" file="PostProcess/NoiseVignetting.fx" entry_point="PS" preprocessor=""/>	
