@@ -9,6 +9,7 @@ class CPointLight : public CLight
 public:
     CPointLight(const CXMLElement* aElement);
     virtual ~CPointLight();
+    virtual void SetShadowMap(CRenderManager &RenderManager);
 };
 
 

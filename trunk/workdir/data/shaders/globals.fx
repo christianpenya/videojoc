@@ -12,6 +12,7 @@ register( b0 )
     float4x4 m_Projection;
     float4x4 m_ViewProjection;
 	float4x4 m_InverseView;
+	float4x4 m_InverseProjection;
     float4 m_CameraPosition;
     float4 m_CameraFrontVector;
     float4 m_CameraUpVector;
@@ -39,6 +40,8 @@ cbuffer LightsConstantBuffer :
 register (b4)
 {
     float4 m_LightAmbient;
+	float4 m_FogColor;
+	float4 m_FogInfo;  
     float4 m_LightEnabled;
     float4 m_LightType; //0 : OMNI, 1 : SPOT , 2 : DIRECTIONAL
     float4 m_LightPosition[MAX_LIGHTS_BY_SHADER];
@@ -49,6 +52,12 @@ register (b4)
     float4 m_LightAttenuationEndRange;
     float4 m_LightIntensity;
     float4 m_LightColor[MAX_LIGHTS_BY_SHADER];
+	float4 m_UseShadowMap;
+	float4 m_UseShadowMask;
+	float4 m_ShadowMapBias;
+	float4 m_ShadowMapStrength;
+	float4x4 m_LightView[MAX_LIGHTS_BY_SHADER];
+	float4x4 m_LightProjection[MAX_LIGHTS_BY_SHADER];
 }
 
 static float m_LightEnabledArray[4]=(float[4])m_LightEnabled;

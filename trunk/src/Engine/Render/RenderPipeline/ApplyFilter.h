@@ -18,6 +18,7 @@ public:
     virtual void Execute(CRenderManager &lRM);
 private:
     DISALLOW_COPY_AND_ASSIGN(CApplyFilter);
+    CQuad* mQuad;
 };
 
 #endif

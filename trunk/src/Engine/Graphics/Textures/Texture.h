@@ -23,10 +23,11 @@ public:
     bool Reload();
     void Bind(uint32 aStageId, ID3D11DeviceContext*  aContext);
     GET_SET_PTR(ID3D11ShaderResourceView, Texture);
+    GET_SET(Vect2u, Size);
 protected:
     ID3D11ShaderResourceView	*m_pTexture;
     ID3D11SamplerState			*m_SamplerState;
-    Vect2u						mSize;
+    Vect2u						m_Size;
 private:
     DISALLOW_COPY_AND_ASSIGN(CTexture);
     void Destroy();

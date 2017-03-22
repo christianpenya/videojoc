@@ -21,12 +21,12 @@ CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     {
         //TODO de dónde sacamos este valor
 //        CEngine::GetInstance().GetRenderManager().
-        mSize = Vect2u(1024, 768);
+        m_Size = Vect2u(1024, 768);
         //lRenderManager.DebugVertexBufferSize; // TODO: Obtain the size of the FB from the render manager No se si es esto correcto
     }
     else
     {
-        mSize = TreeNode->GetAttribute<Vect2u>("size", Vect2u(0,0));
+        m_Size = TreeNode->GetAttribute<Vect2u>("size", Vect2u(0,0));
     }
     Init();
 }
@@ -47,8 +47,8 @@ void CDynamicTexture::Init()
     D3D11_TEXTURE2D_DESC l_textureDescription;
 
     ZeroMemory(&l_textureDescription, sizeof(D3D11_TEXTURE2D_DESC));
-    l_textureDescription.Width = mSize.x;
-    l_textureDescription.Height = mSize.y;
+    l_textureDescription.Width = m_Size.x;
+    l_textureDescription.Height = m_Size.y;
     l_textureDescription.MipLevels = 1;
     l_textureDescription.ArraySize = 1;
     l_textureDescription.Format = DXGI_FORMAT(m_FormatType);
@@ -81,8 +81,8 @@ void CDynamicTexture::Init()
         D3D11_TEXTURE2D_DESC l_DepthBufferDescription;
         ZeroMemory(&l_DepthBufferDescription, sizeof(D3D11_TEXTURE2D_DESC));
 
-        l_textureDescription.Width = mSize.x;
-        l_textureDescription.Height = mSize.y;
+        l_textureDescription.Width = m_Size.x;
+        l_textureDescription.Height = m_Size.y;
         l_DepthBufferDescription.MipLevels = 1;
         l_DepthBufferDescription.ArraySize = 1;
         l_DepthBufferDescription.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;

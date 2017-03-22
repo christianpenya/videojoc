@@ -4,6 +4,8 @@
 #include "ImGUI\imgui.h"
 #include "SpotLight.h"
 #include "XML\XML.h"
+#include "Engine\Engine.h"
+#include "Graphics\Textures\TextureManager.h"
 
 CLight::~CLight() {}
 
@@ -20,6 +22,8 @@ CLight::CLight(const CXMLElement* aElement)
     , m_Color(aElement->GetAttribute<CColor>("color", CColor(1, 1, 1)) )
     , m_RangeAttenuation(aElement->GetAttribute<Vect2f>("attenuation_range", Vect2f(0.0f,100.0f)))
     , m_Name(aElement->GetAttribute<std::string>("name", ""))
+    , m_GenerateShadowMap(aElement->GetAttribute<bool>("generate_shadow_map", false))
+
 {
     bool lOk = (EnumString<ELightType>::ToEnum(m_Type, aElement->GetAttribute<std::string>("type", "")));
     m_Visible = aElement->GetAttribute<bool>("enabled", true);
@@ -28,6 +32,9 @@ CLight::CLight(const CXMLElement* aElement)
     m_Position = iTransformLight->GetAttribute<Vect3f>("position", Vect3f(0.0f, 0.0f, 0.0f));
     m_PrevPos = iTransformLight->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
 
+    CTextureManager& lTextureManager = CEngine::GetInstance().GetTextureManager();
+    CTexture* l_Texture = lTextureManager.GetTexture(aElement->GetAttribute<std::string>("shadow_texture_mask", ""));
+    m_pShadowMaskTexture->SetTexture(l_Texture->GetTexture());
     assert(lOk && "This kind of light does not exist!!");
 }
 

@@ -18,6 +18,8 @@ struct PerFrameDesc
     Mat44f m_View;
     Mat44f m_Projection;
     Mat44f m_ViewProjection;
+    Mat44f m_InverseView;
+    Mat44f m_InverseProjection;
     Vect4f m_CameraPosition;
     Vect4f m_CameraFrontVector;
     Vect4f m_CameraUpVector;
@@ -26,6 +28,8 @@ struct PerFrameDesc
 struct PerLightsDesc
 {
     Vect4f m_LightAmbient;
+    Vect4f m_FogColor; //nuevo
+    Vect4f m_FogInfo; //nuevo //x = Enabled, y = Density, z = FogStartRange, w = FogEndRange
     float m_LightEnabled[MAX_LIGHTS_BY_SHADER];
     float m_LightType[MAX_LIGHTS_BY_SHADER];
     Vect4f m_LightPosition[MAX_LIGHTS_BY_SHADER];
@@ -36,6 +40,12 @@ struct PerLightsDesc
     float m_LightAttenuationEndRange[MAX_LIGHTS_BY_SHADER];
     float m_LightIntensity[MAX_LIGHTS_BY_SHADER];
     Vect4f m_LightColor[MAX_LIGHTS_BY_SHADER];
+    float m_UseShadowMap[MAX_LIGHTS_BY_SHADER]; //nuevo
+    float m_UseShadowMask[MAX_LIGHTS_BY_SHADER]; //nuevo
+    float m_ShadowMapBias[MAX_LIGHTS_BY_SHADER]; //nuevo
+    float m_ShadowMapStrength[MAX_LIGHTS_BY_SHADER]; //nuevo
+    Mat44f m_LightView[MAX_LIGHTS_BY_SHADER]; //nuevo
+    Mat44f m_LightProjection[MAX_LIGHTS_BY_SHADER]; //nuevo
 };
 
 struct PerObjectDesc
