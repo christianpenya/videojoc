@@ -40,8 +40,8 @@ bool CShader::Load()
 
     if (!m_ShaderCode.empty())
     {
-        const D3D_SHADER_MACRO lDefines[] = { "EXAMPLE_DEFINE", "1", NULL, NULL };
-        m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), lDefines);
+        CreateShaderMacro();
+        m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), m_ShaderMacros);
     }
 
     return m_pBlob != nullptr;

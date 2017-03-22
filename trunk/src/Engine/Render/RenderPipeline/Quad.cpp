@@ -32,32 +32,10 @@ CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
 CVertexBuffer<Vertex::Dummy> * lVB = new CVertexBuffer<Vertex::Dummy>(lRenderManager, lScreenQuadVertexDummy, 4);
 mGeometry = new CGeometryTriangleStrip< Vertex::Dummy >(lVB);
 
-
-static CVertexShader sQuadVertexShader(
-"struct VS_INPUT\n"
-"{\n"
-"  float3 Pos : POSITION;\n"
-"  float2 UV  : TEXCOORD0; \n"
-"};\n"
-"struct PS_INPUT\n"
-"{\n"
-"  float4 Pos : SV_POSITION;\n"
-"  float2 UV : TEXCOORD0;\n"
-"};\n"
-"PS_INPUT quadVS(VS_INPUT IN)\n"
-"{\n"
-"  PS_INPUT l_Output = (PS_INPUT)0;\n"
-"  l_Output.Pos = float4( IN.Pos.xyz, 1.0);\n"
-"  l_Output.UV = IN.UV;\n"
-"  return l_Output;\n"
-"}\n",
-Vertex::PositionUV::GetVertexFlags());
 */
 CQuad::CQuad()
     : mGeometry(nullptr)
-      //, mEffect(new CEffect())
-{
-}
+{}
 
 CQuad::~CQuad() {}
 

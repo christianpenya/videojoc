@@ -49,7 +49,6 @@ bool CLayer::Load(CXMLElement* aElement)
         else if (strcmp(iSceneMesh->Name(), "scene_light") == 0)
         {
             std::string l_lightName = iSceneMesh->GetAttribute<std::string>("name", "");
-
             CLight *l_light = nullptr;
 
             if (CEngine::GetInstance().GetLightManager().Exist(l_lightName)
@@ -62,7 +61,6 @@ bool CLayer::Load(CXMLElement* aElement)
 
                 CEngine::GetInstance().GetLightManager().SetLightConstants(iSceneMesh->GetAttribute<int>("id_light", 0), l_light);
             }
-
 
             if (l_light != nullptr)//VER
             {

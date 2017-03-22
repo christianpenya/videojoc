@@ -22,7 +22,7 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
     CMaterialManager& lMaterialManager = CEngine::GetInstance().GetMaterialManager();
     CTextureManager& lTextureManager = CEngine::GetInstance().GetTextureManager();
 
-    // TODO este atributo parece no existir en el fichero
+    // TODO este atributo parece no existir en el fichero, material es siempre null
     CMaterial* lMaterial = lMaterialManager(aElement->GetAttribute<std::string>("material", ""));
 
     for (tinyxml2::XMLElement const *iNTexture = aElement->FirstChildElement(); iNTexture != nullptr; iNTexture = iNTexture->NextSiblingElement())
@@ -30,8 +30,8 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
         if (strcmp(iNTexture->Name(), "dynamic_texture") == 0)
         {
             CDynamicTexture* l_DynamicTexture = new CDynamicTexture(iNTexture);
-            CDynamicTextureMaterial* l_DynamicTextureMaterial = new CDynamicTextureMaterial(l_DynamicTexture,lMaterial);
-            m_DynamicTexturesMaterials.push_back(l_DynamicTextureMaterial);
+            lTextureManager.AddTexture(*l_DynamicTexture);
+            AddDynamicTextureMaterial(l_DynamicTexture, lMaterial);
             m_RenderTargetViews.push_back(l_DynamicTexture->GetRenderTargetView());
         }
         else if (strcmp(iNTexture->Name(), "texture") == 0)
@@ -51,8 +51,6 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
 
 void CRenderStagedTexture::CreateRenderTargetViewVector()
 {
-    // TODO: Setear dynamic textures como render targets
-    //m_RenderTargetViews
     CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
     lRenderManager.SetRendertarget();
 }
@@ -61,6 +59,12 @@ void CRenderStagedTexture::ActivateTextures()
 {
     for (size_t i = 0; i < m_StagedTextures.size(); ++i)
         m_StagedTextures[i]->Activate();
+}
+
+void CRenderStagedTexture::AddDynamicTextureMaterial(CDynamicTexture* aDynamicTexture, CMaterial* aMaterial)
+{
+    CDynamicTextureMaterial* l_DynamicTextureMaterial = new CDynamicTextureMaterial(aDynamicTexture, aMaterial);
+    m_DynamicTexturesMaterials.push_back(l_DynamicTextureMaterial);
 }
 
 CRenderStagedTexture::CStagedTexture::CStagedTexture(uint32 aStageId, CTexture * aTexture)

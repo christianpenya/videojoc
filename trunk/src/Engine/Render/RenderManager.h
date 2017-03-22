@@ -144,6 +144,11 @@ public:
         return m_ViewProjectionMatrix;
     }
 
+    IDXGISwapChain* GetSwapChain() const
+    {
+        return m_SwapChain.get();
+    }
+
     void SetViewMatrix(const Vect3f& vPos, const Vect3f& vTarget, const Vect3f& vUp);
     void SetProjectionMatrix(float fovy, float aspect, float zn, float zf);
 
@@ -166,6 +171,8 @@ public:
     void SetRenderTargets(int aNumViews, ID3D11RenderTargetView* const* aRenderTargetViews, ID3D11DepthStencilView *aDepthStencilViews);
 
     void Update();
+
+    Vect2u GetWindowSize();
 
     Mat44f m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix; //#TODO, tienen getter y setter publico, no se pueden devolver a private? Render pipeline.
 

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?> 
 <materials>
+	<material name="noise_vignetting" vertex_type="Quad">
+		<!--<texture type="diffuse" filename="data\textures\post_process\noise1.png" />-->
+		<texture type="diffuse" filename="data\textures\post_process\vignetting1.png" />
+	</material>
 </materials>
  
