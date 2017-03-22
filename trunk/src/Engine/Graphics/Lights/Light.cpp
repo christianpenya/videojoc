@@ -33,8 +33,8 @@ CLight::CLight(const CXMLElement* aElement)
     m_PrevPos = iTransformLight->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
 
     CTextureManager& lTextureManager = CEngine::GetInstance().GetTextureManager();
-    CTexture* l_Texture = lTextureManager.GetTexture(aElement->GetAttribute<std::string>("shadow_texture_mask", ""));
-    m_pShadowMaskTexture->SetTexture(l_Texture->GetTexture());
+    //CTexture* l_Texture = lTextureManager.GetTexture(aElement->GetAttribute<std::string>("shadow_texture_mask", ""));
+    //m_pShadowMaskTexture->SetTexture(l_Texture->GetTexture());
     assert(lOk && "This kind of light does not exist!!");
 }
 
