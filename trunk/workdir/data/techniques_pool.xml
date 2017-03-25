@@ -1,11 +1,13 @@
 <technique_pools>
 
-<!--	<pool name="forward">
+	<!--	
+	<pool name="forward">
 	 <technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
 	 <technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
 	 <technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2TechniqueForward"/>
 	 <technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
-	</pool>-->
+	</pool>
+	-->
 	
 	<default_pool>
 		<technique vertex_type="PositionUV"/>

@@ -108,8 +108,8 @@ void CMaterial::Apply()
             if (mParameters[i]->GetName() == "bump")
             {
                 float *lBump = (float*)mParameters[i]->GetAddr(0);
-                const Vector4<float> bumpVector = Vector4<float>(*lBump, 0.0f, 0.0f, 0.0f);
-                lCBM.mMaterialDesc.m_RawData[1] = bumpVector;
+                const Vector4<float> lBumpVector = Vector4<float>(*lBump, 0.0f, 0.0f, 0.0f);
+                lCBM.mMaterialDesc.m_RawData[1] = lBumpVector;
             }
         }
 

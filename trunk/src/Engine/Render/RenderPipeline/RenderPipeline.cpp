@@ -20,6 +20,7 @@
 #include "DeferredShading.h"
 #include "CaptureFrameBuffer.h"
 #include "DisableAlphaBlend.h"
+#include "EnableAlphaBlend.h"
 #include "Utils/Logger.h"
 #include "UnSetRenderTarget.h"
 
@@ -41,6 +42,7 @@ std::map<std::string, std::function<CRenderCmd*(void)>> sComandsFactory =
     RENDER_CMD_ENTRY("render_imgui", CRenderImGUI)
     RENDER_CMD_ENTRY("clear", CClearCmd)
     RENDER_CMD_ENTRY("capture_frame_buffer", CCaptureFrameBuffer)
+    RENDER_CMD_ENTRY("enable_alpha_blend", CEnableAlphaBlend)
     RENDER_CMD_ENTRY("disable_alpha_blend", CDisableAlphaBlend)
     RENDER_CMD_ENTRY("unset_render_target", CUnSetRenderTarget)
 
