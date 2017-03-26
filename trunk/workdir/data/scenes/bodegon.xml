@@ -29,7 +29,9 @@
 
 		<!--<scene_mesh name="Camera001.Target" mesh="data/meshes/Camera001.Target.mesh" >
 			<transform position="-9.25808 1.64795 5.38194" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
-		</scene_mesh>-->
+		</scene_mesh>
+		-->
+		
 	</layer>
 	
 	<layer name="deferred_opaque" active="true">

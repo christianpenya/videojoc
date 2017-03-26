@@ -41,10 +41,20 @@ bool CTechniquePoolManager::Reload()
                     {
                         if (strcmp(iTechnique->Name(), "technique") == 0)
                         {
-                            std::string lVertexType = iTechnique->GetAttribute<std::string>("vertex_type", "");
                             CTechnique*	lTechnique = new CTechnique();
                             lTechnique->SetEffect(nullptr);
-                            Add(lVertexType, lTechnique);
+
+                            std::string lVertexType = iTechnique->GetAttribute<std::string>("vertex_type", "");
+                            std::string lEffect = iTechnique->GetAttribute<std::string>("name", "");
+
+                            if (strcmp(lEffect.c_str(), "") == 0)
+                            {
+                                Add(lVertexType, lTechnique);
+                            }
+                            else
+                            {
+                                Add(lEffect, lTechnique);
+                            }
                         }
                     }
                 }

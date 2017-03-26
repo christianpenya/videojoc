@@ -3,8 +3,14 @@
 #include "Engine\Engine.h"
 #include "Render\RenderManager.h"
 
+CCaptureFrameBufferTexture::CCaptureFrameBufferTexture():
+    CTexture(""),
+    m_DataTexture(nullptr)
+{}
+
 CCaptureFrameBufferTexture::CCaptureFrameBufferTexture(const CXMLElement *TreeNode)
-    : CTexture(""/*TODO*/)
+    : CTexture(TreeNode->GetAttribute<std::string>("name", "")),
+      m_DataTexture(nullptr)
 {
     if (TreeNode->GetAttribute<bool>("texture_width_as_frame_buffer", false))
     {
@@ -14,6 +20,7 @@ CCaptureFrameBufferTexture::CCaptureFrameBufferTexture(const CXMLElement *TreeNo
     {
         mSize = TreeNode->GetAttribute<Vect2u>("size", Vect2u(0,0));
     }
+
     Init();
 }
 
@@ -80,7 +87,6 @@ bool CCaptureFrameBufferTexture::CreateSamplerState()
 
 bool CCaptureFrameBufferTexture::Capture(unsigned int StageId)
 {
-
     CRenderManager &l_RenderManager = CEngine::GetInstance().GetRenderManager();
     ID3D11Texture2D *l_Surface = nullptr;
     HRESULT l_HR = l_RenderManager.GetSwapChain()->GetBuffer(StageId, __uuidof(ID3D11Texture2D), reinterpret_cast< void** >(&l_Surface));

@@ -28,9 +28,13 @@
   </effect>
   
   <!-- POST PROCESS -->
-   <effect name="NoiseVignetting" shader_family="NoiseVignetting">
+  <effect name="NoiseVignettingTechnique" shader_family="NoiseVignetting">
    <shader stage="vertex"   name="NoiseVignetting"/>
    <shader stage="pixel"    name="NoiseVignetting"/>
+  </effect>
+  <effect name="FogTechnique" shader_family="Fog">
+   <shader stage="vertex"   name="Fog"/>
+   <shader stage="pixel"    name="Fog"/>
   </effect>
   
   <!-- OTER -->

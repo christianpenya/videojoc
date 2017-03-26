@@ -11,7 +11,7 @@
 #include "Graphics/Textures/TextureManager.h"
 #include "Engine\Engine.h"
 #include "Graphics/Effects\Technique.h"
-#include "Graphics/Effects\TechniquePoolManager.h"
+#include "Graphics/Effects/TechniquePoolManager.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
 
 CMaterial::~CMaterial()
@@ -28,8 +28,16 @@ CMaterial::~CMaterial()
 CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
 {
     CEngine &l_Engine = CEngine::GetInstance();
+    CTechniquePoolManager &l_TechniquePoolManager = l_Engine.GetTechniquePoolManager();
 
-    mTechnique = l_Engine.GetTechniquePoolManager()(aElement->GetAttribute<std::string>("vertex_type", ""));
+    std::string lVertexType = aElement->GetAttribute<std::string>("vertex_type", "");
+    std::string lEffect = aElement->GetAttribute<std::string>("effect", "");
+
+    mTechnique = l_TechniquePoolManager(lVertexType);
+    mTechnique = l_TechniquePoolManager(lEffect);
+
+
+    mTechnique = strcmp(lEffect.c_str(), "") == 0 ? l_TechniquePoolManager(lVertexType) : l_TechniquePoolManager(lEffect);
 
     for (tinyxml2::XMLElement *iTextureOrParameter = aElement->FirstChildElement(); iTextureOrParameter != nullptr; iTextureOrParameter = iTextureOrParameter->NextSiblingElement())
     {

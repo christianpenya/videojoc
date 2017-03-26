@@ -20,6 +20,9 @@
 		<technique vertex_type="PositionBumpUVUV2" />
 		<technique vertex_type="PositionWeightIndicesNormalUV"/>
 		<technique vertex_type="Quad"/>
+		<technique name="NoiseVignetting" />
+		<technique name="Fog" />
+
 	</default_pool>
 
 	<pool name="forward">
@@ -45,7 +48,8 @@
 	</pool>
 	
 	<pool name="post_process">
-		<technique vertex_type="Quad" effect="NoiseVignetting"/>
+		<technique name="NoiseVignetting" effect="NoiseVignettingTechnique"/>
+		<technique name="Fog" effect="FogTechnique"/>
 	</pool>
 	
 	<pool name="skybox">

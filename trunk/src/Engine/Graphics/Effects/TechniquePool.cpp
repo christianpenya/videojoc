@@ -20,6 +20,7 @@ CTechniquePool::CTechniquePool(CXMLElement* aElement) :
     CEffectManager& lEM = CEngine::GetInstance().GetEffectManager();
 
     std::string lVertexType;
+    std::string lName;
     std::string lEffect;
 
     for (tinyxml2::XMLElement *iTechnique = aElement->FirstChildElement(); iTechnique != nullptr; iTechnique = iTechnique->NextSiblingElement())
@@ -27,9 +28,18 @@ CTechniquePool::CTechniquePool(CXMLElement* aElement) :
         if (strcmp(iTechnique->Name(), "technique") == 0)
         {
             lVertexType = iTechnique->GetAttribute<std::string>("vertex_type", "");
+            lName = iTechnique->GetAttribute<std::string>("name", "");
             lEffect = iTechnique->GetAttribute<std::string>("effect", "");
 
-            CTemplatedMapVector<CEffect>::Add(lVertexType,lEM(lEffect));
+            if (strcmp(lName.c_str(), "") == 0)
+            {
+                CTemplatedMapVector<CEffect>::Add(lVertexType, lEM(lEffect));
+            }
+            else
+            {
+                CTemplatedMapVector<CEffect>::Add(lName, lEM(lEffect));
+            }
+
         }
     }
 }
