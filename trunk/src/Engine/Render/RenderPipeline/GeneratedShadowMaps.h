@@ -8,7 +8,6 @@
 #include "Utils/MemLeaks/MemLeaks.h"
 #endif
 
-
 class CGenerateShadowMaps : public CRenderCmd
 {
 public:

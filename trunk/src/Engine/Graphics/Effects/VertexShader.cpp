@@ -3,6 +3,7 @@
 #include "Render/RenderManager.h"
 #include "Engine/Engine.h"
 #include "XML/tinyxml2/tinyxml2.h"
+#include "Utils/Logger.h"
 
 CVertexShader::CVertexShader(const std::string& aShaderCode, uint32 aVertexFlags) :
     CShader(aShaderCode, EShaderStage::eVertexShader),
@@ -33,6 +34,12 @@ bool CVertexShader::Load()
 
         lOk &= m_VertexFlags != 0;
         lOk &= VertexTypes::CreateInputLayout(lRenderManager, m_VertexFlags, m_pBlob, &m_pVertexLayout);
+    }
+
+    if (!lOk)
+    {
+        std::string lError = "Error cargando el shader -> " + m_Name;
+        LOG_ERROR_APPLICATION(lError.c_str());
     }
 
     return lOk;

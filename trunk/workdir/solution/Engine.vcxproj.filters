@@ -291,6 +291,9 @@
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\DynamicTexture.h">
       <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\EnableAlphaBlend.h">
+      <Filter>Render\RenderPipeline</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\EndRenderCmd.h">
       <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
@@ -531,6 +534,9 @@
       <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\DynamicTexture.cpp">
+      <Filter>Render\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\EnableAlphaBlend.cpp">
       <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\GenerateShadowMaps.cpp">

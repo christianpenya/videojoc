@@ -21,6 +21,7 @@ struct PerFrameDesc
     Vect4f m_CameraPosition;
     Vect4f m_CameraFrontVector;
     Vect4f m_CameraUpVector;
+    Vect4u m_TimeSeconds;
 };
 
 struct PerLightsDesc

@@ -76,6 +76,7 @@ bool CSetAlphaBlendState::CreateAlphaBlendState(CRenderManager& lRM)
 
         lOk = SUCCEEDED(lRM.GetDevice()->CreateBlendState(&l_AlphablendDesc, &m_AlphaBlendState));
     }
+
     return lOk;
 }
 

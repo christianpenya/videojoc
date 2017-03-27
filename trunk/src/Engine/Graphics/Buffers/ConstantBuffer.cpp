@@ -17,7 +17,7 @@ CConstantBuffer::CConstantBuffer(CRenderManager& RenderManager, uint32 aByteWidt
     constantBufferDesc.CPUAccessFlags = 0;
     constantBufferDesc.Usage = D3D11_USAGE_DEFAULT;
     HRESULT lHR = lDevice->CreateBuffer(&constantBufferDesc, nullptr, &m_pBuffer);
-    LOG_ERROR_APPLICATION_IF(FAILED(lHR), "Error creating constant buffer");
+    LOG_ERROR_APPLICATION_IF(SUCCEEDED(lHR), "Error creating constant buffer");
 }
 
 CConstantBuffer::CConstantBuffer(CRenderManager& RenderManager, void* aRawData, uint32 aByteWidth) : CBuffer()

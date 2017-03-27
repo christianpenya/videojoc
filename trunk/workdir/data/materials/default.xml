@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?> 
 <materials>
-	<material name="noise_vignetting" vertex_type="Quad">
-		<!--<texture type="diffuse" filename="data\textures\post_process\noise1.png" />-->
-		<texture type="diffuse" filename="data\textures\post_process\vignetting1.png" />
+	<material name="NoiseVignettingMaterial" effect="NoiseVignetting">
+		<texture type="diffuse" filename="data\textures\post_process\noise.png" />
+		<texture type="diffuse" filename="data\textures\post_process\vignetting.png" />
 	</material>
+
+	<material name="FogMaterial" effect="Fog">
+		<parameter type="color" name="diffuse_color" value="0.0 0.0 1.0 1.0 " />
+	</material>
+
 </materials>
  

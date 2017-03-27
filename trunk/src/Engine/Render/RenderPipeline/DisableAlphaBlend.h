@@ -8,8 +8,6 @@
 #include "Utils/MemLeaks/MemLeaks.h"
 #endif
 
-
-
 class CDisableAlphaBlend : public CRenderCmd
 {
 public:

@@ -11,7 +11,7 @@
 #include "Graphics/Textures/TextureManager.h"
 #include "Engine\Engine.h"
 #include "Graphics/Effects\Technique.h"
-#include "Graphics/Effects\TechniquePoolManager.h"
+#include "Graphics/Effects/TechniquePoolManager.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
 
 CMaterial::~CMaterial()
@@ -28,8 +28,16 @@ CMaterial::~CMaterial()
 CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
 {
     CEngine &l_Engine = CEngine::GetInstance();
+    CTechniquePoolManager &l_TechniquePoolManager = l_Engine.GetTechniquePoolManager();
 
-    mTechnique = l_Engine.GetTechniquePoolManager()(aElement->GetAttribute<std::string>("vertex_type", ""));
+    std::string lVertexType = aElement->GetAttribute<std::string>("vertex_type", "");
+    std::string lEffect = aElement->GetAttribute<std::string>("effect", "");
+
+    mTechnique = l_TechniquePoolManager(lVertexType);
+    mTechnique = l_TechniquePoolManager(lEffect);
+
+
+    mTechnique = strcmp(lEffect.c_str(), "") == 0 ? l_TechniquePoolManager(lVertexType) : l_TechniquePoolManager(lEffect);
 
     for (tinyxml2::XMLElement *iTextureOrParameter = aElement->FirstChildElement(); iTextureOrParameter != nullptr; iTextureOrParameter = iTextureOrParameter->NextSiblingElement())
     {
@@ -98,6 +106,7 @@ void CMaterial::Apply()
     }
 
     CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
+    Vector4<float> lSpecularVector = Vector4<float>(20.0, 0.2, 0.0, 0.0);
 
     for (size_t i = 0, lCount = mParameters.size(); i < lCount; ++i)
     {
@@ -108,8 +117,20 @@ void CMaterial::Apply()
             if (mParameters[i]->GetName() == "bump")
             {
                 float *lBump = (float*)mParameters[i]->GetAddr(0);
-                const Vector4<float> bumpVector = Vector4<float>(*lBump, 0.0f, 0.0f, 0.0f);
-                lCBM.mMaterialDesc.m_RawData[1] = bumpVector;
+                const Vector4<float> lBumpVector = Vector4<float>(*lBump, 0.0f, 0.0f, 0.0f);
+                lCBM.mMaterialDesc.m_RawData[1] = lBumpVector;
+            }
+            else if (mParameters[i]->GetName() == "specular_exponent")
+            {
+                float *lSpecularExponent = (float*)mParameters[i]->GetAddr(0);
+                lSpecularVector = Vector4<float>(*lSpecularExponent, lSpecularVector.y, lSpecularVector.z, lSpecularVector.w);
+                lCBM.mMaterialDesc.m_RawData[2] = lSpecularVector;
+            }
+            else if (mParameters[i]->GetName() == "specular_contrib")
+            {
+                float *lSpecularContrib = (float*)mParameters[i]->GetAddr(0);
+                lSpecularVector = Vector4<float>(lSpecularVector.x, *lSpecularContrib, lSpecularVector.z, lSpecularVector.w);
+                lCBM.mMaterialDesc.m_RawData[2] = lSpecularVector;
             }
         }
 

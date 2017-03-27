@@ -20,9 +20,9 @@
 #include "DeferredShading.h"
 #include "CaptureFrameBuffer.h"
 #include "DisableAlphaBlend.h"
+#include "EnableAlphaBlend.h"
 #include "Utils/Logger.h"
 #include "UnSetRenderTarget.h"
-
 
 #define RENDER_CMD_ENTRY(tag, command_class_name)  { tag, [] { return new  command_class_name();}},
 std::map<std::string, std::function<CRenderCmd*(void)>> sComandsFactory =
@@ -41,11 +41,10 @@ std::map<std::string, std::function<CRenderCmd*(void)>> sComandsFactory =
     RENDER_CMD_ENTRY("render_imgui", CRenderImGUI)
     RENDER_CMD_ENTRY("clear", CClearCmd)
     RENDER_CMD_ENTRY("capture_frame_buffer", CCaptureFrameBuffer)
+    RENDER_CMD_ENTRY("enable_alpha_blend", CEnableAlphaBlend)
     RENDER_CMD_ENTRY("disable_alpha_blend", CDisableAlphaBlend)
     RENDER_CMD_ENTRY("unset_render_target", CUnSetRenderTarget)
-
 };
-
 
 /*<render_pipeline>
 <begin_render name = "begin_render_main_loop" / >
@@ -58,15 +57,13 @@ std::map<std::string, std::function<CRenderCmd*(void)>> sComandsFactory =
 <end_render name = "end_render_main_loop" / >
 < / render_pipeline>*/
 
-CRenderPipeline::CRenderPipeline()
-{
-}
+CRenderPipeline::CRenderPipeline() {}
 
 CRenderPipeline::~CRenderPipeline()
 {
     CTemplatedMapVector<CRenderCmd>::Destroy();
 
-    // Free memory
+    // Free memory (and Tibet)
     /*    for (std::map<std::string, std::function<CRenderCmd*(void) >>::iterator itr = sComandsFactory.begin(); itr != sComandsFactory.end(); ++itr)
         {
             delete itr->second();

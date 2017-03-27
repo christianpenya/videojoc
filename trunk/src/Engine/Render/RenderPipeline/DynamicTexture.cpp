@@ -6,11 +6,11 @@
 
 CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     : CTexture(TreeNode->GetAttribute<std::string>("name", ""))
-    , m_CreateDepthStencilBuffer( TreeNode->GetAttribute<bool>("create_depth_stencil_buffer", false) )
     , m_pRenderTargetTexture(nullptr)
     , m_pRenderTargetView(nullptr)
     , m_pDepthStencilBuffer(nullptr)
     , m_pDepthStencilView(nullptr)
+    , m_CreateDepthStencilBuffer( TreeNode->GetAttribute<bool>("create_depth_stencil_buffer", false) )
 {
     assert(TreeNode);
 

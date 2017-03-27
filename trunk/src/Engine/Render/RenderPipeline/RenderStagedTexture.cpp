@@ -3,14 +3,15 @@
 #include "Engine\engine.h"
 #include "Graphics\Textures\TextureManager.h"
 #include "Graphics\Textures\Texture.h"
+#include "Render/RenderPipeline/CaptureFrameBufferTexture.h"
 
 CRenderStagedTexture::CRenderStagedTexture() :
     m_ViewportSize(0),
     m_ViewportPosition(0)
     //TODO terminar de inicializar
 {}
-CRenderStagedTexture::~CRenderStagedTexture() {}
 
+CRenderStagedTexture::~CRenderStagedTexture() {}
 //Leera el nodo
 //<dynamic_texture name="DiffuseMapTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format_type="RGBA8_UNORM"/>
 //<texture stage_id = "0" file = "DiffuseMapTexture" / >
@@ -46,7 +47,6 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
     CreateRenderTargetViewVector();
 
     return lOk;
-
 }
 
 void CRenderStagedTexture::CreateRenderTargetViewVector()

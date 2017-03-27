@@ -43,7 +43,7 @@ bool CTextureManager::Reload()
     return false;
 }
 
-void CTextureManager::AddTexture(CTexture &aTexture)
+bool CTextureManager::AddTexture(CTexture &aTexture)
 {
-    mTextures.Add(aTexture.GetName(), &aTexture);
+    return mTextures.Add(aTexture.GetName(), &aTexture);
 }
