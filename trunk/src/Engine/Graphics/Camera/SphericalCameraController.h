@@ -29,14 +29,13 @@ public:
         , pitch(-1.0f)
         , roll(0.0)
         , zoom(10.0)
-    {};
-    virtual ~CSphericalCameraController() {};
+    {}
+    virtual ~CSphericalCameraController() {}
 
     virtual void Update(float ElapsedTime) override;
 
 private:
     float yaw, pitch, roll, zoom;
-
     float maxPitch, minPitch;
     float maxZoom, minZoom;
 };

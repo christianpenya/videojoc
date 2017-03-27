@@ -4,13 +4,8 @@
 #include "Render/RenderManager.h"
 #include "Engine/engine.h"
 
-CDrawQuad::CDrawQuad(): mQuad(nullptr), mMaterial(nullptr)
-{
-}
-
-CDrawQuad::~CDrawQuad()
-{
-}
+CDrawQuad::CDrawQuad(): mQuad(nullptr), mMaterial(nullptr) {}
+CDrawQuad::~CDrawQuad() {}
 
 //Leera el nodo
 //<draw_quad material="DrawQuadMaterial" viewport_size="128 128" viewport_position="128 0">

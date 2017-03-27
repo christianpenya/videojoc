@@ -1,11 +1,13 @@
 <technique_pools>
 
-<!--	<pool name="forward">
+	<!--	
+	<pool name="forward">
 	 <technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
 	 <technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
 	 <technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2TechniqueForward"/>
 	 <technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
-	</pool>-->
+	</pool>
+	-->
 	
 	<default_pool>
 		<technique vertex_type="PositionUV"/>
@@ -18,6 +20,9 @@
 		<technique vertex_type="PositionBumpUVUV2" />
 		<technique vertex_type="PositionWeightIndicesNormalUV"/>
 		<technique vertex_type="Quad"/>
+		<technique name="NoiseVignetting" />
+		<technique name="Fog" />
+
 	</default_pool>
 
 	<pool name="forward">
@@ -43,7 +48,8 @@
 	</pool>
 	
 	<pool name="post_process">
-		<technique vertex_type="Quad" effect="NoiseVignetting"/>
+		<technique name="NoiseVignetting" effect="NoiseVignettingTechnique"/>
+		<technique name="Fog" effect="FogTechnique"/>
 	</pool>
 	
 	<pool name="skybox">

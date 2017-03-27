@@ -61,8 +61,7 @@ PS_INPUT VS(VS_INPUT IN)
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-    //TODO, el 2.4 debe entrar como parametro
-
+	
     float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
     float3 l_Normal = normalize(IN.Normal);
     l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;

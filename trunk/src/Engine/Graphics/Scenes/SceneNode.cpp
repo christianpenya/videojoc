@@ -12,7 +12,7 @@ CSceneNode::CSceneNode():
 
 CSceneNode::CSceneNode(const CXMLElement* aElement)
     : CTransform((strcmp(aElement->FirstChildElement()->Name(), "transform") == 0) ? aElement->FirstChildElement() : nullptr)
-    , CName(aElement->GetAttribute<std::string>("name", "")),
+    , CName(aElement->GetAttribute<std::string>("name", "")), m_ignoreFrustum(false),
       m_Visible(false),
       m_type(0)
 {
