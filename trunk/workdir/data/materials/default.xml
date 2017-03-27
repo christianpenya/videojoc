@@ -2,7 +2,7 @@
 <materials>
 	<material name="NoiseVignettingMaterial" effect="NoiseVignetting">
 		<texture type="diffuse" filename="data\textures\post_process\noise.png" />
-		<texture type="diffuse" filename="data\textures\post_process\vignetting.jpg" />
+		<texture type="diffuse" filename="data\textures\post_process\vignetting.png" />
 	</material>
 
 	<material name="FogMaterial" effect="Fog">

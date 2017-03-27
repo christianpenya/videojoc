@@ -26,8 +26,8 @@ float2 UV :
     TEXCOORD0;
 };
 
-static float m_NoisePct=0.3;
-static float m_VignettingPct=0.2;
+static float m_NoisePct=0.2;
+static float m_VignettingPct=0.5;
 static float m_NoiseAmount=0.2;
 
 PS_INPUT VS(VS_INPUT IN)

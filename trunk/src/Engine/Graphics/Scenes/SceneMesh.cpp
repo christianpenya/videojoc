@@ -19,10 +19,11 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     m_type = 0;
 
     std::string lRigidBody = aElement->GetAttribute<std::string>("rigid_body", "");
-
     EnumString<ERigidBody>::ToEnum(mRigidBodyEnum, lRigidBody);
 
+    CAxisAlignedBoundingBox lAABB = mMesh->GetAABB();
     float size = 1.0f;
+    float sizeX, sizeY, sizeZ;
     Quatf rotation = Quatf();
     std::string lDebug;
 
@@ -35,16 +36,24 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     case eBox:
         lDebug = "Attached physx BOX to " + m_Name;
         rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
-        CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, m_Position, size, size, size, 0.5f);
+
+        sizeX = abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x;
+        sizeY = abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y;
+        sizeZ = abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z;
+
+        CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, m_Position, sizeX, sizeY, sizeZ, 0.5f);
         break;
+
     case eSphere:
         lDebug = "Attached physx SPHERE to " + m_Name;
         rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
         CEngine::GetInstance().GetPhysXManager().CreateDynamicSphere(m_Name, "Default", rotation, m_Position, size / 5, 0.5f);
         break;
+
     case ePlayer:
         lDebug = "Attached physx PLAYER CONTROLLER to " + m_Name;
         break;
+
     case eTriggerBox:
         lDebug = "Attached physx Trigger Box to " + m_Name;
         rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
@@ -88,9 +97,12 @@ bool CSceneMesh::Update(float aDeltaTime)
         case eBox:
             m_Position = lPM.GetActorPosition(m_Name);
             lRotation = lPM.GetActorOrientation(m_Name);
-            m_Yaw = lRotation.GetYaw();
-            m_Pitch = lRotation.GetPitch();
-            m_Roll = lRotation.GetRoll();
+            m_Yaw = lRotation.GetRotationMatrix().GetAngleX();
+            m_Pitch = lRotation.GetRotationMatrix().GetAngleY();
+            m_Roll = lRotation.GetRotationMatrix().GetAngleZ();
+
+            lRotation.GetRotationMatrix().GetYaw();
+
             break;
         case ePlayer:
             m_Position = lPM.GetActorPosition(m_Name);

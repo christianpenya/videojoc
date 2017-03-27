@@ -106,6 +106,7 @@ void CMaterial::Apply()
     }
 
     CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
+    Vector4<float> lSpecularVector = Vector4<float>(20.0, 0.2, 0.0, 0.0);
 
     for (size_t i = 0, lCount = mParameters.size(); i < lCount; ++i)
     {
@@ -118,6 +119,18 @@ void CMaterial::Apply()
                 float *lBump = (float*)mParameters[i]->GetAddr(0);
                 const Vector4<float> lBumpVector = Vector4<float>(*lBump, 0.0f, 0.0f, 0.0f);
                 lCBM.mMaterialDesc.m_RawData[1] = lBumpVector;
+            }
+            else if (mParameters[i]->GetName() == "specular_exponent")
+            {
+                float *lSpecularExponent = (float*)mParameters[i]->GetAddr(0);
+                lSpecularVector = Vector4<float>(*lSpecularExponent, lSpecularVector.y, lSpecularVector.z, lSpecularVector.w);
+                lCBM.mMaterialDesc.m_RawData[2] = lSpecularVector;
+            }
+            else if (mParameters[i]->GetName() == "specular_contrib")
+            {
+                float *lSpecularContrib = (float*)mParameters[i]->GetAddr(0);
+                lSpecularVector = Vector4<float>(lSpecularVector.x, *lSpecularContrib, lSpecularVector.z, lSpecularVector.w);
+                lCBM.mMaterialDesc.m_RawData[2] = lSpecularVector;
             }
         }
 
