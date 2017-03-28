@@ -12,6 +12,7 @@ public:
     GET_SET(float, Angle);
     GET_SET(float, FallOff);
     void DrawImgui();
+    virtual void SetShadowMap(CRenderManager &RenderManager);
 private:
     float m_Angle;
     float m_FallOff;

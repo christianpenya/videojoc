@@ -52,8 +52,8 @@ bool CTexture::Load()
                 ID3D11Texture2D * lTex2D = static_cast<ID3D11Texture2D *>(lResource);
                 D3D11_TEXTURE2D_DESC desc;
                 lTex2D->GetDesc(&desc);
-                mSize.x = desc.Width;
-                mSize.y = desc.Height;
+                m_Size.x = desc.Width;
+                m_Size.y = desc.Height;
 
                 D3D11_SAMPLER_DESC l_SampDesc;
                 ZeroMemory(&l_SampDesc, sizeof(l_SampDesc));
