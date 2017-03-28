@@ -3,17 +3,24 @@
 #include "Engine\Engine.h"
 #include "Render\RenderManager.h"
 
+CCaptureFrameBufferTexture::CCaptureFrameBufferTexture():
+    CTexture(""),
+    m_DataTexture(nullptr)
+{}
+
 CCaptureFrameBufferTexture::CCaptureFrameBufferTexture(const CXMLElement *TreeNode)
-    : CTexture(""/*TODO*/)
+    : CTexture(TreeNode->GetAttribute<std::string>("name", "")),
+      m_DataTexture(nullptr)
 {
     if (TreeNode->GetAttribute<bool>("texture_width_as_frame_buffer", false))
     {
-        mSize = CEngine::GetInstance().GetRenderManager().GetWindowSize();
+        m_Size = CEngine::GetInstance().GetRenderManager().GetWindowSize();
     }
     else
     {
-        mSize = TreeNode->GetAttribute<Vect2u>("size", Vect2u(0,0));
+        m_Size = TreeNode->GetAttribute<Vect2u>("size", Vect2u(0,0));
     }
+
     Init();
 }
 
@@ -32,8 +39,8 @@ void CCaptureFrameBufferTexture::Init()
     l_RenderManager.GetSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&l_Buffer);
 
     D3D11_TEXTURE2D_DESC l_Texture2DDescription;
-    l_Texture2DDescription.Width = mSize.x;
-    l_Texture2DDescription.Height = mSize.y;
+    l_Texture2DDescription.Width = m_Size.x;
+    l_Texture2DDescription.Height = m_Size.y;
     l_Texture2DDescription.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
     l_Texture2DDescription.ArraySize = 1;
     l_Texture2DDescription.MiscFlags = 0;
@@ -80,7 +87,6 @@ bool CCaptureFrameBufferTexture::CreateSamplerState()
 
 bool CCaptureFrameBufferTexture::Capture(unsigned int StageId)
 {
-
     CRenderManager &l_RenderManager = CEngine::GetInstance().GetRenderManager();
     ID3D11Texture2D *l_Surface = nullptr;
     HRESULT l_HR = l_RenderManager.GetSwapChain()->GetBuffer(StageId, __uuidof(ID3D11Texture2D), reinterpret_cast< void** >(&l_Surface));

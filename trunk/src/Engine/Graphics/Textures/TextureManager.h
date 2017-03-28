@@ -14,7 +14,7 @@ public:
     virtual ~CTextureManager();
     CTexture* GetTexture(const std::string& aFilename);
     bool Reload();
-    void AddTexture(CTexture& aTexture); //TODO seguro que hace falta este método?
+    bool AddTexture(CTexture& aTexture);
 private:
     base::utils::CTemplatedMapVector<CTexture> mTextures;
     bool Load(const std::string& aFilename);

@@ -9,6 +9,10 @@ class CDirectionalLight : public CLight
 public:
     CDirectionalLight(const CXMLElement* aElement);
     virtual ~CDirectionalLight();
+    virtual void SetShadowMap(CRenderManager &RenderManager);
+protected:
+    Vect2f m_OrthoShadowMapSize;
+
 };
 
 #endif

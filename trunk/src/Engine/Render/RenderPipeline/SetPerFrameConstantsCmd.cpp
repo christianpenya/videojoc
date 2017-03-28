@@ -3,20 +3,13 @@
 #include "Engine/Engine.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
 #include "Graphics/Lights/lightManager.h"
+#include <ctime>
 
-CSetPerFrameConstantsCmd::CSetPerFrameConstantsCmd()
-{
-
-}
-
-CSetPerFrameConstantsCmd::~CSetPerFrameConstantsCmd()
-{
-
-}
+CSetPerFrameConstantsCmd::CSetPerFrameConstantsCmd() {}
+CSetPerFrameConstantsCmd::~CSetPerFrameConstantsCmd() {}
 
 //Esta clase realizará el set de las matrices de view y projection de la cámara activa.
 //Leerá el siguiente nodo de xml: <set_per_frame_constants name="set_per_frame_cmd"/>
-
 
 bool CSetPerFrameConstantsCmd::Load(const CXMLElement* aElement)
 {
@@ -47,8 +40,7 @@ void CSetPerFrameConstantsCmd::UpdateConstants()
         lConstanBufferManager.mFrameDesc.m_CameraPosition = lCC.getPosition();
         lConstanBufferManager.mFrameDesc.m_CameraFrontVector = lCC.getFront();
         lConstanBufferManager.mFrameDesc.m_CameraUpVector = lCC.getUp();
+        lConstanBufferManager.mFrameDesc.m_TimeSeconds.x = std::clock();
         lConstanBufferManager.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Frame);
     }
-
-
 }

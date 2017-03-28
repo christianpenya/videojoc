@@ -3,7 +3,7 @@
 #define CFB_TEXTURE_H
 
 #include "Graphics\Textures\Texture.h"
-
+#include "Utils\Defines.h"
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
 #endif

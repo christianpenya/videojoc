@@ -13,6 +13,7 @@
 		
 		<!--post process-->
 		<shader name="NoiseVignetting" file="PostProcess/NoiseVignetting.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
+		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
 		
 		<!--other-->
 		<shader name="UberShader" file="UberShader.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor="POSITION_NORMAL"/>
@@ -37,6 +38,7 @@
 		
 		<!--post process-->
 		<shader name="NoiseVignetting" file="PostProcess/NoiseVignetting.fx" entry_point="PS" preprocessor=""/>	
+		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="PS" preprocessor=""/>	
 		
 		<!--other-->
 		<shader name="UberShader" file="UberShader.fx" entry_point="PS"  preprocessor="POSITION_NORMAL"/>

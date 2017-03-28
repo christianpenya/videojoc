@@ -1,32 +1,50 @@
-<scene>
-    <layer name="opaque" active = "true">
-		<!--<scene_mesh name="TeapotDiffuse" mesh="data/meshes/TeapotDiffuse.mesh" >
-			<transform position="-3.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
+<scene >
+	<layer name="Principal" active="true" >
+		<scene_light name="Fspot001" id_light="0" >
+			<transform position="8.01362 192.481 -0.183954" forward="0.0 1.0 0.0" />
+		</scene_light>
+	<scene_light name="Omni002" id_light="1" >
+			<transform position="18.0355 15.3003 28.6497" forward="0.0 1.0 0.0" />
+		</scene_light>
+		<scene_light name="Omni001" id_light="2" >
+			<transform position="-13.8572 7.78125 -16.0357" forward="0.0 1.0 0.0" />
+		</scene_light>
+		<scene_light name="FDirect001" id_light="3" >
+			<transform position="-16.8491 37.0663 26.6353" forward="0.0 1.0 0.0" />
+		</scene_light>
+		<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
+			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.26624 1.0 6.78096" />
+		</scene_mesh>		
+		<scene_mesh name="player" mesh="data/meshes/Cylinder01.mesh" rigid_body = "player">
+			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="TeapotTexture" mesh="data/meshes/TeapotTexture.mesh" >
-			<transform position="3.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
-		</scene_mesh>-->
-		<scene_mesh name="Box01" mesh="data/meshes/BOX_Lightmap.mesh" >
-			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="4.0 4.0 4.0" />
+		
+		<!--
+		<scene_mesh name="BOX_Lightmap" mesh="data/meshes/BOX_Lightmap.mesh" >
+			<transform position="0.0 0.0 2.05304" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
-	</layer>
- 	<layer name="sereno" active = "false">
 		<scene_animated_model name="sereno01" core="sereno" >
-			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="0.1 0.1 0.1" />
+			<transform position="0.0 0.0 1.0" rotation="0.0 0.0 0.0" scale="0.5 0.5 0.5" />
 		</scene_animated_model>
+
+		<!--<scene_mesh name="Camera001.Target" mesh="data/meshes/Camera001.Target.mesh" >
+			<transform position="-9.25808 1.64795 5.38194" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		-->
+		
 	</layer>
-	<layer name="lights" active = "true">
-		<scene_light name="Omni001" id_light="3" >
-			<transform position="0.0 10.0 0.0" forward="0.0 1.0 0.0" />
-		</scene_light>
-		<!--<scene_light name="Spot001" id_light="2" >
-			<transform position="0.0 0.0 10.0" forward="0.0 0.0 -1.0" />
-		</scene_light>
-		<scene_light name="Direct001" id_light="0" >
-			<transform position="10.0 0.0 0.0" forward="-1.0 0.0 0.0" />
-		</scene_light>
-		<scene_light name="Direct002" id_light="1" >
-			<transform position="-10.0 0.0 0.0" forward="1.0 0.0 0.0" />
-		</scene_light> -->
-	</layer> 
- </scene>
+	
+	<layer name="deferred_opaque" active="true">
+		<scene_mesh name="SimpleBox" mesh="data/meshes/Box01.mesh">
+			<transform position="1.0 0.0 1.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+	</layer>
+
+	
+	<layer name="Skybox" active="true">
+		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true">
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+	</layer>
+</scene>
+
