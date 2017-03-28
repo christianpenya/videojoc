@@ -18,11 +18,11 @@ bool CCaptureFrameBuffer::Load(const CXMLElement* aElement)
 {
     bool lOk = false;
 
-    if (strcmp(aElement->Name(), "capture_frame_buffer") == 0)
-    {
-        m_CapturedFrameBufferTexture = new CCaptureFrameBufferTexture(aElement);
-        lOk = CEngine::GetInstance().GetTextureManager().AddTexture(*m_CapturedFrameBufferTexture);
-    }
+    //if (strcmp(aElement->Name(), "capture_frame_buffer") == 0)
+    //{
+    m_CapturedFrameBufferTexture = new CCaptureFrameBufferTexture(aElement);
+    lOk = CEngine::GetInstance().GetTextureManager().AddTexture(*m_CapturedFrameBufferTexture);
+    //}
 
     return lOk;
 }

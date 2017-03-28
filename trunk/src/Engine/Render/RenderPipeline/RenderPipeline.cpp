@@ -85,6 +85,8 @@ bool CRenderPipeline::Load(const std::string& aFilename)
         m_Filename = aFilename;
         CXMLElement* lRenderPipeline = document.FirstChildElement("render_pipeline");
 
+        int lCommandId = 0;
+
         if (lRenderPipeline)
         {
             for (tinyxml2::XMLElement* iRenderPipeline = lRenderPipeline->FirstChildElement(); iRenderPipeline != nullptr; iRenderPipeline = iRenderPipeline->NextSiblingElement())
@@ -102,7 +104,8 @@ bool CRenderPipeline::Load(const std::string& aFilename)
 
                 if (lCommand->Load(iRenderPipeline))
                 {
-                    Add(lCommand->GetName(), lCommand);
+                    Add(std::to_string(lCommandId), lCommand);
+                    ++lCommandId;
                 }
             }
             lOk = true;
@@ -119,7 +122,6 @@ void CRenderPipeline::Execute()
     for (size_t i = 0; i < GetCount(); ++i)
         m_ResourcesVector[i]->Execute(lRenderManager);
 }
-
 
 void CRenderPipeline::Reload()
 {

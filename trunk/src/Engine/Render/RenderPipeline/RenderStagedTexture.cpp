@@ -6,9 +6,8 @@
 #include "Render/RenderPipeline/CaptureFrameBufferTexture.h"
 
 CRenderStagedTexture::CRenderStagedTexture() :
-    m_ViewportSize(0),
-    m_ViewportPosition(0)
-    //TODO terminar de inicializar
+    m_ViewportSize(Vect2u(0,0)),
+    m_ViewportPosition(Vect2u(0, 0))
 {}
 
 CRenderStagedTexture::~CRenderStagedTexture() {}
@@ -67,11 +66,10 @@ void CRenderStagedTexture::AddDynamicTextureMaterial(CDynamicTexture* aDynamicTe
     m_DynamicTexturesMaterials.push_back(l_DynamicTextureMaterial);
 }
 
-CRenderStagedTexture::CStagedTexture::CStagedTexture(uint32 aStageId, CTexture * aTexture)
-{
-    m_StageId = aStageId;
-    m_Texture = aTexture;
-}
+CRenderStagedTexture::CStagedTexture::CStagedTexture(uint32 aStageId, CTexture * aTexture) :
+    m_StageId(aStageId),
+    m_Texture(aTexture)
+{}
 
 void CRenderStagedTexture::CStagedTexture::Activate()
 {

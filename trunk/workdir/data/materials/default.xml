@@ -9,5 +9,13 @@
 		<parameter type="color" name="diffuse_color" value="0.0 0.0 1.0 1.0 " />
 	</material>
 
+	<material name="ZBlurStartMaterial" effect="ZBlurStart">
+		<parameter type="color" name="diffuse_color" value="0.0 0.0 1.0 1.0 " />
+	</material>
+	
+	<material name="BlurMaterial" effect="Blur">
+		<parameter type="color" name="diffuse_color" value="0.0 0.0 1.0 1.0 " />
+	</material>
+	
 </materials>
  

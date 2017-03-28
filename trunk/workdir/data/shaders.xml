@@ -21,7 +21,9 @@
 		
 		<!--post process-->
 		<shader name="NoiseVignetting" file="PostProcess/NoiseVignetting.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
+		<!--
 		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
+		-->
 		
 		<!--other-->
 		
@@ -49,7 +51,11 @@
 		
 		<!--post process-->
 		<shader name="NoiseVignetting" file="PostProcess/NoiseVignetting.fx" entry_point="PS" preprocessor=""/>	
+		<!--
 		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="PS" preprocessor=""/>	
+		<shader name="ZBlur" file="PostProcess/ZBlur.fx" entry_point="PSZBlur" preprocessor=""/>	
+		<shader name="Blur" file="PostProcess/Blur.fx" entry_point="ZBlurPS" preprocessor=""/>
+		-->	
 		
 		<!--other-->
 		<shader name="Skybox" file="Skybox.fx" entry_point="PS"  preprocessor=""/>

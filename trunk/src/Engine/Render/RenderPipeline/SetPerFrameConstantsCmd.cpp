@@ -40,6 +40,8 @@ void CSetPerFrameConstantsCmd::UpdateConstants()
         lConstanBufferManager.mFrameDesc.m_CameraPosition = lCC.getPosition();
         lConstanBufferManager.mFrameDesc.m_CameraFrontVector = lCC.getFront();
         lConstanBufferManager.mFrameDesc.m_CameraUpVector = lCC.getUp();
+        lConstanBufferManager.mFrameDesc.m_InverseView = lConstanBufferManager.mFrameDesc.m_View.GetInverted();
+        lConstanBufferManager.mFrameDesc.m_InverseProjection = lConstanBufferManager.mFrameDesc.m_Projection.GetInverted();
         lConstanBufferManager.mFrameDesc.m_TimeSeconds.x = std::clock();
         lConstanBufferManager.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Frame);
     }
