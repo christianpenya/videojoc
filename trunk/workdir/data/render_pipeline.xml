@@ -32,7 +32,9 @@
 	
 	<apply_technique_pool name="apply_skybox_technique" pool_name="skybox"/>
 	<render_layer name="render_bodegon_skybox" layer="Skybox"/>
-	<!-- <capture_frame_buffer name="capture_frame_buffer" texture_width_as_frame_buffer="true" /> -->	
+
+	<capture_frame_buffer name="capture_frame_buffer" texture_width_as_frame_buffer="true" />
+
 
 	<set_depth_stencil_state name="stencil_state_z3" enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>
 
@@ -44,20 +46,20 @@
 		<texture name="capture_frame_buffer" stage="0"/>
 		<texture name="DepthMapTexture" stage="1"/>
 	</draw_quad>
-	
-	<enable_alpha_blend/>	
-	<draw_quad name="noise_vignetting" material="NoiseVignettingMaterial">
-		<texture name="noise" />
-		<texture name="vignetting" />
-	</draw_quad>	
-	<disable_alpha_blend/>
 	-->
 
+<enable_alpha_blend name="nombre_de_mierda_tu_puta_madre"/>	
+<draw_quad name="noise_vignetting" material="NoiseVignettingMaterial">
+		<texture name="noise" />	
+		<texture name="vignetting" />
+	</draw_quad>	
+<disable_alpha_blend name="nombre_bonito"/>	
+	
 	
 	<apply_technique_pool name="apply_quad_technique2" pool_name="quad"/>
 	
 	<draw_quad name="deffered_shading_lighting2" material="DrawQuadDeferredShadingMaterial"  viewport_position = "0 0" viewport_size = "128 128">
-        <texture name="AlbedoTexture" stage_id="0"/>
+        <texture name="capture_frame_buffer" stage_id="0"/>
     </draw_quad>
 	<draw_quad name="deffered_shading_lighting3" material="DrawQuadDeferredShadingMaterial"  viewport_position = "129 0" viewport_size = "128 128">
         <texture name="NormalMapTexture" stage_id="0"/>
