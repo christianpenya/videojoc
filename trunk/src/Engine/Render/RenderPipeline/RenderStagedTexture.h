@@ -39,11 +39,10 @@ protected:
         CDynamicTexture* m_DynamicTexture;
         CMaterial* m_Material;
 
-        CDynamicTextureMaterial(CDynamicTexture* DynamicTexture, CMaterial* Material)
-        {
-            m_DynamicTexture = DynamicTexture;
-            m_Material = Material;
-        }
+        CDynamicTextureMaterial(CDynamicTexture* DynamicTexture, CMaterial* Material):
+            m_DynamicTexture(DynamicTexture),
+            m_Material (Material)
+        {}
 
         void Activate(int StageId);
     };

@@ -26,7 +26,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     float sizeX, sizeY, sizeZ;
     Quatf rotation = Quatf();
     std::string lDebug;
-
+    Vect3f lCenter;
     switch (mRigidBodyEnum)
     {
     case ePlane:
@@ -41,7 +41,10 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
         sizeY = abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y;
         sizeZ = abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z;
 
-        CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, m_Position, sizeX, sizeY, sizeZ, 0.5f);
+        // TODO las cajas hacen algo raro con las fisicas. Probablemente se debe al punto de pivotaje de la mesh.
+        lCenter = mMesh->GetBoundingSphere().GetCenter() + m_Position;
+
+        CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f);
         break;
 
     case eSphere:
