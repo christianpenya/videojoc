@@ -19,6 +19,7 @@
 	<material name="02 - Default" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="1.0 0.588235 0.588235 1.0 " />
 	</material>
+
 	<material name="07 - Default" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.588235 0.690196 0.94902 1.0 " />
 	</material>
