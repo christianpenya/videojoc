@@ -163,7 +163,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		#if UV2
 			float4 l_LightmapPixel = LightmapTexture.Sample(LightmapSampler, IN.UV2) * 2;
 			//pixelColor = l_LightmapPixel.xyz * pixelColor;
-			l_LAmbient = l_LAmbient * l_LightmapPixel.xyz;
+			l_LAmbient = l_LightmapPixel.xyz;
 		#endif
  	#endif
  	#if BUMP
@@ -175,10 +175,16 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 //  CalculateSingleLight(i, l_Normal, l_WorldPos, pixelColor,l_DiffuseTmp, l_SpecularTmp);
 
     l_Output.Target0 = float4(pixelColor, g_SpecularContrib);
-    l_Output.Target1 = float4(m_LightAmbient.xyz*pixelColor, g_SpecularExponent); 
+    l_Output.Target1 = float4(l_LAmbient.xyz*pixelColor, g_SpecularExponent); 
     l_Output.Target2 = float4(l_Normal, 0.0);	
     l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1.0);
 
+
+
+    /*l_Output.Target0 = float4(1.0,0.0,1.0,1.0);
+    l_Output.Target1 = float4(1.0,0.0,0.0,1.0);
+    l_Output.Target2 = float4(0.0,1.0,0.0,1.0);
+    l_Output.Target3 = float4(0.0,0.0,1.0,1.0);*/
     return l_Output;
 
     
