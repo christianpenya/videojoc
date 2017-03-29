@@ -35,18 +35,19 @@ bool CCinematic::Load(const CXMLElement* aElement)
     for (tinyxml2::XMLElement const *lCinematic_player = aElement->FirstChildElement(); lCinematic_player != nullptr; lCinematic_player = lCinematic_player->NextSiblingElement())
     {
         CCinematicPlayer *lCinematicPlayer = nullptr;
+        bool lOk = true;
 
         if (strcmp(lCinematic_player->Name(),"cinematic_camera_player")==0)
         {
             lCinematicPlayer = new CCinematicCameraPlayer();
-            lCinematicPlayer->Load(lCinematic_player);
+            lOk = lCinematicPlayer->Load(lCinematic_player);
         }
         else if (strcmp(lCinematic_player->Name(), "cinematic_object_player")==0)
         {
             lCinematicPlayer = new CCinematicObjectPlayer();
-            lCinematicPlayer->Load(lCinematic_player);
+            lOk = lCinematicPlayer->Load(lCinematic_player);
         }
-        if (lCinematicPlayer != nullptr)
+        if (lCinematicPlayer != nullptr && lOk)
         {
             Add(lCinematicPlayer->mName, lCinematicPlayer);
         }
