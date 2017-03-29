@@ -2,13 +2,13 @@
 #include "globals.fx"
 
 
-#if UV
+#if USE_UV
 	Texture2D DiffuseTexture :
 	register(t0);
 	SamplerState LinearSampler :
 	register(s0);
 
-	#if UV2
+	#if USE_UV2
 		Texture2D LightmapTexture :
 		register(t1);
 		SamplerState LightmapSampler :
@@ -16,7 +16,7 @@
 	#endif
 #endif
 
-#if BUMP
+#if USE_BUMP
 	Texture2D NormalMapTexture :
 	register(t1);
 	SamplerState NormalMapTextureSampler :
@@ -29,7 +29,7 @@ struct VS_INPUT
 	    POSITION;
 	float3 Normal :
 	    NORMAL;
-	#if WEIGHTIDX
+	#if USE_WEIGHTIDX
 
 		float4 Weight :
 			BLENDWEIGHT;
@@ -37,15 +37,15 @@ struct VS_INPUT
 			BLENDINDICES;
 
 	#endif
-	#if UV
+	#if USE_UV
 		float2 UV :
 		    TEXCOORD0;
-		#if UV2
+		#if USE_UV2
 			float2 UV2 :
 			    TEXCOORD1;
 		#endif
 	#endif
-	#if BUMP
+	#if USE_BUMP
 		float3 Tangent:
 		    TANGENT;
 		float3 Binormal:
@@ -60,16 +60,16 @@ struct PS_INPUT
 {
 	float4 Pos :
 	    SV_POSITION;
-	#if BUMP
+	#if USE_BUMP
 		float3 Tangent :
 		    TANGENT;
 		float3 Binormal :
 		    BINORMAL;
 	#endif
-	#if UV
+	#if USE_UV
 		float2 UV :
 		    TEXCOORD0;
-		#if UV2
+		#if USE_UV2
 			float2 UV2 :
 			    TEXCOORD1;	
 
@@ -103,7 +103,7 @@ PS_INPUT VS( VS_INPUT IN )
     float4 lPos = float4( IN.Pos.xyz, 1.0 );
 
 	float3 l_Normal = IN.Normal;
-	#if WEIGHTIDX
+	#if USE_WEIGHTIDX
 		float4 l_TempPos=float4(IN.pos.xyz, 1.0);
 		l_Normal=float3(0,0,0);	
 		lPos=mul(l_TempPos, m_Bones[l_Indices.x]) * IN.Weight.x;
@@ -127,14 +127,14 @@ PS_INPUT VS( VS_INPUT IN )
     l_Output.Pos = mul( l_Output.Pos, m_Projection );
 	l_Output.Depth=l_Output.Pos.zw;
     l_Output.WorldNormal = normalize(mul(normalize(l_Normal), (float3x3)m_World));
-    #if UV
+    #if USE_UV
 	 	l_Output.UV = IN.UV;
-	 	#if UV2
+	 	#if USE_UV2
 	 		l_Output.UV2 = IN.UV2;
 	 	#endif
     #endif
 
-    #if BUMP
+    #if USE_BUMP
      	l_Output.Tangent = normalize(mul(IN.Tangent.xyz, (float3x3)m_World));
     	l_Output.Binormal = normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
     #endif
@@ -158,15 +158,15 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
     float l_Depth=IN.Depth.x/IN.Depth.y;
 
     PixelOutputType l_Output = (PixelOutputType)0;
-    #if UV
+    #if USE_UV
 		pixelColor = (DiffuseTexture.Sample(LinearSampler, IN.UV) * float4(pixelColor, 1.0)).xyz;
-		#if UV2
+		#if USE_UV2
 			float4 l_LightmapPixel = LightmapTexture.Sample(LightmapSampler, IN.UV2) * 2;
 			//pixelColor = l_LightmapPixel.xyz * pixelColor;
 			l_LAmbient = l_LightmapPixel.xyz;
 		#endif
  	#endif
- 	#if BUMP
+ 	#if USE_BUMP
 	 	float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
 	 	l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
     	l_Normal = normalize(l_Normal);
