@@ -6,7 +6,7 @@
 	</material>
 
 	<material name="FogMaterial" effect="Fog">
-		<parameter type="color" name="diffuse_color" value="0.0 0.0 1.0 1.0 " />
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
 	</material>
 
 	<material name="ZBlurStartMaterial" effect="ZBlurStart">
