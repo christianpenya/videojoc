@@ -126,3 +126,9 @@ void CLightManager::DrawImgui()
         ImGui::EndChild();
     }
 }
+
+CLight* CLightManager::GetLightByIdx(size_t idLight)
+{
+    return m_ResourcesVector[idLight];
+}
+

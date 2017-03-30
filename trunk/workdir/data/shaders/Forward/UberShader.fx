@@ -115,7 +115,7 @@ PS_INPUT VS( VS_INPUT IN )
     l_Output.Pos = mul( l_Output.Pos, m_View );
     l_Output.Pos = mul( l_Output.Pos, m_Projection );
 	l_Output.Depth=l_Output.Pos.zw;
-
+    l_Normal = (l_Normal/2)+0.5;
     l_Output.WorldNormal = normalize(mul(normalize(l_Normal).xyz, (float3x3)m_World));
     #if USE_UV
 	 	l_Output.UV = IN.UV;

@@ -15,8 +15,9 @@ public:
     virtual ~CDeferredShading();
     bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager &lRM);
-    bool CreateBlendState(CRenderManager &lRM);
+
 private:
+    bool CreateBlendState();
     DISALLOW_COPY_AND_ASSIGN(CDeferredShading);
     ID3D11BlendState *m_EnabledAlphaBlendState;
 };

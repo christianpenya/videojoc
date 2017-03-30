@@ -1,6 +1,9 @@
 #include "Colors.fxh"
 #include "globals.fx"
 
+
+
+
 struct VS_INPUT
 {
 float3 Pos :

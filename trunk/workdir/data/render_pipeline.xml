@@ -21,9 +21,14 @@
 	<apply_technique_pool pool_name="quad"/>
 	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>
 	
-	<draw_quad material="DrawQuadDeferredShadingMaterial">
+	<draw_quad material="DrawQuadMaterial">
         <texture name="LightMapTexture" stage_id="0"/>
     </draw_quad>
+	<deferred_shading material="DeferredShadingMaterial">
+		 <texture name="AlbedoTexture"  stage_id="0"/>
+		 <texture name="NormalMapTexture" stage_id="0"/>
+		 <texture name="DepthMapTexture" stage_id="0"/>
+	</deferred_shading>
 	
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	
@@ -58,15 +63,19 @@
 	
 	<apply_technique_pool pool_name="quad"/>
 	
-	<draw_quad material="DrawQuadDeferredShadingMaterial"  viewport_position = "0 0" viewport_size = "128 128">
-        <texture name="capture_frame_buffer" stage_id="0"/>
+	<draw_quad material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
+        <texture name="AlbedoTexture" stage_id="0"/>
     </draw_quad>
-	<draw_quad material="DrawQuadDeferredShadingMaterial"  viewport_position = "129 0" viewport_size = "128 128">
+	<draw_quad material="DrawQuadMaterial"  viewport_position = "129 0" viewport_size = "128 128">
         <texture name="NormalMapTexture" stage_id="0"/>
     </draw_quad>
-	<draw_quad material="DrawQuadDeferredShadingMaterial"  viewport_position = "0 129" viewport_size = "128 128">
+	<draw_quad material="DrawQuadMaterial"  viewport_position = "0 129" viewport_size = "128 128">
         <texture name="DepthMapTexture" stage_id="0"/>
     </draw_quad>
+	<draw_quad material="DrawQuadMaterial"  viewport_position = "129 129" viewport_size = "128 128">
+        <texture name="LightMapTexture" stage_id="0"/>
+    </draw_quad>
+	
 	
 	<!--		
 	<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />

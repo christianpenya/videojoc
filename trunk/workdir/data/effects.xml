@@ -45,7 +45,7 @@
    <shader stage="pixel"    name="Fog"/>
   </effect>
   
-  <!-- OTER -->
+  <!-- OTHER -->
  <effect name="SkyboxTechnique" shader_family="Skybox">
    <shader stage="vertex"   name="Skybox"/>
    <shader stage="pixel"    name="Skybox"/>
@@ -53,6 +53,11 @@
   <effect name="QuadTechnique" shader_family="Quad">
    <shader stage="vertex"   name="Quad"/>
    <shader stage="pixel"    name="Quad"/>
+  </effect>
+  
+  <effect name="DeferredQuadTechnique" shader_family="DeferredQuad">
+   <shader stage="vertex"   name="DeferredQuad"/>
+   <shader stage="pixel"    name="DeferredQuad"/>
   </effect>
  </effects>
  
