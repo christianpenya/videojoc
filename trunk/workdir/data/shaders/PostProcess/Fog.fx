@@ -1,14 +1,5 @@
 #include "globals.fx"
-
-Texture2D T0Texture :
-register(t0);
-SamplerState S0Sampler :
-register(s0);
-
-Texture2D T1Texture :
-register(t1);
-SamplerState S1Sampler :
-register(s1);
+#include "Samplers.fxh"
 
 struct VS_INPUT
 {
@@ -78,26 +69,47 @@ PS_INPUT VS(VS_INPUT IN)
     return l_Output;
 }
 
+float3 GetPositionFromZDepthViewInViewCoordinates(float ZDepthView, float2 UV, float4x4 InverseProjection)
+{
+	// Get the depth value for this pixel
+	// Get x/w and y/w from the viewport position
+	float x = UV.x * 2 - 1;
+	float y = (1 - UV.y) * 2 - 1;
+	float4 l_ProjectedPos = float4(x, y, ZDepthView, 1.0);
+	// Transform by the inverse projection matrix
+	float4 l_PositionVS = mul(l_ProjectedPos, InverseProjection);
+	// Divide by w to get the view-space position
+	return l_PositionVS.xyz / l_PositionVS.w;
+}
+
+float3 GetPositionFromZDepthView(float ZDepthView, float2 UV, float4x4 InverseView, float4x4 InverseProjection)
+{
+	float3 l_PositionView=GetPositionFromZDepthViewInViewCoordinates(ZDepthView, UV, InverseProjection);
+	return mul(float4(l_PositionView,1.0), InverseView).xyz;
+}
+
 float4 PS(PS_INPUT IN) : SV_Target
 {
-    float4 l_FinalColor = T0Texture.Sample(S0Sampler, IN.UV);
-    float l_DepthValue = T1Texture.Sample(S1Sampler, IN.UV).r;
+	float4 l_FinalColor = T0Texture.Sample(S0Sampler, IN.UV);
+	float l_DepthValue = T1Texture.Sample(S1Sampler, IN.UV).r;
 
+//    return l_DepthValue;
+    //return l_FinalColor;
     //compute screen-space position
-    float4 position;
-    position.x = IN.Pos.x * 2.0f - 1.0f;
-    position.y = -(IN.Pos.x * 2.0f - 1.0f);
+    /*float4 position;
+    position.x = IN.UV.x * 2.0f - 1.0f;
+    position.y = -(IN.UV.y * 2.0f - 1.0f);
     position.z = l_DepthValue;
     position.w = 1.0f;
 
     //transform to world space
     //position = mul(position, m_World);
-    position = mul(position, m_InverseView);
     position = mul(position, m_InverseProjection);
+    position.xyz /= position.w;
+    position.xyz= mul(float4(position.xyz, 1.0), m_InverseView).xyz;*/
+	float3 position=GetPositionFromZDepthView(l_DepthValue, IN.UV, m_InverseView, m_InverseProjection);
 
-    position /= position.w;
 
     float l_DistanceEyeToWorldPosition = length(position - m_InverseView[3].xyz);
-
     return float4(GetFogColor(l_DistanceEyeToWorldPosition, l_FinalColor.xyz), l_FinalColor.a);
 }

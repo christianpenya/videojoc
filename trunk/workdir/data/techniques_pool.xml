@@ -11,7 +11,7 @@
 		<technique vertex_type="PositionWeightIndicesNormalUV"/>
 		<technique vertex_type="Quad"/>
 		<technique name="NoiseVignetting" />
-		<technique vertex_type="Fog" />
+		<technique vertex_type="Fog"/>
 		<technique name="ZBlur" />
 		<technique name="Blur" />
   </default_pool>
