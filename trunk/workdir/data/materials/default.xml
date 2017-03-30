@@ -5,7 +5,7 @@
 		<texture type="diffuse" filename="data\textures\post_process\vignetting.png" />
 	</material>
 
-	<material name="FogMaterial" effect="Fog">
+	<material name="FogMaterial" vertex_type="Fog">
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
 	</material>
 

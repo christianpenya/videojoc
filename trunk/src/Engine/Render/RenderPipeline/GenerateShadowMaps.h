@@ -13,8 +13,8 @@ class CGenerateShadowMaps : public CRenderCmd
 public:
     CGenerateShadowMaps();
     virtual ~CGenerateShadowMaps();
-    bool Load(const CXMLElement* aElement);
-    virtual void Execute(CRenderManager& lRM);
+    bool Load(const CXMLElement* aElement) override;
+    void Execute(CRenderManager& lRM) override;
 private:
     DISALLOW_COPY_AND_ASSIGN(CGenerateShadowMaps);
 };
