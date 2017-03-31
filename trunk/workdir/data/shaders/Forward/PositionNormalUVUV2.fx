@@ -1,4 +1,3 @@
-#include "Colors.fxh"
 #include "globals.fx"
 
 Texture2D DiffuseTexture :

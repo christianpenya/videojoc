@@ -50,7 +50,7 @@ bool CDeferredShading::Load(const CXMLElement* aElement)
 void CDeferredShading::Execute(CRenderManager &lRM)
 {
     //CreateBlendState(lRM);
-    // lRM.GetDeviceContext()->OMSetBlendState(m_EnabledAlphaBlendState, NULL, 0xffffffff);
+    lRM.GetDeviceContext()->OMSetBlendState(m_EnabledAlphaBlendState, NULL, 0xffffffff);
     CLightManager* l_LM = &CEngine::GetInstance().GetLightManager();
     for (int i = 0; i < l_LM->GetCount(); i++)
     {
@@ -58,7 +58,7 @@ void CDeferredShading::Execute(CRenderManager &lRM)
         CDrawQuad::Execute(lRM);
 
     }
-    // lRM.GetDeviceContext()->OMSetBlendState(m_EnabledAlphaBlendState, NULL, 0xffffffff); //TODO: Disable ALphaBlend
+    lRM.GetDeviceContext()->OMSetBlendState(NULL, NULL, 0xffffffff);
 
 
 }

@@ -133,7 +133,7 @@ float3 Normal2Texture(float3 Normal)
 
 float3 Texture2Normal(float3 Color)
 {
-    return (Color-0.5)*2;
+return (Color-0.5)*2;
 }
 
 float3 GetPositionFromZDepthViewInViewCoordinates(float ZDepthView, float2 UV, float4x4

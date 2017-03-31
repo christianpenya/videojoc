@@ -1,4 +1,3 @@
-#include "Colors.fxh"
 #include "globals.fx"
 
 
@@ -142,10 +141,7 @@ PS_INPUT VS( VS_INPUT IN )
     return l_Output;
 }
 
-float3 Normal2Texture(float3 Normal)
-{
-	return (Normal/2.0)+0.5;
-}
+
 
 PixelOutputType PS(PS_INPUT IN) : SV_Target
 {
@@ -178,8 +174,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
  	#endif
 
 	l_Normal=Normal2Texture(l_Normal);
-//  CalculateSingleLight(i, l_Normal, l_WorldPos, pixelColor,l_DiffuseTmp, l_SpecularTmp);
-//pixelColor=float3(0,1,0);
+
 
     l_Output.Target0 = float4(pixelColor, g_SpecularContrib);
     l_Output.Target1 = float4(l_LAmbient.xyz*pixelColor, g_SpecularExponent);
@@ -187,11 +182,6 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
     l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1.0);
 
 
-
-    /*l_Output.Target0 = float4(1.0,0.0,1.0,1.0);
-    l_Output.Target1 = float4(1.0,0.0,0.0,1.0);
-    l_Output.Target2 = float4(0.0,1.0,0.0,1.0);
-    l_Output.Target3 = float4(0.0,0.0,1.0,1.0);*/
     return l_Output;
 
     
