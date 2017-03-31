@@ -7,7 +7,7 @@
 class CSpotLight : public CLight
 {
 public:
-    CSpotLight(const CXMLElement* aElement);
+    CSpotLight(CXMLElement* aElement);
     virtual ~CSpotLight();
     GET_SET(float, Angle);
     GET_SET(float, FallOff);

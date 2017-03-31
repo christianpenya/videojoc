@@ -5,7 +5,7 @@ CPointLight::~CPointLight()
 }
 
 
-CPointLight::CPointLight(const CXMLElement* aElement) : CLight(aElement)
+CPointLight::CPointLight(CXMLElement* aElement) : CLight(aElement)
 {
 
 }

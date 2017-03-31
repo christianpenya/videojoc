@@ -20,10 +20,9 @@ public:
         eDirectional =2
     };
 
-public:
     CLight(ELightType aLightType);
     //CLight(const CXMLElement* aElement, ELightType aLightType);
-    CLight(const CXMLElement* aElement);
+    CLight(CXMLElement* aElement);
     virtual ~CLight();
     GET_SET(ELightType, Type);
     GET_SET(std::string, Name);
@@ -53,9 +52,7 @@ protected:
     CTexture *m_pShadowMaskTexture;
     std::vector<CLayer *> m_Layers;
     Mat44f m_ViewShadowMap, m_ProjectionShadowMap;
-
 };
-
 
 Begin_Enum_String(CLight::ELightType)
 {

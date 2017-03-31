@@ -12,23 +12,27 @@ CLight::~CLight() {}
 CLight::CLight(ELightType aLightType):
     m_Intensity(0),
     m_SpecularIntensity(0),
+    m_GenerateShadowMap(false),
+    m_pShadowMap(nullptr),
+    m_pShadowMaskTexture(nullptr),
     m_Type(aLightType)
-{}
+{
+}
 
-CLight::CLight(const CXMLElement* aElement)
+CLight::CLight(CXMLElement* aElement)
     : CSceneNode(aElement)
-    , m_Intensity ( aElement->GetAttribute<float>("intensity", 1.0f) )
-    , m_SpecularIntensity(aElement->GetAttribute<float>("specular_intensity", 1.0f) )
-    , m_Color(aElement->GetAttribute<CColor>("color", CColor(1, 1, 1)) )
-    , m_RangeAttenuation(aElement->GetAttribute<Vect2f>("attenuation_range", Vect2f(0.0f,100.0f)))
+    , m_Intensity(aElement->GetAttribute<float>("intensity", 1.0f))
+    , m_SpecularIntensity(aElement->GetAttribute<float>("specular_intensity", 1.0f))
+    , m_Color(aElement->GetAttribute<CColor>("color", CColor(1, 1, 1)))
+    , m_RangeAttenuation(aElement->GetAttribute<Vect2f>("attenuation_range", Vect2f(0.0f, 100.0f)))
     , m_Name(aElement->GetAttribute<std::string>("name", ""))
-    , m_GenerateShadowMap(aElement->GetAttribute<bool>("generate_shadow_map", false))
-
+    , m_GenerateShadowMap(aElement->GetAttribute<bool>("generate_shadow_map", false)),
+      m_pShadowMaskTexture(nullptr)
 {
     bool lOk = (EnumString<ELightType>::ToEnum(m_Type, aElement->GetAttribute<std::string>("type", "")));
     m_Visible = aElement->GetAttribute<bool>("enabled", true);
 
-    tinyxml2::XMLElement const *iTransformLight = aElement->FirstChildElement();
+    tinyxml2::XMLElement const* iTransformLight = aElement->FirstChildElement();
     m_Position = iTransformLight->GetAttribute<Vect3f>("position", Vect3f(0.0f, 0.0f, 0.0f));
     m_PrevPos = iTransformLight->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
 
@@ -36,6 +40,23 @@ CLight::CLight(const CXMLElement* aElement)
     //CTexture* l_Texture = lTextureManager.GetTexture(aElement->GetAttribute<std::string>("shadow_texture_mask", ""));
     //m_pShadowMaskTexture->SetTexture(l_Texture->GetTexture());
     assert(lOk && "This kind of light does not exist!!");
+
+    // SHADOWMAP
+    if (m_GenerateShadowMap)
+    {
+        m_pShadowMap = new CDynamicTexture(m_Name, Vect2u(aElement->GetAttribute<uint32>("shadow_map_width", 128), aElement->GetAttribute<uint32>("shadow_map_height", 128)));
+
+        for (tinyxml2::XMLElement *lLayerNode = aElement->FirstChildElement(); lLayerNode != nullptr; lLayerNode = lLayerNode->NextSiblingElement())
+        {
+            if (strcmp(lLayerNode->Name(), "layer") == 0)
+            {
+                //leemos textura
+                CLayer* lLayer = new CLayer(lLayerNode->GetAttribute<std::string>("name", ""));
+                m_Layers.push_back(lLayer);
+            }
+        }
+    }
+
 }
 
 void CLight::DrawImgui()

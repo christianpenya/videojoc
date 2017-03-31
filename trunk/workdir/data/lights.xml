@@ -1,6 +1,7 @@
 <lights >
-	<light angle="10.0" fall_off="40.0" type="spot" name="Fspot001" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 100.0" >
+	<light name="Fspot001" type="spot" angle="10.0" fall_off="40.0"  color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024">
 		<transform position="8.01362 192.481 -0.183954" forward="0.0 -1.0 0.0" />
+		<layer name = "" />
 	</light>
 	<light type="point" name="Omni001" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 100.0" >
 		<transform position="-13.8572 7.78125 -16.0357" forward="0.0 -1.0 0.0" />

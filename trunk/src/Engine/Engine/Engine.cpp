@@ -120,7 +120,6 @@ void CEngine::LoadFiles()
     const std::string material = "Default";
 
     // EJ.3
-
     /*
     std::vector<PxVec3> vertices = { PxVec3(0, 1, 0), PxVec3(1, 0, 0), PxVec3(-1, 0, 0), PxVec3(0, 0, 1), PxVec3(0, 0, -1), PxVec3(0, -1, 0) };
     std::vector<PxVec3> verticesMesh = { PxVec3(-5, -5, 0), PxVec3(-5, 5, 0), PxVec3(5, 5, 0), PxVec3(5, 5, 0), PxVec3(5, -5, 0), PxVec3(-5, -5, 0) };
@@ -135,8 +134,8 @@ void CEngine::LoadFiles()
     m_PhysXManager->CreateDynamicShape("dynamic_shape","Default", Quatf(0, 0, 0, 1), Vect3f(-4.0f, 4.0f, 4.0f), vertices, 0.5f);
     */
     //m_PhysXManager->CreateDynamicTriangleMesh("dynamic_triangleMesh","Default", Quatf(0, 0, 0, 1), Vect3f(10.0f, 5.0f, -4.0f), vertices, 0.5f);
-
     // m_PhysXManager->AddTriggerBox("CajaEstatica", 1, 1, 1, Vect3f(0.0f, 2.0f, 0.0f), Quatf(0, 0, 0, 1)); //estaba probando recien esta
+
     LOG_INFO_APPLICATION("Engine -> PhysX Loaded! \\(^-^)/");
 
     m_SceneManager = new CSceneManager();
