@@ -26,8 +26,8 @@ CLight::CLight(CXMLElement* aElement)
     , m_Color(aElement->GetAttribute<CColor>("color", CColor(1, 1, 1)))
     , m_RangeAttenuation(aElement->GetAttribute<Vect2f>("attenuation_range", Vect2f(0.0f, 100.0f)))
     , m_Name(aElement->GetAttribute<std::string>("name", ""))
-    , m_GenerateShadowMap(aElement->GetAttribute<bool>("generate_shadow_map", false)),
-      m_pShadowMaskTexture(nullptr)
+    , m_GenerateShadowMap(aElement->GetAttribute<bool>("generate_shadow_map", false))
+    , m_pShadowMaskTexture(nullptr)
 {
     bool lOk = (EnumString<ELightType>::ToEnum(m_Type, aElement->GetAttribute<std::string>("type", "")));
     m_Visible = aElement->GetAttribute<bool>("enabled", true);
@@ -51,6 +51,7 @@ CLight::CLight(CXMLElement* aElement)
             if (strcmp(lLayerNode->Name(), "layer") == 0)
             {
                 //leemos textura
+                //TODO: creamos layer nueva, no deberia ser necesario.. nos valdría con el nombre de la escena?
                 CLayer* lLayer = new CLayer(lLayerNode->GetAttribute<std::string>("name", ""));
                 m_Layers.push_back(lLayer);
             }

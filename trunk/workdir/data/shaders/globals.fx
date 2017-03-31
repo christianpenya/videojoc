@@ -12,8 +12,8 @@ register( b0 )
     float4 m_CameraPosition;
     float4 m_CameraFrontVector;
     float4 m_CameraUpVector;
-	float4x4 m_InverseView;
-	float4x4 m_InverseProjection;
+    float4x4 m_InverseView;
+    float4x4 m_InverseProjection;
     uint4 m_Time;
 }
 
@@ -40,8 +40,8 @@ cbuffer LightsConstantBuffer :
 register (b4)
 {
     float4 m_LightAmbient;
-	float4 m_FogColor;
-	float4 m_FogInfo;  
+    float4 m_FogColor;
+    float4 m_FogInfo;
     float4 m_LightEnabled;
     float4 m_LightType; //0 : OMNI, 1 : SPOT , 2 : DIRECTIONAL
     float4 m_LightPosition[MAX_LIGHTS_BY_SHADER];
@@ -52,12 +52,12 @@ register (b4)
     float4 m_LightAttenuationEndRange;
     float4 m_LightIntensity;
     float4 m_LightColor[MAX_LIGHTS_BY_SHADER];
-	float4 m_UseShadowMap;
-	float4 m_UseShadowMask;
-	float4 m_ShadowMapBias;
-	float4 m_ShadowMapStrength;
-	float4x4 m_LightView[MAX_LIGHTS_BY_SHADER];
-	float4x4 m_LightProjection[MAX_LIGHTS_BY_SHADER];
+    float4 m_UseShadowMap;
+    float4 m_UseShadowMask;
+    float4 m_ShadowMapBias;
+    float4 m_ShadowMapStrength;
+    float4x4 m_LightView[MAX_LIGHTS_BY_SHADER];
+    float4x4 m_LightProjection[MAX_LIGHTS_BY_SHADER];
 }
 
 
@@ -74,7 +74,7 @@ static float m_FogInfoArray[4]=(float[4])m_FogInfo;
 static float m_UseShadowMapArray[4]=(float[4])m_UseShadowMap;
 static float m_UseShadowMaskArray[4]=(float[4])m_UseShadowMask;
 static float m_ShadowMapBiasArray[4]=(float[4])m_ShadowMapBias;
-static float m_ShadowMapStrengthArray[4]=(float[4])m_ShadowMapStrength;    
+static float m_ShadowMapStrengthArray[4]=(float[4])m_ShadowMapStrength;
 
 
 static float m_RawDataValues[64]=((float[64])m_RawData);

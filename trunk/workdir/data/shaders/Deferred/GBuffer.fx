@@ -17,8 +17,8 @@ float3 WorldNormal :
     TEXCOORD0;
 float3 WorldPosition :
     TEXCOORD1;
-float2 Depth : 
-	TEXCOORD2;
+float2 Depth :
+    TEXCOORD2;
 };
 
 struct PixelOutputType
@@ -41,10 +41,10 @@ PS_INPUT VS( VS_INPUT IN )
     l_Output.WorldPosition = l_Output.Pos.xyz;
     l_Output.Pos = mul( l_Output.Pos, m_View );
     l_Output.Pos = mul( l_Output.Pos, m_Projection );
-	l_Output.Depth = l_Output.Pos.zw;
+    l_Output.Depth = l_Output.Pos.zw;
 
-	float3 normal = (IN.Normal/2) + 0.5;
-	
+    float3 normal = (IN.Normal/2) + 0.5;
+
     l_Output.WorldNormal = normalize(mul(normalize(normal).xyz, (float3x3)m_World));
 
     return l_Output;
@@ -54,14 +54,10 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 {
     PixelOutputType l_Output = (PixelOutputType)0;
 
-    //TODO Pasar parametros especular por rawData
-    float g_SpecularExponent = 80.0;
-    float g_SpecularContrib = 1.0;
-
-    l_Output.Target0 = float4(m_RawData[0].xyz, g_SpecularContrib);
-    l_Output.Target1 = float4(m_LightAmbient.xyz*m_RawData[0].xyz, g_SpecularExponent);
+    l_Output.Target0 = float4(m_RawData[0].xyz, m_RawData[2].y);
+    l_Output.Target1 = float4(m_LightAmbient.xyz*m_RawData[0].xyz, m_RawData[2].x);
     l_Output.Target2 = float4(IN.WorldNormal.xyz, 0.0);
-	float l_Depth=IN.Depth.x/IN.Depth.y;
+    float l_Depth=IN.Depth.x/IN.Depth.y;
     l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1.0);
 
     return l_Output;

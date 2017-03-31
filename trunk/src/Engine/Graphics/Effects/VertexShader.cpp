@@ -36,12 +36,6 @@ bool CVertexShader::Load()
         lOk &= VertexTypes::CreateInputLayout(lRenderManager, m_VertexFlags, m_pBlob, &m_pVertexLayout);
     }
 
-    if (!lOk)
-    {
-        std::string lError = "Error cargando el shader -> " + m_Name;
-        LOG_ERROR_APPLICATION(lError.c_str());
-    }
-
     return lOk;
 }
 
