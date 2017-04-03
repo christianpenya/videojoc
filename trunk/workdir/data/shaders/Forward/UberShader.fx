@@ -134,8 +134,7 @@ PS_INPUT VS( VS_INPUT IN )
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-
-   
+	
     float g_SpecularExponent = 80.0;
     float g_SpecularContrib = 1.0;
     float3 pixelColor = m_RawData[0].xyz;
@@ -166,7 +165,8 @@ float4 PS(PS_INPUT IN) : SV_Target
  	#endif
 
  	
-	float3 l_LAmbient = l_LAmbient * pixelColor;
+	l_LAmbient = l_LAmbient * pixelColor;
+	
  	for(int i = 0; i<MAX_LIGHTS_BY_SHADER; i++)
     {
         CalculateSingleLight(i, l_Normal, l_WorldPos, pixelColor,l_DiffuseTmp, l_SpecularTmp);
@@ -179,7 +179,6 @@ float4 PS(PS_INPUT IN) : SV_Target
     }
 
     return float4(l_LAmbient+l_LDiffuseSpecular,1.0);
-}
 
     
 }

@@ -43,7 +43,8 @@ PS_INPUT VS(VS_INPUT IN)
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-
+	
+	
 	float4 l_DiffuseColor =T0Texture.Sample(S0Sampler, IN.UV);
 
 	float3 l_Normal = Texture2Normal(T1Texture.Sample(S1Sampler, IN.UV));
@@ -62,5 +63,6 @@ m_InverseProjection);
 
 
     return float4(l_Diffuse+l_Specular, 1.0);
+   
 
 }
