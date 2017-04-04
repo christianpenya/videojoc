@@ -45,8 +45,8 @@ CEngine::CEngine()
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
     , m_FPS (0.0)
-    , m_CameraSelector(0)
-    , m_PrevCameraSelector(0)
+    , m_CameraSelector(1)
+    , m_PrevCameraSelector(1)
 {}
 
 CEngine::~CEngine()
