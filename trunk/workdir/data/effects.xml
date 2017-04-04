@@ -61,6 +61,11 @@
    <shader stage="vertex"   name="Quad"/>
    <shader stage="pixel"    name="Quad"/>
   </effect>
+  
+  <effect name="DeferredQuadTechnique" shader_family="DeferredQuad">
+   <shader stage="vertex"   name="DeferredQuad"/>
+   <shader stage="pixel"    name="DeferredQuad"/>
+  </effect>
  </effects>
  
  

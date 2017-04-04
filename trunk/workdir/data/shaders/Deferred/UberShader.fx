@@ -1,4 +1,3 @@
-#include "Colors.fxh"
 #include "globals.fx"
 
 
@@ -126,6 +125,7 @@ PS_INPUT VS( VS_INPUT IN )
     l_Output.Pos = mul( l_Output.Pos, m_View );
     l_Output.Pos = mul( l_Output.Pos, m_Projection );
 	l_Output.Depth=l_Output.Pos.zw;
+
     l_Output.WorldNormal = normalize(mul(normalize(l_Normal), (float3x3)m_World));
     #if USE_UV
 	 	l_Output.UV = IN.UV;
@@ -138,9 +138,10 @@ PS_INPUT VS( VS_INPUT IN )
      	l_Output.Tangent = normalize(mul(IN.Tangent.xyz, (float3x3)m_World));
     	l_Output.Binormal = normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
     #endif
-
     return l_Output;
 }
+
+
 
 PixelOutputType PS(PS_INPUT IN) : SV_Target
 {
@@ -172,19 +173,15 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
     	l_Normal = normalize(l_Normal);
  	#endif
 
-//  CalculateSingleLight(i, l_Normal, l_WorldPos, pixelColor,l_DiffuseTmp, l_SpecularTmp);
+	l_Normal=Normal2Texture(l_Normal);
+
 
     l_Output.Target0 = float4(pixelColor, g_SpecularContrib);
-    l_Output.Target1 = float4(l_LAmbient.xyz*pixelColor, g_SpecularExponent); 
+    l_Output.Target1 = float4(l_LAmbient.xyz*pixelColor, g_SpecularExponent);
     l_Output.Target2 = float4(l_Normal, 0.0);	
     l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1.0);
 
 
-
-    /*l_Output.Target0 = float4(1.0,0.0,1.0,1.0);
-    l_Output.Target1 = float4(1.0,0.0,0.0,1.0);
-    l_Output.Target2 = float4(0.0,1.0,0.0,1.0);
-    l_Output.Target3 = float4(0.0,0.0,1.0,1.0);*/
     return l_Output;
 
     

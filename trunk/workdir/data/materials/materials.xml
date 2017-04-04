@@ -16,7 +16,11 @@
 		<parameter type="float" name="diffuse" value="100.0" />
 	</material>
 	
-	<material name="DrawQuadDeferredShadingMaterial" vertex_type="Quad">
+	<material name="DrawQuadMaterial" vertex_type="Quad">
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+	</material>
+	
+	<material name="DeferredShadingMaterial" vertex_type="DeferredQuad">
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
 	</material>
 

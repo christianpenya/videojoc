@@ -12,6 +12,7 @@ public:
     CLightManager();
     ~CLightManager();
     bool Load(const std::string& aFileName);
+    CLight* GetLightByIdx(size_t idLight);
     void SetLightConstants(size_t idLight, CLight* alight);
     void SetLightsConstants();
     bool ReLoad();

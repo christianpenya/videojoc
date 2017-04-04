@@ -1,4 +1,5 @@
 #include "globals.fx"
+
 Texture2D T0Texture: register( t0 ); // Diffuse
 SamplerState S0Sampler: register( s0 );
 
@@ -20,7 +21,7 @@ struct App2Vertex
 };
  
 
-Vertex2Pixel mainVertexShader( App2Vertex IN )
+Vertex2Pixel VS( App2Vertex IN )
 {
 	Vertex2Pixel l_Output = (Vertex2Pixel)0;
 	
@@ -52,7 +53,7 @@ Vertex2Pixel mainVertexShader( App2Vertex IN )
 	return l_Output;
 }
 
-float4 mainPixelShader( Vertex2Pixel pix ) : SV_Target
+float4 PS( Vertex2Pixel pix ) : SV_Target
 {
 	return T0Texture.Sample(S0Sampler, pix.UV);
 }
