@@ -13,7 +13,9 @@
 		<technique name="NoiseVignetting" />
 		<technique name="Fog" />
 		<technique name="ZBlur" />
-		<technique name="Blur" />
+		<technique name="Bloom" />
+		<technique name="BloomCombine" />
+		<technique name="Gaussian" />
   </default_pool>
 
 	<pool name="forward">
@@ -42,7 +44,10 @@
 		<technique name="NoiseVignetting" effect="NoiseVignettingTechnique"/>
 		<technique name="Fog" effect="FogTechnique"/>
 		<technique name="ZBlur" effect="ZBlurTechnique" />
-		<technique name="Blur" effect="BlurTechnique" />
+		<technique name="Gaussian" effect="GaussianTechnique" />
+		<technique vertex_type="Quad" effect="QuadTechnique"/>
+		<technique name="Bloom" effect="BloomTechnique" />
+		<technique name="BloomCombine" effect="BloomCombineTechnique" />
 	</pool>
 	
 	<pool name="skybox">

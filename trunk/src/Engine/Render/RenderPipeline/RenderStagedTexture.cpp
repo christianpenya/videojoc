@@ -22,13 +22,11 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
     CMaterialManager& lMaterialManager = CEngine::GetInstance().GetMaterialManager();
     CTextureManager& lTextureManager = CEngine::GetInstance().GetTextureManager();
 
-    // TODO este atributo parece no existir en el fichero, material es siempre null
-    CMaterial* lMaterial = lMaterialManager(aElement->GetAttribute<std::string>("material", ""));
-
     for (tinyxml2::XMLElement const *iNTexture = aElement->FirstChildElement(); iNTexture != nullptr; iNTexture = iNTexture->NextSiblingElement())
     {
         if (strcmp(iNTexture->Name(), "dynamic_texture") == 0)
         {
+            CMaterial* lMaterial = lMaterialManager(iNTexture->GetAttribute<std::string>("material", ""));
             CDynamicTexture* l_DynamicTexture = new CDynamicTexture(iNTexture);
             lTextureManager.AddTexture(*l_DynamicTexture);
             AddDynamicTextureMaterial(l_DynamicTexture, lMaterial);

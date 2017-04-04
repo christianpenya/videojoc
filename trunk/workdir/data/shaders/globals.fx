@@ -28,6 +28,9 @@ cbuffer PerMaterial :
 register( b2 )
 {
     float4 m_RawData[MAX_OBJECT_RAW_PARAMETER];
+	float2 m_ViewPosition[MAX_OBJECT_RAW_PARAMETER];
+	float2 m_ViewSize[MAX_OBJECT_RAW_PARAMETER];
+
 }
 
 cbuffer AnimatedModelConstantBuffer :

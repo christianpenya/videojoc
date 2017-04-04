@@ -58,6 +58,11 @@
 		
 		<!--post process-->
 		<shader name="NoiseVignetting" file="PostProcess/NoiseVignetting.fx" entry_point="PS" preprocessor=""/>	
+		<shader name="ZBlur" file="PostProcess/ZBlur.fx" entry_point="ZBlurPS" preprocessor=""/>
+		<shader name="Bloom" file="PostProcess/Bloom.fx" entry_point="BloomPS" preprocessor=""/>
+		<shader name="BloomCombine" file="PostProcess/Bloom.fx" entry_point="BloomCombinePS" preprocessor=""/>
+		<shader name="Gaussian" file="PostProcess/Gaussian.fx" entry_point="BlurPS" preprocessor=""/>
+		
 		<!--
 		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="PS" preprocessor=""/>	
 		<shader name="ZBlur" file="PostProcess/ZBlur.fx" entry_point="PSZBlur" preprocessor=""/>	
