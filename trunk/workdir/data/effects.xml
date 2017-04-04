@@ -37,14 +37,21 @@
    <shader stage="pixel"    name="Fog"/>
   </effect>
   <effect name="ZBlurTechnique" shader_family="ZBlur">
-   <shader stage="vertex"   name="Fog"/>
-   <shader stage="pixel"    name="Fog"/>
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="ZBlur"/>
   </effect>
-    <effect name="BlurTechnique" shader_family="Blur">
-   <shader stage="vertex"   name="Fog"/>
-   <shader stage="pixel"    name="Fog"/>
+  <effect name="BloomTechnique" shader_family="Bloom">
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="Bloom"/>
   </effect>
-  
+  <effect name="BloomCombineTechnique" shader_family="BloomCombine">
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="BloomCombine"/>
+  </effect>
+  <effect name="GaussianTechnique" shader_family="Gaussian">
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="Gaussian"/>
+  </effect>  
   <!-- OTHER -->
  <effect name="SkyboxTechnique" shader_family="Skybox">
    <shader stage="vertex"   name="Skybox"/>

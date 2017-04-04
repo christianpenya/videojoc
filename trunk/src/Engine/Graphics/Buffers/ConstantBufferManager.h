@@ -62,6 +62,9 @@ struct PerAnimatedModelDesc
 struct PerMaterialDesc
 {
     Vect4f m_RawData[MAX_OBJECT_RAW_PARAMETER];
+    Vect2u m_ViewPosition[MAX_OBJECT_RAW_PARAMETER];
+    Vect2u m_ViewSize[MAX_OBJECT_RAW_PARAMETER];
+
 };
 
 class CConstantBufferManager

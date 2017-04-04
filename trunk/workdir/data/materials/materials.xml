@@ -23,5 +23,19 @@
 	<material name="DeferredShadingMaterial" vertex_type="DeferredQuad">
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
 	</material>
+
+	<material name="ZBlurMaterial" vertex_type="ZBlur" >
+	</material>
+
+	<material name="BloomMaterial" vertex_type="Bloom" >
+	</material>	
+	<material name="BloomCombineMaterial" vertex_type="BloomCombine" >
+	</material>		
+
+	<material name="StartGaussianMaterial" vertex_type="Quad" >
+	</material>
+	<material name="GaussianMaterial" vertex_type="Gaussian" >
+	</material>
+
 	
-	</materials>
+</materials>
