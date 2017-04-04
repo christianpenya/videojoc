@@ -80,19 +80,20 @@
 	
 	<apply_technique_pool pool_name="quad"/>
 	
-	<draw_quad name="texture_gaussian" material="DrawQuadDeferredShadingMaterial"  viewport_position = "0 0" viewport_size = "128 128">
+	<draw_quad name="texture_gaussian" material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
         <texture name="capture_frame_buffer" stage_id="0"/>
     </draw_quad>
-	<draw_quad name="gaussian3_quad" material="DrawQuadDeferredShadingMaterial"  viewport_position = "129 0" viewport_size = "128 128">
+	<draw_quad name="gaussian3_quad" material="DrawQuadMaterial"  viewport_position = "129 0" viewport_size = "128 128">
         <texture name="Gaussian3" stage_id="0"/>
     </draw_quad>
-	<draw_quad name="gaussian_quad" material="DrawQuadDeferredShadingMaterial"  viewport_position = "0 129" viewport_size = "128 128">
+	<draw_quad name="gaussian_quad" material="DrawQuadMaterial"  viewport_position = "0 129" viewport_size = "128 128">
         <texture name="Gaussian" stage_id="0"/>
     </draw_quad>-->
 	FIN EFECTO GAUSSIANO
 
 	INICIO EFECTO BLOOM
-<!--	<apply_technique_pool pool_name="post_process"/>
+<!--
+	<apply_technique_pool pool_name="post_process"/>
 	
 	<apply_filter>
         <texture name="capture_frame_buffer" stage_id="0"/>
@@ -108,39 +109,43 @@
     </draw_quad>	
 	<apply_technique_pool pool_name="quad"/>
 
-	<draw_quad name="textureinicial" material="DrawQuadDeferredShadingMaterial" viewport_position = "0 129" viewport_size = "128 128">
+	<draw_quad name="textureinicial" material="DrawQuadMaterial" viewport_position = "0 129" viewport_size = "128 128">
         <texture name="capture_frame_buffer" stage_id="0"/>
     </draw_quad>	
 	
-	<draw_quad name="texturebloom" material="DrawQuadDeferredShadingMaterial"  viewport_position = "0 0" viewport_size = "128 128">
+	<draw_quad name="texturebloom" material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
 		<texture name="bloomTexture" stage_id="0"/>
     </draw_quad>
-	<draw_quad material="DrawQuadMaterial"  viewport_position = "129 129" viewport_size = "128 128">
-        <texture name="LightMapTexture" stage_id="0"/>
-    </draw_quad>
 	
-	<draw_quad name="GaussianoQuad" material="DrawQuadDeferredShadingMaterial"  viewport_position = "129 0" viewport_size = "128 128">
+	<draw_quad name="GaussianoQuad" material="DrawQuadMaterial"  viewport_position = "129 0" viewport_size = "128 128">
         <texture name="Gaussiano" stage_id="0"/>
-    </draw_quad>-->
-
+    </draw_quad>
+-->
 	FIN EFECTO BLOOM
-	<!--		
-	<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />
-	-->
-	
-	INICIO EFECTO ZBLUR
-	<apply_technique_pool pool_name="post_process"/>
 
-	<draw_quad name="textureinicial" material="DrawQuadDeferredShadingMaterial" viewport_position = "0 0" viewport_size = "128 128">
+	INICIO EFECTO ZBLUR
+<!--	<apply_technique_pool pool_name="post_process"/>
+
+	<draw_quad name="textureinicial" material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
         <texture name="capture_frame_buffer" stage_id="0"/>
     </draw_quad>		
 
 	<draw_quad name="ZBlurQuad" material="ZBlurMaterial" viewport_position = "0 129" viewport_size = "128 128">
         <texture name="capture_frame_buffer" stage_id="0"/>
     </draw_quad>	
+	-->
 	FIN EFECTO ZBLUR
 
 	
+	<draw_quad material="DrawQuadMaterial"  viewport_position = "129 129" viewport_size = "128 128">
+        <texture name="LightMapTexture" stage_id="0"/>
+    </draw_quad>
+
+
+	
+	<!--		
+	<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />
+	-->
 	
 	<render_imgui name="imediate_gui_render"/>
 	<end_render name="end_render_main_loop"/>
