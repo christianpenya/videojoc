@@ -12,10 +12,13 @@
 		<scene_light name="FDirect001" id_light="3" >
 			<transform position="-16.8491 37.0663 26.6353" forward="0.0 1.0 0.0" />
 		</scene_light>
-		<scene_mesh name="Wall2" mesh="data/meshes/Box01.mesh">
-			<transform position="-2.0 2.0 -2.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 2.0 1.0"/>
+		<scene_mesh name="Box01" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 0.0 2.05304" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
 		</scene_mesh>
-				<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
+		<scene_mesh name="Box01" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+		<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 3.0" />
 		</scene_mesh>
 
