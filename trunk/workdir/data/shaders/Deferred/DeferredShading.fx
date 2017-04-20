@@ -1,5 +1,7 @@
 #include "globals.fx"
 
+static const float Pi = 3.14159265359;
+
 
 Texture2D T0Texture :
 register(t0);
@@ -33,6 +35,12 @@ float2 UV :
     TEXCOORD0;
 };
 
+struct PixelOutputType
+{
+float4 Target0 : SV_Target0;
+float4 Target1 : SV_Target1;
+};
+
 PS_INPUT VS(VS_INPUT IN)
 {
     PS_INPUT l_Output = (PS_INPUT)0;
@@ -41,7 +49,7 @@ PS_INPUT VS(VS_INPUT IN)
     return l_Output;
 }
 
-float4 PS(PS_INPUT IN) : SV_Target
+PixelOutputType PS(PS_INPUT IN) : SV_Target
 {
 	
 	

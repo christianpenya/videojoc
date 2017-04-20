@@ -83,16 +83,53 @@ struct PS_INPUT
 
 };
 
+
+static const float k0 = 0.00098, k1 = 0.9921, fUserMaxSPow = 0.2425;
+static const float g_fMaxT = ( exp2(-10.0/sqrt( fUserMaxSPow )) - k0)/k1;
+static const int nMipOffset = 0;
+
+float GetSpecPowToMip(float fSpecPow, int nMips)
+{	
+	fSpecPow = 1 - pow(1 - fSpecPow, 8);	
+	float fSmulMaxT = ( exp2(-10.0/sqrt( fSpecPow )) - k0)/k1;
+	return float(nMips-1-nMipOffset)*(1.0 - clamp( fSmulMaxT/g_fMaxT, 0.0, 1.0 ));
+}
+
+float2 OctWrap( float2 v )
+{
+	return ( 1.0 - abs( v.yx ) ) * ( v.xy >= 0.0 ? 1.0 : -1.0 );
+}
+
+float2 Encode( float3 n )
+{
+	n /= ( abs( n.x ) + abs( n.y ) + abs( n.z ) );
+	n.xy = n.z >= 0.0 ? n.xy : OctWrap( n.xy );
+	n.xy = n.xy * 0.5 + 0.5;
+	return n.xy;
+}
+
+float3 Decode( float2 encN )
+{
+	encN = encN * 2.0 - 1.0;
+	float3 n;
+	n.z = 1.0 - abs( encN.x ) - abs( encN.y );
+	n.xy = n.z >= 0.0 ? encN.xy : OctWrap( encN.xy );
+	n = normalize( n );
+	return n;
+}
+
 struct PixelOutputType
 {
 float4 Target0 :
-    SV_Target0; // albedo
+    SV_Target0; // albedo (rgb), metallic(a)
 float4 Target1 : 
-    SV_Target1; // normal
+    SV_Target1; // normalFace(xy), normalPix(zw)
 float4 Target2 : 
-    SV_Target2; // Lightning
+    SV_Target2; // Lightning (rgb), occlusion (a)
 float4 Target3 :
     SV_Target3; // depth
+float4 Target4 :
+    SV_Target4; //cubemapSampleSpec (xyz), roughness (a)
 };
 
 
@@ -184,5 +221,18 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 
     return l_Output;
 
-    
+/*
+l_Out.Target0.a=m_MetallicFactor;
+l_Out.Target1=float4(l_AmbientContrib.xyz, m_OcclusionFactor);
+l_PlaneNormal.xy=Encode(l_PlaneNormal);
+l_Normal.xy=Encode(l_Normal);
+l_Out.Target2=float4(l_PlaneNormal.x, l_PlaneNormal.y, l_Normal.x, l_Normal.y);
+float l_Depth=IN.Depth.z/IN.Depth.w;
+l_Out.Target3=float4(l_Depth,l_Depth,l_Depth,1);
+float3 l_EyeToWorldPosition=normalize(IN.WorldPosition-m_InverseView[3].xyz);
+float3 l_ReflectVector=normalize(reflect(l_EyeToWorldPosition, l_Normal));
+l_SpecularColor.xyz=l_EnvironmentTexture.SampleLevel(l_EnvironmentSampler, l_ReflectVector,
+GetSpecPowToMip(m_RoughnessFactor, m_EnvironmentMipLevels)).xyz;
+l_Out.Target4=float4(l_SpecularColor, m_RoughnessFactor);
+*/ 
 }
