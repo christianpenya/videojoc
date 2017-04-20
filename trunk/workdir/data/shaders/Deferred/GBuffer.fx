@@ -1,4 +1,3 @@
-#include "Colors.fxh"
 #include "globals.fx"
 
 struct VS_INPUT
@@ -54,9 +53,11 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 {
     PixelOutputType l_Output = (PixelOutputType)0;
 
+
+    float 3 l_Normal=Normal2Texture(IN.WorldNormal.xyz);
     l_Output.Target0 = float4(m_RawData[0].xyz, m_RawData[2].y);
     l_Output.Target1 = float4(m_LightAmbient.xyz*m_RawData[0].xyz, m_RawData[2].x);
-    l_Output.Target2 = float4(IN.WorldNormal.xyz, 0.0);
+    l_Output.Target2 = float4(l_Normal, 0.0);
     float l_Depth=IN.Depth.x/IN.Depth.y;
     l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1.0);
 
