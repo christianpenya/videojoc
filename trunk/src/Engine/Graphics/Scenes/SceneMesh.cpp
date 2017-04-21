@@ -31,7 +31,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     {
     case ePlane:
         lDebug = "Attached physx PLANE to " + m_Name;
-        CEngine::GetInstance().GetPhysXManager().CreatePlane("Default", 0, 1, 0, 0.52, 1);
+        CEngine::GetInstance().GetPhysXManager().CreatePlane("Default", 0, 1, 0, 0, 1);
         break;
     case eBox:
         lDebug = "Attached physx BOX to " + m_Name;
@@ -41,8 +41,11 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
         sizeY = abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y;
         sizeZ = abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z;
 
+		cubeOffset = Vect3f(0, -sizeY/2.0, 0);
+
         // TODO las cajas hacen algo raro con las fisicas. Probablemente se debe al punto de pivotaje de la mesh.
-        lCenter = mMesh->GetBoundingSphere().GetCenter() + m_Position;
+		lCenter = mMesh->GetBoundingSphere().GetCenter() + m_Position;
+		//lCenter = m_Position ;
 
         CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f);
         break;
@@ -91,21 +94,22 @@ bool CSceneMesh::Update(float aDeltaTime)
     {
         CPhysXManager& lPM = CEngine::GetInstance().GetPhysXManager();
         Quatf lRotation;
-        Vect3f movement;
+
+		Vect3f hola;
         switch (mRigidBodyEnum)
         {
         case ePlane:
             break;
         case eSphere:
         case eBox:
-            m_Position = lPM.GetActorPosition(m_Name);
-            lRotation = lPM.GetActorOrientation(m_Name);
-            m_Yaw = lRotation.GetRotationMatrix().GetAngleX();
-            m_Pitch = lRotation.GetRotationMatrix().GetAngleY();
+
+			lRotation = lPM.GetActorOrientation(m_Name);
+			m_Position = lPM.GetActorPosition(m_Name) + lRotation.Rotate(cubeOffset);
+            m_Pitch = lRotation.GetRotationMatrix().GetAngleX();
+			m_Yaw = lRotation.GetRotationMatrix().GetAngleY();
             m_Roll = lRotation.GetRotationMatrix().GetAngleZ();
 
             lRotation.GetRotationMatrix().GetYaw();
-
             break;
         case ePlayer:
             m_Position = lPM.GetActorPosition(m_Name);
