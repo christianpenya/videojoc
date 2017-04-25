@@ -1,14 +1,5 @@
 #include "globals.fx"
-
-Texture2D T0Texture :
-register(t0);
-SamplerState S0Sampler :
-register(s0);
-
-Texture2D T1Texture :
-register(t1);
-SamplerState S1Sampler :
-register(s1);
+#include "Samplers.fxh"
 
 struct VS_INPUT
 {
@@ -40,13 +31,13 @@ PS_INPUT VS(VS_INPUT IN)
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-	float l_NoiseX = m_Time.x*sin(IN.UV.x*IN.UV.y+m_Time.x);
-	l_NoiseX = fmod(l_NoiseX, 8)*fmod(l_NoiseX, 4);
-	float l_DistortX = fmod(l_NoiseX, m_NoiseAmount);
-	float l_DistortY = fmod(l_NoiseX, m_NoiseAmount+0.002);
-	float2 l_DistortUV = float2(l_DistortX, l_DistortY);
+    float l_NoiseX = m_Time.x*sin(IN.UV.x*IN.UV.y+m_Time.x);
+    l_NoiseX = fmod(l_NoiseX, 8)*fmod(l_NoiseX, 4);
+    float l_DistortX = fmod(l_NoiseX, m_NoiseAmount);
+    float l_DistortY = fmod(l_NoiseX, m_NoiseAmount+0.002);
+    float2 l_DistortUV = float2(l_DistortX, l_DistortY);
     float4 l_Noise = T0Texture.Sample(S0Sampler, IN.UV+l_DistortUV)*m_NoisePct;
 
-	float4 l_Vignetting=T1Texture.Sample(S1Sampler, IN.UV)*m_VignettingPct;	
-	return l_Noise + l_Vignetting;
+    float4 l_Vignetting=T1Texture.Sample(S1Sampler, IN.UV)*m_VignettingPct;
+    return l_Noise + l_Vignetting;
 }

@@ -3,9 +3,11 @@
 #define _ENGINE_LAYER_20170110_H
 
 #include "SceneNode.h"
-#include "Utils\TemplatedMapVector.h"
+#include "Utils/TemplatedMapVector.h"
 
-class CLayer : public CName, public base::utils::CTemplatedMapVector< CSceneNode >
+class CScene;
+
+class CLayer : public CName, public CActive, public base::utils::CTemplatedMapVector<CSceneNode>, public CTemplatedParent<CScene>
 {
 public:
     CLayer(const std::string& aName);
@@ -13,12 +15,11 @@ public:
     bool Load(CXMLElement* aElement);
     bool Update(float elapsedTime);
     bool Render();
-    GET_SET_BOOL(Active);
+    bool Render(CRenderManager& lRenderManager);
+
     std::vector<CSceneNode*> GetNodes();
     void DrawImgui();
 
-protected:
-    bool m_Active;
 private:
     DISALLOW_COPY_AND_ASSIGN(CLayer);
 

@@ -8,20 +8,20 @@
 #include "Graphics/Animation/AnimatedModelManager.h"
 #include "Graphics/Lights/LightManager.h"
 
-
 CLayer::CLayer(const std::string& aName) :
     CName(aName),
-    m_Active(false)
+    CActive(false)
 {}
 
 CLayer::~CLayer()
 {
-    CTemplatedMapVector<CSceneNode>::Destroy();
+    //CTemplatedMapVector<CSceneNode>::Destroy();
 }
 
 bool CLayer::Load(CXMLElement* aElement)
 {
     bool lOk = true;
+    CLightManager &lLM = CEngine::GetInstance().GetLightManager();
 
     for (tinyxml2::XMLElement *iSceneMesh = aElement->FirstChildElement(); iSceneMesh != nullptr; iSceneMesh = iSceneMesh->NextSiblingElement())
     {
@@ -29,6 +29,7 @@ bool CLayer::Load(CXMLElement* aElement)
         if (strcmp(iSceneMesh->Name(), "scene_mesh") == 0)
         {
             lNode = new CSceneMesh(iSceneMesh);
+            lNode->SetNodeType(CSceneNode::eMesh);
         }
         else if (strcmp(iSceneMesh->Name(), "scene_animated_model") == 0)
         {
@@ -39,38 +40,33 @@ bool CLayer::Load(CXMLElement* aElement)
                 lNode = new CSceneAnimatedModel(*iSceneMesh);
                 ((CSceneAnimatedModel *)lNode)->Initialize(l_AnimatedCoreModel);
             }
-            lNode->Settype(1); //SceneAnimatedModel
+            lNode->SetNodeType(CSceneNode::eAnimatedModel); //SceneAnimatedModel
         }
         else if (strcmp(iSceneMesh->Name(), "scene_basic_primitive") == 0)
         {
             lNode = new  CSceneBasicPrimitive(iSceneMesh);
-            lNode->Settype(2); //SceneBasicPrimitive
+            lNode->SetNodeType(CSceneNode::eBasicPrimitive); //SceneBasicPrimitive
         }
         else if (strcmp(iSceneMesh->Name(), "scene_light") == 0)
         {
             std::string l_lightName = iSceneMesh->GetAttribute<std::string>("name", "");
             CLight *l_light = nullptr;
 
-            if (CEngine::GetInstance().GetLightManager().Exist(l_lightName)
-                    && strcmp(iSceneMesh->FirstChildElement()->Name(), "transform") == 0)
+            if (lLM.Exist(l_lightName))
             {
-
-                l_light = CEngine::GetInstance().GetLightManager()(l_lightName);
-                l_light->SetPosition(iSceneMesh->FirstChildElement()->GetAttribute<Vect3f>("position", l_light->GetPosition()));
-                l_light->SetPosition(iSceneMesh->FirstChildElement()->GetAttribute<Vect3f>("forward", l_light->GetPrevPosition()));
-
-                CEngine::GetInstance().GetLightManager().SetLightConstants(iSceneMesh->GetAttribute<int>("id_light", 0), l_light);
-            }
-
-            if (l_light != nullptr)//VER
-            {
-                lNode = new CSceneNode(iSceneMesh);
-                lNode->Settype(3); //SceneLight
+                lNode = lLM(l_lightName);
+                lLM.SetLightConstants(iSceneMesh->GetAttribute<int>("id_light", 0), lLM(l_lightName));
+                lNode->SetNodeType(CSceneNode::eLight);
             }
         }
+
         if (lNode)
+        {
+            lNode->SetParent(this);
             lOk &= Add(lNode->GetName(), lNode);
+        }
     }
+
     return lOk;
 }
 
@@ -89,18 +85,13 @@ bool CLayer::Render()
     bool lOk = true;
     CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
 
-    //for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
-    // #TODO: potencialmente ineficiente: estamos iterando un mapa en método render.
-    //Set Light constants debe setearse en cada frame?? Qué pasa si desactivamos luces?
-    for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode)
-    {
-        CLight *lLight = CEngine::GetInstance().GetLightManager()(iSceneNode->second.m_Value->GetName());
-        if (lLight != nullptr)
-        {
-            CEngine::GetInstance().GetLightManager().SetLightConstants(iSceneNode->second.m_Id, lLight);
-        }
 
-        lOk &= iSceneNode->second.m_Value->Render(lRenderManager);
+    for (TVectorResources::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
+    {
+        if ((*iSceneNode)->GetNodeType() != CSceneNode::eLight)
+        {
+            lOk &= (*iSceneNode)->Render(lRenderManager);
+        }
     }
 
     return lOk;
@@ -125,18 +116,18 @@ void CLayer::DrawImgui()
             {
                 CSceneNode* lSceneNode = iLayerMapEntry->second.m_Value;
                 ImGui::PushID(iLayerMapEntry->second.m_Id);
-                if (lSceneNode->Gettype() == 0) //Mesh
+                if (lSceneNode->GetNodeType() == 0) //Mesh
                     ((CSceneMesh *)lSceneNode)->DrawImgui();
-                else if (lSceneNode->Gettype() == 1) // "scene_animated_model"
+                else if (lSceneNode->GetNodeType() == 1) // "scene_animated_model"
                 {
                     ((CSceneAnimatedModel *)lSceneNode)->DrawImgui();
                     CAnimatedCoreModel *lAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(lSceneNode->GetName());
                     if (lAnimatedCoreModel != nullptr)
                         lAnimatedCoreModel->DrawImgui();
                 }
-                else if (lSceneNode->Gettype() == 2) // "scene_basic_primitive"
+                else if (lSceneNode->GetNodeType() == 2) // "scene_basic_primitive"
                     ((CSceneBasicPrimitive *)lSceneNode)->DrawImgui();
-                else if (lSceneNode->Gettype() == 3) //"scene_light"
+                else if (lSceneNode->GetNodeType() == 3) //"scene_light"
                 {
                     CLight *lLight = CEngine::GetInstance().GetLightManager()(lSceneNode->GetName());
                     if (lLight != nullptr)

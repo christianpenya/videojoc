@@ -7,7 +7,7 @@
 class CDirectionalLight : public CLight
 {
 public:
-    CDirectionalLight(const CXMLElement* aElement);
+    CDirectionalLight(CXMLElement* aElement);
     virtual ~CDirectionalLight();
     virtual void SetShadowMap(CRenderManager &RenderManager);
 protected:

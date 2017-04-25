@@ -8,10 +8,10 @@
 #include "XML\xml.h"
 
 CLightManager::CLightManager() {}
-
 CLightManager::~CLightManager()
 {
-    CTemplatedMapVector<CLight>::Destroy();
+    // Peta porque las referencias de luces son compartides con la jerarquia de escenas
+    // CTemplatedMapVector<CLight>::Destroy();
 }
 
 bool CLightManager::Load(const std::string& aFilename)
@@ -39,26 +39,23 @@ bool CLightManager::Load()
                 {
                     EnumString<CLight::ELightType>::ToEnum(lLightType, iLight->GetAttribute<std::string>("type", ""));
 
-                    if (lLightType == 0) //Point
+                    if (lLightType == CLight::ePoint)
                     {
                         CPointLight* lLight = new CPointLight(iLight);
-                        Add(lLight->GetName(), lLight);
+                        lOk = Add(lLight->GetName(), lLight);
                     }
-                    else if (lLightType == 1) //Spot
+                    else if (lLightType == CLight::eSpot)
                     {
                         CSpotLight* lLight = new CSpotLight(iLight);
-                        Add(lLight->GetName(), lLight);
+                        lOk = Add(lLight->GetName(), lLight);
                     }
-                    else  //Directional
+                    else  if (lLightType == CLight::eDirectional)
                     {
                         CDirectionalLight* lLight = new CDirectionalLight(iLight);
-                        Add(lLight->GetName(), lLight);
+                        lOk = Add(lLight->GetName(), lLight);
                     }
-
                 }
             }
-
-            lOk=true;
         }
     }
 
@@ -70,25 +67,20 @@ void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
     CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
     CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
 
-    lConstanBufferManager.mLightsDesc.m_LightType[idLight] = alight->GetType();
+    lConstanBufferManager.mLightsDesc.m_LightType[idLight] = alight->GetLightType();
     lConstanBufferManager.mLightsDesc.m_LightColor[idLight] = alight->GetColor();
     lConstanBufferManager.mLightsDesc.m_LightEnabled[idLight] = alight->IsVisible();
     lConstanBufferManager.mLightsDesc.m_LightIntensity[idLight] = alight->GetIntensity();
     lConstanBufferManager.mLightsDesc.m_LightAttenuationStartRange[idLight] = alight->GetRangeAttenuation().x;
     lConstanBufferManager.mLightsDesc.m_LightAttenuationEndRange[idLight] = alight->GetRangeAttenuation().y;
-    lConstanBufferManager.mLightsDesc.m_LightDirection[idLight] = Vect3f(alight->GetPosition().x, alight->GetPosition().y, alight->GetPosition().z);
-    lConstanBufferManager.mLightsDesc.m_LightPosition[idLight] = Vect3f(alight->GetPrevPosition().x, alight->GetPrevPosition().y, alight->GetPrevPosition().z);
-    lConstanBufferManager.mLightsDesc.m_LightAmbient = 0.25f;
-    //lConstanBufferManager.mLightsDesc.m_LightAmbient = alight->GetSpecularIntensity();
-    //lConstanBufferManager.mLightsDesc.m_LightFallOffAngle[idLight] = ((CSpotLight *)alight)->GetFallOff();
-    //lConstanBufferManager.mLightsDesc.m_LightAngle[idLight] = ((CSpotLight *)alight)->GetAngle();
-    if (alight->GetType() == 1) //Spot
+    lConstanBufferManager.mLightsDesc.m_LightDirection[idLight] = Vect4f(alight->GetPitch(), alight->GetYaw(), alight->GetRoll(), 0.0f);
+    lConstanBufferManager.mLightsDesc.m_LightPosition[idLight] = Vect4f(alight->GetPosition(), 0.0f);
+    lConstanBufferManager.mLightsDesc.m_LightAmbient = 0.25f; //TODO LUZ AMBIENT HARDCODED
+    if (alight->GetLightType() == CLight::eSpot) //Spot
     {
         lConstanBufferManager.mLightsDesc.m_LightFallOffAngle[idLight] = ((CSpotLight *)alight)->GetFallOff();
         lConstanBufferManager.mLightsDesc.m_LightAngle[idLight] = ((CSpotLight *)alight)->GetAngle();
     }
-    //lConstanBufferManager.BindVSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_LightVS);
-    //lConstanBufferManager.BindPSBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_LightPS);
     lConstanBufferManager.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Light);
 }
 
