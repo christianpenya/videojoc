@@ -9,7 +9,6 @@ float2 UV :
     TEXCOORD0;
 };
 
-//static float m_RawDataValues[64]=((float[64])m_RawData);
 static float m_ZBlurActive = 1.0; //m_RawDataValues[0];
 static float m_ZBlurShowDepths = 1.0; // m_RawDataValues[1];
 static float m_ZBlurConstantBlur = 0.3; // m_RawDataValues[2];
@@ -32,29 +31,8 @@ float4 GetZBlurColor(float Distance, float4 SourceColor, float4 BlurColor)
         return SourceColor;
 }
 
-
-float3 GetPositionFromZDepthViewInViewCoordinates(float ZDepthView, float2 UV, float4x4 InverseProjection)
-{
-	// Get the depth value for this pixel
-	// Get x/w and y/w from the viewport position
-	float x = UV.x * 2 - 1;
-	float y = (1 - UV.y) * 2 - 1;
-	float4 l_ProjectedPos = float4(x, y, ZDepthView, 1.0);
-	// Transform by the inverse projection matrix
-	float4 l_PositionVS = mul(l_ProjectedPos, InverseProjection);
-	// Divide by w to get the view-space position
-	return l_PositionVS.xyz / l_PositionVS.w;
-}
-
-float3 GetPositionFromZDepthView(float ZDepthView, float2 UV, float4x4 InverseView, float4x4 InverseProjection)
-{
-	float3 l_PositionView=GetPositionFromZDepthViewInViewCoordinates(ZDepthView, UV, InverseProjection);
-	return mul(float4(l_PositionView,1.0), InverseView).xyz;
-}
-
 float4 ZBlurPS(PS_INPUT IN) : SV_Target
 {
-
     float4 l_SourceColor=T0Texture.Sample(S0Sampler, IN.UV);
 	float l_Depth=T2Texture.Sample(S2Sampler, IN.UV).r;
     float3 l_WorldPosition=GetPositionFromZDepthView(l_Depth, IN.UV, m_InverseView, m_InverseProjection);

@@ -6,7 +6,9 @@
 CDirectionalLight::CDirectionalLight(CXMLElement* aElement) :
     CLight(aElement)
     , m_OrthoShadowMapSize(aElement->GetAttribute<Vect2f>("ortho_shadow_map_size", Vect2f(30.0f, 40.0f)))
-{}
+{
+    m_LightType = CLight::eDirectional;
+}
 
 CDirectionalLight::~CDirectionalLight() {}
 

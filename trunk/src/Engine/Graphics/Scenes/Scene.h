@@ -5,7 +5,7 @@
 #include "Utils\Name.h"
 #include "Layer.h"
 
-class CScene : public CName, public base::utils::CTemplatedMapVector< CLayer >
+class CScene : public CName, public CActive, public base::utils::CTemplatedMapVector< CLayer >
 {
 public:
     CScene(const std::string& aName);
@@ -14,11 +14,9 @@ public:
     bool Update(float elapsedTime);
     bool Render();
     bool Render(const std::string& aLayerName);
-    GET_SET_BOOL(Active)
     std::vector<CLayer*> GetLayers();
+    CLayer* GetLayerByName(std::string);
     void DrawImGui();
-protected:
-    bool m_Active;
 private:
     DISALLOW_COPY_AND_ASSIGN(CScene);
 };

@@ -24,6 +24,7 @@
 #include "Utils/Logger.h"
 #include "UnSetRenderTarget.h"
 #include "ApplyFilter.h"
+#include "GenerateShadowMaps.h"
 
 #define RENDER_CMD_ENTRY(tag, command_class_name)  { tag, [] { return new  command_class_name();}},
 std::map<std::string, std::function<CRenderCmd*(void)>> sComandsFactory =
@@ -46,18 +47,8 @@ std::map<std::string, std::function<CRenderCmd*(void)>> sComandsFactory =
     RENDER_CMD_ENTRY("disable_alpha_blend", CDisableAlphaBlend)
     RENDER_CMD_ENTRY("unset_render_target", CUnSetRenderTarget)
     RENDER_CMD_ENTRY("apply_filter", CApplyFilter)
+    RENDER_CMD_ENTRY("generate_shadow_maps", CGenerateShadowMaps)
 };
-
-/*<render_pipeline>
-<begin_render name = "begin_render_main_loop" / >
-<clear name = "clear_cmd" render_target = "false" depth_stencil = "true" color = "0.25 0.25 0.25 0" />
-<set_per_frame_constants name = "set_per_frame_cmd" / >
-<apply_technique_pool name = "apply_forward_technique" pool_name = "forward" / >
-<render_layer name = "render_opaque" layer = "opaque" / >
-<!--<draw_quad name = "full_screen_quad" viewport_position = "0 0" viewport_size = "800 600" pixel_shader = "DefaultQuadPS" / >-->
-<render_imgui name = "imediate_gui_render" / >
-<end_render name = "end_render_main_loop" / >
-< / render_pipeline>*/
 
 CRenderPipeline::CRenderPipeline() {}
 
@@ -65,14 +56,13 @@ CRenderPipeline::~CRenderPipeline()
 {
     CTemplatedMapVector<CRenderCmd>::Destroy();
 
-    // Free memory (and Tibet)
+    // TODO Free memory (and Tibet)
     /*    for (std::map<std::string, std::function<CRenderCmd*(void) >>::iterator itr = sComandsFactory.begin(); itr != sComandsFactory.end(); ++itr)
         {
             delete itr->second();
             sComandsFactory.erase(itr);
         }
-
-      */
+    */
 }
 
 bool CRenderPipeline::Load(const std::string& aFilename)

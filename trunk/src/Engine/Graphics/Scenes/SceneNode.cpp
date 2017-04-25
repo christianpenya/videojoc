@@ -7,14 +7,16 @@
 CSceneNode::CSceneNode():
     m_Visible(false),
     m_ignoreFrustum(false),
-    m_type(0)
+    m_NodeType(ESceneNodeType::eSceneNodeCount)
 {}
 
 CSceneNode::CSceneNode(const CXMLElement* aElement)
-    : CTransform((strcmp(aElement->FirstChildElement()->Name(), "transform") == 0) ? aElement->FirstChildElement() : nullptr)
-    , CName(aElement->GetAttribute<std::string>("name", "")), m_ignoreFrustum(false),
+    : CTransform((strcmp(aElement->FirstChildElement()->Name(), "transform") == 0) ? aElement->FirstChildElement() : nullptr),
+      CName(aElement->GetAttribute<std::string>("name", "")),
+      m_ignoreFrustum(false),
+      CActive(aElement->GetAttribute<bool>("active", false)),
       m_Visible(false),
-      m_type(0)
+      m_NodeType(ESceneNodeType::eSceneNodeCount)
 {
     if (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0)
     {
@@ -41,9 +43,7 @@ bool CSceneNode::Render(CRenderManager& lRM)
         Vector4<float> lBSCenter(mBS.GetCenter().x, mBS.GetCenter().y, mBS.GetCenter().z, 0);
         lBSCenter = lRM.GetViewProjectionMatrix() * lBSCenter;
         mBS.SetCenter(Vect3f(lBSCenter.x, lBSCenter.y, lBSCenter.z));
-
         m_Visible = lRM.m_Frustum->IsVisible(mBS);
-        // Todo: Check BS with currentfrustum
 
         return m_Visible;
     }

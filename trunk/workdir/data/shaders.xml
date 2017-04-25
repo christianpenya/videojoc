@@ -9,15 +9,13 @@
 		<shader name="PositionBumpUVForward" file="Forward/PositionBumpUV.fx" entry_point="VS" vertex_type="PositionBumpUV" preprocessor=""/>
 		
 		<!--
-		
-
 		<shader name="AnimatedModelForward" file="Forward/UberShader.fx" entry_point="VS" vertex_type="PositionWeightIndicesNormalUV" preprocessor="WEIGHTIDX; UV"/>
 		<shader name="PositionNormalForward" file="Forward/UberShader.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/>
 		<shader name="PositionNormalUVForward" file="Forward/UberShader.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor="UV"/>
 		<shader name="PositionNormalUVUV2Forward" file="Forward/UberShader.fx" entry_point="VS" vertex_type="PositionNormalUVUV2" preprocessor="UV; UV2"/>
 		<shader name="PositionBumpUVForward" file="Forward/UberShader.fx" entry_point="VS" vertex_type="PositionBumpUV" preprocessor="BUMP; UV"/>
-		
 		-->
+
 		<!--deferred-->
 		<shader name="PositionNormalDeferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/>
 		<shader name="PositionNormalUVDeferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor="USE_UV"/>
