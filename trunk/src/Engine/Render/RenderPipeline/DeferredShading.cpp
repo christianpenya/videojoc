@@ -42,9 +42,7 @@ bool CDeferredShading::CreateBlendState()
 
 bool CDeferredShading::Load(const CXMLElement* aElement)
 {
-    bool lOk = CDrawQuad::Load(aElement);
-
-    return lOk;
+    return CDrawQuad::Load(aElement);
 }
 
 void CDeferredShading::Execute(CRenderManager &lRM)

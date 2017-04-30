@@ -12,7 +12,7 @@
 		<technique vertex_type="Quad"/>
 		<technique vertex_type="DeferredQuad"/>
 		<technique name="NoiseVignetting" />
-		<technique name="Fog" />
+		<technique vertex_type="Fog"/>
 		<technique name="ZBlur" />
 		<technique name="Bloom" />
 		<technique name="BloomCombine" />

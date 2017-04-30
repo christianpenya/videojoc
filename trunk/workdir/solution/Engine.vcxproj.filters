@@ -297,7 +297,7 @@
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\EndRenderCmd.h">
       <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\GeneratedShadowMaps.h">
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\GenerateShadowMaps.h">
       <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\Quad.h">

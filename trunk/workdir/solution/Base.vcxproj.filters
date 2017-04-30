@@ -81,6 +81,9 @@
     <ClInclude Include="..\..\src\Base\Math\Vector4.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\Active.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Base\Utils\BinFileReader.h">
       <Filter>Utils</Filter>
     </ClInclude>
@@ -91,9 +94,6 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Base\Utils\Defines.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Base\Utils\Enable.h">
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Base\Utils\EnumToString.h">
@@ -138,6 +138,9 @@
     <ClInclude Include="..\..\src\Base\Utils\TemplatedMapVector.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Base\Utils\TemplatedParent.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Base\Utils\Types.h">
       <Filter>Utils</Filter>
     </ClInclude>
@@ -167,7 +170,7 @@
     <ClCompile Include="..\..\src\Base\Math\Transform.cpp">
       <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Base\Utils\Enable.cpp">
+    <ClCompile Include="..\..\src\Base\Utils\Active.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Base\Utils\Logger.cpp">

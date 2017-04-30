@@ -3,6 +3,7 @@
 #include "Utils/StringUtils.h"
 #include "Render/RenderManager.h"
 #include "Engine/engine.h"
+#include "Utils/Logger.h"
 
 CDrawQuad::CDrawQuad(): mQuad(nullptr), mMaterial(nullptr) {}
 CDrawQuad::~CDrawQuad() {}
@@ -32,7 +33,7 @@ void CDrawQuad::Execute(CRenderManager& lRM)
     lRM.SetViewport(m_ViewportPosition, m_ViewportSize);
     mMaterial->Apply();
     ActivateTextures();
-
+    LOG_INFO_APPLICATION(mMaterial->GetName().c_str());
     mQuad->Render();
     lRM.ResetViewport();
 }

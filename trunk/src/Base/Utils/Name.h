@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __H_NAME__
-#define __H_NAME__
+#ifndef __H_NAME__20170423
+#define __H_NAME__20170423
 
 #include <string>
 
@@ -22,4 +22,4 @@ protected:
     std::string m_Name;
 };
 
-#endif // __H_NAME__
+#endif // __H_NAME__20170423

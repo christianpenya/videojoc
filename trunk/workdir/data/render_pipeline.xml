@@ -24,11 +24,11 @@
 	<draw_quad material="DrawQuadMaterial">
         <texture name="LightMapTexture" stage_id="0"/>
     </draw_quad>
+	
 	<deferred_shading material="DeferredShadingMaterial">
 		 <texture name="AlbedoTexture"  stage_id="0"/>
-		 <texture name="NormalMapTexture" stage_id="1"/>		
-		 <texture name="DepthMapTexture" stage_id="2"/>
-		 
+		 <texture name="NormalMapTexture" stage_id="1"/>
+		 <texture name="DepthMapTexture" stage_id="2"/>		 
 	</deferred_shading>
 	
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
@@ -134,7 +134,8 @@
 	-->
 	FIN EFECTO ZBLUR
 
-	
+	<!--		
+    </draw_quad>-->
 	INICIO EFECTO COLORGRADING
 	<!--
 	<apply_technique_pool pool_name="post_process"/>
@@ -148,7 +149,7 @@
 	FIN COLORGRADING
 
 	
-	<!--		
+	
 	<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />
 	-->
 	
