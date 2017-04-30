@@ -14,7 +14,7 @@
 		<shader name="PositionNormalDeferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/>
 		<shader name="PositionNormalUVDeferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor="USE_UV"/>
 		<shader name="PositionNormalUVUV2Deferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionNormalUVUV2" preprocessor="USE_UV;USE_UV2"/>
-		<shader name="PositionBumpUVDeferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionBumpUV" preprocessor="USE_BUMP;USE_UV"/>
+		<shader name="PositionBumpUVDeferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionBumpUV" preprocessor="USE_BUMP; USE_UV"/>
 		
 		<!--post process-->
 		<shader name="NoiseVignetting" file="PostProcess/NoiseVignetting.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
@@ -46,8 +46,8 @@
 		<shader name="AnimatedModelForward" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_WEIGHTIDX"/>
 		<shader name="PositionNormalDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor=""/>
 		<shader name="PositionNormalUVDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_UV"/>
-		<shader name="PositionNormalUVUV2Deferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_UV;USE_UV2"/>
-		<shader name="PositionBumpUVDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_BUMP;USE_UV"/>
+		<shader name="PositionNormalUVUV2Deferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_UV; USE_UV2"/>
+		<shader name="PositionBumpUVDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_BUMP; USE_UV"/>
 
 		
 		<!--post process-->
