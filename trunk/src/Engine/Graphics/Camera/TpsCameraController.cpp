@@ -1,7 +1,14 @@
 #include "TpsCameraController.h"
+#include "Input/ActionManager.h"
+#include "Engine/Engine.h"
 
 void CTpsCameraController::Update(float ElapsedTime)
 {
+    CActionManager* actionManager = &CEngine::GetInstance().GetActionManager();
+    yawSpeed = 0.1f * (*actionManager)("pitch")->value;
+    pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
+
+    zoomSpeed = (*actionManager)("zoom")->value;
 
     yaw += yawSpeed * ElapsedTime;
     pitch += pitchSpeed * ElapsedTime;
