@@ -60,14 +60,14 @@ CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
                 CMaterialParameter* lParameter = nullptr;
 
 #define CASE_CREATE_MATERIAL_PARAMETER( parameter_type, parameter_class_type, parameter_def_value ) \
-				case parameter_type: \
-				{ \
-					lParameter = new CTemplatedMaterialParameter<parameter_class_type>(\
-						iTextureOrParameter->GetAttribute<std::string>("name", ""), \
-						iTextureOrParameter->GetAttribute<parameter_class_type>("value", parameter_def_value), \
-						parameter_type);\
-				}\
-				break;\
+case parameter_type: \
+{ \
+    lParameter = new CTemplatedMaterialParameter<parameter_class_type>(\
+        iTextureOrParameter->GetAttribute<std::string>("name", ""), \
+        iTextureOrParameter->GetAttribute<parameter_class_type>("value", parameter_def_value), \
+        parameter_type);\
+}\
+break;\
 
                 switch (lType)
                 {
@@ -131,21 +131,6 @@ void CMaterial::Apply()
                 float *lSpecularContrib = (float*)mParameters[i]->GetAddr(0);
                 lSpecularVector = Vector4<float>(lSpecularVector.x, *lSpecularContrib, lSpecularVector.z, lSpecularVector.w);
                 lCBM.mMaterialDesc.m_RawData[2] = lSpecularVector;
-            }
-            else if (mParameters[i]->GetName() == "metalic_factor")
-            {
-                float *lMetalicFactor = (float*)mParameters[i]->GetAddr(0);
-                lCBM.mMaterialDesc.m_RawData[3].x = *lMetalicFactor;
-            }
-            else if (mParameters[i]->GetName() == "roughness_factor")
-            {
-                float *lRoughnessFactor = (float*)mParameters[i]->GetAddr(0);
-                lCBM.mMaterialDesc.m_RawData[3].y = *lRoughnessFactor;
-            }
-            else if (mParameters[i]->GetName() == "occlusion_factor")
-            {
-                float *lOclussionFactor = (float*)mParameters[i]->GetAddr(0);
-                lCBM.mMaterialDesc.m_RawData[3].y = *lOclussionFactor;
             }
         }
 

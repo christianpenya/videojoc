@@ -52,6 +52,10 @@
    <shader stage="vertex"   name="Quad"/>
    <shader stage="pixel"    name="Gaussian"/>
   </effect>  
+   <effect name="ColorGradingTechnique" shader_family="ColorGrading">
+	<shader stage="vertex"   name="Quad"/>
+	<shader stage="pixel"    name="ColorGrading"/>
+  </effect>  
   <!-- OTHER -->
  <effect name="SkyboxTechnique" shader_family="Skybox">
    <shader stage="vertex"   name="Skybox"/>

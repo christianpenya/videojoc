@@ -56,7 +56,7 @@
 		<shader name="Bloom" file="PostProcess/Bloom.fx" entry_point="BloomPS" preprocessor=""/>
 		<shader name="BloomCombine" file="PostProcess/Bloom.fx" entry_point="BloomCombinePS" preprocessor=""/>
 		<shader name="Gaussian" file="PostProcess/Gaussian.fx" entry_point="BlurPS" preprocessor=""/>
-		
+		<shader name="ColorGrading" file="PostProcess/ColorGrading.fx" entry_point="PSGUIColorGrading" preprocessor=""/>
 		<!--
 		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="PS" preprocessor=""/>	
 		<shader name="ZBlur" file="PostProcess/ZBlur.fx" entry_point="PSZBlur" preprocessor=""/>	

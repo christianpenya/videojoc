@@ -39,4 +39,6 @@
 	<material name="DrawQuadDeferredShadingMaterial" vertex_type="Quad">
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
 	</material>
+	<material name="ColorGradingMaterial" vertex_type="ColorGrading" >
+	</material>
 	</materials>

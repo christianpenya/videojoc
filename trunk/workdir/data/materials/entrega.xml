@@ -16,5 +16,7 @@
 		<texture type="selfIllum" filename="data\textures\light_map_box.dds" />
 		<parameter type="float" name="selfIllum" value="100.0" />
 	</material>
+	<material name="ColorGradingMaterial" vertex_type="ColorGrading" >
+	</material>
 	
 </materials>

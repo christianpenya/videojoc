@@ -16,6 +16,8 @@
 	<material name="BlurMaterial" effect="Blur">
 		<parameter type="color" name="diffuse_color" value="0.0 0.0 1.0 1.0 " />
 	</material>
+	<material name="ColorGradingMaterial" vertex_type="ColorGrading" >
+	</material>
 	
 </materials>
  
