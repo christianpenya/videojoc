@@ -13,9 +13,7 @@ CUnSetRenderTarget::~CUnSetRenderTarget()
 
 bool CUnSetRenderTarget::Load(const CXMLElement* aElement)
 {
-    //TODO otro load?
-    bool lOk = CRenderStagedTexture::Load(aElement);
-    return lOk;
+    return true;
 }
 
 

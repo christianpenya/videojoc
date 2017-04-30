@@ -1,6 +1,5 @@
 #include "globals.fx"
 
-
 #if USE_UV
 	Texture2D DiffuseTexture :
 	register(t0);

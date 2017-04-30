@@ -1,14 +1,12 @@
 <scene >
 	<layer name="Principal" active="true" >
 		
-		<scene_light name="FDirect001" id_light="0" />
 		<scene_light name="Fspot001" id_light="1" />
 
 		
-		
-		
 		<!--
-		
+		<scene_light name="FDirect001" id_light="0" />
+
 			<transform position="0.0 10.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" />
 		</scene_light>
 		<scene_light name="Omni002" id_light="1" >
@@ -51,7 +49,12 @@
 		<scene_mesh name="Cub!" mesh="data/meshes/Box01.mesh" rigid_body = "box">
 			<transform position="-6.0 2.0 -6.0" yaw="0.5" pitch ="0.5" roll="0.5" scale="2.0 2.0 2.0"/>
 		</scene_mesh>
-				<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
+		
+		<!--<scene_mesh name="CaixaBump!" mesh="data/meshes/BumpBox.mesh" rigid_body = "box">
+			<transform position="6.0 2.0 6.0" yaw="0.5" pitch ="0.5" roll="0.5" scale="2.0 2.0 2.0"/>
+		</scene_mesh>
+		-->
+		<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 3.0" />
 		</scene_mesh>
 

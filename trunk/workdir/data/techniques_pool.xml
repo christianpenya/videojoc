@@ -17,6 +17,7 @@
 		<technique name="Bloom" />
 		<technique name="BloomCombine" />
 		<technique name="Gaussian" />
+		<technique vertex_type="ShadowMap"/>
   </default_pool>
 
 	<pool name="forward">
@@ -39,6 +40,17 @@
 		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueDeferred"/>
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueDeferred"/>
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueDeferred"/>
+	</pool>
+	
+	<pool name="shadow_map">
+		<technique vertex_type="PositionUV" effect="PositionUVShadowMap"/>
+		<technique vertex_type="PositionNormal" effect="PositionNormalShadowMap"/>
+		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVShadowMap"/>
+		<technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2ShadowMap"/>
+		<technique vertex_type="PositionBump" effect="PositionBumpShadowMap"/>
+		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVShadowMap"/>
+		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2ShadowMap"/>
+		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelShadowMap"/>
 	</pool>
 	
 	<pool name="post_process">

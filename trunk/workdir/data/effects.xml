@@ -27,6 +27,12 @@
    <shader stage="pixel"    name="PositionNormalDeferred"/>
   </effect>
   
+  <!-- SHADOW -->
+  <effect name="PositionNormalShadowMap" shader_family="ShadowMap">
+   <shader stage="vertex"   name="ShadowMap"/>
+   <shader stage="pixel"    name="ShadowMap"/>
+  </effect>
+  
   <!-- POST PROCESS -->
   <effect name="NoiseVignettingTechnique" shader_family="NoiseVignetting">
    <shader stage="vertex"   name="NoiseVignetting"/>
@@ -52,7 +58,8 @@
    <shader stage="vertex"   name="Quad"/>
    <shader stage="pixel"    name="Gaussian"/>
   </effect>  
-  <!-- OTHER -->
+
+ <!-- OTHER -->
  <effect name="SkyboxTechnique" shader_family="Skybox">
    <shader stage="vertex"   name="Skybox"/>
    <shader stage="pixel"    name="Skybox"/>

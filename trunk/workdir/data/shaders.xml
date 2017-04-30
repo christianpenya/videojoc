@@ -24,24 +24,18 @@
 		
 		<!--post process-->
 		<shader name="NoiseVignetting" file="PostProcess/NoiseVignetting.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
-		<!--
 		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
-		-->
+		<shader name="ShadowMap" file="PostProcess/ShadowMap.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
 		
 		<!--other-->
-		
 		<shader name="Skybox" file="Skybox.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor=""/>
 		<shader name="Quad" file="Quad.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
 		<shader name="DeferredQuad" file="Deferred/DeferredShading.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
-		<!--
-		
-		-->
+
 	</vertex_shaders>     
 	<!--PIXEL SHADERS-->  
 	<pixel_shaders>
 		<!--forward-->
-		
-		
 		<shader name="AnimatedModelForward" file="Forward/AnimatedModel.fx" entry_point="PS" preprocessor=""/>		
 		<shader name="PositionNormalForward" file="Forward/PositionNormal.fx" entry_point="PS" preprocessor=""/>
 		<shader name="PositionNormalUVForward" file="Forward/PositionNormalUV.fx" entry_point="PS" preprocessor=""/>		
@@ -54,20 +48,15 @@
 		<shader name="PositionNormalUVUV2Deferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_UV;USE_UV2"/>
 		<shader name="PositionBumpUVDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_BUMP;USE_UV"/>
 
-		
 		<!--post process-->
 		<shader name="NoiseVignetting" file="PostProcess/NoiseVignetting.fx" entry_point="PS" preprocessor=""/>	
 		<shader name="ZBlur" file="PostProcess/ZBlur.fx" entry_point="ZBlurPS" preprocessor=""/>
 		<shader name="Bloom" file="PostProcess/Bloom.fx" entry_point="BloomPS" preprocessor=""/>
 		<shader name="BloomCombine" file="PostProcess/Bloom.fx" entry_point="BloomCombinePS" preprocessor=""/>
-		<shader name="Gaussian" file="PostProcess/Gaussian.fx" entry_point="BlurPS" preprocessor=""/>
-		
-		<!--
+		<shader name="Gaussian" file="PostProcess/Gaussian.fx" entry_point="BlurPS" preprocessor=""/>		
 		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="PS" preprocessor=""/>	
-		<shader name="ZBlur" file="PostProcess/ZBlur.fx" entry_point="PSZBlur" preprocessor=""/>	
-		<shader name="Blur" file="PostProcess/Blur.fx" entry_point="ZBlurPS" preprocessor=""/>
-		-->	
-		
+		<shader name="ShadowMap" file="PostProcess/ShadowMap.fx" entry_point="PS" preprocessor=""/>
+
 		<!--other-->
 		<shader name="Skybox" file="Skybox.fx" entry_point="PS"  preprocessor=""/>
 		<shader name="Quad" file="Quad.fx" entry_point="PS" preprocessor=""/>
