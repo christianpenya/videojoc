@@ -22,7 +22,7 @@
 	<material name="BloomCombineMaterial" vertex_type="BloomCombine" />
 	<material name="StartGaussianMaterial" vertex_type="Quad" />
 	<material name="GaussianMaterial" vertex_type="Gaussian" />
-	
+	<material name="ColorGradingMaterial" vertex_type="ColorGrading" />
 	<material name="ShadowMapMaterial" vertex_type="ShadowMap" />
 	
 </materials>

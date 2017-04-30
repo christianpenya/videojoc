@@ -27,13 +27,18 @@
 	</material>
 
 	<material name="BloomMaterial" vertex_type="Bloom" >
-	</material>	
+	</material>
+	
 	<material name="BloomCombineMaterial" vertex_type="BloomCombine" >
-	</material>		
+	</material>
 
 	<material name="StartGaussianMaterial" vertex_type="Quad" >
 	</material>
+	
 	<material name="GaussianMaterial" vertex_type="Gaussian" >
+	</material>
+	
+	<material name="ColorGradingMaterial" vertex_type="ColorGrading" >
 	</material>
 
 	

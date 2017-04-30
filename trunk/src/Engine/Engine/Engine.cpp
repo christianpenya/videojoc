@@ -45,8 +45,8 @@ CEngine::CEngine()
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
     , m_FPS (0.0)
-    , m_CameraSelector(0)
-    , m_PrevCameraSelector(0)
+    , m_CameraSelector(1)
+    , m_PrevCameraSelector(1)
 {}
 
 CEngine::~CEngine()
@@ -180,6 +180,7 @@ double clockToMilliseconds(clock_t ticks)
 void CEngine::Update()
 {
     // Reiniciem posició de l'esfera quan canviem de camera
+
     if (m_CameraSelector != m_PrevCameraSelector)
     {
         m_RenderManager->m_SphereOffset = Vect3f(0, 0, 0);
@@ -191,18 +192,18 @@ void CEngine::Update()
     {
     case 0: //Orbital
         SetCameraController(&m_OrbitalCam);
-        orbitalCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
+        // orbitalCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
 
         break;
     case 1: //FPS
         SetCameraController(&m_FpsCam);
-        fpsCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
+        //fpsCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
 
         break;
     case 2: //TPS
         SetCameraController(&m_TpsCam);
         sphereUpdate(*m_RenderManager, m_ActionManager, m_CameraController->getFront(), m_CameraController->getUp());
-        tpsCameraUpdate(*m_CameraController, m_ActionManager, m_RenderManager->m_SphereOffset, (float)m_DeltaTime);
+        // tpsCameraUpdate(*m_CameraController, m_ActionManager, m_RenderManager->m_SphereOffset, (float)m_DeltaTime);
 
         break;
     default:

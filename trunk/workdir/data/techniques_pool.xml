@@ -17,6 +17,7 @@
 		<technique name="Bloom" />
 		<technique name="BloomCombine" />
 		<technique name="Gaussian" />
+		<technique name="ColorGrading" />
   </default_pool>
 
 	<pool name="forward">
@@ -49,6 +50,7 @@
 		<technique vertex_type="Quad" effect="QuadTechnique"/>
 		<technique name="Bloom" effect="BloomTechnique" />
 		<technique name="BloomCombine" effect="BloomCombineTechnique" />
+		<technique name="ColorGrading" effect="ColorGradingTechnique" />
 	</pool>
 	
 	<pool name="skybox">

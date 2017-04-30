@@ -99,7 +99,6 @@
 		<dynamic_texture name="bloomTexture" size="512 512" material="BloomMaterial" format="RGBA8_UNORM"/>
 		<dynamic_texture name="Gaussiano2" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
 		<dynamic_texture name="Gaussiano" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
-
 	</apply_filter>
 
 	<draw_quad name="bloomCombineQuad" material="BloomCombineMaterial">
@@ -136,10 +135,18 @@
 	FIN EFECTO ZBLUR
 
 	<!--		
-	<draw_quad material="DrawQuadMaterial"  viewport_position = "129 129" viewport_size = "128 128">
-        <texture name="LightMapTexture" stage_id="0"/>
-    </draw_quad>
-
+    </draw_quad>-->
+	INICIO EFECTO COLORGRADING
+	<!--
+	<apply_technique_pool pool_name="post_process"/>
+	<draw_quad name="colorGradingQuad" material="ColorGradingMaterial">
+	   <texture name="capture_frame_buffer" stage_id="0"/>
+	</draw_quad>
+	<draw_quad name="textureinicial" material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
+        <texture name="capture_frame_buffer" stage_id="0"/>
+    </draw_quad>		
+	-->	
+	FIN COLORGRADING
 
 	
 	

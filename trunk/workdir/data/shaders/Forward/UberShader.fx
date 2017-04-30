@@ -34,11 +34,11 @@ float3 Normal :
 		float4 Indices :
 			BLENDINDICES;
 #endif
-#if UV
-	float2 USE_UV :
+#if USE_UV
+	float2 UV :
 	    TEXCOORD0;
-	#if UV2
-		float2 USE_UV2 :
+	#if USE_UV2
+		float2 UV2 :
 		    TEXCOORD1;
 	#endif
 #endif
@@ -47,7 +47,6 @@ float3 Normal :
 	    TANGENT;
 	float3 Binormal:
 	    BINORMAL;
-
 #endif
 
 };
@@ -85,6 +84,7 @@ struct PS_INPUT
 
 PS_INPUT VS( VS_INPUT IN )
 {
+    
     PS_INPUT l_Output = (PS_INPUT)0;
     float4 lPos = float4( IN.Pos.xyz, 1.0 );
 	float3 l_Normal = IN.Normal;
@@ -126,16 +126,13 @@ PS_INPUT VS( VS_INPUT IN )
     #if USE_BUMP
      	l_Output.Tangent = normalize(mul(IN.Tangent.xyz, (float3x3)m_World));
     	l_Output.Binormal = normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
-
     #endif
-
     return l_Output;
 }
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-
-   
+	
     float g_SpecularExponent = 80.0;
     float g_SpecularContrib = 1.0;
     float3 pixelColor = m_RawData[0].xyz;
@@ -166,7 +163,8 @@ float4 PS(PS_INPUT IN) : SV_Target
  	#endif
 
  	
-	float3 l_LAmbient = l_LAmbient * pixelColor;
+	l_LAmbient = l_LAmbient * pixelColor;
+	
  	for(int i = 0; i<MAX_LIGHTS_BY_SHADER; i++)
     {
         CalculateSingleLight(i, l_Normal, l_WorldPos, pixelColor,l_DiffuseTmp, l_SpecularTmp);
@@ -179,7 +177,6 @@ float4 PS(PS_INPUT IN) : SV_Target
     }
 
     return float4(l_LAmbient+l_LDiffuseSpecular,1.0);
-}
 
     
 }

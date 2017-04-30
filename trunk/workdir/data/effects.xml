@@ -26,6 +26,22 @@
    <shader stage="vertex"   name="PositionNormalDeferred"/>
    <shader stage="pixel"    name="PositionNormalDeferred"/>
   </effect>
+   <effect name="PositionNormalUVTechniqueDeferred" shader_family="PositionNormalUVDeferred">
+   <shader stage="vertex"   name="PositionNormalUVDeferred"/>
+   <shader stage="pixel"    name="PositionNormalUVDeferred"/>
+  </effect>
+  <effect name="PositionNormalUVUV2TechniqueDeferred" shader_family="PositionNormalUVUV2Deferred">
+   <shader stage="vertex"   name="PositionNormalUVUV2Deferred"/>
+   <shader stage="pixel"    name="PositionNormalUVUV2Deferred"/>
+  </effect>
+  <effect name="PositionBumpUVTechniqueDeferred" shader_family="PositionBumpUVDeferred">
+   <shader stage="vertex"   name="PositionBumpUVDeferred"/>
+   <shader stage="pixel"    name="PositionBumpUVDeferred"/>
+  </effect>
+  <effect name="AnimatedModelTechniqueDeferred"  shader_family="AnimatedModelDeferred">
+	<shader stage="vertex" name="AnimatedModelDeferred"/>
+	<shader stage="pixel" name="AnimatedModelDeferred"/>
+  </effect>
   
   <!-- POST PROCESS -->
   <effect name="NoiseVignettingTechnique" shader_family="NoiseVignetting">
@@ -51,6 +67,10 @@
   <effect name="GaussianTechnique" shader_family="Gaussian">
    <shader stage="vertex"   name="Quad"/>
    <shader stage="pixel"    name="Gaussian"/>
+  </effect>  
+   <effect name="ColorGradingTechnique" shader_family="ColorGrading">
+	<shader stage="vertex"   name="Quad"/>
+	<shader stage="pixel"    name="ColorGrading"/>
   </effect>  
   <!-- OTHER -->
  <effect name="SkyboxTechnique" shader_family="Skybox">
