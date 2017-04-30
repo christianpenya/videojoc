@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Engine">
@@ -30,9 +30,6 @@
     </Filter>
     <Filter Include="Graphics\Mesh">
       <UniqueIdentifier>{92268A97-FEE6-05CE-C721-4F4B33A14AAA}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\Particles">
-      <UniqueIdentifier>{6CEB7859-58CF-39AF-C12F-3402AD322431}</UniqueIdentifier>
     </Filter>
     <Filter Include="Graphics\Scenes">
       <UniqueIdentifier>{864F81B0-F2DA-EE74-FBEB-716967F64A75}</UniqueIdentifier>
@@ -216,9 +213,6 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\VertexsTypes_HelperMacros.h">
       <Filter>Graphics\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Particles\ParticleSystemInstance.h">
-      <Filter>Graphics\Particles</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\ConstantBuffer.h">
       <Filter>Graphics\Scenes</Filter>
     </ClInclude>
@@ -351,9 +345,6 @@
     <ClInclude Include="..\..\src\Engine\Scripts\lua_utils.h">
       <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Particles\ParticleSystemType.h">
-      <Filter>Graphics\Particles</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp">
@@ -475,9 +466,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\VertexTypes.cpp">
       <Filter>Graphics\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\Particles\ParticleSystemInstance.cpp">
-      <Filter>Graphics\Particles</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\Layer.cpp">
       <Filter>Graphics\Scenes</Filter>

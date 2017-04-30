@@ -286,8 +286,6 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\VertexBuffer.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\VertexTypes.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\VertexsTypes_HelperMacros.h" />
-    <ClInclude Include="..\..\src\Engine\Graphics\Particles\ParticleSystemInstance.h" />
-    <ClInclude Include="..\..\src\Engine\Graphics\Particles\ParticleSystemType.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\ConstantBuffer.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\Layer.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\Scene.h" />
@@ -374,7 +372,6 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\MeshManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\Plane.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\VertexTypes.cpp" />
-    <ClCompile Include="..\..\src\Engine\Graphics\Particles\ParticleSystemInstance.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\Layer.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\Scene.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneBasicPrimitive.cpp" />
