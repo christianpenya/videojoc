@@ -133,12 +133,13 @@ PS_INPUT VS( VS_INPUT IN )
 	 	#if USE_UV2
 	 		l_Output.UV2 = IN.UV2;
 	 	#endif
+	 	#if USE_BUMP
+	     	l_Output.Tangent = normalize(mul(IN.Tangent.xyz, (float3x3)m_World));
+	    	l_Output.Binormal = normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
+	    #endif
     #endif
 
-    #if USE_BUMP
-     	//l_Output.Tangent = normalize(mul(IN.Tangent.xyz, (float3x3)m_World));
-    	//l_Output.Binormal = normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
-    #endif
+  
     return l_Output;
 }
 
@@ -167,12 +168,13 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 			//pixelColor = l_LightmapPixel.xyz * pixelColor;
 			l_LAmbient = l_LightmapPixel.xyz;
 		#endif
+		#if USE_BUMP
+			 float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
+			 l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
+		     l_Normal = normalize(l_Normal);
+		#endif
  	#endif
- 	#if USE_BUMP
-	 //	float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
-	 //	l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
-     // l_Normal = normalize(l_Normal);
- 	#endif
+ 
 
 	l_Normal=Normal2Texture(l_Normal);
 
