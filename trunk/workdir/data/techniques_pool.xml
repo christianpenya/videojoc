@@ -18,7 +18,7 @@
 		<technique name="BloomCombine" />
 		<technique name="Gaussian" />
 		<technique name="ColorGrading" />
-  </default_pool>
+	</default_pool>
 
 	<pool name="forward">
 		<technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>

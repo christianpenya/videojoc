@@ -113,19 +113,23 @@ void CalculateSingleLight(uint IdLight,float3 NormalPixel : NORMAL, float3 World
 
             float l_AngleAtenuation = saturate((l_DotAngle-l_SpotFallOff)/(l_SpotAngle-l_SpotFallOff));
         }
-        // No hacen falta calculos adicionales para la luz direccional
-
+        
+		// No hacen falta calculos adicionales para la luz direccional
         float3 l_Eye=m_CameraPosition.xyz;
         float3 l_ViewDir = normalize(l_Eye - WorldPos);
         float3 Hn = normalize(l_ViewDir-l_LightDirection.xyz);
 
-        float l_DiffuseContrib = saturate(dot(-l_LightDirection.xyz,NormalPixel));
+        float l_DiffuseContrib = dot(NormalPixel,(-l_LightDirection.xyz));
+		l_DiffuseContrib = max(0, l_DiffuseContrib);
         float l_SpecularContrib = pow(saturate(dot(Hn,NormalPixel)), 20.0 ) ;
 
         DiffuseColor = l_DiffuseContrib * m_LightIntensity[IdLight] * m_LightColor[IdLight].xyz * ColorPixel.xyz * l_DistanceAtten * l_AngleAtenuation;
         SpecularColor = l_SpecularContrib* m_LightIntensity[IdLight] *	m_LightColor[IdLight].xyz *g_SpecularContrib * l_DistanceAtten * l_AngleAtenuation;
-    }
-};
+		//DiffuseColor = -(m_LightDirection[IdLight].xyz);
+		//DiffuseColor = float3(l_DiffuseContrib, 0.0, 0.0);
+		//SpecularColor = float3(0.0, l_SpecularContrib ,0.0);
+	}
+}
 
 float3 Normal2Texture(float3 Normal)
 {

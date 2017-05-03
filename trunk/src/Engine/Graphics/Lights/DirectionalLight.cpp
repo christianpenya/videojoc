@@ -21,6 +21,7 @@ void CDirectionalLight::SetShadowMap(CRenderManager &RM)
     m_ProjectionShadowMap.SetFromOrtho(m_OrthoShadowMapSize.x, m_OrthoShadowMapSize.y,
                                        0.1f, m_RangeAttenuation.y);
 
+    /*
     CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
     RM.SetViewProjectionMatrix(m_ViewShadowMap, m_ProjectionShadowMap);
     lCBM.mFrameDesc.m_View = m_ViewShadowMap;
@@ -29,9 +30,11 @@ void CDirectionalLight::SetShadowMap(CRenderManager &RM)
     lCBM.mFrameDesc.m_InverseView = lCBM.mFrameDesc.m_View.GetInverted();
     lCBM.mFrameDesc.m_InverseProjection = lCBM.mFrameDesc.m_Projection.GetInverted();
     lCBM.BindBuffer(RM.GetDeviceContext(), CConstantBufferManager::CB_Frame);
+    */
 
     ID3D11RenderTargetView *l_RenderTargetViews[1];
     l_RenderTargetViews[0] = m_pShadowMap->GetRenderTargetView();
+
     D3D11_VIEWPORT m_viewport;
     m_viewport.Width = (float)l_ShadowMapWidth;
     m_viewport.Height = (float)l_ShadowMapHeight;

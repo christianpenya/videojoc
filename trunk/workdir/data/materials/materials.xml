@@ -15,31 +15,12 @@
 		<parameter type="float" name="diffuse" value="100.0" />
 	</material>
 	
-	<material name="DrawQuadMaterial" vertex_type="Quad">
-		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
-	</material>
-	
-	<material name="DeferredShadingMaterial" vertex_type="DeferredQuad">
-		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
-	</material>
-
-	<material name="ZBlurMaterial" vertex_type="ZBlur" >
-	</material>
-
-	<material name="BloomMaterial" vertex_type="Bloom" >
-	</material>
-	
-	<material name="BloomCombineMaterial" vertex_type="BloomCombine" >
-	</material>
-
-	<material name="StartGaussianMaterial" vertex_type="Quad" >
-	</material>
-	
-	<material name="GaussianMaterial" vertex_type="Gaussian" >
-	</material>
-	
-	<material name="ColorGradingMaterial" vertex_type="ColorGrading" >
-	</material>
-
+	<material name="test_bump" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="diffuse" filename="data\textures\leaf-texture.jpg" />
+		<texture type="bump" filename="data\textures\NormalMap.png" />
+		<parameter type="float" name="bump" value="99.9999" />
+</material>
 	
 </materials>

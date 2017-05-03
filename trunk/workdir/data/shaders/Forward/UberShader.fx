@@ -135,9 +135,6 @@ PS_INPUT VS( VS_INPUT IN )
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-	
-    float g_SpecularExponent = 80.0;
-    float g_SpecularContrib = 1.0;
     float3 pixelColor = m_RawData[0].xyz;
     float3 l_LAmbient = m_LightAmbient.xyz;
 
@@ -150,39 +147,31 @@ float4 PS(PS_INPUT IN) : SV_Target
     float3 l_LDiffuseSpecular = float3(0.0, 0.0, 0.0);
     float3 l_LDiffuseSpecularTmp = float3(0.0, 0.0, 0.0);
   
-	
-
     #if USE_UV
 		pixelColor = (DiffuseTexture.Sample(LinearSampler, IN.UV) * float4(pixelColor, 1.0)).xyz;
 		#if USE_UV2
 			float4 l_LightmapPixel = LightmapTexture.Sample(LightmapSampler, IN.UV2) * 2;
 			l_LAmbient = l_LAmbient * l_LightmapPixel;
 			//pixelColor = l_LightmapPixel.xyz * pixelColor;
+			return float4(1.0, 1.0, 0.0, 1.0);
 		#endif
 		#if USE_BUMP
 		 	float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
 		 	l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
 	    	l_Normal = normalize(l_Normal);
+			return float4(0.0, 0.0, 1.0, 1.0);
 	 	#endif 
  	#endif
-
-
-
- 	
-	l_LAmbient = l_LAmbient * pixelColor;
 	
- 	for(int i = 0; i<MAX_LIGHTS_BY_SHADER; i++)
+	l_LAmbient = l_LAmbient * pixelColor;
+ 	for(int i = 0; i<1; ++i)
     {
         CalculateSingleLight(i, l_Normal, l_WorldPos, pixelColor,l_DiffuseTmp, l_SpecularTmp);
-
-        l_LDiffuseSpecularTmp = l_DiffuseTmp + l_SpecularTmp;
-        l_LDiffuseSpecular = l_LDiffuseSpecular + l_LDiffuseSpecularTmp;
-
+        l_LDiffuseSpecular += l_DiffuseTmp + l_SpecularTmp;
+		
         l_DiffuseTmp =	float3(0.0, 0.0, 0.0);
         l_SpecularTmp =	float3(0.0, 0.0, 0.0);
     }
 
     return float4(l_LAmbient+l_LDiffuseSpecular,1.0);
-
-    
 }

@@ -2,12 +2,13 @@
 	<begin_render/>
 	<set_depth_stencil_state enable_z_test = "true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	<set_rasterizer_state cull_mode="front" clock_wise="1" type="solid"/> <!-- type  -->
-
 	
+	SHADOW MAPPING - NO FUNCIONA AÚN
+	<!--
 	<apply_technique_pool pool_name="shadow_map"/>
 	<generate_shadow_maps />
-	<unset_render_target/>
-
+	-->
+	
 	<set_per_frame_constants name="set_per_frame_cmd"/>
 	
 	<set_render_target name="deferred_multiple_render_target">
@@ -20,7 +21,6 @@
 	<clear render_target="true" depth_stencil="true" color="0.0 0.0 0.0 0.0"/>
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	<apply_technique_pool pool_name="deferred"/>
-	<render_layer layer="deferred_opaque"/>
 
 	<unset_render_target/>
 		
@@ -40,16 +40,15 @@
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	
 	<apply_technique_pool pool_name="forward"/>	
+	<render_layer layer="deferred_opaque"/>
 	<render_layer layer="Principal"/>
-	
+	SKYBOX
 	<apply_technique_pool pool_name="skybox"/>
 	<render_layer layer="Skybox"/>
 
+	POST-PROCESS
 	<capture_frame_buffer name="capture_frame_buffer" texture_width_as_frame_buffer="true" />
-
-
 	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>
-
 	<apply_technique_pool pool_name="post_process"/>
 			
 	FOG
@@ -81,7 +80,6 @@
 		<dynamic_texture name="Gaussian1" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
 		<dynamic_texture name="Gaussian" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
 	</apply_filter>
-	
 	
 	<apply_technique_pool pool_name="quad"/>
 	
@@ -155,7 +153,7 @@
 	FIN COLORGRADING
 
 	
-	
+	<!--
 	<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />
 	-->
 	

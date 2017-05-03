@@ -6,6 +6,8 @@
 #include "Graphics/Lights/DirectionalLight.h"
 #include "Graphics/Scenes/Scene.h"
 #include "Graphics/Scenes/SceneManager.h"
+#include "Graphics/Textures/TextureManager.h"
+
 
 CGenerateShadowMaps::CGenerateShadowMaps() {}
 CGenerateShadowMaps::~CGenerateShadowMaps() {}
@@ -19,10 +21,11 @@ bool CGenerateShadowMaps::Load(const CXMLElement* aElement)
 void CGenerateShadowMaps::Execute(CRenderManager& lRM)
 {
     CLightManager& lLM = CEngine::GetInstance().GetLightManager();
+    CLight* lLight;
 
     for (int i = 0; i < lLM.GetCount(); ++i)
     {
-        CLight* lLight = lLM.GetLightByIdx(i);
+        lLight = lLM.GetLightByIdx(i);
         if (lLight->GetGenerateShadowMap() && lLight->GetActive())
             // TODO Añadir condición dentro frustum + luz en escena activa
         {
@@ -37,7 +40,7 @@ void CGenerateShadowMaps::Execute(CRenderManager& lRM)
                 if (lLayer)
                     lLayer->Render();
             }
-            lRM.ResetViewport();
+
             lRM.UnsetRenderTargets();
         }
     }
