@@ -14,7 +14,8 @@ public:
     CCameraController() :
         m_Position(0, 0, 0),
         m_Front(0, 0, 1),
-        m_Up(0, 1, 0) {}
+        m_Up(0, 1, 0),
+        m_CameraInfo(0.1f, 1.0f, 0.2, 0) {}
 
     virtual ~CCameraController() {}
     virtual void Update(float ElapsedTime) = 0;
@@ -39,6 +40,11 @@ public:
         return m_Position;
     }
 
+    Vect4f getCameraInfo()
+    {
+        return m_CameraInfo;
+    }
+
     void setFront(Vect3f front)
     {
         m_Front = front;
@@ -54,10 +60,16 @@ public:
         m_Position = pos;
     }
 
+    void setCameraInfo(Vect4f info)
+    {
+        m_CameraInfo = info;
+    }
+
 protected:
     Vect3f 					m_Position;
     Vect3f 					m_Front;
     Vect3f 					m_Up;
+    Vect4f 					m_CameraInfo;
 
     float clamp(float x, float upper, float lower)
     {

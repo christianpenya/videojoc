@@ -7,6 +7,7 @@
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
+#include "Graphics/Effects/Effect.h"
 #endif
 
 
@@ -22,6 +23,8 @@ public:
     virtual void Bind(ID3D11DeviceContext* aContext);
     virtual void BindVS(ID3D11DeviceContext* aContext, uint32 aBufferID);
     virtual void BindPS(ID3D11DeviceContext* aContext, uint32 aBufferID);
+    virtual void BindGS(ID3D11DeviceContext* aContext, uint32 aBufferID);
+
     virtual void Update(ID3D11DeviceContext* aContext, void* aRawData);
 
     void * GetRawData() const

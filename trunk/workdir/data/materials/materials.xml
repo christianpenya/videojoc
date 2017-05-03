@@ -37,5 +37,15 @@
 	<material name="GaussianMaterial" vertex_type="Gaussian" >
 	</material>
 
+	<material name="HdaoMaterial" vertex_type="Hdao" >
+	</material>
+	
+	<material name="ElectricMaterial" vertex_type="ParticleVertex" >
+		<texture filename="data\particles\fire.dds" />
+		<parameter type="vect2f" name="sprite_size" value="2.0 2.0" />
+		<parameter type="float" name="lerp_sprite" value="1.0" />
+		<parameter type="float" name="ratio_y" value="1.0" />
+	</material>
+	
 	
 </materials>

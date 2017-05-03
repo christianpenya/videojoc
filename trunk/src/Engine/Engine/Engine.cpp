@@ -19,6 +19,8 @@
 #include "Scripts/ScriptManager.h"
 #include "Graphics/Cinematics\CinematicsManager.h"
 #include "Physx/PhysxManager.h"
+#include "Graphics/Particles/ParticleManager.h"
+
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
@@ -41,6 +43,7 @@ CEngine::CEngine()
     , m_ScriptManager(nullptr)
     , m_CinematicManager(nullptr)
     , m_PhysXManager(nullptr)
+    , m_ParticleManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
@@ -71,6 +74,7 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_ActionManager);
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
+    base::utils::CheckedDelete(m_ParticleManager);
 }
 
 void CEngine::LoadFiles()
@@ -147,6 +151,11 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load("data/cinematics.xml");
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
+    m_ParticleManager = new CParticleManager();
+    m_ParticleManager->Load(m_FileParticleManager);
+    LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
+
+
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
@@ -177,6 +186,7 @@ void CEngine::Init(HWND hWnd)
         m_FileTextureManager = call_function<std::string>(mLS, "getFileTexture");
         m_FileActionManager = call_function<std::string>(mLS, "getActionManager");
         m_FileRenderPipeline = call_function<std::string>(mLS, "getRenderPipeline");
+        m_FileParticleManager = call_function<std::string>(mLS, "getFileParticleManager");
         LOG_INFO_APPLICATION("Engine -> Lua Finished! (/.__.)/ \\(.__.\\)");
 
         LoadFiles();

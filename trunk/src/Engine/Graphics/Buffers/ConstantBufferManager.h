@@ -23,7 +23,8 @@ struct PerFrameDesc
     Vect4f m_CameraUpVector;
     Mat44f m_InverseView;
     Mat44f m_InverseProjection;
-    Vect4u m_TimeSeconds;
+    Vect4f m_CameraInfo; //x = near, y = far, z = fov, w = aspect ratio
+    Vect4f m_TimeSeconds;
 };
 
 struct PerLightsDesc

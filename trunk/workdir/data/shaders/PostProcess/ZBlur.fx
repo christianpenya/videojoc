@@ -14,8 +14,8 @@ static float m_ZBlurActive = 1.0; //m_RawDataValues[0];
 static float m_ZBlurShowDepths = 1.0; // m_RawDataValues[1];
 static float m_ZBlurConstantBlur = 0.3; // m_RawDataValues[2];
 static float m_ZBlurFocalStart = 0.1; // m_RawDataValues[3];
-static float m_ZBlurFocalEnd = 0.5; //m_RawDataValues[4];
-static float m_ZBlurEnd = 1.0; // m_RawDataValues[5];
+static float m_ZBlurFocalEnd = 0.2; //m_RawDataValues[4];
+static float m_ZBlurEnd = 0.8; // m_RawDataValues[5];
 
 float4 GetZBlurColor(float Distance, float4 SourceColor, float4 BlurColor)
 {
@@ -27,38 +27,52 @@ float4 GetZBlurColor(float Distance, float4 SourceColor, float4 BlurColor)
         l_Blur=max(1.0-(Distance-m_ZBlurFocalEnd)/m_ZBlurEnd, m_ZBlurConstantBlur);
 
     if(l_Blur<1.0)
+	{
         return BlurColor*(1-l_Blur)+l_Blur*SourceColor;
-    else
+    }else
+	{	
         return SourceColor;
+	}
 }
 
-
-float3 GetPositionFromZDepthViewInViewCoordinates(float ZDepthView, float2 UV, float4x4 InverseProjection)
+float4 GetZBlurColorDistance(float Distance, float4 SourceColor)
 {
-	// Get the depth value for this pixel
-	// Get x/w and y/w from the viewport position
-	float x = UV.x * 2 - 1;
-	float y = (1 - UV.y) * 2 - 1;
-	float4 l_ProjectedPos = float4(x, y, ZDepthView, 1.0);
-	// Transform by the inverse projection matrix
-	float4 l_PositionVS = mul(l_ProjectedPos, InverseProjection);
-	// Divide by w to get the view-space position
-	return l_PositionVS.xyz / l_PositionVS.w;
+	if(Distance<m_ZBlurFocalStart)
+		return SourceColor*float4(1,0,0,1);
+	else if(Distance<m_ZBlurFocalEnd)
+		return SourceColor*float4(0,1,0,1);
+	else if(Distance<m_ZBlurEnd)
+		return SourceColor*float4(0,0,1,1);
+	
+	return SourceColor*float4(1,1,0,1);
 }
 
-float3 GetPositionFromZDepthView(float ZDepthView, float2 UV, float4x4 InverseView, float4x4 InverseProjection)
+void GetNearFarFromProjectionMatrixB(out float Near, out float Far, float4x4 ProjectionMatrix)
 {
-	float3 l_PositionView=GetPositionFromZDepthViewInViewCoordinates(ZDepthView, UV, InverseProjection);
-	return mul(float4(l_PositionView,1.0), InverseView).xyz;
+	Near=ProjectionMatrix[3].z/ProjectionMatrix[2].z;
+	Far=(Near*ProjectionMatrix[2].z/ProjectionMatrix[2].w)/((ProjectionMatrix[2].z/ProjectionMatrix[2].w)-1.0);
 }
 
 float4 ZBlurPS(PS_INPUT IN) : SV_Target
 {
-
-    float4 l_SourceColor=T0Texture.Sample(S0Sampler, IN.UV);
+	float4 l_SourceColor=T0Texture.Sample(S0Sampler, IN.UV);
 	float l_Depth=T2Texture.Sample(S2Sampler, IN.UV).r;
-    float3 l_WorldPosition=GetPositionFromZDepthView(l_Depth, IN.UV, m_InverseView, m_InverseProjection);
+	float3 l_WorldPosition=GetPositionFromZDepthView(l_Depth, IN.UV, m_InverseView, m_InverseProjection);
 	float3 l_CameraPosition=m_InverseView[3].xyz;
-    float l_Distance=length(l_WorldPosition-l_CameraPosition);	
-    return GetZBlurColor(l_Distance, l_SourceColor, T1Texture.Sample(S1Sampler, IN.UV));
+	float l_Distance=length(l_WorldPosition-l_CameraPosition);
+	if(l_Depth==0.0)
+	{
+		//return float4(1,0,0,1);
+		float l_Near;
+		GetNearFarFromProjectionMatrixB(l_Near, l_Distance, m_Projection);
+	}
+	if(m_ZBlurShowDepths)
+	{
+		//return float4(0,1,0,1);
+		return GetZBlurColorDistance(l_Distance, l_SourceColor);
+	}else
+	{
+		//return float4(0,0,1,1);
+		return GetZBlurColor(l_Distance, l_SourceColor, T1Texture.Sample(S1Sampler,IN.UV));
+	}	
 }

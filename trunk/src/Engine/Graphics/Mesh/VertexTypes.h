@@ -146,6 +146,25 @@ struct PositionWeightIndicesNormalUV
     END_INPUT_LAYOUT
 };
 
+
+struct ParticleVertex
+{
+    POSITION;
+    UV;
+    UV2;
+    COLOR;
+    GET_VERTEX_FLAGS(ePosition | eUV | eUV2 | eColor);
+    BEGIN_INPUT_LAYOUT
+    {
+        LAYOUT_POSITION(0),
+        LAYOUT_UV(24),
+        LAYOUT_UV2(24),
+    }
+    END_INPUT_LAYOUT
+};
+
+
+
 uint32 GetVertexSize(uint32 aVertexFlags);
 bool CreateInputLayout(CRenderManager &aRenderManager, uint32 aVertexFlags, ID3DBlob * aBlob, ID3D11InputLayout ** aVertexLayout);
 uint32 GetFlagsFromString(const std::string& aString);

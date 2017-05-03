@@ -37,6 +37,10 @@ uint32 VertexTypes::GetVertexSize(uint32 aVertexFlags)
     {
         return sizeof(PositionWeightIndicesNormalUV);
     }
+    else if (aVertexFlags == ParticleVertex::GetVertexFlags())
+    {
+        return sizeof(ParticleVertex);
+    }
 
 #ifdef _DEBUG
     assert(!"Invalid vertex flags");
@@ -88,6 +92,12 @@ bool CreateInputLayout(CRenderManager &aRenderManager, uint32 aVertexFlags, ID3D
         VertexTypes::PositionWeightIndicesNormalUV::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
         lOk = true;
     }
+    else if (aVertexFlags == ParticleVertex::GetVertexFlags())
+    {
+        VertexTypes::ParticleVertex::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
+        lOk = true;
+    }
+
 
 #ifdef _DEBUG
     if (!lOk)
@@ -135,6 +145,13 @@ uint32 GetFlagsFromString(const std::string& aString)
         lOut = PositionWeightIndicesNormalUV::GetVertexFlags();
 
     }
+    else if (aString == "ParticleVertex")
+    {
+
+        lOut = ParticleVertex::GetVertexFlags();
+
+    }
+
 
 #ifdef _DEBUG
     if (!lOut)
