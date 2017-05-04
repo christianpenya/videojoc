@@ -6,6 +6,7 @@
 #include "Utils\CheckedDelete.h"
 #include "Utils\CheckedRelease.h"
 #include "Render\RenderManager.h"
+#include "Utils/Logger.h"
 
 static std::string sShadersDirectory = "data/shaders/";
 
@@ -62,11 +63,10 @@ ID3DBlob* CompileShader( const std::string& aShader,
 
     if (FAILED(lHR))
     {
-        //TODO
-        //LOG_ERROR_APPLICATION("Error compiling shader\n\n");
+        LOG_ERROR_APPLICATION("Error compiling shader\n\n");
         if (lErrorBlob)
         {
-            //LOG_ERROR_APPLICATION("%s\n --------- %s \n ---------", (char*)lErrorBlob->GetBufferPointer(), aShader.c_str());
+            LOG_ERROR_APPLICATION("%s\n --------- %s \n ---------", (char*)lErrorBlob->GetBufferPointer(), aShader.c_str());
         }
         char *l_Error = (char*)lErrorBlob->GetBufferPointer();
         base::utils::CheckedRelease(lErrorBlob);

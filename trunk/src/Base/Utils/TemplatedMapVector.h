@@ -43,6 +43,11 @@ public:
         return m_ResourcesVector.size();
     }
 
+    std::vector<T *> GetResourcesVector()
+    {
+        return m_ResourcesVector;
+    }
+
     bool Exist(const std::string &aName)
     {
         return m_ResourcesMap.find(aName) != m_ResourcesMap.end();
@@ -99,6 +104,8 @@ public:
         CheckedDelete(m_ResourcesVector);
         Clear();
     }
+
+
 
 protected:
     TVectorResources m_ResourcesVector;

@@ -6,11 +6,11 @@
 
 CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     : CTexture(TreeNode->GetAttribute<std::string>("name", ""))
-    , m_CreateDepthStencilBuffer( TreeNode->GetAttribute<bool>("create_depth_stencil_buffer", false) )
     , m_pRenderTargetTexture(nullptr)
     , m_pRenderTargetView(nullptr)
     , m_pDepthStencilBuffer(nullptr)
     , m_pDepthStencilView(nullptr)
+    , m_CreateDepthStencilBuffer( TreeNode->GetAttribute<bool>("create_depth_stencil_buffer", false) )
 {
     assert(TreeNode);
 
@@ -19,10 +19,7 @@ CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
 
     if (TreeNode->GetAttribute<bool>("texture_width_as_frame_buffer", false))
     {
-        //TODO de dónde sacamos este valor
-//        CEngine::GetInstance().GetRenderManager().
-        m_Size = Vect2u(1024, 768);
-        //lRenderManager.DebugVertexBufferSize; // TODO: Obtain the size of the FB from the render manager No se si es esto correcto
+        m_Size = CEngine::GetInstance().GetRenderManager().GetWindowSize();
     }
     else
     {
@@ -30,6 +27,23 @@ CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     }
     Init();
 }
+
+CDynamicTexture::CDynamicTexture(std::string aName, Vect2u aSize)
+    : CTexture(aName)
+    , m_pRenderTargetTexture(nullptr)
+    , m_pRenderTargetView(nullptr)
+    , m_pDepthStencilBuffer(nullptr)
+    , m_pDepthStencilView(nullptr)
+    , m_CreateDepthStencilBuffer(false)
+{
+
+    if (!EnumString<TFormatType>::ToEnum(m_FormatType, "RGBA8_UNORM"))
+        LOG_ERROR_APPLICATION("Invalid format type for dynamic texture");
+
+    m_Size = aSize;
+    Init();
+}
+
 
 CDynamicTexture::~CDynamicTexture()
 {

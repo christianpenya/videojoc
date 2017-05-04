@@ -11,7 +11,7 @@
 #include "Graphics/Textures/TextureManager.h"
 #include "Engine\Engine.h"
 #include "Graphics/Effects\Technique.h"
-#include "Graphics/Effects\TechniquePoolManager.h"
+#include "Graphics/Effects/TechniquePoolManager.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
 
 CMaterial::~CMaterial()
@@ -28,8 +28,16 @@ CMaterial::~CMaterial()
 CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
 {
     CEngine &l_Engine = CEngine::GetInstance();
+    CTechniquePoolManager &l_TechniquePoolManager = l_Engine.GetTechniquePoolManager();
 
-    mTechnique = l_Engine.GetTechniquePoolManager()(aElement->GetAttribute<std::string>("vertex_type", ""));
+    std::string lVertexType = aElement->GetAttribute<std::string>("vertex_type", "");
+    std::string lEffect = aElement->GetAttribute<std::string>("effect", "");
+
+    mTechnique = l_TechniquePoolManager(lVertexType);
+    mTechnique = l_TechniquePoolManager(lEffect);
+
+
+    mTechnique = strcmp(lEffect.c_str(), "") == 0 ? l_TechniquePoolManager(lVertexType) : l_TechniquePoolManager(lEffect);
 
     for (tinyxml2::XMLElement *iTextureOrParameter = aElement->FirstChildElement(); iTextureOrParameter != nullptr; iTextureOrParameter = iTextureOrParameter->NextSiblingElement())
     {
@@ -98,9 +106,19 @@ void CMaterial::Apply()
     }
 
     CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
-
     for (size_t i = 0, lCount = mParameters.size(); i < lCount; ++i)
     {
+
+        /*****************************************************************************
+        SWITCH COLOCANDO PROPIEDADES DE MATERIALES EN EL CONSTANT BUFFER
+        Cuidado con colocar dos propiedades que puedan coexistir en un mismo material
+        en la misma casilla del vector!
+        Posiciones ocupadas del vector:
+        [0] -> COLOR DIFUSO
+        [1] -> BUMP, PROPIEDADES DE EFECTO DE POSTPROCESADO
+        [2] -> REBOTES DE LUZ ESPECULAR
+        *****************************************************************************/
+
         switch (mParameters[i]->GetType())
         {
         case eFloat:
@@ -108,13 +126,25 @@ void CMaterial::Apply()
             if (mParameters[i]->GetName() == "bump")
             {
                 float *lBump = (float*)mParameters[i]->GetAddr(0);
-                const Vector4<float> bumpVector = Vector4<float>(*lBump, 0.0f, 0.0f, 0.0f);
-                lCBM.mMaterialDesc.m_RawData[1] = bumpVector;
+                const Vect4f lBumpVector = Vect4f(*lBump, 0.0f, 0.0f, 0.0f);
+                lCBM.mMaterialDesc.m_RawData[1] = lBumpVector;
             }
         }
-
         break;
         case eFloat2:
+            if (mParameters[i]->GetName() == "fog_start_end")
+            {
+                float *lFogStart = (float*)mParameters[i]->GetAddr(0);
+                float *lFogEnd = (float*)mParameters[i]->GetAddr(1);
+                lCBM.mMaterialDesc.m_RawData[1] = Vect4f(*lFogStart, *lFogEnd, 1.0f, 1.0f);
+            }
+            else if (mParameters[i]->GetName() == "specular_exponent_contrib")
+            {
+                float *lSpecularExponent = (float*)mParameters[i]->GetAddr(0);
+                float *lSpecularContrib = (float*)mParameters[i]->GetAddr(1);
+                lCBM.mMaterialDesc.m_RawData[2] = Vect4f(*lSpecularExponent, *lSpecularContrib, 1.0f, 1.0f);
+            }
+
             break;
         case eFloat3:
             break;
@@ -125,7 +155,7 @@ void CMaterial::Apply()
             float *g = (float*) mParameters[i]->GetAddr(1);
             float *b = (float*) mParameters[i]->GetAddr(2);
 
-            const Vector4<float> lDiffuseColor = Vector4<float>(*r, *g, *b, 1.0f);
+            const Vect4f lDiffuseColor = Vect4f(*r, *g, *b, 1.0f);
             lCBM.mMaterialDesc.m_RawData[0] = lDiffuseColor;
             break;
         }

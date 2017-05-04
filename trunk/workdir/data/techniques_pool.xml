@@ -1,15 +1,7 @@
 <technique_pools>
-
-<!--	<pool name="forward">
-	 <technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
-	 <technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
-	 <technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2TechniqueForward"/>
-	 <technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
-	</pool>-->
 	
 	<default_pool>
 		<technique vertex_type="PositionUV"/>
-		<technique vertex_type="PositionNormal"/>
 		<technique vertex_type="PositionNormal" />
 		<technique vertex_type="PositionNormalUV" />
 		<technique vertex_type="PositionNormalUVUV2" />
@@ -18,7 +10,17 @@
 		<technique vertex_type="PositionBumpUVUV2" />
 		<technique vertex_type="PositionWeightIndicesNormalUV"/>
 		<technique vertex_type="Quad"/>
-	</default_pool>
+		<technique vertex_type="DeferredQuad"/>
+		<technique name="NoiseVignetting" />
+		<technique name="Fog" />
+		<technique name="ZBlur" />
+		<technique name="Bloom" />
+		<technique name="BloomCombine" />
+		<technique name="Gaussian" />
+		<technique name="Hdao" />
+		<technique name="ColorGrading" />
+		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique" />
+  </default_pool>
 
 	<pool name="forward">
 		<technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>
@@ -43,7 +45,17 @@
 	</pool>
 	
 	<pool name="post_process">
-		<technique vertex_type="Quad" effect="NoiseVignetting"/>
+		<technique name="NoiseVignetting" effect="NoiseVignettingTechnique"/>
+		<technique name="Fog" effect="FogTechnique"/>
+		<technique name="ZBlur" effect="ZBlurTechnique" />
+		<technique name="Gaussian" effect="GaussianTechnique" />
+		<technique vertex_type="Quad" effect="QuadTechnique"/>
+		<technique name="Bloom" effect="BloomTechnique" />
+		<technique name="BloomCombine" effect="BloomCombineTechnique" />
+		<technique name="Hdao" effect="HdaoTechnique" />
+		<technique name="ColorGrading" effect="ColorGradingTechnique" />
+		<technique name="ParticleVertex" effect="ParticleVertexTechnique" />
+
 	</pool>
 	
 	<pool name="skybox">
@@ -52,7 +64,7 @@
 
 	<pool name="quad">
 		<technique vertex_type="Quad" effect="QuadTechnique"/>
+		<technique vertex_type="DeferredQuad" effect="DeferredQuadTechnique"/>
 	</pool>
-
 	
 </technique_pools>

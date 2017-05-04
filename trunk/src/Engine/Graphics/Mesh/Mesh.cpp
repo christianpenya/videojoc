@@ -78,6 +78,14 @@ CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsi
                    new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
                );
     }
+    else if (aVertexFlags == VertexTypes::ParticleVertex::GetVertexFlags())
+    {
+        return new CIndexedGeometryTriangleList<VertexTypes::ParticleVertex>
+               (
+                   new CVertexBuffer<VertexTypes::ParticleVertex>(aRM, aVertexData, aNumVertices),
+                   new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
+               );
+    }
 
     return false;
 }

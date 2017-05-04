@@ -3,18 +3,24 @@
 #include "Engine\Engine.h"
 #include "Render\RenderManager.h"
 
+CCaptureFrameBufferTexture::CCaptureFrameBufferTexture():
+    CTexture(""),
+    m_DataTexture(nullptr)
+{}
+
 CCaptureFrameBufferTexture::CCaptureFrameBufferTexture(const CXMLElement *TreeNode)
-    : CTexture(""/*TODO*/)
+    : CTexture(TreeNode->GetAttribute<std::string>("name", "")),
+      m_DataTexture(nullptr)
 {
     if (TreeNode->GetAttribute<bool>("texture_width_as_frame_buffer", false))
     {
-        // TODO: Obtain the size of the FB from the render manager
-        // NO TOCAR; HASTA QUE UN ADULTO LO DIGA
+        m_Size = CEngine::GetInstance().GetRenderManager().GetWindowSize();
     }
     else
     {
         m_Size = TreeNode->GetAttribute<Vect2u>("size", Vect2u(0,0));
     }
+
     Init();
 }
 
@@ -30,7 +36,7 @@ void CCaptureFrameBufferTexture::Init()
 
     ID3D11Texture2D *l_Buffer = NULL;
 
-//    l_RenderManager.GetSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&l_Buffer);
+    l_RenderManager.GetSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&l_Buffer);
 
     D3D11_TEXTURE2D_DESC l_Texture2DDescription;
     l_Texture2DDescription.Width = m_Size.x;
@@ -81,12 +87,14 @@ bool CCaptureFrameBufferTexture::CreateSamplerState()
 
 bool CCaptureFrameBufferTexture::Capture(unsigned int StageId)
 {
-
     CRenderManager &l_RenderManager = CEngine::GetInstance().GetRenderManager();
     ID3D11Texture2D *l_Surface = nullptr;
-//    HRESULT l_HR = l_RenderManager.GetSwapChain()->GetBuffer(StageId, __uuidof(ID3D11Texture2D), reinterpret_cast< void** >(&l_Surface));
-//    if (FAILED(l_HR) || l_Surface == nullptr || m_DataTexture == nullptr)
-//        return false;
+    HRESULT l_HR = l_RenderManager.GetSwapChain()->GetBuffer(StageId, __uuidof(ID3D11Texture2D), reinterpret_cast< void** >(&l_Surface));
+
+    if (FAILED(l_HR) || l_Surface == nullptr || m_DataTexture == nullptr)
+        return false;
+
     l_RenderManager.GetDeviceContext()->CopyResource(m_DataTexture, l_Surface);
+
     return true;
 }

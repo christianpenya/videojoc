@@ -1,4 +1,4 @@
-<effects>
+<effects>   
 	<!-- FORWARD -->
   <effect name="PositionNormalTechniqueForward" shader_family="PositionNormalForward">
    <shader stage="vertex"   name="PositionNormalForward"/>
@@ -26,14 +26,67 @@
    <shader stage="vertex"   name="PositionNormalDeferred"/>
    <shader stage="pixel"    name="PositionNormalDeferred"/>
   </effect>
+   <effect name="PositionNormalUVTechniqueDeferred" shader_family="PositionNormalUVDeferred">
+   <shader stage="vertex"   name="PositionNormalUVDeferred"/>
+   <shader stage="pixel"    name="PositionNormalUVDeferred"/>
+  </effect>
+  <effect name="PositionNormalUVUV2TechniqueDeferred" shader_family="PositionNormalUVUV2Deferred">
+   <shader stage="vertex"   name="PositionNormalUVUV2Deferred"/>
+   <shader stage="pixel"    name="PositionNormalUVUV2Deferred"/>
+  </effect>
+  <effect name="PositionBumpUVTechniqueDeferred" shader_family="PositionBumpUVDeferred">
+   <shader stage="vertex"   name="PositionBumpUVDeferred"/>
+   <shader stage="pixel"    name="PositionBumpUVDeferred"/>
+  </effect>
+  <effect name="AnimatedModelTechniqueDeferred"  shader_family="AnimatedModelDeferred">
+	<shader stage="vertex" name="AnimatedModelDeferred"/>
+	<shader stage="pixel" name="AnimatedModelDeferred"/>
+  </effect>
   
   <!-- POST PROCESS -->
-   <effect name="NoiseVignetting" shader_family="NoiseVignetting">
+  <effect name="NoiseVignettingTechnique" shader_family="NoiseVignetting">
    <shader stage="vertex"   name="NoiseVignetting"/>
    <shader stage="pixel"    name="NoiseVignetting"/>
   </effect>
+  <effect name="FogTechnique" shader_family="Fog">
+   <shader stage="vertex"   name="Fog"/>
+   <shader stage="pixel"    name="Fog"/>
+  </effect>
+  <effect name="ZBlurTechnique" shader_family="ZBlur">
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="ZBlur"/>
+  </effect>
+  <effect name="BloomTechnique" shader_family="Bloom">
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="Bloom"/>
+  </effect>
+  <effect name="BloomCombineTechnique" shader_family="BloomCombine">
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="BloomCombine"/>
+  </effect>
+  <effect name="GaussianTechnique" shader_family="Gaussian">
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="Gaussian"/>
+  </effect>  
   
-  <!-- OTER -->
+  <effect name="HdaoTechnique" shader_family="Hdao">
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="Hdao"/>
+  </effect>  
+  
+  <effect name="ParticleVertexTechnique" shader_family="ParticleVertex">
+   <shader stage="vertex"   name="ParticleVertex"/>
+   <shader stage="pixel"    name="ParticleVertex"/>
+   <shader stage="geometry" name="ParticleVertex"/>
+  </effect>
+  
+ <effect name="ColorGradingTechnique" shader_family="ColorGrading">
+	<shader stage="vertex"   name="Quad"/>
+	<shader stage="pixel"    name="ColorGrading"/>
+  </effect>  
+
+
+  <!-- OTHER -->
  <effect name="SkyboxTechnique" shader_family="Skybox">
    <shader stage="vertex"   name="Skybox"/>
    <shader stage="pixel"    name="Skybox"/>
@@ -42,6 +95,12 @@
    <shader stage="vertex"   name="Quad"/>
    <shader stage="pixel"    name="Quad"/>
   </effect>
+  
+  <effect name="DeferredQuadTechnique" shader_family="DeferredQuad">
+   <shader stage="vertex"   name="DeferredQuad"/>
+   <shader stage="pixel"    name="DeferredQuad"/>
+  </effect>
+    
  </effects>
  
  

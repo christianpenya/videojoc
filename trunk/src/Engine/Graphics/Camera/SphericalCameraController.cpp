@@ -1,8 +1,22 @@
 #include "SphericalCameraController.h"
+#include "Input/ActionManager.h"
+#include "Engine/Engine.h"
 
 void CSphericalCameraController::Update(float ElapsedTime)
 {
+    CActionManager* actionManager = &CEngine::GetInstance().GetActionManager();
+    zoomSpeed = (*actionManager)("zoom")->value;
 
+    if ((*actionManager)("enable_rotation")->active)
+    {
+        yawSpeed = 0.1f * (*actionManager)("pitch")->value;
+        pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
+    }
+    else
+    {
+        yawSpeed = 0.0;
+        pitchSpeed = 0.0;
+    }
     yaw += yawSpeed * ElapsedTime;
     pitch += pitchSpeed * ElapsedTime;
     roll += rollSpeed * ElapsedTime;
@@ -36,4 +50,5 @@ void CSphericalCameraController::Update(float ElapsedTime)
     // TODO roll
 
     m_Position = center - m_Front * zoom;
+
 }

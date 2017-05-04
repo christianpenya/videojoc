@@ -10,7 +10,7 @@ bar["key"] = "there"
 f_ShaderManager = "data/shaders.xml"
 f_Effects = "data/effects.xml"
 f_TPManager = "data/techniques_pool.xml"
-f_LevelMaterial = "data/materials/reclusion.xml"
+f_LevelMaterial = "data/materials/materials.xml"
 f_DefaultMaterial = "data/materials/default.xml"
 f_Texture = "data/textures/BARK5.jpg"
 f_AnimatedModel = "data/animated_models.xml"
@@ -18,6 +18,7 @@ f_LightManager = "data/lights.xml"
 f_SceneManager = "data/scenes.xml"
 f_ActionManager = "data/config/input_config.xml"
 f_RenderPipeline = "data/render_pipeline.xml"
+f_ParticleManager = "data/particles.xml"
 
 function getFileShaderManager()
 	return f_ShaderManager
@@ -61,4 +62,8 @@ end
 
 function getRenderPipeline()
 	return f_RenderPipeline
+end
+
+function getFileParticleManager()
+	return f_ParticleManager
 end

@@ -6,7 +6,7 @@
 
 CScene::CScene(const std::string& aName)
     : CName(aName),
-      m_Active(false)
+      CActive(false)
 {}
 
 CScene::~CScene()
@@ -17,14 +17,12 @@ CScene::~CScene()
 bool CScene::Load(const std::string& aFilename)
 {
     bool lOk = true;
-
     CXMLDocument document;
     EXMLParseError error = document.LoadFile((aFilename).c_str());
 
     if (base::xml::SucceedLoad(error))
     {
         CXMLElement * lScene = document.FirstChildElement("scene");
-
         if (lScene)
         {
             for (tinyxml2::XMLElement *iLayer = lScene->FirstChildElement(); iLayer != nullptr; iLayer = iLayer->NextSiblingElement())
@@ -34,6 +32,7 @@ bool CScene::Load(const std::string& aFilename)
                     CLayer* lLayer = new CLayer(iLayer->GetAttribute<std::string>("name", ""));
                     lLayer->SetActive(iLayer->GetAttribute<bool>("active", false));
                     lLayer->Load(iLayer);
+                    lLayer->SetParent(this);
                     lOk &= Add(lLayer->GetName(), lLayer);
                 }
             }
@@ -57,7 +56,6 @@ bool CScene::Update(float elapsedTime)
 
 bool CScene::Render()
 {
-    // #TODO: este render debe pintar todas las layers?
     bool lOk = true;
 
     for (TMapResources::iterator iLayer = m_ResourcesMap.begin(); iLayer != m_ResourcesMap.end(); ++iLayer)
@@ -76,7 +74,7 @@ bool CScene::Render(const std::string& aLayerName)
     {
         CLayer* lLayer = m_ResourcesMap.find(aLayerName)->second.m_Value;
 
-        if (lLayer->IsActive())
+        if (lLayer->GetActive())
         {
             lOk &= lLayer->Render();
         }
@@ -88,6 +86,18 @@ bool CScene::Render(const std::string& aLayerName)
 std::vector<CLayer*> CScene::GetLayers()
 {
     return m_ResourcesVector;
+}
+
+CLayer* CScene::GetLayerByName(std::string aName)
+{
+    CLayer* lOut = nullptr;
+
+    if (Exist(aName))
+    {
+        lOut = m_ResourcesMap[aName].m_Value;
+    }
+
+    return lOut;
 }
 
 void CScene::DrawImGui()

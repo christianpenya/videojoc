@@ -14,10 +14,10 @@ public:
     {
         D3D11_BUFFER_DESC lVertexBufferDesc;
         ZeroMemory(&lVertexBufferDesc, sizeof(lVertexBufferDesc));
-        lVertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+        lVertexBufferDesc.Usage = eDynamic ? D3D11_USAGE_DYNAMIC : D3D11_USAGE_DEFAULT;
         lVertexBufferDesc.ByteWidth = sizeof(TVertexType)*mNumVertexs;
         lVertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-        lVertexBufferDesc.CPUAccessFlags = 0;
+        lVertexBufferDesc.CPUAccessFlags = eDynamic ? D3D11_CPU_ACCESS_WRITE : 0;
         D3D11_SUBRESOURCE_DATA InitData;
         ZeroMemory(&InitData, sizeof(InitData));
         InitData.pSysMem = aRawData;
@@ -25,6 +25,7 @@ public:
         HRESULT l_HR = lDevice->CreateBuffer(&lVertexBufferDesc, &InitData, &m_pBuffer);
         assert(SUCCEEDED(l_HR));
     }
+
 
     virtual ~CVertexBuffer() {}
 
@@ -42,6 +43,7 @@ public:
     {
         return sizeof(TVertexType);
     }
+
 
 protected:
     uint32 mNumVertexs;

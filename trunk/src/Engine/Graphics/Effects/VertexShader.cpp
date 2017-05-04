@@ -3,6 +3,7 @@
 #include "Render/RenderManager.h"
 #include "Engine/Engine.h"
 #include "XML/tinyxml2/tinyxml2.h"
+#include "Utils/Logger.h"
 
 CVertexShader::CVertexShader(const std::string& aShaderCode, uint32 aVertexFlags) :
     CShader(aShaderCode, EShaderStage::eVertexShader),

@@ -6,6 +6,12 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "Utils/CheckedDelete.h"
+#include "Graphics/Effects/GeometryShader.h"
+#include "Graphics/Effects/PixelShader.h"
+#include "Graphics/Effects/VertexShader.h"
+#include "Engine/Engine.h"
+#include "Render/RenderManager.h"
+
 
 template< class TVertexType >
 class CTemplatedGeometry : public CGeometry
@@ -34,6 +40,25 @@ public:
 
         return true;
     }
+
+
+    bool UpdateVertex(void *Vtxs, unsigned int VtxsCount)
+    {
+        D3D11_MAPPED_SUBRESOURCE mappedResource;
+        ZeroMemory(&mappedResource, sizeof(mappedResource));
+
+        ID3D11DeviceContext *l_DeviceContext = CEngine::GetInstance().GetRenderManager().GetDeviceContext();
+        HRESULT l_HR = l_DeviceContext->Map(m_VertexBuffer->GetBuffer(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+        if (FAILED(l_HR))
+            return false;
+
+        memcpy(mappedResource.pData, Vtxs, sizeof(TVertexType) * VtxsCount);
+
+        l_DeviceContext->Unmap(m_VertexBuffer->GetBuffer(), 0);
+
+        return true;
+    }
+
 
 protected:
     CVertexBuffer<TVertexType> *m_VertexBuffer;

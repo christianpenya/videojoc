@@ -3,14 +3,14 @@
 #include "Engine\engine.h"
 #include "Graphics\Textures\TextureManager.h"
 #include "Graphics\Textures\Texture.h"
+#include "Render/RenderPipeline/CaptureFrameBufferTexture.h"
 
 CRenderStagedTexture::CRenderStagedTexture() :
-    m_ViewportSize(0),
-    m_ViewportPosition(0)
-    //TODO terminar de inicializar
+    m_ViewportSize(Vect2u(0,0)),
+    m_ViewportPosition(Vect2u(0, 0))
 {}
-CRenderStagedTexture::~CRenderStagedTexture() {}
 
+CRenderStagedTexture::~CRenderStagedTexture() {}
 //Leera el nodo
 //<dynamic_texture name="DiffuseMapTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format_type="RGBA8_UNORM"/>
 //<texture stage_id = "0" file = "DiffuseMapTexture" / >
@@ -22,16 +22,14 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
     CMaterialManager& lMaterialManager = CEngine::GetInstance().GetMaterialManager();
     CTextureManager& lTextureManager = CEngine::GetInstance().GetTextureManager();
 
-    // TODO este atributo parece no existir en el fichero
-    CMaterial* lMaterial = lMaterialManager(aElement->GetAttribute<std::string>("material", ""));
-
     for (tinyxml2::XMLElement const *iNTexture = aElement->FirstChildElement(); iNTexture != nullptr; iNTexture = iNTexture->NextSiblingElement())
     {
         if (strcmp(iNTexture->Name(), "dynamic_texture") == 0)
         {
+            CMaterial* lMaterial = lMaterialManager(iNTexture->GetAttribute<std::string>("material", ""));
             CDynamicTexture* l_DynamicTexture = new CDynamicTexture(iNTexture);
-            CDynamicTextureMaterial* l_DynamicTextureMaterial = new CDynamicTextureMaterial(l_DynamicTexture,lMaterial);
-            m_DynamicTexturesMaterials.push_back(l_DynamicTextureMaterial);
+            lTextureManager.AddTexture(*l_DynamicTexture);
+            AddDynamicTextureMaterial(l_DynamicTexture, lMaterial);
             m_RenderTargetViews.push_back(l_DynamicTexture->GetRenderTargetView());
         }
         else if (strcmp(iNTexture->Name(), "texture") == 0)
@@ -46,7 +44,6 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
     CreateRenderTargetViewVector();
 
     return lOk;
-
 }
 
 void CRenderStagedTexture::CreateRenderTargetViewVector()
@@ -61,11 +58,16 @@ void CRenderStagedTexture::ActivateTextures()
         m_StagedTextures[i]->Activate();
 }
 
-CRenderStagedTexture::CStagedTexture::CStagedTexture(uint32 aStageId, CTexture * aTexture)
+void CRenderStagedTexture::AddDynamicTextureMaterial(CDynamicTexture* aDynamicTexture, CMaterial* aMaterial)
 {
-    m_StageId = aStageId;
-    m_Texture = aTexture;
+    CDynamicTextureMaterial* l_DynamicTextureMaterial = new CDynamicTextureMaterial(aDynamicTexture, aMaterial);
+    m_DynamicTexturesMaterials.push_back(l_DynamicTextureMaterial);
 }
+
+CRenderStagedTexture::CStagedTexture::CStagedTexture(uint32 aStageId, CTexture * aTexture) :
+    m_StageId(aStageId),
+    m_Texture(aTexture)
+{}
 
 void CRenderStagedTexture::CStagedTexture::Activate()
 {

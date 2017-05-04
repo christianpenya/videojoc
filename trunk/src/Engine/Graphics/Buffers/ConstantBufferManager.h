@@ -23,6 +23,10 @@ struct PerFrameDesc
     Vect4f m_CameraPosition;
     Vect4f m_CameraFrontVector;
     Vect4f m_CameraUpVector;
+    Mat44f m_InverseView;
+    Mat44f m_InverseProjection;
+    Vect4f m_CameraInfo; //x = near, y = far, z = fov, w = aspect ratio
+    Vect4f m_TimeSeconds;
 };
 
 struct PerLightsDesc
@@ -61,6 +65,9 @@ struct PerAnimatedModelDesc
 struct PerMaterialDesc
 {
     Vect4f m_RawData[MAX_OBJECT_RAW_PARAMETER];
+    Vect2u m_ViewPosition[MAX_OBJECT_RAW_PARAMETER];
+    Vect2u m_ViewSize[MAX_OBJECT_RAW_PARAMETER];
+
 };
 
 class CConstantBufferManager

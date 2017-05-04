@@ -26,8 +26,7 @@ CSetRenderTarget::~CSetRenderTarget()
 
 bool CSetRenderTarget::Load(const CXMLElement* aElement)
 {
-    bool lOk = CRenderStagedTexture::Load(aElement);
-    return lOk;
+    return CRenderStagedTexture::Load(aElement);
 }
 
 

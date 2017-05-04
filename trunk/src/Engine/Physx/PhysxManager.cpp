@@ -447,11 +447,11 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
 
     physx::PxFilterData filterData;
     filterData.setToDefault();
-    filterData.word0 = filterMask;
+    filterData.word0 = 0000;
 
     physx::PxRaycastBuffer hit;
 
-    bool status = m_Scene->raycast(CastVec(origin), CastVec(dir), len, hit, physx::PxHitFlags(physx::PxHitFlag::eDEFAULT));//physx::PxQueryFilterData(filterData, physx::PxQueryFlag::eDYNAMIC | physx::PxQueryFlag::eSTATIC)
+    bool status = m_Scene->raycast(CastVec(origin), CastVec(dir), len, hit, physx::PxHitFlags(physx::PxHitFlag::eDEFAULT), physx::PxQueryFilterData(filterData, physx::PxQueryFlag::eDYNAMIC | physx::PxQueryFlag::eSTATIC));
     if (status && result_ != nullptr)
     {
         result_->position = Vect3f(hit.block.position.x, hit.block.position.y, hit.block.position.z);

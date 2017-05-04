@@ -1,29 +1,29 @@
 #include "CaptureFrameBuffer.h"
 #include "CaptureFrameBufferTexture.h"
 #include "XML\XML.h"
+#include "Engine/Engine.h"
+#include "Graphics/Textures/TextureManager.h"
 
-CCaptureFrameBuffer::CCaptureFrameBuffer():
-    m_CapturedFrameBufferTexture(nullptr)
-{}
-
+CCaptureFrameBuffer::CCaptureFrameBuffer(): m_CapturedFrameBufferTexture(nullptr) {}
 CCaptureFrameBuffer::~CCaptureFrameBuffer() {}
 
-/*Leerá el nodo :
+/*
+Leerá el nodo :
 <capture_frame_buffer name="capture_frame_buffer_fog" texture_width_as_frame_buffer="true"/>
 <capture_texture name = "DeferredCapturedTexture" texture_width_as_frame_buffer = "true" / >
-< / capture_frame_buffer>*/
-
+< / capture_frame_buffer>
+*/
 
 bool CCaptureFrameBuffer::Load(const CXMLElement* aElement)
 {
-    bool lOk = CRenderStagedTexture::Load(aElement);
-    if (lOk)
-    {
-        if (aElement->GetAttribute<bool>("texture_width_as_frame_buffer", true))
-        {
-            m_CapturedFrameBufferTexture->SetName(aElement->GetAttribute<std::string>("name", ""));
-        }
-    }
+    bool lOk = false;
+
+    //if (strcmp(aElement->Name(), "capture_frame_buffer") == 0)
+    //{
+    m_CapturedFrameBufferTexture = new CCaptureFrameBufferTexture(aElement);
+    lOk = CEngine::GetInstance().GetTextureManager().AddTexture(*m_CapturedFrameBufferTexture);
+    //}
+
     return lOk;
 }
 

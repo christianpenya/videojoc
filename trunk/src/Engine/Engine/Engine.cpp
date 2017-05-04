@@ -19,6 +19,8 @@
 #include "Scripts/ScriptManager.h"
 #include "Graphics/Cinematics\CinematicsManager.h"
 #include "Physx/PhysxManager.h"
+#include "Graphics/Particles/ParticleManager.h"
+
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
@@ -41,12 +43,13 @@ CEngine::CEngine()
     , m_ScriptManager(nullptr)
     , m_CinematicManager(nullptr)
     , m_PhysXManager(nullptr)
+    , m_ParticleManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
     , m_FPS (0.0)
-    , m_CameraSelector(0)
-    , m_PrevCameraSelector(0)
+    , m_CameraSelector(1)
+    , m_PrevCameraSelector(1)
 {}
 
 CEngine::~CEngine()
@@ -55,11 +58,12 @@ CEngine::~CEngine()
 
     // TODO Peta de mala manera
     // base::utils::CheckedDelete(m_PhysXManager);
+    // base::utils::CheckedDelete(m_RenderManager);
 
     base::utils::CheckedDelete(m_RenderPipeline);
     base::utils::CheckedDelete(m_CinematicManager);
     base::utils::CheckedDelete(m_SceneManager);
-    base::utils::CheckedDelete(m_LightManager);
+    //base::utils::CheckedDelete(m_LightManager);
     base::utils::CheckedDelete(m_MeshManager);
     base::utils::CheckedDelete(m_AnimatedModelManager);
     base::utils::CheckedDelete(m_MaterialManager);
@@ -71,6 +75,7 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_ActionManager);
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
+    base::utils::CheckedDelete(m_ParticleManager);
 }
 
 void CEngine::LoadFiles()
@@ -116,27 +121,7 @@ void CEngine::LoadFiles()
     LOG_INFO_APPLICATION("Engine -> Lights Loaded! \\(^-^)/");
 
     m_PhysXManager = CPhysXManager::CreatePhysXManager();
-
     const std::string material = "Default";
-
-    // EJ.3
-
-    /*
-    std::vector<PxVec3> vertices = { PxVec3(0, 1, 0), PxVec3(1, 0, 0), PxVec3(-1, 0, 0), PxVec3(0, 0, 1), PxVec3(0, 0, -1), PxVec3(0, -1, 0) };
-    std::vector<PxVec3> verticesMesh = { PxVec3(-5, -5, 0), PxVec3(-5, 5, 0), PxVec3(5, 5, 0), PxVec3(5, 5, 0), PxVec3(5, -5, 0), PxVec3(-5, -5, 0) };
-
-    m_PhysXManager->CreateStaticBox("static_box","Default", Quatf(0, 0, 0, 1), Vect3f(-4.0f, 4.0f, 0.0f), 1, 1, 1);
-    m_PhysXManager->CreateStaticSphere("static_sphere", "Default", Quatf(0, 0, 0, 1), Vect3f(4.0f, 4.0f, 0.0f), 0.5);
-    m_PhysXManager->CreateStaticShape("static_shape", "Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 4.0f, 4.0f), vertices);
-    m_PhysXManager->CreateStaticTriangleMesh("static_triangleMesh", "Default", Quatf(0, 0, 0, 1), Vect3f(-10.0f, 5.0f, 4.0f), verticesMesh);
-
-    m_PhysXManager->CreateDynamicBox("dynamic_box", "Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 10.0f, 0.0f), 1, 1, 1, 0.5f); // EasJ.4
-    m_PhysXManager->CreateDynamicSphere("dynamic_sphere", "Default", Quatf(0, 0, 0, 1), Vect3f(0.0f, 15.0f, 0.0f), 3.0f, 0.5f);
-    m_PhysXManager->CreateDynamicShape("dynamic_shape","Default", Quatf(0, 0, 0, 1), Vect3f(-4.0f, 4.0f, 4.0f), vertices, 0.5f);
-    */
-    //m_PhysXManager->CreateDynamicTriangleMesh("dynamic_triangleMesh","Default", Quatf(0, 0, 0, 1), Vect3f(10.0f, 5.0f, -4.0f), vertices, 0.5f);
-
-    // m_PhysXManager->AddTriggerBox("CajaEstatica", 1, 1, 1, Vect3f(0.0f, 2.0f, 0.0f), Quatf(0, 0, 0, 1)); //estaba probando recien esta
     LOG_INFO_APPLICATION("Engine -> PhysX Loaded! \\(^-^)/");
 
     m_SceneManager = new CSceneManager();
@@ -146,6 +131,11 @@ void CEngine::LoadFiles()
     m_CinematicManager = new CCinematicManager;
     m_CinematicManager->Load("data/cinematics.xml");
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
+
+    m_ParticleManager = new CParticleManager();
+    m_ParticleManager->Load(m_FileParticleManager);
+    LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
+
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
@@ -177,6 +167,7 @@ void CEngine::Init(HWND hWnd)
         m_FileTextureManager = call_function<std::string>(mLS, "getFileTexture");
         m_FileActionManager = call_function<std::string>(mLS, "getActionManager");
         m_FileRenderPipeline = call_function<std::string>(mLS, "getRenderPipeline");
+        m_FileParticleManager = call_function<std::string>(mLS, "getFileParticleManager");
         LOG_INFO_APPLICATION("Engine -> Lua Finished! (/.__.)/ \\(.__.\\)");
 
         LoadFiles();
@@ -199,6 +190,7 @@ double clockToMilliseconds(clock_t ticks)
 void CEngine::Update()
 {
     // Reiniciem posició de l'esfera quan canviem de camera
+
     if (m_CameraSelector != m_PrevCameraSelector)
     {
         m_RenderManager->m_SphereOffset = Vect3f(0, 0, 0);
@@ -210,18 +202,18 @@ void CEngine::Update()
     {
     case 0: //Orbital
         SetCameraController(&m_OrbitalCam);
-        orbitalCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
+        // orbitalCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
 
         break;
     case 1: //FPS
         SetCameraController(&m_FpsCam);
-        fpsCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
+        //fpsCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
 
         break;
     case 2: //TPS
         SetCameraController(&m_TpsCam);
         sphereUpdate(*m_RenderManager, m_ActionManager, m_CameraController->getFront(), m_CameraController->getUp());
-        tpsCameraUpdate(*m_CameraController, m_ActionManager, m_RenderManager->m_SphereOffset, (float)m_DeltaTime);
+        // tpsCameraUpdate(*m_CameraController, m_ActionManager, m_RenderManager->m_SphereOffset, (float)m_DeltaTime);
 
         break;
     default:

@@ -23,7 +23,7 @@ bool CSceneManager::Update(float elapsedTime)
     {
         CScene* lScene = iSceneMapEntry->second.m_Value;
 
-        if (lScene->IsActive())
+        if (lScene->GetActive())
         {
             lOk &= lScene->Update(elapsedTime);
         }
@@ -39,7 +39,7 @@ bool CSceneManager::Render(const std::string& aLayer)
     {
         CScene* lScene = iSceneMapEntry->second.m_Value;
 
-        if (lScene->IsActive())
+        if (lScene->GetActive())
         {
             lOk &= lScene->Render(aLayer);
         }
@@ -80,8 +80,6 @@ bool CSceneManager::Load()
             {
                 if (strcmp(iScene->Name(), "scene") == 0)
                 {
-                    // #TODO mes maco, treure la merda de folder
-                    // #ALEX des de donde se llama el load de la escena?
                     std::string lName = iScene->GetAttribute<std::string>("name", "");
                     CScene* lScene = new CScene(lName);
                     lScene->SetActive(iScene->GetAttribute<bool>("active", false));

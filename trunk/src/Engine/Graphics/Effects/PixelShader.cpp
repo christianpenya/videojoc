@@ -3,6 +3,8 @@
 #include "Engine\Engine.h"
 #include "ShaderManager.h"
 #include "Render/RenderPipeline/RenderPipeline.h"
+#include "Utils/Logger.h"
+#include "comdef.h"
 
 CPixelShader::CPixelShader(const std::string& aShaderCode)
     : CShader(aShaderCode, EShaderStage::ePixelShader),

@@ -654,16 +654,20 @@ void CRenderManager::Resize(float Width, float Height, HWND hWnd)
 {
     if (m_Device.get() != nullptr)
     {
-        m_DeviceContext.get()->OMSetRenderTargets(0, nullptr, nullptr);
+        if (m_CurrentDepthStencilView != nullptr)
+        {
 
-        m_RenderTargetView.reset(nullptr);
-        m_DepthStencil.reset(nullptr);
-        m_DepthStencilView.reset(nullptr);
+            m_DeviceContext.get()->OMSetRenderTargets(0, nullptr, nullptr);
 
-        auto l_SwapChain = m_SwapChain.get();
-        l_SwapChain->ResizeBuffers(0, (UINT)Width, (UINT) Height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
-        Create_DepthStencil(hWnd, (int) Width, (int) Height);
-        SetProjectionMatrix(45.0f, (float)Width / (float)Height, 0.5f, 100.0f);
+            m_RenderTargetView.reset(nullptr);
+            m_DepthStencil.reset(nullptr);
+            m_DepthStencilView.reset(nullptr);
+
+            auto l_SwapChain = m_SwapChain.get();
+            l_SwapChain->ResizeBuffers(0, (UINT)Width, (UINT) Height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+            Create_DepthStencil(hWnd, (int) Width, (int) Height);
+            SetProjectionMatrix(45.0f, (float)Width / (float)Height, 0.5f, 100.0f);
+        }
     }
 }
 
@@ -762,7 +766,8 @@ void CRenderManager::Clear(bool renderTarget, bool depthStencil, const CColor& b
     }
     // TODO: Handle the current render target view stencil and depth
     if (depthStencil)
-        m_DeviceContext->ClearDepthStencilView(m_DepthStencilView.get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+
+        m_DeviceContext->ClearDepthStencilView(m_CurrentDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
 void CRenderManager::SetViewport(const Vect2u & aPosition, const Vect2u & aSize) const

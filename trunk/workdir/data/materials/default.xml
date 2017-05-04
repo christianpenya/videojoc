@@ -1,8 +1,29 @@
-<?xml version="1.0" encoding="ISO-8859-1"?> 
 <materials>
-	<material name="noise_vignetting" vertex_type="Quad">
-		<!--<texture type="diffuse" filename="data\textures\post_process\noise1.png" />-->
-		<texture type="diffuse" filename="data\textures\post_process\vignetting1.png" />
+	<material name="NoiseVignettingMaterial" effect="NoiseVignetting">
+		<texture type="diffuse" filename="data\textures\post_process\noise.png" />
+		<texture type="diffuse" filename="data\textures\post_process\vignetting.png" />
 	</material>
+
+	<material name="FogMaterial" effect="Fog" vertex_type="Fog">
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 0.0 1.0 " />
+		<parameter type="float2" name="fog_start_end" value="10.0 50.0" />
+	</material>
+
+	<material name="DrawQuadMaterial" vertex_type="Quad">
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+	</material>
+	
+	<material name="DeferredShadingMaterial" vertex_type="DeferredQuad">
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+	</material>
+
+	<material name="ZBlurMaterial" vertex_type="ZBlur" />
+	<material name="BloomMaterial" vertex_type="Bloom" />
+	<material name="BloomCombineMaterial" vertex_type="BloomCombine" />
+	<material name="StartGaussianMaterial" vertex_type="Quad" />
+	<material name="GaussianMaterial" vertex_type="Gaussian" />
+	<material name="ColorGradingMaterial" vertex_type="ColorGrading" />
+	<material name="ShadowMapMaterial" vertex_type="ShadowMap" />
+	
 </materials>
  

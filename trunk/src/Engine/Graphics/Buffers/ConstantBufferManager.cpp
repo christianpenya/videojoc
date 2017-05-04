@@ -54,4 +54,5 @@ void CConstantBufferManager::BindBuffer(ID3D11DeviceContext* aContext, uint32 aC
     lConstantBuffer->Update(aContext, lRawData);
     lConstantBuffer->BindVS(aContext, aConstantBufferID);
     lConstantBuffer->BindPS(aContext, aConstantBufferID);
+    lConstantBuffer->BindGS(aContext, aConstantBufferID);
 }
