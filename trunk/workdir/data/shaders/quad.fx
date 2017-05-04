@@ -29,6 +29,5 @@ PS_INPUT VS(VS_INPUT IN)
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-    //return float4(1, 1, 1, 1);
     return T0Texture.Sample(S0Sampler, IN.UV);
 }

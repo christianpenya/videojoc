@@ -26,7 +26,8 @@ bool CSetDepthStencilStateCmd::Load(const CXMLElement* aElement)
         m_EnableStencil = aElement->GetAttribute<bool>("enable_stencil", false);
         m_ComparisonFunc = aElement->GetAttribute<int>("comparison_func", 4);
     }
-    return lOk;
+    CRenderManager &l_RM = CEngine::GetInstance().GetRenderManager();
+    return lOk && CreateDepthStencilState(l_RM);
 }
 
 
@@ -34,11 +35,11 @@ bool CSetDepthStencilStateCmd::CreateDepthStencilState(CRenderManager& lRM)
 {
     D3D11_DEPTH_STENCIL_DESC dsDesc;
     // Depth test parameters
-    dsDesc.DepthEnable = m_EnableZTest;
+    dsDesc.DepthEnable = m_EnableZTest ? TRUE : FALSE;
     dsDesc.DepthWriteMask = m_WriteZBuffer ? D3D11_DEPTH_WRITE_MASK_ALL : D3D11_DEPTH_WRITE_MASK_ZERO;
     dsDesc.DepthFunc = D3D11_COMPARISON_FUNC(m_ComparisonFunc);
     // Stencil test parameters
-    dsDesc.StencilEnable = m_EnableStencil;
+    dsDesc.StencilEnable = m_EnableStencil ? TRUE : FALSE;
     dsDesc.StencilReadMask = 0xFF;
     dsDesc.StencilWriteMask	= 0xFF;
     // Stencil operations if pixel is front-facing
@@ -58,8 +59,7 @@ bool CSetDepthStencilStateCmd::CreateDepthStencilState(CRenderManager& lRM)
 
 void CSetDepthStencilStateCmd::Execute(CRenderManager& lRM)
 {
-    CreateDepthStencilState(lRM);
-    lRM.GetDeviceContext()->OMSetDepthStencilState(m_DepthStencilState,0);
+    lRM.GetDeviceContext()->OMSetDepthStencilState(m_DepthStencilState, 0);
 }
 
 void CSetDepthStencilStateCmd::DrawImGUI()
