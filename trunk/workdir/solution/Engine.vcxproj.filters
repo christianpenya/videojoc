@@ -31,6 +31,9 @@
     <Filter Include="Graphics\Mesh">
       <UniqueIdentifier>{92268A97-FEE6-05CE-C721-4F4B33A14AAA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\Particles">
+      <UniqueIdentifier>{6CEB7859-58CF-39AF-C12F-3402AD322431}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Graphics\Scenes">
       <UniqueIdentifier>{864F81B0-F2DA-EE74-FBEB-716967F64A75}</UniqueIdentifier>
     </Filter>
@@ -126,6 +129,9 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Effects\EffectManager.h">
       <Filter>Graphics\Effects</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\GeometryShader.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Effects\PixelShader.h">
       <Filter>Graphics\Effects</Filter>
     </ClInclude>
@@ -216,8 +222,14 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\VertexsTypes_HelperMacros.h">
       <Filter>Graphics\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Scenes\ConstantBuffer.h">
-      <Filter>Graphics\Scenes</Filter>
+    <ClInclude Include="..\..\src\Engine\Graphics\Particles\ParticleManager.h">
+      <Filter>Graphics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Particles\ParticleSystemInstance.h">
+      <Filter>Graphics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Particles\ParticleSystemType.h">
+      <Filter>Graphics\Particles</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\Layer.h">
       <Filter>Graphics\Scenes</Filter>
@@ -419,6 +431,9 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Effects\EffectManager.cpp">
       <Filter>Graphics\Effects</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Effects\GeometryShader.cpp">
+      <Filter>Graphics\Effects</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Effects\PixelShader.cpp">
       <Filter>Graphics\Effects</Filter>
     </ClCompile>
@@ -472,6 +487,15 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\VertexTypes.cpp">
       <Filter>Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Particles\ParticleManager.cpp">
+      <Filter>Graphics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Particles\ParticleSystemInstance.cpp">
+      <Filter>Graphics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Particles\ParticleSystemType.cpp">
+      <Filter>Graphics\Particles</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\Layer.cpp">
       <Filter>Graphics\Scenes</Filter>

@@ -1,4 +1,4 @@
-<effects>
+<effects>   
 	<!-- FORWARD -->
   <effect name="PositionNormalTechniqueForward" shader_family="PositionNormalForward">
    <shader stage="vertex"   name="PositionNormalForward"/>
@@ -68,10 +68,24 @@
    <shader stage="vertex"   name="Quad"/>
    <shader stage="pixel"    name="Gaussian"/>
   </effect>  
-   <effect name="ColorGradingTechnique" shader_family="ColorGrading">
+  
+  <effect name="HdaoTechnique" shader_family="Hdao">
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="Hdao"/>
+  </effect>  
+  
+  <effect name="ParticleVertexTechnique" shader_family="ParticleVertex">
+   <shader stage="vertex"   name="ParticleVertex"/>
+   <shader stage="pixel"    name="ParticleVertex"/>
+   <shader stage="geometry" name="ParticleVertex"/>
+  </effect>
+  
+ <effect name="ColorGradingTechnique" shader_family="ColorGrading">
 	<shader stage="vertex"   name="Quad"/>
 	<shader stage="pixel"    name="ColorGrading"/>
   </effect>  
+
+
   <!-- OTHER -->
  <effect name="SkyboxTechnique" shader_family="Skybox">
    <shader stage="vertex"   name="Skybox"/>
@@ -86,6 +100,7 @@
    <shader stage="vertex"   name="DeferredQuad"/>
    <shader stage="pixel"    name="DeferredQuad"/>
   </effect>
+    
  </effects>
  
  

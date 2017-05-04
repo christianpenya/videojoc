@@ -1,0 +1,5 @@
+<lights >
+	<light type="directional" name="FDirect01" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="80.0 200.0" >
+		<transform position="-6.23034 48.7916 74.1822" forward="0.0 -0.819152 -0.573576" />
+	</light>
+</lights>

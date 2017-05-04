@@ -21,6 +21,7 @@ public:
         eAnimatedModel,
         eBasicPrimitive,
         eLight,
+        eParticle,
         eSceneNodeCount
     };
 

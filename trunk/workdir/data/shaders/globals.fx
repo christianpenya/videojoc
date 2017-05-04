@@ -14,7 +14,8 @@ register( b0 )
     float4 m_CameraUpVector;
     float4x4 m_InverseView;
     float4x4 m_InverseProjection;
-    uint4 m_Time;
+	float4 m_CameraInfo;//x = near, y = far, z = fov, w = aspect ratio
+	float4 m_Time;
 }
 
 
@@ -156,6 +157,4 @@ float3 GetPositionFromZDepthView(float ZDepthView, float2 UV, float4x4 InverseVi
     float3 l_PositionView=GetPositionFromZDepthViewInViewCoordinates(ZDepthView, UV, InverseProjection);
     return mul(float4(l_PositionView,1.0), InverseView).xyz;
 }
-
-
 // Check if enabled

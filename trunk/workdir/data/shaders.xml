@@ -57,6 +57,8 @@
 		<shader name="BloomCombine" file="PostProcess/Bloom.fx" entry_point="BloomCombinePS" preprocessor=""/>
 		<shader name="Gaussian" file="PostProcess/Gaussian.fx" entry_point="BlurPS" preprocessor=""/>
 		<shader name="ColorGrading" file="PostProcess/ColorGrading.fx" entry_point="PSGUIColorGrading" preprocessor=""/>
+		<shader name="Hdao" file="PostProcess/Hdao.fx" entry_point="PSHDAO" preprocessor=""/>
+		
 		<!--
 		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="PS" preprocessor=""/>	
 		<shader name="ZBlur" file="PostProcess/ZBlur.fx" entry_point="PSZBlur" preprocessor=""/>	
@@ -68,4 +70,10 @@
 		<shader name="Quad" file="Quad.fx" entry_point="PS" preprocessor=""/>
 		<shader name="DeferredQuad" file="Deferred/DeferredShading.fx" entry_point="PS" preprocessor=""/>
 	</pixel_shaders>
+	
+	<!--GEOMETRY SHADERS-->  
+	<geometry_shaders>
+		<shader name="ParticleVertex" file="particleShader.fx" entry_point="GS" preprocessor=""/>
+	</geometry_shaders>
+	
 </shaders> 

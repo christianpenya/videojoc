@@ -53,7 +53,7 @@ static float m_BlurScale=m_RawDataValues[1];
 float4 BlurPS(PS_INPUT IN) : SV_Target
 {
 	float m_TextureSize=512;
-	float m_BlurScale=3.0;
+	float m_BlurScale=6.0;
 	
 	//float2 m_TextureSize=512; //m_ViewSize[0];
 	//float2 m_BlurScale=3.0

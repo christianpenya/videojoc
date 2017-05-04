@@ -50,4 +50,5 @@ void CSphericalCameraController::Update(float ElapsedTime)
     // TODO roll
 
     m_Position = center - m_Front * zoom;
+
 }

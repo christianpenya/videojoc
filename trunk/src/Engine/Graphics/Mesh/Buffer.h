@@ -24,6 +24,7 @@ public:
 
 protected:
     ID3D11Buffer* m_pBuffer;
+
 };
 
 #endif //_ENGINE_BUFFER_20161222

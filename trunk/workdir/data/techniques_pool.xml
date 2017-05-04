@@ -12,13 +12,15 @@
 		<technique vertex_type="Quad"/>
 		<technique vertex_type="DeferredQuad"/>
 		<technique name="NoiseVignetting" />
-		<technique vertex_type="Fog"/>
+		<technique name="Fog" />
 		<technique name="ZBlur" />
 		<technique name="Bloom" />
 		<technique name="BloomCombine" />
 		<technique name="Gaussian" />
+		<technique name="Hdao" />
 		<technique name="ColorGrading" />
-	</default_pool>
+		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique" />
+  </default_pool>
 
 	<pool name="forward">
 		<technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>
@@ -50,7 +52,10 @@
 		<technique vertex_type="Quad" effect="QuadTechnique"/>
 		<technique name="Bloom" effect="BloomTechnique" />
 		<technique name="BloomCombine" effect="BloomCombineTechnique" />
+		<technique name="Hdao" effect="HdaoTechnique" />
 		<technique name="ColorGrading" effect="ColorGradingTechnique" />
+		<technique name="ParticleVertex" effect="ParticleVertexTechnique" />
+
 	</pool>
 	
 	<pool name="skybox">

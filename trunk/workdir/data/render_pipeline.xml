@@ -129,19 +129,42 @@
 	FIN EFECTO BLOOM
 
 	INICIO EFECTO ZBLUR
-<!--	<apply_technique_pool pool_name="post_process"/>
+	<!--<apply_technique_pool pool_name="post_process"/>
 
+	<apply_filter>
+        <texture name="capture_frame_buffer" stage_id="0"/>
+		<dynamic_texture name="Gaussiano3" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussiano2" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussiano1" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussiano" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
+	</apply_filter>
+
+	<draw_quad name="ZBlurQuad" material="ZBlurMaterial">
+        <texture name="capture_frame_buffer" stage_id="0"/>
+        <texture name="Gaussiano" stage_id="1"/>
+		<texture name="DepthMapTexture" stage_id="2"/>
+    </draw_quad>	
 	<draw_quad name="textureinicial" material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
         <texture name="capture_frame_buffer" stage_id="0"/>
     </draw_quad>		
 
-	<draw_quad name="ZBlurQuad" material="ZBlurMaterial" viewport_position = "0 129" viewport_size = "128 128">
-        <texture name="capture_frame_buffer" stage_id="0"/>
-    </draw_quad>	
-	-->
+	<draw_quad name="GaussianoQuad" material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">
+        <texture name="Gaussiano" stage_id="0"/>
+    </draw_quad>		
+-->
 	FIN EFECTO ZBLUR
 
-	<!--		
+	
+	<draw_quad name="HdaoQuad" material="HdaoMaterial" viewport_position = "0 0" viewport_size = "128 128">
+        <texture name="capture_frame_buffer" stage_id="0"/>
+        <texture name="capture_frame_buffer" stage_id="1"/>
+        <texture name="capture_frame_buffer" stage_id="2"/>
+        <texture name="capture_frame_buffer" stage_id="3"/>
+    
+	</draw_quad>	
+	
+<!--<draw_quad material="DrawQuadMaterial"  viewport_position = "129 129" viewport_size = "128 128">
+        <texture name="LightMapTexture" stage_id="0"/>
     </draw_quad>-->
 	INICIO EFECTO COLORGRADING
 	<!--

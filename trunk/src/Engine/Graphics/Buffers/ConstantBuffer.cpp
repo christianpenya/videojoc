@@ -16,6 +16,7 @@ CConstantBuffer::CConstantBuffer(CRenderManager& RenderManager, uint32 aByteWidt
     constantBufferDesc.ByteWidth = aByteWidth;
     constantBufferDesc.CPUAccessFlags = 0;
     constantBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+
     HRESULT lHR = lDevice->CreateBuffer(&constantBufferDesc, nullptr, &m_pBuffer);
     LOG_ERROR_APPLICATION_IF(SUCCEEDED(lHR), "Error creating constant buffer");
 }
@@ -63,6 +64,11 @@ void CConstantBuffer::BindVS(ID3D11DeviceContext* aContext, uint32 aBufferID)
 void CConstantBuffer::BindPS(ID3D11DeviceContext* aContext, uint32 aBufferID)
 {
     aContext->PSSetConstantBuffers(aBufferID, 1, &m_pBuffer);
+}
+
+void CConstantBuffer::BindGS(ID3D11DeviceContext* aContext, uint32 aBufferID)
+{
+    aContext->GSSetConstantBuffers(0, 1, &m_pBuffer);
 }
 
 void CConstantBuffer::Update(ID3D11DeviceContext* aContext, void* aRawData)

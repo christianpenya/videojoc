@@ -7,6 +7,7 @@
 #include "Graphics/Animation/SceneAnimatedModel.h"
 #include "Graphics/Animation/AnimatedModelManager.h"
 #include "Graphics/Lights/LightManager.h"
+#include "Graphics/Particles/ParticleSystemInstance.h"
 
 CLayer::CLayer(const std::string& aName) :
     CName(aName),
@@ -59,6 +60,12 @@ bool CLayer::Load(CXMLElement* aElement)
                 lNode->SetNodeType(CSceneNode::eLight);
             }
         }
+        else if (strcmp(iSceneMesh->Name(), "scene_particle") == 0)
+        {
+            lNode = new CParticleSystemInstance(iSceneMesh);
+            lNode->SetNodeType(CSceneNode::eParticle);
+        }
+
 
         if (lNode)
         {

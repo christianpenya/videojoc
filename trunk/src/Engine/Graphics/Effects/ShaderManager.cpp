@@ -3,6 +3,7 @@
 #include "XML\XML.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
+#include "GeometryShader.h"
 
 CShaderManager::CShaderManager()
 {
@@ -57,6 +58,18 @@ bool CShaderManager::Load(const std::string& aFilename)
                             CPixelShader *lPixelShader = new CPixelShader(iPixelShader, l_Path);
                             lPixelShader->Load();
                             m_Library[CShader::EShaderStage::ePixelShader].Add(lPixelShader->GetName(), lPixelShader);
+                        }
+                    }
+                }
+                else if (strcmp(iShaderType->Name(), "geometry_shaders") == 0)
+                {
+                    for (tinyxml2::XMLElement *iGeometryShader = iShaderType->FirstChildElement(); iGeometryShader != nullptr; iGeometryShader = iGeometryShader->NextSiblingElement())
+                    {
+                        if (strcmp(iGeometryShader->Name(), "shader") == 0)
+                        {
+                            CGeometryShader *lGeometryShader = new CGeometryShader(iGeometryShader, l_Path);
+                            lGeometryShader->Load();
+                            m_Library[CShader::EShaderStage::eGeometryShader].Add(lGeometryShader->GetName(), lGeometryShader);
                         }
                     }
                 }
