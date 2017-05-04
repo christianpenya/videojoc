@@ -1,0 +1,114 @@
+<scene >
+
+	/castillo
+	<layer name="deferred_opaque" active="true">	
+		
+		SUELO
+		<scene_mesh name="Plane01" mesh="data/meshes/castillo/Plane01.mesh" >
+			<transform position="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		PAREDES
+		<scene_mesh name="Box06" mesh="data/meshes/castillo/Box06.mesh" >
+			<transform position="0.215759 0.0 -39.0914" yaw="0.0" pitch="0.0" roll="0.0" scale="2.73808 1.03177 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Box04" mesh="data/meshes/castillo/Box06.mesh" >
+			<transform position="39.46 0.0 -1.18616" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="2.73808 1.03177 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Box05" mesh="data/meshes/castillo/Box06.mesh" >
+			<transform position="-39.7547 0.0 -1.18616" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="2.73808 1.03177 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Box02" mesh="data/meshes/castillo/Box06.mesh" >
+			<transform position="24.2861 0.0 39.5649" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.03177 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Box03" mesh="data/meshes/castillo/Box06.mesh" >
+			<transform position="-23.3661 0.0 39.5649" yaw="0.0" pitch="0.0" roll="0.0" scale="1.02609 1.03177 1.0" />
+		</scene_mesh>
+
+		EDIFICIOS
+		<scene_mesh name="Chapel" mesh="data/meshes/castillo/Chapel.mesh" >
+			<transform position="-29.5465 0.0 -28.8935" yaw="-0.78539816339" pitch="0.0" roll="0.0" scale="0.0258964 0.0258964 0.0258964" />
+		</scene_mesh>
+		
+		casas altas
+		<scene_mesh name="CasaAlta01" mesh="data/meshes/castillo/casa_alta.mesh" >
+			<transform position="2.0 0.0298293 -22.9311" yaw="3.14159265359" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
+		</scene_mesh>
+		<scene_mesh name="CasaAlta102" mesh="data/meshes/castillo/casa_alta.mesh" >
+			<transform position="3.42749 0.0298293 22.4565" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
+		</scene_mesh>
+		<scene_mesh name="CasaAlta03" mesh="data/meshes/castillo/casa_alta.mesh" >
+			<transform position="22.0954 0.0298293 3.21299" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
+		</scene_mesh>
+		<scene_mesh name="CasaAlta04" mesh="data/meshes/castillo/casa_alta.mesh" >
+			<transform position="22.1112 0.0298293 -8.37383" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
+		</scene_mesh>
+		<scene_mesh name="CasaAlta06" mesh="data/meshes/castillo/casa_alta.mesh" >
+			<transform position="-10.7595 0.0298293 -12.0707" yaw="-1.95" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
+		</scene_mesh>
+		<scene_mesh name="CasaAlta07" mesh="data/meshes/castillo/casa_alta.mesh" >
+			<transform position="8.50976 0.0298293 12.8539" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
+		</scene_mesh>
+		
+		ÁRBOLES
+		<scene_mesh name="LOD01" mesh="data/meshes/castillo/LOD01.mesh" >
+			<transform position="-15.7147 -0.338257 -31.9256" yaw="-0.084429" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
+		</scene_mesh>	
+		<scene_mesh name="LOD04" mesh="data/meshes/castillo/LOD01.mesh" >
+			<transform position="19.3935 -0.338257 -28.3181" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
+		</scene_mesh>
+		<scene_mesh name="LOD03" mesh="data/meshes/castillo/LOD01.mesh" >
+			<transform position="29.2837 -0.338257 13.3843" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
+		</scene_mesh>
+		<scene_mesh name="LOD02" mesh="data/meshes/castillo/LOD01.mesh" >
+			<transform position="-31.6297 -0.338257 30.2024" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
+		</scene_mesh>
+
+		CATAPULTAS
+		<scene_mesh name="catapult05" mesh="data/meshes/castillo/catapult.mesh" >
+			<transform position="-33.5434 0.703857 24.296" yaw="-0.173649" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
+		</scene_mesh>173649
+		<scene_mesh name="catapult04" mesh="data/meshes/castillo/catapult.mesh" >
+			<transform position="-21.4604 0.703857 33.1915" yaw="-0.573577" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
+		</scene_mesh>-0.573577
+		<scene_mesh name="catapult03" mesh="data/meshes/castillo/catapult.mesh" >
+			<transform position="20.1146 0.703857 33.1915" yaw="-0.843392" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
+		</scene_mesh>-0.843392
+		<scene_mesh name="catapult02" mesh="data/meshes/castillo/catapult.mesh" >
+			<transform position="32.673 0.703857 -17.9932" yaw="-0.999048" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
+		</scene_mesh>-0.999048
+		<scene_mesh name="catapult01" mesh="data/meshes/castillo/catapult.mesh" >
+			<transform position="-31.3792 0.703857 -12.6426" yaw="0.173648" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
+		</scene_mesh>0.173648
+		<scene_mesh name="catapult00" mesh="data/meshes/castillo/catapult.mesh" >
+			<transform position="-31.2195 0.703857 -19.2024" yaw="0.173648" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
+		</scene_mesh>0.173648
+		<!--
+		
+		<scene_mesh name="Bridge08" mesh="data/meshes/castillo/Bridge08.mesh" >
+			<transform position="36.142 12.6115 -39.0403" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="Entrance Tower Right05" mesh="data/meshes/castillo/Entrance Tower Right05.mesh" >
+			<transform position="39.7409 7.13361 -39.1193" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0041523 0.0034598 0.0041523" />
+		</scene_mesh>
+	
+		-->
+		
+	</layer>
+
+	<layer name="Skybox" active="true">
+		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true">
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+	</layer>
+
+		<layer name="Principal" active="true" >	
+		<scene_light name="FDirect001" id_light="0" />
+		<scene_light name="Fspot001" id_light="1" />
+		<scene_light name="Omni001" id_light="2" />
+		<scene_light name="Omni002" id_light="3" />	
+	</layer>
+	
+</scene>
+

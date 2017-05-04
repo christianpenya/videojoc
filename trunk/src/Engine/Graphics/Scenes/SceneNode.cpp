@@ -18,11 +18,11 @@ CSceneNode::CSceneNode(const CXMLElement* aElement)
       m_Visible(false),
       m_NodeType(ESceneNodeType::eSceneNodeCount)
 {
-    if (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0)
+    /*if (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0)
     {
         tinyxml2::XMLElement const* iTransformNode = aElement->FirstChildElement();
-        m_PrevPos = iTransformNode->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
-    }
+        //m_PrevPos = iTransformNode->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
+    }*/
 }
 
 CSceneNode::~CSceneNode() {}
@@ -45,7 +45,8 @@ bool CSceneNode::Render(CRenderManager& lRM)
         mBS.SetCenter(Vect3f(lBSCenter.x, lBSCenter.y, lBSCenter.z));
         m_Visible = lRM.m_Frustum->IsVisible(mBS);
 
-        return m_Visible;
+        // TODO Activar Frustum
+        return true;
     }
 }
 

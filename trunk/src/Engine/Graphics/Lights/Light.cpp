@@ -46,7 +46,7 @@ CLight::CLight(CXMLElement* aElement)
     if (m_GenerateShadowMap)
     {
         m_pShadowMap = new CDynamicTexture(m_Name, Vect2u(aElement->GetAttribute<uint32>("shadow_map_width", 128), aElement->GetAttribute<uint32>("shadow_map_height", 128)));
-
+        CEngine::GetInstance().GetTextureManager().AddTexture(*m_pShadowMap);
         //TODO ShadowTextureMask shadow_texture_mask
 
         for (tinyxml2::XMLElement *lLayerNode = aElement->FirstChildElement(); lLayerNode != nullptr; lLayerNode = lLayerNode->NextSiblingElement())
@@ -70,7 +70,9 @@ void CLight::DrawImgui()
         ImGui::SliderFloat("Intensity", &m_Intensity, 0.25f, 1.0f);
         ImGui::SliderFloat2("Attenuation Range", (float*)&m_RangeAttenuation, 0.25f, 100.0f);
         ImGui::SliderFloat3("Position", (float*)&m_Position, -100.0f, 100.0f);
-        ImGui::SliderFloat3("Forward", (float*)&m_PrevPos, -100.0f, 100.0f);
+        ImGui::SliderFloat("Yaw", (float*)&m_Yaw, -6.28f, 6.28f);
+        ImGui::SliderFloat("Pitch", (float*)&m_Pitch, -6.28f, 6.28f);
+        ImGui::SliderFloat("Roll", (float*)&m_Roll, -6.28f, 6.28f);
         ImGui::Checkbox("Visible", &m_Visible);
         if (m_LightType == 1) //Spot
             ((CSpotLight *)this)->DrawImgui();

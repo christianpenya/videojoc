@@ -81,6 +81,26 @@ void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
         lConstanBufferManager.mLightsDesc.m_LightFallOffAngle[idLight] = ((CSpotLight *)alight)->GetFallOff();
         lConstanBufferManager.mLightsDesc.m_LightAngle[idLight] = ((CSpotLight *)alight)->GetAngle();
     }
+
+    if (alight->GetGenerateShadowMap())
+    {
+        CDynamicTexture *l_ShadowMap = alight->GetShadowMap();
+        CTexture *l_ShadowMask = alight->GetShadowMaskTexture();
+        lConstanBufferManager.mLightsDesc.m_UseShadowMap[idLight] = 1.0f;
+        lConstanBufferManager.mLightsDesc.m_UseShadowMask[idLight] = l_ShadowMask != NULL ? 1.0f : 0.0f;
+        lConstanBufferManager.mLightsDesc.m_LightView[idLight] = alight->GetViewShadowMap();
+        lConstanBufferManager.mLightsDesc.m_LightProjection[idLight] = alight->GetProjectionShadowMap();
+
+        l_ShadowMap->Bind(4, lRM.GetDeviceContext());
+
+        if (l_ShadowMask != NULL)
+            l_ShadowMask->Bind(4 + 1, lRM.GetDeviceContext());
+    }
+    else
+    {
+        lConstanBufferManager.mLightsDesc.m_UseShadowMap[idLight] = 0.0f;
+    }
+
     lConstanBufferManager.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Light);
 }
 

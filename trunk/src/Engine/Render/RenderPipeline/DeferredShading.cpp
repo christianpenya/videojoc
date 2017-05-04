@@ -3,7 +3,6 @@
 #include "XML\XML.h"
 #include "Graphics/Lights/LightManager.h"
 
-
 //Leera el nodo
 //	<deferred_shading name="deffered_shading" material="DrawQuadDeferredShadingPerLightMaterial">
 // <texture stage = "0" name = "AlbedoTexture" / >

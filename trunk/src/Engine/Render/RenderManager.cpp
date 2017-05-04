@@ -766,7 +766,6 @@ void CRenderManager::Clear(bool renderTarget, bool depthStencil, const CColor& b
     }
     // TODO: Handle the current render target view stencil and depth
     if (depthStencil)
-
         m_DeviceContext->ClearDepthStencilView(m_CurrentDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 

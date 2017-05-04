@@ -275,6 +275,9 @@
     <ProjectReference Include="DirectXTex.vcxproj">
       <Project>{A90EE592-95C6-26E0-FECD-FF3BEAA4C1D0}</Project>
     </ProjectReference>
+    <ProjectReference Include="Sound.vcxproj">
+      <Project>{4ED01B0E-BAE4-43BF-8366-E71EEF3940F0}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
