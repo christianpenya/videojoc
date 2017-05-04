@@ -20,28 +20,28 @@ public:
         eDirectional =2
     };
 
-public:
     CLight(ELightType aLightType);
-    //CLight(const CXMLElement* aElement, ELightType aLightType);
-    CLight(const CXMLElement* aElement);
+    CLight(CXMLElement* aElement);
     virtual ~CLight();
-    GET_SET(ELightType, Type);
+
+    GET_SET(ELightType, LightType);
     GET_SET(std::string, Name);
     GET_SET(float, Intensity);
     GET_SET(float, SpecularIntensity);
-
+    GET_SET(std::vector<std::string>, LayerNames);
     GET_SET_REF(CColor, Color);
     GET_SET_REF(Vect2f, RangeAttenuation);
-    void DrawImgui();
-
-    GET_SET_PTR(CDynamicTexture, ShadowMap);
-    GET_SET_PTR(CTexture, ShadowMaskTexture);
     GET_SET_REF(Mat44f, ViewShadowMap);
     GET_SET_REF(Mat44f, ProjectionShadowMap);
-    GET_SET_REF(std::vector<CLayer *>, Layers);
+    GET_SET_PTR(CDynamicTexture, ShadowMap);
+    GET_SET_PTR(CTexture, ShadowMaskTexture);
+
+    void DrawImgui();
     virtual void SetShadowMap(CRenderManager &RenderManager) = 0;
+    bool GetGenerateShadowMap();
+
 protected:
-    ELightType m_Type;
+    ELightType m_LightType;
     float m_Intensity;
     float m_SpecularIntensity;
     CColor m_Color;
@@ -51,11 +51,9 @@ protected:
     bool m_GenerateShadowMap;
     CDynamicTexture *m_pShadowMap;
     CTexture *m_pShadowMaskTexture;
-    std::vector<CLayer *> m_Layers;
+    std::vector<std::string> m_LayerNames;
     Mat44f m_ViewShadowMap, m_ProjectionShadowMap;
-
 };
-
 
 Begin_Enum_String(CLight::ELightType)
 {

@@ -17,7 +17,7 @@ static float m_HDAOActive=1.0; //m_RawDataValues[0];
 static bool m_HDAOShowNormals=1.0; //m_RawDataValues[1]==1.0;
 static bool m_HDAOShowAO=1.0; //m_RawDataValues[2]==1.0;
 static bool m_HDAOUseNormals=1.0; //m_RawDataValues[3]==1.0;
-static float2 m_RTSize=float2(512, 512); //float2(m_RawDataValues[4], m_RawDataValues[5]);
+static float2 m_RTSize=float2(128, 128); //float2(m_RawDataValues[4], m_RawDataValues[5]);
 static float m_AcceptAngle=1.0; //m_RawDataValues[6];
 static float m_HDAOIntensity=1.0; //m_RawDataValues[7];
 static float m_NormalScale=1.0; // m_RawDataValues[8];

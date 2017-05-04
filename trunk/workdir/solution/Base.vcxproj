@@ -252,11 +252,11 @@
     <ClInclude Include="..\..\src\Base\Math\Vector2.h" />
     <ClInclude Include="..\..\src\Base\Math\Vector3.h" />
     <ClInclude Include="..\..\src\Base\Math\Vector4.h" />
+    <ClInclude Include="..\..\src\Base\Utils\Active.h" />
     <ClInclude Include="..\..\src\Base\Utils\BinFileReader.h" />
     <ClInclude Include="..\..\src\Base\Utils\CheckedDelete.h" />
     <ClInclude Include="..\..\src\Base\Utils\CheckedRelease.h" />
     <ClInclude Include="..\..\src\Base\Utils\Defines.h" />
-    <ClInclude Include="..\..\src\Base\Utils\Enable.h" />
     <ClInclude Include="..\..\src\Base\Utils\EnumToString.h" />
     <ClInclude Include="..\..\src\Base\Utils\Logger.h" />
     <ClInclude Include="..\..\src\Base\Utils\MemLeaks\MemLeaks.h" />
@@ -271,6 +271,7 @@
     <ClInclude Include="..\..\src\Base\Utils\SubjectObserver\Subject.h" />
     <ClInclude Include="..\..\src\Base\Utils\TemplatedMap.h" />
     <ClInclude Include="..\..\src\Base\Utils\TemplatedMapVector.h" />
+    <ClInclude Include="..\..\src\Base\Utils\TemplatedParent.h" />
     <ClInclude Include="..\..\src\Base\Utils\Types.h" />
     <ClInclude Include="..\..\src\Base\XML\XML.h" />
     <ClInclude Include="..\..\src\Base\XML\tinyxml2\tinyxml2.h" />
@@ -282,7 +283,7 @@
     <ClCompile Include="..\..\src\Base\ImGUI\imgui_impl_dx11.cpp" />
     <ClCompile Include="..\..\src\Base\Math\MathConstants.cpp" />
     <ClCompile Include="..\..\src\Base\Math\Transform.cpp" />
-    <ClCompile Include="..\..\src\Base\Utils\Enable.cpp" />
+    <ClCompile Include="..\..\src\Base\Utils\Active.cpp" />
     <ClCompile Include="..\..\src\Base\Utils\Logger.cpp" />
     <ClCompile Include="..\..\src\Base\Utils\MemLeaks\MemLeaks.cpp" />
     <ClCompile Include="..\..\src\Base\Utils\Name.cpp" />

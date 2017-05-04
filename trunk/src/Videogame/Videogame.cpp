@@ -110,7 +110,7 @@ int main()
     CEngine& l_Engine = CEngine::GetInstance();
     l_Engine.SetRenderManager(&l_RenderManager);
     l_Engine.Init(hWnd);
-    l_Engine.SetCameraController(&l_SphericalCamera);
+    l_Engine.SetCameraController(&l_FpsCamera);
 
     l_Engine.m_FpsCam = l_FpsCamera;
     l_Engine.m_OrbitalCam = l_SphericalCamera;

@@ -15,7 +15,8 @@ public:
         m_Position(0, 0, 0),
         m_Front(0, 0, 1),
         m_Up(0, 1, 0),
-        m_CameraInfo(0.1f, 1.0f, 0.2, 0) {}
+        m_CameraInfo(100, 500, 1.13f, 1.7f) {} //	m_CameraInfo x = near, y = far, z = fov, w = aspect ratio
+
 
     virtual ~CCameraController() {}
     virtual void Update(float ElapsedTime) = 0;

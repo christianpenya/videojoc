@@ -28,6 +28,23 @@ CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     Init();
 }
 
+CDynamicTexture::CDynamicTexture(std::string aName, Vect2u aSize)
+    : CTexture(aName)
+    , m_pRenderTargetTexture(nullptr)
+    , m_pRenderTargetView(nullptr)
+    , m_pDepthStencilBuffer(nullptr)
+    , m_pDepthStencilView(nullptr)
+    , m_CreateDepthStencilBuffer(false)
+{
+
+    if (!EnumString<TFormatType>::ToEnum(m_FormatType, "RGBA8_UNORM"))
+        LOG_ERROR_APPLICATION("Invalid format type for dynamic texture");
+
+    m_Size = aSize;
+    Init();
+}
+
+
 CDynamicTexture::~CDynamicTexture()
 {
     // TODO:Release the data

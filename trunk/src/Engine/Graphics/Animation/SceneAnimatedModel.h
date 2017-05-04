@@ -28,6 +28,7 @@ private:
     int m_NumFaces;
     bool LoadVertexBuffer();
     void LoadMaterials();
+
 public:
     CSceneAnimatedModel(const CXMLElement &TreeNode);
     virtual ~CSceneAnimatedModel();
@@ -42,6 +43,5 @@ public:
     bool IsCycleAnimationActive(int Id) const;
     bool IsActionAnimationActive(int Id) const;
 };
-
 
 #endif //_ENGINE_SCENEANIMATEDMODEL_20170117

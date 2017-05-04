@@ -25,6 +25,7 @@ public:
     };
 
     CDynamicTexture(const CXMLElement *TreeNode);
+    CDynamicTexture(std::string aName, Vect2u aSize);
     virtual ~CDynamicTexture();
 
     GET_SET_PTR(ID3D11RenderTargetView, RenderTargetView);

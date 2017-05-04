@@ -4,25 +4,43 @@
 
 #include "Math/Transform.h"
 #include "Utils/Name.h"
+#include "Utils/Active.h"
+#include "Utils/TemplatedParent.h"
 #include "Graphics/Mesh/BoundingSphere.h"
 
 class CRenderManager;
+class CLayer;
 
-class CSceneNode : public CTransform, public CName
+class CSceneNode : public CTransform, public CName, public CActive, public CTemplatedParent<CLayer>
 {
 public:
+
+    enum ESceneNodeType
+    {
+        eMesh,
+        eAnimatedModel,
+        eBasicPrimitive,
+        eLight,
+        eParticle,
+        eSceneNodeCount
+    };
+
     CSceneNode();
     CSceneNode(const CXMLElement* aElement);
     virtual ~CSceneNode();
+
     virtual bool Update(float aDeltaTime);
     virtual bool Render(CRenderManager& lRM);
+
     GET_SET_BOOL(Visible);
-    GET_SET(int, type);
+    GET_SET(ESceneNodeType, NodeType);
+
     virtual void DrawImgui();
+
 protected:
     bool m_ignoreFrustum;
     bool m_Visible;
-    int m_type;
+    ESceneNodeType m_NodeType;
     CBoundingSphere mBS;
 };
 

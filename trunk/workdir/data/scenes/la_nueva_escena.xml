@@ -1,25 +1,41 @@
 <scene >
 	<layer name="Principal" active="true" >
-		<scene_light name="Fspot001" id_light="0" >
-			<transform position="8.01362 192.481 -0.183954" forward="0.0 1.0 0.0" />
+		
+		<scene_light name="FDirect001" id_light="0" />
+		<scene_light name="Fspot001" id_light="1" />
+
+		
+		
+		
+		<!--
+		
+			<transform position="0.0 10.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" />
 		</scene_light>
 		<scene_light name="Omni002" id_light="1" >
-			<transform position="18.0355 15.3003 28.6497" forward="0.0 1.0 0.0" />
+			<transform position="0.0 10.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" />
 		</scene_light>
 		<scene_light name="Omni001" id_light="2" >
-			<transform position="-13.8572 7.78125 -16.0357" forward="0.0 1.0 0.0" />
+			<transform position="0.0 10.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" />
 		</scene_light>
 		<scene_light name="FDirect001" id_light="3" >
 			<transform position="-16.8491 37.0663 26.6353" forward="0.0 1.0 0.0" />
 		</scene_light>
-		
-<!--		<scene_particle name="Fire" nextParticleEmission="0.2"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="1.0 1.0 1.0" /> 
+		<scene_mesh name="Box01" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 0.0 2.05304" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+		<scene_mesh name="Box01" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+		<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
+			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 3.0" />
+		</scene_mesh>
+<!--	
+		<scene_particle name="Fire" nextParticleEmission="0.2"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="1.0 1.0 1.0" /> 
 			<transform position="0.0 0.0 1.0" forward="0.0 0.0 0.0" />
 		</scene_particle> 
-	-->	
+	
 		
 		
-		<!--
 		<scene_mesh name="Wall1" mesh="data/meshes/Box01.mesh" rigid_body="box">
 			<transform position="2.0 2.0 2.0" yaw="0.5" pitch ="0.5" roll="0.5" scale="5.0 2.0 1.0"/>
 		</scene_mesh>
@@ -41,7 +57,7 @@
 		<scene_animated_model name="sereno01" core="sereno" >
 			<transform position="0.0 0.0 1.0" rotation="0.0 0.0 0.0" scale="0.5 0.5 0.5" />
 		</scene_animated_model>
-
+-->	
 		<!--<scene_mesh name="Camera001.Target" mesh="data/meshes/Camera001.Target.mesh" >
 			<transform position="-9.25808 1.64795 5.38194" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
@@ -50,8 +66,8 @@
 	</layer>
 	
 	<layer name="deferred_opaque" active="true">
-		<scene_mesh name="Wall2" mesh="data/meshes/Box01.mesh">
-			<transform position="-2.0 2.0 -2.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 2.0 1.0"/>
+		<scene_mesh name="Cub!" mesh="data/meshes/Box01.mesh" rigid_body = "box">
+			<transform position="-6.0 2.0 -6.0" yaw="0.5" pitch ="0.5" roll="0.5" scale="2.0 2.0 2.0"/>
 		</scene_mesh>
 		<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 3.0" />

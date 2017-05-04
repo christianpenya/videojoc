@@ -1,6 +1,5 @@
 #include "globals.fx"
 
-
 #if USE_UV
 	Texture2D DiffuseTexture :
 	register(t0);
@@ -83,6 +82,41 @@ struct PS_INPUT
 
 };
 
+// Lys constants
+static const float k0 = 0.00098, k1 = 0.9921, fUserMaxSPow = 0.2425;
+static const float g_fMaxT = (exp2(-10.0 / sqrt(fUserMaxSPow)) - k0) / k1;
+static const int nMipOffset = 0;
+
+float GetSpecPowToMip(float fSpecPow, int nMips)
+{
+	// This line was added because ShaderTool destroys mipmaps.
+	fSpecPow = 1 - pow(1 - fSpecPow, 8);
+	// Default curve - Inverse of Toolbag 2 curve with adjusted constants.
+	float fSmulMaxT = (exp2(-10.0 / sqrt(fSpecPow)) - k0) / k1;
+	return float(nMips - 1 - nMipOffset)*(1.0 - clamp(fSmulMaxT / g_fMaxT, 0.0, 1.0));
+}
+
+float2 OctWrap(float2 v)
+{
+	return (1.0 - abs(v.yx)) * (v.xy >= 0.0 ? 1.0 : -1.0);
+}
+float2 Encode(float3 n)
+{
+	n /= (abs(n.x) + abs(n.y) + abs(n.z));
+	n.xy = n.z >= 0.0 ? n.xy : OctWrap(n.xy);
+	n.xy = n.xy * 0.5 + 0.5;
+	return n.xy;
+}
+float3 Decode(float2 encN)
+{
+	encN = encN * 2.0 - 1.0;
+	float3 n;
+	n.z = 1.0 - abs(encN.x) - abs(encN.y);
+	n.xy = n.z >= 0.0 ? encN.xy : OctWrap(encN.xy);
+	n = normalize(n);
+	return n;
+}
+/*
 struct PixelOutputType
 {
 float4 Target0 :
@@ -94,6 +128,17 @@ float4 Target2 :
 float4 Target3 :
     SV_Target3; // depth
 };
+*/
+
+struct PixelOutputType
+{
+	float4 Target0 : SV_Target0; //BaseColor(xyz),Metallic(a)
+	float4 Target1 : SV_Target1; //cubemapSampleAmbient(xyz), Occlusion(a)
+	float4 Target2 : SV_Target2; //normal cara (xy), normal pixel(zw)
+	float4 Target3 : SV_Target3; //depth 
+	float4 Target4 : SV_Target4; //cubemapSampleSpec (xyz), roughness (a)
+};
+
 
 
 PS_INPUT VS( VS_INPUT IN )
@@ -103,8 +148,7 @@ PS_INPUT VS( VS_INPUT IN )
 
 	float3 l_Normal = IN.Normal;
 	#if USE_WEIGHTIDX
-		float4 l_TempPos=float4(IN.Pos.xyz, 1.0);
-		float4 l_Indices=IN.Indices;
+		float4 l_TempPos=float4(IN.pos.xyz, 1.0);
 		l_Normal=float3(0,0,0);	
 		lPos=mul(l_TempPos, m_Bones[l_Indices.x]) * IN.Weight.x;
 		lPos+=mul(l_TempPos, m_Bones[l_Indices.y]) * IN.Weight.y;
@@ -136,8 +180,8 @@ PS_INPUT VS( VS_INPUT IN )
     #endif
 
     #if USE_BUMP
-     	//l_Output.Tangent = normalize(mul(IN.Tangent.xyz, (float3x3)m_World));
-    	//l_Output.Binormal = normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
+     	l_Output.Tangent = normalize(mul(IN.Tangent.xyz, (float3x3)m_World));
+    	l_Output.Binormal = normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
     #endif
     return l_Output;
 }
@@ -169,21 +213,35 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		#endif
  	#endif
  	#if USE_BUMP
-	 //	float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
-	 //	l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
-     // l_Normal = normalize(l_Normal);
+	 	float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
+	 	l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
+    	l_Normal = normalize(l_Normal);
  	#endif
 
 	l_Normal=Normal2Texture(l_Normal);
 
 
-    l_Output.Target0 = float4(pixelColor, g_SpecularContrib);
+    /*l_Output.Target0 = float4(pixelColor, g_SpecularContrib);
     l_Output.Target1 = float4(l_LAmbient.xyz*pixelColor, g_SpecularExponent);
     l_Output.Target2 = float4(l_Normal, 0.0);	
-    l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1.0);
+    l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1.0);*/
 
+	l_Output.Target0 = float4(pixelColor, m_MetallicFactor);//FALTA FACTOR
+
+	l_Out.Target1 = float4(l_AmbientContrib.xyz, m_OcclusionFactor);//FALTA FACTOR
+
+	l_PlaneNormal.xy = Encode(l_PlaneNormal);
+	l_Normal.xy = Encode(l_Normal);
+	l_Out.Target2 = float4(l_PlaneNormal.x, l_PlaneNormal.y, l_Normal.x, l_Normal.y);
+
+	float l_Depth = IN.Depth.z / IN.Depth.w; //Comentar JORDI
+	l_Out.Target3 = float4(l_Depth, l_Depth, l_Depth, 1);
+
+	float3 l_EyeToWorldPosition = normalize(IN.WorldPosition - m_InverseView[3].xyz);
+	float3 l_ReflectVector = normalize(reflect(l_EyeToWorldPosition, l_Normal));
+	l_SpecularColor.xyz = l_EnvironmentTexture.SampleLevel(l_EnvironmentSampler, l_ReflectVector,GetSpecPowToMip(m_RoughnessFactor, m_EnvironmentMipLevels)).xyz;
+	l_Out.Target4 = float4(l_SpecularColor, m_RoughnessFactor); //FALTA FACTOR
 
     return l_Output;
 
-    
 }

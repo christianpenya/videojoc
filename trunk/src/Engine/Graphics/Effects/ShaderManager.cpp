@@ -63,11 +63,11 @@ bool CShaderManager::Load(const std::string& aFilename)
                 }
                 else if (strcmp(iShaderType->Name(), "geometry_shaders") == 0)
                 {
-                    for (tinyxml2::XMLElement *iPixelShader = iShaderType->FirstChildElement(); iPixelShader != nullptr; iPixelShader = iPixelShader->NextSiblingElement())
+                    for (tinyxml2::XMLElement *iGeometryShader = iShaderType->FirstChildElement(); iGeometryShader != nullptr; iGeometryShader = iGeometryShader->NextSiblingElement())
                     {
-                        if (strcmp(iPixelShader->Name(), "shader") == 0)
+                        if (strcmp(iGeometryShader->Name(), "shader") == 0)
                         {
-                            CGeometryShader *lGeometryShader = new CGeometryShader(iPixelShader, l_Path);
+                            CGeometryShader *lGeometryShader = new CGeometryShader(iGeometryShader, l_Path);
                             lGeometryShader->Load();
                             m_Library[CShader::EShaderStage::eGeometryShader].Add(lGeometryShader->GetName(), lGeometryShader);
                         }

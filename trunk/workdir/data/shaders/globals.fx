@@ -31,7 +31,6 @@ register( b2 )
     float4 m_RawData[MAX_OBJECT_RAW_PARAMETER];
 	float2 m_ViewPosition[MAX_OBJECT_RAW_PARAMETER];
 	float2 m_ViewSize[MAX_OBJECT_RAW_PARAMETER];
-
 }
 
 cbuffer AnimatedModelConstantBuffer :
@@ -80,7 +79,6 @@ static float m_UseShadowMaskArray[4]=(float[4])m_UseShadowMask;
 static float m_ShadowMapBiasArray[4]=(float[4])m_ShadowMapBias;
 static float m_ShadowMapStrengthArray[4]=(float[4])m_ShadowMapStrength;
 
-
 static float m_RawDataValues[64]=((float[64])m_RawData);
 
 void CalculateSingleLight(uint IdLight,float3 NormalPixel : NORMAL, float3 WorldPos : TEXCOORD2, float3 ColorPixel : COLOR, out float3 DiffuseColor : COLOR, out float3 SpecularColor : COLOR)
@@ -92,22 +90,22 @@ void CalculateSingleLight(uint IdLight,float3 NormalPixel : NORMAL, float3 World
         float g_SpecularExponent = m_RawData[2].x;
         float g_SpecularContrib = m_RawData[2].y;
 
-        float3 l_LightDirection = m_LightDirection[IdLight];
+        float4 l_LightDirection = m_LightDirection[IdLight];
         float l_DistanceAtten = 1.0;
         float l_AngleAtenuation = 1.0;
 
         if(m_LightTypeArray[IdLight] == 0)
         {
             // OMNI
-            float l_DistanceToPixel = length(WorldPos - m_LightPosition[IdLight]);
-            l_LightDirection = (WorldPos - m_LightPosition[IdLight])/l_DistanceToPixel;
+            float l_DistanceToPixel = length(float4(WorldPos, 0.0) - m_LightPosition[IdLight]);
+            l_LightDirection = (float4(WorldPos, 0.0) - m_LightPosition[IdLight])/l_DistanceToPixel;
             l_DistanceAtten = 1.0 - saturate((l_DistanceToPixel - m_LightAttenuationStartRangeArray[IdLight])/(m_LightAttenuationEndRangeArray[IdLight]-m_LightAttenuationStartRangeArray[IdLight]));
         }
         else if(m_LightTypeArray[IdLight]==1)
         {
             //SPOT
-            float l_DistanceToPixel = length(WorldPos - m_LightPosition[IdLight]);
-            l_LightDirection = (WorldPos - m_LightPosition[IdLight])/l_DistanceToPixel;
+            float l_DistanceToPixel = length(float4(WorldPos, 0.0) - m_LightPosition[IdLight]);
+            l_LightDirection = (float4(WorldPos, 0.0) - m_LightPosition[IdLight])/l_DistanceToPixel;
             l_DistanceAtten = 1.0 - saturate((l_DistanceToPixel - m_LightAttenuationStartRangeArray[IdLight])/(m_LightAttenuationEndRangeArray[IdLight]-m_LightAttenuationStartRangeArray[IdLight]));
 
             float l_SpotAngle=cos(m_LightAngleArray[IdLight]*0.5*(3.1416/180.0));
@@ -122,7 +120,7 @@ void CalculateSingleLight(uint IdLight,float3 NormalPixel : NORMAL, float3 World
         float3 l_ViewDir = normalize(l_Eye - WorldPos);
         float3 Hn = normalize(l_ViewDir-l_LightDirection.xyz);
 
-        float l_DiffuseContrib = saturate(dot(-l_LightDirection,NormalPixel));
+        float l_DiffuseContrib = saturate(dot(-l_LightDirection.xyz,NormalPixel));
         float l_SpecularContrib = pow(saturate(dot(Hn,NormalPixel)), 20.0 ) ;
 
         DiffuseColor = l_DiffuseContrib * m_LightIntensity[IdLight] * m_LightColor[IdLight].xyz * ColorPixel.xyz * l_DistanceAtten * l_AngleAtenuation;

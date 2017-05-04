@@ -18,7 +18,8 @@
 		<technique name="BloomCombine" />
 		<technique name="Gaussian" />
 		<technique name="Hdao" />
-		<technique name="ParticleVertex" />
+		<technique name="ColorGrading" />
+		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique" />
   </default_pool>
 
 	<pool name="forward">
@@ -52,6 +53,7 @@
 		<technique name="Bloom" effect="BloomTechnique" />
 		<technique name="BloomCombine" effect="BloomCombineTechnique" />
 		<technique name="Hdao" effect="HdaoTechnique" />
+		<technique name="ColorGrading" effect="ColorGradingTechnique" />
 		<technique name="ParticleVertex" effect="ParticleVertexTechnique" />
 
 	</pool>

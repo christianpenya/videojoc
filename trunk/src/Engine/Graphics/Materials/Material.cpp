@@ -106,10 +106,19 @@ void CMaterial::Apply()
     }
 
     CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
-    Vector4<float> lSpecularVector = Vector4<float>(20.0, 0.2, 0.0, 0.0);
-
     for (size_t i = 0, lCount = mParameters.size(); i < lCount; ++i)
     {
+
+        /*****************************************************************************
+        SWITCH COLOCANDO PROPIEDADES DE MATERIALES EN EL CONSTANT BUFFER
+        Cuidado con colocar dos propiedades que puedan coexistir en un mismo material
+        en la misma casilla del vector!
+        Posiciones ocupadas del vector:
+        [0] -> COLOR DIFUSO
+        [1] -> BUMP, PROPIEDADES DE EFECTO DE POSTPROCESADO
+        [2] -> REBOTES DE LUZ ESPECULAR
+        *****************************************************************************/
+
         switch (mParameters[i]->GetType())
         {
         case eFloat:
@@ -117,25 +126,25 @@ void CMaterial::Apply()
             if (mParameters[i]->GetName() == "bump")
             {
                 float *lBump = (float*)mParameters[i]->GetAddr(0);
-                const Vector4<float> lBumpVector = Vector4<float>(*lBump, 0.0f, 0.0f, 0.0f);
+                const Vect4f lBumpVector = Vect4f(*lBump, 0.0f, 0.0f, 0.0f);
                 lCBM.mMaterialDesc.m_RawData[1] = lBumpVector;
             }
-            else if (mParameters[i]->GetName() == "specular_exponent")
-            {
-                float *lSpecularExponent = (float*)mParameters[i]->GetAddr(0);
-                lSpecularVector = Vector4<float>(*lSpecularExponent, lSpecularVector.y, lSpecularVector.z, lSpecularVector.w);
-                lCBM.mMaterialDesc.m_RawData[2] = lSpecularVector;
-            }
-            else if (mParameters[i]->GetName() == "specular_contrib")
-            {
-                float *lSpecularContrib = (float*)mParameters[i]->GetAddr(0);
-                lSpecularVector = Vector4<float>(lSpecularVector.x, *lSpecularContrib, lSpecularVector.z, lSpecularVector.w);
-                lCBM.mMaterialDesc.m_RawData[2] = lSpecularVector;
-            }
         }
-
         break;
         case eFloat2:
+            if (mParameters[i]->GetName() == "fog_start_end")
+            {
+                float *lFogStart = (float*)mParameters[i]->GetAddr(0);
+                float *lFogEnd = (float*)mParameters[i]->GetAddr(1);
+                lCBM.mMaterialDesc.m_RawData[1] = Vect4f(*lFogStart, *lFogEnd, 1.0f, 1.0f);
+            }
+            else if (mParameters[i]->GetName() == "specular_exponent_contrib")
+            {
+                float *lSpecularExponent = (float*)mParameters[i]->GetAddr(0);
+                float *lSpecularContrib = (float*)mParameters[i]->GetAddr(1);
+                lCBM.mMaterialDesc.m_RawData[2] = Vect4f(*lSpecularExponent, *lSpecularContrib, 1.0f, 1.0f);
+            }
+
             break;
         case eFloat3:
             break;
@@ -146,7 +155,7 @@ void CMaterial::Apply()
             float *g = (float*) mParameters[i]->GetAddr(1);
             float *b = (float*) mParameters[i]->GetAddr(2);
 
-            const Vector4<float> lDiffuseColor = Vector4<float>(*r, *g, *b, 1.0f);
+            const Vect4f lDiffuseColor = Vect4f(*r, *g, *b, 1.0f);
             lCBM.mMaterialDesc.m_RawData[0] = lDiffuseColor;
             break;
         }
