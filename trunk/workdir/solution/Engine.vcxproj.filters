@@ -55,6 +55,9 @@
     <Filter Include="Scripts\Bindings">
       <UniqueIdentifier>{4AFFCD57-36F8-ECA9-5F2A-D22E4B82CCB5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{4ED01B0E-BAE4-43BF-8366-E71EEF3940F0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Engine\Engine\Engine.h">
@@ -345,6 +348,9 @@
     <ClInclude Include="..\..\src\Engine\Scripts\lua_utils.h">
       <Filter>Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Sound\SoundManager.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp">
@@ -592,6 +598,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Scripts\ScriptManager.cpp">
       <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Sound\SoundManager.cpp">
+      <Filter>Sound</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
