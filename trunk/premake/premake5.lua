@@ -54,7 +54,7 @@ project "DirectXTex"
 project "Sound"
 	kind "StaticLib"
     files { path.join(os.getenv("WWISESDK"), "include/**.h")}
-	includedirs { path.join(os.getenv("WWISESDK"), "include"), path.join(os.getenv("WWISESDK"), "samples\SoundEngine\Win32")}
+	includedirs { path.join(os.getenv("WWISESDK"), "include"), path.join(os.getenv("WWISESDK"), "samples/SoundEngine/Win32")}
 	
 group "Engine"
 project "Base"
@@ -67,4 +67,4 @@ project "Engine"
     kind "StaticLib"
 	characterset ("MBCS")
     files { "../src/Engine/**.h", "../src/Engine/**.cpp", "../src/Engine/**.inl"}
-	includedirs { "../src/Engine", "../src/Base", "../src/3rdParty/Cal3D/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/", "../src/3rdParty/", "../include/physx/", path.join(os.getenv("WWISESDK"), "include")}
+	includedirs { "../src/Engine", "../src/Base", "../src/3rdParty/Cal3D/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/", "../src/3rdParty/", "../include/physx/", path.join(os.getenv("WWISESDK"), "include"),  path.join(os.getenv("WWISESDK"), "samples/SoundEngine/Win32")}
