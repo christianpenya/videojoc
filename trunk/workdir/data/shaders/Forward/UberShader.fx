@@ -153,18 +153,16 @@ float4 PS(PS_INPUT IN) : SV_Target
 			float4 l_LightmapPixel = LightmapTexture.Sample(LightmapSampler, IN.UV2) * 2;
 			l_LAmbient = l_LAmbient * l_LightmapPixel;
 			//pixelColor = l_LightmapPixel.xyz * pixelColor;
-			return float4(1.0, 1.0, 0.0, 1.0);
 		#endif
 		#if USE_BUMP
 		 	float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
 		 	l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
 	    	l_Normal = normalize(l_Normal);
-			return float4(0.0, 0.0, 1.0, 1.0);
 	 	#endif 
  	#endif
 	
 	l_LAmbient = l_LAmbient * pixelColor;
- 	for(int i = 0; i<1; ++i)
+ 	for(int i = 0; i<MAX_LIGHTS_BY_SHADER; ++i)
     {
         CalculateSingleLight(i, l_Normal, l_WorldPos, pixelColor,l_DiffuseTmp, l_SpecularTmp);
         l_LDiffuseSpecular += l_DiffuseTmp + l_SpecularTmp;

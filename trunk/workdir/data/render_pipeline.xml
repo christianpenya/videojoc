@@ -21,7 +21,8 @@
 	<clear render_target="true" depth_stencil="true" color="0.0 0.0 0.0 0.0"/>
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	<apply_technique_pool pool_name="deferred"/>
-
+	<render_layer layer="deferred_opaque"/>
+	
 	<unset_render_target/>
 		
 	<apply_technique_pool pool_name="quad"/>
@@ -40,7 +41,9 @@
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	
 	<apply_technique_pool pool_name="forward"/>	
-	<render_layer layer="deferred_opaque"/>
+
+	
+	
 	<render_layer layer="Principal"/>
 	SKYBOX
 	<apply_technique_pool pool_name="skybox"/>
