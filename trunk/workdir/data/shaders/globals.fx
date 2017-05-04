@@ -125,9 +125,6 @@ void CalculateSingleLight(uint IdLight,float3 NormalPixel : NORMAL, float3 World
 
         DiffuseColor = l_DiffuseContrib * m_LightIntensity[IdLight] * m_LightColor[IdLight].xyz * ColorPixel.xyz * l_DistanceAtten * l_AngleAtenuation;
         SpecularColor = l_SpecularContrib* m_LightIntensity[IdLight] *	m_LightColor[IdLight].xyz *g_SpecularContrib * l_DistanceAtten * l_AngleAtenuation;
-		//DiffuseColor = -(m_LightDirection[IdLight].xyz);
-		//DiffuseColor = float3(l_DiffuseContrib, 0.0, 0.0);
-		//SpecularColor = float3(0.0, l_SpecularContrib ,0.0);
 	}
 }
 
@@ -143,14 +140,14 @@ float3 Texture2Normal(float3 Color)
 
 float3 GetPositionFromZDepthViewInViewCoordinates(float ZDepthView, float2 UV, float4x4 InverseProjection)
 {
-// Get the depth value for this pixel
-// Get x/w and y/w from the viewport position
+	// Get the depth value for this pixel
+	// Get x/w and y/w from the viewport position
     float x = UV.x * 2 - 1;
     float y = (1 - UV.y) * 2 - 1;
     float4 l_ProjectedPos = float4(x, y, ZDepthView, 1.0);
-// Transform by the inverse projection matrix
+	// Transform by the inverse projection matrix
     float4 l_PositionVS = mul(l_ProjectedPos, InverseProjection);
-// Divide by w to get the view-space position
+	// Divide by w to get the view-space position
     return l_PositionVS.xyz / l_PositionVS.w;
 }
 
