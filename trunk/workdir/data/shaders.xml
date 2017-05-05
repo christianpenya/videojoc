@@ -43,7 +43,7 @@
 		<shader name="PositionBumpUVForward" file="Forward/UberShader.fx" entry_point="PS" preprocessor="USE_BUMP; USE_UV"/>
 
 		<!--deferred-->
-		<shader name="AnimatedModelForward" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_WEIGHTIDX"/>
+		<shader name="AnimatedModelDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_WEIGHTIDX"/>
 		<shader name="PositionNormalDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor=""/>
 		<shader name="PositionNormalUVDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_UV"/>
 		<shader name="PositionNormalUVUV2Deferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_UV; USE_UV2"/>
