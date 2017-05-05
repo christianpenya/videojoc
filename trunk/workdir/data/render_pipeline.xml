@@ -4,10 +4,12 @@
 	<set_rasterizer_state cull_mode="front" clock_wise="1" type="solid"/> <!-- type  -->
 	
 	SHADOW MAPPING - NO FUNCIONA AÚN
-	<!--
-	<apply_technique_pool pool_name="shadow_map"/>
+	<set_render_target name="deferred_multiple_render_target">
+		<dynamic_texture name="LightDepthMapTexture" texture_width_as_frame_buffer="true" format="R32_FLOAT"/>
+	</set_render_target>	
+	
+	<apply_technique_pool pool_name="shadows"/>
 	<generate_shadow_maps />
-	-->
 	
 	<set_per_frame_constants name="set_per_frame_cmd"/>
 	

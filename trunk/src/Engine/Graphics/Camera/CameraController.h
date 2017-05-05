@@ -15,7 +15,7 @@ public:
         m_Position(0, 0, 0),
         m_Front(0, 0, 1),
         m_Up(0, 1, 0),
-        m_CameraInfo(100, 500, 1.13f, 1.7f) {} //	m_CameraInfo x = near, y = far, z = fov, w = aspect ratio
+        m_CameraInfo(1, 500, 1.13f, 1.7f) {} //	m_CameraInfo x = near, y = far, z = fov, w = aspect ratio
 
 
     virtual ~CCameraController() {}
@@ -24,6 +24,7 @@ public:
     void SetToRenderManager(CRenderManager &_RenderManager) const
     {
         _RenderManager.SetViewMatrix(m_Position, m_Position + m_Front, m_Up);
+        _RenderManager.SetProjectionMatrix(m_CameraInfo.z, m_CameraInfo.w, m_CameraInfo.x, m_CameraInfo.y);
     }
 
     Vect3f getFront()

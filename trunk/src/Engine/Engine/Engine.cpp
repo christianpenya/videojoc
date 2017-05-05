@@ -136,7 +136,6 @@ void CEngine::LoadFiles()
     m_ParticleManager->Load(m_FileParticleManager);
     LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
 
-
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
