@@ -38,7 +38,9 @@ void CGenerateShadowMaps::Execute(CRenderManager& lRM)
             {
                 CLayer* lLayer = lScene->GetLayerByName(*it);
                 if (lLayer)
+                {
                     lLayer->Render();
+                }
             }
 
             lRM.UnsetRenderTargets();

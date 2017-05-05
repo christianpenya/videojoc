@@ -1,6 +1,5 @@
 <scene >
 
-	/castillo
 	<layer name="deferred_opaque" active="true">	
 		
 		SUELO
@@ -24,7 +23,124 @@
 		<scene_mesh name="Box03" mesh="data/meshes/castillo/Box06.mesh" >
 			<transform position="-23.3661 0.0 39.5649" yaw="0.0" pitch="0.0" roll="0.0" scale="1.02609 1.03177 1.0" />
 		</scene_mesh>
-
+		
+		<scene_mesh name="Bridge02" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="33.3306 12.6115 39.3717" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge03" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="22.8121 12.6115 39.3717" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge04" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="12.2922 12.6115 39.3717" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge05" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-34.3991 12.6115 39.3717" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge06" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-23.8793 12.6115 39.3717" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge07" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-13.3608 12.6115 39.3717" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="Bridge08" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-36.142 12.6115 -39.0403" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+			<scene_mesh name="Bridge09" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-25.6788 12.6115 -39.0403" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>	
+		<scene_mesh name="Bridge10" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-15.2156 12.6115 -39.0403" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge11" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-4.75238 12.6115 -39.0403" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge12" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="5.71082 12.6115 -39.0403" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge13" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="16.174 12.6115 -39.0403" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge14" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="26.6372 12.6115 -39.0403" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>		
+		<scene_mesh name="Bridge15" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="37.1004 12.6115 -39.0403" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="Bridge16" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="39.6451 12.6115 -26.1275" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge17" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="39.6451 12.6115 -15.6643" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge18" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="39.6451 12.6115 -5.20111" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge19" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="39.6451 12.6115 5.26208" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge20" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="39.6451 12.6115 15.7253" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge21" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="39.6451 12.6115 26.1885" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge22" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="39.6451 12.6115 36.6517" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge23" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="39.6451 12.6115 -36.5907" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="Bridge24" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-39.9162 12.6115 -26.1275" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge25" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-39.9162 12.6115 -15.6643" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge26" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-39.9162 12.6115 -5.20111" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge27" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-39.9162 12.6115 5.26208" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge28" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-39.9162 12.6115 15.7253" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge29" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-39.9162 12.6115 26.1885" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge30" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-39.9162 12.6115 36.6517" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Bridge31" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-39.9162 12.6115 -36.5907" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="Bridge32" mesh="data/meshes/castillo/Bridge.mesh" >
+			<transform position="-0.00628281 15.2961 39.8401" yaw="0.0" pitch="0.0" roll="0.0" scale="1.33208 1.0 0.713021" />
+		</scene_mesh>
+		
+		TORRES
+		<scene_mesh name="Tower1" mesh="data/meshes/castillo/Tower.mesh" >
+			<transform position="40.1373 7.13361 -39.1193" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0041523 0.0034598 0.0041523" />
+		</scene_mesh>
+		<scene_mesh name="Tower2" mesh="data/meshes/castillo/Tower.mesh" >
+			<transform position="-39.7409 7.13361 -39.1193" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0041523 0.0034598 0.0041523" />
+		</scene_mesh>
+		<scene_mesh name="Tower3" mesh="data/meshes/castillo/Tower.mesh" >
+			<transform position="-39.7409 7.13361 39.1919" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0041523 0.0034598 0.0041523" />
+		</scene_mesh>
+		<scene_mesh name="Tower4" mesh="data/meshes/castillo/Tower.mesh" >
+			<transform position="40.1373 7.13361 39.1919" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0041523 0.0034598 0.0041523" />
+		</scene_mesh>
+		ENTRANCE
+		<scene_mesh name="MainEntrance" mesh="data/meshes/castillo/MainEntrance.mesh" >
+			<transform position="-9.31678 8.04819 39.5712" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		
 		EDIFICIOS
 		<scene_mesh name="Chapel" mesh="data/meshes/castillo/Chapel.mesh" >
 			<transform position="-29.5465 0.0 -28.8935" yaw="-0.78539816339" pitch="0.0" roll="0.0" scale="0.0258964 0.0258964 0.0258964" />
@@ -50,6 +166,36 @@
 			<transform position="8.50976 0.0298293 12.8539" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
 		</scene_mesh>
 		
+		casa porche
+		<scene_mesh name="CasaPorche1" mesh="data/meshes/castillo/CasaPorche.mesh" >
+			<transform position="12.1402 0.143799 -10.0216" yaw="0.436195" pitch="0.0" roll="0.0" scale="0.0105639 0.0105639 0.0105639" />
+		</scene_mesh>
+		<scene_mesh name="CasaPorche2" mesh="data/meshes/castillo/CasaPorche.mesh" >
+			<transform position="14.3348 0.143799 2.33141" yaw="-0.436195" pitch="0.0" roll="0.0" scale="0.0105639 0.0105639 0.0105639" />
+		</scene_mesh>
+		
+		houses
+		<scene_mesh name="House01" mesh="data/meshes/castillo/House.mesh" >
+			<transform position="-12.3189 0.0 16.6747" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="0.0366034 0.0366034 0.0366034" />
+		</scene_mesh>
+		<scene_mesh name="House02" mesh="data/meshes/castillo/House.mesh" >
+			<transform position="-25.4521 0.0 16.6747" yaw="-1.57079632679" pitch="0.0" roll="0.0" scale="0.0366034 0.0366034 0.0366034" />
+		</scene_mesh>
+		<scene_mesh name="House03" mesh="data/meshes/castillo/House.mesh" >
+			<transform position="30.4237 0.0 27.1342" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="0.0366034 0.0366034 0.0366034" />
+		</scene_mesh>
+		
+		fuente
+		
+		<scene_mesh name="fountain" mesh="data/meshes/castillo/fountain.mesh" >
+			<transform position="0.0 0.185791 0.943904" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0134889 0.0134889 0.0134889" />
+		</scene_mesh>
+		
+		molino
+		<scene_mesh name="WindMill" mesh="data/meshes/castillo/WindMill.mesh" >
+			<transform position="29.0085 0.117004 -28.6133" yaw="-0.887011" pitch="0.0" roll="0.0" scale="0.0428214 0.0428214 0.0428214" />
+		</scene_mesh>
+		
 		ÁRBOLES
 		<scene_mesh name="LOD01" mesh="data/meshes/castillo/LOD01.mesh" >
 			<transform position="-15.7147 -0.338257 -31.9256" yaw="-0.084429" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
@@ -67,31 +213,49 @@
 		CATAPULTAS
 		<scene_mesh name="catapult05" mesh="data/meshes/castillo/catapult.mesh" >
 			<transform position="-33.5434 0.703857 24.296" yaw="-0.173649" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
-		</scene_mesh>173649
+		</scene_mesh>
 		<scene_mesh name="catapult04" mesh="data/meshes/castillo/catapult.mesh" >
 			<transform position="-21.4604 0.703857 33.1915" yaw="-0.573577" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
-		</scene_mesh>-0.573577
+		</scene_mesh>
 		<scene_mesh name="catapult03" mesh="data/meshes/castillo/catapult.mesh" >
 			<transform position="20.1146 0.703857 33.1915" yaw="-0.843392" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
-		</scene_mesh>-0.843392
+		</scene_mesh>
 		<scene_mesh name="catapult02" mesh="data/meshes/castillo/catapult.mesh" >
 			<transform position="32.673 0.703857 -17.9932" yaw="-0.999048" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
-		</scene_mesh>-0.999048
+		</scene_mesh>
 		<scene_mesh name="catapult01" mesh="data/meshes/castillo/catapult.mesh" >
 			<transform position="-31.3792 0.703857 -12.6426" yaw="0.173648" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
-		</scene_mesh>0.173648
+		</scene_mesh>
 		<scene_mesh name="catapult00" mesh="data/meshes/castillo/catapult.mesh" >
 			<transform position="-31.2195 0.703857 -19.2024" yaw="0.173648" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
-		</scene_mesh>0.173648
+		</scene_mesh>
+		
+		CARAVAN
+		<scene_mesh name="Caravan1" mesh="data/meshes/castillo/Caravan.mesh" >
+			<transform position="-25.6578 0.480575 0.487183" yaw="0.0" pitch="0.0" roll="0.0" scale="0.000578039 0.000578039 0.000578039" />
+		</scene_mesh>
+		<scene_mesh name="Caravan2" mesh="data/meshes/castillo/Caravan.mesh" >
+			<transform position="-7.70351 0.480575 -34.2057" yaw="0.0" pitch="0.0" roll="0.0" scale="0.000578039 0.000578039 0.000578039" />
+		</scene_mesh>
+		
+		LOOK AT MY HORSE, MY HORSE IS AMAZING
+		<scene_mesh name="ruin_horse" mesh="data/meshes/castillo/ruin_horse.mesh" >
+			<transform position="-4.0 0.0 -13.0465" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ruin_horse1" mesh="data/meshes/castillo/ruin_horse.mesh" >
+			<transform position="4.0 0.0 -13.0465" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		TENTS
+		<scene_mesh name="Tent1" mesh="data/meshes/castillo/Tent.mesh" >
+			<transform position="-4.95752 0.178972 9.50439" yaw="-0.259203" pitch="0.0" roll="0.0" scale="0.0426414 0.0426414 0.0426414" />
+		</scene_mesh>
+		<scene_mesh name="Tent2" mesh="data/meshes/castillo/Tent.mesh" >
+			<transform position="25.2889 0.178972 11.902" yaw="0.116574" pitch="0.0" roll="0.0" scale="0.0426414 0.0426414 0.0426414" />
+		</scene_mesh>
 		<!--
 		
-		<scene_mesh name="Bridge08" mesh="data/meshes/castillo/Bridge08.mesh" >
-			<transform position="36.142 12.6115 -39.0403" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
-		</scene_mesh>
-		
-		<scene_mesh name="Entrance Tower Right05" mesh="data/meshes/castillo/Entrance Tower Right05.mesh" >
-			<transform position="39.7409 7.13361 -39.1193" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0041523 0.0034598 0.0041523" />
-		</scene_mesh>
+
 	
 		-->
 		

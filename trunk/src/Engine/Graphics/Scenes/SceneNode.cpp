@@ -34,6 +34,9 @@ bool CSceneNode::Update(float aDeltaTime)
 
 bool CSceneNode::Render(CRenderManager& lRM)
 {
+    return true;
+    // TODO Activar Frustum
+
     if (m_ignoreFrustum)
     {
         return true;
@@ -45,8 +48,7 @@ bool CSceneNode::Render(CRenderManager& lRM)
         mBS.SetCenter(Vect3f(lBSCenter.x, lBSCenter.y, lBSCenter.z));
         m_Visible = lRM.m_Frustum->IsVisible(mBS);
 
-        // TODO Activar Frustum
-        return true;
+        return m_Visible;
     }
 }
 

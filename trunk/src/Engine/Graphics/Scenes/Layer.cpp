@@ -92,7 +92,6 @@ bool CLayer::Render()
     bool lOk = true;
     CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
 
-
     for (TVectorResources::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
     {
         if ((*iSceneNode)->GetNodeType() != CSceneNode::eLight)
