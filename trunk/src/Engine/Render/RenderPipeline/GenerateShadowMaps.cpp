@@ -8,7 +8,6 @@
 #include "Graphics/Scenes/SceneManager.h"
 #include "Graphics/Textures/TextureManager.h"
 
-
 CGenerateShadowMaps::CGenerateShadowMaps() {}
 CGenerateShadowMaps::~CGenerateShadowMaps() {}
 

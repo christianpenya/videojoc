@@ -66,7 +66,6 @@ bool CLayer::Load(CXMLElement* aElement)
             lNode->SetNodeType(CSceneNode::eParticle);
         }
 
-
         if (lNode)
         {
             lNode->SetParent(this);

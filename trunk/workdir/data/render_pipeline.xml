@@ -4,10 +4,11 @@
 	<set_rasterizer_state cull_mode="front" clock_wise="1" type="solid"/> <!-- type  -->
 	
 	SHADOW MAPPING - NO FUNCIONA AÚN
-	<set_render_target name="deferred_multiple_render_target">
-		<dynamic_texture name="LightDepthMapTexture" texture_width_as_frame_buffer="true" format="R32_FLOAT"/>
+	<set_render_target name="dfasfadsf">
+		<dynamic_texture name="Fspot001" texture_width_as_frame_buffer="true" format="RGBA8_UNORM"/>
 	</set_render_target>	
-	
+	<unset_render_target/>
+
 	<apply_technique_pool pool_name="shadows"/>
 	<generate_shadow_maps />
 	
@@ -23,8 +24,7 @@
 	<clear render_target="true" depth_stencil="true" color="0.0 0.0 0.0 0.0"/>
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	<apply_technique_pool pool_name="deferred"/>
-		<render_layer layer="deferred_opaque"/>
-
+	<render_layer layer="deferred_opaque"/>
 	<unset_render_target/>
 		
 	<apply_technique_pool pool_name="quad"/>
@@ -44,8 +44,6 @@
 	
 	<apply_technique_pool pool_name="forward"/>	
 
-
-	
 	<render_layer layer="Principal"/>
 	SKYBOX
 	<apply_technique_pool pool_name="skybox"/>
@@ -56,9 +54,23 @@
 	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>
 	<apply_technique_pool pool_name="post_process"/>
 			
+	<draw_quad name="texture_gaussian" material="DrawQuadMaterial"  viewport_position = "0 129" viewport_size = "128 128">
+        <texture name="DepthMapTexture" stage_id="0"/>
+    </draw_quad>
+	
+	<draw_quad name="texture_gaussian" material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
+        <texture name="capture_frame_buffer" stage_id="0"/>
+    </draw_quad>
+	
+	
+	<draw_quad material="FogMaterial"  >
+		<texture name="capture_frame_buffer" stage="0"/>
+		<texture name="DepthMapTexture" stage="1"/>
+	</draw_quad>
+	
 	FOG
 	<!--
-	<draw_quad material="FogMaterial"  viewport_position = "0 0" viewport_size = "128 128">
+	draw_quad material="FogMaterial"  viewport_position = "0 0" viewport_size = "128 128">
 		<texture name="capture_frame_buffer" stage="0"/>
 		<texture name="DepthMapTexture" stage="1"/>
 	</draw_quad>
@@ -88,9 +100,7 @@
 	
 	<apply_technique_pool pool_name="quad"/>
 	
-	<draw_quad name="texture_gaussian" material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
-        <texture name="capture_frame_buffer" stage_id="0"/>
-    </draw_quad>
+	
 	<draw_quad name="gaussian3_quad" material="DrawQuadMaterial"  viewport_position = "129 0" viewport_size = "128 128">
         <texture name="Gaussian3" stage_id="0"/>
     </draw_quad>
@@ -152,29 +162,35 @@
 
 	<draw_quad name="GaussianoQuad" material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">
         <texture name="Gaussiano" stage_id="0"/>
-    </draw_quad>	
-
+    </draw_quad>		
+	-->
 	
--->
 	FIN EFECTO ZBLUR
 
+	<!--
 	
-
 	
-<!--
+	<draw_quad name="olakase" material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
+        <texture name="Fspot001" stage_id="0"/>
+    </draw_quad>	
 
-<draw_quad name="HdaoQuad" material="HdaoMaterial" viewport_position = "0 0" viewport_size = "128 128">
+	-->
+	
+	
+	<!--
+	<draw_quad name="HdaoQuad" material="HdaoMaterial" viewport_position = "0 0" viewport_size = "128 128">
         <texture name="capture_frame_buffer" stage_id="0"/>
         <texture name="capture_frame_buffer" stage_id="1"/>
         <texture name="capture_frame_buffer" stage_id="2"/>
         <texture name="capture_frame_buffer" stage_id="3"/>
-    
 	</draw_quad>		
 
 
-<draw_quad material="DrawQuadMaterial"  viewport_position = "129 129" viewport_size = "128 128">
+	<draw_quad material="DrawQuadMaterial"  viewport_position = "129 129" viewport_size = "128 128">
         <texture name="LightMapTexture" stage_id="0"/>
-    </draw_quad>-->
+    </draw_quad>
+	-->
+	
 	INICIO EFECTO COLORGRADING
 	<!--
 	<apply_technique_pool pool_name="post_process"/>

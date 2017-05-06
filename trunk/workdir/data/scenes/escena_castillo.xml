@@ -135,11 +135,11 @@
 		<scene_mesh name="Tower4" mesh="data/meshes/castillo/Tower.mesh" >
 			<transform position="40.1373 7.13361 39.1919" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0041523 0.0034598 0.0041523" />
 		</scene_mesh>
+		
 		ENTRANCE
 		<scene_mesh name="MainEntrance" mesh="data/meshes/castillo/MainEntrance.mesh" >
 			<transform position="-9.31678 8.04819 39.5712" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
-		
 		
 		EDIFICIOS
 		<scene_mesh name="Chapel" mesh="data/meshes/castillo/Chapel.mesh" >
@@ -176,17 +176,16 @@
 		
 		houses
 		<scene_mesh name="House01" mesh="data/meshes/castillo/House.mesh" >
-			<transform position="-12.3189 0.0 16.6747" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="0.0366034 0.0366034 0.0366034" />
+			<transform position="-12.3189 0.0 16.6747" yaw="-1.57079632679" pitch="0.0" roll="0.0" scale="0.0366034 0.0366034 0.0366034" />
 		</scene_mesh>
 		<scene_mesh name="House02" mesh="data/meshes/castillo/House.mesh" >
-			<transform position="-25.4521 0.0 16.6747" yaw="-1.57079632679" pitch="0.0" roll="0.0" scale="0.0366034 0.0366034 0.0366034" />
+			<transform position="-25.4521 0.0 16.6747" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="0.0366034 0.0366034 0.0366034" />
 		</scene_mesh>
 		<scene_mesh name="House03" mesh="data/meshes/castillo/House.mesh" >
 			<transform position="30.4237 0.0 27.1342" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="0.0366034 0.0366034 0.0366034" />
 		</scene_mesh>
 		
-		fuente
-		
+		fuente	
 		<scene_mesh name="fountain" mesh="data/meshes/castillo/fountain.mesh" >
 			<transform position="0.0 0.185791 0.943904" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0134889 0.0134889 0.0134889" />
 		</scene_mesh>
@@ -194,6 +193,9 @@
 		molino
 		<scene_mesh name="WindMill" mesh="data/meshes/castillo/WindMill.mesh" >
 			<transform position="29.0085 0.117004 -28.6133" yaw="-0.887011" pitch="0.0" roll="0.0" scale="0.0428214 0.0428214 0.0428214" />
+		</scene_mesh>
+		<scene_mesh name="WindmillBlades" mesh="data/meshes/castillo/WindmillBlades.mesh" >
+			<transform position="25.2596 14.8672 -25.9883" yaw="-0.887011" pitch="0.0" roll="0.0" scale="0.0428214 0.0428214 0.0428214" />
 		</scene_mesh>
 		
 		ÁRBOLES
@@ -229,13 +231,21 @@
 		<scene_mesh name="catapult00" mesh="data/meshes/castillo/catapult.mesh" >
 			<transform position="-31.2195 0.703857 -19.2024" yaw="0.173648" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
 		</scene_mesh>
-		
+
 		CARAVAN
 		<scene_mesh name="Caravan1" mesh="data/meshes/castillo/Caravan.mesh" >
 			<transform position="-25.6578 0.480575 0.487183" yaw="0.0" pitch="0.0" roll="0.0" scale="0.000578039 0.000578039 0.000578039" />
 		</scene_mesh>
 		<scene_mesh name="Caravan2" mesh="data/meshes/castillo/Caravan.mesh" >
 			<transform position="-7.70351 0.480575 -34.2057" yaw="0.0" pitch="0.0" roll="0.0" scale="0.000578039 0.000578039 0.000578039" />
+		</scene_mesh>
+		
+		CARRO
+		<scene_mesh name="MiCarro1" mesh="data/meshes/castillo/carro.mesh" >
+			<transform position="8.72144 -0.00299907 -16.5991" yaw="0.0" pitch="1.57079632679" roll="0.15" scale="2.17574 2.17574 2.17574" />
+		</scene_mesh>
+		<scene_mesh name="MiCarro2" mesh="data/meshes/castillo/carro.mesh" >
+			<transform position="-26.4983 0.0 -4.0699" yaw="0.15" pitch="1.57079632679" roll="0.0" scale="2.17574 2.17574 2.17574" />
 		</scene_mesh>
 		
 		LOOK AT MY HORSE, MY HORSE IS AMAZING
@@ -248,16 +258,21 @@
 		
 		TENTS
 		<scene_mesh name="Tent1" mesh="data/meshes/castillo/Tent.mesh" >
-			<transform position="-4.95752 0.178972 9.50439" yaw="-0.259203" pitch="0.0" roll="0.0" scale="0.0426414 0.0426414 0.0426414" />
+			<transform position="-4.95752 0.178972 9.50439" yaw="-0.0" pitch="0.78539816339" roll="0.0" scale="0.0426414 0.0426414 0.0426414" />
 		</scene_mesh>
 		<scene_mesh name="Tent2" mesh="data/meshes/castillo/Tent.mesh" >
-			<transform position="25.2889 0.178972 11.902" yaw="0.116574" pitch="0.0" roll="0.0" scale="0.0426414 0.0426414 0.0426414" />
+			<transform position="25.2889 0.178972 11.902" yaw="0.0" pitch="0.78539816339" roll="0.0" scale="0.0426414 0.0426414 0.0426414" />
 		</scene_mesh>
-		<!--
 		
-
-	
-		-->
+		CHARCO
+		<scene_mesh name="Charco" mesh="data/meshes/castillo/Charco.mesh" >
+			<transform position="-1.87403 0.01 -19.3412" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		LAMPARA
+		<scene_mesh name="Lampara" mesh="data/meshes/castillo/lampara.mesh" >
+			<transform position="-23.8265 0.0298293 14.8899" yaw="0.0" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
+		</scene_mesh>
 		
 	</layer>
 
@@ -267,7 +282,7 @@
 		</scene_mesh>
 	</layer>
 
-		<layer name="Principal" active="true" >	
+	<layer name="Principal" active="true" >	
 		<scene_light name="FDirect001" id_light="0" />
 		<scene_light name="Fspot001" id_light="1" />
 		<scene_light name="Omni001" id_light="2" />

@@ -20,6 +20,7 @@
 		<texture type="specularLevel" filename="data\textures\fountainN_SPEC.tga" />
 		<parameter type="float" name="specularLevel" value="21.0" />
 	</material>
+	
 	CATAPULTAS
 	<material name="_catapultMaterial__63" vertex_type="PositionBumpUV" >
 		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
@@ -357,6 +358,36 @@
 		<parameter type="float" name="diffuse" value="100.0" />
 		<texture type="bump" filename="data/textures/castillo/ruinStatue_plinth_001_normal.dds" />
 		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	
+	CARRO
+	<material name="_Weiden" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.603922 0.603922 0.603922 1.0 " />
+		<texture type="diffuse" filename="data\textures\Wagen_1.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	
+	CHARCO
+	<material name="19 - Default" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\sand_tile.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	
+	LAMPARA
+	<material name="glaslampe43b" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.172549 0.172549 0.172549 1.0 " />
+	</material>
+	<material name="gusseisen" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.0627451 0.0627451 0.0627451 1.0 " />
+		<texture type="diffuse" filename="data\textures\m1.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="wachs" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.992157 0.960784 0.768628 1.0 " />
+	</material>
+	<material name="docht" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.0 0.0 0.0 1.0 " />
 	</material>
 	
 </materials>

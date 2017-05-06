@@ -27,8 +27,20 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
         if (strcmp(iNTexture->Name(), "dynamic_texture") == 0)
         {
             CMaterial* lMaterial = lMaterialManager(iNTexture->GetAttribute<std::string>("material", ""));
-            CDynamicTexture* l_DynamicTexture = new CDynamicTexture(iNTexture);
-            lTextureManager.AddTexture(*l_DynamicTexture);
+
+            CDynamicTexture* l_DynamicTexture;
+            std::string tmp = iNTexture->GetAttribute<std::string>("name", "");
+
+            if (lTextureManager.GetTexture(tmp) == nullptr)
+            {
+                l_DynamicTexture = new CDynamicTexture(iNTexture);
+                lTextureManager.AddTexture(*l_DynamicTexture);
+            }
+            else
+            {
+                l_DynamicTexture = static_cast<CDynamicTexture*>(lTextureManager.GetTexture(iNTexture->GetAttribute<std::string>("name", "")));
+            }
+
             AddDynamicTextureMaterial(l_DynamicTexture, lMaterial);
             m_RenderTargetViews.push_back(l_DynamicTexture->GetRenderTargetView());
         }
