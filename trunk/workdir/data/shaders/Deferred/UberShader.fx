@@ -13,14 +13,14 @@
 		SamplerState LightmapSampler :
 		register(s1);
 	#endif
+	#if USE_BUMP
+		Texture2D NormalMapTexture :
+		register(t1);
+		SamplerState NormalMapTextureSampler :
+		register(s1);
+	#endif
 #endif
 
-#if USE_BUMP
-	Texture2D NormalMapTexture :
-	register(t1);
-	SamplerState NormalMapTextureSampler :
-	register(s1);
-#endif
 
 struct VS_INPUT
 {
@@ -43,13 +43,13 @@ struct VS_INPUT
 			float2 UV2 :
 			    TEXCOORD1;
 		#endif
-	#endif
-	#if USE_BUMP
-		float3 Tangent:
-		    TANGENT;
-		float3 Binormal:
-		    BINORMAL;
+		#if USE_BUMP
+			float3 Tangent:
+			    TANGENT;
+			float3 Binormal:
+			    BINORMAL;
 
+		#endif
 	#endif
 
 };
@@ -59,12 +59,8 @@ struct PS_INPUT
 {
 	float4 Pos :
 	    SV_POSITION;
-	#if USE_BUMP
-		float3 Tangent :
-		    TANGENT;
-		float3 Binormal :
-		    BINORMAL;
-	#endif
+	float3 Normal :
+    	NORMAL;
 	#if USE_UV
 		float2 UV :
 		    TEXCOORD0;
@@ -72,6 +68,12 @@ struct PS_INPUT
 			float2 UV2 :
 			    TEXCOORD1;	
 
+		#endif
+		#if USE_BUMP
+			float3 Tangent :
+			    TANGENT;
+			float3 Binormal :
+			    BINORMAL;
 		#endif
 	#endif
 	float3 WorldNormal :
@@ -121,6 +123,7 @@ PS_INPUT VS( VS_INPUT IN )
 		l_Normal+=mul(IN.Normal.xyz, m)* IN.Weight.y;
 		l_Normal=normalize(l_Normal);
 	#endif
+	l_Output.Normal=normalize(mul(normalize(IN.Normal).xyz, (float3x3)m_World));
 	l_Output.Pos = mul( lPos, m_World );
     l_Output.WorldPosition=l_Output.Pos.xyz;
     l_Output.Pos = mul( l_Output.Pos, m_View );
@@ -170,6 +173,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		#endif
 		#if USE_BUMP
 			 float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
+			 l_Normal = normalize(IN.Normal);
 			 l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
 		     l_Normal = normalize(l_Normal);
 		#endif
