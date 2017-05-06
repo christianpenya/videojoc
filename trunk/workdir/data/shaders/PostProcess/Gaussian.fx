@@ -1,4 +1,5 @@
 #include "Samplers.fxh"
+#include "globals.fx"
 
 struct PS_INPUT
 {
@@ -46,18 +47,10 @@ float4 GetGaussianBlurFromSampler(Texture2D _Texture2D, SamplerState _SamplerSta
     return l_GaussianColor/l_TotalWeights;
 }
 
-/*static float m_TextureSize=m_RawDataValues[0];
-static float m_BlurScale=m_RawDataValues[1];
-*/
+static float m_TextureSize=m_RawData[12].x;
+static float m_BlurScale=m_RawData[13].x;
 
 float4 BlurPS(PS_INPUT IN) : SV_Target
 {
-	float m_TextureSize=512;
-	float m_BlurScale=6.0;
-	
-	//float2 m_TextureSize=512; //m_ViewSize[0];
-	//float2 m_BlurScale=3.0
-	
-	//return GetGaussianBlurFromSampler(T0Texture, S0Sampler, IN.UV, m_TextureSize, m_BlurScale);
     return GetGaussianBlurFromSampler(T0Texture, S0Sampler, IN.UV, float2(1.0/m_TextureSize, 1.0/m_TextureSize), m_BlurScale);
 }

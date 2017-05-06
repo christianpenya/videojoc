@@ -36,7 +36,10 @@ void CApplyFilter::Execute(CRenderManager &lRM)
 
         lRM.SetViewport(Vect2u(0, 0), m_DynamicTexturesMaterials[i]->m_DynamicTexture->GetSize());
         if (m_DynamicTexturesMaterials[i]->m_Material != nullptr)
+        {
             m_DynamicTexturesMaterials[i]->m_Material->Apply();
+            m_DynamicTexturesMaterials[i]->m_Material->DrawImgui();
+        }
         ActivateTextures();
         CTexture *l_Texture = (i == 0) ? m_StagedTextures[0]->m_Texture : m_DynamicTexturesMaterials[i - 1]->m_DynamicTexture;
         l_Texture->Bind(0, lRM.GetDeviceContext());

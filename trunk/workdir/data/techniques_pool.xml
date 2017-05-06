@@ -20,7 +20,9 @@
 		<technique name="Hdao" />
 		<technique name="ColorGrading" />
 		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique" />
-	</default_pool>
+		<!--<technique vertex_type="EnvironmentMap" />-->
+		
+  </default_pool>
 
 	<pool name="forward">
 		<technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>
@@ -31,6 +33,7 @@
 		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueForward"/>
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
+		<!--<technique vertex_type="EnvironmentMap" effect="EnvironmentMapTechniqueForward"/>-->
 	</pool>
 	
 	<pool name="deferred">

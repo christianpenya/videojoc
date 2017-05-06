@@ -18,7 +18,7 @@ public:
     virtual ~CMesh();
     bool Load(const std::string& aFilename);
     bool Render(CRenderManager& aRenderManager);
-
+    void DrawImGui();
 protected:
     uint32 mCount;
     std::vector< CMaterial* > mMaterials;

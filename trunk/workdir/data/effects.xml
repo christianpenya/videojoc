@@ -1,6 +1,6 @@
 <effects>   
 	<!-- FORWARD -->
-  <effect name="PositionNormalTechniqueForward" shader_family="PositionNormalForward">
+	<effect name="PositionNormalTechniqueForward" shader_family="PositionNormalForward">
    <shader stage="vertex"   name="PositionNormalForward"/>
    <shader stage="pixel"    name="PositionNormalForward"/>
   </effect>
@@ -20,6 +20,12 @@
 	<shader stage="vertex" name="AnimatedModelForward"/>
 	<shader stage="pixel" name="AnimatedModelForward"/>
   </effect>
+  
+<!--  <effect name="EnvironmentMapTechniqueForward" shader_family="EnvironmentMapForward">
+   <shader stage="vertex"   name="EnvironmentMapForward"/>
+   <shader stage="pixel"    name="EnvironmentMapForward"/>
+  </effect>-->
+
   
   <!-- DEFERRED -->
   <effect name="PositionNormalTechniqueDeferred" shader_family="PositionNormalDeferred">
