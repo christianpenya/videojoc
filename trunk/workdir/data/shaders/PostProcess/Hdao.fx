@@ -12,17 +12,16 @@ float2 UV :
 #define RING_4 (4)
 #define NUM_RING_4_GATHERS (20)
 
-//static float m_RawDataValues[64]=((float[64])m_RawData);
-static float m_HDAOActive=1.0; //m_RawDataValues[0];
-static bool m_HDAOShowNormals=1.0; //m_RawDataValues[1]==1.0;
-static bool m_HDAOShowAO=1.0; //m_RawDataValues[2]==1.0;
-static bool m_HDAOUseNormals=1.0; //m_RawDataValues[3]==1.0;
-static float2 m_RTSize=float2(128, 128); //float2(m_RawDataValues[4], m_RawDataValues[5]);
-static float m_AcceptAngle=1.0; //m_RawDataValues[6];
-static float m_HDAOIntensity=1.0; //m_RawDataValues[7];
-static float m_NormalScale=1.0; // m_RawDataValues[8];
-static float m_HDAORejectRadius=0.5;// m_RawDataValues[9];
-static float m_HDAOAcceptRadius=0.5; //m_RawDataValues[10];
+static float m_HDAOActive=m_RawData[4].x; //1.0;
+static float m_HDAOShowNormals=m_RawData[5].x; //1.0;
+static float m_HDAOShowAO=m_RawData[6].x; //1.0;
+static float m_HDAOUseNormals=m_RawData[7].x; //1.0;
+static float2 m_RTSize= float2(m_RawData[8].x, m_RawData[8].y); //float2(128, 128);
+static float m_AcceptAngle= m_RawData[9].x; //1.0;
+static float m_HDAOIntensity=m_RawData[10].x; //1.0;
+static float m_NormalScale=m_RawData[11].x; //1.0;
+static float m_HDAORejectRadius=m_RawData[12].x; //0.5;
+static float m_HDAOAcceptRadius=m_RawData[13].x; //0.5;
 
 static const float m_RingWeightsTotal[RING_4] =
 {
@@ -195,7 +194,7 @@ float4 PSHDAO(PS_INPUT IN) : SV_Target
 		f2TexCoord = float2( f2ScreenCoord_10_1 * f2InvRTSize );
 		float fDepth = T2Texture.SampleLevel( S2Sampler, f2TexCoord, 0 ).x;
 		fCenterZ = -l_QTimesZNear / ( fDepth - l_Q );
-		if( m_HDAOUseNormals )
+		if( m_HDAOUseNormals==1.0)
 		{
 			fCenterNormalZ = T1Texture.SampleLevel( S1Sampler, f2TexCoord, 0 ).x;
 			fOffsetCenterZ = fCenterZ + fCenterNormalZ * m_NormalScale;
@@ -223,7 +222,7 @@ float4 PSHDAO(PS_INPUT IN) : SV_Target
 			f4Compare[1] *= ( f4Diff > m_HDAOAcceptRadius.xxxx ) ? ( 1.0f ) : ( 0.0f );
 			f4Occlusion.xyzw += ( m_HDAORingWeight[iGather].xyzw * ( f4Compare[0].xyzw *
 			f4Compare[1].zwxy ) * fDot );
-			if( m_HDAOUseNormals )
+			if( m_HDAOUseNormals==1.0)
 			{
 				// Sample normals
 				f4SampledNormalZ[0] = GatherSamples( T1Texture, S1Sampler, f2TexCoord_10_1);
@@ -244,7 +243,7 @@ float4 PSHDAO(PS_INPUT IN) : SV_Target
 	}
 	
 	// Finally calculate the HDAO occlusion value
-	if( m_HDAOUseNormals )
+	if( m_HDAOUseNormals==1.0)
 	{
 		fOcclusion = ( ( f4Occlusion.x + f4Occlusion.y + f4Occlusion.z + f4Occlusion.w ) / ( 3.0f * m_RingWeightsTotal[iNumRings - 1] ) );
 	}
@@ -254,9 +253,9 @@ float4 PSHDAO(PS_INPUT IN) : SV_Target
 	}
 	fOcclusion *= ( m_HDAOIntensity );
 	fOcclusion = 1.0f - saturate( fOcclusion );
-	if(m_HDAOShowAO)
+	if(m_HDAOShowAO==1.0)
 		return float4(fOcclusion, fOcclusion, fOcclusion, 1.0);
-	if(m_HDAOShowNormals)
+	if(m_HDAOShowNormals==1.0)
 		return float4(T1Texture.Sample(S1Sampler, IN.UV).xyz, 1.0);
 	return float4(T0Texture.Sample(S0Sampler, IN.UV).xyz*fOcclusion, 1.0);
 	

@@ -294,3 +294,11 @@ void CMesh::CalcTangentsAndBinormals(void *VtxsData, unsigned short *IdxsData, s
 
     delete[] tan1;
 }
+
+void CMesh::DrawImGui()
+{
+    for (size_t i = 0, lCount = mGeometries.size(); i < lCount; ++i)
+    {
+        mMaterials[i]->DrawImgui();
+    }
+}
