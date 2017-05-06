@@ -15,7 +15,7 @@ workspace "UAB"
       defines { "NO_DEBUG" , "LUA_32BITS" }
       optimize "On"
 	  
-	filter "configurations:Final"
+   filter "configurations:Final"
       defines { "NO_DEBUG", "NO_LOG", "LUA_32BITS" }
       optimize "On"
 	  targetsuffix "_rel"
@@ -50,6 +50,8 @@ project "DirectXTex"
     files { "../src/3rdParty/DirectXTex/**.h", "../src/3rdParty/DirectXTex/**.cpp", "../src/3rdParty/DirectXTex/**.inl" }
 	includedirs { "../src/3rdParty/DirectXTex", "../src/3rdParty/" }
 	defines {"_WIN32_WINNT=0x0600","WIN32", "_WINDOWS"}
+
+
 	
 group "Engine"
 project "Base"
@@ -62,4 +64,4 @@ project "Engine"
     kind "StaticLib"
 	characterset ("MBCS")
     files { "../src/Engine/**.h", "../src/Engine/**.cpp", "../src/Engine/**.inl"}
-	includedirs { "../src/Engine", "../src/Base", "../src/3rdParty/Cal3D/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/", "../src/3rdParty/", "../include/physx/"}
+	includedirs { "../src/Engine", "../src/Base", "../src/3rdParty/Cal3D/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/", "../src/3rdParty/", "../include/physx/", path.join(os.getenv("WWISESDK"), "include"),  path.join(os.getenv("WWISESDK"), "samples/SoundEngine/Win32")}

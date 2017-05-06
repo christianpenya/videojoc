@@ -13,8 +13,7 @@ CSetPerFrameConstantsCmd::~CSetPerFrameConstantsCmd() {}
 
 bool CSetPerFrameConstantsCmd::Load(const CXMLElement* aElement)
 {
-    bool lOk = CRenderCmd::Load(aElement);
-    return lOk;
+    return  CRenderCmd::Load(aElement);
 }
 
 void CSetPerFrameConstantsCmd::Execute(CRenderManager& lRM)
@@ -29,10 +28,11 @@ void CSetPerFrameConstantsCmd::UpdateConstants()
 {
     CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
     CCameraController& lCC = CEngine::GetInstance().GetCameraController();
-    CLightManager& l_lightManager = CEngine::GetInstance().GetLightManager();
 
     if (CEngine::GetInstance().ExistConstantBufferManager())
     {
+        lCC.SetToRenderManager(lRM);
+
         CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
         lConstanBufferManager.mFrameDesc.m_View = lRM.GetViewMatrix();
         lConstanBufferManager.mFrameDesc.m_Projection = lRM.GetProjectionMatrix();

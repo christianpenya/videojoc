@@ -1,0 +1,362 @@
+<materials >
+	
+	MOLINO	<material name="WindMill_MAT" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.321569 0.321569 0.321569 1.0 " />
+		<texture type="diffuse" filename="data\textures\windmill_diffuse.tga" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data\textures\windmill_normal.tga" />
+		<parameter type="float" name="bump" value="30.0" />
+		<texture type="specularLevel" filename="data\textures\windmill_spec.tga" />
+		<parameter type="float" name="specularLevel" value="100.0" />
+	</material>
+
+	FUENTE
+		<material name="03 - Default" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+		<texture type="diffuse" filename="data\textures\fountainDe.tga" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data\textures\fountainN_NRM.tga" />
+		<parameter type="float" name="bump" value="30.0" />
+		<texture type="specularLevel" filename="data\textures\fountainN_SPEC.tga" />
+		<parameter type="float" name="specularLevel" value="21.0" />
+	</material>
+	CATAPULTAS
+	<material name="_catapultMaterial__63" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/holz-map.uvw.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/holz-map.uvw_normal.dds" />
+		<parameter type="float" name="bump" value="2.0" />
+		<texture type="ambient" filename="data/textures/castillo/holz-map.uvw.dds" />
+		<color type="ambient" value="1.0 1.0 1.0 1.0 " />
+		<parameter type="float" name="ambient" value="100.0" />
+	</material>
+	<material name="_catapultMaterial__61" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/metal-map.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/metal-map_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+		<texture type="ambient" filename="data/textures/castillo/metal-map.dds" />
+		<color type="ambient" value="0.588 0.588 0.588 1.0 " />
+		<parameter type="float" name="ambient" value="100.0" />
+	</material>
+	<material name="_catapult13___Default" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/wurfarm-map.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/wurfarm-map_normal.dds" />
+		<parameter type="float" name="bump" value="2.0" />
+		<texture type="ambient" filename="data/textures/castillo/wurfarm-map.dds" />
+		<color type="ambient" value="0.588235 0.588235 0.588235 1.0 " />
+		<parameter type="float" name="ambient" value="100.0" />
+	</material>
+	<material name="_catapultMaterial__64" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/rad-map-wood-metal.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/rad-map-wood-metal_normal.dds" />
+		<parameter type="float" name="bump" value="2.0" />
+		<texture type="ambient" filename="data/textures/castillo/rad-map-wood-metal.dds" />
+		<color type="ambient" value="1.0 1.0 1.0 1.0 " />
+		<parameter type="float" name="ambient" value="100.0" />
+	</material>
+	<material name="_catapult07___Default" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/holz.map-2.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/holz.map-2_normal.dds" />
+		<parameter type="float" name="bump" value="2.0" />
+		<texture type="ambient" filename="data/textures/castillo/holz.map-2.dds" />
+		<color type="ambient" value="1.0 1.0 1.0 1.0 " />
+		<parameter type="float" name="ambient" value="100.0" />
+	</material>
+	
+	ÁRBOL
+	<material name="2 - Default" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/texture.tga" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	
+	SUELO
+	<material name="07 - Default" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/sand_tile.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+		
+	PARED 
+	<material name="Material #279" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/LIMESTO3.JPG" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="Material #292" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/GRYDIRT1.JPG" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	
+	BRIDGE
+	<material name="bridge floor" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/GRYDIRT1.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/GRYDIRT1_normal.dds" />
+		<parameter type="float" name="bump" value="200.0" />
+	</material>
+	<material name="bridge walls" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/WHTCON3.JPG" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="bridge posts" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/brick_6.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="bridge posts stone" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/LIMESTO3.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/LIMESTO3_BUMP.dds" />
+		<parameter type="float" name="bump" value="200.0" />
+	</material>
+	<material name="Material #4" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+	</material>
+	<material name="Material #5" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+	</material>
+	<material name="Material #6" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+	</material>
+	<material name="Material #7" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+	</material>
+	<material name="Material #8" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+	</material>
+	<material name="Material #9" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+	</material>
+	
+	GATE
+	<material name="gate" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="diffuse" filename="data\textures\castillo\Weathered Wood 3-512.bmp" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data\textures\castillo\Weathered Wood 3 BM-512.bmp" />
+		<parameter type="float" name="bump" value="100.0" />
+	</material>
+	
+	CHAPEL
+	<material name="Chapel Mat" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.882353 0.882353 0.882353 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/chapel_diffuse.tga" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/chapel_normal.tga" />
+		<parameter type="float" name="bump" value="30.0" />
+		<!--<texture type="specularLevel" filename="data/textures/castillo/chapel_spec.tga" />
+		<parameter type="float" name="specularLevel" value="100.0" />-->
+	</material>
+	
+	HOUSE
+	<material name="House_MAT" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.807843 0.807843 0.807843 1.0 " />
+		<texture type="diffuse" filename="data\textures\castillo\house_diffuse.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data\textures\castillo\house_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+		<texture type="specularLevel" filename="data\textures\castillo\house_spec.tga" />
+		<parameter type="float" name="specularLevel" value="100.0" />
+	</material>
+	
+	CASA ALTA
+	<material name="fw43_back2" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/wall7.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/wall7_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="holzbu43" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.678431 0.678431 0.678431 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/wood_1B.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/wood_1B_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="roof" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/fw42b.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/fw42b_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="fw43_front2" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/wall7.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/wall7_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="fw_s" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.627451 0.627451 0.627451 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/fw42b.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/fw42b_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="fw43_s2" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/fw42b.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/fw42b_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="kamin" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/wall1.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/wall1_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="fw43_back" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/wall1.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/wall1_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="windowsside4" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/fw42b.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/fw42b_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="wood2" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.32549 0.32549 0.32549 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/wood_1B.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/wood_1B_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="fw43_front1" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/wall1.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/wall1_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="stone2" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.639216 0.639216 0.639216 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/stoned.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/stoned_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="fw43_window" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/window22.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/window22_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="schild43" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/wall7.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/wall7_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="fw43_door" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/door35.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/door35_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="gruenzeug" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.603922 0.603922 0.603922 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/leafs.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="windowbalk" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.784314 0.784314 0.784314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/wood_1B.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/wood_1B_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	
+	CASA PORCHE
+	<material name="01 - Default" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/MADEIRA2.TGA" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="Material #46" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.584314 0.584314 0.584314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/4914.JPG" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="Material #72" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.584314 0.584314 0.584314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/MADEIRA3.TGA" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="Material #73" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.584314 0.584314 0.584314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/MADEIRA1.TGA" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	
+	CARAVAN
+	<material name="04 - Default" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/caravan_texture.tga" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	
+	TENT
+	<material name="Wood1" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.584314 0.584314 0.584314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/WOOD1.TGA" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="Flag" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.584314 0.584314 0.584314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/FLAG.TGA" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="Wood2" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.584314 0.584314 0.584314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/WOOD.TGA" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="Metal" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.584314 0.584314 0.584314 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/METAL.TGA" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	
+	AMAZING HORSE
+	<material name="statue_horse_mat_0" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/ruinStatue_horse_001.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/ruinStatue_horse_001_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	<material name="statue_horse_mat_1" vertex_type="PositionBumpUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data/textures/castillo/ruinStatue_plinth_001.dds" />
+		<parameter type="float" name="diffuse" value="100.0" />
+		<texture type="bump" filename="data/textures/castillo/ruinStatue_plinth_001_normal.dds" />
+		<parameter type="float" name="bump" value="30.0" />
+	</material>
+	
+</materials>

@@ -46,7 +46,7 @@
 		<!--<shader name="EnvironmentMapForward" file="Forward/EnvironmentMap.fx" entry_point="PS" preprocessor=""/>-->
 
 		<!--deferred-->
-		<shader name="AnimatedModelForward" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_WEIGHTIDX"/>
+		<shader name="AnimatedModelDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_WEIGHTIDX"/>
 		<shader name="PositionNormalDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor=""/>
 		<shader name="PositionNormalUVDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_UV"/>
 		<shader name="PositionNormalUVUV2Deferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_UV; USE_UV2"/>
@@ -61,7 +61,7 @@
 		<shader name="Gaussian" file="PostProcess/Gaussian.fx" entry_point="BlurPS" preprocessor=""/>
 		<shader name="ColorGrading" file="PostProcess/ColorGrading.fx" entry_point="PSGUIColorGrading" preprocessor=""/>
 		<shader name="Hdao" file="PostProcess/Hdao.fx" entry_point="PSHDAO" preprocessor=""/>
-		
+		<shader name="ShadowDepth" file="PostProcess/ShadowMap.fx" entry_point="PS" preprocessor=""/>
 		<!--
 		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="PS" preprocessor=""/>	
 		-->	

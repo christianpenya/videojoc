@@ -152,8 +152,11 @@ bool CMesh::Load(const std::string& aFilename)
                                                  lNormalStride, lTangentStride, lBiNormalStride, TextureCoordsStride);
                     }
 
-                    CGeometry* lGeometry = CreateGeometry(lRM, lVertexFlags, lNumVertices, lNumIndex, lVertexData, lIndexData);
-                    mGeometries.push_back(lGeometry);
+                    if (lNumVertices > 0 && lNumIndex > 0)
+                    {
+                        CGeometry* lGeometry = CreateGeometry(lRM, lVertexFlags, lNumVertices, lNumIndex, lVertexData, lIndexData);
+                        mGeometries.push_back(lGeometry);
+                    }
 
                     free(lVertexData);
                     free(lIndexData);

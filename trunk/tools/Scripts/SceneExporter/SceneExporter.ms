@@ -5,16 +5,17 @@ fn GetCores =
 	uniqueInstance = #()
 	for obj in selection do
 	(
-		--print("obj in selection: " + obj.name)
-		if (InstanceMgr.GetInstances obj &instances) > 1 then
-		(
-			if findItem uniqueInstance instances[1] == 0 do
-				append uniqueInstance instances[1]
-		)
-		else
-		(
+		print("obj in selection: " + obj.name)
+		--if (InstanceMgr.GetInstances obj &instances) > 1 then
+		--(
+			
+			--if findItem uniqueInstance instances[1] == 0 do
+				--append uniqueInstance instances[1]
+		--)
+		--else
+		--(
 			append uniqueInstance obj
-		)
+		--)
 	)
 	return uniqueInstance
 )
@@ -63,7 +64,7 @@ fn ExportScene =
  			for o in uniqueObjects do
  			(
 			--print (superclassOf o)
-				if (superclassOf o == GeometryClass) then 
+			if (superclassOf o == GeometryClass) then 
 			(
  					-- meshes
 					local sceneMeshNode = XmlNode tag:"scene_mesh"
@@ -75,16 +76,18 @@ fn ExportScene =
 					-- transform
 					local transformNode = XmlNode tag:"transform"
  					sceneMeshNode.AddChild transformNode
-					
-					
+
 					--print (classOf o.transform.position)
 					--print (classOf o.transform.rotation)
 					--print (classOf o.transform.scale)
 					
 					local tmp = Point3ToString(o.transform.position)
 					transformNode.AddAttribute "position" tmp
-					tmp = Point3ToString(o.transform.rotation)
-					transformNode.AddAttribute "rotation"  tmp
+					
+					transformNode.AddAttribute "yaw" o.transform.rotation.x
+					transformNode.AddAttribute "pitch" o.transform.rotation.z
+					transformNode.AddAttribute "roll" o.transform.rotation.y
+					
 					tmp = Point3ToString (o.transform.scale)
 					transformNode.AddAttribute "scale" tmp
 				)
@@ -96,15 +99,6 @@ fn ExportScene =
  					sceneLightNode.AddAttribute "name" o.name
  					sceneLightNode.AddAttribute "id_light" id_light
 					id_light = id_light + 1
-					
-					-- transform
-					local transformNode = XmlNode tag:"transform"
- 					sceneLightNode.AddChild transformNode
-					
-					local tmp = Point3ToString(o.transform.position)
-					transformNode.AddAttribute "position" tmp
-					tmp = Point3ToString(o.dir)
-					transformNode.AddAttribute "forward"  tmp
   				)
  			)
 		)

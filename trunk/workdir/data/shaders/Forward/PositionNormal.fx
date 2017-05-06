@@ -46,7 +46,6 @@ float4 PS( PS_INPUT IN ) : SV_Target
     float4 l_DiffuseColor = float4(m_RawData[0].xyz, 1.0);
 
     float3 l_LAmbient = m_LightAmbient.xyz * l_DiffuseColor.xyz;
-
     float3 l_DiffuseTmp =	float3(0.0, 0.0, 0.0);
     float3 l_SpecularTmp =	float3(0.0, 0.0, 0.0);
 

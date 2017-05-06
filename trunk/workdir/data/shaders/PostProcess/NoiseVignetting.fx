@@ -17,6 +17,7 @@ float2 UV :
     TEXCOORD0;
 };
 
+
 static float m_NoisePct=m_RawData[4].x; //0.2;
 static float m_VignettingPct=m_RawData[5].x; //0.5;
 static float m_NoiseAmount=m_RawData[6].x; //0.2;

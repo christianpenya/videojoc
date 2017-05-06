@@ -18,11 +18,11 @@ CSceneNode::CSceneNode(const CXMLElement* aElement)
       m_Visible(false),
       m_NodeType(ESceneNodeType::eSceneNodeCount)
 {
-    if (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0)
+    /*if (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0)
     {
         tinyxml2::XMLElement const* iTransformNode = aElement->FirstChildElement();
-        m_PrevPos = iTransformNode->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
-    }
+        //m_PrevPos = iTransformNode->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
+    }*/
 }
 
 CSceneNode::~CSceneNode() {}
@@ -34,6 +34,9 @@ bool CSceneNode::Update(float aDeltaTime)
 
 bool CSceneNode::Render(CRenderManager& lRM)
 {
+    return true;
+    // TODO Activar Frustum
+
     if (m_ignoreFrustum)
     {
         return true;

@@ -119,7 +119,7 @@ void CMaterial::Apply()
         en la misma casilla del vector!
         Posiciones ocupadas del vector:
         [0] -> COLOR DIFUSO
-        [1] -> BUMP, PROPIEDADES DE EFECTO DE POSTPROCESADO
+        [1] -> BUMP, FOG
         [2] -> REBOTES DE LUZ ESPECULAR
         *****************************************************************************/
 

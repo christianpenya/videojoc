@@ -32,6 +32,7 @@ void CDirectionalLight::SetShadowMap(CRenderManager &RM)
 
     ID3D11RenderTargetView *l_RenderTargetViews[1];
     l_RenderTargetViews[0] = m_pShadowMap->GetRenderTargetView();
+
     D3D11_VIEWPORT m_viewport;
     m_viewport.Width = (float)l_ShadowMapWidth;
     m_viewport.Height = (float)l_ShadowMapHeight;

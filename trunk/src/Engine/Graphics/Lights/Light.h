@@ -40,7 +40,7 @@ public:
     virtual void SetShadowMap(CRenderManager &RenderManager) = 0;
     bool GetGenerateShadowMap();
 
-protected:
+public:
     ELightType m_LightType;
     float m_Intensity;
     float m_SpecularIntensity;
