@@ -49,6 +49,29 @@
 	<shader stage="pixel" name="AnimatedModelDeferred"/>
   </effect>
   
+  <!-- SHADOWS -->
+  <effect name="PositionNormalShadowTechnique" shader_family="PositionNormalShadow">
+   <shader stage="vertex"   name="PositionNormalForward"/>
+   <shader stage="pixel"    name="PositionNormalForward"/>
+  </effect>
+  <effect name="PositionNormalUVShadowTechnique" shader_family="PositionNormalUVShadow">
+   <shader stage="vertex"   name="PositionNormalUVForward"/>
+   <shader stage="pixel"    name="PositionNormalUVForward"/>
+  </effect>
+  <effect name="PositionNormalUVUV2ShadowTechnique" shader_family="PositionNormalUVUV2Shadow">
+   <shader stage="vertex"   name="PositionNormalUVUV2Forward"/>
+   <shader stage="pixel"    name="PositionNormalUVUV2Forward"/>
+  </effect>
+  <effect name="PositionBumpUVShadowTechnique" shader_family="PositionBumpUVShadow">
+   <shader stage="vertex"   name="PositionBumpUVForward"/>
+   <shader stage="pixel"    name="PositionBumpUVForward"/>
+  </effect>
+  <effect name="AnimatedModelShadowTechnique"  shader_family="AnimatedModelShadow">
+	<shader stage="vertex" name="AnimatedModelForward"/>
+	<shader stage="pixel" name="AnimatedModelForward"/>
+  </effect>
+  
+  
   <!-- POST PROCESS -->
   <effect name="NoiseVignettingTechnique" shader_family="NoiseVignetting">
    <shader stage="vertex"   name="NoiseVignetting"/>

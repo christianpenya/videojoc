@@ -47,7 +47,7 @@
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueDeferred"/>
 	</pool>
 	
-	<pool name="shadows">	
+	<pool name="shadows">
 		<technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>
 		<technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
 		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
@@ -57,7 +57,18 @@
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
 	</pool>
-	
+	<!--
+	<pool name="shadows">	
+		<technique vertex_type="PositionUV" effect="PositionUVShadowTechnique"/>
+		<technique vertex_type="PositionNormal" effect="PositionNormalShadowTechnique"/>
+		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVShadowTechnique"/>
+		<technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2ShadowTechnique"/>
+		<technique vertex_type="PositionBump" effect="PositionBumpShadowTechnique"/>
+		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVShadowTechnique"/>
+		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2ShadowTechnique"/>
+		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelShadowTechnique"/>
+	</pool>
+	-->
 	<pool name="post_process">
 		<technique name="NoiseVignetting" effect="NoiseVignettingTechnique"/>
 		<technique name="Fog" effect="FogTechnique"/>
