@@ -102,19 +102,9 @@ int main()
     l_RenderManager.SetViewMatrix(m_vpos, m_vtarget, m_vup);
     l_RenderManager.Init(hWnd, (int)m_width, (int)m_height, debug);
 
-    // Setup Cameras
-    CSphericalCameraController l_SphericalCamera(Vect3f(0, 0, 0), 1.5f, -1.5f, 20.0f, 1.0f);
-    CFpsCameraController l_FpsCamera(Vect3f(0, 1.0, 0), 1.5f, -1.5f);
-    CTpsCameraController l_TpsCamera(Vect3f(0, 0, 0), 1.5f, -1.5f, 20.0f, 4.0f);
-
     CEngine& l_Engine = CEngine::GetInstance();
     l_Engine.SetRenderManager(&l_RenderManager);
     l_Engine.Init(hWnd);
-    l_Engine.SetCameraController(&l_FpsCamera);
-
-    l_Engine.m_FpsCam = l_FpsCamera;
-    l_Engine.m_OrbitalCam = l_SphericalCamera;
-    l_Engine.m_TpsCam = l_TpsCamera;
 
     ShowWindow(hWnd, SW_SHOWDEFAULT);
     UpdateWindow(hWnd);
