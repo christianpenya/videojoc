@@ -152,8 +152,11 @@ bool CMesh::Load(const std::string& aFilename)
                                                  lNormalStride, lTangentStride, lBiNormalStride, TextureCoordsStride);
                     }
 
-                    CGeometry* lGeometry = CreateGeometry(lRM, lVertexFlags, lNumVertices, lNumIndex, lVertexData, lIndexData);
-                    mGeometries.push_back(lGeometry);
+                    if (lNumVertices > 0 && lNumIndex > 0)
+                    {
+                        CGeometry* lGeometry = CreateGeometry(lRM, lVertexFlags, lNumVertices, lNumIndex, lVertexData, lIndexData);
+                        mGeometries.push_back(lGeometry);
+                    }
 
                     free(lVertexData);
                     free(lIndexData);
@@ -293,4 +296,12 @@ void CMesh::CalcTangentsAndBinormals(void *VtxsData, unsigned short *IdxsData, s
     }
 
     delete[] tan1;
+}
+
+void CMesh::DrawImGui()
+{
+    for (size_t i = 0, lCount = mGeometries.size(); i < lCount; ++i)
+    {
+        mMaterials[i]->DrawImgui();
+    }
 }

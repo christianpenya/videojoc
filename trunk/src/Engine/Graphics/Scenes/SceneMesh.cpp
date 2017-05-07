@@ -144,6 +144,7 @@ void CSceneMesh::DrawImgui()
     {
         ImGui::SliderFloat3("Position", (float*)&m_Position, -100.0f, 100.0f);
         ImGui::SliderFloat3("Scale", (float*)&m_Scale, 0.0f, 100.0f);
-        //ImGui::Checkbox("Visible", &m_Visible);
+        ImGui::Checkbox("Visible", &m_Visible);
+        mMesh->DrawImGui();
     }
 }

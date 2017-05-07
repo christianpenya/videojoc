@@ -66,7 +66,6 @@ bool CLayer::Load(CXMLElement* aElement)
             lNode->SetNodeType(CSceneNode::eParticle);
         }
 
-
         if (lNode)
         {
             lNode->SetParent(this);
@@ -91,7 +90,6 @@ bool CLayer::Render()
 {
     bool lOk = true;
     CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
-
 
     for (TVectorResources::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
     {

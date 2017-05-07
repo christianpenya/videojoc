@@ -8,7 +8,6 @@
 #include "Graphics/Scenes/SceneManager.h"
 #include "Graphics/Textures/TextureManager.h"
 
-
 CGenerateShadowMaps::CGenerateShadowMaps() {}
 CGenerateShadowMaps::~CGenerateShadowMaps() {}
 
@@ -38,7 +37,9 @@ void CGenerateShadowMaps::Execute(CRenderManager& lRM)
             {
                 CLayer* lLayer = lScene->GetLayerByName(*it);
                 if (lLayer)
+                {
                     lLayer->Render();
+                }
             }
 
             lRM.UnsetRenderTargets();

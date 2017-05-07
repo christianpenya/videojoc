@@ -47,7 +47,7 @@ public:
         return mTechnique;
     };
     CTexture* GetTexture(ETextureIndex aIndex);
-    const std::vector<CMaterialParameter *> & GetParmeters() const
+    const std::vector<CMaterialParameter *> & GetParameters() const
     {
         return mParameters;
     }

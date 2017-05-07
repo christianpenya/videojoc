@@ -4,10 +4,12 @@
 	<set_rasterizer_state cull_mode="front" clock_wise="1" type="solid"/> <!-- type  -->
 	
 	SHADOW MAPPING - NO FUNCIONA AÚN
-	<!--
-	<apply_technique_pool pool_name="shadow_map"/>
+	<set_render_target name="deferred_multiple_render_target">
+		<dynamic_texture name="LightDepthMapTexture" texture_width_as_frame_buffer="true" format="R32_FLOAT"/>
+	</set_render_target>	
+	
+	<apply_technique_pool pool_name="shadows"/>
 	<generate_shadow_maps />
-	-->
 	
 	<set_per_frame_constants name="set_per_frame_cmd"/>
 	
@@ -41,9 +43,6 @@
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	
 	<apply_technique_pool pool_name="forward"/>	
-
-
-	
 	<render_layer layer="Principal"/>
 	SKYBOX
 	<apply_technique_pool pool_name="skybox"/>
@@ -55,25 +54,27 @@
 	<apply_technique_pool pool_name="post_process"/>
 			
 	FOG
-	<!--
-	<draw_quad material="FogMaterial"  viewport_position = "0 0" viewport_size = "128 128">
+	<draw_quad name="texture_gaussian" material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
+        <texture name="capture_frame_buffer" stage_id="0"/>
+    </draw_quad>
+	<draw_quad material="FogMaterial">
 		<texture name="capture_frame_buffer" stage="0"/>
 		<texture name="DepthMapTexture" stage="1"/>
 	</draw_quad>
-	-->
 
 	INICIO NOISE VIGNETTING
-<!--	<enable_alpha_blend/>	
+	<enable_alpha_blend/>	
 	<draw_quad name="noise_vignetting" material="NoiseVignettingMaterial">
 		<texture name="noise" />	
 		<texture name="vignetting" />
 	</draw_quad>	
 	<disable_alpha_blend/>	
--->
+
 	FIN NOISE VIGNETTING
 
 	INICIO EFECTO GAUSSIANO
-<!--
+
+<!--	
 	<apply_technique_pool pool_name="post_process"/>
 	<apply_filter>
 		<texture name="capture_frame_buffer" stage_id="0" />
@@ -94,7 +95,8 @@
     </draw_quad>
 	<draw_quad name="gaussian_quad" material="DrawQuadMaterial"  viewport_position = "0 129" viewport_size = "128 128">
         <texture name="Gaussian" stage_id="0"/>
-    </draw_quad>-->
+    </draw_quad>
+	-->
 	FIN EFECTO GAUSSIANO
 
 	INICIO EFECTO BLOOM
@@ -129,7 +131,8 @@
 	FIN EFECTO BLOOM
 
 	INICIO EFECTO ZBLUR
-	<!--<apply_technique_pool pool_name="post_process"/>
+<!--
+	<apply_technique_pool pool_name="post_process"/>
 
 	<apply_filter>
         <texture name="capture_frame_buffer" stage_id="0"/>
@@ -151,38 +154,32 @@
 	<draw_quad name="GaussianoQuad" material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">
         <texture name="Gaussiano" stage_id="0"/>
     </draw_quad>	
-
-	
 -->
 	FIN EFECTO ZBLUR
 
-	
+	INICIO EFECTO HDAO
 
-	
 <!--
 
-<draw_quad name="HdaoQuad" material="HdaoMaterial" viewport_position = "0 0" viewport_size = "128 128">
+	<draw_quad name="HdaoQuad" material="HdaoMaterial" viewport_position = "0 0" viewport_size = "128 128">
         <texture name="capture_frame_buffer" stage_id="0"/>
-        <texture name="capture_frame_buffer" stage_id="1"/>
+        <texture name="DepthMapTexture" stage_id="1"/>		 
         <texture name="capture_frame_buffer" stage_id="2"/>
-        <texture name="capture_frame_buffer" stage_id="3"/>
-    
-	</draw_quad>		
+	</draw_quad>	
 
-
-<draw_quad material="DrawQuadMaterial"  viewport_position = "129 129" viewport_size = "128 128">
+	FIN EFECTO HDAO
+	
+<!--<draw_quad material="DrawQuadMaterial"  viewport_position = "129 129" viewport_size = "128 128">
         <texture name="LightMapTexture" stage_id="0"/>
     </draw_quad>-->
 	INICIO EFECTO COLORGRADING
-	<!--
-	<apply_technique_pool pool_name="post_process"/>
-	<draw_quad name="colorGradingQuad" material="ColorGradingMaterial">
+	<!--<apply_technique_pool pool_name="post_process"/>
+	<draw_quad name="colorGradingQuad" material="ColorGradingMaterial" viewport_position = "512 0" viewport_size = "128 128">
 	   <texture name="capture_frame_buffer" stage_id="0"/>
 	</draw_quad>
-	<draw_quad name="textureinicial" material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
+	<draw_quad name="textureinicial" material="DrawQuadMaterial" viewport_position = "512 128" viewport_size = "128 128">
         <texture name="capture_frame_buffer" stage_id="0"/>
-    </draw_quad>		
-	-->	
+    </draw_quad>		-->
 	FIN COLORGRADING
 
 	

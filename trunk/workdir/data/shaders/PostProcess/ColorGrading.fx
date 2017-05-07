@@ -1,14 +1,14 @@
 #include "globals.fx"
 #include "Samplers.fxh"
 
-static float m_Enabled = 1;// m_RawDataValues[0];
-static float m_BrownSepiaColorGrading = 0.5; // m_RawDataValues[1];
-static float m_GreenSepiaColorGrading = 0.5;// m_RawDataValues[2];
-static float m_BlueSepiaColorGrading = 0.5; // m_RawDataValues[3];
-static float m_MonochromeColorGrading = 0.5; // m_RawDataValues[4];
-static float m_ColorColorGrading = 0.5;// m_RawDataValues[5];
-static float m_ContrastColorGrading = 0.5;// m_RawDataValues[6];
-static float m_BrightnessColorGrading = 0.5;// m_RawDataValues[7];
+static float m_Enabled = m_RawData[4].x; //1.0;
+static float m_BrownSepiaColorGrading =  m_RawData[5].x; //0.5; 
+static float m_GreenSepiaColorGrading =  m_RawData[6].x; //0.5;
+static float m_BlueSepiaColorGrading =  m_RawData[7].x; //0.5;
+static float m_MonochromeColorGrading =  m_RawData[8].x; //0.5;
+static float m_ColorColorGrading =m_RawData[9].x; // 0.5;
+static float m_ContrastColorGrading = m_RawData[10].x; //0.5;
+static float m_BrightnessColorGrading = m_RawData[11].x; //0.5;
 
 struct PS_INPUT
 {

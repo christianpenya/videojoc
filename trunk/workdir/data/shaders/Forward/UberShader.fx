@@ -135,7 +135,8 @@ PS_INPUT VS( VS_INPUT IN )
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-    float3 pixelColor = m_RawData[0].xyz;
+	return float4(1.0, 1.0, 0.0, 1.0);
+	float3 pixelColor = m_RawData[0].xyz;
     float3 l_LAmbient = m_LightAmbient.xyz;
 
     float3 l_Normal = normalize(IN.WorldNormal);

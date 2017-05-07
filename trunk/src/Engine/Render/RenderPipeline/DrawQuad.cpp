@@ -32,6 +32,7 @@ void CDrawQuad::Execute(CRenderManager& lRM)
 {
     lRM.SetViewport(m_ViewportPosition, m_ViewportSize);
     mMaterial->Apply();
+    mMaterial->DrawImgui();
     ActivateTextures();
     LOG_INFO_APPLICATION(mMaterial->GetName().c_str());
     mQuad->Render();

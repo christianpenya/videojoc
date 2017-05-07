@@ -25,7 +25,7 @@ project "Videogame"
     characterset ("MBCS")
     flags { "ExtraWarnings", "NoRTTI" }
     files { "../src/Videogame/**.h", "../src/Videogame/**.cpp"}
-    links {"Engine", "Base", "d3d11", "d3dcompiler", "Cal3D", "lua", "luabind", "DirectXTex","../include/physx/lib/**.lib", "Sound"}
+    links {"Engine", "Base", "d3d11", "d3dcompiler", "Cal3D", "lua", "luabind", "DirectXTex","../include/physx/lib/**.lib"}
     includedirs { "../src/Engine", "../src/Base", "../src/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/"}
 	
 group "3rdParty"
@@ -51,10 +51,7 @@ project "DirectXTex"
 	includedirs { "../src/3rdParty/DirectXTex", "../src/3rdParty/" }
 	defines {"_WIN32_WINNT=0x0600","WIN32", "_WINDOWS"}
 
-project "Sound"
-	kind "StaticLib"
-    files { path.join(os.getenv("WWISESDK"), "include/**.h")}
-	includedirs { path.join(os.getenv("WWISESDK"), "include"), path.join(os.getenv("WWISESDK"), "samples/SoundEngine/Win32")}
+
 	
 group "Engine"
 project "Base"
