@@ -170,7 +170,7 @@
 		<scene_mesh name="CasaPorche1" mesh="data/meshes/castillo/CasaPorche.mesh" >
 			<transform position="12.1402 0.143799 -10.0216" yaw="0.436195" pitch="0.0" roll="0.0" scale="0.0105639 0.0105639 0.0105639" />
 		</scene_mesh>
-		<scene_mesh name="CasaPorche2" mesh="data/meshes/castillo/CasaPorche2.mesh" >
+		<scene_mesh name="CasaPorche2" mesh="data/meshes/castillo/Plane03.mesh" >
 			<transform position="14.3348 0.143799 2.33141" yaw="-0.436195" pitch="0.0" roll="0.0" scale="0.0105639 0.0105639 0.0105639" />
 		</scene_mesh>
 	
