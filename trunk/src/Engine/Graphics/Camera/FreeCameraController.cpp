@@ -1,0 +1,56 @@
+#include "FreeCameraController.h"
+#include "Input/ActionManager.h"
+#include "Engine/Engine.h"
+#include "Utils/Logger.h"
+
+void CFreeCameraController::Update(float ElapsedTime)
+{
+    CCameraController::Update(ElapsedTime);
+    CActionManager* actionManager = &CEngine::GetInstance().GetActionManager();
+    center = CEngine::GetInstance().GetRenderManager().m_SphereOffset;
+    xSpeed = 0.1f * (*actionManager)("x_move")->value;
+    zSpeed = 0.05f * (*actionManager)("z_move")->value;
+
+    yawSpeed = 0.1f * (*actionManager)("pitch")->value;
+    pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
+
+    zoomSpeed = 0.1f * (*actionManager)("zoom")->value;
+    LOG_INFO_APPLICATION(std::to_string(zoomSpeed).c_str());
+
+    yaw += yawSpeed * ElapsedTime;
+    pitch += pitchSpeed * ElapsedTime;
+    roll += rollSpeed * ElapsedTime;
+    zoom = zoomSpeed * ElapsedTime;
+
+    if (pitch > maxPitch)
+        pitch = maxPitch;
+    if (pitch < minPitch)
+        pitch = minPitch;
+
+    if (zoom > maxZoom)
+        zoom = maxZoom;
+    if (zoom < minZoom)
+        zoom = minZoom;
+
+    if (yaw > mathUtils::PiTimes<float>())
+        yaw -= mathUtils::PiTimes<float>(2.0f);
+    if (yaw < -mathUtils::PiTimes<float>())
+        yaw += mathUtils::PiTimes<float>(2.0f);
+
+    if (roll > mathUtils::PiTimes<float>())
+        roll -= mathUtils::PiTimes<float>(2.0f);
+    if (roll < -mathUtils::PiTimes<float>())
+        roll += mathUtils::PiTimes<float>(2.0f);
+
+    m_Front.x = sin(yaw) * cos(-pitch);
+    m_Front.y = -sin(-pitch);
+    m_Front.z = -cos(yaw) * cos(-pitch);
+
+    m_Position += zSpeed * m_Front;
+
+    Vect3f right = m_Front ^ m_Up;
+    m_Position += xSpeed * right;
+    LOG_INFO_APPLICATION(std::to_string(zoom).c_str());
+    m_Position += m_Front * zoom;
+
+}

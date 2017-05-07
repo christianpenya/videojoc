@@ -243,6 +243,7 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\CameraController.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\CinematicCameraController.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\FpsCameraController.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\Camera\FreeCameraController.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\Frustum.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\SphericalCameraController.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\TpsCameraController.h" />
@@ -345,6 +346,7 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\CameraController.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\CinematicCameraController.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\FpsCameraController.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\Camera\FreeCameraController.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\Frustum.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\SphericalCameraController.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\TpsCameraController.cpp" />
