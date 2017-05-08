@@ -1,6 +1,11 @@
 #include "globals.fx"
 
-
+#if USE_BUMP
+	Texture2D NormalMapTexture :
+	register(t1);
+	SamplerState NormalMapTextureSampler :
+	register(s1);
+#endif
 #if USE_UV
 	Texture2D DiffuseTexture :
 	register(t0);
@@ -15,12 +20,8 @@
 	#endif
 #endif
 
-#if USE_BUMP
-	Texture2D NormalMapTexture :
-	register(t1);
-	SamplerState NormalMapTextureSampler :
-	register(s1);
-#endif
+
+
 
 struct VS_INPUT
 {
@@ -36,6 +37,12 @@ struct VS_INPUT
 			BLENDINDICES;
 
 	#endif
+	#if USE_BUMP
+		float3 Tangent:
+		    TANGENT;
+		float3 Binormal:
+		    BINORMAL;
+	#endif
 	#if USE_UV
 		float2 UV :
 		    TEXCOORD0;
@@ -44,13 +51,7 @@ struct VS_INPUT
 			    TEXCOORD1;
 		#endif
 	#endif
-	#if USE_BUMP
-		float3 Tangent:
-		    TANGENT;
-		float3 Binormal:
-		    BINORMAL;
 
-	#endif
 
 };
 
@@ -59,21 +60,23 @@ struct PS_INPUT
 {
 	float4 Pos :
 	    SV_POSITION;
-	#if USE_BUMP
+	float3 Normal :
+    	NORMAL;
+    #if USE_BUMP
 		float3 Tangent :
 		    TANGENT;
 		float3 Binormal :
-		    BINORMAL;
+			BINORMAL;
 	#endif
 	#if USE_UV
 		float2 UV :
 		    TEXCOORD0;
 		#if USE_UV2
 			float2 UV2 :
-			    TEXCOORD1;	
-
+			    TEXCOORD1;
 		#endif
 	#endif
+	
 	float3 WorldNormal :
 			    TEXCOORD2;
 	float3 WorldPosition :
@@ -121,6 +124,7 @@ PS_INPUT VS( VS_INPUT IN )
 		l_Normal+=mul(IN.Normal.xyz, m)* IN.Weight.y;
 		l_Normal=normalize(l_Normal);
 	#endif
+	l_Output.Normal=normalize(mul(normalize(IN.Normal).xyz, (float3x3)m_World));
 	l_Output.Pos = mul( lPos, m_World );
     l_Output.WorldPosition=l_Output.Pos.xyz;
     l_Output.Pos = mul( l_Output.Pos, m_View );
@@ -128,16 +132,17 @@ PS_INPUT VS( VS_INPUT IN )
 	l_Output.Depth=l_Output.Pos.zw;
 
     l_Output.WorldNormal = normalize(mul(normalize(l_Normal), (float3x3)m_World));
+    #if USE_BUMP
+	     	l_Output.Tangent = normalize(mul(IN.Tangent.xyz, (float3x3)m_World));
+	    	l_Output.Binormal = normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
+	#endif
     #if USE_UV
 	 	l_Output.UV = IN.UV;
 	 	#if USE_UV2
 	 		l_Output.UV2 = IN.UV2;
 	 	#endif
-	 	#if USE_BUMP
-	     	l_Output.Tangent = normalize(mul(IN.Tangent.xyz, (float3x3)m_World));
-	    	l_Output.Binormal = normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
-	    #endif
     #endif
+
 
   
     return l_Output;
@@ -161,6 +166,12 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
     float l_Depth=IN.Depth.x/IN.Depth.y;
 
     PixelOutputType l_Output = (PixelOutputType)0;
+    #if USE_BUMP
+			 float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
+			 l_Normal = normalize(IN.Normal);
+			 l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
+		     l_Normal = normalize(l_Normal);
+	#endif
     #if USE_UV
 		pixelColor = (DiffuseTexture.Sample(LinearSampler, IN.UV) * float4(pixelColor, 1.0)).xyz;
 		#if USE_UV2
@@ -168,12 +179,9 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 			//pixelColor = l_LightmapPixel.xyz * pixelColor;
 			l_LAmbient = l_LightmapPixel.xyz;
 		#endif
-		#if USE_BUMP
-			 float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
-			 l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
-		     l_Normal = normalize(l_Normal);
-		#endif
+		//pixelColor = float3(0.0 , 1.0, 0.0);
  	#endif
+
  
 
 	l_Normal=Normal2Texture(l_Normal);
