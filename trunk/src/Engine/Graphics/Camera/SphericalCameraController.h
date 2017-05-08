@@ -15,8 +15,10 @@ public:
     float yawSpeed, pitchSpeed, rollSpeed;
     float zoomSpeed;
 
-    CSphericalCameraController(Vect3f center = Vect3f(0, 0, 0), float maxPitch = 1.5f, float minPitch = -1.5f, float maxZoom = 10, float minZoom = 0)
-        : center(center)
+    CSphericalCameraController(Vect3f position = Vect3f(10, 10, 10), Vect3f forward = Vect3f(0, 0, 1), Vect3f up = Vect3f(0, 1, 0),
+                               Vect4f cameraInfo = Vect4f(1, 500, 1.13f, 1.7f), Vect3f center = Vect3f(0, 0, 0), float maxPitch = 1.5f, float minPitch = -1.5f, float maxZoom = 10.0f, float minZoom = -10.0f)
+        : CCameraController(position, forward, up, cameraInfo),
+          center(center)
         , maxPitch(maxPitch)
         , minPitch(minPitch)
         , maxZoom(maxZoom)

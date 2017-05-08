@@ -18,9 +18,6 @@ bool CSetPerFrameConstantsCmd::Load(const CXMLElement* aElement)
 
 void CSetPerFrameConstantsCmd::Execute(CRenderManager& lRM)
 {
-    lRM.SetModelMatrix(lRM.m_ModelMatrix);
-    lRM.SetProjectionMatrix(lRM.m_ProjectionMatrix);
-
     UpdateConstants();
 }
 
