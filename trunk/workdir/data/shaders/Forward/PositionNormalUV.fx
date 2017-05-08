@@ -52,7 +52,6 @@ float4 PS( PS_INPUT IN ) : SV_Target
 
     float3 WorldPos = IN.WorldPosition;
     float4 ColorPixel = DiffuseTexture.Sample(LinearSampler, IN.UV) * float4(m_RawData[0].xyz, 1.0);
-
     float3 l_LAmbient = m_LightAmbient.xyz * ColorPixel.xyz;
 
     float3 DiffuseColor = float3(0.0, 0.0, 0.0);
@@ -71,6 +70,6 @@ float4 PS( PS_INPUT IN ) : SV_Target
         DiffuseColor = float3(0.0, 0.0, 0.0);
         SpecularColor = float3(0.0, 0.0, 0.0);
     }
-
+	
     return float4(l_LAmbient + l_LDiffuseSpecular, 1.0);
 }

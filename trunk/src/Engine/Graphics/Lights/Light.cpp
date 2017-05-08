@@ -30,11 +30,10 @@ CLight::CLight(CXMLElement* aElement)
     , m_pShadowMaskTexture(nullptr)
 {
     bool lOk = (EnumString<ELightType>::ToEnum(m_LightType, aElement->GetAttribute<std::string>("type", "")));
-    m_Visible = aElement->GetAttribute<bool>("enabled", true);
+    m_Visible = aElement->GetAttribute<bool>("active", true);
 
     tinyxml2::XMLElement const* iTransformLight = aElement->FirstChildElement();
-    m_Position = iTransformLight->GetAttribute<Vect3f>("position", Vect3f(0.0f, 0.0f, 0.0f));
-    m_PrevPos = iTransformLight->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
+    CTransform::SetForward(iTransformLight->GetAttribute<Vect3f>("forward", Vect3f(0.0f, -1.0f, 0.0f)));
 
     CTextureManager& lTextureManager = CEngine::GetInstance().GetTextureManager();
     //TODO

@@ -48,10 +48,11 @@ CEngine::CEngine()
     , m_Frames(0)
     , m_FPS (0.0)
     , m_CameraSelector(0)
-    , m_PrevCameraSelector(0)
+    , m_PrevCameraSelector(2)
 {
     m_FreeCam = new CFreeCameraController(Vect3f(0, 10, 0), Vect3f(0, 0, 1), Vect3f(0, 1, 0), Vect4f(1, 500, 1.13f, 1.7f), 1.5f, -1.5f, 10.0f, -10.0f);
     m_FpsCam = new CFpsCameraController(Vect3f(0, 1, 0), 1.5f, -1.5f);
+    m_OrbitalCam = new CSphericalCameraController();
 }
 
 CEngine::~CEngine()
@@ -208,7 +209,10 @@ void CEngine::Update()
         break;
     case 1: //FPS
         SetCameraController(m_FpsCam);
-        //fpsCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
+    //fpsCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
+    case 2: //Free
+        SetCameraController(m_OrbitalCam);
+        // orbitalCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
 
         break;
     default:

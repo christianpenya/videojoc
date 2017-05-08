@@ -18,7 +18,6 @@ static TInputSetState* InputSetState = InputSetStateStub;
 
 void CInputManager::PreUpdate(bool isWindowActive)
 {
-
     m_PreviousKeyboardState = m_KeyboardState;
 
     m_PreviousButtonLeft = m_ButtonLeft;
