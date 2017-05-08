@@ -24,7 +24,6 @@
 	<clear render_target="true" depth_stencil="true" color="0.0 0.0 0.0 0.0"/>
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	<apply_technique_pool pool_name="deferred"/>
-	<render_layer layer="deferred_opaque"/>
 
 	<unset_render_target/>
 		
@@ -44,6 +43,8 @@
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	
 	<apply_technique_pool pool_name="forward"/>
+		<render_layer layer="deferred_opaque"/>
+
 	<render_layer layer="Principal"/>
 	
 	SKYBOX
@@ -55,7 +56,7 @@
 	<capture_frame_buffer name="capture_frame_buffer" texture_width_as_frame_buffer="true" />
 	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>
 	<apply_technique_pool pool_name="post_process"/>
-<!--			
+			
 	FOG
 	<draw_quad name="texture_gaussian" material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
         <texture name="capture_frame_buffer" stage_id="0"/>
@@ -77,7 +78,7 @@
 
 	INICIO EFECTO GAUSSIANO
 
-	
+<!--	
 	<apply_technique_pool pool_name="post_process"/>
 	<apply_filter>
 		<texture name="capture_frame_buffer" stage_id="0" />

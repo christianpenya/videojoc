@@ -305,10 +305,8 @@
 	<layer name="Principal" active="true" >	
 		<scene_light name="FDirect001" id_light="0" />
 		<scene_light name="Fspot001" id_light="1" />
-		<!--
 		<scene_light name="Omni001" id_light="2" />
 		<scene_light name="Omni002" id_light="3" />	
-		-->
 	</layer>
 	
 </scene>
