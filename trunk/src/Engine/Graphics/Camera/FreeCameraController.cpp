@@ -8,14 +8,11 @@ void CFreeCameraController::Update(float ElapsedTime)
     CCameraController::Update(ElapsedTime);
     CActionManager* actionManager = &CEngine::GetInstance().GetActionManager();
     center = CEngine::GetInstance().GetRenderManager().m_SphereOffset;
-    xSpeed = 0.1f * (*actionManager)("x_move")->value;
-    zSpeed = 0.05f * (*actionManager)("z_move")->value;
-
+    xSpeed = 0.2f * (*actionManager)("x_move")->value;
+    zSpeed = 0.1f * (*actionManager)("z_move")->value;
     yawSpeed = 0.1f * (*actionManager)("pitch")->value;
     pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
-
     zoomSpeed = 0.1f * (*actionManager)("zoom")->value;
-    LOG_INFO_APPLICATION(std::to_string(zoomSpeed).c_str());
 
     yaw += yawSpeed * ElapsedTime;
     pitch += pitchSpeed * ElapsedTime;
@@ -50,7 +47,5 @@ void CFreeCameraController::Update(float ElapsedTime)
 
     Vect3f right = m_Front ^ m_Up;
     m_Position += xSpeed * right;
-    LOG_INFO_APPLICATION(std::to_string(zoom).c_str());
     m_Position += m_Front * zoom;
-
 }

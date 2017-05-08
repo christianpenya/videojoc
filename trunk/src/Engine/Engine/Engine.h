@@ -86,7 +86,7 @@ public:
 
     CFreeCameraController* m_FreeCam;
     CFpsCameraController* m_FpsCam;
-    CSphericalCameraController m_OrbitalCam;
+    CSphericalCameraController* m_OrbitalCam;
     int m_CameraSelector;
     int m_PrevCameraSelector;
 

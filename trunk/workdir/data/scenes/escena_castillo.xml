@@ -1,7 +1,25 @@
 <scene >
 
 	<layer name="deferred_opaque" active="true">	
+		<!--
+		<scene_mesh name="x!" mesh="data/meshes/Box01.mesh">
+			<transform position="2.5.0 0.0 0.0"  pitch ="0.78539816339" yaw="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+		<scene_mesh name="Y!" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 3.0 0.0" pitch ="0.0" yaw="0.78539816339" roll="0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+		<scene_mesh name="Z!" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 0.0 5.0" pitch ="0.0" yaw="0.0" roll="0.78539816339" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+
+		<scene_mesh name="Cub!" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 0.0 0.0" pitch ="0.78539816339" yaw="0.78539816339" roll="0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+		<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
+			<transform position="0.0 0.0 0.0" pitch ="0.0" yaw="0.0" roll="0.0" scale="10.0 1.0 30.0" />
+		</scene_mesh>
 		
+		-->
 		SUELO
 		<scene_mesh name="Plane01" mesh="data/meshes/castillo/Plane01.mesh" >
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
@@ -275,7 +293,7 @@
 		<scene_mesh name="Lampara" mesh="data/meshes/castillo/lampara.mesh" >
 			<transform position="-23.8265 0.0298293 14.8899" yaw="0.0" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
 		</scene_mesh>
-		
+		-->
 	</layer>
 
 	<layer name="Skybox" active="true">
@@ -287,8 +305,10 @@
 	<layer name="Principal" active="true" >	
 		<scene_light name="FDirect001" id_light="0" />
 		<scene_light name="Fspot001" id_light="1" />
+		<!--
 		<scene_light name="Omni001" id_light="2" />
 		<scene_light name="Omni002" id_light="3" />	
+		-->
 	</layer>
 	
 </scene>
