@@ -105,14 +105,19 @@ void CScene::DrawImGui()
     ImGui::Checkbox("Active", &m_Active);
     if (m_Active == true)
     {
-        ImGui::BeginChild("#Layer", ImVec2(400, 400), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::BeginChild("#Layer", ImVec2(400, 200), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
         ImGui::PushItemWidth(-130);
 
         for (TMapResources::iterator iLayer = m_ResourcesMap.begin(); iLayer != m_ResourcesMap.end(); ++iLayer)
         {
             CLayer* llayer = iLayer->second.m_Value;
             ImGui::PushID(iLayer->second.m_Id);
+            static bool show_app_auto_resize = true;
+            ImGui::Begin("Layer", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
+
             llayer->DrawImgui();
+
+            ImGui::End();
             ImGui::PopID();
         }
         ImGui::PopItemWidth();

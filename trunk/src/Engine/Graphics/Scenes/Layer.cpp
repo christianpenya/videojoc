@@ -109,7 +109,7 @@ std::vector<CSceneNode*> CLayer::GetNodes()
 
 void CLayer::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::CollapsingHeader(m_Name.c_str(), ImGuiWindowFlags_AlwaysVerticalScrollbar))
     {
         ImGui::Checkbox("Active", &m_Active);
         if (m_Active == true)
