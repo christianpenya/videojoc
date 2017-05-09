@@ -21,7 +21,6 @@
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
 
-
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
 CEngine::CEngine()
@@ -48,9 +47,13 @@ CEngine::CEngine()
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
     , m_FPS (0.0)
-    , m_CameraSelector(1)
-    , m_PrevCameraSelector(1)
-{}
+    , m_CameraSelector(0)
+    , m_PrevCameraSelector(2)
+{
+    m_FreeCam = new CFreeCameraController(Vect3f(0, 10, 0), Vect3f(0, 0, 1), Vect3f(0, 1, 0), Vect4f(1, 500, 1.13f, 1.7f), 1.5f, -1.5f, 10.0f, -10.0f);
+    m_FpsCam = new CFpsCameraController(Vect3f(0, 1, 0), 1.5f, -1.5f);
+    m_OrbitalCam = new CSphericalCameraController();
+}
 
 CEngine::~CEngine()
 {
@@ -199,20 +202,17 @@ void CEngine::Update()
 
     switch (m_CameraSelector)
     {
-    case 0: //Orbital
-        SetCameraController(&m_OrbitalCam);
+    case 0: //Free
+        SetCameraController(m_FreeCam);
         // orbitalCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
 
         break;
     case 1: //FPS
-        SetCameraController(&m_FpsCam);
-        //fpsCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
-
-        break;
-    case 2: //TPS
-        SetCameraController(&m_TpsCam);
-        sphereUpdate(*m_RenderManager, m_ActionManager, m_CameraController->getFront(), m_CameraController->getUp());
-        // tpsCameraUpdate(*m_CameraController, m_ActionManager, m_RenderManager->m_SphereOffset, (float)m_DeltaTime);
+        SetCameraController(m_FpsCam);
+    //fpsCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
+    case 2: //Free
+        SetCameraController(m_OrbitalCam);
+        // orbitalCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
 
         break;
     default:
@@ -225,7 +225,7 @@ void CEngine::Update()
     m_PhysXManager->MoveCharacterController("player", m_CharacterController.m_Movement, PHYSX_UPDATE_STEP);
 
     m_CameraController->Update((float)m_DeltaTime);
-    m_CameraController->SetToRenderManager(*m_RenderManager);
+    //m_CameraController->SetToRenderManager(*m_RenderManager);
     m_RenderManager->Update();
     m_SceneManager->Update(m_DeltaTime);
     m_CinematicManager->Update(m_DeltaTime);
@@ -290,7 +290,6 @@ void CEngine::tpsCameraUpdate(CCameraController& camera, CActionManager* actionM
 
     tpsCamera->yawSpeed = 0.1f * (*actionManager)("pitch")->value;
     tpsCamera->pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
-
     tpsCamera->zoomSpeed = (*actionManager)("zoom")->value;
 
     tpsCamera->Update(dt);
@@ -326,4 +325,3 @@ void CEngine::CharacterControllerUpdate(CActionManager* actionManager, float dt)
 
     m_CharacterController.m_Movement = {x, 0.0f, z};
 }
-

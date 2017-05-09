@@ -3,8 +3,7 @@
 #define MAX_LIGHTS_BY_SHADER 4
 #define MAX_OBJECT_RAW_PARAMETER 16
 
-cbuffer PerFrame :
-register( b0 )
+cbuffer PerFrame : register( b0 )
 {
     float4x4 m_View;
     float4x4 m_Projection;
@@ -18,29 +17,24 @@ register( b0 )
 	float4 m_Time;
 }
 
-
-cbuffer PerObject :
-register( b1 )
+cbuffer PerObject : register( b1 )
 {
     float4x4 m_World;
 }
 
-cbuffer PerMaterial :
-register( b2 )
+cbuffer PerMaterial : register( b2 )
 {
     float4 m_RawData[MAX_OBJECT_RAW_PARAMETER];
 	float2 m_ViewPosition[MAX_OBJECT_RAW_PARAMETER];
 	float2 m_ViewSize[MAX_OBJECT_RAW_PARAMETER];
 }
 
-cbuffer AnimatedModelConstantBuffer :
-register (b3)
+cbuffer AnimatedModelConstantBuffer : register (b3)
 {
     float4x4 m_Bones[MAXBONES];
 }
 
-cbuffer LightsConstantBuffer :
-register (b4)
+cbuffer LightsConstantBuffer : register (b4)
 {
     float4 m_LightAmbient;
     float4 m_FogColor;
@@ -87,14 +81,14 @@ void CalculateSingleLight(uint IdLight,float3 NormalPixel : NORMAL, float3 World
     if(m_LightEnabledArray[IdLight]==1)
     {
 
-        float g_SpecularExponent = m_RawData[2].x;
-        float g_SpecularContrib = m_RawData[2].y;
+        float g_SpecularExponent = 0.5;
+        float g_SpecularContrib = 1.0;
 
         float4 l_LightDirection = m_LightDirection[IdLight];
         float l_DistanceAtten = 1.0;
         float l_AngleAtenuation = 1.0;
 
-        if(m_LightTypeArray[IdLight] == 0)
+		if(m_LightTypeArray[IdLight] == 0)
         {
             // OMNI
             float l_DistanceToPixel = length(float4(WorldPos, 0.0) - m_LightPosition[IdLight]);
@@ -114,18 +108,19 @@ void CalculateSingleLight(uint IdLight,float3 NormalPixel : NORMAL, float3 World
 
             float l_AngleAtenuation = saturate((l_DotAngle-l_SpotFallOff)/(l_SpotAngle-l_SpotFallOff));
         }
-        
+		
 		// No hacen falta calculos adicionales para la luz direccional
-        float3 l_Eye=m_CameraPosition.xyz;
-        float3 l_ViewDir = normalize(l_Eye - WorldPos);
-        float3 Hn = normalize(l_ViewDir-l_LightDirection.xyz);
-
+        
         float l_DiffuseContrib = dot(NormalPixel,(-l_LightDirection.xyz));
 		l_DiffuseContrib = max(0, l_DiffuseContrib);
-        float l_SpecularContrib = pow(saturate(dot(Hn,NormalPixel)), 20.0 ) ;
+        
+		float3 l_Eye = m_CameraPosition.xyz;
+        float3 l_ViewDir = normalize(l_Eye - WorldPos);
+        float3 Hn = normalize(l_ViewDir-l_LightDirection.xyz);
+		float l_SpecularContrib = pow(saturate(dot(Hn,NormalPixel)), 20.0 );
 
-        DiffuseColor = l_DiffuseContrib * m_LightIntensity[IdLight] * m_LightColor[IdLight].xyz * ColorPixel.xyz * l_DistanceAtten * l_AngleAtenuation;
-        SpecularColor = l_SpecularContrib* m_LightIntensity[IdLight] *	m_LightColor[IdLight].xyz *g_SpecularContrib * l_DistanceAtten * l_AngleAtenuation;
+		DiffuseColor = l_DiffuseContrib * m_LightIntensity[IdLight] * m_LightColor[IdLight].xyz * ColorPixel.xyz * l_DistanceAtten * l_AngleAtenuation;
+		SpecularColor = l_SpecularContrib * m_LightIntensity[IdLight] *	m_LightColor[IdLight].xyz *g_SpecularContrib * l_DistanceAtten * l_AngleAtenuation;
 	}
 }
 

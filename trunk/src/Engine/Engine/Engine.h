@@ -9,6 +9,7 @@
 #include "Graphics/Camera/SphericalCameraController.h"
 #include "Graphics/Camera/FpsCameraController.h"
 #include "Graphics/Camera/TpsCameraController.h"
+#include "Graphics/Camera/FreeCameraController.h"
 #include "Input/CharacterController.h"
 #include <chrono>
 #include "Imgui/imgui_impl_dx11.h"
@@ -83,9 +84,9 @@ public:
     unsigned int m_Frames;
     double m_FPS;
 
-    CFpsCameraController m_FpsCam;
-    CTpsCameraController m_TpsCam;
-    CSphericalCameraController m_OrbitalCam;
+    CFreeCameraController* m_FreeCam;
+    CFpsCameraController* m_FpsCam;
+    CSphericalCameraController* m_OrbitalCam;
     int m_CameraSelector;
     int m_PrevCameraSelector;
 

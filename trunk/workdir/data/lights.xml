@@ -1,20 +1,25 @@
 <lights >
 
-	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" >
-		<transform position="0.0 10.0 0.0" yaw="1.50" pitch ="0.0" roll="0.0" />
+	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="0.5" attenuation_range="0.0 100.0" >
+		<transform position="0.0 10.0 0.0" forward="0.0 1.0 -1.0" /> 
 	</light>
-	<light type="spot" name="Fspot001"  angle="10.0" fall_off="40.0"  color="1.0 1.0 1.0" active="true" intensity="0.5" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="768">
-		<transform position="-20.0 20.0 -20.0" yaw="0.5" pitch ="-0.5" roll="0.0" />
+	
+	<light type="spot" name="Fspot001"  angle="10.0" fall_off="40.0"  color="1.0 1.0 1.0" active="true" intensity="0.1" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="768">
+		<transform position="0.0 20.0 -20.0" forward="0.0 -1.0 -1.0" />
 		<layer name = "deferred_opaque" />
 	</light>
-	<light type="point" name="Omni001" color="1.0 1.0 1.0" active="true" intensity="0.5" attenuation_range="0.0 100.0" >
-		<transform position="-13.8572 7.78125 -16.0357" yaw="0.5" pitch ="-0.5" roll="0.0" />
+	
+	<light type="point" name="Omni001" color="1.0 1.0 1.0" active="true" intensity="0.2" attenuation_range="0.0 100.0" >
+		<transform position="-13.8572 20.0 -16.0357" yaw="0." pitch ="-0." roll="0.0" />
 	</light>
-	<light type="point" name="Omni002" color="1.0 1.0 1.0" active="true" intensity="0.5" attenuation_range="0.0 100.0" >
-		<transform position="18.0355 15.3003 28.6497" yaw="0.5" pitch ="0.5" roll="0.0" />
+	<light type="point" name="Omni002" color="1.0 1.0 1.0" active="true" intensity="0.2" attenuation_range="0.0 100.0" >
+		<transform position="18.0355 20.0 28.6497" yaw="0." pitch ="0." roll="0.0" />
 	</light>
-
+	
 	<!--
+	
+	
+	
 	<light type="spot" name="Fspot001"  angle="10.0" fall_off="40.0"  color="1.0 1.0 1.0" enabled="true" intensity="0.5" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024">
 		<transform position="-20.0 20.0 -20.0" yaw="0.5" pitch ="0.5" roll="0.0" />
 		<layer name = "deferred_opaque" />

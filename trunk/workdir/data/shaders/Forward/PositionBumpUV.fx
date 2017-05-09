@@ -60,17 +60,15 @@ PS_INPUT VS(VS_INPUT IN)
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-	
-    float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
-    float3 l_Normal = normalize(IN.Normal);
+	float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
+	float3 l_Normal = normalize(IN.Normal);
     l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
     l_Normal = normalize(l_Normal);
 
     float3 l_WorldPos = IN.WorldPosition;
     float4 l_DiffuseColor = DiffuseTexture.Sample(LinearSampler, IN.UV) * float4(m_RawData[0].xyz, 1.0);
-
     float3 l_LAmbient = m_LightAmbient.xyz * l_DiffuseColor.xyz;
-
+	
     float3 l_DiffuseTmp = float3(0.0, 0.0, 0.0);
     float3 l_SpecularTmp = float3(0.0, 0.0, 0.0);
 
@@ -83,10 +81,11 @@ float4 PS(PS_INPUT IN) : SV_Target
 
         l_LDiffuseSpecularTmp = l_DiffuseTmp + l_SpecularTmp;
         l_LDiffuseSpecular = l_LDiffuseSpecular + l_LDiffuseSpecularTmp;
-
+		
         l_DiffuseTmp = float3(0.0, 0.0, 0.0);
         l_SpecularTmp = float3(0.0, 0.0, 0.0);
     }
+
 
     return float4(l_LAmbient + l_LDiffuseSpecular, 1.0);
 }

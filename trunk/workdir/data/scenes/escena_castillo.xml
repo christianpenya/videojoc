@@ -1,7 +1,25 @@
 <scene >
 
 	<layer name="deferred_opaque" active="true">	
+		<!--
+		<scene_mesh name="x!" mesh="data/meshes/Box01.mesh">
+			<transform position="2.5.0 0.0 0.0"  pitch ="0.78539816339" yaw="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+		<scene_mesh name="Y!" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 3.0 0.0" pitch ="0.0" yaw="0.78539816339" roll="0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+		<scene_mesh name="Z!" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 0.0 5.0" pitch ="0.0" yaw="0.0" roll="0.78539816339" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+
+		<scene_mesh name="Cub!" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 0.0 0.0" pitch ="0.78539816339" yaw="0.78539816339" roll="0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+		<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
+			<transform position="0.0 0.0 0.0" pitch ="0.0" yaw="0.0" roll="0.0" scale="10.0 1.0 30.0" />
+		</scene_mesh>
 		
+		-->
 		SUELO
 		<scene_mesh name="Plane01" mesh="data/meshes/castillo/Plane01.mesh" >
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
@@ -170,10 +188,10 @@
 		<scene_mesh name="CasaPorche1" mesh="data/meshes/castillo/CasaPorche.mesh" >
 			<transform position="12.1402 0.143799 -10.0216" yaw="0.436195" pitch="0.0" roll="0.0" scale="0.0105639 0.0105639 0.0105639" />
 		</scene_mesh>
-		<scene_mesh name="CasaPorche2" mesh="data/meshes/castillo/CasaPorche.mesh" >
+		<scene_mesh name="CasaPorche2" mesh="data/meshes/castillo/Plane03.mesh" >
 			<transform position="14.3348 0.143799 2.33141" yaw="-0.436195" pitch="0.0" roll="0.0" scale="0.0105639 0.0105639 0.0105639" />
 		</scene_mesh>
-		
+	
 		houses
 		<scene_mesh name="House01" mesh="data/meshes/castillo/House.mesh" >
 			<transform position="-12.3189 0.0 16.6747" yaw="-1.57079632679" pitch="0.0" roll="0.0" scale="0.0366034 0.0366034 0.0366034" />
@@ -189,7 +207,9 @@
 		<scene_mesh name="fountain" mesh="data/meshes/castillo/fountain.mesh" >
 			<transform position="0.0 0.185791 0.943904" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0134889 0.0134889 0.0134889" />
 		</scene_mesh>
-		
+		<scene_mesh name="venus" mesh="data/meshes/castillo/venus.mesh" >
+			<transform position="-0.0148803 3.94792 0.971993" yaw="3.1416" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
 		molino
 		<scene_mesh name="WindMill" mesh="data/meshes/castillo/WindMill.mesh" >
 			<transform position="29.0085 0.117004 -28.6133" yaw="-0.887011" pitch="0.0" roll="0.0" scale="0.0428214 0.0428214 0.0428214" />
@@ -273,7 +293,7 @@
 		<scene_mesh name="Lampara" mesh="data/meshes/castillo/lampara.mesh" >
 			<transform position="-23.8265 0.0298293 14.8899" yaw="0.0" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
 		</scene_mesh>
-		
+		-->
 	</layer>
 
 	<layer name="Skybox" active="true">

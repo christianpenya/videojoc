@@ -90,6 +90,9 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\FpsCameraController.h">
       <Filter>Graphics\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Camera\FreeCameraController.h">
+      <Filter>Graphics\Camera</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\Frustum.h">
       <Filter>Graphics\Camera</Filter>
     </ClInclude>
@@ -390,6 +393,9 @@
       <Filter>Graphics\Camera</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\FpsCameraController.cpp">
+      <Filter>Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Camera\FreeCameraController.cpp">
       <Filter>Graphics\Camera</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\Frustum.cpp">
