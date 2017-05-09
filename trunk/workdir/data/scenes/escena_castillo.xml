@@ -202,7 +202,7 @@
 		<scene_mesh name="House03" mesh="data/meshes/castillo/House.mesh" >
 			<transform position="30.4237 0.0 27.1342" yaw="1.57079632679" pitch="0.0" roll="0.0" scale="0.0366034 0.0366034 0.0366034" />
 		</scene_mesh>
-		
+	
 		fuente	
 		<scene_mesh name="fountain" mesh="data/meshes/castillo/fountain.mesh" >
 			<transform position="0.0 0.185791 0.943904" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0134889 0.0134889 0.0134889" />
@@ -210,6 +210,7 @@
 		<scene_mesh name="venus" mesh="data/meshes/castillo/venus.mesh" >
 			<transform position="-0.0148803 3.94792 0.971993" yaw="3.1416" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
+		
 		molino
 		<scene_mesh name="WindMill" mesh="data/meshes/castillo/WindMill.mesh" >
 			<transform position="29.0085 0.117004 -28.6133" yaw="-0.887011" pitch="0.0" roll="0.0" scale="0.0428214 0.0428214 0.0428214" />
@@ -293,7 +294,7 @@
 		<scene_mesh name="Lampara" mesh="data/meshes/castillo/lampara.mesh" >
 			<transform position="-23.8265 0.0298293 14.8899" yaw="0.0" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
 		</scene_mesh>
-		-->
+	
 	</layer>
 
 	<layer name="Skybox" active="true">

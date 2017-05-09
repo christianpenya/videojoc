@@ -1,11 +1,6 @@
 #include "globals.fx"
 
-#if USE_BUMP
-	Texture2D NormalMapTexture :
-	register(t1);
-	SamplerState NormalMapTextureSampler :
-	register(s1);
-#endif
+
 #if USE_UV
 	Texture2D DiffuseTexture :
 	register(t0);
@@ -16,6 +11,12 @@
 		Texture2D LightmapTexture :
 		register(t1);
 		SamplerState LightmapSampler :
+		register(s1);
+	#endif
+	#if USE_BUMP
+		Texture2D NormalMapTexture :
+		register(t1);
+		SamplerState NormalMapTextureSampler :
 		register(s1);
 	#endif
 #endif
