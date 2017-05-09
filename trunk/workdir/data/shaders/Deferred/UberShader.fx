@@ -183,7 +183,9 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		//pixelColor = float3(0.0 , 1.0, 0.0);
  	#endif
 
- 
+ #if USE_WEIGHTIDX
+ 	
+ #endif
 
 	l_Normal=Normal2Texture(l_Normal);
 
