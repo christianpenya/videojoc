@@ -30,10 +30,10 @@
 	<material name="ZBlurMaterial" vertex_type="ZBlur">
 		<parameter type="float" name="ZBlurActive" value="1.0" />
 		<parameter type="float" name="ZBlurShowDepths" value="0.0" />
-		<parameter type="float" name="ZBlurConstantBlur" value="0.3" />
-		<parameter type="float" name="ZBlurFocalStart" value="0.1" />
-		<parameter type="float" name="ZBlurFocalEnd" value="0.2" />
-		<parameter type="float" name="ZBlurEnd" value="0.8" />
+		<parameter type="float" name="ZBlurConstantBlur" value="0.7" />
+		<parameter type="float" name="ZBlurFocalStart" value="0.2" />
+		<parameter type="float" name="ZBlurFocalEnd" value="0.8" />
+		<parameter type="float" name="ZBlurEnd" value="1.0" />
 	</material>	
 	
 	<material name="BloomMaterial" vertex_type="Bloom">
@@ -42,10 +42,10 @@
 	
 	<material name="BloomCombineMaterial" vertex_type="BloomCombine" >
 		<parameter type="float" name="bloomActive" value="1.0" />
-		<parameter type="float" name="bloomIntensity" value="1.0" />
-		<parameter type="float" name="originalIntensity" value="0.8" />
-		<parameter type="float" name="bloomSaturation" value="0.8" />
-		<parameter type="float" name="originalSaturation" value="0.6" />
+		<parameter type="float" name="bloomIntensity" value="0.6" />
+		<parameter type="float" name="originalIntensity" value="1.0" />
+		<parameter type="float" name="bloomSaturation" value="0.7" />
+		<parameter type="float" name="originalSaturation" value="1.0" />
 	</material>
 
 	<material name="StartGaussianMaterial" vertex_type="Quad">
@@ -77,19 +77,19 @@
 		<parameter type="float" name="HDAOShowNormals" value="0.0" />
 		<parameter type="float" name="HDAOShowAO" value="0.0" />
 		<parameter type="float" name="HDAOUseNormals" value="1.0" />
-		<parameter type="float2" name="RTSize" value="1280.0 720.0" />
+		<parameter type="float2" name="RTSize" value="1366.0 768.0" />
 		<parameter type="float" name="AcceptAngle" value="0.6" />
-		<parameter type="float" name="HDAOIntensity" value="0.5" />
-		<parameter type="float" name="NormalScale" value="0.2" />
-		<parameter type="float" name="HDAORejectRadius" value="0.0" />
+		<parameter type="float" name="HDAOIntensity" value="0.2" />
+		<parameter type="float" name="NormalScale" value="0.5" />
+		<parameter type="float" name="HDAORejectRadius" value="0.2" />
 		<parameter type="float" name="HDAOAcceptRadius" value="0.0" />
 	</material>
 
 	<material name="SSRMaterial" vertex_type="SSR">
-		<parameter type="float" name="ssr_enabled" value="1.0"/>
-		<parameter type="float4" name="ssr_opacity" value="0.3 0.0 1.0 0.1" description="min=0.0 max=1.0 step=0.1"/>
+		<parameter type="float" name="ssr_enabled" value="0.0"/>
+		<parameter type="float4" name="ssr_opacity" value="0.8 0.0 1.0 0.1" description="min=0.0 max=1.0 step=0.1"/>
 		<parameter type="float4" name="ssr_offset_screen" value="0.0 0.0 1.0 0.02" description="min=0.0 max=1.0 step=0.02"/>
-		<parameter type="float2" name="ssr_screen_resolution" value="960 540"/>
+		<parameter type="float2" name="ssr_screen_resolution" value="1366 768"/>
 	</material>
 
 	
