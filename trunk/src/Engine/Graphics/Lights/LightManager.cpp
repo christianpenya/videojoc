@@ -122,7 +122,7 @@ void CLightManager::DrawImgui()
 {
     if (ImGui::CollapsingHeader("Lights"))
     {
-        ImGui::BeginChild("#lights", ImVec2(400, 400), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::BeginChild("#lights", ImVec2(400, 200), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
         ImGui::PushItemWidth(-130);
         ImGui::ColorEditMode(ImGuiColorEditMode_RGB);
 

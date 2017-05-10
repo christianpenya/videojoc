@@ -37,7 +37,10 @@ void CDrawQuad::Execute(CRenderManager& lRM)
 {
     lRM.SetViewport(m_ViewportPosition, m_ViewportSize);
     mMaterial->Apply();
+    static bool show_app_auto_resize = true;
+    ImGui::Begin("Menu", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
     mMaterial->DrawImgui();
+    ImGui::End();
     ActivateTextures();
     LOG_INFO_APPLICATION(mMaterial->GetName().c_str());
     mQuad->Render();

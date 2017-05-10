@@ -21,6 +21,7 @@
 		<technique name="ColorGrading" />
 		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique" />
 		<!--<technique vertex_type="EnvironmentMap" />-->
+		<technique name="SSR" />
 		
   </default_pool>
 
@@ -80,7 +81,7 @@
 		<technique name="Hdao" effect="HdaoTechnique" />
 		<technique name="ColorGrading" effect="ColorGradingTechnique" />
 		<technique name="ParticleVertex" effect="ParticleVertexTechnique" />
-
+		<technique name="SSR" effect="SSRTechnique" />
 	</pool>
 	
 	<pool name="skybox">

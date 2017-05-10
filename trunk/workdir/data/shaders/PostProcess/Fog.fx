@@ -1,14 +1,6 @@
 #include "globals.fx"
 #include "Samplers.fxh"
 
-struct VS_INPUT
-{
-float3 Pos :
-    POSITION;
-float2 UV :
-    TEXCOORD0;
-};
-
 struct PS_INPUT
 {
 float4 Pos :
@@ -59,16 +51,6 @@ float3 GetFogColor(float Depth, float3 CurrentColor)
     //float4 l_FogColor = CalcExp2Fog(Depth, 0.03, m_FogColor);
 
     return float3(CurrentColor * (1.0 - l_FogColor.a) + l_FogColor.xyz * l_FogColor.a);
-}
-
-PS_INPUT VS(VS_INPUT IN)
-{
-    PS_INPUT l_Output = (PS_INPUT)0;
-
-    l_Output.Pos = float4(IN.Pos, 1.0);
-    l_Output.UV = IN.UV;
-
-    return l_Output;
 }
 
 float4 PS(PS_INPUT IN) : SV_Target

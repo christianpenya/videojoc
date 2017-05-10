@@ -307,8 +307,19 @@ void CMaterial::Apply()
             {
                 mParameters[i]->SetDescription("ZBlur End");
                 l_pos = 9;
+            }//FIN PARAMETROS ZBLUR
+            //INICIO PARAMETROS SSR
+            else if (mParameters[i]->GetName() == "ssr_enabled")
+            {
+                mParameters[i]->SetDescription("Enabled");
+                l_pos = 4;
             }
-            //FIN PARAMETROS ZBLUR
+            //FIN PARAMETROS SSR
+            else
+            {
+                mParameters[i]->SetDescription(mParameters[i]->GetName());
+                l_pos = 4;
+            }
         }
         break;
         case eFloat2:
@@ -319,11 +330,26 @@ void CMaterial::Apply()
             //INICIO PARAMETROS HDAO
             else if (mParameters[i]->GetName() == "RTSize")
                 l_posFloat2 = 8;
-            break; //FIN PARAMETROS HDAO
-
+            //FIN PARAMETROS HDAO
+            //INICIO PARAMETROS SSR
+            else if (mParameters[i]->GetName() == "ssr_screen_resolution")
+                l_posFloat2 = 7;
+            //FIN PARAMETROS SSR
+            break;
         case eFloat3:
             break;
         case eFloat4:
+            //INICIO PARAMETROS SSR
+            if (mParameters[i]->GetName() == "ssr_opacity")
+            {
+                mParameters[i]->SetDescription("Opacity");
+                lCBM.mMaterialDesc.m_RawData[5] = Vect4f(*(float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), *(float*)mParameters[i]->GetAddr(3));
+            }
+            else if (mParameters[i]->GetName() == "ssr_offset_screen")
+            {
+                mParameters[i]->SetDescription("Offset Screen");
+                lCBM.mMaterialDesc.m_RawData[6] = Vect4f(*(float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), *(float*)mParameters[i]->GetAddr(3));
+            }
             break;
         case eColor:
         {
@@ -351,12 +377,15 @@ void CMaterial::DrawImgui()
     if ((mParameters.size() > 0))
     {
 
+        //static bool show_app_auto_resize = true;
+        //ImGui::Begin("Menu", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
+
+
         ImGui::ColorEditMode(ImGuiColorEditMode_RGB);
 
-        if (ImGui::CollapsingHeader(GetName().c_str()))
+        if (ImGui::CollapsingHeader(GetName().c_str(), ImGuiWindowFlags_AlwaysAutoResize))
         {
-
-            ImGui::BeginChild("#Material", ImVec2(400, 400), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+            ImGui::BeginChild("#Material", ImVec2(400, 200), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
             ImGui::PushItemWidth(-130);
 
             for (size_t i = 0; i < mParameters.size(); ++i)
@@ -371,12 +400,13 @@ void CMaterial::DrawImgui()
                     {
                         ImGui::SliderFloat(mParameters[i]->GetDescription().c_str(), (float*)mParameters[i]->GetAddr(0), 0.0f, 1024.0f);
                     }
-                    else if (mParameters[i]->GetName() == "blurScale")
+                    else if ((mParameters[i]->GetName() == "blurScale") || (mParameters[i]->GetName() == "diffuse"))
                     {
                         ImGui::SliderFloat(mParameters[i]->GetDescription().c_str(), (float*)mParameters[i]->GetAddr(0), 0.0f, 100.0f);
                     }
                     else
                     {
+
                         ImGui::SliderFloat(mParameters[i]->GetDescription().c_str(), (float*)mParameters[i]->GetAddr(0), 0.0f, 1.0f);
                     }
                 }
@@ -394,12 +424,29 @@ void CMaterial::DrawImgui()
                     }
                     else if (mParameters[i]->GetName() == "RTSize")
                     {
-                        ImGui::SliderFloat("RT Size X", (float*)mParameters[i]->GetAddr(0), 0.0f, 512.0f);
-                        ImGui::SliderFloat("RT Size Y", (float*)mParameters[i]->GetAddr(1), 0.0f, 512.0f);
+                        ImGui::SliderFloat("RT Size X", (float*)mParameters[i]->GetAddr(0), 0.0f, 1366.0f);
+                        ImGui::SliderFloat("RT Size Y", (float*)mParameters[i]->GetAddr(1), 0.0f, 768.0f);
+                    }
+                    else if (mParameters[i]->GetName() == "ssr_screen_resolution")
+                    {
+                        ImGui::SliderFloat("Screen Resolution X", (float*)mParameters[i]->GetAddr(0), 0.0f, 1366.0f);
+                        ImGui::SliderFloat("Screen Resolution Y", (float*)mParameters[i]->GetAddr(1), 0.0f, 768.0f);
                     }
                     else
                         ImGui::SliderFloat2(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1)), 0.0f, 1.0f);
                     break;
+                case eFloat4:
+                {
+                    if (mParameters[i]->GetName() == "ssr_opacity")
+                    {
+                        ImGui::SliderFloat("Opacity", (float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), "%.1f", *(float*)mParameters[i]->GetAddr(3));
+                    }
+                    else if (mParameters[i]->GetName() == "ssr_offset_screen")
+                    {
+                        ImGui::SliderFloat("Offset Screen", (float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), "%.2f", *(float*)mParameters[i]->GetAddr(3));
+                    }
+                }
+                break;
                 case eColor:
                 {
 
@@ -412,6 +459,8 @@ void CMaterial::DrawImgui()
             ImGui::PopItemWidth();
             ImGui::EndChild();
         }
+//       ImGui::End();
+
     }
 
 }

@@ -54,7 +54,7 @@ bool CSceneNode::Render(CRenderManager& lRM)
 
 void CSceneNode::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::CollapsingHeader(m_Name.c_str()), ImGuiWindowFlags_AlwaysAutoResize)
     {
         ImGui::SliderFloat3("Position", (float*)&m_Position, -100.0f, 100.0f);
         ImGui::SliderFloat3("Forward", (float*)&m_PrevPos, -100.0f, 100.0f);

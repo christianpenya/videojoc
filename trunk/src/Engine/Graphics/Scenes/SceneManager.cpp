@@ -109,19 +109,20 @@ std::vector<CScene*> CSceneManager::GetScenes()
 
 void CSceneManager::DrawImgui()
 {
-    if (ImGui::CollapsingHeader("Scenes Manager"))
+    if (ImGui::CollapsingHeader("Scenes Manager", ImGuiWindowFlags_AlwaysAutoResize))
     {
-        ImGui::BeginChild("#Scenes", ImVec2(400, 400), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::BeginChild("#Scenes", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
         ImGui::PushItemWidth(-130);
         for (TMapResources::iterator iSceneMapEntry = m_ResourcesMap.begin(); iSceneMapEntry != m_ResourcesMap.end(); ++iSceneMapEntry)
         {
             CScene* lScene = iSceneMapEntry->second.m_Value;
             ImGui::PushID(iSceneMapEntry->second.m_Id);
-            if (ImGui::CollapsingHeader(lScene->GetName().c_str()))
+            if (ImGui::CollapsingHeader(lScene->GetName().c_str(), ImGuiWindowFlags_AlwaysAutoResize))
                 lScene->DrawImGui();
             ImGui::PopID();
         }
         ImGui::PopItemWidth();
         ImGui::EndChild();
     }
+
 }

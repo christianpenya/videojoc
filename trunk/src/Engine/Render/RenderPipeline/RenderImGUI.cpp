@@ -8,6 +8,7 @@
 #include "Graphics/Effects/EffectManager.h"
 #include "Render/RenderPipeline/RenderPipeline.h"
 #include "Graphics/Cinematics/CinematicsManager.h"
+#include "Render/RenderPipeline/SetRasterizerState.h"
 
 CRenderImGUI::CRenderImGUI() {}
 CRenderImGUI::~CRenderImGUI() {}
@@ -21,8 +22,8 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 {
     CEngine& lEngine = CEngine::GetInstance();
 
-    static bool show_app_auto_resize = false;
-    ImGui::Begin("Bodegon3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
+    static bool show_app_auto_resize = true;
+    ImGui::Begin("Menu", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
 
     //FPS
     ImGui::Text("%.1f FPS", lEngine.m_FPS);

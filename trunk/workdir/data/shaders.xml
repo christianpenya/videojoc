@@ -37,7 +37,6 @@
 		
 		<!--post process-->
 		<shader name="NoiseVignetting" file="PostProcess/NoiseVignetting.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
-		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
 		
 		<!--other-->
 		<shader name="Skybox" file="Skybox.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor=""/>
@@ -91,6 +90,7 @@
 		<shader name="Hdao" file="PostProcess/Hdao.fx" entry_point="PSHDAO" preprocessor=""/>
 		<shader name="ShadowDepth" file="PostProcess/ShadowMap.fx" entry_point="PS" preprocessor=""/>
 		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="PS" preprocessor=""/>	
+		<shader name="SSR" file="PostProcess/SSR.fx" entry_point="PS" preprocessor=""/>	
 			
 		
 		

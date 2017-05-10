@@ -222,20 +222,6 @@
 			<transform position="25.2596 14.8672 -25.9883" yaw="-0.887011" pitch="0.0" roll="0.0" scale="0.0428214 0.0428214 0.0428214" />
 		</scene_mesh>
 		
-		ÁRBOLES
-		<scene_mesh name="LOD01" mesh="data/meshes/castillo/LOD01.mesh" >
-			<transform position="-15.7147 -0.338257 -31.9256" yaw="-0.084429" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
-		</scene_mesh>	
-		<scene_mesh name="LOD04" mesh="data/meshes/castillo/LOD01.mesh" >
-			<transform position="19.3935 -0.338257 -28.3181" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
-		</scene_mesh>
-		<scene_mesh name="LOD03" mesh="data/meshes/castillo/LOD01.mesh" >
-			<transform position="29.2837 -0.338257 13.3843" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
-		</scene_mesh>
-		<scene_mesh name="LOD02" mesh="data/meshes/castillo/LOD01.mesh" >
-			<transform position="-31.6297 -0.338257 30.2024" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
-		</scene_mesh>
-
 		CATAPULTAS
 		<scene_mesh name="catapult05" mesh="data/meshes/castillo/catapult.mesh" >
 			<transform position="-33.5434 0.703857 24.296" yaw="-0.173649" pitch="0.0" roll="0.0" scale="0.0230596 0.0230596 0.0230596" />
@@ -306,6 +292,23 @@
 		</scene_mesh>
 	</layer>
 
+	<layer name="objetos_transparentes" active="true">
+			ÁRBOLES
+		<scene_mesh name="LOD01" mesh="data/meshes/castillo/LOD01.mesh" >
+			<transform position="-15.7147 -0.338257 -31.9256" yaw="-0.084429" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
+		</scene_mesh>	
+		<scene_mesh name="LOD04" mesh="data/meshes/castillo/LOD01.mesh" >
+			<transform position="19.3935 -0.338257 -28.3181" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
+		</scene_mesh>
+		<scene_mesh name="LOD03" mesh="data/meshes/castillo/LOD01.mesh" >
+			<transform position="29.2837 -0.338257 13.3843" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
+		</scene_mesh>
+		<scene_mesh name="LOD02" mesh="data/meshes/castillo/LOD01.mesh" >
+			<transform position="-31.6297 -0.338257 30.2024" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
+		</scene_mesh>
+	</layer>
+
+	
 	<layer name="Principal" active="true" >	
 		<scene_light name="FDirect001" id_light="0" />
 		<scene_light name="Fspot001" id_light="1" />
