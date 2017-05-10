@@ -11,7 +11,7 @@
 		<texture type="diffuse" filename="data\textures\post_process\noise.png" />
 		<texture type="diffuse" filename="data\textures\post_process\vignetting.png" />
 		<parameter type="float" name="noisePct" value="0.2" />
-		<parameter type="float" name="vignettingPct" value="0.5" />
+		<parameter type="float" name="vignettingPct" value="0.2" />
 		<parameter type="float" name="noiseAmount" value="0.2" />
 	</material>
 

@@ -4,14 +4,13 @@
 	<set_rasterizer_state cull_mode="front" clock_wise="1" type="solid"/> <!-- type  -->
 	
 	SHADOW MAPPING - NO FUNCIONA AÚN
-	<!--	
 	<set_render_target name="deferred_multiple_render_target">
-		<dynamic_texture name="LightDepthMapTexture" texture_width_as_frame_buffer="true" format="R32_FLOAT"/>
+		<dynamic_texture name="Fspot001" texture_width_as_frame_buffer="true" format="R32_FLOAT"/>
 	</set_render_target>	
 	
 	<apply_technique_pool pool_name="shadows"/>
 	<generate_shadow_maps />
-	-->	
+	
 	<set_per_frame_constants name="set_per_frame_cmd"/>
 	
 	<set_render_target name="deferred_multiple_render_target">
@@ -43,13 +42,11 @@
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	
 	<apply_technique_pool pool_name="forward"/>
-		<render_layer layer="deferred_opaque"/>
-
+	<render_layer layer="deferred_opaque"/>
 	<render_layer layer="Principal"/>
 	
 	SKYBOX
 	<apply_technique_pool pool_name="skybox"/>
-
 	<render_layer layer="Skybox"/>
 
 	POST-PROCESS

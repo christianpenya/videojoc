@@ -15,7 +15,9 @@ CGeometryShader::CGeometryShader(const CXMLElement* aElement, const std::string&
       m_pGeometryShader(nullptr)
 {}
 
-CGeometryShader::~CGeometryShader() {}
+CGeometryShader::~CGeometryShader()
+{
+}
 
 bool CGeometryShader::Load()
 {

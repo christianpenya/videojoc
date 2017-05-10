@@ -42,7 +42,8 @@ public:
         return !m_KeyboardState.raw[KeyCode] && m_PreviousKeyboardState.raw[KeyCode];
     }
 
-    /*    bool IsEscapePressed(unsigned char KeyCode) const
+    /*
+    bool IsEscapePressed(unsigned char KeyCode) const
         {
             return m_KeyboardState.escape;
         }

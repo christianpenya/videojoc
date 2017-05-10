@@ -32,7 +32,9 @@ public:
         assert(SUCCEEDED(l_HR));
     }
 
-    virtual ~CIndexBuffer() {}
+    virtual ~CIndexBuffer()
+    {
+    }
 
     virtual void Bind(ID3D11DeviceContext* aContext)
     {

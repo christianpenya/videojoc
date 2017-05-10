@@ -21,6 +21,10 @@
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
 
+#ifdef _DEBUG
+#include "Utils/MemLeaks/MemLeaks.h"
+#endif
+
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
 CEngine::CEngine()
@@ -48,7 +52,7 @@ CEngine::CEngine()
     , m_Frames(0)
     , m_FPS (0.0)
     , m_CameraSelector(0)
-    , m_PrevCameraSelector(2)
+    , m_PrevCameraSelector(0)
 {
     m_FreeCam = new CFreeCameraController(Vect3f(0, 10, 0), Vect3f(0, 0, 1), Vect3f(0, 1, 0), Vect4f(1, 500, 1.13f, 1.7f), 1.5f, -1.5f, 10.0f, -10.0f);
     m_FpsCam = new CFpsCameraController(Vect3f(0, 1, 0), 1.5f, -1.5f);
@@ -62,11 +66,11 @@ CEngine::~CEngine()
     // TODO Peta de mala manera
     // base::utils::CheckedDelete(m_PhysXManager);
     // base::utils::CheckedDelete(m_RenderManager);
-
     base::utils::CheckedDelete(m_RenderPipeline);
+    base::utils::CheckedDelete(m_ParticleManager);
     base::utils::CheckedDelete(m_CinematicManager);
     base::utils::CheckedDelete(m_SceneManager);
-    //base::utils::CheckedDelete(m_LightManager);
+    base::utils::CheckedDelete(m_LightManager);
     base::utils::CheckedDelete(m_MeshManager);
     base::utils::CheckedDelete(m_AnimatedModelManager);
     base::utils::CheckedDelete(m_MaterialManager);
@@ -78,7 +82,10 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_ActionManager);
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
-    base::utils::CheckedDelete(m_ParticleManager);
+
+    base::utils::CheckedDelete(m_FreeCam);
+    base::utils::CheckedDelete(m_FpsCam);
+    base::utils::CheckedDelete(m_OrbitalCam);
 }
 
 void CEngine::LoadFiles()

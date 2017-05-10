@@ -10,7 +10,12 @@ CRenderStagedTexture::CRenderStagedTexture() :
     m_ViewportPosition(Vect2u(0, 0))
 {}
 
-CRenderStagedTexture::~CRenderStagedTexture() {}
+CRenderStagedTexture::~CRenderStagedTexture()
+{
+    base::utils::CheckedDelete(m_StagedTextures);
+    base::utils::CheckedDelete(m_DynamicTexturesMaterials);
+
+}
 //Leera el nodo
 //<dynamic_texture name="DiffuseMapTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format_type="RGBA8_UNORM"/>
 //<texture stage_id = "0" file = "DiffuseMapTexture" / >

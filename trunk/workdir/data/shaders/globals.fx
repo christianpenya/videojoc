@@ -82,7 +82,7 @@ void CalculateSingleLight(uint IdLight,float3 NormalPixel : NORMAL, float3 World
     {
 
         float g_SpecularExponent = 0.5;
-        float g_SpecularContrib = 1.0;
+		float g_SpecularContrib = 0.5;
 
         float4 l_LightDirection = m_LightDirection[IdLight];
         float l_DistanceAtten = 1.0;

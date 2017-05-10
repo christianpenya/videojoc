@@ -11,7 +11,6 @@ CCinematicObjectPlayer::CCinematicObjectPlayer():
 
 CCinematicObjectPlayer::~CCinematicObjectPlayer()
 {
-    CTemplatedMapVector<CCinematicKey>::Destroy();
 }
 
 bool CCinematicObjectPlayer::Load(const CXMLElement *aElement)

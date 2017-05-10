@@ -5,13 +5,16 @@
 #include<assert.h>
 #include "d3d11.h"
 #include "Math\MathUtils.h"
+#include "Utils\CheckedDelete.h"
 
 class CGeometry
 {
 public:
 
     CGeometry(D3D11_PRIMITIVE_TOPOLOGY PrimitiveTopology) : m_PrimitiveTopology(PrimitiveTopology) {}
-    virtual ~CGeometry() {}
+    virtual ~CGeometry()
+    {
+    }
 
     virtual bool Render(ID3D11DeviceContext*)
     {

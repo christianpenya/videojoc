@@ -47,9 +47,14 @@ bool CCinematic::Load(const CXMLElement* aElement)
             lCinematicPlayer = new CCinematicObjectPlayer();
             lOk = lCinematicPlayer->Load(lCinematic_player);
         }
+
         if (lCinematicPlayer != nullptr && lOk)
         {
             Add(lCinematicPlayer->mName, lCinematicPlayer);
+        }
+        else
+        {
+            base::utils::CheckedDelete(lCinematicPlayer);
         }
     }
 

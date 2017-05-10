@@ -1,1 +1,3 @@
-copy include/physx/bin/*.dll workdir/solution/bin/x32/Release
+
+copy %cd%\include\physx\bin\*.dll %cd%\workdir\solution\bin\x32\Release
+pause
