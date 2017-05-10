@@ -23,7 +23,7 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     CEngine& lEngine = CEngine::GetInstance();
 
     static bool show_app_auto_resize = true;
-    ImGui::Begin("Bodegon3D", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::Begin("Menu", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
 
     //FPS
     ImGui::Text("%.1f FPS", lEngine.m_FPS);

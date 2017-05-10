@@ -78,7 +78,7 @@
    <shader stage="pixel"    name="NoiseVignetting"/>
   </effect>
   <effect name="FogTechnique" shader_family="Fog">
-   <shader stage="vertex"   name="Fog"/>
+   <shader stage="vertex"   name="Quad"/>
    <shader stage="pixel"    name="Fog"/>
   </effect>
   <effect name="ZBlurTechnique" shader_family="ZBlur">
@@ -114,7 +114,11 @@
 	<shader stage="pixel"    name="ColorGrading"/>
   </effect>  
 
-
+  <effect name="SSRTechnique" shader_family="SSR">
+	<shader stage="vertex"   name="Quad"/>
+	<shader stage="pixel"    name="SSR"/>
+  </effect>  
+  
   <!-- OTHER -->
  <effect name="SkyboxTechnique" shader_family="Skybox">
    <shader stage="vertex"   name="Skybox"/>

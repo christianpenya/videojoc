@@ -9,10 +9,10 @@ float2 UV :
     TEXCOORD0;
 };
 
-static bool m_Enabled=m_RawData[0].x;
-static float m_SSROpacity=m_RawData[1].x;
-static float m_OffsetScreen=m_RawData[2].x;
-static float2 m_ScreenResolution=float2(m_RawData[3].x, m_RawData[4].x);
+static bool m_Enabled=m_RawData[4].x;
+static float m_SSROpacity=m_RawData[5].x;
+static float m_OffsetScreen=m_RawData[6].x;
+static float2 m_ScreenResolution=float2(m_RawData[7].x, m_RawData[7].x);
 
 float3 CalcIntersection(float3 PositionA, float3 VDirA, float3 PositionB, float3 VDirB)
 {
@@ -89,7 +89,7 @@ float3 GetReflectedColor(float3 WorldPosition, float3 Nn, float2 UV)
 			} while(i<l_TotalElements);
 		}
 	}
-	l_Color=T1Texture.Sample(S1Sampler, l_UV).xyz;
+	l_Color=T0Texture.Sample(S0Sampler, l_UV).xyz;
 	return l_Color;
 }
 
@@ -100,7 +100,7 @@ float4 PS(PS_INPUT IN) : SV_Target
 	{
 		float l_Depth=T2Texture.Sample(S2Sampler, IN.UV.xy).x;
 		float3 l_WorldPosition=GetPositionFromZDepthView(l_Depth, IN.UV, m_InverseView, m_InverseProjection);
-		float3 Nn=normalize(T3Texture.Sample(S3Sampler, IN.UV.xy).xyz * 2.0 - 1.0);
+		float3 Nn=normalize(T1Texture.Sample(S1Sampler, IN.UV.xy).xyz * 2.0 - 1.0);
 		return float4(GetReflectedColor(l_WorldPosition, Nn, IN.UV), m_SSROpacity);
 	}
 	clip(-1);

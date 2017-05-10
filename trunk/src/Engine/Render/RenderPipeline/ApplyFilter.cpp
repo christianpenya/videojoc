@@ -1,4 +1,5 @@
 #include "ApplyFilter.h"
+#include "ImGUI/imgui.h"
 
 CApplyFilter::CApplyFilter()
 {
@@ -38,7 +39,12 @@ void CApplyFilter::Execute(CRenderManager &lRM)
         if (m_DynamicTexturesMaterials[i]->m_Material != nullptr)
         {
             m_DynamicTexturesMaterials[i]->m_Material->Apply();
+
+            static bool show_app_auto_resize = true;
+            ImGui::Begin("Menu Dynamic", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
             m_DynamicTexturesMaterials[i]->m_Material->DrawImgui();
+            ImGui::End();
+
         }
         ActivateTextures();
         CTexture *l_Texture = (i == 0) ? m_StagedTextures[0]->m_Texture : m_DynamicTexturesMaterials[i - 1]->m_DynamicTexture;
