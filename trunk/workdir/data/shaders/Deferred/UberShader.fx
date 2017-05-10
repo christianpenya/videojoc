@@ -21,9 +21,6 @@
 	#endif
 #endif
 
-
-
-
 struct VS_INPUT
 {
 	float3 Pos :

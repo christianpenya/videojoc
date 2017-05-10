@@ -1,4 +1,5 @@
 #include "globals.fx"
+#include "Samplers.fxh"
 
 #if USE_UV
 	Texture2D DiffuseTexture :
@@ -67,8 +68,6 @@ PS_INPUT VS( VS_INPUT IN )
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-	return(float4(0.0, 0.0, 1.0, 1.0));
 	float l_Depth=IN.Depth.z/IN.Depth.w;
 	return float4(l_Depth, l_Depth, l_Depth, 1);
-
 }

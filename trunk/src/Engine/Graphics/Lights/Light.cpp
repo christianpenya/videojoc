@@ -44,7 +44,7 @@ CLight::CLight(CXMLElement* aElement)
     // SHADOWMAP
     if (m_GenerateShadowMap)
     {
-        m_pShadowMap = new CDynamicTexture(m_Name, Vect2u(aElement->GetAttribute<uint32>("shadow_map_width", 128), aElement->GetAttribute<uint32>("shadow_map_height", 128)));
+        m_pShadowMap = new CDynamicTexture(m_Name, Vect2u(aElement->GetAttribute<uint32>("shadow_map_width", 128), aElement->GetAttribute<uint32>("shadow_map_height", 128)), "R32_FLOAT", true);
         CEngine::GetInstance().GetTextureManager().AddTexture(*m_pShadowMap);
         //TODO ShadowTextureMask shadow_texture_mask
 

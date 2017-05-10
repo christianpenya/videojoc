@@ -3,12 +3,8 @@
 	<set_depth_stencil_state enable_z_test = "true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	<set_rasterizer_state cull_mode="front" clock_wise="1" type="solid"/> <!-- type  -->
 	
-	SHADOW MAPPING - NO FUNCIONA AÚN
-	<set_render_target name="deferred_multiple_render_target">
-		<dynamic_texture name="Fspot001" texture_width_as_frame_buffer="true" format="R32_FLOAT"/>
-	</set_render_target>	
-	
-	<apply_technique_pool pool_name="forward"/>
+	SHADOW MAPPING - NO FUNCIONA AÚN	
+	<apply_technique_pool pool_name="shadows"/>
 	<generate_shadow_maps />
 	
 	<set_per_frame_constants name="set_per_frame_cmd"/>
@@ -193,8 +189,8 @@
     </draw_quad>
 	-->
 	
-	<draw_quad name="blablabla" material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
-        <texture name="Fspot001" stage_id="0"/>
+	<draw_quad name="hola" material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
+        <texture name="FDirect001" stage_id="0"/>
     </draw_quad>
 	
 	<render_imgui name="imediate_gui_render"/>
