@@ -27,6 +27,7 @@ CShader::CShader(const CXMLElement* aElement, const std::string aPath, EShaderSt
 CShader::~CShader()
 {
     base::utils::CheckedRelease(m_pBlob);
+    base::utils::CheckedDelete(m_ShaderMacros);
 }
 
 bool CShader::Load()

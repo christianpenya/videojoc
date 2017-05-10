@@ -1,14 +1,14 @@
 #include "ApplyFilter.h"
 #include "ImGUI/imgui.h"
 
-CApplyFilter::CApplyFilter()
+CApplyFilter::CApplyFilter() : mQuad(nullptr)
 {
 
 }
 
 CApplyFilter::~CApplyFilter()
 {
-
+    base::utils::CheckedDelete(mQuad);
 }
 
 bool CApplyFilter::Load(const CXMLElement* aElement)
@@ -22,13 +22,8 @@ bool CApplyFilter::Load(const CXMLElement* aElement)
     return lOk;
 }
 
-
 void CApplyFilter::Execute(CRenderManager &lRM)
 {
-
-//	CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
-
-
     for (size_t i = 0; i < m_DynamicTexturesMaterials.size(); ++i)
     {
         ID3D11RenderTargetView *l_RenderTargets[1];
@@ -53,5 +48,4 @@ void CApplyFilter::Execute(CRenderManager &lRM)
         lRM.ResetViewport();
         lRM.UnsetRenderTargets();
     }
-
 }

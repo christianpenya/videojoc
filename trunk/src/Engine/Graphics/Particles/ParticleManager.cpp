@@ -4,17 +4,15 @@
 #include "XML\XML.h"
 #include "Utils/Logger.h"
 
-
 CParticleManager::CParticleManager() {}
 
 CParticleManager::~CParticleManager()
 {
-    Destroy();
+    CTemplatedMapVector<CParticleSystemType>::Destroy();
 }
 
 bool CParticleManager::Load(const std::string &aFilename)
 {
-
     bool lOk = false;
     CXMLDocument document;
     EXMLParseError error = document.LoadFile((aFilename).c_str());
@@ -37,9 +35,7 @@ bool CParticleManager::Load(const std::string &aFilename)
         }
         return true;
     }
-
 }
-
 
 void CParticleManager::Reload()
 {

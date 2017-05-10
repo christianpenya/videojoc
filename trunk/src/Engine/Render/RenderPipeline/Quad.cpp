@@ -37,7 +37,10 @@ CQuad::CQuad()
     : mGeometry(nullptr)
 {}
 
-CQuad::~CQuad() {}
+CQuad::~CQuad()
+{
+    base::utils::CheckedDelete(mGeometry);
+}
 
 bool CQuad::Init()
 {

@@ -3,10 +3,10 @@
 #define _PARTICLEMANAGER_H_
 
 #include "Utils\TemplatedMapVector.h"
+#include "ParticleSystemType.h"
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
-#include "ParticleSystemType.h"
 #endif
 
 

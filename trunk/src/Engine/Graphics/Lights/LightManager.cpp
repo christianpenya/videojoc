@@ -10,8 +10,7 @@
 CLightManager::CLightManager() {}
 CLightManager::~CLightManager()
 {
-    // Peta porque las referencias de luces son compartides con la jerarquia de escenas
-    // CTemplatedMapVector<CLight>::Destroy();
+    CTemplatedMapVector<CLight>::Clear();
 }
 
 bool CLightManager::Load(const std::string& aFilename)
