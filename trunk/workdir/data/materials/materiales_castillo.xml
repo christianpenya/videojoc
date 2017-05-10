@@ -97,7 +97,7 @@
 	
 	ÁRBOL
 	<material name="2 - Default" vertex_type="PositionNormalUV" >
-		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 0.0 " />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
 		<texture type="diffuse" filename="data\textures\castillo\texture.tga" />
 		<parameter type="float" name="diffuse" value="100.0" />
 	</material>

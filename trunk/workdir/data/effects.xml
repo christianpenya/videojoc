@@ -118,6 +118,12 @@
 	<shader stage="vertex"   name="Quad"/>
 	<shader stage="pixel"    name="SSR"/>
   </effect>  
+
+  <effect name="MascaraTechnique" shader_family="Mascara">
+	<shader stage="vertex"   name="Quad"/>
+	<shader stage="pixel"    name="Mascara"/>
+  </effect>  
+  
   
   <!-- OTHER -->
  <effect name="SkyboxTechnique" shader_family="Skybox">

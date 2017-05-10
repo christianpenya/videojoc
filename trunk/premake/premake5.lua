@@ -12,7 +12,7 @@ workspace "UAB"
 	  targetsuffix "_debug"
 
    filter "configurations:Release"
-      defines { "NO_DEBUG" , "LUA_32BITS" }
+      defines { "NO_DEBUG" , "LUA_32BITS","NDEBUG" }
       optimize "On"
 	  
    filter "configurations:Final"

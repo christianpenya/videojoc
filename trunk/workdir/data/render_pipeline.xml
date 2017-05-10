@@ -26,11 +26,6 @@
 	<render_layer layer="deferred_opaque"/>
 
 <!--	<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />	-->
-	<enable_alpha_blend/>	
-	<apply_technique_pool pool_name="forward"/>
-		<render_layer layer="objetos_transparentes"/>
-	<disable_alpha_blend/>	
-	
 	<unset_render_target/>
 		
 	<apply_technique_pool pool_name="quad"/>
@@ -47,7 +42,8 @@
 	</deferred_shading>
 	
 	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
-	
+	<apply_technique_pool pool_name="forward"/>
+	<render_layer layer="objetos_transparentes"/>
 	<apply_technique_pool pool_name="forward"/>
 
 	<render_layer layer="Principal"/>
@@ -193,9 +189,6 @@
     </draw_quad>
 	-->
 	
-	<draw_quad name="blablabla" material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
-        <texture name="Fspot001" stage_id="0"/>
-    </draw_quad>
 	
 	<render_imgui name="imediate_gui_render"/>
 	<end_render name="end_render_main_loop"/>
