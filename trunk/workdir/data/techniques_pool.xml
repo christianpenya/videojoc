@@ -22,6 +22,7 @@
 		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique" />
 		<!--<technique vertex_type="EnvironmentMap" />-->
 		<technique name="SSR" />
+		<technique name="Mascara" />
 		
   </default_pool>
 
@@ -82,6 +83,7 @@
 		<technique name="ColorGrading" effect="ColorGradingTechnique" />
 		<technique name="ParticleVertex" effect="ParticleVertexTechnique" />
 		<technique name="SSR" effect="SSRTechnique" />
+		<technique name="Mascara" effect="MascaraTechnique" />
 	</pool>
 	
 	<pool name="skybox">

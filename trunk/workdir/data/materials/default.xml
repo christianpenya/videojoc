@@ -92,6 +92,7 @@
 		<parameter type="float2" name="ssr_screen_resolution" value="1366 768"/>
 	</material>
 
+	<material name="MascaraMaterial" vertex_type="Mascara" />
 	
 </materials>
  

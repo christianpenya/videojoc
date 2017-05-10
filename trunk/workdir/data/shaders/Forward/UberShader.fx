@@ -57,6 +57,8 @@ struct PS_INPUT
 {
 	float4 Pos :
 	    SV_POSITION;
+	float3 Normal :
+    	NORMAL;
 	
 	#if USE_UV
 		float2 UV :
@@ -108,15 +110,13 @@ PS_INPUT VS( VS_INPUT IN )
 		l_Normal+=mul(IN.Normal.xyz, m)* IN.Weight.y;
 		l_Normal=normalize(l_Normal);
 	#endif
-
-
-
+	l_Output.Normal=normalize(mul(normalize(IN.Normal).xyz, (float3x3)m_World));
     l_Output.Pos = mul( lPos, m_World );
     l_Output.WorldPosition=l_Output.Pos.xyz;
     l_Output.Pos = mul( l_Output.Pos, m_View );
     l_Output.Pos = mul( l_Output.Pos, m_Projection );
 	l_Output.Depth=l_Output.Pos.zw;
-    l_Normal = (l_Normal/2)+0.5;
+    //l_Normal = (l_Normal/2)+0.5;
     l_Output.WorldNormal = normalize(mul(normalize(l_Normal).xyz, (float3x3)m_World));
     #if USE_UV
 	 	l_Output.UV = IN.UV;
@@ -135,8 +135,8 @@ PS_INPUT VS( VS_INPUT IN )
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-	return float4(1.0, 1.0, 0.0, 1.0);
-	float3 pixelColor = m_RawData[0].xyz;
+	
+	float4 pixelColor = float4(m_RawData[0].xyz, 1.0);
     float3 l_LAmbient = m_LightAmbient.xyz;
 
     float3 l_Normal = normalize(IN.WorldNormal);
@@ -149,7 +149,14 @@ float4 PS(PS_INPUT IN) : SV_Target
     float3 l_LDiffuseSpecularTmp = float3(0.0, 0.0, 0.0);
   
     #if USE_UV
-		pixelColor = (DiffuseTexture.Sample(LinearSampler, IN.UV) * float4(pixelColor, 1.0)).xyz;
+		
+		pixelColor = DiffuseTexture.Sample(LinearSampler, IN.UV) * pixelColor;
+		
+		if (pixelColor.w <0.1)
+		{
+			clip(-1);
+		}
+		
 		#if USE_UV2
 			float4 l_LightmapPixel = LightmapTexture.Sample(LightmapSampler, IN.UV2) * 2;
 			l_LAmbient = l_LAmbient * l_LightmapPixel;
@@ -162,10 +169,10 @@ float4 PS(PS_INPUT IN) : SV_Target
 	 	#endif 
  	#endif
 	
-	l_LAmbient = l_LAmbient * pixelColor;
+	l_LAmbient = l_LAmbient * pixelColor.xyz;
  	for(int i = 0; i < MAX_LIGHTS_BY_SHADER; ++i)
     {
-        CalculateSingleLight(i, l_Normal, l_WorldPos, pixelColor,l_DiffuseTmp, l_SpecularTmp);
+        CalculateSingleLight(i, l_Normal, l_WorldPos, pixelColor.xyz,l_DiffuseTmp, l_SpecularTmp);
         l_LDiffuseSpecularTmp = l_DiffuseTmp + l_SpecularTmp;
         l_LDiffuseSpecular = l_LDiffuseSpecular + l_LDiffuseSpecularTmp;
 		
