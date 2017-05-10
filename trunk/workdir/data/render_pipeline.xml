@@ -146,7 +146,6 @@
 	<disable_alpha_blend/>	
 	FIN NOISE VIGNETTING
 
-
 	INICIO EFECTO GAUSSIANO
 <!--	
 	<apply_technique_pool pool_name="post_process"/>
