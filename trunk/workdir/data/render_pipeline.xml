@@ -180,7 +180,7 @@
 
 	
 	<!--<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />-->
-	<draw_quad name="Tst1" material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
+<!--	<draw_quad name="Tst1" material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
         <texture name="AlbedoTexture" stage_id="0"/>
     </draw_quad>
 	<draw_quad name="Tst2" material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">
@@ -192,7 +192,7 @@
 	<draw_quad name="Tst4" material="DrawQuadMaterial" viewport_position = "129 129" viewport_size = "128 128">
         <texture name="DepthMapTexture" stage_id="0"/>
     </draw_quad>
-	
+	-->
 	<render_imgui name="imediate_gui_render"/>
 	<end_render name="end_render_main_loop"/>
 </render_pipeline>
