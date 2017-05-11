@@ -171,7 +171,12 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		     l_Normal = normalize(l_Normal);
 	#endif
     #if USE_UV
-		pixelColor = DiffuseTexture.Sample(LinearSampler, IN.UV) * pixelColor;
+		#if USE_WEIGHTIDX
+			pixelColor = DiffuseTexture.Sample(LinearSampler, IN.UV);
+		#else
+			pixelColor = DiffuseTexture.Sample(LinearSampler, IN.UV) * pixelColor;
+		#endif
+		
 		if (pixelColor.w <0.1)
 		{
 			clip(-1);
@@ -184,9 +189,6 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		//pixelColor = float3(0.0 , 1.0, 0.0);
  	#endif
 
- #if USE_WEIGHTIDX
- 	
- #endif
 
 	l_Normal=Normal2Texture(l_Normal);
 
