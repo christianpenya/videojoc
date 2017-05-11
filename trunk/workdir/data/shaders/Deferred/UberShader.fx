@@ -155,7 +155,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
     float g_SpecularExponent = 0.5;
     float g_SpecularContrib = 0.5;
 
-    float3 pixelColor = m_RawData[0].xyz;
+     float4 pixelColor = float4(m_RawData[0].xyz,1.0);
     float3 l_LAmbient = m_LightAmbient.xyz;
 
     float3 l_WorldPos = IN.WorldPosition;
@@ -171,7 +171,11 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		     l_Normal = normalize(l_Normal);
 	#endif
     #if USE_UV
-		pixelColor = (DiffuseTexture.Sample(LinearSampler, IN.UV) * float4(pixelColor, 1.0)).xyz;
+		pixelColor = DiffuseTexture.Sample(LinearSampler, IN.UV) * pixelColor;
+		if (pixelColor.w <0.1)
+		{
+			clip(-1);
+		}
 		#if USE_UV2
 			float4 l_LightmapPixel = LightmapTexture.Sample(LightmapSampler, IN.UV2) * 2;
 			//pixelColor = l_LightmapPixel.xyz * pixelColor;
@@ -187,8 +191,8 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 	l_Normal=Normal2Texture(l_Normal);
 
 
-    l_Output.Target0 = float4(pixelColor, g_SpecularContrib);
-    l_Output.Target1 = float4(l_LAmbient.xyz*pixelColor, g_SpecularExponent);
+    l_Output.Target0 = float4(pixelColor.xyz, g_SpecularContrib);
+    l_Output.Target1 = float4(l_LAmbient.xyz*pixelColor.xyz, g_SpecularExponent);
     l_Output.Target2 = float4(l_Normal, 0.0);	
     l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1.0);
 
