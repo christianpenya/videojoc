@@ -9,6 +9,7 @@
 				<transform position="-6.23034 48.7916 37.74" forward="0.0 -0.819152 -0.573576" />
 
 		<layer name = "deferred_opaque" />		
+		<layer name = "objetos_transparentes" />		
 	</light>
 	
 	<light type="point" name="Omni001" color="1.0 1.0 1.0" active="true" intensity="0.2" attenuation_range="0.0 100.0" >
