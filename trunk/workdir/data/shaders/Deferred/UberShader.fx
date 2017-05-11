@@ -153,7 +153,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 
    
     float g_SpecularExponent = 0.5;
-    float g_SpecularContrib = 1.0;
+    float g_SpecularContrib = 0.5;
 
     float3 pixelColor = m_RawData[0].xyz;
     float3 l_LAmbient = m_LightAmbient.xyz;
