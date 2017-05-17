@@ -20,6 +20,7 @@
 #include "Graphics/Cinematics\CinematicsManager.h"
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
+#include "Sound/SoundManager.h"
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
@@ -145,6 +146,8 @@ void CEngine::LoadFiles()
     m_ParticleManager = new CParticleManager();
     m_ParticleManager->Load(m_FileParticleManager);
     LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
+
+    // m_SoundManager = CSoundManager::InstantiateSoundManager();
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);

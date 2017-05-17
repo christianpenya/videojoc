@@ -334,6 +334,7 @@
     <ClInclude Include="..\..\src\Engine\Scripts\Script.h" />
     <ClInclude Include="..\..\src\Engine\Scripts\ScriptManager.h" />
     <ClInclude Include="..\..\src\Engine\Scripts\lua_utils.h" />
+    <ClInclude Include="..\..\src\Engine\Sound\ISoundManager.h" />
     <ClInclude Include="..\..\src\Engine\Sound\SoundManager.h" />
   </ItemGroup>
   <ItemGroup>

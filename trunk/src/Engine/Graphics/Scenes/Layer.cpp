@@ -102,6 +102,24 @@ bool CLayer::Render()
     return lOk;
 }
 
+bool CLayer::Refresh()
+{
+    CLightManager &lLM = CEngine::GetInstance().GetLightManager();
+
+    for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode)
+    {
+        if (iSceneNode->second.m_Value == nullptr)
+        {
+            if (lLM(iSceneNode->first) != nullptr)
+            {
+                lLM(iSceneNode->first);
+            }
+        }
+    }
+
+    return false;
+}
+
 std::vector<CSceneNode*> CLayer::GetNodes()
 {
     return m_ResourcesVector;
@@ -145,3 +163,4 @@ void CLayer::DrawImgui()
         }
     }
 }
+

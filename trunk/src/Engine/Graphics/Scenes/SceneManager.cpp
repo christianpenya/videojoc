@@ -2,6 +2,7 @@
 #include "XML/tinyxml2/tinyxml2.h"
 #include "XML/XML.h"
 #include "Imgui/imgui.h"
+#include "Utils/Logger.h"
 
 CSceneManager::CSceneManager() {}
 CSceneManager::~CSceneManager()
@@ -49,6 +50,20 @@ bool CSceneManager::Render(const std::string& aLayer)
 
 bool CSceneManager::Reload()
 {
+    base::utils::CTemplatedMapVector<CScene>::Clear();
+    return Load();
+}
+
+bool CSceneManager::Refresh()
+{
+    for (TVectorResources::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
+    {
+        if ((*iScene)->GetActive())
+        {
+            (*iScene)->Refresh();
+        }
+    }
+
     base::utils::CTemplatedMapVector<CScene>::Clear();
     return Load();
 }

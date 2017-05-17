@@ -9,6 +9,7 @@
 #include "Render/RenderPipeline/RenderPipeline.h"
 #include "Graphics/Cinematics/CinematicsManager.h"
 #include "Render/RenderPipeline/SetRasterizerState.h"
+#include "Graphics/Lights/LightManager.h"
 
 CRenderImGUI::CRenderImGUI() {}
 CRenderImGUI::~CRenderImGUI() {}
@@ -49,9 +50,7 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     // TECHNIQUES
     if (ImGui::CollapsingHeader("Reload"))
     {
-        /*ImGui::Text("Reload -> ");
-        ImGui::SameLine();
-        */
+        //SHADERS
         ImGui::PushID(RELOAD_SHADER_BUTTON_ID);
         ImGui::PushStyleColor(ImGuiCol_Button, GREEN);
         ImGui::PushStyleColor(ImGuiCol_ButtonHovered, GREEN_HOVER);
@@ -61,9 +60,24 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
             lEngine.GetShaderManager().Reload();
             lEngine.GetEffectManager().Refresh();
         }
+
         ImGui::PopStyleColor(2);
         ImGui::PopID();
 
+        //LUCES
+        ImGui::PushID(RELOAD_LIGHTS_BUTTON_ID);
+        ImGui::PushStyleColor(ImGuiCol_Button, GREEN);
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, GREEN_HOVER);
+
+        if (ImGui::Button("Luces"))
+        {
+            lEngine.GetLightManager().Reload();
+            lEngine.GetSceneManager().Refresh();
+        }
+        ImGui::PopStyleColor(2);
+        ImGui::PopID();
+
+        //RENDER PIPELINE
         ImGui::PushID(RELOAD_RENDERPIPELINE_BUTTON_ID);
         if (ImGui::Button("RenderPipeline"))
             lEngine.GetRenderPipeline().Reload();
@@ -79,4 +93,9 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 
     ImGui::End();
     ImGui::Render();
+}
+
+void Reloads()
+{
+
 }

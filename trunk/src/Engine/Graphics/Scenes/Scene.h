@@ -11,6 +11,7 @@ public:
     CScene(const std::string& aName);
     virtual ~CScene();
     bool Load(const std::string& aFilename);
+    bool Refresh();
     bool Update(float elapsedTime);
     bool Render();
     bool Render(const std::string& aLayerName);

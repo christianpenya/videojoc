@@ -61,6 +61,12 @@ bool CLightManager::Load()
     return lOk;
 }
 
+bool CLightManager::Reload()
+{
+    Clear();
+    return Load();
+}
+
 void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
 {
     CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
@@ -111,12 +117,6 @@ void CLightManager::SetLightsConstants()
         CLight* lLight = iLightMapEntry->second.m_Value;
         SetLightConstants(iLightMapEntry->second.m_Id, lLight);
     }
-}
-
-bool CLightManager::ReLoad()
-{
-    Clear();
-    return Load();
 }
 
 void CLightManager::DrawImgui()

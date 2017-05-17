@@ -1,6 +1,4 @@
-#include "SoundManager.h"
-
-#define UNICODE
+#include "Sound/SoundManager.h"
 
 #include <AK/SoundEngine/Common/AkMemoryMgr.h>                  // Memory Manager
 #include <AK/SoundEngine/Common/AkModule.h>                     // Default memory and stream managers
@@ -10,48 +8,22 @@
 #include <AK/SoundEngine/Common/AkSoundEngine.h>                // Sound engine
 #include <AK/MusicEngine/Common/AkMusicEngine.h>                // Music Engine
 
-#include <cassert>
 
-// Custom alloc/free functions. These are declared as "extern" in AkMemoryMgr.h
-// and MUST be defined by the game developer.
-namespace AK
+
+CSoundManager::CSoundManager() {}
+CSoundManager::~CSoundManager() {}
+
+ISoundManager* CSoundManager::InstantiateSoundManager()
 {
-#ifdef WIN32
-void * AllocHook(size_t in_size)
-{
-    return malloc(in_size);
-}
-void FreeHook(void * in_ptr)
-{
-    free(in_ptr);
-}
-// Note: VirtualAllocHook() may be used by I/O pools of the default implementation
-// of the Stream Manager, to allow "true" unbuffered I/O (using FILE_FLAG_NO_BUFFERING
-// - refer to the Windows SDK documentation for more details). This is NOT mandatory;
-// you may implement it with a simple malloc().
-void * VirtualAllocHook(
-    void * in_pMemAddress,
-    size_t in_size,
-    DWORD in_dwAllocationType,
-    DWORD in_dwProtect
-)
-{
-    return VirtualAlloc(in_pMemAddress, in_size, in_dwAllocationType, in_dwProtect);
-}
-void VirtualFreeHook(
-    void * in_pMemAddress,
-    size_t in_size,
-    DWORD in_dwFreeType
-)
-{
-    VirtualFree(in_pMemAddress, in_size, in_dwFreeType);
-}
-#endif
+    return new CSoundManager();
 }
 
-CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
+void CSoundManager::SetPath(const std::string &path)
+{
+    m_Path = path;
+}
 
-bool InitSoundEngine()
+bool CSoundManager::Init()
 {
     //
     // Create and initialize an instance of the default memory manager. Note
@@ -67,7 +39,6 @@ bool InitSoundEngine()
         assert(!"Could not create the memory manager.");
         return false;
     }
-
 
     //
     // Create and initialize an instance of the default streaming manager. Note
@@ -98,7 +69,7 @@ bool InitSoundEngine()
 
     // CAkFilePackageLowLevelIOBlocking::Init() creates a streaming device
     // in the Stream Manager, and registers itself as the File Location Resolver.
-    if (g_lowLevelIO.Init(deviceSettings) != AK_Success)
+    if (g_lowLevelIO->Init(deviceSettings) != AK_Success)
     {
         assert(!"Could not create the streaming device and Low-Level I/O system");
         return false;
@@ -137,6 +108,89 @@ bool InitSoundEngine()
     return true;
 }
 
+void CSoundManager::Update(const CCamera *camera)
+{
+
+}
+
+bool CSoundManager::Load(const std::string &soundbanks_filename, const std::string &speakers_filename)
+{
+    return false;
+}
+
+bool CSoundManager::Reload()
+{
+    return false;
+}
+
+/*
+#include "SoundManager.h"
+
+#include <cassert>
+#include "Math/Vector3.h"
+#include "Graphics/Scenes/SceneNode.h"
+
+#include <AK/SoundEngine/Common/AkMemoryMgr.h>                  // Memory Manager
+#include <AK/SoundEngine/Common/AkModule.h>                     // Default memory and stream managers
+#include <AK/SoundEngine/Common/IAkStreamMgr.h>                 // Streaming Manager
+#include <AK/Tools/Common/AkPlatformFuncs.h>                    // Thread defines
+#include <AkFilePackageLowLevelIOBlocking.h>                    // Sample low-level I/O implementation
+#include <AK/SoundEngine/Common/AkSoundEngine.h>                // Sound engine
+#include <AK/MusicEngine/Common/AkMusicEngine.h>                // Music Engine
+
+class CSoundManager : public ISoundManager
+{
+public:
+    //static ISoundManager* InstantiateSoundManager();
+    virtual ~CSoundManager() {}
+
+    AkGameObjectID m_LastGameObjectId;
+    std::vector<AkGameObjectID> m_FreeObjectIDs;
+
+    AkGameObjectID m_DefaultSpeakerId;
+    std::unordered_map<std::string, AkGameObjectID> m_NamedSpeakers;
+    std::unordered_map<const CSceneNode*, AkGameObjectID> m_GameObjectSpeakers;
+
+    std::string m_SoundBanksFilename;
+    std::string m_SpeakersFilename;
+
+    virtual bool Init();
+    virtual bool InitBanks();
+    virtual void Update(const CCamera *camera);
+    virtual bool Load(const std::string &soundbanks_filename, const std::string &speakers_filename);
+    virtual bool Reload();
+
+    virtual bool LoadSoundBank(const std::string &bank);
+    virtual bool UnloadSoundBank(const std::string &bank);
+
+    virtual void RegisterSpeaker(CSceneNode* _speaker);
+    virtual void UnregisterSpeaker(const CSceneNode* _speaker);
+
+    virtual void PlayEvent(const SoundEvent &_event);
+    virtual void PlayEvent(const SoundEvent &_event, const std::string &_speaker);
+    virtual void PlayEvent(const SoundEvent &_event, const CSceneNode* _speaker);
+
+    virtual void SetSwitch(const SoundSwitchValue &switchValue);
+    virtual void SetSwitch(const SoundSwitchValue &switchValue, const std::string &_speaker);
+    virtual void SetSwitch(const SoundSwitchValue &switchValue, const CSceneNode* _speaker);
+
+    virtual void BroadcastRTPCValue(const SoundRTPC &_rtpc, float value);
+    virtual void SetRTPCValue(const SoundRTPC &_rtpc, float value);
+    virtual void SetRTPCValue(const SoundRTPC &_rtpc, float value, const std::string &_speaker);
+    virtual void SetRTPCValue(const SoundRTPC &_rtpc, float value, const CSceneNode* _speaker);
+
+    virtual void BroadcastState(const SoundStateValue &_state);
+    virtual void SetPath(const std::string &path);
+    virtual AkGameObjectID GenerateObjectId();
+
+    virtual void Terminate();
+    virtual void Clean();
+    virtual bool LoadSoundBanksXML();
+    virtual bool LoadSpeakersXML();
+};
+
+
+/*
 void ProcessAudio()
 {
     // Process bank requests, events, positions, RTPC, etc.
@@ -169,3 +223,145 @@ void TermSoundEngine()
     // Terminate the Memory Manager
     AK::MemoryMgr::Term();
 }
+
+AkGameObjectID CSoundManager::GenerateObjectId()
+{
+    AkGameObjectID result;
+
+    if (m_FreeObjectIDs.size() > 0)
+    {
+        result = m_FreeObjectIDs.back();
+        m_FreeObjectIDs.pop_back();
+    }
+    else
+    {
+        result = ++m_LastGameObjectId;
+    }
+
+    return result;
+}
+
+void CSoundManager::RegisterSpeaker(CSceneNode* _speaker)
+{
+    assert(m_GameObjectSpeakers.find(_speaker) == m_GameObjectSpeakers.end());
+
+    AkGameObjectID id = GenerateObjectId();
+    m_GameObjectSpeakers[_speaker] = id;
+
+    Vect3f l_Position = _speaker->GetPosition();
+    Vect3f l_Orientation = _speaker->GetForward();
+    Vect3f l_Up = _speaker->GetUp();
+
+    AkSoundPosition l_SoundPosition = {};
+    l_SoundPosition.SetPosition(l_Position.x, l_Position.y, l_Position.z);
+    l_SoundPosition.SetOrientation(l_Orientation.x, l_Orientation.y, l_Orientation.z, l_Up.x, l_Up.y, l_Up.z);
+
+    AK::SoundEngine::RegisterGameObj(id);
+    AK::SoundEngine::SetPosition(id, l_SoundPosition);
+}
+
+void CSoundManager::UnregisterSpeaker(const CSceneNode* _speaker)
+{
+    auto it = m_GameObjectSpeakers.find(_speaker);
+    if (it != m_GameObjectSpeakers.end())
+    {
+        AK::SoundEngine::UnregisterGameObj(it->second);
+        m_FreeObjectIDs.push_back(it->second);
+        m_GameObjectSpeakers.erase(it);
+    }
+    else
+    {
+        assert(false);
+    }
+}
+
+bool CSoundManager::Load(const std::string &soundbanks_filename, const std::string &speakers_filename)
+{
+    m_SoundBanksFilename = soundbanks_filename;
+    m_SpeakersFilename = speakers_filename;
+
+    bool l_Ok = true;
+    l_Ok = LoadSoundBanksXML();
+    l_Ok &= LoadSpeakersXML();
+
+    return l_Ok;
+}
+
+bool CSoundManager::LoadSoundBanksXML()
+{
+    return false;
+}
+
+bool CSoundManager::LoadSpeakersXML()
+{
+    return false;
+}
+
+bool CSoundManager::InitBanks()
+{
+    AkOSChar *path;
+    AKRESULT retValue;
+    CONVERT_CHAR_TO_OSCHAR(m_Path.c_str(), path);
+    AkBankID bankId;
+    retValue = AK::StreamMgr::SetCurrentLanguage(L"English(US)");
+
+    //TODO repassar, no acaba de ser igual que al pdf
+    retValue = AK::SoundEngine::LoadBank(path, AK_DEFAULT_POOL_ID, bankId);
+
+    if (retValue != AK_Success)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool CSoundManager::LoadSoundBank(const std::string &bank)
+{
+    AkBankID bankID;
+    AKRESULT retValue;
+
+    retValue = AK::SoundEngine::LoadBank(bank.c_str(), AK_DEFAULT_POOL_ID, bankID);
+
+    if (retValue != AK_Success)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool CSoundManager::UnloadSoundBank(const std::string &bank)
+{
+    AkBankID bankID;
+    AKRESULT retValue;
+
+    retValue = AK::SoundEngine::UnloadBank(bank.c_str(), nullptr);
+    if (retValue != AK_Success)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+void CSoundManager::Terminate()
+{
+    AK::SoundEngine::ClearBanks();
+    AK::SoundEngine::UnregisterAllGameObj();
+    AK::SoundEngine::Term();
+}
+
+void CSoundManager::Clean()
+{
+    AK::SoundEngine::ClearBanks();
+
+    for (auto it : m_NamedSpeakers)
+    {
+        AK::SoundEngine::UnregisterGameObj(it.second);
+        m_FreeObjectIDs.push_back(it.second);
+    }
+
+    m_NamedSpeakers.clear();
+}
+*/

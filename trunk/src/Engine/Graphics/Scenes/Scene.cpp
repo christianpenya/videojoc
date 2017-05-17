@@ -14,6 +14,19 @@ CScene::~CScene()
     CTemplatedMapVector<CLayer>::Destroy();
 }
 
+bool CScene::Refresh()
+{
+    for (TVectorResources::iterator iLayer = m_ResourcesVector.begin(); iLayer != m_ResourcesVector.end(); ++iLayer)
+    {
+        if ((*iLayer)->GetActive())
+        {
+            (*iLayer)->Refresh();
+        }
+    }
+
+    return true;
+}
+
 bool CScene::Load(const std::string& aFilename)
 {
     bool lOk = true;

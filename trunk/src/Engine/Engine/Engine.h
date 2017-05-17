@@ -33,6 +33,7 @@ class CAnimatedModelManager;
 class CScriptManager;
 class CPhysXManager;
 class CParticleManager;
+class CSoundManager;
 
 #define BUILD_GET_SET_ENGINE_MANAGER( Manager ) \
 private: \
@@ -77,6 +78,7 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(CinematicManager)
     BUILD_GET_SET_ENGINE_MANAGER(PhysXManager)
     BUILD_GET_SET_ENGINE_MANAGER(ParticleManager)
+    BUILD_GET_SET_ENGINE_MANAGER(SoundManager)
 
     double m_DeltaTime;
     clock_t m_DeltaTimeAcum = 0;

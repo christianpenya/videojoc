@@ -15,7 +15,7 @@ public:
     CLight* GetLightByIdx(size_t idLight);
     void SetLightConstants(size_t idLight, CLight* alight);
     void SetLightsConstants();
-    bool ReLoad();
+    bool Reload();
     void DrawImgui();
     GET_SET(Vect4f, AmbientLightColor)
 private:
