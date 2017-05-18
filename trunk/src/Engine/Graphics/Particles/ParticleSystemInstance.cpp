@@ -106,7 +106,7 @@ bool CParticleSystemInstance::Update(float ElapsedTime)
     if (m_Awake)
     {
         m_NextParticleEmission -= ElapsedTime;
-        while (m_NextParticleEmission < 0) //|| (m_ActiveParticles < s_MaxParticlesPerInstance))
+        while (m_NextParticleEmission < 0)
         {
             if (m_ActiveParticles < s_MaxParticlesPerInstance)
             {

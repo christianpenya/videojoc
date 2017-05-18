@@ -1,6 +1,6 @@
 <particle_systems>
-	<particle name="Fire" material="ElectricMaterial"  numFrames="200" timePerFrame= "1.0" loopFrames="true" emitAbsolute="true" startingDirectionAngle="1.0" startingAccelerationAngle="1.0" size="0.5 0.5" emitRate="0.5 0.5"  awakeTime="0.0 0.0" sleepTime="1.0 1.0" life="99999 999999" startingAngle="0.0 90.0"  startingAngularSpeed="1.0 1.0"	angularAcceleration= "0.5 0.5"  startingSpeed1="0.3 0.3 0.3"  startingSpeed2="0.3 0.3 0.3" startingAcceleration1="0.1 0.1 0.1" startingAcceleration2="0.2 0.2 0.2"  color1="1.0 0.0 0.0" color2="0.0 1.0 0.0">
-		<control_point_size size="0.2 0.5" time="0.1 0.3" />
-		<control_point_color color1="1.0 0.0 0.0" color2="0.0 1.0 1.0" time="0.3 0.5" />
+	<particle name="Fire" material="ElectricMaterial"  numFrames="15" timePerFrame= "0.1" loopFrames="true" emitAbsolute="true" startingDirectionAngle="1.0" startingAccelerationAngle="1.0" size="0.0 0.5" emitRate="10.0 10.0"  awakeTime="0.0 0.0" sleepTime="0.3 0.3" life="5.0 15.0" startingAngle="0.0 90.0"  startingAngularSpeed="1.0 1.0"	angularAcceleration= "0.5 0.5"  startingSpeed1="0.1 0.1 0.1"  startingSpeed2="0.2 0.2 0.2" startingAcceleration1="0.1 0.1 0.1" startingAcceleration2="0.2 0.2 0.2"  color1="1.0 0.0 0.0" color2="0.0 1.0 0.0">
+		<control_point_size size="0.0 0.5" time="0.1 0.3" />
+		<control_point_color color1="1.0 0.0 0.0" color2="0.0 0.0 1.0" time="0.1 0.5" />
 	</particle>
 </particle_systems>
