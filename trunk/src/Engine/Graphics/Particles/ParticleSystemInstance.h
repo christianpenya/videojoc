@@ -29,8 +29,9 @@ private:
     {
         Vect3f Position, Velocity, Acceleration;
         int CurrentFrame;
-        float TimeToNextFrame;
-        float Lifetime, TotalLife;
+        float TimeToNextFrame=0;
+        float Lifetime = 0;
+        float TotalLife=0;
         float Angle, AngularSpeed, AngularAcceleration;
         int ColorControlPoint, SizeControlPoint;
         float LastColorControlTime, NextColorControlTime;
@@ -41,7 +42,7 @@ private:
     };
 
     ParticleData m_ParticleData[s_MaxParticlesPerInstance];
-    CTemplatedGeometry<VertexTypes::ParticleVertex> * m_Vertices; //Cambiar por TemplatedGeometry
+    CGeometryPointList<VertexTypes::ParticleVertex> * m_Vertices;
 
 public:
     CParticleSystemInstance();
@@ -55,7 +56,7 @@ public:
     bool Update(float ElapsedTime);
 
     void UpdateState(float ElapsedTime);
-    void CreateParticles(ParticleData arr[], int length);
+    void orderParticles(ParticleData arr[], int length);
 
     CParticleSystemType *m_Type;
     float m_NextParticleEmission;
