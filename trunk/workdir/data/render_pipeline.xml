@@ -52,7 +52,7 @@
 	<apply_technique_pool pool_name="skybox"/>
 
 	<render_layer layer="Skybox"/>
-
+<!--
 	POST-PROCESS
 	<capture_frame_buffer name="capture_frame_buffer" texture_width_as_frame_buffer="true" />
 	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>

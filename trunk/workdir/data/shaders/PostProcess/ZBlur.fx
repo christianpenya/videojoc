@@ -9,12 +9,12 @@ float2 UV :
     TEXCOORD0;
 };
 
-static float m_ZBlurActive = m_RawData[4].x; //1.0;
-static float m_ZBlurShowDepths = m_RawData[5].x; //1.0;
-static float m_ZBlurConstantBlur = m_RawData[6].x; //0.3;
-static float m_ZBlurFocalStart = m_RawData[7].x; //0.1; 
-static float m_ZBlurFocalEnd = m_RawData[8].x; //0.2; 
-static float m_ZBlurEnd = m_RawData[9].x; //0.8;
+static float m_ZBlurActive = m_RawData[0].x; //1.0;
+static float m_ZBlurShowDepths = m_RawData[1].x; //1.0;
+static float m_ZBlurConstantBlur = m_RawData[2].x; //0.3;
+static float m_ZBlurFocalStart = m_RawData[3].x; //0.1; 
+static float m_ZBlurFocalEnd = m_RawData[4].x; //0.2; 
+static float m_ZBlurEnd = m_RawData[5].x; //0.8;
 
 float4 GetZBlurColor(float Distance, float4 SourceColor, float4 BlurColor)
 {

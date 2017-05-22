@@ -8,6 +8,7 @@
 #include "Graphics/Animation/AnimatedModelManager.h"
 #include "Graphics/Lights/LightManager.h"
 #include "Graphics/Particles/ParticleSystemInstance.h"
+#include "Graphics/Buffers/ConstantBufferManager.h"
 
 CLayer::CLayer(const std::string& aName) :
     CName(aName),
@@ -52,7 +53,11 @@ bool CLayer::Load(CXMLElement* aElement)
         {
             std::string l_lightName = iSceneMesh->GetAttribute<std::string>("name", "");
             CLight *l_light = nullptr;
-
+			CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
+			lConstanBufferManager.mLightsDesc.m_LightEnabled[0] = 0;
+			lConstanBufferManager.mLightsDesc.m_LightEnabled[1] = 0;
+			lConstanBufferManager.mLightsDesc.m_LightEnabled[2] = 0;
+			lConstanBufferManager.mLightsDesc.m_LightEnabled[3] = 0;
             if (lLM.Exist(l_lightName))
             {
                 lNode = lLM(l_lightName);
