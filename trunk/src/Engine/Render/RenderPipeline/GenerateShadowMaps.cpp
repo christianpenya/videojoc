@@ -38,6 +38,7 @@ void CGenerateShadowMaps::Execute(CRenderManager& lRM)
                 CLayer* lLayer = lScene->GetLayerByName(*it);
                 if (lLayer)
                 {
+                    LOG_INFO_APPLICATION(("Rendering shadows for layer " + lLayer->GetName()).c_str());
                     lLayer->Render();
                 }
             }

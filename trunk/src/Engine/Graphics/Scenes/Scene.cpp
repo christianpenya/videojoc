@@ -4,6 +4,13 @@
 #include "Graphics/Lights/lightManager.h"
 #include "Imgui/imgui.h"
 
+#ifdef _DEBUG
+
+#include "Utils/MemLeaks/MemLeaks.h"
+#endif
+#include <chrono>
+#include "Utils/Logger.h"
+
 CScene::CScene(const std::string& aName)
     : CName(aName),
       CActive(false)
@@ -20,6 +27,7 @@ bool CScene::Refresh()
     {
         if ((*iLayer)->GetActive())
         {
+            LOG_INFO_APPLICATION(("Refresh layer " + (*iLayer)->GetName() + std::to_string(clock())).c_str());
             (*iLayer)->Refresh();
         }
     }

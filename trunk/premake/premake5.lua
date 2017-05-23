@@ -25,8 +25,10 @@ project "Videogame"
     characterset ("MBCS")
     flags { "ExtraWarnings", "NoRTTI" }
     files { "../src/Videogame/**.h", "../src/Videogame/**.cpp"}
-    links {"Engine", "Base", "d3d11", "d3dcompiler", "Cal3D", "lua", "luabind", "DirectXTex","../include/physx/lib/**.lib"}
-    includedirs { "../src/Engine", "../src/Base", "../src/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/"}
+    --links {"Engine", "Base", "d3d11", "d3dcompiler", "Cal3D", "lua", "luabind", "DirectXTex","../include/physx/lib/**.lib", "AkSoundEngine", "AkMemoryMgr", "AkStreamMgr", "AkMusicEngine", "CommunicationCentral"}
+	links {"Engine", "Base", "d3d11", "d3dcompiler", "Cal3D", "lua", "luabind", "DirectXTex","../include/physx/lib/**.lib" }
+    includedirs { "../src/Engine", "../src/Base", "../src/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/" }
+	libdirs { path.join(os.getenv("WWISESDK") ,"Win32_vc120/Debug/lib" ) }
 	
 group "3rdParty"
 project "Cal3D"

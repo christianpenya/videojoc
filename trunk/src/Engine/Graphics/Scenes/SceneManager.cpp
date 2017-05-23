@@ -2,6 +2,12 @@
 #include "XML/tinyxml2/tinyxml2.h"
 #include "XML/XML.h"
 #include "Imgui/imgui.h"
+
+#ifdef _DEBUG
+#include "Utils/MemLeaks/MemLeaks.h"
+#endif
+
+#include <chrono>
 #include "Utils/Logger.h"
 
 CSceneManager::CSceneManager() {}
@@ -56,16 +62,19 @@ bool CSceneManager::Reload()
 
 bool CSceneManager::Refresh()
 {
+    bool lOut = false;
+
     for (TVectorResources::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
     {
         if ((*iScene)->GetActive())
         {
-            (*iScene)->Refresh();
+            LOG_INFO_APPLICATION(("Refresh layer " + (*iScene)->GetName() + std::to_string(clock())).c_str());
+            lOut = (*iScene)->Refresh();
         }
     }
 
     base::utils::CTemplatedMapVector<CScene>::Clear();
-    return Load();
+    return lOut;
 }
 
 void CSceneManager::Activate(const std::string& aScene, bool aBool)

@@ -19,8 +19,8 @@
 			<transform position="0.0 0.0 0.0" pitch ="0.0" yaw="0.0" roll="0.0" scale="10.0 1.0 30.0" />
 		</scene_mesh>
 		
-		-->
-		<!--
+		
+		
 		<scene_animated_model name="sereno01" core="sereno" >
 			<transform position="0.0 10.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>

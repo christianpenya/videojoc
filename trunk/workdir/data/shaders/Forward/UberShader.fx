@@ -130,7 +130,6 @@ PS_INPUT VS( VS_INPUT IN )
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-	
 	float4 pixelColor = float4(m_RawData[0].xyz, 1.0);
     float3 l_LAmbient = m_LightAmbient.xyz;
 

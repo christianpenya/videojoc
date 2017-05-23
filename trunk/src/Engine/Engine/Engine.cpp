@@ -147,7 +147,9 @@ void CEngine::LoadFiles()
     m_ParticleManager->Load(m_FileParticleManager);
     LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
 
-    // m_SoundManager = CSoundManager::InstantiateSoundManager();
+    ISoundManager* hola;
+    //m_SoundManager
+    hola	= CSoundManager::InstantiateSoundManager();
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);

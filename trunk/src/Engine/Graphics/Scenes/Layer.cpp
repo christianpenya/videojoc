@@ -9,6 +9,12 @@
 #include "Graphics/Lights/LightManager.h"
 #include "Graphics/Particles/ParticleSystemInstance.h"
 
+#ifdef _DEBUG
+#include <chrono>
+#include "Utils/Logger.h"
+#include "Utils/MemLeaks/MemLeaks.h"
+#endif
+
 CLayer::CLayer(const std::string& aName) :
     CName(aName),
     CActive(false)
@@ -106,14 +112,17 @@ bool CLayer::Refresh()
 {
     CLightManager &lLM = CEngine::GetInstance().GetLightManager();
 
-    for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode)
+    for (TVectorResources::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
     {
-        if (iSceneNode->second.m_Value == nullptr)
+        //if (iSceneNode->second.m_Value->GetNodeType() == CSceneNode::eLight)
+        if ((*iSceneNode)->GetNodeType() == CSceneNode::eLight)
         {
-            if (lLM(iSceneNode->first) != nullptr)
-            {
-                lLM(iSceneNode->first);
-            }
+            CSceneNode* bla = m_ResourcesMap.find((*iSceneNode)->GetName())->second.m_Value;
+            bla = lLM((*iSceneNode)->GetName());
+            bla->SetParent(this);
+            LOG_INFO_APPLICATION("te mare");
+            //CLight* tmp = Add //(*iSceneNode)->GetName();
+            // iSceneNode->second.m_Value = lLM(iSceneNode->second.m_Value->GetName());
         }
     }
 
