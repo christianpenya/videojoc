@@ -1145,8 +1145,8 @@ CalCoreSubmesh *CalLoader::loadCoreSubmesh(CalDataSource& dataSrc)
             }
         }
         face.vertexId[0]=tmp[0];
-        face.vertexId[1]=tmp[1];
-        face.vertexId[2]=tmp[2];
+        face.vertexId[1]=tmp[2];
+        face.vertexId[2]=tmp[1];
 
         // check if an error happened
         if(!dataSrc.ok())

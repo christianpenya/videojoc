@@ -53,7 +53,7 @@ void CDeferredShading::Execute(CRenderManager &lRM)
 
     for (int i = 0; i < l_LM->GetCount(); i++)
     {
-        l_LM->SetLightConstants(0, l_LM->GetLightByIdx(i));
+        l_LM->SetLightConstants(i, l_LM->GetLightByIdx(i));
         CDrawQuad::Execute(lRM);
 
     }
