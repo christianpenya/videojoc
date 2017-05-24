@@ -1,6 +1,8 @@
 #include "SetAlphaBlendState.h"
 #include "XML\XML.h"
 #include "Engine\Engine.h"
+#include "ImGUI\imgui.h"
+#define IM_ARRAYSIZE(_ARR) ((int)(sizeof(_ARR)/sizeof(*_ARR)))
 
 CSetAlphaBlendState::CSetAlphaBlendState():
     m_AlphaBlendState(nullptr),
@@ -84,4 +86,25 @@ void CSetAlphaBlendState::Execute(CRenderManager& lRM)
 {
     CreateAlphaBlendState(lRM);
     lRM.GetDeviceContext()->OMSetBlendState(m_AlphaBlendState, NULL, 0xffffffff);
+    DrawImgui();
+}
+
+void CSetAlphaBlendState::DrawImgui()
+{
+
+    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    {
+        const char* items[] = { "None","Zero", "One", "SrcColor", "InvSrcColor", "SrcAlpha", "InvSrcAlpha", "DestAlpha", "InvDestAlpha", "DestColor", "InvDestColor", "SrcAlphaSat", "None","None","BlendFactor", "InvBlendFactor", "Src1Color", "InvSrc1Color", "Src1Alpha", "InvSrc1Alpha"};
+        ImGui::Combo("Src Blend", (int*)&m_SrcBlend, items, IM_ARRAYSIZE(items));
+        ImGui::Combo("Dst Blend", (int*)&m_DestBlend, items, IM_ARRAYSIZE(items));
+        const char* items2[] = { "None", "add", "subtract", "revSubtract", "min", "SrcAlpha", "InvSrcAlpha", "DestAlpha", "InvDestAlpha", "DestColor", "InvDestColor", "SrcAlphaSat", "None", "None", "BlendFactor", "InvBlendFactor", "Src1Color", "InvSrc1Color", "Src1Alpha", "InvSrc1Alpha" };
+        ImGui::Combo("Blend Op", (int*)&m_BlendOp, items2, IM_ARRAYSIZE(items2));
+        ImGui::Combo("Src Blend Alpha", (int*)&m_SrcBlendAlpha, items, IM_ARRAYSIZE(items));
+        ImGui::Combo("Dst Blend Alpha", (int*)&m_DestBlendAlpha, items, IM_ARRAYSIZE(items));
+        ImGui::Combo("Blend Op Alpha", (int*)&m_BlendOpAlpha, items2, IM_ARRAYSIZE(items2));
+        const char* items3[] = { "None", "red", "green", "None", "blue", "None", "None", "None", "alpha", "None", "None", "None", "None", "None", "None", "all" };
+        ImGui::Combo("Render Target Write Mask", (int*)&m_render_target_write_mask, items3, IM_ARRAYSIZE(items3));
+
+    }
+
 }

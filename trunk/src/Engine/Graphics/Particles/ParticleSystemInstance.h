@@ -50,7 +50,7 @@ public:
     CParticleSystemInstance(const CXMLElement* aElement);
 
     float ComputeTimeToNextParticle();
-    float GetDistanceToCamera(ParticleData *particle);
+    float GetDistanceToCamera(Vect3f particlePosition);
 
     bool Render(CRenderManager& lRM);
     bool Update(float ElapsedTime);
@@ -65,6 +65,7 @@ public:
     Vect3f m_EmissionBoxHalfSize;
     float m_EmissionVolume, m_EmissionScaler;
     int m_ActiveParticles;
+    //void DrawImgui();
 
     VertexTypes::ParticleVertex m_ParticleRenderableData[s_MaxParticlesPerInstance];
     std::mt19937 m_RandomEngine;

@@ -46,6 +46,7 @@ GS_INPUT VS( VS_INPUT IN )
 {
 	GS_INPUT l_Output = (GS_INPUT)0;
 	l_Output.Pos = mul( float4(IN.Pos, 1.0), m_World );
+	//l_Output.Pos = mul( IN.Pos, m_World );
 	//l_Output.Pos = mul( l_Output.Pos, m_View );
 	l_Output.Color = IN.Color;
 	l_Output.Size = IN.UV.x;
@@ -94,7 +95,8 @@ void GS( point GS_INPUT input[1], inout TriangleStream<PS_INPUT> OutputStream )
 {
 	PS_INPUT l_Output = (PS_INPUT)0;
 	float halfSize = input[0].Size * 0.5;
-	float4 pos = input[0].Pos;
+	//float4 pos = input[0].Pos;
+	float4 pos = mul( input[0].Pos, m_View );
 	float spriteIndex1 = floor(input[0].SpriteIndex);
 	float spriteIndex1X = fmod(spriteIndex1, sprite_sheet_width);
 	// "spriteIndex / sprite_sheet_width"
@@ -107,19 +109,23 @@ void GS( point GS_INPUT input[1], inout TriangleStream<PS_INPUT> OutputStream )
 	float x = 1.41421356237 * cos(input[0].Angle + 3.14159265359 * 0.25);
 	float y = 1.41421356237 * sin(input[0].Angle + 3.14159265359 * 0.25) * ratio_y;
 	l_Output.Color = input[0].Color;	
-	l_Output.Pos = mul( pos + halfSize * float4(x,y,0.0, 0.0), m_ViewProjection );	
+	
+	l_Output.Pos = mul( pos + halfSize * float4(x,y,0.0, 0.0), m_Projection );	
 	l_Output.UV = float2(spriteIndex1X * du, spriteIndex1Y * dv);
 	l_Output.UV2 = float2(spriteIndex2X * du, spriteIndex2Y * dv);
 	OutputStream.Append( l_Output );
-	l_Output.Pos = mul( pos + halfSize * float4(-y, x, 0.0, 0.0), m_ViewProjection);
-	l_Output.UV = float2(spriteIndex1X * du + du, spriteIndex1Y * dv);
-	l_Output.UV2 = float2(spriteIndex2X * du + du, spriteIndex2Y * dv);
-	OutputStream.Append( l_Output );
-	l_Output.Pos = mul( pos + halfSize * float4(y,-x, 0.0, 0.0), m_ViewProjection );
+	
+	l_Output.Pos = mul( pos + halfSize * float4(y,-x, 0.0, 0.0), m_Projection );
 	l_Output.UV = float2(spriteIndex1X * du, spriteIndex1Y * dv + dv);
 	l_Output.UV2 = float2(spriteIndex2X * du, spriteIndex2Y * dv + dv);
 	OutputStream.Append( l_Output );
-	l_Output.Pos = mul( pos + halfSize * float4(-x, -y, 0.0, 0.0), m_ViewProjection);
+	
+	l_Output.Pos = mul( pos + halfSize * float4(-y, x, 0.0, 0.0), m_Projection);
+	l_Output.UV = float2(spriteIndex1X * du + du, spriteIndex1Y * dv);
+	l_Output.UV2 = float2(spriteIndex2X * du + du, spriteIndex2Y * dv);
+	OutputStream.Append( l_Output );
+	
+	l_Output.Pos = mul( pos + halfSize * float4(-x, -y, 0.0, 0.0), m_Projection);
 	l_Output.UV = float2(spriteIndex1X * du + du, spriteIndex1Y * dv + dv);
 	l_Output.UV2 = float2(spriteIndex2X * du + du, spriteIndex2Y * dv + dv);
 	OutputStream.Append( l_Output );
@@ -137,7 +143,6 @@ float4 PS( PS_INPUT IN) : SV_Target
 	float4 t1 = T0Texture.Sample(S0Sampler, IN.UV);
 	float4 t2 = T0Texture.Sample(S0Sampler, IN.UV2);
 	float a = IN.TextureBlendFactor;
-	
 	float4 col = IN.Color * lerp(t1, t2, float4(a, a, a, a));
 	return col;
 }

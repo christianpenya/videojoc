@@ -112,6 +112,7 @@ bool CParticleSystemInstance::Update(float ElapsedTime)
             {
                 ParticleData particle = {};
                 particle.Position = GetRandomValue(-m_EmissionBoxHalfSize, m_EmissionBoxHalfSize);
+                particle.DistanceToCamera = GetDistanceToCamera(particle.Position);
                 particle.Velocity = GetRandomValue(m_Type->m_StartingSpeed1, m_Type->m_StartingSpeed2);
                 particle.Acceleration = GetRandomValue(m_Type->m_StartingAcceleration1, m_Type->m_StartingAcceleration2);
 
@@ -148,6 +149,7 @@ bool CParticleSystemInstance::Update(float ElapsedTime)
     {
         ParticleData *particle = &m_ParticleData[i];
         particle->Position += particle->Velocity * ElapsedTime + 0.5f * ElapsedTime * ElapsedTime * particle->Acceleration;
+        particle->DistanceToCamera = GetDistanceToCamera(particle->Position);
         particle->Velocity += particle->Acceleration * ElapsedTime;
         particle->TimeToNextFrame -= ElapsedTime;
         particle->Lifetime += ElapsedTime;
@@ -206,15 +208,32 @@ bool CParticleSystemInstance::Update(float ElapsedTime)
     return true;
 }
 
-float CParticleSystemInstance::GetDistanceToCamera(ParticleData *particle)
+float CParticleSystemInstance::GetDistanceToCamera(Vect3f particlePosition)
 {
-    return 0.0f;
+    Vect3f l_CameraDirection = CEngine::GetInstance().GetCameraController().getFront();
+    Vect3f a = (particlePosition*l_CameraDirection);
+    Vect3f b = (CEngine::GetInstance().GetCameraController().getPosition()*l_CameraDirection);
+
+    return a.Distance(b);
 }
 
 
 void CParticleSystemInstance::orderParticles(ParticleData arr[], int length)
 {
-
+    int i, j;
+    ParticleData aux;
+    for (i = 1; i < length; ++i)
+    {
+        j = i;
+        //while (j > 0 && arr[j-1].DistanceToCamera < arr[j].DistanceToCamera) //orden descendente
+        while (j > 0 && arr[j].DistanceToCamera < arr[j-1].DistanceToCamera) //orden ascendente
+        {
+            aux = arr[j];
+            arr[j] = arr[j - 1];
+            arr[j - 1] = aux;
+            --j;
+        }
+    }
 }
 
 
@@ -257,3 +276,15 @@ bool CParticleSystemInstance::Render(CRenderManager& lRM)
 
     return true;
 }
+
+/*void CParticleSystemInstance::DrawImgui()
+{
+	if (ImGui::CollapsingHeader(m_Name.c_str()))
+	{
+		ImGui::SliderFloat("Next Particle Emission", (float*)&m_NextParticleEmission, 0.25f, 10.0f);
+		ImGui::Checkbox("Awake", &m_Awake);
+		ImGui::SliderFloat("Awake Timer", (float*)&m_AwakeTimer, 0.1f, 10.0f);
+		ImGui::SliderFloat3("Emission Box Size", (float*)&m_EmissionBoxHalfSize, 0.1f, 10.0f);
+		m_Type->DrawImgui();
+	}
+}*/

@@ -3,12 +3,12 @@
 		
 		<scene_light name="FDirect001" id_light="0" />
 		<scene_light name="Fspot001" id_light="1" />
-
-		<scene_particle name="Fire" nextParticleEmission="0.5"  awake="true" awakeTimer="0.8"  activeParticles="0" emission_box_size="1.0 1.0 1.0" > 
+		
+		<scene_particle name="Smoke" nextParticleEmission="0.5"  awake="true" awakeTimer="0.8"  activeParticles="200" emission_box_size="1.0 1.0 1.0" > 
 			<transform position="0.0 0.0 1.0" forward="0.0 0.0 0.0" />
 		</scene_particle> 
-		
-		
+	
+ 
 		
 		<!--
 		
