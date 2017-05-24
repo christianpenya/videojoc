@@ -2287,8 +2287,8 @@ CalCoreMeshPtr CalLoader::loadXmlCoreMesh(const std::string& strFilename)
                 }
             }
             Face.vertexId[0]=tmp[0];
-            Face.vertexId[1]=tmp[1];
-            Face.vertexId[2]=tmp[2];
+            Face.vertexId[1]=tmp[2];
+            Face.vertexId[2]=tmp[1];
 
             pCoreSubmesh->setFace(faceId, Face);
 

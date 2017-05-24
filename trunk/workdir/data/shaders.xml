@@ -19,7 +19,7 @@
 
 		
 		<!--deferred-->
-		<shader name="AnimatedModelDeferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionWeightIndicesNormalUV" preprocessor="USE_UV;USE_WEIGHTIDX"/>
+		<shader name="AnimatedModelDeferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionWeightIndicesNormalUV" preprocessor="USE_UV;USE_WEIGHTIDX;"/>
 		<shader name="PositionNormalDeferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/>
 		<shader name="PositionNormalUVDeferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor="USE_UV"/>
 		<shader name="PositionNormalUVUV2Deferred" file="Deferred/UberShader.fx" entry_point="VS" vertex_type="PositionNormalUVUV2" preprocessor="USE_UV;USE_UV2;"/>
