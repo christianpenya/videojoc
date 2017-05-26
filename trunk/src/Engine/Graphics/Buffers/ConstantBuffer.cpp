@@ -68,7 +68,7 @@ void CConstantBuffer::BindPS(ID3D11DeviceContext* aContext, uint32 aBufferID)
 
 void CConstantBuffer::BindGS(ID3D11DeviceContext* aContext, uint32 aBufferID)
 {
-    aContext->GSSetConstantBuffers(0, 1, &m_pBuffer);
+    aContext->GSSetConstantBuffers(aBufferID, 1, &m_pBuffer);
 }
 
 void CConstantBuffer::Update(ID3D11DeviceContext* aContext, void* aRawData)
