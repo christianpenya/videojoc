@@ -19,8 +19,8 @@
 #include <AK\Tools\Common\AkPlatformFuncs.h>
 #include <AK\MusicEngine\Common\AkMusicEngine.h>
 
-#include <SoundEngine\Win32\AkFilePackageLowLevelIOBlocking.h>
-#include <SoundEngine\Win32\AkSoundEngineDLL.h>
+//#include <SoundEngine\Win32\AkFilePackageLowLevelIOBlocking.h>
+//#include <SoundEngine\Win32\AkSoundEngineDLL.h>
 
 #pragma comment(lib, "AkSoundEngineDLL.lib")
 
@@ -39,6 +39,7 @@ void CSoundManager::SetPath(const std::string &path)
 
 bool CSoundManager::Init()
 {
+    /*
     //
     // Create and initialize an instance of the default memory manager. Note
     // that you can override the default memory manager with your own. Refer
@@ -118,7 +119,7 @@ bool CSoundManager::Init()
         assert(!"Could not initialize the Music Engine.");
         return false;
     }
-
+    */
     return true;
 }
 

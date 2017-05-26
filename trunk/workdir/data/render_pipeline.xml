@@ -46,7 +46,6 @@
 	
 	SKYBOX
 	<apply_technique_pool pool_name="skybox"/>
-
 	<render_layer layer="Skybox"/>
 
 	POST-PROCESS
