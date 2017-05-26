@@ -9,8 +9,8 @@
 
 #define APPLICATION_NAME	"ESCAPE FROM ALCATRAZ"
 
-float m_width = 1024;
-float m_height = 768;
+float m_width = 1920;
+float m_height = 1080;
 
 const Mat44f m_model_matrix = Mat44f(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 const Vect3f m_vpos = Vect3f(10, 5, 7);

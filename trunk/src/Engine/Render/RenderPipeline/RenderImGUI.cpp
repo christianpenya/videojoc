@@ -33,6 +33,7 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
         lEngine.GetCinematicManager().Play("Animation01");
 
     }
+
     //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
     // #TODO el contador de fps de imgui es bueno?
 
@@ -47,6 +48,18 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
         ImGui::RadioButton("TPS", &lEngine.m_CameraSelector, 2);
     }
 
+    // RELOADS
+    Reloads(lEngine);
+
+    //SCENE ELEMENTS
+    lEngine.GetSceneManager().DrawImgui();
+
+    ImGui::End();
+    ImGui::Render();
+}
+
+void CRenderImGUI::Reloads(CEngine& lEngine)
+{
     // TECHNIQUES
     if (ImGui::CollapsingHeader("Reload"))
     {
@@ -63,6 +76,21 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 
         ImGui::PopStyleColor(2);
         ImGui::PopID();
+
+        //ESCENA
+        ImGui::PushID(RELOAD_SHADER_BUTTON_ID);
+        ImGui::PushStyleColor(ImGuiCol_Button, GREEN);
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, GREEN_HOVER);
+
+        if (ImGui::Button("Scene"))
+        {
+            lEngine.GetSceneManager().Reload();
+            //lEngine.GetEffectManager().Refresh();
+        }
+
+        ImGui::PopStyleColor(2);
+        ImGui::PopID();
+
 
         //LUCES
         ImGui::PushID(RELOAD_LIGHTS_BUTTON_ID);
@@ -82,20 +110,5 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
         if (ImGui::Button("RenderPipeline"))
             lEngine.GetRenderPipeline().Reload();
         ImGui::PopID();
-
     }
-
-    //Lights
-    //lEngine.GetLightManager().DrawImgui();
-
-    //SCENE ELEMENTS
-    lEngine.GetSceneManager().DrawImgui();
-
-    ImGui::End();
-    ImGui::Render();
-}
-
-void Reloads()
-{
-
 }

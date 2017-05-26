@@ -36,7 +36,10 @@
 		<trigger type="GAMEPAD_BUTTON" button="B" value="1"/>
 		<trigger type="GAMEPAD_BUTTON" button="X" value="-1"/>
 		<trigger type="GAMEPAD_BUTTON" button="Y" value="1"/>
-
+	</action>
+	<action name = "block">
+		<trigger type="KEYBOARD" key_code="B" value="1"/>
+		<trigger type="KEYBOARD" key_code="VK_SPACE" value="1"/>
 	</action>
 	<action name = "enable_rotation">
 		<trigger type="MOUSE_BUTTON" button="MIDDLE" value="1"/>

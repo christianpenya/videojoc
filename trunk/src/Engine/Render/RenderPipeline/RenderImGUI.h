@@ -30,7 +30,7 @@ private:
     const ImColor GREEN = ImColor::HSV(0.35f, 0.8f, 0.6f);
     const ImColor GREEN_HOVER = ImColor::HSV(0.35f, 0.8f, 0.6f);
 
-    void Reloads();
+    void Reloads(CEngine& lEngine);
 
 };
 
