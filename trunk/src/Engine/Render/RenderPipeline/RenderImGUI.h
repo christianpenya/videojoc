@@ -31,6 +31,7 @@ private:
     const ImColor GREEN_HOVER = ImColor::HSV(0.35f, 0.8f, 0.6f);
 
     void Reloads(CEngine& lEngine);
+    void SceneManager(CEngine& lENgine);
 
 };
 

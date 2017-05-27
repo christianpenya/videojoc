@@ -38,7 +38,7 @@
 		<trigger type="GAMEPAD_BUTTON" button="Y" value="1"/>
 	</action>
 	<action name = "block">
-		<trigger type="KEYBOARD" key_code="B" value="1"/>
+		<trigger type="KEYBOARD" button_type="BecomesPressed" key_code="B" value="1"/>
 		<trigger type="KEYBOARD" key_code="VK_SPACE" value="1"/>
 	</action>
 	<action name = "enable_rotation">

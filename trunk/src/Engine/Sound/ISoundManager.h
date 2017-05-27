@@ -30,12 +30,6 @@ public:
     virtual bool Reload() = 0;
 
     /*
-    virtual bool Init() = 0;
-    virtual bool InitBanks() = 0;
-    virtual void Update(const CCamera *camera) = 0;
-    virtual bool Load(const std::string &soundbanks_filename, const std::string &speakers_filename) = 0;
-    virtual bool Reload() = 0;
-
     virtual bool LoadSoundBank(const std::string &bank) = 0;
     virtual bool UnloadSoundBank(const std::string &bank) = 0;
 
@@ -60,7 +54,8 @@ public:
     virtual void Terminate() = 0;
     virtual void Clean() = 0;
     virtual bool LoadSoundBanksXML() = 0;
-    virtual bool LoadSpeakersXML() = 0;*/
+    virtual bool LoadSpeakersXML() = 0;
+    */
 
 protected:
     ISoundManager() {}

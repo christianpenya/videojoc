@@ -124,21 +124,21 @@ CLayer* CScene::GetLayerByName(std::string aName)
 void CScene::DrawImGui()
 {
     ImGui::Checkbox("Active", &m_Active);
-    if (m_Active == true)
+    if (m_Active)
     {
-        ImGui::BeginChild("#Layer", ImVec2(400, 200), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::BeginChild("#Layer", ImVec2(400, 200), true);
         ImGui::PushItemWidth(-130);
 
-        for (TMapResources::iterator iLayer = m_ResourcesMap.begin(); iLayer != m_ResourcesMap.end(); ++iLayer)
+        for (std::vector<CLayer*>::iterator iLayer = m_ResourcesVector.begin(); iLayer != m_ResourcesVector.end(); ++iLayer)
         {
-            CLayer* llayer = iLayer->second.m_Value;
-            ImGui::PushID(iLayer->second.m_Id);
+            ImGui::PushID((*iLayer)->GetName().c_str());
             static bool show_app_auto_resize = true;
-            ImGui::Begin("Layer", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
 
-            llayer->DrawImgui();
+            if (ImGui::CollapsingHeader((*iLayer)->GetName().c_str()))
+            {
+                (*iLayer)->DrawImgui();
+            }
 
-            ImGui::End();
             ImGui::PopID();
         }
         ImGui::PopItemWidth();

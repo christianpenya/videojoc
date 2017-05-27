@@ -140,11 +140,21 @@ bool CSceneMesh::Render(CRenderManager& aRendermanager)
 
 void CSceneMesh::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str(), ImGuiWindowFlags_AlwaysAutoResize))
+    if (ImGui::CollapsingHeader(m_Name.c_str()))
     {
         ImGui::SliderFloat3("Position", (float*)&m_Position, -100.0f, 100.0f);
         ImGui::SliderFloat3("Scale", (float*)&m_Scale, 0.0f, 100.0f);
-        ImGui::Checkbox("Visible", &m_Visible);
-        mMesh->DrawImGui();
+
+        float lYawTmp = mathUtils::Rad2Deg(m_Yaw);
+        float lPitchTmp = mathUtils::Rad2Deg(m_Pitch);
+        float lRollTmp = mathUtils::Rad2Deg(m_Roll);
+
+        ImGui::SliderFloat("Yaw", (float*)&lYawTmp, -180.0f, 180.0f);
+        ImGui::SliderFloat("Pitch", (float*)&lPitchTmp, -180.0f, 180.0f);
+        ImGui::SliderFloat("Roll", (float*)&lRollTmp, -180.0f, 180.0f);
+
+        m_Yaw = mathUtils::Deg2Rad(lYawTmp);
+        m_Pitch = mathUtils::Deg2Rad(lPitchTmp);
+        m_Roll = mathUtils::Deg2Rad(lRollTmp);
     }
 }

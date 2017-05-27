@@ -1,0 +1,96 @@
+<materials >
+
+	CAMA
+	<material name="catre" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="diffuse" filename="data\textures\reclusion\TexturesCom_Carpet0012_1_seamless_S.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="manta almohada" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\reclusion\TexturesCom_FabricWool0005_2_seamless_S.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="Material #85" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\reclusion\gris.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	
+	SALA
+	<material name="escayolaconladrillos" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\escayolaconladrillos.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="madera sucia" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\madera sucia.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="microcemento" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\microcemento.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="metal" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\metal.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="Material #86" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\escayola.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="baldosnes" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\baldosinespeque񯳮jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="barreraalpha" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\TexturesCom_MetalVarious0044_1_alphamasked_S.png" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="Material #132" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.858824 0.00392157 0.00392157 1.0 " />
+	</material>
+	<material name="Material #155" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\fibra de vidrio.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="persiana" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\persiana.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="Material #223" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\paredes ba񯮪pg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="espejo" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.662745 0.862745 1.0 1.0 " />
+	</material>
+	<material name="Material #297" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\TexturesCom_Rust_albedo_S.tif" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="luz" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.952941 0.952941 0.952941 1.0 " />
+	</material>
+	<material name="Material #344" vertex_type="PositionNormalUV" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="diffuse" filename="data\textures\corcho.jpg" />
+		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="negro" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.137255 0.137255 0.137255 1.0 " />
+	</material>
+	
+	
+	
+</materials>

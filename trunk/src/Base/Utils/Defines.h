@@ -25,7 +25,7 @@ namespace tinyxml2				\
 	    { \
         return m_##PARAMETER_NAME; \
 	    }
-	
+
 #define GET_SET(TYPE, PARAMETER_NAME) \
     void Set##PARAMETER_NAME(TYPE PARAMETER_NAME) \
     { \

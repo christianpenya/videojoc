@@ -51,11 +51,59 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     // RELOADS
     Reloads(lEngine);
 
-    //SCENE ELEMENTS
+    //SCENE MANAGEMENT
     lEngine.GetSceneManager().DrawImgui();
 
     ImGui::End();
     ImGui::Render();
+}
+
+void CRenderImGUI::SceneManager(CEngine& lEngine)
+{
+    if (ImGui::CollapsingHeader("Scenes Manager"))
+    {
+        ImGui::BeginChild("#Scenes", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::PushItemWidth(-130);
+
+        std::vector<CScene*> scenes = lEngine.GetSceneManager().GetScenes();
+
+        for (std::vector<CScene*>::iterator iScene = scenes.begin(); iScene != scenes.end(); ++iScene)
+        {
+            ImGui::PushID((*iScene)->GetName().c_str());
+
+            if (ImGui::CollapsingHeader((*iScene)->GetName().c_str()))
+            {
+                bool lSceneActive = (*iScene)->GetActive();
+                ImGui::Checkbox("Active", &lSceneActive);
+
+                if (lSceneActive)
+                {
+                    ImGui::BeginChild("#Layer", ImVec2(400, 200), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+                    ImGui::PushItemWidth(-130);
+
+                    std::vector<CLayer*> layers = (*iScene)->GetLayers();
+                    for (std::vector<CLayer*>::iterator iLayer = layers.begin(); iLayer != layers.end(); ++iLayer)
+                    {
+                        ImGui::PushID((*iLayer)->GetName().c_str());
+                        static bool show_app_auto_resize = true;
+
+                        ImGui::Begin("Layer", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
+
+                        //llayer->DrawImgui();
+
+                        ImGui::End();
+                        ImGui::PopID();
+                    }
+                    ImGui::PopItemWidth();
+                    ImGui::EndChild();
+                }
+            }
+            ImGui::PopID();
+        }
+
+        ImGui::PopItemWidth();
+        ImGui::EndChild();
+    }
 }
 
 void CRenderImGUI::Reloads(CEngine& lEngine)
