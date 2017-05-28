@@ -53,9 +53,12 @@ void CDeferredShading::Execute(CRenderManager &lRM)
 
     for (int i = 0; i < l_LM->GetCount(); i++)
     {
-        l_LM->SetLightConstants(i, l_LM->GetLightByIdx(i));
-        CDrawQuad::Execute(lRM);
-
+        CLight *light = l_LM->GetLightByIdx(i);
+        if (light->IsVisible())
+        {
+            l_LM->SetLightConstants(i, light);
+            CDrawQuad::Execute(lRM);
+        }
     }
     lRM.GetDeviceContext()->OMSetBlendState(NULL, NULL, 0xffffffff);
 

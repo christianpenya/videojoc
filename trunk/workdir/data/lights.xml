@@ -8,13 +8,14 @@
 		<layer name = "deferred_opaque" />
 	</light>
 	
+	<!--
 	<light type="point" name="Omni001" color="1.0 1.0 1.0" active="true" intensity="0.2" attenuation_range="0.0 100.0" >
 		<transform position="-13.8572 20.0 -16.0357" yaw="0." pitch ="-0." roll="0.0" />
 	</light>
 	<light type="point" name="Omni002" color="1.0 1.0 1.0" active="true" intensity="0.2" attenuation_range="0.0 100.0" >
 		<transform position="18.0355 20.0 28.6497" yaw="0." pitch ="0." roll="0.0" />
 	</light>
-	
+	-->
 	
 	
 	<!--
