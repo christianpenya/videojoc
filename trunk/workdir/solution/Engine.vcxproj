@@ -235,6 +235,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Engine\Engine\Engine.h" />
+    <ClInclude Include="..\..\src\Engine\GUI\Button.h" />
+    <ClInclude Include="..\..\src\Engine\GUI\GUIManager.h" />
+    <ClInclude Include="..\..\src\Engine\GUI\Slider.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Animation\AnimatedCoreModel.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Animation\AnimatedModelManager.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Animation\SceneAnimatedModel.h" />
@@ -338,6 +341,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp" />
+    <ClCompile Include="..\..\src\Engine\GUI\Button.cpp" />
+    <ClCompile Include="..\..\src\Engine\GUI\GUIManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\GUI\Slider.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Animation\AnimatedCoreModel.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Animation\AnimatedModelManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Animation\SceneAnimatedModel.cpp" />
