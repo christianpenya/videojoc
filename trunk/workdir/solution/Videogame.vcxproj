@@ -138,7 +138,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty\wwise;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -146,7 +146,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib\**.lib;AkSoundEngineDLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
@@ -156,7 +156,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty\wwise;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -164,7 +164,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib\**.lib;AkSoundEngineDLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
@@ -174,7 +174,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;LUA_32BITS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty\wwise;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -186,7 +186,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib\**.lib;AkSoundEngineDLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
@@ -196,7 +196,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;LUA_32BITS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty\wwise;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -208,7 +208,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib\**.lib;AkSoundEngineDLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
@@ -218,7 +218,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;NO_LOG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty\wwise;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -230,7 +230,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib\**.lib;AkSoundEngineDLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
@@ -240,7 +240,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;NO_LOG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty\wwise;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -252,7 +252,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;..\..\include\physx\lib\**.lib;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib\**.lib;AkSoundEngineDLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\Win32_vc120\Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
@@ -278,6 +278,9 @@
     </ProjectReference>
     <ProjectReference Include="DirectXTex.vcxproj">
       <Project>{A90EE592-95C6-26E0-FECD-FF3BEAA4C1D0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="wwise.vcxproj">
+      <Project>{1473AB10-8087-D3C1-4909-7721B5DCCFF2}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

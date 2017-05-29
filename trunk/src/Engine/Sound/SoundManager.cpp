@@ -1,5 +1,7 @@
 #include "Sound/SoundManager.h"
 
+#include <cassert>
+
 #include <AK/SoundEngine/Common/AkMemoryMgr.h>                  // Memory Manager
 #include <AK/SoundEngine/Common/AkModule.h>                     // Default memory and stream managers
 #include <AK/SoundEngine/Common/IAkStreamMgr.h>                 // Streaming Manager
@@ -7,22 +9,6 @@
 #include <AkFilePackageLowLevelIOBlocking.h>                    // Sample low-level I/O implementation
 #include <AK/SoundEngine/Common/AkSoundEngine.h>                // Sound engine
 #include <AK/MusicEngine/Common/AkMusicEngine.h>                // Music Engine
-
-#pragma comment (lib, "AkSoundEngineDLL")
-
-#include <AK\SoundEngine\Common\AkSoundEngine.h>
-#include <AK\SoundEngine\Common\AkTypes.h>
-#include <AK\IBytes.h>
-#include <AK\SoundEngine\Common\AkMemoryMgr.h>
-#include <AK\SoundEngine\Common\AkModule.h>
-#include <AK\SoundEngine\Common\IAkStreamMgr.h>
-#include <AK\Tools\Common\AkPlatformFuncs.h>
-#include <AK\MusicEngine\Common\AkMusicEngine.h>
-
-//#include <SoundEngine\Win32\AkFilePackageLowLevelIOBlocking.h>
-//#include <SoundEngine\Win32\AkSoundEngineDLL.h>
-
-#pragma comment(lib, "AkSoundEngineDLL.lib")
 
 CSoundManager::CSoundManager() {}
 CSoundManager::~CSoundManager() {}
@@ -39,7 +25,6 @@ void CSoundManager::SetPath(const std::string &path)
 
 bool CSoundManager::Init()
 {
-    /*
     //
     // Create and initialize an instance of the default memory manager. Note
     // that you can override the default memory manager with your own. Refer
@@ -119,7 +104,7 @@ bool CSoundManager::Init()
         assert(!"Could not initialize the Music Engine.");
         return false;
     }
-    */
+
     return true;
 }
 

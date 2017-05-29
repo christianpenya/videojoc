@@ -132,7 +132,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;..\..\3rdParty\wwise;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;\samples\DynamicLibraries\AkSoundEngineDLL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
     </ClCompile>
@@ -149,7 +149,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;..\..\3rdParty\wwise;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;\samples\DynamicLibraries\AkSoundEngineDLL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
     </ClCompile>
@@ -166,7 +166,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;LUA_32BITS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;..\..\3rdParty\wwise;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;\samples\DynamicLibraries\AkSoundEngineDLL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -184,7 +184,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;LUA_32BITS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;..\..\3rdParty\wwise;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;\samples\DynamicLibraries\AkSoundEngineDLL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -202,7 +202,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;NO_LOG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;..\..\3rdParty\wwise;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;\samples\DynamicLibraries\AkSoundEngineDLL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -220,7 +220,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NO_DEBUG;NO_LOG;LUA_32BITS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\Engine;..\..\src\Base;..\..\src\3rdParty\Cal3D;..\..\src\3rdParty\lua;..\..\src\3rdParty\luabind;..\..\src\3rdParty\DirectXTex;..\..\src\3rdParty;..\..\include\physx;..\..\3rdParty\wwise;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\include;C:\Program Files (x86)\Audiokinetic\Wwise 2016.2.3.6077\SDK\samples\SoundEngine\Win32;\samples\DynamicLibraries\AkSoundEngineDLL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>

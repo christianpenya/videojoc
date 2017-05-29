@@ -25,15 +25,16 @@ project "Videogame"
     characterset ("MBCS")
     flags { "ExtraWarnings", "NoRTTI" }
     files { "../src/Videogame/**.h", "../src/Videogame/**.cpp"}
-    --links {"Engine", "Base", "d3d11", "d3dcompiler", "Cal3D", "lua", "luabind", "DirectXTex","../include/physx/lib/**.lib", "AkSoundEngine", "AkMemoryMgr", "AkStreamMgr", "AkMusicEngine", "CommunicationCentral"}
-	links {"Engine", "Base", "d3d11", "d3dcompiler", "Cal3D", "lua", "luabind", "DirectXTex","../include/physx/lib/**.lib" }
-    includedirs { "../src/Engine", "../src/Base", "../src/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/" }
+    links {"Engine", "Base", "d3d11", "d3dcompiler", "Cal3D", "lua", "luabind", "DirectXTex","../include/physx/lib/**.lib", "wwise", path.join(os.getenv("WWISESDK"), "AkSoundEngineDLL.lib" } 
+	--"AkSoundEngine", "AkMemoryMgr", "AkStreamMgr", "AkMusicEngine", "CommunicationCentral", "wwise" }
+	--links {"Engine", "Base", "d3d11", "d3dcompiler", "Cal3D", "lua", "luabind", "DirectXTex", "../include/physx/lib/**.lib", "wwise"}
+    includedirs { "../src/Engine", "../src/Base", "../src/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/", "../src/3rdParty/wwise/" }
 	libdirs { path.join(os.getenv("WWISESDK") ,"Win32_vc120/Debug/lib" ) }
 	
 group "3rdParty"
 project "Cal3D"
     kind "SharedLib"
-  characterset ("MBCS")
+	characterset ("MBCS")
     files { "../src/3rdParty/Cal3D/**.h", "../src/3rdParty/Cal3D/**.cpp", "../src/3rdParty/Cal3D/**.inl"}
 	defines { "WIN32", "_WINDOWS", "_USRDLL", "CAL3D_EXPORTS"}
 	
@@ -53,8 +54,12 @@ project "DirectXTex"
 	includedirs { "../src/3rdParty/DirectXTex", "../src/3rdParty/" }
 	defines {"_WIN32_WINNT=0x0600","WIN32", "_WINDOWS"}
 
+project "wwise"
+    kind "StaticLib"
+    files { "../src/3rdParty/wwise/**.h", "../src/3rdParty/wwise/**.cpp" }
+	includedirs { "../src/3rdParty/wwise/", "../src/3rdParty/" }
+	--defines {"_WIN32_WINNT=0x0600","WIN32", "_WINDOWS"}
 
-	
 group "Engine"
 project "Base"
     kind "StaticLib"
@@ -66,4 +71,5 @@ project "Engine"
     kind "StaticLib"
 	characterset ("MBCS")
     files { "../src/Engine/**.h", "../src/Engine/**.cpp", "../src/Engine/**.inl"}
-	includedirs { "../src/Engine", "../src/Base", "../src/3rdParty/Cal3D/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/", "../src/3rdParty/", "../include/physx/", path.join(os.getenv("WWISESDK"), "include"),  path.join(os.getenv("WWISESDK"), "samples/SoundEngine/Win32")}
+	includedirs { "../src/Engine", "../src/Base", "../src/3rdParty/Cal3D/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/", "../src/3rdParty/", "../include/physx/", "../3rdParty/wwise/", path.join(os.getenv("WWISESDK"), "include"),  path.join(os.getenv("WWISESDK"), "samples/SoundEngine/Win32"), path.join(os.getenv("WWISESDK"), "/samples/DynamicLibraries/AkSoundEngineDLL")}
+	--, path.join(os.getenv("WWISESDK"), "include"),  path.join(os.getenv("WWISESDK"), "samples/SoundEngine/Win32")
