@@ -22,6 +22,8 @@ class ISoundManager
 public:
     virtual ~ISoundManager() {}
 
+    static ISoundManager* InstantiateSoundManager();
+
     virtual void SetPath(const std::string &path) = 0;
 
     virtual bool Init() = 0;

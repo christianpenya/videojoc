@@ -8,6 +8,16 @@
 #include "Math/Vector3.h"
 #include "Graphics/Scenes/SceneNode.h"
 
+#include <AK/SoundEngine/Common/AkMemoryMgr.h>                  // Memory Manager
+#include <AK/SoundEngine/Common/AkModule.h>                     // Default memory and stream managers
+#include <AK/SoundEngine/Common/IAkStreamMgr.h>                 // Streaming Manager
+#include <AK/Tools/Common/AkPlatformFuncs.h>                    // Thread defines
+#include <AkFilePackageLowLevelIOBlocking.h>                    // Sample low-level I/O implementation
+#include <AK/SoundEngine/Common/AkSoundEngine.h>                // Sound engine
+#include <AK/MusicEngine/Common/AkMusicEngine.h>                // Music Engine
+
+#include <..\samples\DynamicLibraries\AkSoundEngineDLL\AkSoundEngineDLL.h>
+
 // Custom alloc/free functions. These are declared as "extern" in AkMemoryMgr.h
 // and MUST be defined by the game developer.
 namespace AK
@@ -54,7 +64,6 @@ public:
     CSoundManager();
     virtual ~CSoundManager();
 
-    static ISoundManager* InstantiateSoundManager();
     virtual void SetPath(const std::string &path);
 
     virtual bool Init() override;

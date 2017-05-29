@@ -20,7 +20,7 @@
 #include "Graphics/Cinematics\CinematicsManager.h"
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
-#include "Sound/SoundManager.h"
+#include "Sound/ISoundManager.h"
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
@@ -150,7 +150,7 @@ void CEngine::LoadFiles()
 
     ISoundManager* hola;
     //m_SoundManager
-    hola	= CSoundManager::InstantiateSoundManager();
+    hola	= ISoundManager::InstantiateSoundManager();
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);

@@ -1,19 +1,9 @@
 #include "Sound/SoundManager.h"
 
-#include <cassert>
-
-#include <AK/SoundEngine/Common/AkMemoryMgr.h>                  // Memory Manager
-#include <AK/SoundEngine/Common/AkModule.h>                     // Default memory and stream managers
-#include <AK/SoundEngine/Common/IAkStreamMgr.h>                 // Streaming Manager
-#include <AK/Tools/Common/AkPlatformFuncs.h>                    // Thread defines
-#include <AkFilePackageLowLevelIOBlocking.h>                    // Sample low-level I/O implementation
-#include <AK/SoundEngine/Common/AkSoundEngine.h>                // Sound engine
-#include <AK/MusicEngine/Common/AkMusicEngine.h>                // Music Engine
-
 CSoundManager::CSoundManager() {}
 CSoundManager::~CSoundManager() {}
 
-ISoundManager* CSoundManager::InstantiateSoundManager()
+ISoundManager* ISoundManager::InstantiateSoundManager()
 {
     return new CSoundManager();
 }
@@ -25,6 +15,51 @@ void CSoundManager::SetPath(const std::string &path)
 
 bool CSoundManager::Init()
 {
+#if 1
+    // Initialize audio engine
+    // Memory.
+    AkMemSettings memSettings;
+
+    memSettings.uMaxNumPools = 20;
+
+    // Streaming.
+    AkStreamMgrSettings stmSettings;
+    AK::StreamMgr::GetDefaultSettings( stmSettings );
+
+    AkDeviceSettings deviceSettings;
+    AK::StreamMgr::GetDefaultDeviceSettings(deviceSettings);
+
+    AkInitSettings l_InitSettings;
+    AkPlatformInitSettings l_platInitSetings;
+    AK::SoundEngine::GetDefaultInitSettings(l_InitSettings);
+    AK::SoundEngine::GetDefaultPlatformInitSettings(l_platInitSetings);
+
+    // Setting pool sizes for this game. Here, allow for user content; every game should determine its own optimal values.
+    l_InitSettings.uDefaultPoolSize				=  2*1024*1024;
+    l_platInitSetings.uLEngineDefaultPoolSize	=  4*1024*1024;
+
+    AkMusicSettings musicInit;
+    AK::MusicEngine::GetDefaultInitSettings(musicInit);
+
+    AKRESULT eResult = AK::SOUNDENGINE_DLL::Init(&memSettings,
+                       &stmSettings,
+                       &deviceSettings,
+                       &l_InitSettings,
+                       &l_platInitSetings,
+                       &musicInit );
+
+    if( eResult != AK_Success )
+    {
+        // Then, we will run the game without sound
+        AK::SOUNDENGINE_DLL::Term();
+        return false;
+    }
+
+    // load initialization and main soundbanks
+
+    AK::SOUNDENGINE_DLL::SetBasePath(L"soundbanks\\Windows\\");
+    AK::StreamMgr::SetCurrentLanguage( L"English(US)" );
+#else
     //
     // Create and initialize an instance of the default memory manager. Note
     // that you can override the default memory manager with your own. Refer
@@ -104,7 +139,7 @@ bool CSoundManager::Init()
         assert(!"Could not initialize the Music Engine.");
         return false;
     }
-
+#endif
     return true;
 }
 
