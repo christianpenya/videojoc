@@ -57,3 +57,10 @@ void CSpotLight::DrawImgui()
     ImGui::SliderFloat("Angle", &m_Angle, 0.0f, 360.0f);
 }
 
+void CSpotLight::Initialize(CXMLElement* aElement)
+{
+    m_Angle = mathUtils::Deg2Rad(aElement->GetAttribute<float>("angle", 45.0f));
+    m_FallOff = mathUtils::Deg2Rad(aElement->GetAttribute<float>("fall_off", 45.0f));
+    CLight::Initialize(aElement);
+}
+

@@ -10,6 +10,7 @@ public:
     CPointLight(CXMLElement* aElement);
     virtual ~CPointLight();
     virtual void SetShadowMap(CRenderManager &RenderManager);
+    virtual void Initialize(CXMLElement* aElement);
 };
 
 

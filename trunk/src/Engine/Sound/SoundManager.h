@@ -73,6 +73,27 @@ public:
 
     CAkFilePackageLowLevelIOBlocking* g_lowLevelIO;
 
+    virtual bool LoadSoundBank(const std::string &bank);
+    virtual bool UnloadSoundBank(const std::string &bank);
+
+    virtual void RegisterSpeaker(CSceneNode* _speaker);
+    virtual void UnregisterSpeaker(const CSceneNode* _speaker);
+
+    virtual void PlayEvent(const SoundEvent &_event);
+    virtual void PlayEvent(const SoundEvent &_event, const std::string &_speaker);
+    virtual void PlayEvent(const SoundEvent &_event, const CSceneNode* _speaker);
+
+    virtual void SetSwitch(const SoundSwitchValue &switchValue);
+    virtual void SetSwitch(const SoundSwitchValue &switchValue, const std::string &_speaker);
+    virtual void SetSwitch(const SoundSwitchValue &switchValue, const CSceneNode* _speaker);
+
+    virtual void BroadcastRTPCValue(const SoundRTPC &_rtpc, float value);
+    virtual void SetRTPCValue(const SoundRTPC &_rtpc, float value);
+    virtual void SetRTPCValue(const SoundRTPC &_rtpc, float value, const std::string &_speaker);
+    virtual void SetRTPCValue(const SoundRTPC &_rtpc, float value, const CSceneNode* _speaker);
+
+    virtual void BroadcastState(const SoundStateValue &_state);
+
     /*
     AkGameObjectID m_LastGameObjectId;
     std::vector<AkGameObjectID> m_FreeObjectIDs;
@@ -96,20 +117,7 @@ public:
     virtual void RegisterSpeaker(CSceneNode* _speaker);
     virtual void UnregisterSpeaker(const CSceneNode* _speaker);
 
-    virtual void PlayEvent(const SoundEvent &_event);
-    virtual void PlayEvent(const SoundEvent &_event, const std::string &_speaker);
-    virtual void PlayEvent(const SoundEvent &_event, const CSceneNode* _speaker);
 
-    virtual void SetSwitch(const SoundSwitchValue &switchValue);
-    virtual void SetSwitch(const SoundSwitchValue &switchValue, const std::string &_speaker);
-    virtual void SetSwitch(const SoundSwitchValue &switchValue, const CSceneNode* _speaker);
-
-    virtual void BroadcastRTPCValue(const SoundRTPC &_rtpc, float value);
-    virtual void SetRTPCValue(const SoundRTPC &_rtpc, float value);
-    virtual void SetRTPCValue(const SoundRTPC &_rtpc, float value, const std::string &_speaker);
-    virtual void SetRTPCValue(const SoundRTPC &_rtpc, float value, const CSceneNode* _speaker);
-
-    virtual void BroadcastState(const SoundStateValue &_state);
     virtual void SetPath(const std::string &path);
     virtual AkGameObjectID GenerateObjectId();
 

@@ -158,6 +158,40 @@ bool CSoundManager::Reload()
     return false;
 }
 
+bool CSoundManager::LoadSoundBank(const std::string &bank)
+{
+    return false;
+}
+
+bool CSoundManager::UnloadSoundBank(const std::string &bank)
+{
+    return false;
+}
+
+void CSoundManager::RegisterSpeaker(CSceneNode* _speaker)
+{
+
+}
+
+void CSoundManager::UnregisterSpeaker(const CSceneNode* _speaker)
+{
+}
+
+void CSoundManager::PlayEvent(const SoundEvent &_event) {}
+void CSoundManager::PlayEvent(const SoundEvent &_event, const std::string &_speaker) {}
+void CSoundManager::PlayEvent(const SoundEvent &_event, const CSceneNode* _speaker) {}
+
+void CSoundManager::SetSwitch(const SoundSwitchValue &switchValue) {}
+void CSoundManager::SetSwitch(const SoundSwitchValue &switchValue, const std::string &_speaker) {}
+void CSoundManager::SetSwitch(const SoundSwitchValue &switchValue, const CSceneNode* _speaker) {}
+
+void CSoundManager::BroadcastRTPCValue(const SoundRTPC &_rtpc, float value) {}
+void CSoundManager::SetRTPCValue(const SoundRTPC &_rtpc, float value) {}
+void CSoundManager::SetRTPCValue(const SoundRTPC &_rtpc, float value, const std::string &_speaker) {}
+void CSoundManager::SetRTPCValue(const SoundRTPC &_rtpc, float value, const CSceneNode* _speaker) {}
+
+void CSoundManager::BroadcastState(const SoundStateValue &_state) {}
+
 /*
 #include "SoundManager.h"
 

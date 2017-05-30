@@ -31,7 +31,6 @@ public:
     virtual bool Load(const std::string &soundbanks_filename, const std::string &speakers_filename) = 0;
     virtual bool Reload() = 0;
 
-    /*
     virtual bool LoadSoundBank(const std::string &bank) = 0;
     virtual bool UnloadSoundBank(const std::string &bank) = 0;
 
@@ -52,6 +51,10 @@ public:
     virtual void SetRTPCValue(const SoundRTPC &_rtpc, float value, const CSceneNode* _speaker) = 0;
 
     virtual void BroadcastState(const SoundStateValue &_state) = 0;
+
+    /*
+
+
 
     virtual void Terminate() = 0;
     virtual void Clean() = 0;

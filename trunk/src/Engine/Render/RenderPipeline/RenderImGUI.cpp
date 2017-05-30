@@ -1,3 +1,6 @@
+// si estas capturando mouse o keyboard
+//ImGui::GetIO().WantCaptureMouse;
+
 #include "RenderImGUI.h"
 #include "ImGUI\imgui.h"
 
@@ -69,6 +72,7 @@ void CRenderImGUI::SceneManager(CEngine& lEngine)
 
         for (std::vector<CScene*>::iterator iScene = scenes.begin(); iScene != scenes.end(); ++iScene)
         {
+
             ImGui::PushID((*iScene)->GetName().c_str());
 
             if (ImGui::CollapsingHeader((*iScene)->GetName().c_str()))
@@ -147,8 +151,8 @@ void CRenderImGUI::Reloads(CEngine& lEngine)
 
         if (ImGui::Button("Luces"))
         {
-            lEngine.GetLightManager().Reload();
-            lEngine.GetSceneManager().Refresh();
+            lEngine.GetLightManager().Load(true);
+            //lEngine.GetSceneManager().Refresh();
         }
         ImGui::PopStyleColor(2);
         ImGui::PopID();

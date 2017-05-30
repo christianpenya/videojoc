@@ -6,6 +6,8 @@
 #include "Engine\engine.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
 #include "XML\xml.h"
+#include <set>
+#include <cassert>
 
 CLightManager::CLightManager() {}
 CLightManager::~CLightManager()
@@ -19,38 +21,46 @@ bool CLightManager::Load(const std::string& aFilename)
     return Load();
 }
 
-bool CLightManager::Load()
+bool CLightManager::Load(bool update)
 {
     bool lOk = false;
     CXMLDocument document;
     EXMLParseError error = document.LoadFile((m_LevelLightsFilename).c_str());
     CLight::ELightType lLightType;
-
     if (base::xml::SucceedLoad(error))
     {
         CXMLElement * lLights = document.FirstChildElement("lights");
 
         if (lLights)
         {
+            std::set< std::string > lNamesLightsFromXML;
             for (tinyxml2::XMLElement *iLight = lLights->FirstChildElement(); iLight != nullptr; iLight = iLight->NextSiblingElement())
             {
                 if (strcmp(iLight->Name(), "light") == 0)
                 {
                     EnumString<CLight::ELightType>::ToEnum(lLightType, iLight->GetAttribute<std::string>("type", ""));
-
-                    if (lLightType == CLight::ePoint)
+                    const std::string lLightName = iLight->GetAttribute<std::string>("name", "null name");
+                    assert(lNamesLightsFromXML.count(lLightName) == 0);
+                    lNamesLightsFromXML.insert(lLightName);
+                    CLight* lLight = (*this)(lLightName);
+                    if ( lLight )
                     {
-                        CPointLight* lLight = new CPointLight(iLight);
-                        lOk = Add(lLight->GetName(), lLight);
+                        lLight->Initialize(iLight);
                     }
-                    else if (lLightType == CLight::eSpot)
+                    else
                     {
-                        CSpotLight* lLight = new CSpotLight(iLight);
-                        lOk = Add(lLight->GetName(), lLight);
-                    }
-                    else  if (lLightType == CLight::eDirectional)
-                    {
-                        CDirectionalLight* lLight = new CDirectionalLight(iLight);
+                        if (lLightType == CLight::ePoint)
+                        {
+                            lLight = new CPointLight(iLight);
+                        }
+                        else if (lLightType == CLight::eSpot)
+                        {
+                            lLight = new CSpotLight(iLight);
+                        }
+                        else  if (lLightType == CLight::eDirectional)
+                        {
+                            lLight = new CDirectionalLight(iLight);
+                        }
                         lOk = Add(lLight->GetName(), lLight);
                     }
                 }
@@ -58,13 +68,18 @@ bool CLightManager::Load()
         }
     }
 
-    return lOk;
-}
+    if (lOk && update)
+    {
+        // TODO: Erase the lights that have been deleted1
+        // Bear in mind the size of the array and the map
 
-bool CLightManager::Reload()
-{
-    Clear();
-    return Load();
+
+        // iterar sobre lNamesLightsFromXML
+        // sobre el vector: si trobem al vector el nom que hi ha al set guay, si no hi és l'eliminem
+        // sobre el mapa: 1. si trobem al vector el nom que hi ha al set guay, si no hi és l'eliminem 2. l'id del mapa ha de coincidir amb la posició de l'objecte al vector
+    }
+
+    return lOk;
 }
 
 void CLightManager::SetLightConstants(size_t idLight, CLight* alight)

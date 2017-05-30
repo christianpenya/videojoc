@@ -43,3 +43,9 @@ void CDirectionalLight::SetShadowMap(CRenderManager &RM)
     RM.GetDeviceContext()->RSSetViewports(1, &m_viewport);
     RM.SetRenderTargets(1, l_RenderTargetViews, m_pShadowMap->GetDepthStencilView());
 }
+
+void CDirectionalLight::Initialize(CXMLElement* aElement)
+{
+    m_OrthoShadowMapSize = aElement->GetAttribute<Vect2f>("ortho_shadow_map_size", Vect2f(30.0f, 40.0f));
+    CLight::Initialize(aElement);
+}
