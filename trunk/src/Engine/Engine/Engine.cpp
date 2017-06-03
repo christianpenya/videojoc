@@ -147,10 +147,11 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load("data/cinematics.xml");
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
-
-    ISoundManager* hola;
-    //m_SoundManager
-    hola	= ISoundManager::InstantiateSoundManager();
+    ISoundManager* m_SoundManager = ISoundManager::InstantiateSoundManager();
+    //m_SoundManager->SetPath("C:\\Users\\christian\\Desktop\\videojoc\\trunk\\workdir\\data\\sound\\");
+    m_SoundManager->SetPath("./data/sound");
+    m_SoundManager->Init();
+    m_SoundManager->LoadSoundBanksXML();
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);

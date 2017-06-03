@@ -113,19 +113,22 @@ bool CLayer::Render()
 bool CLayer::Refresh()
 {
     CLightManager &lLM = CEngine::GetInstance().GetLightManager();
+    std::set<std::string> lMissingNodes;
 
     for (TVectorResources::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
     {
-        //if (iSceneNode->second.m_Value->GetNodeType() == CSceneNode::eLight)
         if ((*iSceneNode)->GetNodeType() == CSceneNode::eLight)
         {
-            CSceneNode* bla = m_ResourcesMap.find((*iSceneNode)->GetName())->second.m_Value;
-            bla = lLM((*iSceneNode)->GetName());
-            bla->SetParent(this);
-            LOG_INFO_APPLICATION("te mare");
-            //CLight* tmp = Add //(*iSceneNode)->GetName();
-            // iSceneNode->second.m_Value = lLM(iSceneNode->second.m_Value->GetName());
+            if (!lLM.Exist((*iSceneNode)->GetName()))
+            {
+                lMissingNodes.insert((*iSceneNode)->GetName());
+            }
         }
+    }
+
+    for (std::set<std::string>::iterator iMissingNode = lMissingNodes.begin(); iMissingNode != lMissingNodes.end(); ++iMissingNode)
+    {
+        Remove(*iMissingNode);
     }
 
     return false;

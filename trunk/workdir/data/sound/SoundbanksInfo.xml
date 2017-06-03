@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="10" SoundbankVersion="113">
+	<RootPaths>
+		<ProjectRoot>C:\Users\christian\Documents\WwiseProjects\hellowwise\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\christian\Documents\WwiseProjects\hellowwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\christian\Documents\WwiseProjects\hellowwise\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="4072029455" Language="SFX">
+			<ShortName>New_SoundBank</ShortName>
+			<Path>New_SoundBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="734120249" Name="njnjnj"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="967519853" Language="SFX">
+					<ShortName>HallMountain.wav</ShortName>
+					<Path>SFX\HallMountain_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

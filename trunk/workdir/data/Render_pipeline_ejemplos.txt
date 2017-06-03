@@ -1,0 +1,47 @@
+INICIO EFECTO GAUSSIANO
+	<!--	
+	<apply_technique_pool pool_name="post_process"/>
+	<apply_filter>
+		<texture name="capture_frame_buffer" stage_id="0" />
+		<dynamic_texture name="StartGaussian" size="512 512" material="StartGaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussian3" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussian2" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussian1" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussian" size="512 512" material="GaussianMaterial" format="RGBA8_UNORM"/>
+	</apply_filter>
+	
+	<apply_technique_pool pool_name="quad"/>
+	
+	<draw_quad name="texture_gaussian" material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
+        <texture name="capture_frame_buffer" stage_id="0"/>
+    </draw_quad>
+	<draw_quad name="gaussian3_quad" material="DrawQuadMaterial"  viewport_position = "129 0" viewport_size = "128 128">
+        <texture name="Gaussian3" stage_id="0"/>
+    </draw_quad>
+	<draw_quad name="gaussian_quad" material="DrawQuadMaterial"  viewport_position = "0 129" viewport_size = "128 128">
+        <texture name="Gaussian" stage_id="0"/>
+    </draw_quad>
+	-->
+	FIN EFECTO GAUSSIANO
+
+
+
+
+<!--<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="One" dst_blend_alpha="One" blend_op_alpha="add"  render_target_write_mask="all" />--> TEXTURAS TRANSPARENTES
+
+
+	<!--<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />-->
+<!--	<draw_quad name="Tst1" material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
+        <texture name="AlbedoTexture" stage_id="0"/>
+    </draw_quad>
+	<draw_quad name="Tst2" material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">
+        <texture name="LightMapTexture" stage_id="0"/>
+    </draw_quad>
+	<draw_quad name="Tst3" material="DrawQuadMaterial" viewport_position = "0 129" viewport_size = "128 128">
+        <texture name="NormalMapTexture" stage_id="0"/>
+    </draw_quad>
+	<draw_quad name="Tst4" material="DrawQuadMaterial" viewport_position = "129 129" viewport_size = "128 128">
+        <texture name="DepthMapTexture" stage_id="0"/>
+    </draw_quad>
+	
+	-->

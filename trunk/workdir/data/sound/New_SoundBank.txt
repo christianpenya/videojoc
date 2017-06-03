@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	734120249	njnjnj			\Default Work Unit\njnjnj	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	967519853	HallMountain	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\HallMountain_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\HallMountain		27181724
+

@@ -30,8 +30,8 @@ public:
 
     Vect3f GetForward() const;
     Vect3f GetUp() const;
-    
-    void SetForward(const Vect3f& aForward );
+
+    void SetForward(const Vect3f& aForward);
 
 protected:
     Vect3f   m_Position, m_PrevPos, m_Scale;
