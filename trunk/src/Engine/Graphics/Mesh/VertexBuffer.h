@@ -26,6 +26,9 @@ public:
         assert(SUCCEEDED(l_HR));
     }
 
+    CVertexBuffer(): mNumVertexs(0)
+    {
+    }
 
     virtual ~CVertexBuffer() {}
 

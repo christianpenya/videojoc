@@ -17,9 +17,10 @@
 #include "Render/RenderPipeline/RenderPipeline.h"
 #include "Graphics/Animation/AnimatedModelManager.h"
 #include "Scripts/ScriptManager.h"
-#include "Graphics/Cinematics\CinematicsManager.h"
+#include "Graphics/Cinematics/CinematicsManager.h"
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
+#include "GUI/GUIManager.h"
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
@@ -47,6 +48,7 @@ CEngine::CEngine()
     , m_CinematicManager(nullptr)
     , m_PhysXManager(nullptr)
     , m_ParticleManager(nullptr)
+    , m_GUIManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
@@ -82,6 +84,7 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_ActionManager);
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
+    base::utils::CheckedDelete(m_GUIManager);
 
     base::utils::CheckedDelete(m_FreeCam);
     base::utils::CheckedDelete(m_FpsCam);
@@ -144,6 +147,10 @@ void CEngine::LoadFiles()
 
     m_ParticleManager = new CParticleManager();
     m_ParticleManager->Load(m_FileParticleManager);
+    LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
+
+    m_GUIManager = new CGUIManager();
+    m_ParticleManager->Load(m_FileGUIManager);
     LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
 
     m_RenderPipeline = new CRenderPipeline();

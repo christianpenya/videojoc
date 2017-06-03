@@ -7,18 +7,18 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
-#include "Utils.h"
+#include "Graphics/Mesh/VertexTypes.h"
+#include "Engine\Engine.h"
 #include "Math\Color.h"
-#include "RenderableObjects\VertexTypes.h"
+#include "Utils\Defines.h"
+#include "Graphics/Mesh/TemplatedGeometry.h"
 
-class CButon;
-class CSlider;
-class CPanel;
-class CMaterial;
-class CRenderableVertexs;
-class CRenderManager;
+
 class CGUIPosition;
-class CSliderResult;
+class CButon;
+
+class CMaterial;
+class CRenderManager;
 
 struct SpriteMapInfo
 {
@@ -40,35 +40,38 @@ struct GUICommand
     CColor color;
 };
 
-struct FontChar
-{
-    uint16 x, y, width, height;
-    int16 xoffset, yoffset, xadvance;
-    uint8 page, chnl;
-};
 
 class CGUIManager
 {
+    static const int MAX_VERTICES_PER_CALL = 128;
 private:
-    MV_POSITION4_COLOR_TEXTURE_VERTEX m_CurrentBufferData[MAX_VERTICES_PER_CALL];
+
+    // CIndexedGeometryTriangleList<VertexTypes::SpriteVertex>  m_CurrentBufferData[5];
     std::string m_ActiveItem;
     std::string m_HotItem;
     std::string m_SelectedItem;
-    std::vector<CRenderableVertexs*> m_VertexBuffers;
+    std::vector<CGeometryTriangleList<VertexTypes::SpriteVertex>> m_VertexBuffers;
     std::vector<CMaterial*> m_Materials;
     std::map<std::string, SpriteMapInfo> m_SpriteMaps;
     std::map<std::string, SpriteInfo> m_Sprites;
     std::map<std::string, CButon*> m_Buttons;
-    std::map<std::string, CPanel*> m_Panels;
-    std::map<std::string, CSlider*> m_Sliders;
+    //std::map<std::string, CSlider*> m_Sliders;
     std::vector<GUICommand> m_Commands;
     std::vector<GUICommand> m_PanelCommands;
     std::string m_FileName;
-    std::unordered_map< std::string, int16 > m_LineHeightPerFont;
-    std::unordered_map< std::string, int16 > m_BasePerFont;
-    std::unordered_map< std::string, std::unordered_map< wchar_t, FontChar > > m_CharactersPerFont;
-    std::unordered_map< std::string, std::unordered_map< wchar_t, std::unordered_map< wchar_t, int > > > m_KerningsPerFont;
-    std::unordered_map< std::string, std::vector<SpriteInfo*> > m_TexturePerFont;
+    //std::unordered_map< std::string, int16 > m_LineHeightPerFont;
+    //std::unordered_map< std::string, int16 > m_BasePerFont;
+    //std::unordered_map< std::string, std::unordered_map< wchar_t, FontChar > > m_CharactersPerFont;
+    //std::unordered_map< std::string, std::unordered_map< wchar_t, std::unordered_map< wchar_t, int > > > m_KerningsPerFont;
+    //std::unordered_map< std::string, std::vector<SpriteInfo*> > m_TexturePerFont;
+
+    bool m_InputUpToDate;
+    bool m_MouseWentPressed;
+    bool m_MouseWentReleased;
+    long m_MouseX;
+    long m_MouseY;
+
+
 
     void Destroy();
 
@@ -115,21 +118,21 @@ public:
 
     void Render(CRenderManager *RenderManager);
 
-    bool DoButton(const std::string& guiID, const std::string& buttonID, const CGUIPosition& position);
-    void DoPanel(const std::string& guiID, const std::string& panelID, const CGUIPosition& position, const float offsetX, const float _alpha = 1.0f);
-    CSliderResult DoSlider(const std::string& guiID, const std::string& sliderID, const CGUIPosition& position, float minValue, float maxValue, float currentValue, bool _Interactuable);
-    int FillCommandQueueWithTextAux(const std::string& _font, const std::string& _text,
-                                    const CColor& _color = CColor(1, 1, 1, 1), Vect4f *textBox_ = nullptr);
-    void FillCommandQueueWithText(const std::string& _font, const std::string& _text,
-                                  Vect2f coord, GUIAnchor anchor = GUIAnchor::BOTTOM_LEFT, const CColor& _color = CColor(1, 1, 1, 1));
-    std::string DoTextBox(const std::string& guiID, const std::string& _font, const std::string& currentText, CGUIPosition position);
-    //void DoPanel(const std::string& guiID, );
+    bool DoButton(const std::string& guiID, const std::string& buttonID, CGUIPosition& position);
+    struct SliderResult
+    {
+        float real;
+        float temp;
+    };
+    SliderResult DoSlider(const std::string& guiID, const std::string& sliderID, const CGUIPosition& position, float minValue, float maxValue, float currentValue);
 
-    UAB_BUILD_GET_SET(bool, InputUpToDate)
-    UAB_BUILD_GET_SET(int, MouseX)
-    UAB_BUILD_GET_SET(int, MouseY)
-    UAB_BUILD_GET_SET(bool, MouseWentPressed)
-    UAB_BUILD_GET_SET(bool, MouseWentReleased)
+
+    GET_SET(bool, InputUpToDate);
+    GET_SET(int, MouseX);
+    GET_SET(int, MouseY);
+    GET_SET(bool, MouseWentPressed);
+    GET_SET(bool, MouseWentReleased)
+
 };
 
 #endif //H_GUI_MANAGER_H
