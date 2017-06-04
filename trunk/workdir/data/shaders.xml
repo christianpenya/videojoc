@@ -91,8 +91,11 @@
 		<shader name="ShadowDepth" file="PostProcess/ShadowMap.fx" entry_point="PS" preprocessor=""/>
 		<shader name="Fog" file="PostProcess/Fog.fx" entry_point="PS" preprocessor=""/>	
 		<shader name="SSR" file="PostProcess/SSR.fx" entry_point="PS" preprocessor=""/>	
+		<shader name="LightScattering" file="PostProcess/LightScattering.fx" entry_point="PS" preprocessor=""/>
+		
 		<shader name="Mascara" file="PostProcess/mascara.fx" entry_point="PS" preprocessor=""/>	
 		<shader name="ParticleVertex" file="particleShader.fx" entry_point="PS" preprocessor=""/>
+		
 			
 		
 		

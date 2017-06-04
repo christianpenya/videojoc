@@ -47,16 +47,42 @@
 	
 	SKYBOX
 	<apply_technique_pool pool_name="skybox"/>
-
 	<render_layer layer="Skybox"/>
 
+	INICIO LIGHT SCATTERING
+<!--
+	<set_render_target name="LightScattering">
+		<dynamic_texture name="LightScatteringTextureSkybox" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format="RGBA8_UNORM"/>
+	</set_render_target>
+	<clear render_target="true" depth_stencil="false"/>
+	<render_layer layer="Skybox" active="true"/>
+	<unset_render_target/>
+	
+	<apply_technique_pool pool_name="post_process"/>	
+	<apply_filter>
+		<texture name="LightScatteringTextureSkybox" stage_id="0" />
+		<dynamic_texture name="StartGaussian" size="1024 768" material="StartGaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="LightScatteringTextureSkyboxBlurred2" size="1024 768" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="LightScatteringTextureSkyboxBlurred1" size="1024 768" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="LightScatteringTextureSkyboxBlurred" size="1024 768" material="GaussianMaterial" format="RGBA8_UNORM"/>
+	</apply_filter>
+
+			
+	<set_alpha_blend_state name ="Alpha Blend Light Scattering" state="enabled" src_blend="One" dst_blend="One" blend_op="add" src_blend_alpha="One" dst_blend_alpha="One" blend_op_alpha="add"  render_target_write_mask="all" />
+	<draw_quad name="LightScatteringQuad" material="LightScatteringMaterial">
+		<texture stage_id="0" name="LightScatteringTextureSkyboxBlurred"/>
+    </draw_quad>
+-->
+	FIN LIGHT SCATTERING
+
+	
 	POST-PROCESS
 <!--
 	<capture_frame_buffer name="capture_frame_buffer" texture_width_as_frame_buffer="true" />
 	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>
 	<apply_technique_pool pool_name="post_process"/>
 			
-	<capture_frame_buffer name="capture_frame_bufferFOG" texture_width_as_frame_buffer="true" />
+	<capture_frame_buffer name="capture_frame_bufferFOG" texture_width_as_frame_buffer="true" />	
 
 	INICIO FOG
 	<draw_quad name="texture_gaussian" material="DrawQuadMaterial"  viewport_position = "0 0" viewport_size = "128 128">
@@ -67,8 +93,9 @@
 		<texture name="DepthMapTexture" stage="1"/>
 	</draw_quad>
 	FIN FOG
-
+	-->
 	
+<!--	
 	INICIO EFECTO HDAO
 	<capture_frame_buffer name="capture_frame_bufferHDAO" texture_width_as_frame_buffer="true" />
 
@@ -185,6 +212,9 @@
         <texture name="DepthMapTexture" stage_id="0"/>
     </draw_quad>
 	-->
+	
+	
+	
 	<set_depth_stencil_state name ="Depth Stencil Particles" enable_z_test="false"  write_z_buffer = "false" enable_stencil = "false" comparison_func = "4"/>	
 	<apply_technique_pool pool_name="forward"/>
 	<set_alpha_blend_state name ="Alpha Blend Particles" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="SrcAlpha" dst_blend_alpha="InvSrcAlpha" blend_op_alpha="add"  render_target_write_mask="all" />

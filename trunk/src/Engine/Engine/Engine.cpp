@@ -20,6 +20,7 @@
 #include "Graphics/Cinematics\CinematicsManager.h"
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
+//#include "Graphics/Mesh/NavMeshManager.h"
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
@@ -47,6 +48,7 @@ CEngine::CEngine()
     , m_CinematicManager(nullptr)
     , m_PhysXManager(nullptr)
     , m_ParticleManager(nullptr)
+      //  , m_NavMeshManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
@@ -82,6 +84,7 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_ActionManager);
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
+//   base::utils::CheckedDelete(m_NavMeshManager);
 
     base::utils::CheckedDelete(m_FreeCam);
     base::utils::CheckedDelete(m_FpsCam);
@@ -146,7 +149,10 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load("data/cinematics.xml");
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
-
+    /*    m_NavMeshManager = new CNavMeshManager;
+        m_NavMeshManager->Load("data/navMesh.xml");
+        LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
+    	*/
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");

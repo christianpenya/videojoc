@@ -3,10 +3,10 @@
 
 //Texture2D Texture1 : register( t0 );
 //SamplerState Sampler1 : register( s0 );
-static float sprite_sheet_width = 5; //m_RawDataValues[0];
-static float sprite_sheet_height = 3; //m_RawDataValues[1];
-static float lerp_sprite = 0.1; //m_RawDataValues[2];
-static float ratio_y = 0.8; //m_RawDataValues[2];
+static float sprite_sheet_width = 5; //m_RawData[0].x;
+static float sprite_sheet_height = 3; //m_RawData[0].y;
+static float lerp_sprite = 0.1; //m_RawData[1];
+static float ratio_y = 0.8; //m_RawData[2];
 static float du = 1.0 / sprite_sheet_width;
 static float dv = 1.0 / sprite_sheet_height;
 

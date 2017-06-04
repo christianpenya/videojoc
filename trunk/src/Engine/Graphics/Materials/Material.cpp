@@ -315,6 +315,32 @@ void CMaterial::Apply()
                 l_pos = 4;
             }
             //FIN PARAMETROS SSR
+            //INICIO PARAMETROS LIGHT SCATTERING
+            else if (mParameters[i]->GetName() == "exposure")
+            {
+                mParameters[i]->SetDescription("Exposure");
+                l_pos = 5;
+            }
+            else if (mParameters[i]->GetName() == "decay")
+            {
+                mParameters[i]->SetDescription("Decay");
+                l_pos = 6;
+            }
+            else if (mParameters[i]->GetName() == "density")
+            {
+                mParameters[i]->SetDescription("Density");
+                l_pos = 7;
+            }
+            else if (mParameters[i]->GetName() == "weight")
+            {
+                mParameters[i]->SetDescription("Weight");
+                l_pos = 8;
+            }
+            else if (mParameters[i]->GetName() == "num_samples")
+            {
+                mParameters[i]->SetDescription("Num. Samples");
+                l_pos = 9;
+            }
             else
             {
                 mParameters[i]->SetDescription(mParameters[i]->GetName());
@@ -335,6 +361,8 @@ void CMaterial::Apply()
             else if (mParameters[i]->GetName() == "ssr_screen_resolution")
                 l_posFloat2 = 7;
             //FIN PARAMETROS SSR
+            else if (mParameters[i]->GetName() == "light_position")
+                l_posFloat2 = 10;
             break;
         case eFloat3:
             break;
@@ -400,7 +428,7 @@ void CMaterial::DrawImgui()
                     {
                         ImGui::SliderFloat(mParameters[i]->GetDescription().c_str(), (float*)mParameters[i]->GetAddr(0), 0.0f, 1024.0f);
                     }
-                    else if ((mParameters[i]->GetName() == "blurScale") || (mParameters[i]->GetName() == "diffuse"))
+                    else if ((mParameters[i]->GetName() == "blurScale") || (mParameters[i]->GetName() == "diffuse") || (mParameters[i]->GetName() == "num_samples"))
                     {
                         ImGui::SliderFloat(mParameters[i]->GetDescription().c_str(), (float*)mParameters[i]->GetAddr(0), 0.0f, 100.0f);
                     }
@@ -431,6 +459,11 @@ void CMaterial::DrawImgui()
                     {
                         ImGui::SliderFloat("Screen Resolution X", (float*)mParameters[i]->GetAddr(0), 0.0f, 1366.0f);
                         ImGui::SliderFloat("Screen Resolution Y", (float*)mParameters[i]->GetAddr(1), 0.0f, 768.0f);
+                    }
+                    else if (mParameters[i]->GetName() == "light_position")
+                    {
+                        ImGui::SliderFloat("Light Position X", (float*)mParameters[i]->GetAddr(0), 0.0f, 1366.0f);
+                        ImGui::SliderFloat("Light Position Y", (float*)mParameters[i]->GetAddr(1), 0.0f, 768.0f);
                     }
                     else
                         ImGui::SliderFloat2(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1)), 0.0f, 1.0f);

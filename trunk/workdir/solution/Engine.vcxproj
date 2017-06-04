@@ -282,6 +282,8 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\IndexBuffer.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\Mesh.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\MeshManager.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\NavMesh.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\NavMeshManager.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\Plane.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\TemplatedGeometry.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\TemplatedIndexedGeometry.h" />
@@ -377,6 +379,8 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Materials\MaterialManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\Mesh.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\MeshManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\Mesh\NavMesh.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\Mesh\NavMeshManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\Plane.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\VertexTypes.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Particles\ParticleManager.cpp" />

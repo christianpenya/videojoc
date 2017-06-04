@@ -124,6 +124,10 @@
 	<shader stage="pixel"    name="Mascara"/>
   </effect>  
   
+  <effect name="LightScatteringTechnique" shader_family="LightScattering">
+	<shader stage="vertex"   name="Quad"/>
+	<shader stage="pixel"    name="LightScattering"/>
+  </effect>  
   
   <!-- OTHER -->
  <effect name="SkyboxTechnique" shader_family="Skybox">

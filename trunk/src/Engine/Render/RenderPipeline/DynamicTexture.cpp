@@ -72,6 +72,10 @@ void CDynamicTexture::Init()
     l_textureDescription.CPUAccessFlags = 0;
     l_textureDescription.MiscFlags = 0;
     HRESULT l_HR = l_Device->CreateTexture2D(&l_textureDescription, NULL, &m_pRenderTargetTexture);
+    if (l_HR != S_OK)
+    {
+        LOG_ERROR_APPLICATION("Error in dynamic texture");
+    }
     assert(!FAILED(l_HR));
 
     D3D11_RENDER_TARGET_VIEW_DESC l_RenderTargetViewDescription;
@@ -88,6 +92,7 @@ void CDynamicTexture::Init()
     l_ShaderResourceViewDescription.Texture2D.MipLevels = 1;
 
     l_HR = l_Device->CreateShaderResourceView(m_pRenderTargetTexture, &l_ShaderResourceViewDescription, &m_pTexture);
+
     assert(!FAILED(l_HR));
 
     if (m_CreateDepthStencilBuffer)
