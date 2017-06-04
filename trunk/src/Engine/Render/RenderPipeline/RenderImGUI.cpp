@@ -55,7 +55,7 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     Reloads(lEngine);
 
     //SCENE MANAGEMENT
-    lEngine.GetSceneManager().DrawImgui();
+    lEngine.DrawImgui();
 
     ImGui::End();
     ImGui::Render();

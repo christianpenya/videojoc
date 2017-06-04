@@ -147,11 +147,13 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load("data/cinematics.xml");
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
-    ISoundManager* m_SoundManager = ISoundManager::InstantiateSoundManager();
+    //m_SoundManager = new CSoundManager();
+
+    m_SoundManager = ISoundManager::InstantiateSoundManager();
     //m_SoundManager->SetPath("C:\\Users\\christian\\Desktop\\videojoc\\trunk\\workdir\\data\\sound\\");
-    m_SoundManager->SetPath("./data/sound");
+    m_SoundManager->SetPath("data/sound/");
     m_SoundManager->Init();
-    m_SoundManager->LoadSoundBanksXML();
+    m_SoundManager->Load("SoundbanksInfo.xml", "speakers.xml");
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
@@ -188,6 +190,11 @@ void CEngine::Init(HWND hWnd)
 
         LoadFiles();
     }
+
+    //TEST SOUND
+    SoundEvent se;
+    se.eventName = "background_music";
+    m_SoundManager->PlayEvent(se);
 }
 
 void CEngine::ProcessInputs() const
@@ -243,6 +250,7 @@ void CEngine::Update()
     m_RenderManager->Update();
     m_SceneManager->Update(m_DeltaTime);
     m_CinematicManager->Update(m_DeltaTime);
+    m_SoundManager->Update(m_CameraController);
 }
 
 void CEngine::Render()
@@ -338,4 +346,10 @@ void CEngine::CharacterControllerUpdate(CActionManager* actionManager, float dt)
     float z = (*actionManager)("z_move")->value * 0.5f;
 
     m_CharacterController.m_Movement = {x, 0.0f, z};
+}
+
+void CEngine::DrawImgui()
+{
+    m_SceneManager->DrawImgui();
+    m_SoundManager->DrawImgui();
 }

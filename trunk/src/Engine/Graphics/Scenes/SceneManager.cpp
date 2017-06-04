@@ -116,12 +116,12 @@ bool CSceneManager::Load()
                     }
 
                     lScene->Load(lFilename);
-
                     lOk &= Add(lScene->GetName(), lScene);
                 }
             }
         }
     }
+
     return lOk;
 }
 

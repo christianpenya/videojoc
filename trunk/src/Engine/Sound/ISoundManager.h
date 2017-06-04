@@ -85,6 +85,8 @@ public:
     virtual bool LoadSoundBanksXML() = 0;
     virtual bool LoadSpeakersXML() = 0;
 
+    virtual void DrawImgui() = 0;
+
 protected:
     ISoundManager() {}
     std::string m_Path;

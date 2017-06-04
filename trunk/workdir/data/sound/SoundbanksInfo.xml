@@ -19,12 +19,77 @@
 			<ShortName>New_SoundBank</ShortName>
 			<Path>New_SoundBank.bnk</Path>
 			<IncludedEvents>
-				<Event Id="734120249" Name="njnjnj"/>
+				<Event Id="1585661381" Name="background_music"/>
+				<Event Id="2453392179" Name="player_footstep"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
+				<File Id="10784987" Language="SFX">
+					<ShortName>fs_grue_dirt_run_04.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_run_04_9E69E797.wem</Path>
+				</File>
+				<File Id="96609460" Language="SFX">
+					<ShortName>fs_grue_forest_run_02.wav</ShortName>
+					<Path>SFX\fs_grue_forest_run_02_9E69E797.wem</Path>
+				</File>
+				<File Id="127180466" Language="SFX">
+					<ShortName>fs_grue_dirt_walk_01.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_walk_01_9E69E797.wem</Path>
+				</File>
+				<File Id="205592139" Language="SFX">
+					<ShortName>fs_grue_forest_walk_02.wav</ShortName>
+					<Path>SFX\fs_grue_forest_walk_02_9E69E797.wem</Path>
+				</File>
+				<File Id="237084936" Language="SFX">
+					<ShortName>fs_grue_forest_run_04.wav</ShortName>
+					<Path>SFX\fs_grue_forest_run_04_9E69E797.wem</Path>
+				</File>
+				<File Id="367449864" Language="SFX">
+					<ShortName>fs_grue_dirt_walk_04.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_walk_04_9E69E797.wem</Path>
+				</File>
+				<File Id="379483438" Language="SFX">
+					<ShortName>fs_grue_dirt_run_03.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_run_03_9E69E797.wem</Path>
+				</File>
+				<File Id="442395140" Language="SFX">
+					<ShortName>fs_grue_forest_run_03.wav</ShortName>
+					<Path>SFX\fs_grue_forest_run_03_9E69E797.wem</Path>
+				</File>
+				<File Id="625475899" Language="SFX">
+					<ShortName>fs_grue_dirt_walk_02.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_walk_02_9E69E797.wem</Path>
+				</File>
+				<File Id="671184348" Language="SFX">
+					<ShortName>fs_grue_forest_walk_01.wav</ShortName>
+					<Path>SFX\fs_grue_forest_walk_01_9E69E797.wem</Path>
+				</File>
+				<File Id="706191080" Language="SFX">
+					<ShortName>fs_grue_dirt_run_01.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_run_01_9E69E797.wem</Path>
+				</File>
+				<File Id="769258412" Language="SFX">
+					<ShortName>fs_grue_forest_walk_04.wav</ShortName>
+					<Path>SFX\fs_grue_forest_walk_04_9E69E797.wem</Path>
+				</File>
+				<File Id="818390613" Language="SFX">
+					<ShortName>fs_grue_dirt_walk_03.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_walk_03_9E69E797.wem</Path>
+				</File>
+				<File Id="836267355" Language="SFX">
+					<ShortName>fs_grue_dirt_run_02.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_run_02_9E69E797.wem</Path>
+				</File>
 				<File Id="967519853" Language="SFX">
 					<ShortName>HallMountain.wav</ShortName>
-					<Path>SFX\HallMountain_9E69E797.wem</Path>
+					<Path>SFX\HallMountain_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="1063512825" Language="SFX">
+					<ShortName>fs_grue_forest_walk_03.wav</ShortName>
+					<Path>SFX\fs_grue_forest_walk_03_9E69E797.wem</Path>
+				</File>
+				<File Id="1065990689" Language="SFX">
+					<ShortName>fs_grue_forest_run_01.wav</ShortName>
+					<Path>SFX\fs_grue_forest_run_01_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

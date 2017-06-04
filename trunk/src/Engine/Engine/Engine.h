@@ -33,7 +33,7 @@ class CAnimatedModelManager;
 class CScriptManager;
 class CPhysXManager;
 class CParticleManager;
-class CSoundManager;
+class ISoundManager;
 
 #define BUILD_GET_SET_ENGINE_MANAGER( Manager ) \
 private: \
@@ -78,7 +78,8 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(CinematicManager)
     BUILD_GET_SET_ENGINE_MANAGER(PhysXManager)
     BUILD_GET_SET_ENGINE_MANAGER(ParticleManager)
-    BUILD_GET_SET_ENGINE_MANAGER(SoundManager)
+
+    ISoundManager* m_SoundManager;
 
     double m_DeltaTime;
     clock_t m_DeltaTimeAcum = 0;
@@ -99,6 +100,7 @@ public:
 
     CCharacterController m_CharacterController;
     void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
+    void DrawImgui();
 };
 
 #undef BUILD_GET_SET_ENGINE_MANAGER

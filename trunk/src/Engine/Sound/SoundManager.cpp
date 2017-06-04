@@ -2,8 +2,13 @@
 #include "XML/tinyxml2/tinyxml2.h"
 #include "XML/XML.h"
 #include "Graphics/Camera/CameraController.h"
+#include "Utils/Logger.h"
+#include "Imgui/imgui.h"
 
-CSoundManager::CSoundManager() {}
+CSoundManager::CSoundManager()
+{
+    m_LastGameObjectID = 1;
+}
 CSoundManager::~CSoundManager() {}
 
 ISoundManager* ISoundManager::InstantiateSoundManager()
@@ -18,54 +23,42 @@ void CSoundManager::SetPath(const std::string &path)
 
 bool CSoundManager::Init()
 {
-    // Initialize audio engine
-    // Memory.
     AkMemSettings memSettings;
-
     memSettings.uMaxNumPools = 20;
 
-    // Streaming.
     AkStreamMgrSettings stmSettings;
-    AK::StreamMgr::GetDefaultSettings( stmSettings );
+    AK::StreamMgr::GetDefaultSettings(stmSettings);
 
     AkDeviceSettings deviceSettings;
     AK::StreamMgr::GetDefaultDeviceSettings(deviceSettings);
 
     AkInitSettings l_InitSettings;
-    AkPlatformInitSettings l_platInitSetings;
+    AkPlatformInitSettings l_platInitSettings;
     AK::SoundEngine::GetDefaultInitSettings(l_InitSettings);
-    AK::SoundEngine::GetDefaultPlatformInitSettings(l_platInitSetings);
+    AK::SoundEngine::GetDefaultPlatformInitSettings(l_platInitSettings);
 
-    // Setting pool sizes for this game. Here, allow for user content; every game should determine its own optimal values.
-    l_InitSettings.uDefaultPoolSize				=  512*1024;
+    l_InitSettings.uDefaultPoolSize = 512 * 1024;
     l_InitSettings.uMaxNumPaths = 16;
+    l_InitSettings.uMaxNumTransitions = 128;
 
-
-    l_platInitSetings.uLEngineDefaultPoolSize	=  256*1024;
+    l_platInitSettings.uLEngineDefaultPoolSize = 512 * 1024;
 
     AkMusicSettings musicInit;
     AK::MusicEngine::GetDefaultInitSettings(musicInit);
 
-    AKRESULT eResult = AK::SOUNDENGINE_DLL::Init(&memSettings,
-                       &stmSettings,
-                       &deviceSettings,
-                       &l_InitSettings,
-                       &l_platInitSetings,
-                       &musicInit );
+    AKRESULT eResult = AK::SOUNDENGINE_DLL::Init(&memSettings, &stmSettings, &deviceSettings, &l_InitSettings, &l_platInitSettings, &musicInit);
 
-    if( eResult != AK_Success )
+    if (eResult != AK_Success)
     {
-        // Then, we will run the game without sound
         AK::SOUNDENGINE_DLL::Term();
+        LOG_ERROR_APPLICATION("Error initializing CSoundManager");
+
         return false;
+
     }
 
-    // load initialization and main soundbanks
-
-    //AK::SOUNDENGINE_DLL::SetBasePath(L"soundbanks\\Windows\\");
-    //AK::StreamMgr::SetCurrentLanguage( L"English(US)" );
-
-    return true;
+    m_DefaultSpeakerId = GenerateObjectID();
+    AK::SoundEngine::RegisterGameObj(m_DefaultSpeakerId);
 }
 
 void CSoundManager::Update(CCameraController *camera)
@@ -75,27 +68,16 @@ void CSoundManager::Update(CCameraController *camera)
     {
         Vect3f l_SpeakerPosition = it.first->GetPosition();
         Vect3f l_SpeakerForward = it.first->GetForward();
-        Vect3f l_SpeakerUp = it.first->GetUp();
-
-        AkVector l_SoundPositionAkVector;
-        l_SoundPositionAkVector.X = -l_SpeakerPosition.x;
-        l_SoundPositionAkVector.Y = l_SpeakerPosition.y;
-        l_SoundPositionAkVector.Z = l_SpeakerPosition.z;
 
         AkSoundPosition l_SoundPosition = {};
-        l_SoundPosition.SetPosition(l_SoundPositionAkVector);
 
-        AkVector l_SoundForward;
-        l_SoundForward.X = -l_SpeakerForward.x;
-        l_SoundForward.Y = l_SpeakerForward.y;
-        l_SoundForward.Z = l_SpeakerForward.z;
+        l_SoundPosition.Position.X = -l_SpeakerPosition.x;
+        l_SoundPosition.Position.Y = l_SpeakerPosition.y;
+        l_SoundPosition.Position.Z = l_SpeakerPosition.z;
 
-        AkVector l_SoundUp;
-        l_SoundUp.X = -l_SpeakerUp.x;
-        l_SoundUp.Y = l_SpeakerUp.y;
-        l_SoundUp.Z = l_SpeakerUp.z;
-
-        l_SoundPosition.SetOrientation(l_SoundForward, l_SoundUp);
+        l_SoundPosition.Orientation.X = -l_SpeakerForward.x;
+        l_SoundPosition.Orientation.Y = l_SpeakerForward.y;
+        l_SoundPosition.Orientation.Z = l_SpeakerForward.z;
 
         AK::SoundEngine::SetPosition(it.second, l_SoundPosition);
     }
@@ -110,28 +92,23 @@ void CSoundManager::Update(CCameraController *camera)
 void CSoundManager::SetListenerPosition(CCameraController *camera)
 {
     Vect3f l_Position = camera->GetPosition();
-    Vect3f l_Forward = camera->GetFront();
-    Vect3f l_Up = camera->GetUp();
-
-    AkVector l_SoundPositionAkVector;
-    l_SoundPositionAkVector.X = -l_Position.x;
-    l_SoundPositionAkVector.Y = l_Position.y;
-    l_SoundPositionAkVector.Z = l_Position.z;
+    Vect3f l_Orientation = camera->GetFront();
+    Vect3f l_VectorUp = camera->GetUp();
 
     AkListenerPosition l_ListenerPosition = {};
-    l_ListenerPosition.SetPosition(l_SoundPositionAkVector);
 
-    AkVector l_SoundForward;
-    l_SoundForward.X = -l_Forward.x;
-    l_SoundForward.Y = l_Forward.y;
-    l_SoundForward.Z = l_Forward.z;
+    l_ListenerPosition.Position.X = -l_Position.x;
+    l_ListenerPosition.Position.Y = l_Position.y;
+    l_ListenerPosition.Position.Z = l_Position.z;
 
-    AkVector l_SoundUp;
-    l_SoundUp.X = -l_Up.x;
-    l_SoundUp.Y = l_Up.y;
-    l_SoundUp.Z = l_Up.z;
+    l_ListenerPosition.OrientationFront.X = -l_Orientation.x;
+    l_ListenerPosition.OrientationFront.Y = l_Orientation.y;
+    l_ListenerPosition.OrientationFront.Z = l_Orientation.z;
 
-    l_ListenerPosition.SetOrientation(l_SoundForward, l_SoundUp);
+    l_ListenerPosition.OrientationTop.X = -l_VectorUp.x;
+    l_ListenerPosition.OrientationTop.Y = l_VectorUp.y;
+    l_ListenerPosition.OrientationTop.Z = l_VectorUp.z;
+
     AK::SoundEngine::SetListenerPosition(l_ListenerPosition);
 }
 
@@ -184,36 +161,23 @@ void CSoundManager::RegisterSpeaker(CSceneNode* _speaker)
 {
     //assert(m_GameObjectSpeakers.find(_speaker) == m_GameObjectSpeakers.end());
     if (m_GameObjectSpeakers.find(_speaker) != m_GameObjectSpeakers.end())
-    {
         UnregisterSpeaker(_speaker);
-    }
 
     AkGameObjectID id = GenerateObjectID();
     m_GameObjectSpeakers[_speaker] = id;
 
-    Vect3f l_SpeakerPosition = _speaker->GetPosition();
-    Vect3f l_SpeakerForward = _speaker->GetForward();
-    Vect3f l_SpeakerUp = _speaker->GetUp();
-
-    AkVector l_SoundPositionAkVector;
-    l_SoundPositionAkVector.X = -l_SpeakerPosition.x;
-    l_SoundPositionAkVector.Y = l_SpeakerPosition.y;
-    l_SoundPositionAkVector.Z = l_SpeakerPosition.z;
+    Vect3f l_Position = _speaker->GetPosition();
+    Vect3f l_Orientation = _speaker->GetForward();
 
     AkSoundPosition l_SoundPosition = {};
-    l_SoundPosition.SetPosition(l_SoundPositionAkVector);
 
-    AkVector l_SoundForward;
-    l_SoundForward.X = -l_SpeakerForward.x;
-    l_SoundForward.Y = l_SpeakerForward.y;
-    l_SoundForward.Z = l_SpeakerForward.z;
+    l_SoundPosition.Position.X = -l_Position.x;
+    l_SoundPosition.Position.Y = l_Position.y;
+    l_SoundPosition.Position.Z = l_Position.z;
 
-    AkVector l_SoundUp;
-    l_SoundUp.X = -l_SpeakerUp.x;
-    l_SoundUp.Y = l_SpeakerUp.y;
-    l_SoundUp.Z = l_SpeakerUp.z;
-
-    l_SoundPosition.SetOrientation(l_SoundForward, l_SoundUp);
+    l_SoundPosition.Orientation.X = -l_Orientation.x;
+    l_SoundPosition.Orientation.Y = l_Orientation.y;
+    l_SoundPosition.Orientation.Z = l_Orientation.z;
 
     AK::SoundEngine::RegisterGameObj(id);
     AK::SoundEngine::SetPosition(id, l_SoundPosition);
@@ -329,6 +293,7 @@ void CSoundManager::SetRTPCValue(SoundRTPC &_rtpc, float value, const std::strin
         assert(false);
     }
 }
+
 void CSoundManager::SetRTPCValue(SoundRTPC &_rtpc, float value, const CSceneNode* _speaker)
 {
     auto it = m_GameObjectSpeakers.find(_speaker);
@@ -341,7 +306,6 @@ void CSoundManager::SetRTPCValue(SoundRTPC &_rtpc, float value, const CSceneNode
         assert(false);
     }
 }
-
 
 void CSoundManager::BroadcastRTPCValue(const SoundRTPC &_rtpc, float value)
 {
@@ -398,17 +362,24 @@ bool CSoundManager::LoadSoundBanksXML()
     tinyxml2::XMLDocument doc;
     tinyxml2::XMLError l_Error = doc.LoadFile((m_Path + m_SoundBanksFilename).c_str());
 
-    tinyxml2::XMLElement* l_Element;
-
     if (l_Error == tinyxml2::XML_SUCCESS)
     {
-        l_Element = doc.FirstChildElement("SoundBanks")->FirstChildElement();
-
-        while (l_Element != NULL)
+        tinyxml2::XMLElement *l_SoundBanksInfo = doc.FirstChildElement("SoundBanksInfo");
+        if (l_SoundBanksInfo)
         {
-            std::string l_Name = l_Element->GetAttribute<std::string>("name", "");
-            LoadSoundBank(l_Name);
-            l_Element = l_Element->NextSiblingElement();
+            tinyxml2::XMLElement*  l_SoundBanks = l_SoundBanksInfo->FirstChildElement("SoundBanks");
+            if (l_SoundBanks)
+            {
+                for (tinyxml2::XMLElement* iSoundBank = l_SoundBanks->FirstChildElement("SoundBank"); iSoundBank != nullptr; iSoundBank = iSoundBank->NextSiblingElement("SoundBank"))
+                {
+                    tinyxml2::XMLElement* l_Path = iSoundBank->FirstChildElement("Path");
+                    std::string lName = l_Path->FirstChild()->Value();
+                    if (strcmp(l_Path->FirstChild()->Value(), "Init.bnk"))
+                    {
+                        LoadSoundBank(lName);
+                    }
+                }
+            }
         }
     }
     else
@@ -432,31 +403,19 @@ bool CSoundManager::LoadSpeakersXML()
 
         while (l_Element != NULL)
         {
-            std::string l_Name = l_Element->GetAttribute<std::string>("name", "");
-
-            CTransform lTransform;
-            lTransform.SetForward(l_Element->GetAttribute<Vect3f>("forward", Vect3f(1.0f, 1.0f, 1.0f)));
-            lTransform.SetPosition(l_Element->GetAttribute<Vect3f>("position", Vect3f(0.0f, 0.0f, 0.0f)));
-
-            AkVector l_SoundPositionAkVector;
-            l_SoundPositionAkVector.X = -lTransform.GetPosition().x;
-            l_SoundPositionAkVector.Y = lTransform.GetPosition().y;
-            l_SoundPositionAkVector.Z = lTransform.GetPosition().z;
+            std::string l_Name = l_Element->GetAttribute<std::string>("name", "");;
+            Vect3f l_Position = l_Element->GetAttribute<Vect3f>("position", Vect3f(0.0f, 0.0f, 0.0f));
+            Vect3f l_Orientation = l_Element->GetAttribute<Vect3f>("forward", Vect3f(1.0f, 1.0f, 1.0f));
 
             AkSoundPosition l_SoundPosition = {};
-            l_SoundPosition.SetPosition(l_SoundPositionAkVector);
 
-            AkVector l_SoundForward;
-            l_SoundForward.X = -lTransform.GetForward().x;
-            l_SoundForward.Y = lTransform.GetForward().y;
-            l_SoundForward.Z = lTransform.GetForward().z;
+            l_SoundPosition.Position.X = -l_Position.x;
+            l_SoundPosition.Position.Y = l_Position.y;
+            l_SoundPosition.Position.Z = l_Position.z;
 
-            AkVector l_SoundUp;
-            l_SoundUp.X = -lTransform.GetUp().x;
-            l_SoundUp.Y = lTransform.GetUp().y;
-            l_SoundUp.Z = lTransform.GetUp().z;
-
-            l_SoundPosition.SetOrientation(l_SoundForward, l_SoundUp);
+            l_SoundPosition.Orientation.X = -l_Orientation.x;
+            l_SoundPosition.Orientation.Y = l_Orientation.y;
+            l_SoundPosition.Orientation.Z = l_Orientation.z;
 
             AkGameObjectID id = GenerateObjectID();
             m_NamedSpeakers[l_Name] = id;
@@ -490,4 +449,74 @@ bool CSoundManager::InitBanks()
     }
 
     return true;
+}
+
+void CSoundManager::DrawImgui()
+{
+    if (ImGui::CollapsingHeader("Sound Manager"))
+    {
+        ImGui::BeginChild("#Sounds", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::PushItemWidth(-130);
+
+        if (ImGui::Button("Dentro evento!"))
+        {
+            SoundEvent se;
+            se.eventName = "player_footstep";
+            PlayEvent(se);
+        }
+
+        SoundSwitchValue lSSV;
+        lSSV.soundSwitch.switchName = "Speed";
+        static int speed = 0;
+
+        ImGui::RadioButton("Walk", &speed, 0);
+        ImGui::RadioButton("Run", &speed, 1);
+
+        switch (speed)
+        {
+        case 0:
+            lSSV.valueName = "Walk";
+            break;
+        case 1:
+            lSSV.valueName = "Run";
+            break;
+        }
+
+        SetSwitch(lSSV);
+
+        SoundRTPC lSRTPC;
+        lSRTPC.RTPCName = "music_volume";
+        static float lVolume = 0.0f;
+        float lLastVolume = lVolume;
+        ImGui::SliderFloat("Volume", &lVolume, -100.0f, 100.0f);
+        if (lLastVolume != lVolume)
+        {
+            SetRTPCValue(lSRTPC, lVolume);
+        }
+
+        static int lMusicState = 0;
+        int lLastMusicState = lMusicState;
+        ImGui::RadioButton("Music ON (state)", &lMusicState, 0);
+        ImGui::RadioButton("Music OFF (state)", &lMusicState, 1);
+
+        if (lLastMusicState != lMusicState)
+        {
+            SoundStateValue lSSV;
+            lSSV.soundState.stateName = "music_enabling";
+            switch (lMusicState)
+            {
+            case 0:
+                lSSV.valueName = "on";
+                break;
+            case 1:
+                lSSV.valueName = "off";
+                break;
+            }
+
+            BroadcastState(lSSV);
+        }
+
+        ImGui::PopItemWidth();
+        ImGui::EndChild();
+    }
 }

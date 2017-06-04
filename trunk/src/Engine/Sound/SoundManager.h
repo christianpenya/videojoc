@@ -8,14 +8,15 @@
 #include "Math/Vector3.h"
 #include "Graphics/Scenes/SceneNode.h"
 
-#include <AK/SoundEngine/Common/AkMemoryMgr.h>                  // Memory Manager
-#include <AK/SoundEngine/Common/AkModule.h>                     // Default memory and stream managers
-#include <AK/SoundEngine/Common/IAkStreamMgr.h>                 // Streaming Manager
-#include <AK/Tools/Common/AkPlatformFuncs.h>                    // Thread defines
-#include <AkFilePackageLowLevelIOBlocking.h>                    // Sample low-level I/O implementation
-#include <AK/SoundEngine/Common/AkSoundEngine.h>                // Sound engine
-#include <AK/MusicEngine/Common/AkMusicEngine.h>                // Music Engine
+#include <AK/SoundEngine/Common/AkSoundEngine.h>
 #include <AK/SoundEngine/Common/AkTypes.h>
+#include <AK/IBytes.h>
+#include <AK/SoundEngine/Common/AkMemoryMgr.h>
+#include <AK/SoundEngine/Common/AkModule.h>
+#include <AK/SoundEngine/Common/IAkStreamMgr.h>
+#include <AK/Tools/Common/AkPlatformFuncs.h>
+#include <AkFilePackageLowLevelIOBlocking.h>
+#include <AK/MusicEngine/Common/AkMusicEngine.h>
 
 #include <AkSoundEngineDLL.h>
 
@@ -107,6 +108,9 @@ public:
     virtual bool LoadSpeakersXML();
     virtual bool InitBanks();
 
+    void DrawImgui();
+
+protected:
     AkGameObjectID m_LastGameObjectID; // note: only > 0
     std::vector<AkGameObjectID> m_FreeObjectsIDs;
 
@@ -119,8 +123,6 @@ public:
     std::string m_SpeakersFilename;
 
     virtual void SetListenerPosition(CCameraController *camera);
-
-protected:
 
 };
 
