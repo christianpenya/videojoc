@@ -9,9 +9,10 @@
 #include "Input/InputManager.h"
 #include "XML/XML.h"
 #include "Graphics/Mesh/TemplatedGeometry.h"
+#include "GUIPosition.h"
 
 
-CGUIManager::CGUIManager()
+CGUIManager::CGUIManager(): m_MouseX(0), m_MouseY(0)
 {
     m_ActiveItem = "";
     m_HotItem = "";
@@ -92,6 +93,7 @@ bool CGUIManager::Load(std::string _FileName)
     SpriteMapInfo l_spriteMapinfo;
     float u1, u2, v1, v2, w, h;
     SpriteInfo l_sprite;
+
     if (base::xml::SucceedLoad(error))
     {
         CXMLElement * lGUI_Elements = document.FirstChildElement("gui_elements");
@@ -111,9 +113,14 @@ bool CGUIManager::Load(std::string _FileName)
                     {
                         if (strcmp(iSubElement->Name(), "material"))
                         {
+                            VertexTypes::SpriteVertex spriteVertex[1] =
+                            {
+                                { Vect3f(0.f, 0.f, 0.f), Vect2f(0.f, 0.f), CColor(Vect4f(0.f, 0.f, 0.f, 0.f)) }
+
+                            };
                             m_Materials.push_back(new CMaterial(iSubElement));
                             m_VertexBuffers.push_back( CGeometryTriangleList<VertexTypes::SpriteVertex>(
-                                                           new CVertexBuffer<VertexTypes::SpriteVertex>(aRM, nullptr, MAX_VERTICES_PER_CALL)
+                                                           new CVertexBuffer<VertexTypes::SpriteVertex>(aRM,spriteVertex, MAX_VERTICES_PER_CALL)
                                                        )
                                                      );
                         }

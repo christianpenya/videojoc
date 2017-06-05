@@ -21,7 +21,7 @@
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
 #include "GUI/GUIManager.h"
-
+#include "GUI/GUIPosition.h"
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
 #endif
@@ -150,8 +150,9 @@ void CEngine::LoadFiles()
     LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
 
     m_GUIManager = new CGUIManager();
-    m_ParticleManager->Load(m_FileGUIManager);
-    LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
+    /* m_GUIManager->Load("data/gui.xml");
+     LOG_INFO_APPLICATION("Engine -> GUI Loaded! \\(^-^)/");
+    */ //Entrega
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
@@ -243,6 +244,10 @@ void CEngine::Update()
     m_RenderManager->Update();
     m_SceneManager->Update(m_DeltaTime);
     m_CinematicManager->Update(m_DeltaTime);
+
+
+    // ReSharper disable once CppMsExtBindingRValueToLvalueReference
+    //Entrega m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, m_RenderManager->GetWindowSize().x, m_RenderManager->GetWindowSize().y));
 }
 
 void CEngine::Render()

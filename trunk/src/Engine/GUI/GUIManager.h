@@ -1,3 +1,4 @@
+#pragma once
 #ifndef H_GUI_MANAGER_H
 #define H_GUI_MANAGER_H
 
@@ -8,18 +9,14 @@
 #include <map>
 #include <unordered_map>
 #include "Graphics/Mesh/VertexTypes.h"
-#include "Engine\Engine.h"
-#include "Math\Color.h"
-#include "Utils\Defines.h"
+#include "Engine/Engine.h"
+#include "Math/Color.h"
+#include "Utils/Defines.h"
 #include "Graphics/Mesh/TemplatedGeometry.h"
-
-
+//#include"GUIPosition.h"
+#include "Button.h"
+#include "Graphics/Materials/Material.h"
 class CGUIPosition;
-class CButon;
-
-class CMaterial;
-class CRenderManager;
-
 struct SpriteMapInfo
 {
     int MaterialIndex;
@@ -124,7 +121,7 @@ public:
         float real;
         float temp;
     };
-    SliderResult DoSlider(const std::string& guiID, const std::string& sliderID, const CGUIPosition& position, float minValue, float maxValue, float currentValue);
+    // SliderResult DoSlider(const std::string& guiID, const std::string& sliderID, const CGUIPosition& position, float minValue, float maxValue, float currentValue);
 
 
     GET_SET(bool, InputUpToDate);

@@ -25,6 +25,8 @@
 #include "UnSetRenderTarget.h"
 #include "ApplyFilter.h"
 #include "GenerateShadowMaps.h"
+#include"GUI/GUIManager.h"
+#include"GUI/GUIPosition.h"
 
 #define RENDER_CMD_ENTRY(tag, command_class_name)  { tag, [] { return new  command_class_name();}},
 std::map<std::string, std::function<CRenderCmd*(void)>> sComandsFactory =
@@ -113,6 +115,7 @@ void CRenderPipeline::Execute()
 
     for (size_t i = 0; i < GetCount(); ++i)
         m_ResourcesVector[i]->Execute(lRenderManager);
+
 }
 
 void CRenderPipeline::Reload()

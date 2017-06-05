@@ -1,9 +1,10 @@
+#pragma once
 #ifndef H_BUTON_H
 #define H_BUTON_H
 
-#include "Utils\Defines.h"
+#include <Utils\Defines.h>
 
-class SpriteInfo;
+struct SpriteInfo;
 
 class CButon
 {

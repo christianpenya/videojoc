@@ -1,11 +1,11 @@
+
 #ifndef H_GUI_POSITION_H
 #define H_GUI_POSITION_H
 
-#include "Utils\Defines.h"
+#include <Utils/Defines.h>
 #include "GUIManager.h"
 
 struct SpriteInfo;
-
 class CGUIPosition
 {
 private:
