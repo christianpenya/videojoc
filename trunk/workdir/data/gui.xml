@@ -1,8 +1,9 @@
 <gui_elements>
 	<gui_spritemap name="gui1" width="512" height="512">
 	
-		<material name="gui1" vertex_type="spritevertex">
+		<material name="gui1" vertex_type="SpriteVertex">
 			<texture filename="data/gui/demo.jpg"/>
+			<parameter type="color" name="diffuse_color" value="0.0 0.0 0.0 1.0" />
 		</material>
 
 		<sprite name="teula" x="0" y="1" w="512" h="170"/>

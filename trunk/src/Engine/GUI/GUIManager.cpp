@@ -151,6 +151,71 @@ bool CGUIManager::Load(std::string _FileName)
                     //TODO
                     //m_Sliders[iElement->GetAttribute<std::string>("name", "")] = new Slider();
                 }
+                else if (iElement->Name() == std::string("font"))
+                {
+                    std::string l_FontName = iElement->GetAttribute<std::string>("name","");
+                    std::string l_FileName = iElement->GetAttribute<std::string>("path","");
+
+                    CXMLDocument document2;
+                    EXMLParseError error2 = document2.LoadFile(m_FileName.c_str());
+                    if (base::xml::SucceedLoad(error2))
+                    {
+
+                        CXMLElement* iElement2 = document2.FirstChildElement("font");
+                        CXMLElement* iElement2Aux;
+                        CXMLElement* iElement2Aux2;
+
+                        if (iElement2!=NULL)
+                        {
+                            iElement2Aux = iElement2->FirstChildElement();
+                            while (iElement2Aux != NULL)
+                            {
+                                if (iElement2Aux->Name() == std::string("common"))
+                                {
+                                    m_LineHeightPerFont[l_FontName] = iElement2Aux->GetAttribute("lineHeight",0);
+                                    m_BasePerFont[l_FontName] = iElement2Aux->GetAttribute("base",0);
+                                }
+                                else if (iElement2Aux->Name() == std::string("pages"))
+                                {
+                                    iElement2Aux2 = iElement2Aux->FirstChildElement();
+                                    while (iElement2Aux2!=NULL)
+                                    {
+                                        if (iElement2Aux2->Name() == std::string("page"))
+                                            m_TexturePerFont[l_FontName].push_back(&m_Sprites[iElement2Aux2->GetAttribute<std::string>("file","")]);
+                                        iElement2Aux2 = iElement2Aux2->NextSiblingElement();
+                                    }
+                                }
+                                else if (iElement2Aux->Name() == std::string("chars"))
+                                {
+                                    iElement2Aux2 = iElement2Aux->FirstChildElement();
+                                    while (iElement2Aux2 != NULL)
+                                    {
+                                        if (iElement2Aux2->Name() == std::string("char"))
+                                        {
+                                            FontChar l_FontChar = { iElement2Aux2->GetAttribute("x", 0), iElement2Aux2->GetAttribute("y", 0), iElement2Aux2->GetAttribute("width", 0), iElement2Aux2->GetAttribute("height",0),
+                                                                    iElement2Aux2->GetAttribute("xoffset",0), iElement2Aux2->GetAttribute("yoffset",0), iElement2Aux2->GetAttribute("xadvance",0), iElement2Aux2->GetAttribute("page",0), iElement2Aux2->GetAttribute("chnl",0)
+                                                                  };
+                                            m_CharactersPerFont[l_FontName][iElement2Aux2->GetAttribute("id",0)] = l_FontChar;
+                                        }
+                                        iElement2Aux2 = iElement2Aux2->NextSiblingElement();
+                                    }
+                                }
+                                else if (iElement2Aux->Name() == std::string("kernings"))
+                                {
+                                    iElement2Aux2 = iElement2Aux->FirstChildElement();
+                                    while (iElement2Aux2 != NULL)
+                                    {
+                                        if (iElement2Aux2->Name() == std::string("kerning"))
+                                            m_KerningsPerFont[l_FontName][iElement2Aux2->GetAttribute("first",0)][iElement2Aux2->GetAttribute("second",0)] = iElement2Aux2->GetAttribute("second",0);
+                                        iElement2Aux2 = iElement2Aux2->NextSiblingElement();
+                                    }
+                                }
+                                iElement2Aux = iElement2Aux->NextSiblingElement();
+                            }
+
+                        }
+                    }
+                }
 
             }
 
@@ -294,6 +359,127 @@ void CGUIManager::Render(CRenderManager *RenderManager)
     m_InputUpToDate = false;
 }
 
+int CGUIManager::FillCommandQueueWithTextAux(const std::string& _font, const std::string& _text, const CColor& _color, Vect4f *textBox_)
+{
+    Vect4f dummy;
+    if (textBox_ == nullptr) textBox_ = &dummy;
+
+    *textBox_ = Vect4f(0, 0, 0, 0);
+
+    /*
+     *assert(m_LineHeightPerFont.find(_font) != m_LineHeightPerFont.end());
+    assert(m_BasePerFont.find(_font) != m_BasePerFont.end());
+    assert(m_CharactersPerFont.find(_font) != m_CharactersPerFont.end());
+    assert(m_KerningsPerFont.find(_font) != m_KerningsPerFont.end());
+    assert(m_TexturePerFont.find(_font) != m_TexturePerFont.end());
+    */
+
+    int lineHeight = m_LineHeightPerFont[_font];
+    int base = m_BasePerFont[_font];
+    const std::unordered_map< wchar_t, FontChar > &l_CharacterMap = m_CharactersPerFont[_font];
+    const std::unordered_map< wchar_t, std::unordered_map< wchar_t, int>> &l_Kernings = m_KerningsPerFont[_font];
+    const std::vector<SpriteInfo*> &l_TextureArray = m_TexturePerFont[_font];
+
+    wchar_t last = 0;
+
+    int cursorX = 0, cursorY = 0;
+
+    float spritewidth = (float)l_TextureArray[0]->SpriteMap->w;
+    float spriteHeight = (float)l_TextureArray[0]->SpriteMap->h;
+
+    int addedCommands = 0;
+
+    for (char c : _text)
+    {
+        if (c == '\n')
+        {
+            cursorY += lineHeight;
+            cursorX = 0;
+            last = 0;
+        }
+        else
+        {
+            auto it = l_CharacterMap.find((wchar_t)c);
+            if (it != l_CharacterMap.end())
+            {
+                const FontChar &fontChar = it->second;
+                auto it1 = l_Kernings.find(last);
+                if (it1 != l_Kernings.end())
+                {
+                    auto it2 = it1->second.find(c);
+                    if (it2 != it1->second.end())
+                    {
+                        int kerning = it2->second;
+                        cursorX += kerning;
+                    }
+                }
+                GUICommand command = {};
+                command.sprite = l_TextureArray[fontChar.page];
+                command.x1 = cursorX + fontChar.xoffset;
+                command.x2 = command.x1 + fontChar.width;
+                command.y1 = cursorY - base + fontChar.yoffset;
+                command.y2 = command.y1 + fontChar.height;
+
+                command.u1 = (float)fontChar.x / spritewidth;
+                command.u2 = (float)(fontChar.x + fontChar.width) / spritewidth;
+                command.v1 = (float)fontChar.y / spriteHeight;
+                command.v2 = (float)(fontChar.y + fontChar.height) / spriteHeight;
+
+                command.color = _color;
+
+                m_Commands.push_back(command);
+                ++addedCommands;
+
+                last = c;
+                cursorX += fontChar.xadvance;
+
+                if (command.x1 < textBox_->x) textBox_->x = (float)command.x1;
+                if (command.y1 < textBox_->y) textBox_->y = (float)command.y1;
+                if (command.x2 > textBox_->z) textBox_->z = (float)command.x2;
+                if (command.y2 > textBox_->w) textBox_->w = (float)command.y2;
+            }
+        }
+    }
+
+    return addedCommands;
+}
+
+void CGUIManager::FillCommandQueueWithText(const std::string& _font, const std::string& _text,
+        Vect2f _coord, GUIAnchor _anchor, const CColor& _color)
+{
+    Vect4f textSizes;
+
+    int numCommands = FillCommandQueueWithTextAux(_font, _text, _color, &textSizes);
+    Vect2f adjustment = _coord;
+
+    if ((int)_anchor & (int)GUIAnchor::TOP)
+        adjustment.y -= textSizes.y;
+    else if ((int)_anchor & (int)GUIAnchor::MID)
+        adjustment.y -= (textSizes.y + textSizes.w) * 0.5f;
+    else if ((int)_anchor & (int)GUIAnchor::BOTTOM)
+        adjustment.y -= textSizes.w;
+    else
+        assert(false);
+
+    if ((int)_anchor & (int)GUIAnchor::LEFT)
+        adjustment.x -= textSizes.x;
+    else if ((int)_anchor & (int)GUIAnchor::CENTER)
+        adjustment.x -= (textSizes.x + textSizes.z) * 0.5f;
+    else if ((int)_anchor & (int)GUIAnchor::RIGHT)
+        adjustment.x -= textSizes.z;
+    else
+        assert(false);
+
+    for (size_t i = m_Commands.size() - numCommands; i < m_Commands.size(); ++i)
+    {
+        m_Commands[i].x1 += (int)adjustment.x;
+        m_Commands[i].x2 += (int)adjustment.x;
+        m_Commands[i].y1 += (int)adjustment.y;
+        m_Commands[i].y2 += (int)adjustment.y;
+    }
+}
+
+
 bool CGUIManager::DoButton(const std::string& guiID, const std::string& buttonID,  CGUIPosition& position)
 {
     SpriteInfo* l_sprite;
@@ -342,3 +528,60 @@ bool CGUIManager::DoButton(const std::string& guiID, const std::string& buttonID
     return l_result;
 }
 
+std::string CGUIManager::DoTextBox(const std::string& guiID, const std::string& _font, const std::string& currentText, CGUIPosition position)
+{
+    CheckInput();
+
+    if (IsMouseInside(m_MouseX, m_MouseY, position.Getx(), position.Gety(), position.Getwidth(), position.Getheight()))
+        SetHot(guiID);
+    else
+        SetNotHot(guiID);
+
+    if (m_ActiveItem == guiID)
+    {
+        if (m_MouseWentReleased)
+        {
+            if (m_HotItem == guiID)
+            {
+                SetSelected(guiID);
+            }
+            SetNotActive();
+        }
+    }
+    else if (m_HotItem == guiID)
+    {
+        if (m_MouseWentPressed)
+            SetActive(guiID);
+    }
+
+    std::string displayText;
+    std::string activeText = currentText;
+
+    if (guiID == m_SelectedItem)
+    {
+        //CKeyboardInput* l_KeyBoard = CEngine::GetInstance()->GetInputManager()->GetKeyBoard();
+        /*
+         *  if (l_KeyBoard->isConsumible())
+         {
+         wchar_t lastChar = l_KeyBoard->ConsumeLastChar();
+         if (lastChar >= 0x20 && lastChar < 255)
+         {
+         activeText += (char)lastChar;
+         }
+         else if (lastChar == '\r')
+         {
+         activeText += '\n';
+         }
+         else if (lastChar == '\b')
+         {
+         if (activeText.length() > 2)
+         activeText = activeText.substr(0, activeText.length() - 1);
+         }
+         }
+         }
+
+         FillCommandQueueWithText(_font, activeText, Vect2f(position.Getx() + position.Getwidth() * 0.05f,
+         position.Gety() + position.Getheight() * 0.75f));*/
+        return activeText;
+    }
+}

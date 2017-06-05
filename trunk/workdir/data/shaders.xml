@@ -39,6 +39,7 @@
 		<shader name="Skybox" file="Skybox.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor=""/>
 		<shader name="Quad" file="Quad.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
 		<shader name="DeferredQuad" file="Deferred/DeferredShading.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
+		<shader name="GUI" file="guiShader.fx" entry_point="VS" preprocessor=""/>
 		
 	</vertex_shaders>     
 
@@ -96,6 +97,7 @@
 		<shader name="Skybox" file="Skybox.fx" entry_point="PS"  preprocessor=""/>
 		<shader name="Quad" file="Quad.fx" entry_point="PS" preprocessor=""/>
 		<shader name="DeferredQuad" file="Deferred/DeferredShading.fx" entry_point="PS" preprocessor=""/>
+		<shader name="GUI" file="guiShader.fx" entry_point="PS" preprocessor=""/>
 	</pixel_shaders>
 	
 	<!--GEOMETRY SHADERS-->  

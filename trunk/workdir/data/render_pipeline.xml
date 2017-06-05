@@ -189,7 +189,8 @@
 
 	<render_gui/>
 		-->
-	
+		<apply_technique_pool pool_name="post_process"/>
+		<render_gui/>
 	<render_imgui name="imediate_gui_render"/>
 	<end_render name="end_render_main_loop"/>
 </render_pipeline>

@@ -150,9 +150,9 @@ void CEngine::LoadFiles()
     LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
 
     m_GUIManager = new CGUIManager();
-    /* m_GUIManager->Load("data/gui.xml");
-     LOG_INFO_APPLICATION("Engine -> GUI Loaded! \\(^-^)/");
-    */ //Entrega
+    m_GUIManager->Load("data/gui.xml");
+    LOG_INFO_APPLICATION("Engine -> GUI Loaded! \\(^-^)/");
+
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
@@ -247,7 +247,7 @@ void CEngine::Update()
 
 
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
-    //Entrega m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, m_RenderManager->GetWindowSize().x, m_RenderManager->GetWindowSize().y));
+    m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, m_RenderManager->GetWindowSize().x, m_RenderManager->GetWindowSize().y));
 }
 
 void CEngine::Render()

@@ -139,6 +139,11 @@
    <shader stage="vertex"   name="DeferredQuad"/>
    <shader stage="pixel"    name="DeferredQuad"/>
   </effect>
+  
+    <effect name="GUITechnique" shader_family="GUI">
+   <shader stage="vertex"   name="GUI"/>
+   <shader stage="pixel"    name="GUI"/>
+  </effect>
     
  </effects>
  

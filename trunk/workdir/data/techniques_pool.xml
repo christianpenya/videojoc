@@ -18,10 +18,12 @@
 		<technique name="BloomCombine" />
 		<technique name="Gaussian" />
 		<technique name="Hdao" />
+		
 		<technique name="ColorGrading" />
 		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique" />
 		<!--<technique vertex_type="EnvironmentMap" />-->
 		<technique name="SSR" />
+		<technique name="GUI"/>
 		<technique name="Mascara" />
 		
   </default_pool>
@@ -83,6 +85,7 @@
 		<technique name="ColorGrading" effect="ColorGradingTechnique" />
 		<technique name="ParticleVertex" effect="ParticleVertexTechnique" />
 		<technique name="SSR" effect="SSRTechnique" />
+		<technique name="GUI" effect="GUITechnique"/>
 		<technique name="Mascara" effect="MascaraTechnique" />
 	</pool>
 	
@@ -94,5 +97,7 @@
 		<technique vertex_type="Quad" effect="QuadTechnique"/>
 		<technique vertex_type="DeferredQuad" effect="DeferredQuadTechnique"/>
 	</pool>
+	
+
 	
 </technique_pools>
