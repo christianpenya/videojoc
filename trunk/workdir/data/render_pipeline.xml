@@ -186,8 +186,9 @@
 	<draw_quad name="Tst4" material="DrawQuadMaterial" viewport_position = "129 129" viewport_size = "128 128">
         <texture name="DepthMapTexture" stage_id="0"/>
     </draw_quad>
-	-->
-	
+
+	<render_gui/>
+		-->
 	
 	<render_imgui name="imediate_gui_render"/>
 	<end_render name="end_render_main_loop"/>
