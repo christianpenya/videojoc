@@ -57,7 +57,8 @@ bool CTexture::Load()
 
                 D3D11_SAMPLER_DESC l_SampDesc;
                 ZeroMemory(&l_SampDesc, sizeof(l_SampDesc));
-                l_SampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+                l_SampDesc.Filter = D3D11_FILTER_ANISOTROPIC;
+                l_SampDesc.MaxAnisotropy = 16;
                 l_SampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
                 l_SampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
                 l_SampDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
