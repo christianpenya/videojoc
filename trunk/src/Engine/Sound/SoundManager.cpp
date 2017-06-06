@@ -9,7 +9,13 @@ CSoundManager::CSoundManager()
 {
     m_LastGameObjectID = 1;
 }
-CSoundManager::~CSoundManager() {}
+CSoundManager::~CSoundManager()
+{
+    Terminate();
+    m_FreeObjectsIDs.clear();
+    m_NamedSpeakers.clear();
+    m_GameObjectSpeakers.clear();
+}
 
 ISoundManager* ISoundManager::InstantiateSoundManager()
 {

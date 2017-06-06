@@ -57,7 +57,11 @@ public:
     void Render();
     void Init(HWND hWnd);
     void LoadFiles();
+
     std::string m_FileDefaultMaterial;
+    std::string m_SoundFilesPath;
+    std::string m_SpeakersFile;
+    std::string m_BanksFile;
 
     BUILD_GET_SET_ENGINE_MANAGER(MaterialManager)
     BUILD_GET_SET_ENGINE_MANAGER(TextureManager)

@@ -19,6 +19,27 @@ f_SceneManager = "data/scenes.xml"
 f_ActionManager = "data/config/input_config.xml"
 f_RenderPipeline = "data/render_pipeline.xml"
 f_ParticleManager = "data/particles.xml"
+f_ParticleManager = "data/particles.xml"
+f_CinematicsManager = "data/cinematics.xml";
+f_SoundPath = "data/sound/";
+f_SoundBankFile = "SoundbanksInfo.xml";
+f_SpeakersFile = "speakers.xml";
+
+function getFileCinematicManager()
+	return f_CinematicsManager
+end
+
+function getSoundFilesPath()
+	return f_SoundPath
+end
+
+function getSoundSpeakersFile()
+	return f_SpeakersFile
+end
+
+function getSoundBankFile()
+	return f_SoundBankFile
+end
 
 function getFileShaderManager()
 	return f_ShaderManager

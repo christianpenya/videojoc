@@ -83,6 +83,7 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_ActionManager);
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
+    base::utils::CheckedDelete(m_SoundManager);
 
     base::utils::CheckedDelete(m_FreeCam);
     base::utils::CheckedDelete(m_FpsCam);
@@ -144,16 +145,15 @@ void CEngine::LoadFiles()
     LOG_INFO_APPLICATION("Engine -> Scenes Loaded! \\(^-^)/");
 
     m_CinematicManager = new CCinematicManager;
-    m_CinematicManager->Load("data/cinematics.xml");
+    m_CinematicManager->Load(m_FileCinematicManager);
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
     //m_SoundManager = new CSoundManager();
 
     m_SoundManager = ISoundManager::InstantiateSoundManager();
-    //m_SoundManager->SetPath("C:\\Users\\christian\\Desktop\\videojoc\\trunk\\workdir\\data\\sound\\");
-    m_SoundManager->SetPath("data/sound/");
+    m_SoundManager->SetPath(m_SoundFilesPath);
     m_SoundManager->Init();
-    m_SoundManager->Load("SoundbanksInfo.xml", "speakers.xml");
+    m_SoundManager->Load(m_BanksFile, m_SpeakersFile);
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
@@ -186,6 +186,11 @@ void CEngine::Init(HWND hWnd)
         m_FileActionManager = call_function<std::string>(mLS, "getActionManager");
         m_FileRenderPipeline = call_function<std::string>(mLS, "getRenderPipeline");
         m_FileParticleManager = call_function<std::string>(mLS, "getFileParticleManager");
+        m_FileCinematicManager = call_function<std::string>(mLS, "getFileCinematicManager");
+        m_SoundFilesPath = call_function<std::string>(mLS, "getSoundFilesPath");
+        m_SpeakersFile = call_function<std::string>(mLS, "getSoundSpeakersFile");
+        m_BanksFile = call_function<std::string>(mLS, "getSoundBankFile");
+
         LOG_INFO_APPLICATION("Engine -> Lua Finished! (/.__.)/ \\(.__.\\)");
 
         LoadFiles();
