@@ -44,7 +44,7 @@ void CSetPerFrameConstantsCmd::UpdateConstants()
         lConstanBufferManager.mFrameDesc.m_CameraInfo = lCC.GetCameraInfo();
 
         lConstanBufferManager.mFrameDesc.m_TimeSeconds.x = std::clock();
-        lConstanBufferManager.mFrameDesc.m_CameraPositionInScreen = lCC.GetPositionInScreenCoordinates(lCC.getPosition());
+        lConstanBufferManager.mFrameDesc.m_CameraPositionInScreen = lCC.GetPositionInScreenCoordinates(lCC.GetPosition());
 
         lConstanBufferManager.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Frame);
     }

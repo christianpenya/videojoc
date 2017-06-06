@@ -20,7 +20,8 @@
 #include "Graphics/Cinematics\CinematicsManager.h"
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
-//#include "Graphics/Mesh/NavMeshManager.h"#include "Sound/ISoundManager.h"
+//#include "Graphics/Mesh/NavMeshManager.h"
+#include "Sound/ISoundManager.h"
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
 #endif
@@ -83,7 +84,7 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_ActionManager);
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
-	base::utils::CheckedDelete(m_SoundManager);//  base::utils::CheckedDelete(m_NavMeshManager);
+    base::utils::CheckedDelete(m_SoundManager);//  base::utils::CheckedDelete(m_NavMeshManager);
     base::utils::CheckedDelete(m_FreeCam);
     base::utils::CheckedDelete(m_FpsCam);
     base::utils::CheckedDelete(m_OrbitalCam);
@@ -147,8 +148,8 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load(m_FileCinematicManager);
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
- 	/*    
-		m_NavMeshManager = new CNavMeshManager;
+    /*
+    	m_NavMeshManager = new CNavMeshManager;
         m_NavMeshManager->Load("data/navMesh.xml");
         LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
     */    m_SoundManager = ISoundManager::InstantiateSoundManager();

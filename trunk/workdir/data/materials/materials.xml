@@ -1,7 +1,4 @@
 <materials >
-
-		<parameter type="float" name="ratio_y" value="1.0" />	</material>
-
 	
 	POSTER
 	<material name="07 - poster" vertex_type="PositionNormalUV" >
@@ -100,7 +97,5 @@
 	<material name="negro" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.137255 0.137255 0.137255 1.0 " />
 	</material>
-	
-	
 	
 </materials>
