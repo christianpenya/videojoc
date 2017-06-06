@@ -1,23 +1,7 @@
 <materials >
 
-	DECALS
-	<material name="08 - Default" vertex_type="PositionNormalUV" >
-		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
-		<texture type="diffuse" filename="data\textures\TexturesCom_DecalsPatches2015_1_alphamasked_S.png" />
-		<parameter type="float" name="diffuse" value="100.0" />
-	</material>
+		<parameter type="float" name="ratio_y" value="1.0" />	</material>
 
-	TUBERÍAS
-	<material name="Material #309" vertex_type="PositionNormalUV" >
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<texture type="diffuse" filename="data\textures\metal.jpg" />
-		<parameter type="float" name="diffuse" value="100.0" />
-	</material>
-	<material name="Material #310" vertex_type="PositionNormalUV" >
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<texture type="diffuse" filename="data\textures\TexturesCom_MetalVarious0044_1_alphamasked_S.png" />
-		<parameter type="float" name="diffuse" value="100.0" />
-	</material>
 	
 	POSTER
 	<material name="07 - poster" vertex_type="PositionNormalUV" >

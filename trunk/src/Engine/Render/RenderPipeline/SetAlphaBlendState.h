@@ -50,11 +50,6 @@ Begin_Enum_String(D3D11_BLEND)
     Enum_String_Id(D3D11_BLEND::D3D11_BLEND_INV_SRC1_COLOR, "InvSrc1Color");
     Enum_String_Id(D3D11_BLEND::D3D11_BLEND_SRC1_ALPHA, "Src1Alpha");
     Enum_String_Id(D3D11_BLEND::D3D11_BLEND_INV_SRC1_ALPHA, "InvSrc1Alpha");
-
-
-
-
-
 }
 End_Enum_String;
 

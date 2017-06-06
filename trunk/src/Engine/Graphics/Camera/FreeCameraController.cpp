@@ -2,9 +2,13 @@
 #include "Input/ActionManager.h"
 #include "Engine/Engine.h"
 #include "Utils/Logger.h"
+#include "ImGUI\imgui.h"
 
 void CFreeCameraController::Update(float ElapsedTime)
 {
+    if (ImGui::GetIO().WantCaptureMouse)
+        return;
+
     CCameraController::Update(ElapsedTime);
     CActionManager* actionManager = &CEngine::GetInstance().GetActionManager();
     center = CEngine::GetInstance().GetRenderManager().m_SphereOffset;

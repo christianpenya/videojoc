@@ -93,6 +93,17 @@
 	</material>
 
 	<material name="MascaraMaterial" vertex_type="Mascara" />
+
+	<material name="LightScatteringMaterial" vertex_type="LightScattering">
+		<parameter type="float" name="active" value="1.0"/>
+		<parameter type="float" name="exposure" value="0.082"/>
+		<parameter type="float" name="decay" value="0.945"/>
+		<parameter type="float" name="density" value="0.89"/>
+		<parameter type="float" name="weight" value="1.0"/>
+		<parameter type="float" name="num_samples" value="20"/>
+		<parameter type="float2" name="light_position" value="0.5 0.5"/>
+	</material>
+
 	
 </materials>
  

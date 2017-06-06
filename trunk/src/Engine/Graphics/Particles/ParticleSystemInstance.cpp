@@ -224,8 +224,8 @@ void CParticleSystemInstance::orderParticles(ParticleData arr[], int length)
     for (i = 1; i < length; ++i)
     {
         j = i;
-        //while (j > 0 && arr[j-1].DistanceToCamera < arr[j].DistanceToCamera) //orden descendente
-        while (j > 0 && arr[j].DistanceToCamera < arr[j-1].DistanceToCamera) //orden ascendente
+        while (j > 0 && arr[j-1].DistanceToCamera < arr[j].DistanceToCamera) //orden descendente
+            //while (j > 0 && arr[j].DistanceToCamera < arr[j-1].DistanceToCamera) //orden ascendente
         {
             aux = arr[j];
             arr[j] = arr[j - 1];

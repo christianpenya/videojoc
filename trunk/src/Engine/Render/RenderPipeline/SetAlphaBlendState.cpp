@@ -97,14 +97,13 @@ void CSetAlphaBlendState::DrawImgui()
         const char* items[] = { "None","Zero", "One", "SrcColor", "InvSrcColor", "SrcAlpha", "InvSrcAlpha", "DestAlpha", "InvDestAlpha", "DestColor", "InvDestColor", "SrcAlphaSat", "None","None","BlendFactor", "InvBlendFactor", "Src1Color", "InvSrc1Color", "Src1Alpha", "InvSrc1Alpha"};
         ImGui::Combo("Src Blend", (int*)&m_SrcBlend, items, IM_ARRAYSIZE(items));
         ImGui::Combo("Dst Blend", (int*)&m_DestBlend, items, IM_ARRAYSIZE(items));
-        const char* items2[] = { "None", "add", "subtract", "revSubtract", "min", "SrcAlpha", "InvSrcAlpha", "DestAlpha", "InvDestAlpha", "DestColor", "InvDestColor", "SrcAlphaSat", "None", "None", "BlendFactor", "InvBlendFactor", "Src1Color", "InvSrc1Color", "Src1Alpha", "InvSrc1Alpha" };
+        const char* items2[] = { "None", "add", "subtract", "revSubtract", "min" };
         ImGui::Combo("Blend Op", (int*)&m_BlendOp, items2, IM_ARRAYSIZE(items2));
         ImGui::Combo("Src Blend Alpha", (int*)&m_SrcBlendAlpha, items, IM_ARRAYSIZE(items));
         ImGui::Combo("Dst Blend Alpha", (int*)&m_DestBlendAlpha, items, IM_ARRAYSIZE(items));
         ImGui::Combo("Blend Op Alpha", (int*)&m_BlendOpAlpha, items2, IM_ARRAYSIZE(items2));
         const char* items3[] = { "None", "red", "green", "None", "blue", "None", "None", "None", "alpha", "None", "None", "None", "None", "None", "None", "all" };
         ImGui::Combo("Render Target Write Mask", (int*)&m_render_target_write_mask, items3, IM_ARRAYSIZE(items3));
-
     }
 
 }

@@ -20,6 +20,7 @@
 		<technique name="Gaussian" />
 		<technique name="Hdao" />
 		<technique name="ColorGrading" />
+		<technique name="LightScattering"/>
 		<!--<technique vertex_type="EnvironmentMap" />-->
 		<technique name="SSR" />
 		<technique name="Mascara" />
@@ -90,6 +91,7 @@
 		<technique name="ColorGrading" effect="ColorGradingTechnique" />
 		<technique name="SSR" effect="SSRTechnique" />
 		<technique name="Mascara" effect="MascaraTechnique" />
+		<technique name="LightScattering" effect="LightScatteringTechnique" />
 	</pool>
 	
 	<pool name="skybox">

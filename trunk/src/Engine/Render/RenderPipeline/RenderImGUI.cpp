@@ -16,7 +16,6 @@
 
 CRenderImGUI::CRenderImGUI() {}
 CRenderImGUI::~CRenderImGUI() {}
-
 bool CRenderImGUI::Load(const CXMLElement* aElement)
 {
     return CRenderCmd::Load(aElement);
