@@ -15,11 +15,11 @@ CDirectionalLight::~CDirectionalLight() {}
 void CDirectionalLight::SetShadowMap(CRenderManager &RM)
 {
     m_ViewShadowMap.SetIdentity();
-    m_ViewShadowMap.SetFromLookAt(m_Position, m_Position + m_PrevPos, v3fY);
+    m_ViewShadowMap.SetFromLookAt(m_Position, m_Position + GetForward(), v3fY);
     unsigned int l_ShadowMapWidth = m_pShadowMap->GetSize().x;
     unsigned int l_ShadowMapHeight = m_pShadowMap->GetSize().y;
-    m_ProjectionShadowMap.SetFromOrtho(m_OrthoShadowMapSize.x, m_OrthoShadowMapSize.y,
-                                       0.1f, m_RangeAttenuation.y);
+    // TODO near de la luz hardcodeado
+    m_ProjectionShadowMap.SetFromOrtho(m_OrthoShadowMapSize.x, m_OrthoShadowMapSize.y, 0.1f, m_RangeAttenuation.y);
 
     CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
     RM.SetViewProjectionMatrix(m_ViewShadowMap, m_ProjectionShadowMap);
@@ -42,4 +42,10 @@ void CDirectionalLight::SetShadowMap(CRenderManager &RM)
     m_viewport.TopLeftY = 0.0f;
     RM.GetDeviceContext()->RSSetViewports(1, &m_viewport);
     RM.SetRenderTargets(1, l_RenderTargetViews, m_pShadowMap->GetDepthStencilView());
+}
+
+void CDirectionalLight::Initialize(CXMLElement* aElement)
+{
+    m_OrthoShadowMapSize = aElement->GetAttribute<Vect2f>("ortho_shadow_map_size", Vect2f(30.0f, 40.0f));
+    CLight::Initialize(aElement);
 }

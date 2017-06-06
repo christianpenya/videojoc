@@ -363,6 +363,9 @@
     <ClInclude Include="..\..\src\Engine\Scripts\lua_utils.h">
       <Filter>Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Sound\ISoundManager.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Sound\SoundManager.h">
       <Filter>Sound</Filter>
     </ClInclude>

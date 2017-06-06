@@ -1,0 +1,84 @@
+<scene >
+	
+	<layer name="opaque" active="true" >
+		tuberia\d{3}.mesh
+		SALA0
+		<scene_mesh name="sala0" mesh="data/meshes/reclusion/sala0.mesh">
+			<transform position="0.840901 3.20359 -1.46628" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cama" mesh="data/meshes/reclusion/cama.mesh">
+			<transform position="3.47903 3.61838 -1.13012" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="poster_joy" mesh="data/meshes/reclusion/poster_joy.mesh">
+			<transform position="4.0964 5.28104 -1.22036" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>	
+		<scene_mesh name="luz010" mesh="data/meshes/reclusion/luz.mesh" >
+			<transform position="0.864574 5.77846 0.701807" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="tuberia015" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.28864 3.95728 -1.21017" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="codo_tuberia003" mesh="data/meshes/reclusion/codo_tuberia.mesh" >
+			<transform position="-2.31739 4.80021 -1.21017" yaw="-0.382683" pitch="-0.92388" roll="0.0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="decallhumedadesquina" mesh="data/meshes/reclusion/decallhumedadesquina.mesh" >
+			<transform position="-1.93928 5.42975 -3.62341" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		SALA1
+		<scene_mesh name="sala1" mesh="data/meshes/reclusion/sala1.mesh" >
+			<transform position="0.840901 3.20359 -0.466283" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+
+		SALA2
+		<scene_mesh name="sala2" mesh="data/meshes/reclusion/sala2.mesh" >
+			<transform position="0.0 0.0 24.1714" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>	
+
+		SALA3
+		<scene_mesh name="sala3" mesh="data/meshes/reclusion/sala3.mesh" >
+			<transform position="7.66677 0.0 27.5317" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		SALA4
+		<scene_mesh name="sala4" mesh="data/meshes/reclusion/sala4.mesh" >
+			<transform position="18.8656 0.0 27.2178" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		SALA5
+		<scene_mesh name="sala5" mesh="data/meshes/reclusion/sala5.mesh" >
+			<transform position="36.2941 0.0 27.0982" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		SALA6
+		<scene_mesh name="sala6" mesh="data/meshes/reclusion/sala6.mesh" >
+			<transform position="48.7235 0.0 34.9913" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		SALA7
+		<scene_mesh name="sala7" mesh="data/meshes/reclusion/sala7.mesh" >
+			<transform position="32.3296 0.0 7.11373" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		SALA8
+		<scene_mesh name="sala8" mesh="data/meshes/reclusion/sala8.mesh" >
+			<transform position="40.9102 0.0 49.2461" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+
+		
+		
+	</layer>
+	
+	<layer name="lights" active="true" >
+		<scene_light name="FDirect001" id_light="0" />
+		<scene_light name="Fspot001" id_light="1" />
+	</layer>
+	
+	<layer name="Skybox" active="true">
+		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true">
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+	</layer>
+</scene>
+

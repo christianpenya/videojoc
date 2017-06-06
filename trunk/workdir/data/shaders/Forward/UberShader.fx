@@ -20,8 +20,6 @@
 	#endif
 #endif
 
-
-
 struct VS_INPUT
 {
 float3 Pos :
@@ -48,10 +46,7 @@ float3 Normal :
 		    BINORMAL;
 	#endif
 #endif
-
-
 };
-
 
 struct PS_INPUT
 {
@@ -135,7 +130,6 @@ PS_INPUT VS( VS_INPUT IN )
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
-	
 	float4 pixelColor = float4(m_RawData[0].xyz, 1.0);
     float3 l_LAmbient = m_LightAmbient.xyz;
 
@@ -170,12 +164,13 @@ float4 PS(PS_INPUT IN) : SV_Target
  	#endif
 	
 	l_LAmbient = l_LAmbient * pixelColor.xyz;
- 	for(int i = 0; i < MAX_LIGHTS_BY_SHADER; ++i)
+ 		
+	for(int i = 0; i < 1; ++i)
     {
         CalculateSingleLight(i, l_Normal, l_WorldPos, pixelColor.xyz,l_DiffuseTmp, l_SpecularTmp);
         l_LDiffuseSpecularTmp = l_DiffuseTmp + l_SpecularTmp;
         l_LDiffuseSpecular = l_LDiffuseSpecular + l_LDiffuseSpecularTmp;
-		
+
         l_DiffuseTmp =	float3(0.0, 0.0, 0.0);
         l_SpecularTmp =	float3(0.0, 0.0, 0.0);
     }

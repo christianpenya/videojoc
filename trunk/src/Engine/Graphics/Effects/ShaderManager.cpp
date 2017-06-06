@@ -93,8 +93,3 @@ CShader* CShaderManager::GetShader(CShader::EShaderStage aStage, const std::stri
     return m_Library[aStage](aShaderName);
 }
 
-std::vector<CShader*> CShaderManager::GetShaders(CShader::EShaderStage aStage)
-{
-    //TODO o eliminar
-    return {};
-}

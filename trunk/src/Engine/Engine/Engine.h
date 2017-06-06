@@ -33,8 +33,7 @@ class CAnimatedModelManager;
 class CScriptManager;
 class CPhysXManager;
 class CParticleManager;
-//class CNavMeshManager;
-
+class ISoundManager;//class CNavMeshManager;
 #define BUILD_GET_SET_ENGINE_MANAGER( Manager ) \
 private: \
 C##Manager* m_##Manager = nullptr; \
@@ -57,7 +56,11 @@ public:
     void Render();
     void Init(HWND hWnd);
     void LoadFiles();
+
     std::string m_FileDefaultMaterial;
+    std::string m_SoundFilesPath;
+    std::string m_SpeakersFile;
+    std::string m_BanksFile;
 
     BUILD_GET_SET_ENGINE_MANAGER(MaterialManager)
     BUILD_GET_SET_ENGINE_MANAGER(TextureManager)
@@ -80,6 +83,8 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(ParticleManager)
     //  BUILD_GET_SET_ENGINE_MANAGER(NavMeshManager)
 
+    ISoundManager* m_SoundManager;
+
     double m_DeltaTime;
     clock_t m_DeltaTimeAcum = 0;
     unsigned int m_Frames;
@@ -99,8 +104,10 @@ public:
 
     CCharacterController m_CharacterController;
     void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
+    void DrawImgui();
 };
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
 #endif //_ENGINE_ENGINE_CPB_20161127_H
+

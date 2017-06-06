@@ -17,13 +17,7 @@ CSceneNode::CSceneNode(const CXMLElement* aElement)
       CActive(aElement->GetAttribute<bool>("active", false)),
       m_Visible(false),
       m_NodeType(ESceneNodeType::eSceneNodeCount)
-{
-    /*if (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0)
-    {
-        tinyxml2::XMLElement const* iTransformNode = aElement->FirstChildElement();
-        //m_PrevPos = iTransformNode->GetAttribute<Vect3f>("forward", Vect3f(0.0f, 0.0f, 1.0f));
-    }*/
-}
+{}
 
 CSceneNode::~CSceneNode() {}
 

@@ -57,13 +57,13 @@
 	<pool name="shadows">
 		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique"/>
 		<technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>
-		<technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
-		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
-		<technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2TechniqueForward"/>
+		<technique vertex_type="PositionNormal" effect="PositionNormalShadowTechnique"/>
+		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVShadowTechnique"/>
+		<technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2ShadowTechnique"/>
 		<technique vertex_type="PositionBump" effect="PositionBumpTechniqueForward"/>
-		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueForward"/>
+		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVShadowTechnique"/>
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
-		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
+		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelShadowTechnique"/>
 		
 	</pool>
 	<!--

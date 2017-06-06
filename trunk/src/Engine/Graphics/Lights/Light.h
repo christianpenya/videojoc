@@ -24,6 +24,8 @@ public:
     CLight(CXMLElement* aElement);
     virtual ~CLight();
 
+    virtual void Initialize(CXMLElement* aElement);
+
     GET_SET(ELightType, LightType);
     GET_SET(std::string, Name);
     GET_SET(float, Intensity);

@@ -3,6 +3,13 @@
 #include "XML/XML.h"
 #include "Imgui/imgui.h"
 
+#ifdef _DEBUG
+#include "Utils/MemLeaks/MemLeaks.h"
+#endif
+
+#include <chrono>
+#include "Utils/Logger.h"
+
 CSceneManager::CSceneManager() {}
 CSceneManager::~CSceneManager()
 {
@@ -53,6 +60,23 @@ bool CSceneManager::Reload()
     return Load();
 }
 
+bool CSceneManager::Refresh()
+{
+    bool lOut = false;
+
+    for (TVectorResources::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
+    {
+        if ((*iScene)->GetActive())
+        {
+            LOG_INFO_APPLICATION(("Refresh layer " + (*iScene)->GetName() + std::to_string(clock())).c_str());
+            lOut = (*iScene)->Refresh();
+        }
+    }
+
+    base::utils::CTemplatedMapVector<CScene>::Clear();
+    return lOut;
+}
+
 void CSceneManager::Activate(const std::string& aScene, bool aBool)
 {
     m_ResourcesMap.find(aScene)->second.m_Value->SetActive(aBool);
@@ -92,12 +116,12 @@ bool CSceneManager::Load()
                     }
 
                     lScene->Load(lFilename);
-
                     lOk &= Add(lScene->GetName(), lScene);
                 }
             }
         }
     }
+
     return lOk;
 }
 
@@ -106,23 +130,26 @@ std::vector<CScene*> CSceneManager::GetScenes()
     return m_ResourcesVector;
 }
 
-
 void CSceneManager::DrawImgui()
 {
-    if (ImGui::CollapsingHeader("Scenes Manager", ImGuiWindowFlags_AlwaysAutoResize))
+    if (ImGui::CollapsingHeader("Scenes Manager"))
     {
         ImGui::BeginChild("#Scenes", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
         ImGui::PushItemWidth(-130);
-        for (TMapResources::iterator iSceneMapEntry = m_ResourcesMap.begin(); iSceneMapEntry != m_ResourcesMap.end(); ++iSceneMapEntry)
+
+        for (std::vector<CScene*>::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
         {
-            CScene* lScene = iSceneMapEntry->second.m_Value;
-            ImGui::PushID(iSceneMapEntry->second.m_Id);
-            if (ImGui::CollapsingHeader(lScene->GetName().c_str(), ImGuiWindowFlags_AlwaysAutoResize))
-                lScene->DrawImGui();
+            ImGui::PushID((*iScene)->GetName().c_str());
+
+            if (ImGui::CollapsingHeader((*iScene)->GetName().c_str()))
+            {
+                (*iScene)->DrawImGui();
+            }
+
             ImGui::PopID();
         }
+
         ImGui::PopItemWidth();
         ImGui::EndChild();
     }
-
 }

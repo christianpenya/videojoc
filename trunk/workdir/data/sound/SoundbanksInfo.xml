@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="10" SoundbankVersion="113">
+	<RootPaths>
+		<ProjectRoot>C:\Users\christian\Documents\WwiseProjects\hellowwise\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\christian\Documents\WwiseProjects\hellowwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\christian\Documents\WwiseProjects\hellowwise\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="4072029455" Language="SFX">
+			<ShortName>New_SoundBank</ShortName>
+			<Path>New_SoundBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1585661381" Name="background_music"/>
+				<Event Id="2453392179" Name="player_footstep"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="10784987" Language="SFX">
+					<ShortName>fs_grue_dirt_run_04.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_run_04_9E69E797.wem</Path>
+				</File>
+				<File Id="96609460" Language="SFX">
+					<ShortName>fs_grue_forest_run_02.wav</ShortName>
+					<Path>SFX\fs_grue_forest_run_02_9E69E797.wem</Path>
+				</File>
+				<File Id="127180466" Language="SFX">
+					<ShortName>fs_grue_dirt_walk_01.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_walk_01_9E69E797.wem</Path>
+				</File>
+				<File Id="205592139" Language="SFX">
+					<ShortName>fs_grue_forest_walk_02.wav</ShortName>
+					<Path>SFX\fs_grue_forest_walk_02_9E69E797.wem</Path>
+				</File>
+				<File Id="237084936" Language="SFX">
+					<ShortName>fs_grue_forest_run_04.wav</ShortName>
+					<Path>SFX\fs_grue_forest_run_04_9E69E797.wem</Path>
+				</File>
+				<File Id="367449864" Language="SFX">
+					<ShortName>fs_grue_dirt_walk_04.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_walk_04_9E69E797.wem</Path>
+				</File>
+				<File Id="379483438" Language="SFX">
+					<ShortName>fs_grue_dirt_run_03.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_run_03_9E69E797.wem</Path>
+				</File>
+				<File Id="442395140" Language="SFX">
+					<ShortName>fs_grue_forest_run_03.wav</ShortName>
+					<Path>SFX\fs_grue_forest_run_03_9E69E797.wem</Path>
+				</File>
+				<File Id="625475899" Language="SFX">
+					<ShortName>fs_grue_dirt_walk_02.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_walk_02_9E69E797.wem</Path>
+				</File>
+				<File Id="671184348" Language="SFX">
+					<ShortName>fs_grue_forest_walk_01.wav</ShortName>
+					<Path>SFX\fs_grue_forest_walk_01_9E69E797.wem</Path>
+				</File>
+				<File Id="706191080" Language="SFX">
+					<ShortName>fs_grue_dirt_run_01.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_run_01_9E69E797.wem</Path>
+				</File>
+				<File Id="769258412" Language="SFX">
+					<ShortName>fs_grue_forest_walk_04.wav</ShortName>
+					<Path>SFX\fs_grue_forest_walk_04_9E69E797.wem</Path>
+				</File>
+				<File Id="818390613" Language="SFX">
+					<ShortName>fs_grue_dirt_walk_03.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_walk_03_9E69E797.wem</Path>
+				</File>
+				<File Id="836267355" Language="SFX">
+					<ShortName>fs_grue_dirt_run_02.wav</ShortName>
+					<Path>SFX\fs_grue_dirt_run_02_9E69E797.wem</Path>
+				</File>
+				<File Id="967519853" Language="SFX">
+					<ShortName>HallMountain.wav</ShortName>
+					<Path>SFX\HallMountain_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="1063512825" Language="SFX">
+					<ShortName>fs_grue_forest_walk_03.wav</ShortName>
+					<Path>SFX\fs_grue_forest_walk_03_9E69E797.wem</Path>
+				</File>
+				<File Id="1065990689" Language="SFX">
+					<ShortName>fs_grue_forest_run_01.wav</ShortName>
+					<Path>SFX\fs_grue_forest_run_01_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

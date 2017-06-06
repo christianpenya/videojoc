@@ -13,6 +13,7 @@ public:
     CLayer(const std::string& aName);
     virtual ~CLayer();
     bool Load(CXMLElement* aElement);
+    bool Refresh();
     bool Update(float elapsedTime);
     bool Render();
     bool Render(CRenderManager& lRenderManager);

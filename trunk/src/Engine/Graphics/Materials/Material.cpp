@@ -110,6 +110,9 @@ void CMaterial::Apply()
     int l_posFloat2 = -1;
     int l_posColor = -1;
     CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
+
+    lCBM.mMaterialDesc.m_RawData[2] = Vect4f(0.0f, 0.0f, 0.0f, 0.0f);
+
     for (size_t i = 0, lCount = mParameters.size(); i < lCount; ++i)
     {
 

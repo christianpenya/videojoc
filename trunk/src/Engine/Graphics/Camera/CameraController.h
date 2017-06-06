@@ -32,44 +32,42 @@ public:
         _RenderManager.SetProjectionMatrix(m_CameraInfo.z, m_CameraInfo.w, m_CameraInfo.x, m_CameraInfo.y);
     }
 
-    Vect4f GetPositionInScreenCoordinates(const Vect3f &Position) const;
-
-    Vect3f getFront()
-    {
+    Vect4f GetPositionInScreenCoordinates(const Vect3f &Position) const;	
+	Vect3f GetFront()    {
         return m_Front;
     }
 
-    Vect3f getUp()
+    Vect3f GetUp()
     {
         return m_Up;
     }
 
-    Vect3f getPosition()
+    Vect3f GetPosition()
     {
         return m_Position;
     }
 
-    Vect4f getCameraInfo()
+    Vect4f GetCameraInfo()
     {
         return m_CameraInfo;
     }
 
-    void setFront(Vect3f front)
+    void SetFront(Vect3f front)
     {
         m_Front = front;
     }
 
-    void setUp(Vect3f up)
+    void SetUp(Vect3f up)
     {
         m_Up = up;
     }
 
-    void setPosition(Vect3f pos)
+    void SetPosition(Vect3f pos)
     {
         m_Position = pos;
     }
 
-    void setCameraInfo(Vect4f info)
+    void SetCameraInfo(Vect4f info)
     {
         m_CameraInfo = info;
     }
@@ -80,10 +78,11 @@ protected:
     Vect3f 					m_Up;
     Vect4f 					m_CameraInfo;
 
-    float clamp(float x, float upper, float lower)
+    float Clamp(float x, float upper, float lower)
     {
         return min(upper, max(x, lower));
     }
 };
 
 #endif //_ENGINE_CAMERACONTROLLER_CPB_20161126_H
+

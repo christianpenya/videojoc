@@ -19,10 +19,14 @@
 			<transform position="0.0 0.0 0.0" pitch ="0.0" yaw="0.0" roll="0.0" scale="10.0 1.0 30.0" />
 		</scene_mesh>
 		
-		-->
+		
+		
 		<scene_animated_model name="sereno01" core="sereno" >
 			<transform position="0.0 10.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
+		-->
+		
+		
 		SUELO
 		<scene_mesh name="Plane01" mesh="data/meshes/castillo/Plane01.mesh" >
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
@@ -283,7 +287,52 @@
 		<scene_mesh name="Lampara" mesh="data/meshes/castillo/lampara.mesh" >
 			<transform position="-23.8265 0.0298293 14.8899" yaw="0.0" pitch="0.0" roll="0.0" scale="2.69973 2.69973 2.69973" />
 		</scene_mesh>
+		
+		SERENOS A TUTIPLÉN
 	
+		<scene_animated_model name="sereno01" core="sereno" >
+			<transform position="8.45281 0.0 -9.06505" pitch="0.0" yaw="-0.608762"  roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno02" core="sereno" >
+			<transform position="7.09613 0.0 -9.06505" pitch="0.0" yaw="0.5" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno03" core="sereno" >
+			<transform position="-1.10212 0.0 -21.9244" pitch="0.0" yaw="0.0" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno04" core="sereno" >
+			<transform position="-23.9761 0.0 -22.8898" pitch="0.0" yaw="-0.422619" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno05" core="sereno" >
+			<transform position="-30.8262 0.0 8.49395" pitch="0.0" yaw="-1.0" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno06" core="sereno" >
+			<transform position="-3.55454 0.0 38.8346" pitch="0.0" yaw="-1.0" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno07" core="sereno" >
+			<transform position="3.03161 0.0 38.8346" pitch="0.0" yaw="-1.0" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno08" core="sereno" >
+			<transform position="8.30344 0.0 -21.4902" pitch="0.0" yaw="0.5" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno09" core="sereno" >
+			<transform position="9.26354 0.0 6.06487" pitch="0.0" yaw="0.843391" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno10" core="sereno" >
+			<transform position="-9.40088 0.0 5.28337" pitch="0.0" yaw="-0.887011" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno11" core="sereno" >
+			<transform position="-18.5463 0.0 29.1353" pitch="0.0" yaw="-0.887011" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno12" core="sereno" >
+			<transform position="21.0047 0.0 26.8994" pitch="0.0" yaw="0.819152" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno13" core="sereno" >
+			<transform position="26.0134 0.0 -21.887" pitch="0.0" yaw="0.461749"  roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		<scene_animated_model name="sereno14" core="sereno" >
+			<transform position="-0.323669 0.0 37.378" pitch="0.0" yaw="-1.0" roll="0.0" scale="1.5 1.5 1.5" />
+		</scene_animated_model>
+		
 	</layer>
 
 	<layer name="Skybox" active="true">
@@ -293,7 +342,8 @@
 	</layer>
 
 	<layer name="objetos_transparentes" active="true">
-			ÁRBOLES
+			
+		ÁRBOLES
 		<scene_mesh name="LOD01" mesh="data/meshes/castillo/LOD01.mesh" >
 			<transform position="-15.7147 -0.338257 -31.9256" yaw="-0.084429" pitch="0.0" roll="0.0" scale="0.0293032 0.0293032 0.0293032" />
 		</scene_mesh>	
@@ -311,9 +361,11 @@
 	
 	<layer name="Principal" active="true" >	
 		<scene_light name="FDirect001" id_light="0" />
+		<!--
 		<scene_light name="Fspot001" id_light="1" />
 		<scene_light name="Omni001" id_light="2" />
 		<scene_light name="Omni002" id_light="3" />	
+		-->
 	</layer>
 	
 </scene>

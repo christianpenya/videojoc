@@ -21,9 +21,6 @@
 	#endif
 #endif
 
-
-
-
 struct VS_INPUT
 {
 	float3 Pos :
@@ -156,7 +153,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 
    
     float g_SpecularExponent = 0.5;
-    float g_SpecularContrib = 1.0;
+    float g_SpecularContrib = 0.5;
 
      float4 pixelColor = float4(m_RawData[0].xyz,1.0);
     float3 l_LAmbient = m_LightAmbient.xyz;
@@ -174,7 +171,12 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		     l_Normal = normalize(l_Normal);
 	#endif
     #if USE_UV
-		pixelColor = DiffuseTexture.Sample(LinearSampler, IN.UV) * pixelColor;
+		#if USE_WEIGHTIDX
+			pixelColor = DiffuseTexture.Sample(LinearSampler, IN.UV);
+		#else
+			pixelColor = DiffuseTexture.Sample(LinearSampler, IN.UV) * pixelColor;
+		#endif
+		
 		if (pixelColor.w <0.1)
 		{
 			clip(-1);
@@ -187,9 +189,6 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		//pixelColor = float3(0.0 , 1.0, 0.0);
  	#endif
 
- #if USE_WEIGHTIDX
- 	
- #endif
 
 	l_Normal=Normal2Texture(l_Normal);
 

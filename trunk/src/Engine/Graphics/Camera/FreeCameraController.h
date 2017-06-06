@@ -15,6 +15,7 @@ public:
     float xSpeed, ySpeed, zSpeed;
     float yawSpeed, pitchSpeed, rollSpeed;
     float zoomSpeed;
+    bool block;
 
     CFreeCameraController(Vect3f position = Vect3f(0, 10, 0), Vect3f forward = Vect3f(0, 0, 1), Vect3f up = Vect3f(0, 1, 0),
                           Vect4f cameraInfo = Vect4f(1, 500, 1.13f, 1.7f), float maxPitch = 1.5f, float minPitch = -1.5f, float maxZoom = 10.0f, float minZoom = -10.0f)
@@ -35,6 +36,7 @@ public:
         , pitch(0.0f)
         , roll(0.0f)
         , maxDistance(5.0f)
+        , block(false)
     {};
 
     virtual ~CFreeCameraController() {};

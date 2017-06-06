@@ -10,3 +10,8 @@ CPointLight::CPointLight(CXMLElement* aElement) : CLight(aElement)
 }
 
 void CPointLight::SetShadowMap(CRenderManager &RenderManager) {}
+
+void CPointLight::Initialize(CXMLElement* aElement)
+{
+    CLight::Initialize(aElement);
+}

@@ -15,13 +15,13 @@ public:
     CLight* GetLightByIdx(size_t idLight);
     void SetLightConstants(size_t idLight, CLight* alight);
     void SetLightsConstants();
-    bool ReLoad();
+    bool Load( bool update = false );
     void DrawImgui();
     GET_SET(Vect4f, AmbientLightColor)
 private:
     Vect4f m_AmbientLightColor;
     std::string m_LevelLightsFilename;
-    bool Load();
+
 };
 
 #endif
