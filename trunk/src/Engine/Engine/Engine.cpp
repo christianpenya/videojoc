@@ -247,7 +247,7 @@ void CEngine::Update()
 
 
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
-    m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, m_RenderManager->GetWindowSize().x, m_RenderManager->GetWindowSize().y));
+    // m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, m_RenderManager->GetWindowSize().x, m_RenderManager->GetWindowSize().y));
 }
 
 void CEngine::Render()

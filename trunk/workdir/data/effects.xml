@@ -140,7 +140,7 @@
    <shader stage="pixel"    name="DeferredQuad"/>
   </effect>
   
-    <effect name="GUITechnique" shader_family="GUI">
+  <effect name="GUITechnique" shader_family="GUI">
    <shader stage="vertex"   name="GUI"/>
    <shader stage="pixel"    name="GUI"/>
   </effect>

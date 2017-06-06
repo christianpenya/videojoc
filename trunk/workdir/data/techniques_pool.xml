@@ -85,8 +85,8 @@
 		<technique name="ColorGrading" effect="ColorGradingTechnique" />
 		<technique name="ParticleVertex" effect="ParticleVertexTechnique" />
 		<technique name="SSR" effect="SSRTechnique" />
-		<technique name="GUI" effect="GUITechnique"/>
 		<technique name="Mascara" effect="MascaraTechnique" />
+		<technique name="GUI" effect="GUITechnique"/>
 	</pool>
 	
 	<pool name="skybox">

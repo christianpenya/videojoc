@@ -339,6 +339,9 @@
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderCmd.h">
       <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderGUI.h">
+      <Filter>Render\RenderPipeline</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderImGUI.h">
       <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
@@ -609,6 +612,9 @@
       <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderCmd.cpp">
+      <Filter>Render\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderGUI.cpp">
       <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderImGUI.cpp">

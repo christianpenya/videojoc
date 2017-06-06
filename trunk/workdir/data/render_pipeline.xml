@@ -187,7 +187,6 @@
         <texture name="DepthMapTexture" stage_id="0"/>
     </draw_quad>
 
-	<render_gui/>
 		-->
 		<apply_technique_pool pool_name="post_process"/>
 		<render_gui/>

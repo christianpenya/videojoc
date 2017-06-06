@@ -151,7 +151,7 @@ bool CGUIManager::Load(std::string _FileName)
                     //TODO
                     //m_Sliders[iElement->GetAttribute<std::string>("name", "")] = new Slider();
                 }
-                else if (iElement->Name() == std::string("font"))
+                /*else if (iElement->Name() == std::string("font"))
                 {
                     std::string l_FontName = iElement->GetAttribute<std::string>("name","");
                     std::string l_FileName = iElement->GetAttribute<std::string>("path","");
@@ -215,7 +215,7 @@ bool CGUIManager::Load(std::string _FileName)
 
                         }
                     }
-                }
+                }*/
 
             }
 

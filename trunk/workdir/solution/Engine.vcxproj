@@ -325,6 +325,7 @@
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\GenerateShadowMaps.h" />
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\Quad.h" />
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderCmd.h" />
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderGUI.h" />
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderImGUI.h" />
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderPipeline.h" />
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderSceneLayer.h" />
@@ -417,6 +418,7 @@
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\GenerateShadowMaps.cpp" />
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\Quad.cpp" />
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderCmd.cpp" />
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderGUI.cpp" />
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderImGUI.cpp" />
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderPipeline.cpp" />
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderSceneLayer.cpp" />
