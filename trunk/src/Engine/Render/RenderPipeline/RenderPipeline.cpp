@@ -27,6 +27,7 @@
 #include "GenerateShadowMaps.h"
 #include"GUI/GUIManager.h"
 #include"GUI/GUIPosition.h"
+#include "RenderGUI.h"
 
 #define RENDER_CMD_ENTRY(tag, command_class_name)  { tag, [] { return new  command_class_name();}},
 std::map<std::string, std::function<CRenderCmd*(void)>> sComandsFactory =
@@ -50,6 +51,7 @@ std::map<std::string, std::function<CRenderCmd*(void)>> sComandsFactory =
     RENDER_CMD_ENTRY("unset_render_target", CUnSetRenderTarget)
     RENDER_CMD_ENTRY("apply_filter", CApplyFilter)
     RENDER_CMD_ENTRY("generate_shadow_maps", CGenerateShadowMaps)
+    RENDER_CMD_ENTRY("render_gui", CRenderGUI)
 };
 
 CRenderPipeline::CRenderPipeline() {}

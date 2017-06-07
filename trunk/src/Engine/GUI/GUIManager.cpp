@@ -111,7 +111,7 @@ bool CGUIManager::Load(std::string _FileName)
                     m_SpriteMaps[l_spriteMapName] = l_spriteMapinfo;
                     for (tinyxml2::XMLElement *iSubElement = iElement->FirstChildElement(); iSubElement != nullptr; iSubElement = iSubElement->NextSiblingElement())
                     {
-                        if (strcmp(iSubElement->Name(), "material"))
+                        if (strcmp(iSubElement->Name(), "material")==0)
                         {
                             VertexTypes::SpriteVertex spriteVertex[1] =
                             {
@@ -124,7 +124,7 @@ bool CGUIManager::Load(std::string _FileName)
                                                        )
                                                      );
                         }
-                        else if (strcmp(iSubElement->Name(), "sprite"))
+                        else if (strcmp(iSubElement->Name(), "sprite") == 0)
                         {
                             w = iSubElement->GetAttribute<float>("w",0.0f);
                             h = iSubElement->GetAttribute<float>("h", 0.0f);
