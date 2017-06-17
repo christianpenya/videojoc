@@ -32,8 +32,8 @@ void CGUIManager::Destroy()
         base::utils::CheckedDelete(m_Materials[i]);
     m_Materials.clear();
 
-    /*for (size_t i = 0; i < m_VertexBuffers.size(); i++)
-        base::utils::CheckedDelete(m_VertexBuffers[i]);*/
+    for (size_t i = 0; i < m_VertexBuffers.size(); i++)
+        base::utils::CheckedDelete(m_VertexBuffers[i]);
     m_VertexBuffers.clear();
 
     for (auto it = m_Buttons.begin(); it != m_Buttons.end(); it++)
@@ -113,14 +113,9 @@ bool CGUIManager::Load(std::string _FileName)
                     {
                         if (strcmp(iSubElement->Name(), "material")==0)
                         {
-                            VertexTypes::SpriteVertex spriteVertex[1] =
-                            {
-                                { Vect3f(0.f, 0.f, 0.f), Vect2f(0.f, 0.f), CColor(Vect4f(0.f, 0.f, 0.f, 0.f)) }
-
-                            };
                             m_Materials.push_back(new CMaterial(iSubElement));
-                            m_VertexBuffers.push_back( CGeometryTriangleList<VertexTypes::SpriteVertex>(
-                                                           new CVertexBuffer<VertexTypes::SpriteVertex>(aRM,spriteVertex, MAX_VERTICES_PER_CALL)
+                            m_VertexBuffers.push_back( new CGeometryTriangleList<VertexTypes::SpriteVertex>(
+                                                           new CVertexBuffer<VertexTypes::SpriteVertex>(aRM,nullptr, MAX_VERTICES_PER_CALL, true)
                                                        )
                                                      );
                         }
@@ -151,71 +146,71 @@ bool CGUIManager::Load(std::string _FileName)
                     //TODO
                     //m_Sliders[iElement->GetAttribute<std::string>("name", "")] = new Slider();
                 }
-                /*else if (iElement->Name() == std::string("font"))
+                else if (iElement->Name() == std::string("font"))
                 {
                     std::string l_FontName = iElement->GetAttribute<std::string>("name","");
                     std::string l_FileName = iElement->GetAttribute<std::string>("path","");
 
-                    CXMLDocument document2;
-                    EXMLParseError error2 = document2.LoadFile(m_FileName.c_str());
-                    if (base::xml::SucceedLoad(error2))
-                    {
+                    /* CXMLDocument document2;
+                     EXMLParseError error2 = document2.LoadFile(m_FileName.c_str());
+                     if (base::xml::SucceedLoad(error2))
+                     {
 
-                        CXMLElement* iElement2 = document2.FirstChildElement("font");
-                        CXMLElement* iElement2Aux;
-                        CXMLElement* iElement2Aux2;
+                         CXMLElement* iElement2 = document2.FirstChildElement("font");
+                         CXMLElement* iElement2Aux;
+                         CXMLElement* iElement2Aux2;
 
-                        if (iElement2!=NULL)
-                        {
-                            iElement2Aux = iElement2->FirstChildElement();
-                            while (iElement2Aux != NULL)
-                            {
-                                if (iElement2Aux->Name() == std::string("common"))
-                                {
-                                    m_LineHeightPerFont[l_FontName] = iElement2Aux->GetAttribute("lineHeight",0);
-                                    m_BasePerFont[l_FontName] = iElement2Aux->GetAttribute("base",0);
-                                }
-                                else if (iElement2Aux->Name() == std::string("pages"))
-                                {
-                                    iElement2Aux2 = iElement2Aux->FirstChildElement();
-                                    while (iElement2Aux2!=NULL)
-                                    {
-                                        if (iElement2Aux2->Name() == std::string("page"))
-                                            m_TexturePerFont[l_FontName].push_back(&m_Sprites[iElement2Aux2->GetAttribute<std::string>("file","")]);
-                                        iElement2Aux2 = iElement2Aux2->NextSiblingElement();
-                                    }
-                                }
-                                else if (iElement2Aux->Name() == std::string("chars"))
-                                {
-                                    iElement2Aux2 = iElement2Aux->FirstChildElement();
-                                    while (iElement2Aux2 != NULL)
-                                    {
-                                        if (iElement2Aux2->Name() == std::string("char"))
-                                        {
-                                            FontChar l_FontChar = { iElement2Aux2->GetAttribute("x", 0), iElement2Aux2->GetAttribute("y", 0), iElement2Aux2->GetAttribute("width", 0), iElement2Aux2->GetAttribute("height",0),
-                                                                    iElement2Aux2->GetAttribute("xoffset",0), iElement2Aux2->GetAttribute("yoffset",0), iElement2Aux2->GetAttribute("xadvance",0), iElement2Aux2->GetAttribute("page",0), iElement2Aux2->GetAttribute("chnl",0)
-                                                                  };
-                                            m_CharactersPerFont[l_FontName][iElement2Aux2->GetAttribute("id",0)] = l_FontChar;
-                                        }
-                                        iElement2Aux2 = iElement2Aux2->NextSiblingElement();
-                                    }
-                                }
-                                else if (iElement2Aux->Name() == std::string("kernings"))
-                                {
-                                    iElement2Aux2 = iElement2Aux->FirstChildElement();
-                                    while (iElement2Aux2 != NULL)
-                                    {
-                                        if (iElement2Aux2->Name() == std::string("kerning"))
-                                            m_KerningsPerFont[l_FontName][iElement2Aux2->GetAttribute("first",0)][iElement2Aux2->GetAttribute("second",0)] = iElement2Aux2->GetAttribute("second",0);
-                                        iElement2Aux2 = iElement2Aux2->NextSiblingElement();
-                                    }
-                                }
-                                iElement2Aux = iElement2Aux->NextSiblingElement();
-                            }
+                         if (iElement2!=NULL)
+                         {
+                             iElement2Aux = iElement2->FirstChildElement();
+                             while (iElement2Aux != NULL)
+                             {
+                                 if (iElement2Aux->Name() == std::string("common"))
+                                 {
+                                     m_LineHeightPerFont[l_FontName] = iElement2Aux->GetAttribute("lineHeight",0);
+                                     m_BasePerFont[l_FontName] = iElement2Aux->GetAttribute("base",0);
+                                 }
+                                 else if (iElement2Aux->Name() == std::string("pages"))
+                                 {
+                                     iElement2Aux2 = iElement2Aux->FirstChildElement();
+                                     while (iElement2Aux2!=NULL)
+                                     {
+                                         if (iElement2Aux2->Name() == std::string("page"))
+                                             m_TexturePerFont[l_FontName].push_back(&m_Sprites[iElement2Aux2->GetAttribute<std::string>("file","")]);
+                                         iElement2Aux2 = iElement2Aux2->NextSiblingElement();
+                                     }
+                                 }
+                                 else if (iElement2Aux->Name() == std::string("chars"))
+                                 {
+                                     iElement2Aux2 = iElement2Aux->FirstChildElement();
+                                     while (iElement2Aux2 != NULL)
+                                     {
+                                         if (iElement2Aux2->Name() == std::string("char"))
+                                         {
+                                             FontChar l_FontChar = { iElement2Aux2->GetAttribute("x", 0), iElement2Aux2->GetAttribute("y", 0), iElement2Aux2->GetAttribute("width", 0), iElement2Aux2->GetAttribute("height",0),
+                                                                     iElement2Aux2->GetAttribute("xoffset",0), iElement2Aux2->GetAttribute("yoffset",0), iElement2Aux2->GetAttribute("xadvance",0), iElement2Aux2->GetAttribute("page",0), iElement2Aux2->GetAttribute("chnl",0)
+                                                                   };
+                                             m_CharactersPerFont[l_FontName][iElement2Aux2->GetAttribute("id",0)] = l_FontChar;
+                                         }
+                                         iElement2Aux2 = iElement2Aux2->NextSiblingElement();
+                                     }
+                                 }
+                                 else if (iElement2Aux->Name() == std::string("kernings"))
+                                 {
+                                     iElement2Aux2 = iElement2Aux->FirstChildElement();
+                                     while (iElement2Aux2 != NULL)
+                                     {
+                                         if (iElement2Aux2->Name() == std::string("kerning"))
+                                             m_KerningsPerFont[l_FontName][iElement2Aux2->GetAttribute("first",0)][iElement2Aux2->GetAttribute("second",0)] = iElement2Aux2->GetAttribute("second",0);
+                                         iElement2Aux2 = iElement2Aux2->NextSiblingElement();
+                                     }
+                                 }
+                                 iElement2Aux = iElement2Aux->NextSiblingElement();
+                             }
 
-                        }
-                    }
-                }*/
+                         }
+                     }*/
+                }
 
             }
 
@@ -257,51 +252,6 @@ void CGUIManager::Render(CRenderManager *RenderManager)
     VertexTypes::SpriteVertex m_CurrentBufferData[MAX_VERTICES_PER_CALL];
     int currentVertex = 0;
     SpriteMapInfo *currentSpriteMap = nullptr;
-    for (size_t i = 0; i < m_PanelCommands.size(); ++i)
-    {
-        GUICommand &command = m_PanelCommands[i];
-        assert(command.x1 <= command.x2);
-        assert(command.y2 <= command.y2);
-
-        SpriteInfo *commandSprite = command.sprite;
-        SpriteMapInfo *commandSpriteMap = commandSprite->SpriteMap;
-
-        if (currentSpriteMap != commandSpriteMap || currentVertex == 5)
-        {
-            if (currentVertex > 0)
-            {
-                //TODO log a warning if we get here by "currentVertex == s_MaxVerticesPerCall"
-                //TODO draw all current vertex in the currentBuffer
-
-                m_Materials[currentSpriteMap->MaterialIndex]->Apply();
-                m_VertexBuffers[currentSpriteMap->MaterialIndex].UpdateVertex(m_CurrentBufferData, currentVertex);
-                m_VertexBuffers[currentSpriteMap->MaterialIndex].Render(RenderManager->GetDeviceContext());
-            }
-            currentVertex = 0;
-            currentSpriteMap = commandSpriteMap;
-        }
-        int l_Height = RenderManager->GetWindowSize().y;
-        int l_Width = RenderManager->GetWindowSize().x;
-        float x1 = (command.x1 / (l_Width * 0.5f)) - 1.0f;
-        float x2 = (command.x2 / (l_Width * 0.5f)) - 1.0f;
-        float y1 = 1.0f - (command.y1 / (l_Height * 0.5f));
-        float y2 = 1.0f - (command.y2 / (l_Height * 0.5f));
-
-        float u1 = commandSprite->u1 * (1.0f - command.u1) + commandSprite->u2 * command.u1;
-        float u2 = commandSprite->u1 * (1.0f - command.u2) + commandSprite->u2 * command.u2;
-        float v1 = commandSprite->v1 * (1.0f - command.v1) + commandSprite->v2 * command.v1;
-        float v2 = commandSprite->v1 * (1.0f - command.v2) + commandSprite->v2 * command.v2;
-
-        //assert(MAX_VERTICES_PER_CALL > currentVertex + 6);
-
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y2, 0.f), Vect2f(u1, v2), command.color }; // { Vect4f(x1, y2, 0.f, 1.f), command.color, Vect2f(u2, v2) };
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y2, 0.f), Vect2f(u2, v2), command.color };
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y1, 0.f), Vect2f(u1, v1), command.color };
-
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y1, 0.f), Vect2f(u1, v1), command.color };
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y2, 0.f), Vect2f(u2, v2), command.color };
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y1, 0.f), Vect2f(u2, v1), command.color };
-    }
 
     for (size_t i = 0; i < m_Commands.size(); ++i)
     {
@@ -312,7 +262,7 @@ void CGUIManager::Render(CRenderManager *RenderManager)
         SpriteInfo *commandSprite = command.sprite;
         SpriteMapInfo *commandSpriteMap = commandSprite->SpriteMap;
 
-        if (currentSpriteMap != commandSpriteMap || currentVertex  == 5 )
+        if (currentSpriteMap != commandSpriteMap || currentVertex == MAX_VERTICES_PER_CALL)
         {
             if (currentVertex > 0)
             {
@@ -320,8 +270,8 @@ void CGUIManager::Render(CRenderManager *RenderManager)
                 //TODO draw all c urrent vertex in the currentBuffer
 
                 m_Materials[currentSpriteMap->MaterialIndex]->Apply();
-                m_VertexBuffers[currentSpriteMap->MaterialIndex].UpdateVertex(m_CurrentBufferData, currentVertex);
-                m_VertexBuffers[currentSpriteMap->MaterialIndex].Render(RenderManager->GetDeviceContext());
+                m_VertexBuffers[currentSpriteMap->MaterialIndex]->UpdateVertex(m_CurrentBufferData, currentVertex);
+                m_VertexBuffers[currentSpriteMap->MaterialIndex]->Render(RenderManager->GetDeviceContext(), currentVertex);
             }
             currentVertex = 0;
             currentSpriteMap = commandSpriteMap;
@@ -339,23 +289,24 @@ void CGUIManager::Render(CRenderManager *RenderManager)
         float v2 = commandSprite->v1 * (1.0f - command.v2) + commandSprite->v2 * command.v2;
 
 
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y2, 0.f), Vect2f(u1, v2), command.color }; // { Vect4f(x1, y2, 0.f, 1.f), command.color, Vect2f(u2, v2) };
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y2, 0.f), Vect2f(u2, v2), command.color };
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y1, 0.f), Vect2f(u1, v1), command.color };
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y2, 0.f), Vect2f(u1, v2)}; // { Vect4f(x1, y2, 0.f, 1.f), command.color, Vect2f(u2, v2) };
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y1, 0.f), Vect2f(u1, v1) };
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y2, 0.f), Vect2f(u2, v2)};
 
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y1, 0.f), Vect2f(u1, v1), command.color };
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y2, 0.f), Vect2f(u2, v2), command.color };
-        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y1, 0.f), Vect2f(u2, v1), command.color };
+
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y1, 0.f), Vect2f(u1, v1)};
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y1, 0.f), Vect2f(u2, v1) };
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y2, 0.f), Vect2f(u2, v2)};
+
     }
     if (currentVertex > 0)
     {
 
         m_Materials[currentSpriteMap->MaterialIndex]->Apply();
-        m_VertexBuffers[currentSpriteMap->MaterialIndex].UpdateVertex(m_CurrentBufferData, currentVertex);
-        m_VertexBuffers[currentSpriteMap->MaterialIndex].Render(RenderManager->GetDeviceContext());
+        m_VertexBuffers[currentSpriteMap->MaterialIndex]->UpdateVertex(m_CurrentBufferData, currentVertex);
+        m_VertexBuffers[currentSpriteMap->MaterialIndex]->Render(RenderManager->GetDeviceContext(), currentVertex);
     }
     m_Commands.clear();
-    m_PanelCommands.clear();
     m_InputUpToDate = false;
 }
 
@@ -366,13 +317,13 @@ int CGUIManager::FillCommandQueueWithTextAux(const std::string& _font, const std
 
     *textBox_ = Vect4f(0, 0, 0, 0);
 
-    /*
-     *assert(m_LineHeightPerFont.find(_font) != m_LineHeightPerFont.end());
+
+    assert(m_LineHeightPerFont.find(_font) != m_LineHeightPerFont.end());
     assert(m_BasePerFont.find(_font) != m_BasePerFont.end());
     assert(m_CharactersPerFont.find(_font) != m_CharactersPerFont.end());
     assert(m_KerningsPerFont.find(_font) != m_KerningsPerFont.end());
     assert(m_TexturePerFont.find(_font) != m_TexturePerFont.end());
-    */
+
 
     int lineHeight = m_LineHeightPerFont[_font];
     int base = m_BasePerFont[_font];
@@ -582,6 +533,7 @@ std::string CGUIManager::DoTextBox(const std::string& guiID, const std::string& 
 
          FillCommandQueueWithText(_font, activeText, Vect2f(position.Getx() + position.Getwidth() * 0.05f,
          position.Gety() + position.Getheight() * 0.75f));*/
-        return activeText;
+
     }
+    return activeText;
 }

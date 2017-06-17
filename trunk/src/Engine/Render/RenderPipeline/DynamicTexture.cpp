@@ -1,8 +1,9 @@
 #include "DynamicTexture.h"
-#include "XML\XML.h"
-#include "Utils\Logger.h"
-#include "Engine\Engine.h"
-#include "Render\RenderManager.h"
+#include "XML/XML.h"
+#include "Utils/Logger.h"
+#include "Engine/Engine.h"
+#include "Render/RenderManager.h"
+#include "Utils/Logger.h"
 
 CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     : CTexture(TreeNode->GetAttribute<std::string>("name", ""))
@@ -72,6 +73,8 @@ void CDynamicTexture::Init()
     l_textureDescription.CPUAccessFlags = 0;
     l_textureDescription.MiscFlags = 0;
     HRESULT l_HR = l_Device->CreateTexture2D(&l_textureDescription, NULL, &m_pRenderTargetTexture);
+
+
     assert(!FAILED(l_HR));
 
     D3D11_RENDER_TARGET_VIEW_DESC l_RenderTargetViewDescription;

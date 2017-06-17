@@ -1,4 +1,4 @@
-#include "globals.fx"
+//#include "globals.fx"
 
 Texture2D DiffuseTexture :
 register(t0);
@@ -36,6 +36,6 @@ PS_INPUT VS( VS_INPUT IN )
 
 float4 PS( PS_INPUT IN ) : SV_Target
 {  
-    float4 ColorPixel = DiffuseTexture.Sample(LinearSampler, IN.UV) * float4(m_RawData[0].xyzw); 
+    float4 ColorPixel = DiffuseTexture.Sample(LinearSampler, IN.UV);// * float4(m_RawData[0].xyzw); 
     return float4(ColorPixel.xyz, 1.0);
 }

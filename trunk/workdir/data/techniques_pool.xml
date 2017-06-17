@@ -23,7 +23,7 @@
 		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique" />
 		<!--<technique vertex_type="EnvironmentMap" />-->
 		<technique name="SSR" />
-		<technique name="GUI"/>
+		<technique vertex_type="SpriteVertex" effect="SpriteVertexTechnique"/>
 		<technique name="Mascara" />
 		
   </default_pool>
@@ -84,9 +84,10 @@
 		<technique name="Hdao" effect="HdaoTechnique" />
 		<technique name="ColorGrading" effect="ColorGradingTechnique" />
 		<technique name="ParticleVertex" effect="ParticleVertexTechnique" />
+		<technique name="SpriteVertex" effect="SpriteVertexTechnique" />
 		<technique name="SSR" effect="SSRTechnique" />
 		<technique name="Mascara" effect="MascaraTechnique" />
-		<technique name="GUI" effect="GUITechnique"/>
+		
 	</pool>
 	
 	<pool name="skybox">

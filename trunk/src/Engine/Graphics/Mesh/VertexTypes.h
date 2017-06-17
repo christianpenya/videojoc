@@ -167,12 +167,11 @@ struct SpriteVertex
 {
     POSITION;
     UV;
-    COLOR;
-    GET_VERTEX_FLAGS(ePosition | eUV  | eColor);
+    GET_VERTEX_FLAGS(ePosition | eUV );
     BEGIN_INPUT_LAYOUT
     {
         LAYOUT_POSITION(0),
-        LAYOUT_UV(24),
+        LAYOUT_UV(12),
     }
     END_INPUT_LAYOUT
 };

@@ -140,9 +140,9 @@
    <shader stage="pixel"    name="DeferredQuad"/>
   </effect>
   
-  <effect name="GUITechnique" shader_family="GUI">
-   <shader stage="vertex"   name="GUI"/>
-   <shader stage="pixel"    name="GUI"/>
+  <effect name="SpriteVertexTechnique" shader_family="SpriteVertex">
+   <shader stage="vertex"   name="SpriteVertex"/>
+   <shader stage="pixel"    name="SpriteVertex"/>
   </effect>
     
  </effects>

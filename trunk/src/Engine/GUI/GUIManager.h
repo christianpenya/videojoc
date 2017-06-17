@@ -55,14 +55,13 @@ private:
     std::string m_ActiveItem;
     std::string m_HotItem;
     std::string m_SelectedItem;
-    std::vector<CGeometryTriangleList<VertexTypes::SpriteVertex>> m_VertexBuffers;
+    std::vector<CGeometryTriangleList<VertexTypes::SpriteVertex>*> m_VertexBuffers;
     std::vector<CMaterial*> m_Materials;
     std::map<std::string, SpriteMapInfo> m_SpriteMaps;
     std::map<std::string, SpriteInfo> m_Sprites;
     std::map<std::string, CButon*> m_Buttons;
     //std::map<std::string, CSlider*> m_Sliders;
     std::vector<GUICommand> m_Commands;
-    std::vector<GUICommand> m_PanelCommands;
     std::string m_FileName;
     std::unordered_map< std::string, int16 > m_LineHeightPerFont;
     std::unordered_map< std::string, int16 > m_BasePerFont;

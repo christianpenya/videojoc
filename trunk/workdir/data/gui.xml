@@ -1,15 +1,15 @@
 <gui_elements>
 	<gui_spritemap name="gui1" width="512" height="512">
 		<material name="gui1" vertex_type="SpriteVertex">
-		<!--
+		
 			<texture type="diffuse" filename="data/gui/demo.jpg"/>
-			<parameter type="color" name0="diffuse_color" value="0.0 0.0 0.0 1.0" />
-			-->
+			<!--<parameter type="color" name0="diffuse_color" value="0.0 0.0 0.0 1.0" />-->
+			
 		</material>
 
-		<sprite name="teula" x="0" y="1" w="512" h="170"/>
-		<sprite name="teula2" x="0" y="171" w="512" h="170"/>
-		<sprite name="teula3" x="0" y="341" w="512" h="170"/>
+		<sprite name="teula" x="0" y="0" w="512" h="150"/>
+		<sprite name="teula2" x="0" y="170" w="512" h="170"/>
+		<sprite name="teula3" x="0" y="340" w="512" h="170"/>
 		
 	</gui_spritemap>
 	

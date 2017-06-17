@@ -27,7 +27,7 @@ public:
         base::utils::CheckedDelete(m_VertexBuffer);
     }
 
-    virtual bool Render(ID3D11DeviceContext* aContext)
+    virtual bool Render(ID3D11DeviceContext* aContext, int num = -1)
     {
         // Send the vertex buffer to the GPU
         m_VertexBuffer->Bind(aContext);
@@ -36,7 +36,7 @@ public:
         aContext->IASetPrimitiveTopology(m_PrimitiveTopology);
 
         // Finally draw the geometry
-        aContext->Draw(m_VertexBuffer->GetNumVertexs(), 0);
+        aContext->Draw(num < 0 ? m_VertexBuffer->GetNumVertexs() : num, 0);
 
         return true;
     }
