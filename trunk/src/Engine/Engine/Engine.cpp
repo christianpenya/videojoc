@@ -22,6 +22,7 @@
 #include "Graphics/Particles/ParticleManager.h"
 #include "GUI/GUIManager.h"
 #include "GUI/GUIPosition.h"
+
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
 #endif
@@ -248,7 +249,9 @@ void CEngine::Update()
 
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
-    m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170));
+    if(m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))
+        m_GUIManager->FillCommandQueueWithText("font1", "TEST", Vect2f(.0f, .0f), CGUIManager::TOP_LEFT,CColor(1.0f, .0f, .0f));
+    //m_GUIManager->FillCommandQueueWithText("font1", "TEST2", CColor(1.0f, .0f, .0f),new Vect4f(.0f, .0f, .0f, .0f));
 }
 
 void CEngine::Render()

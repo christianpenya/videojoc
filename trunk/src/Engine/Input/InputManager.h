@@ -4,6 +4,8 @@
 
 #include "InputDefinitions.h"
 #include <Windows.h>
+
+#include "Utils/Defines.h"
 #include <Xinput.h>
 
 class CInputManager
@@ -188,7 +190,8 @@ public:
 
         return Result;
     }
-
+    bool m_LastCharInput;
+    GET_SET(bool, LastCharInput);
 private:
 
     bool UpdateKeyboard();

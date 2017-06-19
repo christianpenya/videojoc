@@ -129,10 +129,10 @@ public:
         float real;
         float temp;
     };
-    // SliderResult DoSlider(const std::string& guiID, const std::string& sliderID, const CGUIPosition& position, float minValue, float maxValue, float currentValue);
+    SliderResult DoSlider(const std::string& guiID, const std::string& sliderID, const CGUIPosition& position, float minValue, float maxValue, float currentValue);
     void FillCommandQueueWithText(const std::string& _font, const std::string& _text,
                                   Vect2f _coord, GUIAnchor _anchor, const CColor& _color);
-    int FillCommandQueueWithTextAux(const std::string& _font, const std::string& _text, const CColor& _color, Vect4f *textBox_);
+    int FillCommandQueueWithText(const std::string& _font, const std::string& _text, const CColor& _color, Vect4f *textBox_);
 
     GET_SET(bool, InputUpToDate);
     GET_SET(int, MouseX);

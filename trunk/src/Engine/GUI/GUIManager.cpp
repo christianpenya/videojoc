@@ -149,67 +149,63 @@ bool CGUIManager::Load(std::string _FileName)
                 else if (iElement->Name() == std::string("font"))
                 {
                     std::string l_FontName = iElement->GetAttribute<std::string>("name","");
-                    std::string l_FileName = iElement->GetAttribute<std::string>("path","");
+                    std::string l_FileName = iElement->GetAttribute<std::string>("filename","");
 
-                    /* CXMLDocument document2;
-                     EXMLParseError error2 = document2.LoadFile(m_FileName.c_str());
-                     if (base::xml::SucceedLoad(error2))
-                     {
 
-                         CXMLElement* iElement2 = document2.FirstChildElement("font");
-                         CXMLElement* iElement2Aux;
-                         CXMLElement* iElement2Aux2;
+                    CXMLDocument documentFont;
+                    EXMLParseError errorFont = documentFont.LoadFile(l_FileName.c_str());
 
-                         if (iElement2!=NULL)
-                         {
-                             iElement2Aux = iElement2->FirstChildElement();
-                             while (iElement2Aux != NULL)
-                             {
-                                 if (iElement2Aux->Name() == std::string("common"))
-                                 {
-                                     m_LineHeightPerFont[l_FontName] = iElement2Aux->GetAttribute("lineHeight",0);
-                                     m_BasePerFont[l_FontName] = iElement2Aux->GetAttribute("base",0);
-                                 }
-                                 else if (iElement2Aux->Name() == std::string("pages"))
-                                 {
-                                     iElement2Aux2 = iElement2Aux->FirstChildElement();
-                                     while (iElement2Aux2!=NULL)
-                                     {
-                                         if (iElement2Aux2->Name() == std::string("page"))
-                                             m_TexturePerFont[l_FontName].push_back(&m_Sprites[iElement2Aux2->GetAttribute<std::string>("file","")]);
-                                         iElement2Aux2 = iElement2Aux2->NextSiblingElement();
-                                     }
-                                 }
-                                 else if (iElement2Aux->Name() == std::string("chars"))
-                                 {
-                                     iElement2Aux2 = iElement2Aux->FirstChildElement();
-                                     while (iElement2Aux2 != NULL)
-                                     {
-                                         if (iElement2Aux2->Name() == std::string("char"))
-                                         {
-                                             FontChar l_FontChar = { iElement2Aux2->GetAttribute("x", 0), iElement2Aux2->GetAttribute("y", 0), iElement2Aux2->GetAttribute("width", 0), iElement2Aux2->GetAttribute("height",0),
-                                                                     iElement2Aux2->GetAttribute("xoffset",0), iElement2Aux2->GetAttribute("yoffset",0), iElement2Aux2->GetAttribute("xadvance",0), iElement2Aux2->GetAttribute("page",0), iElement2Aux2->GetAttribute("chnl",0)
-                                                                   };
-                                             m_CharactersPerFont[l_FontName][iElement2Aux2->GetAttribute("id",0)] = l_FontChar;
-                                         }
-                                         iElement2Aux2 = iElement2Aux2->NextSiblingElement();
-                                     }
-                                 }
-                                 else if (iElement2Aux->Name() == std::string("kernings"))
-                                 {
-                                     iElement2Aux2 = iElement2Aux->FirstChildElement();
-                                     while (iElement2Aux2 != NULL)
-                                     {
-                                         if (iElement2Aux2->Name() == std::string("kerning"))
-                                             m_KerningsPerFont[l_FontName][iElement2Aux2->GetAttribute("first",0)][iElement2Aux2->GetAttribute("second",0)] = iElement2Aux2->GetAttribute("second",0);
-                                         iElement2Aux2 = iElement2Aux2->NextSiblingElement();
-                                     }
-                                 }
-                                 iElement2Aux = iElement2Aux->NextSiblingElement();
-                             }
 
-                         }
-                     }*/
+                    if (base::xml::SucceedLoad(errorFont))
+                    {
+                        CXMLElement* iElementFont = documentFont.FirstChildElement("font");
+
+                        if (iElementFont != NULL)
+                        {
+                            for (tinyxml2::XMLElement *iSubElementFont = iElementFont->FirstChildElement(); iSubElementFont != nullptr; iSubElementFont = iSubElementFont->NextSiblingElement())
+                            {
+                                if (strcmp(iSubElementFont->Name(),"common")==0)
+                                {
+                                    m_LineHeightPerFont[l_FontName] = iSubElementFont->GetAttribute("lineHeight", 0);
+                                    m_BasePerFont[l_FontName] = iSubElementFont->GetAttribute("base", 0);
+                                }
+
+                                else if (strcmp(iSubElementFont->Name(), "pages")==0)
+                                {
+                                    for (tinyxml2::XMLElement *iPageElement = iSubElementFont->FirstChildElement(); iPageElement != nullptr; iPageElement = iPageElement->NextSiblingElement())
+                                    {
+                                        if (iPageElement->Name() == std::string("page"))
+                                            m_TexturePerFont[l_FontName].push_back(&m_Sprites[iPageElement->GetAttribute<std::string>("file", "")]);
+
+                                    }
+                                }
+                                else if (strcmp(iSubElementFont->Name(), "chars") == 0)
+                                {
+                                    for (tinyxml2::XMLElement *iCharElement = iSubElementFont->FirstChildElement(); iCharElement != nullptr; iCharElement = iCharElement->NextSiblingElement())
+                                    {
+                                        if (strcmp(iCharElement->Name(),"char")==0)
+                                        {
+                                            FontChar l_FontChar = { iCharElement->GetAttribute("x", 0), iCharElement->GetAttribute("y", 0), iCharElement->GetAttribute("width", 0), iCharElement->GetAttribute("height", 0),
+                                                                    iCharElement->GetAttribute("xoffset", 0), iCharElement->GetAttribute("yoffset", 0), iCharElement->GetAttribute("xadvance", 0), iCharElement->GetAttribute("page", 0), iCharElement->GetAttribute("chnl", 0)
+                                                                  };
+                                            m_CharactersPerFont[l_FontName][iCharElement->GetAttribute("id", 0)] = l_FontChar;
+                                        }
+                                    }
+                                }
+                                else if (strcmp(iSubElementFont->Name(), "kernings") == 0)
+                                {
+                                    for (tinyxml2::XMLElement *iKerningElement = iSubElementFont->FirstChildElement(); iKerningElement != nullptr; iKerningElement = iKerningElement->NextSiblingElement())
+                                    {
+                                        if (strcmp(iKerningElement->Name(),"kerning")==0)
+                                            m_KerningsPerFont[l_FontName][iKerningElement->GetAttribute("first", 0)][iKerningElement->GetAttribute("second", 0)] = iKerningElement->GetAttribute("second", 0);
+
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
                 }
 
             }
@@ -310,7 +306,7 @@ void CGUIManager::Render(CRenderManager *RenderManager)
     m_InputUpToDate = false;
 }
 
-int CGUIManager::FillCommandQueueWithTextAux(const std::string& _font, const std::string& _text, const CColor& _color, Vect4f *textBox_)
+int CGUIManager::FillCommandQueueWithText(const std::string& _font, const std::string& _text, const CColor& _color, Vect4f *textBox_)
 {
     Vect4f dummy;
     if (textBox_ == nullptr) textBox_ = &dummy;
@@ -400,7 +396,7 @@ void CGUIManager::FillCommandQueueWithText(const std::string& _font, const std::
 {
     Vect4f textSizes;
 
-    int numCommands = FillCommandQueueWithTextAux(_font, _text, _color, &textSizes);
+    int numCommands = FillCommandQueueWithText(_font, _text, _color, &textSizes);
     Vect2f adjustment = _coord;
 
     if ((int)_anchor & (int)GUIAnchor::TOP)
@@ -537,3 +533,9 @@ std::string CGUIManager::DoTextBox(const std::string& guiID, const std::string& 
     }
     return activeText;
 }
+
+CGUIManager::SliderResult CGUIManager::DoSlider(const std::string& guiID, const std::string& sliderID, const CGUIPosition& position, float minValue, float maxValue, float currentValue)
+{
+    //  float factor = (float)m_MouseX -  position.Getx() ) / ((float) position.Getwidth());
+}
+
