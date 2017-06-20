@@ -144,7 +144,7 @@ bool CGUIManager::Load(std::string _FileName)
                 else if (strcmp(iElement->Name(), "slider") == 0)
                 {
                     //TODO
-                    //m_Sliders[iElement->GetAttribute<std::string>("name", "")] = new Slider();
+                    m_Sliders[iElement->GetAttribute<std::string>("name", "")] = new CSlider(&m_Sprites[iElement->GetAttribute<std::string>("base", "")], &m_Sprites[iElement->GetAttribute<std::string>("top", "")], &m_Sprites[iElement->GetAttribute<std::string>("handle", "")], &m_Sprites[iElement->GetAttribute<std::string>("pressed_handle", "")]);
                 }
                 else if (iElement->Name() == std::string("font"))
                 {
@@ -534,8 +534,103 @@ std::string CGUIManager::DoTextBox(const std::string& guiID, const std::string& 
     return activeText;
 }
 
-CGUIManager::SliderResult CGUIManager::DoSlider(const std::string& guiID, const std::string& sliderID, const CGUIPosition& position, float minValue, float maxValue, float currentValue)
+CGUIManager::SliderResult CGUIManager::DoSlider(const std::string& guiID, const std::string& sliderID, CGUIPosition& position, float minValue, float maxValue, float currentValue)
 {
-    //  float factor = (float)m_MouseX -  position.Getx() ) / ((float) position.Getwidth());
+    CSlider* l_Slider = m_Sliders[sliderID];
+    SliderResult l_Result;
+    l_Result.real = .0f;
+    l_Result.temp = .0f;
+
+    if (l_Slider != nullptr)
+    {
+        CheckInput();
+
+        bool RealResult = false;
+
+        float l_Factor = (float)(m_MouseX - position.Getx()) / ((float)position.Getwidth());
+        if (l_Factor < 0) l_Factor = 0;
+        else if (l_Factor > 1) l_Factor = 1;
+
+        l_Result.temp = minValue + (maxValue - minValue)*l_Factor;
+
+        if (m_ActiveItem == guiID)
+        {
+            if (m_MouseWentReleased)
+            {
+                if (m_HotItem == guiID)
+                    RealResult = true;
+                SetNotActive();
+            }
+        }
+        else if (m_HotItem == guiID)
+        {
+            if (m_MouseWentPressed)
+                SetActive(guiID);
+        }
+
+        if (RealResult)
+            l_Result.real = l_Result.temp;
+        else if (m_ActiveItem == guiID)
+            l_Result.real = currentValue;
+        else
+        {
+            l_Result.temp = currentValue;
+            l_Result.real = currentValue;
+        }
+
+        float l_HandlePosition = position.Getx() + position.Getwidth() * (l_Result.temp - minValue) / (maxValue - minValue);
+        float l_RealHandleWidth = l_Slider->handleRelativeWidth * position.Getwidth();
+        float l_RealHandleHeight = l_Slider->handleRelativeHeight * position.Getheight();
+
+        int l_RealHandleX = (int)(l_HandlePosition - l_RealHandleWidth * 0.5f);
+        int l_RealHandleY = (int)(position.Gety() + position.Getheight() * 0.5f - l_RealHandleHeight * 0.5);
+
+        if (IsMouseInside(m_MouseX, m_MouseY, position.Getx(), position.Gety(), position.Getwidth(), position.Getheight()))
+            SetHot(guiID);
+        else if (IsMouseInside(m_MouseX, m_MouseY, l_RealHandleX, l_RealHandleY, (int)l_RealHandleWidth, (int)l_RealHandleHeight))
+            SetHot(guiID);
+        else
+            SetNotHot(guiID);
+
+        GUICommand l_Base = { l_Slider->GetBase(), (int)position.Getx(), (int)position.Gety(), (int)(position.Getx() + position.Getwidth()), (int)(position.Gety() + position.Getheight())
+                              , 0, 0, 1, 1,
+                              CColor(1.0f, 1.0f, 1.0f, 1.0f)
+                            };
+        m_Commands.push_back(l_Base);
+
+        GUICommand l_Top = { l_Slider->GetTop(), (int)position.Getx(), (int)position.Gety(), (int)l_HandlePosition, int(position.Gety() + position.Getheight()),
+                             0, 0, (l_Result.temp - minValue) / (maxValue - minValue), 1,
+                             CColor(1.0f, 1.0f, 1.0f, 1.0f)
+                           };
+        m_Commands.push_back(l_Top);
+
+        GUICommand l_Handle =
+        {
+            (m_ActiveItem == guiID && m_HotItem == guiID) ? l_Slider->GetPressedHandle() : l_Slider->GetHandle(),
+            l_RealHandleX, l_RealHandleY, l_RealHandleX + (int)l_RealHandleWidth, l_RealHandleY + (int)l_RealHandleHeight,
+            0, 0, 1, 1,
+            CColor(1.0f, 1.0f, 1.0f, 1.0f)
+        };
+        m_Commands.push_back(l_Handle);
+    }
+    else
+    {
+        float l_HandlePosition = position.Getx() + position.Getwidth() * (currentValue - minValue) / (maxValue - minValue);
+        GUICommand l_Base = { l_Slider->GetBase(), (int)position.Getx(), (int)position.Gety(), (int)(position.Getx() + position.Getwidth()), (int)(position.Gety() + position.Getheight())
+                              , 0, 0, 1, 1,
+                              CColor(1.0f, 1.0f, 1.0f, 1.0f)
+                            };
+        m_Commands.push_back(l_Base);
+
+        GUICommand l_Top = { l_Slider->GetTop(), (int)position.Getx(), (int)position.Gety(), (int)l_HandlePosition, int(position.Gety() + position.Getheight()),
+                             0, 0, (currentValue - minValue) / (maxValue - minValue), 1,
+                             CColor(1.0f, 1.0f, 1.0f, 1.0f)
+                           };
+        m_Commands.push_back(l_Top);
+    }
+
+
+
+    return l_Result;
 }
 

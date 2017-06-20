@@ -15,8 +15,10 @@
 #include "Graphics/Mesh/TemplatedGeometry.h"
 //#include"GUIPosition.h"
 #include "Button.h"
+#include "Slider.h"
 #include "Graphics/Materials/Material.h"
 class CGUIPosition;
+class CSlider;
 
 struct SpriteMapInfo
 {
@@ -60,7 +62,7 @@ private:
     std::map<std::string, SpriteMapInfo> m_SpriteMaps;
     std::map<std::string, SpriteInfo> m_Sprites;
     std::map<std::string, CButon*> m_Buttons;
-    //std::map<std::string, CSlider*> m_Sliders;
+    std::map<std::string, CSlider*> m_Sliders;
     std::vector<GUICommand> m_Commands;
     std::string m_FileName;
     std::unordered_map< std::string, int16 > m_LineHeightPerFont;
@@ -129,7 +131,7 @@ public:
         float real;
         float temp;
     };
-    SliderResult DoSlider(const std::string& guiID, const std::string& sliderID, const CGUIPosition& position, float minValue, float maxValue, float currentValue);
+    SliderResult DoSlider(const std::string& guiID, const std::string& sliderID,CGUIPosition& position, float minValue, float maxValue, float currentValue);
     void FillCommandQueueWithText(const std::string& _font, const std::string& _text,
                                   Vect2f _coord, GUIAnchor _anchor, const CColor& _color);
     int FillCommandQueueWithText(const std::string& _font, const std::string& _text, const CColor& _color, Vect4f *textBox_);

@@ -1,35 +1,32 @@
 <gui_elements>
 	<gui_spritemap name="gui1" width="512" height="512">
 		<material name="gui1" vertex_type="SpriteVertex">
-		
 			<texture type="diffuse" filename="data/gui/demo.jpg"/>
-			<!--<parameter type="color" name0="diffuse_color" value="0.0 0.0 0.0 1.0" />-->
-			
 		</material>
-
 		<sprite name="teula" x="0" y="0" w="512" h="150"/>
 		<sprite name="teula2" x="0" y="170" w="512" h="150"/>
-		<sprite name="teula3" x="0" y="352" w="512" h="150"/>
+		<sprite name="teula3" x="0" y="352" w="512" h="150"/>	
+	</gui_spritemap>
 	
-		
+	<gui_spritemap name="slider1" width="512" height="512">
+		<material name="slider1" vertex_type="SpriteVertex">		
+			<texture type="diffuse" filename="data/gui/slider.jpg"/>			
+		</material>
+		<sprite name="slider_base" x="50" y="50" w="412" h="40"/>
+		<sprite name="slider_top" x="50" y="50" w="412" h="40"/>
+		<sprite name="slider_handle" x="50" y="150" w="60" h="60"/>
+		<sprite name="slider_pressed_handle" x="50" y="150" w="60" h="60"/>		
 	</gui_spritemap>
 	
 	<gui_spritemap name="font1" width="256" height="256">
-		<material name="font1" vertex_type="SpriteVertex">
-		
+		<material name="font1" vertex_type="SpriteVertex">		
 			<texture type="diffuse" filename="data/fonts/Font_0.png"/>
-			<!--<parameter type="color" name0="diffuse_color" value="0.0 0.0 0.0 1.0" />-->
-			
 		</material>
-
-		<sprite name="Font_0.png" x="0" y="0" w="256" h="256"/>
-		
-	
-		
+		<sprite name="Font_0.png" x="0" y="0" w="256" h="256"/>		
 	</gui_spritemap>
 	
 	<button name="teula_button" normal="teula" highlight="teula2" pressed="teula3"/>
-	
+	<slider name="teula_slider" base="slider_base" top="slider_top" handle="slider_handle" pressed_handle="slider_pressed_handle"/>	
 	<font name="font1" filename="data/fonts/Font.xml"/>
 
 </gui_elements>
