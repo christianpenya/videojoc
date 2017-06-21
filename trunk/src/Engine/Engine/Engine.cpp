@@ -190,6 +190,8 @@ void CEngine::Init(HWND hWnd)
 
         LoadFiles();
     }
+
+    SetCameraController(m_FreeCam);
 }
 
 void CEngine::ProcessInputs() const
@@ -215,7 +217,7 @@ void CEngine::Update()
     }
 
     m_PrevCameraSelector = m_CameraSelector;
-
+    /*
     switch (m_CameraSelector)
     {
     case 0: //Free
@@ -233,7 +235,7 @@ void CEngine::Update()
         break;
     default:
         break;
-    }
+    }*/
 
     CharacterControllerUpdate(m_ActionManager, (float)m_DeltaTime);
 
@@ -249,9 +251,9 @@ void CEngine::Update()
 
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
-//   if(m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))
+    //   if(m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))
     m_GUIManager->FillCommandQueueWithText("font1", "TEST", Vect2f(.0f, .0f), CGUIManager::TOP_LEFT,CColor(1.0f, .0f, .0f));
-//    m_GUIManager->DoSlider("slider1", "teula_slider",  CGUIPosition(50, 50, 412, 40), .0f, 100.0f, .0f);
+    m_GUIManager->DoSlider("slider1", "teula_slider",  CGUIPosition(50, 50, 412, 40), .0f, 100.0f, .0f);
 }
 
 void CEngine::Render()

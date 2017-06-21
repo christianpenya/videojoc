@@ -11,7 +11,12 @@
 class CCinematicCameraController : public CCameraController
 {
 public:
-
+    CCinematicCameraController()
+    {
+        m_Position  = Vect3f(0,0,0);
+        m_Up = Vect3f(0, 1, 0);
+        m_Front = Vect3f(1, 0, 0);
+    }
 
     CCinematicCameraController(Vect3f initialPos, Vect3f initialUp, Vect3f lFront)
     {

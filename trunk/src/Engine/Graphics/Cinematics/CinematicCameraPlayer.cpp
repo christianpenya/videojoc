@@ -1,10 +1,15 @@
 #include "CinematicCameraPlayer.h"
 #include "CinematicCameraKey.h"
-#include "Engine\Engine.h"
-#include "XML\tinyxml2\tinyxml2.h"
+#include "Engine/Engine.h"
+#include "XML/tinyxml2/tinyxml2.h"
+#include "Graphics/Camera/CinematicCameraController.h"
+#include "Utils/Logger.h"
 
-CCinematicCameraPlayer::CCinematicCameraPlayer() {}
-CCinematicCameraPlayer::~CCinematicCameraPlayer() {}
+CCinematicCameraPlayer::CCinematicCameraPlayer() : m_CurrentCinematicCamera(nullptr), m_lastCameraState(nullptr) {}
+CCinematicCameraPlayer::~CCinematicCameraPlayer()
+{
+    base::utils::CheckedDelete(m_CurrentCinematicCamera);
+}
 
 bool CCinematicCameraPlayer::Load(const CXMLElement *aElement)
 {
@@ -22,6 +27,7 @@ bool CCinematicCameraPlayer::Load(const CXMLElement *aElement)
         }
     }
 
+    m_CurrentCinematicCamera = new CCinematicCameraController();
 
     return lOk;
 }
@@ -31,15 +37,28 @@ void CCinematicCameraPlayer::Apply(float aPercentage, CCinematicKey* A, CCinemat
     CCinematicCameraKey* a = dynamic_cast<CCinematicCameraKey*>(A);
     CCinematicCameraKey* b = dynamic_cast<CCinematicCameraKey*>(B);
 
-    CCameraController *cam = &(CEngine::GetInstance().GetCameraController());
-    Vect3f lPos = cam->getPosition();
-    Vect3f lUp = cam->getUp();
-    Vect3f lFront = cam->getFront();
+    Vect3f lPos = m_CurrentCinematicCamera->getPosition();
+    Vect3f lUp = m_CurrentCinematicCamera->getUp();
+    Vect3f lFront = m_CurrentCinematicCamera->getFront();
     lPos = a->GetPosition()*aPercentage + b->GetPosition()*(1 - aPercentage);
     lUp = a->GetUp()*aPercentage + b->GetUp()*(1 - aPercentage);
     lFront = a->GetLookAt()*aPercentage + b->GetLookAt()*(1 - aPercentage);
 
-    cam->setPosition(lPos);
-    cam->setUp(lUp);
-    cam->setFront(lFront);
+    m_CurrentCinematicCamera->setPosition(lPos);
+    m_CurrentCinematicCamera->setUp(lUp);
+    m_CurrentCinematicCamera->setFront(lFront);
+}
+
+void CCinematicCameraPlayer::Finish()
+{
+    LOG_INFO_APPLICATION("Finishing camera");
+    CEngine::GetInstance().SetCameraController(m_lastCameraState);
+}
+
+void CCinematicCameraPlayer::Start()
+{
+    LOG_INFO_APPLICATION("Starting camera");
+    CEngine& lEngine = CEngine::GetInstance();
+    m_lastCameraState = &(lEngine.GetCameraController());
+    lEngine.SetCameraController(m_CurrentCinematicCamera);
 }
