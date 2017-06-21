@@ -150,15 +150,16 @@ struct PositionWeightIndicesNormalUV
 struct ParticleVertex
 {
     POSITION;
+    COLOR;
     UV;
     UV2;
-    COLOR;
     GET_VERTEX_FLAGS(ePosition | eUV | eUV2 | eColor);
     BEGIN_INPUT_LAYOUT
     {
         LAYOUT_POSITION(0),
-        LAYOUT_UV(24),
-        LAYOUT_UV2(24),
+        LAYOUT_COLOR(12),
+        LAYOUT_UV(28),
+        LAYOUT_UV2(36),
     }
     END_INPUT_LAYOUT
 };

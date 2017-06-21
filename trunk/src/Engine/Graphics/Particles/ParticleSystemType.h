@@ -63,6 +63,7 @@ public:
     Vect3f m_StartingSpeed1, m_StartingSpeed2;
     Vect3f m_StartingAcceleration1, m_StartingAcceleration2;
     CColor m_Color1, m_Color2;
+	void DrawImgui();
 
     std::vector<ControlPointColor> m_ControlPointColors;
     std::vector<ControlPointSize> m_ControlPointSizes;

@@ -138,6 +138,10 @@ void CEngine::LoadFiles()
     const std::string material = "Default";
     LOG_INFO_APPLICATION("Engine -> PhysX Loaded! \\(^-^)/");
 
+    m_ParticleManager = new CParticleManager();
+    m_ParticleManager->Load(m_FileParticleManager);
+    LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
+
     m_SceneManager = new CSceneManager();
     m_SceneManager->Load(m_FileSceneManager);
     LOG_INFO_APPLICATION("Engine -> Scenes Loaded! \\(^-^)/");
@@ -146,9 +150,6 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load("data/cinematics.xml");
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
-    m_ParticleManager = new CParticleManager();
-    m_ParticleManager->Load(m_FileParticleManager);
-    LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
 
     m_GUIManager = new CGUIManager();
     m_GUIManager->Load("data/gui.xml");

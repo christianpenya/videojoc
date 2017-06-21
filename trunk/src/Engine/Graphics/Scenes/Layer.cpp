@@ -9,6 +9,8 @@
 #include "Graphics/Lights/LightManager.h"
 #include "Graphics/Particles/ParticleSystemInstance.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
+#include "Graphics/Particles/ParticleManager.h"
+#include "Graphics/Particles/ParticleSystemType.h"
 
 CLayer::CLayer(const std::string& aName) :
     CName(aName),
@@ -143,6 +145,12 @@ void CLayer::DrawImgui()
                     if (lLight != nullptr)
                         lLight->DrawImgui();
                 }
+				else if (lSceneNode->GetNodeType() == 4) //"scene_particle"
+				{
+					CParticleSystemType *lParticle = CEngine::GetInstance().GetParticleManager()(lSceneNode->GetName());
+					if (lParticle != nullptr)
+						lParticle->DrawImgui();
+				}
                 ImGui::PopID();
             }
             ImGui::PopItemWidth();

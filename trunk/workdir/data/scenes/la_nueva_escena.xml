@@ -3,9 +3,12 @@
 		
 		<scene_light name="FDirect001" id_light="0" />
 		<scene_light name="Fspot001" id_light="1" />
-
 		
-		
+		<scene_particle name="Smoke" nextParticleEmission="0.5"  awake="true" awakeTimer="0.8"  activeParticles="200" emission_box_size="1.0 1.0 1.0" > 
+			<transform position="0.0 0.0 1.0" forward="0.0 0.0 0.0" />
+		</scene_particle> 
+	
+ 
 		
 		<!--
 		
@@ -66,7 +69,7 @@
 	</layer>
 	
 	<layer name="deferred_opaque" active="true">
-		<scene_mesh name="x!" mesh="data/meshes/Box01.mesh">
+<!--		<scene_mesh name="x!" mesh="data/meshes/Box01.mesh">
 			<transform position="5.0 0.0 0.0" yaw="0.5" pitch ="0.5" roll="0.5" scale="2.0 2.0 2.0"/>
 		</scene_mesh>
 		<scene_mesh name="Y!" mesh="data/meshes/Box01.mesh">
@@ -78,10 +81,11 @@
 
 		<scene_mesh name="Cub!" mesh="data/meshes/Box01.mesh">
 			<transform position="0.0 0.0 0.0" yaw="0.5" pitch ="0.5" roll="0.5" scale="2.0 2.0 2.0"/>
-		</scene_mesh>
+		</scene_mesh>-->
 		<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 3.0" />
 		</scene_mesh>
+	
 
 	</layer>
 

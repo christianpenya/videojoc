@@ -11,6 +11,7 @@
 		<technique vertex_type="PositionWeightIndicesNormalUV"/>
 		<technique vertex_type="Quad"/>
 		<technique vertex_type="DeferredQuad"/>
+		<technique vertex_type="ParticleVertex"/>
 		<technique name="NoiseVignetting" />
 		<technique name="Fog" />
 		<technique name="ZBlur" />
@@ -20,7 +21,6 @@
 		<technique name="Hdao" />
 		
 		<technique name="ColorGrading" />
-		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique" />
 		<!--<technique vertex_type="EnvironmentMap" />-->
 		<technique name="SSR" />
 		<technique vertex_type="SpriteVertex" effect="SpriteVertexTechnique"/>
@@ -29,6 +29,7 @@
   </default_pool>
 
 	<pool name="forward">
+		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique"/>
 		<technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>
 		<technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
 		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
@@ -37,10 +38,12 @@
 		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueForward"/>
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
+		
 		<!--<technique vertex_type="EnvironmentMap" effect="EnvironmentMapTechniqueForward"/>-->
 	</pool>
 	
 	<pool name="deferred">
+		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique"/>
 		<technique vertex_type="PositionUV" effect="PositionUVTechniqueDeferred"/>
 		<technique vertex_type="PositionNormal" effect="PositionNormalTechniqueDeferred"/>
 		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueDeferred"/>
@@ -49,9 +52,11 @@
 		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueDeferred"/>
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueDeferred"/>
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueDeferred"/>
+		
 	</pool>
 	
 	<pool name="shadows">
+		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique"/>
 		<technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>
 		<technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
 		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
@@ -60,6 +65,7 @@
 		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueForward"/>
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
+		
 	</pool>
 	<!--
 	<pool name="shadows">	
@@ -74,6 +80,7 @@
 	</pool>
 	-->
 	<pool name="post_process">
+		<technique name="ParticleVertex" effect="ParticleVertexTechnique" />
 		<technique name="NoiseVignetting" effect="NoiseVignettingTechnique"/>
 		<technique name="Fog" effect="FogTechnique"/>
 		<technique name="ZBlur" effect="ZBlurTechnique" />
