@@ -41,19 +41,7 @@ public:
         return true;
     }
 
-    virtual bool Render(ID3D11DeviceContext* aContext, int numVertex)
-    {
-        // Send the vertex buffer to the GPU
-        m_VertexBuffer->Bind(aContext);
 
-        // Configure the type of topology to be renderer ( p.e. Triangles, Quads, points,... )
-        aContext->IASetPrimitiveTopology(m_PrimitiveTopology);
-
-        // Finally draw the geometry
-        aContext->Draw(numVertex, 0);
-
-        return true;
-    }
 
 
 

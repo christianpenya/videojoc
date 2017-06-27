@@ -13,12 +13,14 @@ public:
     virtual bool Load(const CXMLElement* aElement);
     virtual void Finish();
     virtual void Start();
+
 private:
     DISALLOW_COPY_AND_ASSIGN(CCinematicCameraPlayer);
 protected:
     virtual void Apply(float aPercentage, CCinematicKey* A, CCinematicKey* B);
     CCameraController *m_lastCameraState;
     CCameraController *m_CurrentCinematicCamera;
+
 };
 
 #endif
