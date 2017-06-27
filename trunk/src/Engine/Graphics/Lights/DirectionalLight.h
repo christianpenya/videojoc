@@ -10,6 +10,7 @@ public:
     CDirectionalLight(CXMLElement* aElement);
     virtual ~CDirectionalLight();
     virtual void SetShadowMap(CRenderManager &RenderManager);
+    virtual void Initialize(CXMLElement* aElement);
 protected:
     Vect2f m_OrthoShadowMapSize;
 

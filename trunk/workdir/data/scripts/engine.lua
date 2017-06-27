@@ -10,7 +10,7 @@ bar["key"] = "there"
 f_ShaderManager = "data/shaders.xml"
 f_Effects = "data/effects.xml"
 f_TPManager = "data/techniques_pool.xml"
-f_LevelMaterial = "data/materials/materiales_castillo.xml"
+f_LevelMaterial = "data/materials/materiales_zona_reclusion.xml"
 f_DefaultMaterial = "data/materials/default.xml"
 f_Texture = "data/textures/BARK5.jpg"
 f_AnimatedModel = "data/animated_models.xml"
@@ -19,6 +19,27 @@ f_SceneManager = "data/scenes.xml"
 f_ActionManager = "data/config/input_config.xml"
 f_RenderPipeline = "data/render_pipeline.xml"
 f_ParticleManager = "data/particles.xml"
+f_ParticleManager = "data/particles.xml"
+f_CinematicsManager = "data/cinematics.xml";
+f_SoundPath = "data/sound/";
+f_SoundBankFile = "SoundbanksInfo.xml";
+f_SpeakersFile = "speakers.xml";
+
+function getFileCinematicManager()
+	return f_CinematicsManager
+end
+
+function getSoundFilesPath()
+	return f_SoundPath
+end
+
+function getSoundSpeakersFile()
+	return f_SpeakersFile
+end
+
+function getSoundBankFile()
+	return f_SoundBankFile
+end
 
 function getFileShaderManager()
 	return f_ShaderManager

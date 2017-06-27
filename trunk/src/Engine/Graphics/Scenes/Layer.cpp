@@ -9,6 +9,14 @@
 #include "Graphics/Lights/LightManager.h"
 #include "Graphics/Particles/ParticleSystemInstance.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
+#include "Graphics/Particles/ParticleManager.h"
+#include "Graphics/Particles/ParticleSystemType.h"
+
+#ifdef _DEBUG
+#include <chrono>
+#include "Utils/Logger.h"
+#include "Utils/MemLeaks/MemLeaks.h"
+#endif
 
 CLayer::CLayer(const std::string& aName) :
     CName(aName),
@@ -42,12 +50,12 @@ bool CLayer::Load(CXMLElement* aElement)
                 lNode = new CSceneAnimatedModel(*iSceneMesh);
                 ((CSceneAnimatedModel *)lNode)->Initialize(l_AnimatedCoreModel);
             }
-            lNode->SetNodeType(CSceneNode::eAnimatedModel); //SceneAnimatedModel
+            lNode->SetNodeType(CSceneNode::eAnimatedModel);
         }
         else if (strcmp(iSceneMesh->Name(), "scene_basic_primitive") == 0)
         {
             lNode = new  CSceneBasicPrimitive(iSceneMesh);
-            lNode->SetNodeType(CSceneNode::eBasicPrimitive); //SceneBasicPrimitive
+            lNode->SetNodeType(CSceneNode::eBasicPrimitive);
         }
         else if (strcmp(iSceneMesh->Name(), "scene_light") == 0)
         {
@@ -107,6 +115,30 @@ bool CLayer::Render()
     return lOk;
 }
 
+bool CLayer::Refresh()
+{
+    CLightManager &lLM = CEngine::GetInstance().GetLightManager();
+    std::set<std::string> lMissingNodes;
+
+    for (TVectorResources::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
+    {
+        if ((*iSceneNode)->GetNodeType() == CSceneNode::eLight)
+        {
+            if (!lLM.Exist((*iSceneNode)->GetName()))
+            {
+                lMissingNodes.insert((*iSceneNode)->GetName());
+            }
+        }
+    }
+
+    for (std::set<std::string>::iterator iMissingNode = lMissingNodes.begin(); iMissingNode != lMissingNodes.end(); ++iMissingNode)
+    {
+        Remove(*iMissingNode);
+    }
+
+    return false;
+}
+
 std::vector<CSceneNode*> CLayer::GetNodes()
 {
     return m_ResourcesVector;
@@ -114,39 +146,79 @@ std::vector<CSceneNode*> CLayer::GetNodes()
 
 void CLayer::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str(), ImGuiWindowFlags_AlwaysVerticalScrollbar))
-    {
-        ImGui::Checkbox("Active", &m_Active);
-        if (m_Active == true)
-        {
-            ImGui::BeginChild("#layer", ImVec2(400, 400), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-            ImGui::PushItemWidth(-130);
+    ImGui::Checkbox("Active", &m_Active);
 
-            for (TMapResources::iterator iLayerMapEntry = m_ResourcesMap.begin(); iLayerMapEntry != m_ResourcesMap.end(); ++iLayerMapEntry)
+    if (m_Active)
+    {
+        ImGui::BeginChild("#layer", ImVec2(400, 400), true);
+        ImGui::PushItemWidth(-130);
+
+        for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
+        {
+            ImGui::PushID((*iSceneNode)->GetName().c_str());
+
+            switch ((*iSceneNode)->GetNodeType())
             {
-                CSceneNode* lSceneNode = iLayerMapEntry->second.m_Value;
-                ImGui::PushID(iLayerMapEntry->second.m_Id);
-                if (lSceneNode->GetNodeType() == 0) //Mesh
-                    ((CSceneMesh *)lSceneNode)->DrawImgui();
-                else if (lSceneNode->GetNodeType() == 1) // "scene_animated_model"
-                {
-                    ((CSceneAnimatedModel *)lSceneNode)->DrawImgui();
-                    CAnimatedCoreModel *lAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(lSceneNode->GetName());
-                    if (lAnimatedCoreModel != nullptr)
-                        lAnimatedCoreModel->DrawImgui();
-                }
-                else if (lSceneNode->GetNodeType() == 2) // "scene_basic_primitive"
-                    ((CSceneBasicPrimitive *)lSceneNode)->DrawImgui();
-                else if (lSceneNode->GetNodeType() == 3) //"scene_light"
-                {
-                    CLight *lLight = CEngine::GetInstance().GetLightManager()(lSceneNode->GetName());
-                    if (lLight != nullptr)
-                        lLight->DrawImgui();
-                }
-                ImGui::PopID();
+
+            case CSceneMesh::eMesh:
+            {
+                (*iSceneNode)->DrawImgui();
             }
-            ImGui::PopItemWidth();
-            ImGui::EndChild();
+            break;
+
+            case CSceneNode::eAnimatedModel:
+            {
+                // TODO animated core models deben formar parte de la escena
+                ((CSceneAnimatedModel *)(*iSceneNode))->DrawImgui();
+                CAnimatedCoreModel *lAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()((*iSceneNode)->GetName());
+
+                if (lAnimatedCoreModel != nullptr)
+                {
+                    lAnimatedCoreModel->DrawImgui();
+                }
+            }
+            break;
+
+            case CSceneAnimatedModel::eBasicPrimitive:
+            {
+                ((CSceneBasicPrimitive *)(*iSceneNode))->DrawImgui();
+            }
+            break;
+
+            case CLight::eLight:
+            {
+                CLight *lLight = CEngine::GetInstance().GetLightManager()((*iSceneNode)->GetName());
+                if (lLight != nullptr)
+                {
+                    lLight->DrawImgui();
+                }
+            }
+            break;
+
+            case CSceneNode::eParticle:
+            {
+                //TODO particulas deben formar parte de la escena
+                CParticleSystemType *lParticle = CEngine::GetInstance().GetParticleManager()((*iSceneNode)->GetName());
+
+                if (lParticle != nullptr)
+                {
+                    lParticle->DrawImgui();
+                }
+            }
+
+            break;
+
+            default:
+            {
+                LOG_WARNING_APPLICATION("Unknown Scene Node Type");
+            }
+            break;
+            }
+
+            ImGui::PopID();
         }
+
+        ImGui::PopItemWidth();
+        ImGui::EndChild();
     }
 }

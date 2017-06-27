@@ -40,6 +40,10 @@ void CCinematicCameraPlayer::Apply(float aPercentage, CCinematicKey* A, CCinemat
     Vect3f lPos = m_CurrentCinematicCamera->getPosition();
     Vect3f lUp = m_CurrentCinematicCamera->getUp();
     Vect3f lFront = m_CurrentCinematicCamera->getFront();
+    CCameraController *cam = &(CEngine::GetInstance().GetCameraController());
+    Vect3f lPos = cam->GetPosition();
+    Vect3f lUp = cam->GetUp();
+    Vect3f lFront = cam->GetFront();
     lPos = a->GetPosition()*aPercentage + b->GetPosition()*(1 - aPercentage);
     lUp = a->GetUp()*aPercentage + b->GetUp()*(1 - aPercentage);
     lFront = a->GetLookAt()*aPercentage + b->GetLookAt()*(1 - aPercentage);

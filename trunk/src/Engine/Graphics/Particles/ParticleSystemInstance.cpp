@@ -4,6 +4,9 @@
 #include "ParticleManager.h"
 #include "Engine/engine.h"
 #include "XML\XML.h"
+#include "Graphics\Mesh\TemplatedGeometry.h"
+#include "Graphics\Mesh\VertexBuffer.h"
+#include "Graphics\Buffers\ConstantBufferManager.h"
 
 CParticleSystemInstance::CParticleSystemInstance()
 {
@@ -69,14 +72,16 @@ CParticleSystemInstance::CParticleSystemInstance(const CXMLElement* aElement)
     , m_Awake (aElement->GetAttribute<bool>("awake", true))
     , m_AwakeTimer(aElement->GetAttribute<float>("awakeTimer", 0.1f))
     , m_ActiveParticles(aElement->GetAttribute<int>("activeParticles", 200))
-    , m_EmissionBoxHalfSize(aElement->GetAttribute<Vect3f>("emission_box_size", Vect3f(1, 1, 1))*0.5f)
-
+    , m_EmissionBoxHalfSize(aElement->GetAttribute<Vect3f>("emission_box_size", Vect3f(1.0f,1.0f,1.0f))*0.5f)
 {
+    CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
+
     CParticleManager& lParticleManager = CEngine::GetInstance().GetParticleManager();
     m_Type = lParticleManager(aElement->GetAttribute<std::string>("name", ""));
     m_EmissionVolume = m_EmissionBoxHalfSize.x * m_EmissionBoxHalfSize.y * m_EmissionBoxHalfSize.z * 8;
     m_EmissionScaler = m_Type->m_EmitAbsolute ? 1 : 1.0f / m_EmissionVolume;
-
+    CVertexBuffer<VertexTypes::ParticleVertex> *l_buffer = new CVertexBuffer < VertexTypes::ParticleVertex>(lRenderManager, m_ParticleRenderableData, s_MaxParticlesPerInstance);
+    m_Vertices = new CGeometryPointList<VertexTypes::ParticleVertex>(l_buffer);
 }
 
 
@@ -107,6 +112,7 @@ bool CParticleSystemInstance::Update(float ElapsedTime)
             {
                 ParticleData particle = {};
                 particle.Position = GetRandomValue(-m_EmissionBoxHalfSize, m_EmissionBoxHalfSize);
+                particle.DistanceToCamera = GetDistanceToCamera(particle.Position);
                 particle.Velocity = GetRandomValue(m_Type->m_StartingSpeed1, m_Type->m_StartingSpeed2);
                 particle.Acceleration = GetRandomValue(m_Type->m_StartingAcceleration1, m_Type->m_StartingAcceleration2);
 
@@ -115,6 +121,9 @@ bool CParticleSystemInstance::Update(float ElapsedTime)
                 particle.LastSize = GetRandomValue(m_Type->m_ControlPointSizes[0].m_Size);
                 particle.NextSizeControlTime = m_Type->m_ControlPointSizes.size() < 2 ? particle.TotalLife : GetRandomValue(m_Type->m_ControlPointSizes[1].m_Time);
                 particle.NextSize = m_Type->m_ControlPointSizes.size() < 2 ? particle.LastSize : GetRandomValue(m_Type->m_ControlPointSizes[1].m_Size);
+                particle.Angle = GetRandomValue(m_Type->GetStartingAngle());
+                particle.AngularAcceleration = GetRandomValue(m_Type->m_StartingAccelerationAngle);
+                particle.AngularSpeed = GetRandomValue(m_Type->m_StartingAngularSpeed);
 
 
                 particle.ColorControlPoint = 0;
@@ -128,7 +137,6 @@ bool CParticleSystemInstance::Update(float ElapsedTime)
                 particle.Lifetime = 0;
                 particle.TotalLife = GetRandomValue(m_Type->m_Life);
 
-
                 m_ParticleData[m_ActiveParticles] = particle;
                 ++m_ActiveParticles;
             }
@@ -136,10 +144,12 @@ bool CParticleSystemInstance::Update(float ElapsedTime)
         }
     }
 
+
     for (int i = 0; i<m_ActiveParticles; ++i)
     {
         ParticleData *particle = &m_ParticleData[i];
         particle->Position += particle->Velocity * ElapsedTime + 0.5f * ElapsedTime * ElapsedTime * particle->Acceleration;
+        particle->DistanceToCamera = GetDistanceToCamera(particle->Position);
         particle->Velocity += particle->Acceleration * ElapsedTime;
         particle->TimeToNextFrame -= ElapsedTime;
         particle->Lifetime += ElapsedTime;
@@ -193,41 +203,40 @@ bool CParticleSystemInstance::Update(float ElapsedTime)
 
 
         if (m_ActiveParticles > 1)
-            CreateParticles(m_ParticleData, m_ActiveParticles);
+            orderParticles(m_ParticleData, m_ActiveParticles);
     }
-
     return true;
 }
 
-float CParticleSystemInstance::GetDistanceToCamera(ParticleData *particle)
+float CParticleSystemInstance::GetDistanceToCamera(Vect3f particlePosition)
 {
-    Vect3f pos = particle->Position * 2 - CEngine::GetInstance().GetCameraController().getPosition();
-    return pos * CEngine::GetInstance().GetCameraController().getFront();
+    Vect3f l_CameraDirection = CEngine::GetInstance().GetCameraController().GetFront();
+    Vect3f a = (particlePosition*l_CameraDirection);
+    Vect3f b = (CEngine::GetInstance().GetCameraController().GetPosition()*l_CameraDirection);
+
+    return a.Distance(b);
 }
 
-
-void CParticleSystemInstance::CreateParticles(ParticleData arr[], int length)
+void CParticleSystemInstance::orderParticles(ParticleData arr[], int length)
 {
     int i, j;
-    ParticleData tmp;
+    ParticleData aux;
     for (i = 1; i < length; ++i)
     {
         j = i;
-        while (j > 0 && arr[j - 1].DistanceToCamera < arr[j].DistanceToCamera)
+        while (j > 0 && arr[j-1].DistanceToCamera < arr[j].DistanceToCamera) //orden descendente
+            //while (j > 0 && arr[j].DistanceToCamera < arr[j-1].DistanceToCamera) //orden ascendente
         {
-            tmp = arr[j];
+            aux = arr[j];
             arr[j] = arr[j - 1];
-            arr[j - 1] = tmp;
+            arr[j - 1] = aux;
             --j;
         }
     }
 }
 
-
 bool CParticleSystemInstance::Render(CRenderManager& lRM)
 {
-    CSceneNode::Render(lRM);
-
     for (int i = 0; i < m_ActiveParticles; ++i)
     {
         ParticleData *particle = &m_ParticleData[i];
@@ -247,9 +256,21 @@ bool CParticleSystemInstance::Render(CRenderManager& lRM)
 
     if (m_ActiveParticles > 0)
     {
+        CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
+        lCBM.mFrameDesc.m_ViewProjection = lRM.GetViewProjectionMatrix();
+        lCBM.mFrameDesc.m_View = lRM.GetViewMatrix();
+        lCBM.mFrameDesc.m_Projection = lRM.GetProjectionMatrix();
+        lCBM.mObjDesc.m_World = GetMatrix();
+
+        lCBM.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Object);
+        lCBM.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Frame);
         m_Type->Getmaterial()->Apply();
+
         m_Vertices->UpdateVertex(m_ParticleRenderableData, s_MaxParticlesPerInstance);
-        m_Vertices->Render(lRM.GetDeviceContext());
+        m_Vertices->Render(lRM.GetDeviceContext(),m_ActiveParticles);
+        lRM.GetDeviceContext()->GSSetShader(nullptr, nullptr, 0);
+
     }
+
     return true;
 }

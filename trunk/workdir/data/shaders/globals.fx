@@ -15,6 +15,8 @@ cbuffer PerFrame : register( b0 )
     float4x4 m_InverseProjection;
 	float4 m_CameraInfo;//x = near, y = far, z = fov, w = aspect ratio
 	float4 m_Time;
+	float4 m_CameraPositionInScreen;
+
 }
 
 cbuffer PerObject : register( b1 )

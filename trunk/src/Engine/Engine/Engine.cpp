@@ -20,6 +20,8 @@
 #include "Graphics/Cinematics/CinematicsManager.h"
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
+//#include "Graphics/Mesh/NavMeshManager.h"
+#include "Sound/ISoundManager.h"
 #include "GUI/GUIManager.h"
 #include "GUI/GUIPosition.h"
 
@@ -49,6 +51,7 @@ CEngine::CEngine()
     , m_CinematicManager(nullptr)
     , m_PhysXManager(nullptr)
     , m_ParticleManager(nullptr)
+      //  , m_NavMeshManager(nullptr)
     , m_GUIManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
@@ -85,6 +88,7 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_ActionManager);
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
+    base::utils::CheckedDelete(m_SoundManager);//  base::utils::CheckedDelete(m_NavMeshManager);
     base::utils::CheckedDelete(m_GUIManager);
 
     base::utils::CheckedDelete(m_FreeCam);
@@ -138,17 +142,26 @@ void CEngine::LoadFiles()
     const std::string material = "Default";
     LOG_INFO_APPLICATION("Engine -> PhysX Loaded! \\(^-^)/");
 
+    m_ParticleManager = new CParticleManager();
+    m_ParticleManager->Load(m_FileParticleManager);
+    LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
+
     m_SceneManager = new CSceneManager();
     m_SceneManager->Load(m_FileSceneManager);
     LOG_INFO_APPLICATION("Engine -> Scenes Loaded! \\(^-^)/");
 
     m_CinematicManager = new CCinematicManager;
-    m_CinematicManager->Load("data/cinematics.xml");
+    m_CinematicManager->Load(m_FileCinematicManager);
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
-    m_ParticleManager = new CParticleManager();
-    m_ParticleManager->Load(m_FileParticleManager);
-    LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
+    /*
+    	m_NavMeshManager = new CNavMeshManager;
+        m_NavMeshManager->Load("data/navMesh.xml");
+        LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
+    */    m_SoundManager = ISoundManager::InstantiateSoundManager();
+    m_SoundManager->SetPath(m_SoundFilesPath);
+    m_SoundManager->Init();
+    m_SoundManager->Load(m_BanksFile, m_SpeakersFile);
 
     m_GUIManager = new CGUIManager();
     m_GUIManager->Load("data/gui.xml");
@@ -186,12 +199,22 @@ void CEngine::Init(HWND hWnd)
         m_FileActionManager = call_function<std::string>(mLS, "getActionManager");
         m_FileRenderPipeline = call_function<std::string>(mLS, "getRenderPipeline");
         m_FileParticleManager = call_function<std::string>(mLS, "getFileParticleManager");
+        m_FileCinematicManager = call_function<std::string>(mLS, "getFileCinematicManager");
+        m_SoundFilesPath = call_function<std::string>(mLS, "getSoundFilesPath");
+        m_SpeakersFile = call_function<std::string>(mLS, "getSoundSpeakersFile");
+        m_BanksFile = call_function<std::string>(mLS, "getSoundBankFile");
+
         LOG_INFO_APPLICATION("Engine -> Lua Finished! (/.__.)/ \\(.__.\\)");
 
         LoadFiles();
     }
 
     SetCameraController(m_FreeCam);
+
+    //TEST SOUND
+    SoundEvent se;
+    se.eventName = "background_music";
+    m_SoundManager->PlayEvent(se);
 }
 
 void CEngine::ProcessInputs() const
@@ -247,8 +270,7 @@ void CEngine::Update()
     m_RenderManager->Update();
     m_SceneManager->Update(m_DeltaTime);
     m_CinematicManager->Update(m_DeltaTime);
-
-
+    m_SoundManager->Update(m_CameraController);
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
     //   if(m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))
@@ -350,3 +372,10 @@ void CEngine::CharacterControllerUpdate(CActionManager* actionManager, float dt)
 
     m_CharacterController.m_Movement = {x, 0.0f, z};
 }
+
+void CEngine::DrawImgui()
+{
+    m_SceneManager->DrawImgui();
+    m_SoundManager->DrawImgui();
+}
+

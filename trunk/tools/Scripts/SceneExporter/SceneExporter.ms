@@ -23,7 +23,7 @@ fn GetCores =
 fn Point3ToString aPoint3 = 
 (		
 	local l_Text = stringstream ""
-	format "% " aPoint3.x to:l_Text
+	format "% " -aPoint3.x to:l_Text
  	format "% " aPoint3.z to:l_Text
  	format "%" aPoint3.y to:l_Text
 	return (l_Text as string)
@@ -70,7 +70,7 @@ fn ExportScene =
 					local sceneMeshNode = XmlNode tag:"scene_mesh"
  					layerNode.AddChild sceneMeshNode
 					sceneMeshNode.AddAttribute "name" o.name
-					local filename = "data/meshes/" + o.name + ".mesh"
+					local filename = "data/meshes/reclusion/" + o.name + ".mesh"
 					sceneMeshNode.AddAttribute "mesh" filename
 					
 					-- transform

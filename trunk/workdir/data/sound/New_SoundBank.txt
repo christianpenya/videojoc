@@ -1,0 +1,44 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1585661381	background_music			\Default Work Unit\background_music	
+	2453392179	player_footstep			\Default Work Unit\player_footstep	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	640949982	Speed			\Default Work Unit\Speed	
+
+Switch	ID	Name	Switch Group			Notes
+	712161704	Run	Speed			
+	2108779966	Walk	Speed			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	3253893225	music_enabling			\Default Work Unit\music_enabling	
+
+State	ID	Name	State Group			Notes
+	748895195	None	music_enabling			
+	930712164	off	music_enabling			
+	1651971902	on	music_enabling			
+
+Custom State	ID	Name	State Group	Owner		Notes
+	48969089	off	music_enabling	\Actor-Mixer Hierarchy\Default Work Unit\HallMountain		
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1006694123	music_volume			\Default Work Unit\music_volume	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	10784987	fs_grue_dirt_run_04	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_dirt_run_04_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_run\random_dirt_run\fs_grue_dirt_run_04		30784
+	96609460	fs_grue_forest_run_02	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_forest_run_02_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_run\random_forest_run\fs_grue_forest_run_02		37952
+	127180466	fs_grue_dirt_walk_01	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_dirt_walk_01_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_walk\random_dirt_walk\fs_grue_dirt_walk_01		41024
+	205592139	fs_grue_forest_walk_02	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_forest_walk_02_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_walk\random_forest_walk\fs_grue_forest_walk_02		44096
+	237084936	fs_grue_forest_run_04	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_forest_run_04_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_run\random_forest_run\fs_grue_forest_run_04		33856
+	367449864	fs_grue_dirt_walk_04	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_dirt_walk_04_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_walk\random_dirt_walk\fs_grue_dirt_walk_04		42048
+	379483438	fs_grue_dirt_run_03	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_dirt_run_03_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_run\random_dirt_run\fs_grue_dirt_run_03		31808
+	442395140	fs_grue_forest_run_03	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_forest_run_03_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_run\random_forest_run\fs_grue_forest_run_03		35904
+	625475899	fs_grue_dirt_walk_02	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_dirt_walk_02_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_walk\random_dirt_walk\fs_grue_dirt_walk_02		37952
+	671184348	fs_grue_forest_walk_01	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_forest_walk_01_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_walk\random_forest_walk\fs_grue_forest_walk_01		46144
+	706191080	fs_grue_dirt_run_01	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_dirt_run_01_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_run\random_dirt_run\fs_grue_dirt_run_01		44096
+	769258412	fs_grue_forest_walk_04	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_forest_walk_04_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_walk\random_forest_walk\fs_grue_forest_walk_04		49216
+	818390613	fs_grue_dirt_walk_03	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_dirt_walk_03_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_walk\random_dirt_walk\fs_grue_dirt_walk_03		44096
+	836267355	fs_grue_dirt_run_02	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_dirt_run_02_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_run\random_dirt_run\fs_grue_dirt_run_02		34880
+	967519853	HallMountain	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\HallMountain_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\HallMountain		27181724
+	1063512825	fs_grue_forest_walk_03	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_forest_walk_03_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_walk\random_forest_walk\fs_grue_forest_walk_03		42048
+	1065990689	fs_grue_forest_run_01	C:\Users\christian\Documents\WwiseProjects\hellowwise\.cache\Windows\SFX\fs_grue_forest_run_01_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\footsteps\random_run\random_forest_run\fs_grue_forest_run_01		40000
+

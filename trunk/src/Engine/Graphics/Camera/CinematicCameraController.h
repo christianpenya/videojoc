@@ -26,9 +26,9 @@ public:
     };
     CCinematicCameraController(CCameraController *cam)
     {
-        m_Position = cam->getPosition();
-        m_Up = cam->getUp();
-        m_Front = cam->getFront();
+        m_Position = cam->GetPosition();
+        m_Up = cam->GetUp();
+        m_Front = cam->GetFront();
     };
     virtual ~CCinematicCameraController() {};
 

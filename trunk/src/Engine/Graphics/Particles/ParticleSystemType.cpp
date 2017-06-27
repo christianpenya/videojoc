@@ -20,7 +20,7 @@ CParticleSystemType::~CParticleSystemType()
 }
 
 CParticleSystemType::CParticleSystemType(const CXMLElement* aTreeNode)
-    : m_NumFrames(aTreeNode->GetAttribute<int>("numFrames", 200))
+    : m_NumFrames(aTreeNode->GetAttribute<int>("numFrames", 15))
     , m_TimePerFrame(aTreeNode->GetAttribute<float>("timePerFrame", 1.0f))
     , m_LoopFrames(aTreeNode->GetAttribute<bool>("loopFrames", true))
     , m_EmitAbsolute(aTreeNode->GetAttribute<bool>("emitAbsolute", true))
@@ -66,4 +66,33 @@ CParticleSystemType::CParticleSystemType(const CXMLElement* aTreeNode)
         }
         aElement = aElement->NextSiblingElement();
     }
+}
+
+
+void CParticleSystemType::DrawImgui()
+{
+	if (ImGui::CollapsingHeader(m_Name.c_str()))
+	{
+		ImGui::SliderInt("No. Frames", &m_NumFrames,1,30);
+		ImGui::SliderFloat("Time Per Frame", &m_TimePerFrame, 0.25f, 100.0f);
+		ImGui::Checkbox("Loop Frames", &m_LoopFrames);
+		ImGui::Checkbox("Emit Absolute", &m_EmitAbsolute);
+		ImGui::SliderFloat("Starting Direction Angle", &m_StartingDirectionAngle, 0.0f, 360.0f);
+		ImGui::SliderFloat2("Control Size", (float*)&m_ControlPointSizes[0].m_Size, 0.25f, 10.0f);
+		ImGui::SliderFloat2("Control Size Time", (float*)&m_ControlPointSizes[0].m_Time, 0.25f, 10.0f);
+		ImGui::SliderFloat2("Emit Rate", (float*)&m_EmitRate, 0.25f, 10.0f);
+		ImGui::SliderFloat2("Awake Time", (float*)&m_AwakeTime, 0.0f, 10.0f);
+		ImGui::SliderFloat2("Sleep Time", (float*)&m_SleepTime, 0.0f, 10.0f);
+		ImGui::SliderFloat2("Life", (float*)&m_Life, 0.0f, 10.0f);
+		ImGui::SliderFloat2("Starting Angle", (float*)&m_StartingAngle, 0.0f, 360.0f);
+		ImGui::SliderFloat2("Starting Angular Speed", (float*)&m_StartingAngularSpeed, 0.0f, 10.0f);
+		ImGui::SliderFloat2("Starting Angular Acceleration", (float*)&m_AngularAcceleration, 0.0f, 10.0f);
+		ImGui::SliderFloat3("Starting Speed1", (float*)&m_StartingSpeed1, 0.0f, 10.0f);
+		ImGui::SliderFloat3("Starting Speed2", (float*)&m_StartingSpeed2, 0.0f, 10.0f);
+		ImGui::SliderFloat3("Starting Acceleration1", (float*)&m_StartingAcceleration1, 0.0f, 10.0f);
+		ImGui::SliderFloat3("Starting Acceleration2", (float*)&m_StartingAcceleration2, 0.0f, 10.0f);
+		ImGui::ColorEdit4("Control Color 1", (float*)&m_ControlPointColors[0].m_Color1, false);
+		ImGui::ColorEdit4("Control Color 2", (float*)&m_ControlPointColors[0].m_Color2, false);
+		ImGui::SliderFloat2("Control Color Time", (float*)&m_ControlPointColors[0].m_Time, 0.25f, 10.0f);
+	}
 }

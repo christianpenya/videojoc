@@ -41,6 +41,22 @@ public:
         return true;
     }
 
+    virtual bool Render(ID3D11DeviceContext* aContext, int numVertex)
+    {
+        // Send the vertex buffer to the GPU
+        m_VertexBuffer->Bind(aContext);
+
+        // Configure the type of topology to be renderer ( p.e. Triangles, Quads, points,... )
+        aContext->IASetPrimitiveTopology(m_PrimitiveTopology);
+
+        // Finally draw the geometry
+        aContext->Draw(numVertex, 0);
+
+        return true;
+    }
+
+
+
 
     bool UpdateVertex(void *Vtxs, unsigned int VtxsCount)
     {
@@ -74,6 +90,9 @@ protected:
         {} \
     }; \
 
+
+
+GEOMETRY_DEFINITION(CGeometryPointList, D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
 GEOMETRY_DEFINITION(CGeometryLinesList, D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
 GEOMETRY_DEFINITION(CGeometryTriangleList, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 GEOMETRY_DEFINITION(CGeometryTriangleStrip, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
