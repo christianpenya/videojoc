@@ -2,4 +2,5 @@
 <animated_models>
 	<animated_model name="sereno" path="data/animated_models/sereno/"/>
 	<animated_model name="guardia" path="data/animated_models/guardia/"/>
+	<animated_model name="guardiaSexy" path="data/animated_models/guardiaSexy/"/>
 </animated_models>
