@@ -50,6 +50,18 @@ struct PositionNormal
     END_INPUT_LAYOUT
 };
 
+struct Position
+{
+    POSITION;
+    GET_VERTEX_FLAGS(ePosition);
+    BEGIN_INPUT_LAYOUT
+    {
+        LAYOUT_POSITION(0),
+    }
+    END_INPUT_LAYOUT
+};
+
+
 struct PositionNormalUV
 {
     POSITION;

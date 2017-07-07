@@ -121,6 +121,7 @@ public:
     }
 
     void Draw_Triangle();
+    void Draw_Triangle(Vect3f Vertex1, Vect3f Vertex2, Vect3f Vertex3);
     void CreateDebugObjects();
 
     // Matrix Operations

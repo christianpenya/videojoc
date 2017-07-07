@@ -826,3 +826,42 @@ Vect2u CRenderManager::GetWindowSize()
 {
     return Vect2u(m_Viewport.Width, m_Viewport.Height);
 }
+
+
+void CRenderManager::Draw_Triangle(Vect3f Vertex1, Vect3f Vertex2, Vect3f Vertex3)
+{
+    CDebugVertex resultBuffer[] =
+    {
+        { Vect4f(Vertex1, 1.0f), CColor(1.0f, 0.0f, 0.0f, 1.0f) },
+        { Vect4f(Vertex2, 1.0f), CColor(0.0f, 0.0f, 1.0f, 1.0f) },
+        { Vect4f(Vertex3, 1.0f), CColor(0.0f, 1.0f, 0.0f, 1.0f) }
+    };
+
+    // set vertex data
+    D3D11_MAPPED_SUBRESOURCE resource;
+    auto dvb = m_DebugVertexBuffer.get();
+    HRESULT hr = m_DeviceContext->Map(dvb, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+
+    if (FAILED(hr))
+        return; // TODO log
+
+#ifdef _DEBUG
+    assert(3 * sizeof(CDebugVertex) < DebugVertexBufferSize * sizeof(CDebugVertex));
+#endif
+
+    memcpy(resource.pData, resultBuffer, 3 * sizeof(CDebugVertex));
+    m_DeviceContext->Unmap(dvb, 0);
+
+    UINT stride = sizeof(CDebugVertex);
+    UINT offset = 0;
+    m_DeviceContext->IASetVertexBuffers(0, 1, &dvb, &stride, &offset);
+    m_DeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    auto dvl = m_DebugVertexLayout.get();
+    auto dvs = m_DebugVertexShader.get();
+    auto dps = m_DebugPixelShader.get();
+    m_DeviceContext->IASetInputLayout(dvl);
+    m_DeviceContext->VSSetShader(dvs, NULL, 0);
+    m_DeviceContext->PSSetShader(dps, NULL, 0);
+
+    m_DeviceContext->Draw(3, 0);
+}

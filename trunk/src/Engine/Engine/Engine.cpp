@@ -20,7 +20,7 @@
 #include "Graphics/Cinematics\CinematicsManager.h"
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
-//#include "Graphics/Mesh/NavMeshManager.h"
+#include "Graphics/IA/NavMeshManager.h"
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
@@ -48,7 +48,7 @@ CEngine::CEngine()
     , m_CinematicManager(nullptr)
     , m_PhysXManager(nullptr)
     , m_ParticleManager(nullptr)
-      //  , m_NavMeshManager(nullptr)
+    , m_NavMeshManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
@@ -84,7 +84,7 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_ActionManager);
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
-//   base::utils::CheckedDelete(m_NavMeshManager);
+    base::utils::CheckedDelete(m_NavMeshManager);
 
     base::utils::CheckedDelete(m_FreeCam);
     base::utils::CheckedDelete(m_FpsCam);
@@ -141,6 +141,10 @@ void CEngine::LoadFiles()
     m_ParticleManager->Load(m_FileParticleManager);
     LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
 
+    m_NavMeshManager = new CNavMeshManager;
+    m_NavMeshManager->Load("data/navMesh.xml");
+    LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
+
     m_SceneManager = new CSceneManager();
     m_SceneManager->Load(m_FileSceneManager);
     LOG_INFO_APPLICATION("Engine -> Scenes Loaded! \\(^-^)/");
@@ -149,10 +153,7 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load("data/cinematics.xml");
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
-    /*    m_NavMeshManager = new CNavMeshManager;
-        m_NavMeshManager->Load("data/navMesh.xml");
-        LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
-    	*/
+
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
@@ -176,6 +177,7 @@ void CEngine::Init(HWND hWnd)
         m_FileDefaultMaterial = call_function<std::string>(mLS, "getFileDefaultMaterial");
         m_FileEffectManager = call_function<std::string>(mLS, "getFileEffects");
         m_FileMaterialManager = call_function<std::string>(mLS, "getFileLevelMaterial");
+        m_FileNavMeshManager = call_function<std::string>(mLS, "getFileNavMeshManager");
         m_FileLightManager = call_function<std::string>(mLS, "getFileLightManager");
         m_FileSceneManager = call_function<std::string>(mLS, "getFileSceneManager");
         m_FileShaderManager = call_function<std::string>(mLS, "getFileShaderManager");

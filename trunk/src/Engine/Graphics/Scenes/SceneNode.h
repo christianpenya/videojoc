@@ -22,6 +22,7 @@ public:
         eBasicPrimitive,
         eLight,
         eParticle,
+        eNavMesh,
         eSceneNodeCount
     };
 

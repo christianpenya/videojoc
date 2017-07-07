@@ -97,6 +97,11 @@ bool CreateInputLayout(CRenderManager &aRenderManager, uint32 aVertexFlags, ID3D
         VertexTypes::ParticleVertex::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
         lOk = true;
     }
+    else if (aVertexFlags == Position::GetVertexFlags())
+    {
+        VertexTypes::Position::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
+        lOk = true;
+    }
 
 
 #ifdef _DEBUG
@@ -143,6 +148,12 @@ uint32 GetFlagsFromString(const std::string& aString)
     {
 
         lOut = PositionWeightIndicesNormalUV::GetVertexFlags();
+
+    }
+    else if (aString == "Position")
+    {
+
+        lOut = Position::GetVertexFlags();
 
     }
     else if (aString == "ParticleVertex")

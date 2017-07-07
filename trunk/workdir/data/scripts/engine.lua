@@ -19,6 +19,7 @@ f_SceneManager = "data/scenes.xml"
 f_ActionManager = "data/config/input_config.xml"
 f_RenderPipeline = "data/render_pipeline.xml"
 f_ParticleManager = "data/particles.xml"
+f_NavMeshManager = "data/navMesh.xml"
 
 function getFileShaderManager()
 	return f_ShaderManager
@@ -66,4 +67,8 @@ end
 
 function getFileParticleManager()
 	return f_ParticleManager
+end
+
+function getFileNavMeshManager()
+	return f_NavMeshManager
 end

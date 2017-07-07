@@ -2,7 +2,7 @@
 #ifndef _NAVMESHMANAGER_H_
 #define _NAVMESHMANAGER_H_
 
-#include "Utils\TemplatedMapVector.h"
+#include "Utils\TemplatedMap.h"
 #include "NavMesh.h"
 
 #ifdef _DEBUG
@@ -10,7 +10,7 @@
 #endif
 
 
-class CNavMeshManager : public base::utils::CTemplatedMapVector<CNavMesh>
+class CNavMeshManager : public base::utils::CTemplatedMap<CNavMesh>
 {
 public:
     CNavMeshManager();

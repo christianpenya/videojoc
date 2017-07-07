@@ -22,6 +22,9 @@
     <Filter Include="Graphics\Effects">
       <UniqueIdentifier>{C5880892-B181-27E4-DAB3-0C69C60B07F0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\IA">
+      <UniqueIdentifier>{EF549E76-5B0A-176C-E4FE-104350B30D70}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Graphics\Lights">
       <UniqueIdentifier>{50C79AA0-BC52-0865-C563-8B59316E6465}</UniqueIdentifier>
     </Filter>
@@ -158,6 +161,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Effects\VertexShader.h">
       <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\NavMesh.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\NavMeshManager.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\tiny_obj_loader.h">
+      <Filter>Graphics\IA</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Lights\DirectionalLight.h">
       <Filter>Graphics\Lights</Filter>
@@ -366,11 +378,8 @@
     <ClInclude Include="..\..\src\Engine\Sound\SoundManager.h">
       <Filter>Sound</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\NavMeshManager.h">
-      <Filter>Graphics\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\NavMesh.h">
-      <Filter>Graphics\Mesh</Filter>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Pathfinding.h">
+      <Filter>Graphics\IA</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -466,6 +475,15 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Effects\VertexShader.cpp">
       <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMesh.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMeshManager.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\tiny_obj_loader.cc">
+      <Filter>Graphics\IA</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\DirectionalLight.cpp">
       <Filter>Graphics\Lights</Filter>
@@ -638,11 +656,8 @@
     <ClCompile Include="..\..\src\Engine\Sound\SoundManager.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\Mesh\NavMeshManager.cpp">
-      <Filter>Graphics\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\Mesh\NavMesh.cpp">
-      <Filter>Graphics\Mesh</Filter>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Pathfinding.cpp">
+      <Filter>Graphics\IA</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -9,9 +9,14 @@ void CFreeCameraController::Update(float ElapsedTime)
     if (ImGui::GetIO().WantCaptureMouse)
         return;
 
+
     CCameraController::Update(ElapsedTime);
     CActionManager* actionManager = &CEngine::GetInstance().GetActionManager();
     center = CEngine::GetInstance().GetRenderManager().m_SphereOffset;
+
+    if ((*actionManager)("mouse_right_pressed")->value<0.99)
+        return;
+
     xSpeed = 0.2f * (*actionManager)("x_move")->value;
     zSpeed = 0.1f * (*actionManager)("z_move")->value;
     yawSpeed = 0.1f * (*actionManager)("pitch")->value;

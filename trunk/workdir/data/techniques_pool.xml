@@ -12,6 +12,7 @@
 		<technique vertex_type="Quad"/>
 		<technique vertex_type="DeferredQuad"/>
 		<technique vertex_type="ParticleVertex"/>
+		<technique vertex_type="Position"/>
 		<technique name="NoiseVignetting" />
 		<technique name="Fog" />
 		<technique name="ZBlur" />
@@ -29,21 +30,21 @@
 
 	<pool name="forward">
 		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique"/>
-		<technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>
+		<!--<technique vertex_type="PositionUV" effect="PositionUVTechniqueForward"/>-->
 		<technique vertex_type="PositionNormal" effect="PositionNormalTechniqueForward"/>
 		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueForward"/>
 		<technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2TechniqueForward"/>
-		<technique vertex_type="PositionBump" effect="PositionBumpTechniqueForward"/>
+		<!--<technique vertex_type="PositionBump" effect="PositionBumpTechniqueForward"/>-->
 		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueForward"/>
-		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
+		<!--<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>-->
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
-		
+		<technique vertex_type="Position" effect="PositionTechnique"/>		
 		<!--<technique vertex_type="EnvironmentMap" effect="EnvironmentMapTechniqueForward"/>-->
 	</pool>
 	
 	<pool name="deferred">
 		<technique vertex_type="ParticleVertex" effect="ParticleVertexTechnique"/>
-		<technique vertex_type="PositionUV" effect="PositionUVTechniqueDeferred"/>
+		<!--<technique vertex_type="PositionUV" effect="PositionUVTechniqueDeferred"/>-->
 		<technique vertex_type="PositionNormal" effect="PositionNormalTechniqueDeferred"/>
 		<technique vertex_type="PositionNormalUV" effect="PositionNormalUVTechniqueDeferred"/>
 		<technique vertex_type="PositionNormalUVUV2" effect="PositionNormalUVUV2TechniqueDeferred"/>
@@ -51,7 +52,7 @@
 		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueDeferred"/>
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueDeferred"/>
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueDeferred"/>
-		
+		<technique vertex_type="Position" effect="PositionTechnique"/>		
 	</pool>
 	
 	<pool name="shadows">
@@ -64,7 +65,7 @@
 		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVTechniqueForward"/>
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
-		
+		<technique vertex_type="Position" effect="PositionTechnique"/>		
 	</pool>
 	<!--
 	<pool name="shadows">	

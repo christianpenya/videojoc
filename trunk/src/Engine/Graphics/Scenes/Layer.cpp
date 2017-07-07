@@ -10,6 +10,9 @@
 #include "Graphics/Particles/ParticleSystemInstance.h"
 #include "Graphics/Particles/ParticleManager.h"
 #include "Graphics/Particles/ParticleSystemType.h"
+#include "Graphics/IA/NavMesh.h"
+#include "Graphics/IA/NavMeshManager.h"
+
 
 CLayer::CLayer(const std::string& aName) :
     CName(aName),
@@ -25,6 +28,7 @@ bool CLayer::Load(CXMLElement* aElement)
 {
     bool lOk = true;
     CLightManager &lLM = CEngine::GetInstance().GetLightManager();
+    CNavMeshManager &l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
 
     for (tinyxml2::XMLElement *iSceneMesh = aElement->FirstChildElement(); iSceneMesh != nullptr; iSceneMesh = iSceneMesh->NextSiblingElement())
     {
@@ -66,6 +70,11 @@ bool CLayer::Load(CXMLElement* aElement)
         {
             lNode = new CParticleSystemInstance(iSceneMesh);
             lNode->SetNodeType(CSceneNode::eParticle);
+        }
+        else if (strcmp(iSceneMesh->Name(), "scene_navmesh") == 0)
+        {
+            lNode = l_NavMeshManager(iSceneMesh->GetAttribute<std::string>("name", ""));
+            lNode->SetNodeType(CSceneNode::eNavMesh);
         }
 
         if (lNode)
@@ -140,12 +149,18 @@ void CLayer::DrawImgui()
                     if (lLight != nullptr)
                         lLight->DrawImgui();
                 }
-				else if (lSceneNode->GetNodeType() == 4) //"scene_particle"
-				{
-					CParticleSystemType *lParticle = CEngine::GetInstance().GetParticleManager()(lSceneNode->GetName());
-					if (lParticle != nullptr)
-						lParticle->DrawImgui();
-				}
+                else if (lSceneNode->GetNodeType() == 4) //"scene_particle"
+                {
+                    CParticleSystemType *lParticle = CEngine::GetInstance().GetParticleManager()(lSceneNode->GetName());
+                    if (lParticle != nullptr)
+                        lParticle->DrawImgui();
+                }
+                else if (lSceneNode->GetNodeType() == CSceneNode::eNavMesh) //"scene_particle"
+                {
+                    CNavMesh *lNavMesh = CEngine::GetInstance().GetNavMeshManager()(lSceneNode->GetName());
+                    if (lNavMesh != nullptr)
+                        lNavMesh->DrawImgui();
+                }
                 ImGui::PopID();
             }
             ImGui::PopItemWidth();

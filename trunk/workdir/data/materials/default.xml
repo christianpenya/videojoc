@@ -104,6 +104,8 @@
 		<parameter type="float2" name="light_position" value="0.5 0.5"/>
 	</material>
 
+	<material name="NavMeshMaterial" vertex_type="Position"/>
+
 	
 </materials>
  

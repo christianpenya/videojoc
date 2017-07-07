@@ -8,7 +8,7 @@ CNavMeshManager::CNavMeshManager() {}
 
 CNavMeshManager::~CNavMeshManager()
 {
-    CTemplatedMapVector<CNavMesh>::Destroy();
+    CTemplatedMap<CNavMesh>::Destroy();
 }
 
 bool CNavMeshManager::Load(const std::string &aFilename)
@@ -20,7 +20,7 @@ bool CNavMeshManager::Load(const std::string &aFilename)
     if (base::xml::SucceedLoad(error))
     {
         m_Filename = aFilename;
-        CXMLElement* l_Meshes = document.FirstChildElement("navmesh");
+        CXMLElement* l_Meshes = document.FirstChildElement("navmeshs");
 
         if (l_Meshes)
         {
