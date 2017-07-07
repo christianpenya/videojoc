@@ -12,16 +12,16 @@ float2 UV :
 #define RING_4 (4)
 #define NUM_RING_4_GATHERS (20)
 
-static float m_HDAOActive=m_RawData[4].x; //1.0;
-static float m_HDAOShowNormals=m_RawData[5].x; //1.0;
-static float m_HDAOShowAO=m_RawData[6].x; //1.0;
-static float m_HDAOUseNormals=m_RawData[7].x; //1.0;
-static float2 m_RTSize= float2(m_RawData[8].x, m_RawData[8].y); //float2(128, 128);
-static float m_AcceptAngle= m_RawData[9].x; //1.0;
-static float m_HDAOIntensity=m_RawData[10].x; //1.0;
-static float m_NormalScale=m_RawData[11].x; //1.0;
-static float m_HDAORejectRadius=m_RawData[12].x; //0.5;
-static float m_HDAOAcceptRadius=m_RawData[13].x; //0.5;
+static float m_HDAOActive=m_RawData[0].x; //1.0;
+static float m_HDAOShowNormals=m_RawData[1].x; //1.0;
+static float m_HDAOShowAO=m_RawData[2].x; //1.0;
+static float m_HDAOUseNormals=m_RawData[3].x; //1.0;
+static float2 m_RTSize= float2(m_RawData[4].x, m_RawData[4].y); //float2(128, 128);
+static float m_AcceptAngle= m_RawData[5].x; //1.0;
+static float m_HDAOIntensity=m_RawData[6].x; //1.0;
+static float m_NormalScale=m_RawData[7].x; //1.0;
+static float m_HDAORejectRadius=m_RawData[8].x; //0.5;
+static float m_HDAOAcceptRadius=m_RawData[9].x; //0.5;
 
 static const float m_RingWeightsTotal[RING_4] =
 {

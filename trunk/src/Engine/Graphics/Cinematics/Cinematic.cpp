@@ -3,12 +3,13 @@
 #include "CinematicPlayer.h"
 #include "CinematicCameraPlayer.h"
 #include "CinematicObjectPlayer.h"
-#include "XML\tinyxml2\tinyxml2.h"
+#include "XML/tinyxml2/tinyxml2.h"
 #include "Engine/Engine.h"
+#include "Graphics/Camera/CinematicCameraController.h"
+#include "Utils/CheckedDelete.h"
 
 CCinematic::CCinematic():
     CName(""),
-    m_lastCameraState(nullptr),
     m_Active(false),
     m_Finish(true),
     m_Loop(false),
@@ -81,7 +82,11 @@ void CCinematic::Update(float elapsedTime)
             {
                 m_Finish = true;
                 m_CurrentTime = 0.0f;
-                CEngine::GetInstance().SetCameraController(m_lastCameraState);
+                for (TMapResources::iterator iPlayerMapEntry = m_ResourcesMap.begin(); iPlayerMapEntry != m_ResourcesMap.end(); ++iPlayerMapEntry)
+                {
+                    CCinematicPlayer* lCinematPlay = iPlayerMapEntry->second.m_Value;
+                    lCinematPlay->Finish();
+                }
             }
         }
         else
@@ -124,7 +129,11 @@ void CCinematic::Update(float elapsedTime)
 
 void CCinematic::Play()
 {
-    m_lastCameraState = &CEngine::GetInstance().GetCameraController();
+    for (TMapResources::iterator iPlayerMapEntry = m_ResourcesMap.begin(); iPlayerMapEntry != m_ResourcesMap.end(); ++iPlayerMapEntry)
+    {
+        CCinematicPlayer* lCinematPlay = iPlayerMapEntry->second.m_Value;
+        lCinematPlay->Start();
+    }
     m_CurrentTime = 0.0f;
     m_Finish = false;
     m_Active = true;

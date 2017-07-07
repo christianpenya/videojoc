@@ -34,6 +34,8 @@ class CScriptManager;
 class CPhysXManager;
 class CParticleManager;
 class ISoundManager;//class CNavMeshManager;
+class CGUIManager;
+
 #define BUILD_GET_SET_ENGINE_MANAGER( Manager ) \
 private: \
 C##Manager* m_##Manager = nullptr; \
@@ -82,6 +84,7 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(PhysXManager)
     BUILD_GET_SET_ENGINE_MANAGER(ParticleManager)
     //  BUILD_GET_SET_ENGINE_MANAGER(NavMeshManager)
+    BUILD_GET_SET_ENGINE_MANAGER(GUIManager)
 
     ISoundManager* m_SoundManager;
 

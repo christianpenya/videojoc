@@ -17,11 +17,14 @@
 #include "Render/RenderPipeline/RenderPipeline.h"
 #include "Graphics/Animation/AnimatedModelManager.h"
 #include "Scripts/ScriptManager.h"
-#include "Graphics/Cinematics\CinematicsManager.h"
+#include "Graphics/Cinematics/CinematicsManager.h"
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
 //#include "Graphics/Mesh/NavMeshManager.h"
 #include "Sound/ISoundManager.h"
+#include "GUI/GUIManager.h"
+#include "GUI/GUIPosition.h"
+
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
 #endif
@@ -49,6 +52,7 @@ CEngine::CEngine()
     , m_PhysXManager(nullptr)
     , m_ParticleManager(nullptr)
       //  , m_NavMeshManager(nullptr)
+    , m_GUIManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
@@ -85,6 +89,8 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
     base::utils::CheckedDelete(m_SoundManager);//  base::utils::CheckedDelete(m_NavMeshManager);
+    base::utils::CheckedDelete(m_GUIManager);
+
     base::utils::CheckedDelete(m_FreeCam);
     base::utils::CheckedDelete(m_FpsCam);
     base::utils::CheckedDelete(m_OrbitalCam);
@@ -157,6 +163,11 @@ void CEngine::LoadFiles()
     m_SoundManager->Init();
     m_SoundManager->Load(m_BanksFile, m_SpeakersFile);
 
+    m_GUIManager = new CGUIManager();
+    m_GUIManager->Load("data/gui.xml");
+    LOG_INFO_APPLICATION("Engine -> GUI Loaded! \\(^-^)/");
+
+
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
@@ -198,6 +209,8 @@ void CEngine::Init(HWND hWnd)
         LoadFiles();
     }
 
+    SetCameraController(m_FreeCam);
+
     //TEST SOUND
     SoundEvent se;
     se.eventName = "background_music";
@@ -227,7 +240,7 @@ void CEngine::Update()
     }
 
     m_PrevCameraSelector = m_CameraSelector;
-
+    /*
     switch (m_CameraSelector)
     {
     case 0: //Free
@@ -245,7 +258,7 @@ void CEngine::Update()
         break;
     default:
         break;
-    }
+    }*/
 
     CharacterControllerUpdate(m_ActionManager, (float)m_DeltaTime);
 
@@ -258,6 +271,11 @@ void CEngine::Update()
     m_SceneManager->Update(m_DeltaTime);
     m_CinematicManager->Update(m_DeltaTime);
     m_SoundManager->Update(m_CameraController);
+    // ReSharper disable once CppMsExtBindingRValueToLvalueReference
+
+    //m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170));
+    //m_GUIManager->FillCommandQueueWithText("font1", "TEST", Vect2f(.0f, .0f), CGUIManager::TOP_LEFT,CColor(1.0f, .0f, .0f));
+    //m_GUIManager->DoSlider("slider1", "teula_slider",  CGUIPosition(50, 50, 412, 40), .0f, 100.0f, .0f);
 }
 
 void CEngine::Render()

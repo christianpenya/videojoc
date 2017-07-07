@@ -155,7 +155,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
     float g_SpecularExponent = 0.5;
     float g_SpecularContrib = 0.5;
 
-     float4 pixelColor = float4(m_RawData[0].xyz,1.0);
+    float4 pixelColor = float4(m_RawData[0].xyz,1.0);
     float3 l_LAmbient = m_LightAmbient.xyz;
 
     float3 l_WorldPos = IN.WorldPosition;
@@ -165,7 +165,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 
     PixelOutputType l_Output = (PixelOutputType)0;
     #if USE_BUMP
-			 float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
+			 float3 bump = m_RawData[2].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
 			 l_Normal = normalize(IN.Normal);
 			 l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
 		     l_Normal = normalize(l_Normal);

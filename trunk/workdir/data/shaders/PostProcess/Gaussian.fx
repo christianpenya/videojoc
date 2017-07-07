@@ -47,8 +47,8 @@ float4 GetGaussianBlurFromSampler(Texture2D _Texture2D, SamplerState _SamplerSta
     return l_GaussianColor/l_TotalWeights;
 }
 
-static float m_TextureSize=m_RawData[12].x;
-static float m_BlurScale=m_RawData[13].x;
+static float m_TextureSize=m_RawData[0].x;
+static float m_BlurScale=m_RawData[1].x;
 
 float4 BlurPS(PS_INPUT IN) : SV_Target
 {

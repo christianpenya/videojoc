@@ -19,10 +19,12 @@
 		<technique name="BloomCombine" />
 		<technique name="Gaussian" />
 		<technique name="Hdao" />
+		
 		<technique name="ColorGrading" />
 		<technique name="LightScattering"/>
 		<!--<technique vertex_type="EnvironmentMap" />-->
 		<technique name="SSR" />
+		<technique vertex_type="SpriteVertex" effect="SpriteVertexTechnique"/>
 		<technique name="Mascara" />
 		
   </default_pool>
@@ -89,6 +91,7 @@
 		<technique name="BloomCombine" effect="BloomCombineTechnique" />
 		<technique name="Hdao" effect="HdaoTechnique" />
 		<technique name="ColorGrading" effect="ColorGradingTechnique" />
+		<technique name="SpriteVertex" effect="SpriteVertexTechnique" />
 		<technique name="SSR" effect="SSRTechnique" />
 		<technique name="Mascara" effect="MascaraTechnique" />
 		<technique name="LightScattering" effect="LightScatteringTechnique" />
@@ -102,5 +105,7 @@
 		<technique vertex_type="Quad" effect="QuadTechnique"/>
 		<technique vertex_type="DeferredQuad" effect="DeferredQuadTechnique"/>
 	</pool>
+	
+
 	
 </technique_pools>

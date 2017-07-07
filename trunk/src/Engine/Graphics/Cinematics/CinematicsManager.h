@@ -2,8 +2,8 @@
 #ifndef _ENGINE_CINEMATIC_MANAGER_20170213
 #define _ENGINE_CINEMATIC_MANAGER_20170213
 
-#include "Utils\TemplatedMapVector.h"
-#include "Utils\Defines.h"
+#include "Utils/TemplatedMapVector.h"
+#include "Utils/Defines.h"
 
 XML_FORWARD_DECLARATION
 class CCinematic;

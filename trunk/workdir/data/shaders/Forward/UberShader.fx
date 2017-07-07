@@ -157,7 +157,7 @@ float4 PS(PS_INPUT IN) : SV_Target
 			//pixelColor = l_LightmapPixel.xyz * pixelColor;
 		#endif
 		#if USE_BUMP
-		 	float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
+		 	float3 bump = m_RawData[2].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
 		 	l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
 	    	l_Normal = normalize(l_Normal);
 	 	#endif 

@@ -2,8 +2,8 @@
 #ifndef _ENGINE_CINEMATIC_20170213
 #define _ENGINE_CINEMATIC_20170213
 
-#include "Utils\TemplatedMapVector.h"
-#include "Utils\Name.h"
+#include "Utils/TemplatedMapVector.h"
+#include "Utils/Name.h"
 
 class CCinematicPlayer;
 class CCinematicCameraPlayer;
@@ -35,7 +35,6 @@ protected:
     bool m_PlayingBackward;
     float m_CurrentTime;
 private:
-    CCameraController *m_lastCameraState;
     DISALLOW_COPY_AND_ASSIGN(CCinematic);
 };
 

@@ -1,4 +1,4 @@
-<materials >
+<materials>
 	<!--
 	<material name="02 - Default" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.8431 0.7686 0.651 1.0" />
@@ -17,7 +17,6 @@
 		<texture type="specularLevel" filename="data\textures\castillo\windmill_spec.tga" />
 		<parameter type="float" name="specularLevel" value="100.0" />
 	</material>
-
 	FUENTE
 	<material name="03 - Default" vertex_type="PositionBumpUV" >
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
@@ -343,7 +342,6 @@
 		<texture type="diffuse" filename="data\textures\castillo\caravan_texture.tga" />
 		<parameter type="float" name="diffuse" value="100.0" />
 	</material>
-	
 	TENT
 	<material name="Wood1" vertex_type="PositionNormalUV" >
 		<parameter type="color" name="diffuse_color" value="0.584314 0.584314 0.584314 1.0 " />
@@ -383,12 +381,12 @@
 	</material>
 	
 	CARRO
-		<material name="_Weiden" vertex_type="PositionNormalUV" >
+	<material name="_Weiden" vertex_type="PositionNormalUV" >
 		<parameter type="color" name="diffuse_color" value="0.603922 0.603922 0.603922 1.0 " />
 		<texture type="diffuse" filename="data/textures/castillo/Wagen_1.jpg" />
 		<parameter type="float" name="diffuse" value="100.0" />
 	</material>
-	
+
 	CHARCO
 	<material name="19 - Default" vertex_type="PositionNormalUV" >
 		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
@@ -411,5 +409,5 @@
 	<material name="docht" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.0 0.0 0.0 1.0 " />
 	</material>
-	
+
 </materials>

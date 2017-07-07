@@ -143,6 +143,11 @@
    <shader stage="vertex"   name="DeferredQuad"/>
    <shader stage="pixel"    name="DeferredQuad"/>
   </effect>
+  
+  <effect name="SpriteVertexTechnique" shader_family="SpriteVertex">
+   <shader stage="vertex"   name="SpriteVertex"/>
+   <shader stage="pixel"    name="SpriteVertex"/>
+  </effect>
     
  </effects>
  

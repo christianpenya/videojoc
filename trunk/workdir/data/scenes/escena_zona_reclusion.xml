@@ -65,11 +65,20 @@
 			<transform position="40.9102 0.0 49.2461" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
-
+	
 		
 		
 	</layer>
 	
+	<layer name="guardias" active="true" >
+	<scene_animated_model name="guardiaTEST" core="guardia" >
+			<transform position="0.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
+			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+		</layer>
+		
 	<layer name="lights" active="true" >
 		<scene_light name="FDirect001" id_light="0" />
 		<scene_light name="Fspot001" id_light="1" />
