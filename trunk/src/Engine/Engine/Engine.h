@@ -96,6 +96,7 @@ public:
     CFreeCameraController* m_FreeCam;
     CFpsCameraController* m_FpsCam;
     CSphericalCameraController* m_OrbitalCam;
+    CTpsCameraController* m_TPSCam;
     int m_CameraSelector;
     int m_PrevCameraSelector;
 
@@ -105,8 +106,8 @@ public:
     void sphereUpdate(CRenderManager& renderManager, CActionManager* actionManager, Vect3f front = Vect3f(0, 0, 1), Vect3f up = Vect3f(0, 1, 0));
     void sphereRender(CRenderManager& renderManager);
 
-    CCharacterController m_CharacterController;
-    void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
+    CCharacterController* m_CharacterController;
+    // void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
     void DrawImgui();
 };
 
