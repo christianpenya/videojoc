@@ -39,7 +39,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
         lDebug = "Attached physx BOX to " + m_Name;
         rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
 
-        sizeX = abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x;
+        sizeX = abs(abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x);
         sizeY = abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y;
         sizeZ = abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z;
         cubeOffset = Vect3f(0, -sizeY/2.0, 0);

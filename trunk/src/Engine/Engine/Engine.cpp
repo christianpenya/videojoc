@@ -1,10 +1,10 @@
 #include "Engine.h"
 #include "ImGUI/imgui_impl_dx11.h"
-#include "ImGUI\imgui.h"
+#include "ImGUI/imgui.h"
 #include "Utils/Logger.h"
 
 #include "Graphics/Camera/CameraController.h"
-#include "Input\ActionManager.h"
+#include "Input/ActionManager.h"
 #include "Graphics/Materials/MaterialManager.h"
 #include "Graphics/Textures/TextureManager.h"
 #include "Graphics/Mesh/MeshManager.h"
@@ -24,6 +24,7 @@
 #include "Sound/ISoundManager.h"
 #include "GUI/GUIManager.h"
 #include "GUI/GUIPosition.h"
+#include "Graphics/Animation/SceneAnimatedModel.h"
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
@@ -60,9 +61,11 @@ CEngine::CEngine()
     , m_CameraSelector(0)
     , m_PrevCameraSelector(0)
 {
+    m_CharacterController = new CCharacterController();
     m_FreeCam = new CFreeCameraController(Vect3f(0, 10, 0), Vect3f(0, 0, 1), Vect3f(0, 1, 0), Vect4f(1, 500, 1.13f, 1.7f), 1.5f, -1.5f, 10.0f, -10.0f);
     m_FpsCam = new CFpsCameraController(Vect3f(0, 1, 0), 1.5f, -1.5f);
     m_OrbitalCam = new CSphericalCameraController();
+    m_TPSCam = new CTpsCameraController();
 }
 
 CEngine::~CEngine()
@@ -209,7 +212,10 @@ void CEngine::Init(HWND hWnd)
         LoadFiles();
     }
 
-    SetCameraController(m_FreeCam);
+    m_CharacterController->Init(m_SceneManager);
+    m_TPSCam->Init(m_CharacterController);
+    SetCameraController(m_TPSCam);
+    //SetCameraController(m_FreeCam);
 
     //TEST SOUND
     SoundEvent se;
@@ -260,10 +266,11 @@ void CEngine::Update()
         break;
     }*/
 
-    CharacterControllerUpdate(m_ActionManager, (float)m_DeltaTime);
+    //CharacterControllerUpdate(m_ActionManager, (float)m_DeltaTime);
 
     m_PhysXManager->Update(m_DeltaTime);
-    m_PhysXManager->MoveCharacterController("player", m_CharacterController.m_Movement, PHYSX_UPDATE_STEP);
+    m_CharacterController->Update(m_DeltaTime);
+    //m_PhysXManager->MoveCharacterController("player", m_CharacterController->m_Movement, PHYSX_UPDATE_STEP);
 
     m_CameraController->Update((float)m_DeltaTime);
     //m_CameraController->SetToRenderManager(*m_RenderManager);
@@ -273,7 +280,10 @@ void CEngine::Update()
     m_SoundManager->Update(m_CameraController);
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
-    //m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170));
+    /*if (m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))
+    {
+
+    }*/
     //m_GUIManager->FillCommandQueueWithText("font1", "TEST", Vect2f(.0f, .0f), CGUIManager::TOP_LEFT,CColor(1.0f, .0f, .0f));
     //m_GUIManager->DoSlider("slider1", "teula_slider",  CGUIPosition(50, 50, 412, 40), .0f, 100.0f, .0f);
 }
@@ -364,14 +374,14 @@ void CEngine::sphereRender(CRenderManager& renderManager)
 {
     renderManager.DrawSphere(1, CColor(1, 1, 1, 1));
 }
-
+/*
 void CEngine::CharacterControllerUpdate(CActionManager* actionManager, float dt)
 {
     float x = (*actionManager)("x_move")->value * 0.5f;
     float z = (*actionManager)("z_move")->value * 0.5f;
 
     m_CharacterController.m_Movement = {x, 0.0f, z};
-}
+}*/
 
 void CEngine::DrawImgui()
 {

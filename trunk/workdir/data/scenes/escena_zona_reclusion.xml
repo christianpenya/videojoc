@@ -3,12 +3,13 @@
 	<layer name="opaque" active="true" >
 		tuberia\d{3}.mesh
 		SALA0
-		<scene_mesh name="sala0" mesh="data/meshes/reclusion/sala0.mesh">
+		<scene_mesh name="sala0" mesh="data/meshes/reclusion/sala0.mesh" > rigid_body="box">
 			<transform position="0.840901 3.20359 -1.46628" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="cama" mesh="data/meshes/reclusion/cama.mesh">
 			<transform position="3.47903 3.61838 -1.13012" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
+		
 		<scene_mesh name="poster_joy" mesh="data/meshes/reclusion/poster_joy.mesh">
 			<transform position="4.0964 5.28104 -1.22036" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>	
@@ -23,10 +24,10 @@
 		</scene_mesh>
 		<scene_mesh name="decallhumedadesquina" mesh="data/meshes/reclusion/decallhumedadesquina.mesh" >
 			<transform position="-1.93928 5.42975 -3.62341" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
+		</scene_mesh>	
 		
 		SALA1
-		<scene_mesh name="sala1" mesh="data/meshes/reclusion/sala1.mesh" >
+		<scene_mesh name="sala1" mesh="data/meshes/reclusion/sala1.mesh" rigid_body="plane" >
 			<transform position="0.840901 3.20359 -0.466283" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 
@@ -71,13 +72,13 @@
 	</layer>
 	
 	<layer name="guardias" active="true" >
-	<scene_animated_model name="guardiaTEST" core="guardia" >
+		<scene_animated_model name="guardiaTEST" core="guardia"> rigid_body = "player">
 			<transform position="0.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
 		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
 			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
-		</layer>
+	</layer>
 		
 	<layer name="lights" active="true" >
 		<scene_light name="FDirect001" id_light="0" />
