@@ -115,7 +115,8 @@ Vect3f CTransform::GetUp() const
 
 void CTransform::SetForward(const Vect3f& aForward)
 {
-    SetYaw(mathUtils::ATan2(aForward.z, aForward.x));
+    SetYaw(mathUtils::ATan2(aForward.x, aForward.z));
     SetPitch(mathUtils::ATan2(aForward.y, mathUtils::Sqrt(aForward.z * aForward.z + aForward.x * aForward.x)));
+    SetPitch(0.0f);
     SetRoll(0.0f);
 }

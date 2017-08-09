@@ -13,24 +13,32 @@ void CCharacterController::Update(float ElapsedTime)
 
     l_Front.y = 0;
     l_Right.y = 0;
-
     float x = (*actionManager)("x_move")->value;
     float z = (*actionManager)("z_move")->value;
+    float run = (*actionManager)("run")->value;
+    if (run>0.f)
+    {
+        printf("HIHIHI");
+    }
     Vect3f forwardMove = z * l_Front;
     Vect3f horizontalMove = x * l_Right;
     // m_Movement = { x, 0.0f, z };
     m_Movement = forwardMove + horizontalMove;
-
     if (m_Movement != (0, 0, 0))
     {
         m_Movement = m_Movement.GetNormalized();
+        Vect3f l_Dir = m_Movement;
+
         m_Movement *= m_Speed;
         m_Position = m_Position + m_Movement;
         physXManager->MoveCharacterController("player", m_Movement, PHYSX_UPDATE_STEP);
         if (player != nullptr)
+        {
             //player->SetPosition(m_Position);
-            player->SetPosition(physXManager->GetActorPosition("player"));
-
+            m_Position = physXManager->GetActorPosition("player");
+            player->SetPosition(m_Position);
+            player->SetForward(l_Dir);
+        }
 
 
     }
@@ -42,6 +50,7 @@ void CCharacterController::Init(CSceneManager* sceneManager)
 {
     actionManager = &CEngine::GetInstance().GetActionManager();
     physXManager = &CEngine::GetInstance().GetPhysXManager();
+
     if (sceneManager->Exist("escena_zona_reclusion"))
     {
         CScene* scene = (*sceneManager)("escena_zona_reclusion");

@@ -17,7 +17,7 @@ public:
     CCharacterController() :
         m_Movement(0, 0, 0),
         m_Position(0,0,0),
-        m_Speed(1.f),
+        m_Speed(.5f),
         player(nullptr)
     {
 
@@ -36,7 +36,8 @@ public:
     CSceneNode* player;
 
     CPhysXManager* physXManager;
-
+private:
+    Vect3f m_Gravity = (0.0f, 9.81f, 0.0f);
 };
 
 #endif //_ENGINE_CAMERACONTROLLER_CPB_20161126_H
