@@ -4,6 +4,8 @@
 
 #include "InputDefinitions.h"
 #include <Windows.h>
+
+#include "Utils/Defines.h"
 #include <Xinput.h>
 
 class CInputManager
@@ -188,7 +190,8 @@ public:
 
         return Result;
     }
-
+    bool m_LastCharInput;
+    GET_SET(bool, LastCharInput);
 private:
 
     bool UpdateKeyboard();
@@ -197,7 +200,7 @@ private:
     struct KeyboardData
     {
         bool raw[256] = {};
-        bool escape = false, space = false;
+        bool escape = false, space = false, shift = false, control = false;
         bool numpad[10] = {};
         bool fkey[24] = {};
         bool left = false, right = false, up = false, down = false;

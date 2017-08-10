@@ -12,6 +12,8 @@ public:
     CCinematicObjectPlayer();
     virtual ~CCinematicObjectPlayer();
     virtual bool Load(const CXMLElement* aElement);
+    virtual void Start() {}
+    virtual void Finish() {}
 private:
     DISALLOW_COPY_AND_ASSIGN(CCinematicObjectPlayer);
     CSceneNode* m_SceneNode;

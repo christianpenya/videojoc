@@ -9,23 +9,26 @@ template< class TVertexType >
 class CVertexBuffer : public CBuffer
 {
 public:
-    CVertexBuffer(CRenderManager& RenderManager, void* aRawData, uint32 aNumVertexs) :
+    CVertexBuffer(CRenderManager& RenderManager, void* aRawData, uint32 aNumVertexs, bool dynamic = false) :
         mNumVertexs(aNumVertexs)
     {
         D3D11_BUFFER_DESC lVertexBufferDesc;
         ZeroMemory(&lVertexBufferDesc, sizeof(lVertexBufferDesc));
-        lVertexBufferDesc.Usage = eDynamic ? D3D11_USAGE_DYNAMIC : D3D11_USAGE_DEFAULT;
+        lVertexBufferDesc.Usage = dynamic ? D3D11_USAGE_DYNAMIC : D3D11_USAGE_DEFAULT;
         lVertexBufferDesc.ByteWidth = sizeof(TVertexType)*mNumVertexs;
         lVertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-        lVertexBufferDesc.CPUAccessFlags = eDynamic ? D3D11_CPU_ACCESS_WRITE : 0;
+        lVertexBufferDesc.CPUAccessFlags = dynamic ? D3D11_CPU_ACCESS_WRITE : 0;
         D3D11_SUBRESOURCE_DATA InitData;
         ZeroMemory(&InitData, sizeof(InitData));
         InitData.pSysMem = aRawData;
         ID3D11Device *lDevice = RenderManager.GetDevice();
-        HRESULT l_HR = lDevice->CreateBuffer(&lVertexBufferDesc, &InitData, &m_pBuffer);
+        HRESULT l_HR = lDevice->CreateBuffer(&lVertexBufferDesc, aRawData == nullptr ? nullptr : &InitData, &m_pBuffer);
         assert(SUCCEEDED(l_HR));
     }
 
+    CVertexBuffer(): mNumVertexs(0)
+    {
+    }
 
     virtual ~CVertexBuffer() {}
 

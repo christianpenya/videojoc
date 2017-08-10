@@ -194,6 +194,12 @@ void CInputManager::KeyboardData::SetKey(unsigned char key, bool state)
         case VK_SPACE:
             space = state;
             break;
+        case VK_SHIFT:
+            shift = state;
+            break;
+        case VK_CONTROL:
+            control = state;
+            break;
         case VK_LEFT:
             left = state;
             break;

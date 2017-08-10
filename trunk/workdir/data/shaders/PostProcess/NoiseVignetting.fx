@@ -18,9 +18,9 @@ float2 UV :
 };
 
 
-static float m_NoisePct=m_RawData[4].x; //0.2;
-static float m_VignettingPct=m_RawData[5].x; //0.5;
-static float m_NoiseAmount=m_RawData[6].x; //0.2;
+static float m_NoisePct=m_RawData[0].x; //0.2;
+static float m_VignettingPct=m_RawData[1].x; //0.5;
+static float m_NoiseAmount=m_RawData[2].x; //0.2;
 
 PS_INPUT VS(VS_INPUT IN)
 {

@@ -47,4 +47,8 @@
 		<trigger type="MOUSE_BUTTON" button="RIGHT" value="-1"/>
 		<trigger type="GAMEPAD_BUTTON" button="RIGHT_THUMB" value="1"/>
 	</action>
+	<action name = "run">
+		<trigger type="KEYBOARD" key_code="CONTROL" value ="1"/>
+		<trigger type="KEYBOARD" key_code="SHIFT" value ="1"/>
+	</action>
 </actions>

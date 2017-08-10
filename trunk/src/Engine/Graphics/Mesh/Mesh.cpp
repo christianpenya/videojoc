@@ -86,6 +86,14 @@ CGeometry* CreateGeometry(CRenderManager& aRM, unsigned short aVertexFlags, unsi
                    new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
                );
     }
+    else if (aVertexFlags == VertexTypes::SpriteVertex::GetVertexFlags())
+    {
+        return new CIndexedGeometryTriangleList<VertexTypes::SpriteVertex>
+               (
+                   new CVertexBuffer<VertexTypes::SpriteVertex>(aRM, aVertexData, aNumVertices),
+                   new CIndexBuffer(aRM, aIndexData, aNumIndices, 16)
+               );
+    }
 
     return false;
 }

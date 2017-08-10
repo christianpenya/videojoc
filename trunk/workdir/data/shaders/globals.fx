@@ -1,5 +1,5 @@
 //Globals.fxh
-#define MAXBONES 40
+#define MAXBONES 80
 #define MAX_LIGHTS_BY_SHADER 4
 #define MAX_OBJECT_RAW_PARAMETER 16
 

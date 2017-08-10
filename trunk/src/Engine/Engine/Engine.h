@@ -34,6 +34,8 @@ class CScriptManager;
 class CPhysXManager;
 class CParticleManager;
 class ISoundManager;//class CNavMeshManager;
+class CGUIManager;
+
 #define BUILD_GET_SET_ENGINE_MANAGER( Manager ) \
 private: \
 C##Manager* m_##Manager = nullptr; \
@@ -82,6 +84,7 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(PhysXManager)
     BUILD_GET_SET_ENGINE_MANAGER(ParticleManager)
     //  BUILD_GET_SET_ENGINE_MANAGER(NavMeshManager)
+    BUILD_GET_SET_ENGINE_MANAGER(GUIManager)
 
     ISoundManager* m_SoundManager;
 
@@ -93,6 +96,7 @@ public:
     CFreeCameraController* m_FreeCam;
     CFpsCameraController* m_FpsCam;
     CSphericalCameraController* m_OrbitalCam;
+    CTpsCameraController* m_TPSCam;
     int m_CameraSelector;
     int m_PrevCameraSelector;
 
@@ -102,8 +106,8 @@ public:
     void sphereUpdate(CRenderManager& renderManager, CActionManager* actionManager, Vect3f front = Vect3f(0, 0, 1), Vect3f up = Vect3f(0, 1, 0));
     void sphereRender(CRenderManager& renderManager);
 
-    CCharacterController m_CharacterController;
-    void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
+    CCharacterController* m_CharacterController;
+    // void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
     void DrawImgui();
 };
 

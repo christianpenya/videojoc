@@ -1,8 +1,9 @@
 #include "DynamicTexture.h"
-#include "XML\XML.h"
-#include "Utils\Logger.h"
-#include "Engine\Engine.h"
-#include "Render\RenderManager.h"
+#include "XML/XML.h"
+#include "Utils/Logger.h"
+#include "Engine/Engine.h"
+#include "Render/RenderManager.h"
+#include "Utils/Logger.h"
 
 CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     : CTexture(TreeNode->GetAttribute<std::string>("name", ""))
@@ -76,6 +77,8 @@ void CDynamicTexture::Init()
     {
         LOG_ERROR_APPLICATION("Error in dynamic texture");
     }
+
+
     assert(!FAILED(l_HR));
 
     D3D11_RENDER_TARGET_VIEW_DESC l_RenderTargetViewDescription;

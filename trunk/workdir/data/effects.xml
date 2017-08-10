@@ -1,4 +1,6 @@
 <effects>   
+	<!-- FORWARD -->
+	<effect name="PositionNormalTechniqueForward" shader_family="PositionNormalForward">
   <!-- FORWARD -->
   <effect name="PositionNormalTechniqueForward" shader_family="PositionNormalForward">
    <shader stage="vertex"   name="PositionNormalForward"/>
@@ -173,6 +175,11 @@
   <effect name="QuadTechnique" shader_family="Quad">
    <shader stage="vertex"   name="Quad"/>
    <shader stage="pixel"    name="Quad"/>
+  </effect>
+  
+  <effect name="SpriteVertexTechnique" shader_family="SpriteVertex">
+   <shader stage="vertex"   name="SpriteVertex"/>
+   <shader stage="pixel"    name="SpriteVertex"/>
   </effect>
     
  </effects>

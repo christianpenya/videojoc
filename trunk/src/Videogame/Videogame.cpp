@@ -62,6 +62,13 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
         }
     }
     break;
+    case WM_CHAR:
+    {
+        if (CEngine::GetInstance().ExistInputManager())
+        {
+            CEngine::GetInstance().GetInputManager().SetLastCharInput(wParam);
+        }
+    }
 
     }//end switch( msg )
 

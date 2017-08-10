@@ -41,6 +41,10 @@ uint32 VertexTypes::GetVertexSize(uint32 aVertexFlags)
     {
         return sizeof(ParticleVertex);
     }
+    else if (aVertexFlags == SpriteVertex::GetVertexFlags())
+    {
+        return sizeof(SpriteVertex);
+    }
 
 #ifdef _DEBUG
     assert(!"Invalid vertex flags");
@@ -97,6 +101,11 @@ bool CreateInputLayout(CRenderManager &aRenderManager, uint32 aVertexFlags, ID3D
         VertexTypes::ParticleVertex::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
         lOk = true;
     }
+    else if (aVertexFlags == SpriteVertex::GetVertexFlags())
+    {
+        VertexTypes::SpriteVertex::CreateInputLayout(aRenderManager, aBlob, aVertexLayout);
+        lOk = true;
+    }
 
 
 #ifdef _DEBUG
@@ -149,6 +158,12 @@ uint32 GetFlagsFromString(const std::string& aString)
     {
 
         lOut = ParticleVertex::GetVertexFlags();
+
+    }
+    else if (aString == "SpriteVertex")
+    {
+
+        lOut = SpriteVertex::GetVertexFlags();
 
     }
 

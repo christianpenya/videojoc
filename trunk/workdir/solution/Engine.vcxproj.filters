@@ -4,6 +4,9 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{DBC7D3B0-C769-FE86-B024-12DB9C6585D7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{2AEC870B-96F5-877C-1F71-9E7C8B79937C}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Graphics">
       <UniqueIdentifier>{1653CE33-0220-293F-2B39-17E717655ECD}</UniqueIdentifier>
     </Filter>
@@ -65,6 +68,18 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\Engine\Engine\Engine.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\GUI\Button.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\GUI\GUIManager.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\GUI\GUIPosition.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\GUI\Slider.h">
+      <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Animation\AnimatedCoreModel.h">
       <Filter>Graphics\Animation</Filter>
@@ -330,6 +345,9 @@
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderCmd.h">
       <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderGUI.h">
+      <Filter>Render\RenderPipeline</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderImGUI.h">
       <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
@@ -379,6 +397,18 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\GUI\Button.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\GUI\GUIManager.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\GUI\GUIPosition.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\GUI\Slider.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Animation\AnimatedCoreModel.cpp">
       <Filter>Graphics\Animation</Filter>
@@ -597,6 +627,9 @@
       <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderCmd.cpp">
+      <Filter>Render\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderGUI.cpp">
       <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderImGUI.cpp">
