@@ -152,7 +152,9 @@ void CEngine::LoadFiles()
     	m_NavMeshManager = new CNavMeshManager;
         m_NavMeshManager->Load("data/navMesh.xml");
         LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
-    */    m_SoundManager = ISoundManager::InstantiateSoundManager();
+    */
+
+    m_SoundManager = ISoundManager::InstantiateSoundManager();
     m_SoundManager->SetPath(m_SoundFilesPath);
     m_SoundManager->Init();
     m_SoundManager->Load(m_BanksFile, m_SpeakersFile);
@@ -199,9 +201,9 @@ void CEngine::Init(HWND hWnd)
     }
 
     //TEST SOUND
-    SoundEvent se;
-    se.eventName = "background_music";
-    m_SoundManager->PlayEvent(se);
+    //SoundEvent se;
+    //se.eventName = "background_music";
+    //m_SoundManager->PlayEvent(se);
 }
 
 void CEngine::ProcessInputs() const

@@ -49,6 +49,8 @@ protected:
 
     void CreateShaderMacro();
     virtual std::string GetShaderModel() = 0;
+    std::string CreateMacroHash() const;
+    bool IsRecentlyUpdated();
 };
 
 //--------------------------------------------------------------------------------------------------------

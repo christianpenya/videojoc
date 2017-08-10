@@ -71,7 +71,6 @@ void CRenderImGUI::SceneManager(CEngine& lEngine)
 
         for (std::vector<CScene*>::iterator iScene = scenes.begin(); iScene != scenes.end(); ++iScene)
         {
-
             ImGui::PushID((*iScene)->GetName().c_str());
 
             if (ImGui::CollapsingHeader((*iScene)->GetName().c_str()))

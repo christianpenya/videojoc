@@ -173,6 +173,9 @@
     <ClCompile Include="..\..\src\Base\Utils\Active.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Base\Utils\FileUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Base\Utils\Logger.cpp">
       <Filter>Utils</Filter>
     </ClCompile>

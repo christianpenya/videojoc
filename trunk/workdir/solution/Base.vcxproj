@@ -284,6 +284,7 @@
     <ClCompile Include="..\..\src\Base\Math\MathConstants.cpp" />
     <ClCompile Include="..\..\src\Base\Math\Transform.cpp" />
     <ClCompile Include="..\..\src\Base\Utils\Active.cpp" />
+    <ClCompile Include="..\..\src\Base\Utils\FileUtils.cpp" />
     <ClCompile Include="..\..\src\Base\Utils\Logger.cpp" />
     <ClCompile Include="..\..\src\Base\Utils\MemLeaks\MemLeaks.cpp" />
     <ClCompile Include="..\..\src\Base\Utils\Name.cpp" />
