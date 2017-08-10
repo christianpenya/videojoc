@@ -1,12 +1,13 @@
 #include "CharacterController.h"
 #include "Engine/Engine.h"
 #include "Graphics/Animation/SceneAnimatedModel.h"
+#include "Graphics/Camera/CameraManager.h"
 
 #include "Physx/PhysxManager.h"
 
 void CCharacterController::Update(float ElapsedTime)
 {
-    CCameraController* cam = &CEngine::GetInstance().GetCameraController();
+    CCameraController* cam = &CEngine::GetInstance().GetCameraManager().GetCurrentCamera();
     Vect3f l_Front = cam->GetFront();
     Vect3f l_Up = cam->GetUp();
     Vect3f l_Right = l_Front ^ l_Up;

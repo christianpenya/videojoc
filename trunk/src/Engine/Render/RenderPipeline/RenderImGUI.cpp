@@ -13,9 +13,11 @@
 #include "Graphics/Cinematics/CinematicsManager.h"
 #include "Render/RenderPipeline/SetRasterizerState.h"
 #include "Graphics/Lights/LightManager.h"
+#include "Graphics/Camera/CameraManager.h"
 
 CRenderImGUI::CRenderImGUI() {}
 CRenderImGUI::~CRenderImGUI() {}
+
 bool CRenderImGUI::Load(const CXMLElement* aElement)
 {
     return CRenderCmd::Load(aElement);
@@ -33,7 +35,6 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     if (ImGui::Button("PLAY"))
     {
         lEngine.GetCinematicManager().Play("Animation01");
-
     }
 
     //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
@@ -43,11 +44,9 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
     if (ImGui::CollapsingHeader("Cameras"))
     {
         // CAMERA SELECTION
-        ImGui::RadioButton("Orbital", &lEngine.m_CameraSelector, 0);
+        ImGui::RadioButton("TPS", &lEngine.GetCameraManager().m_CameraSelector, 0);
         ImGui::SameLine();
-        ImGui::RadioButton("FPS", &lEngine.m_CameraSelector, 1);
-        ImGui::SameLine();
-        ImGui::RadioButton("TPS", &lEngine.m_CameraSelector, 2);
+        ImGui::RadioButton("Free", &lEngine.GetCameraManager().m_CameraSelector, 1);
     }
 
     // RELOADS
@@ -71,7 +70,6 @@ void CRenderImGUI::SceneManager(CEngine& lEngine)
 
         for (std::vector<CScene*>::iterator iScene = scenes.begin(); iScene != scenes.end(); ++iScene)
         {
-
             ImGui::PushID((*iScene)->GetName().c_str());
 
             if (ImGui::CollapsingHeader((*iScene)->GetName().c_str()))

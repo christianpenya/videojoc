@@ -1,6 +1,5 @@
 #include "globals.fx"
 
-
 #if USE_UV
 	Texture2D DiffuseTexture :
 	register(t0);
@@ -49,8 +48,6 @@ struct VS_INPUT
 			    TEXCOORD1;
 		#endif
 	#endif
-
-
 };
 
 

@@ -5,13 +5,12 @@
 
 
 //Leera el nodo
-//	<deferred_shading name="deffered_shading" material="DrawQuadDeferredShadingPerLightMaterial">
+// <deferred_shading name="deffered_shading" material="DrawQuadDeferredShadingPerLightMaterial">
 // <texture stage = "0" name = "AlbedoTexture" / >
 // <texture stage = "1" name = "LightMapTexture" / >
 // <texture stage = "2" name = "NormalMapTexture" / >
 // <texture stage = "3" name = "DepthMapTexture" / >
 // </ deferred_shading>
-
 
 CDeferredShading::CDeferredShading()
     : CDrawQuad()
@@ -39,7 +38,6 @@ bool CDeferredShading::CreateBlendState()
     return lOk;
 }
 
-
 bool CDeferredShading::Load(const CXMLElement* aElement)
 {
     return CDrawQuad::Load(aElement);
@@ -47,7 +45,6 @@ bool CDeferredShading::Load(const CXMLElement* aElement)
 
 void CDeferredShading::Execute(CRenderManager &lRM)
 {
-    //CreateBlendState(lRM);
     lRM.GetDeviceContext()->OMSetBlendState(m_EnabledAlphaBlendState, NULL, 0xffffffff);
     CLightManager* l_LM = &CEngine::GetInstance().GetLightManager();
 
@@ -60,7 +57,6 @@ void CDeferredShading::Execute(CRenderManager &lRM)
             CDrawQuad::Execute(lRM);
         }
     }
+
     lRM.GetDeviceContext()->OMSetBlendState(NULL, NULL, 0xffffffff);
-
-
 }

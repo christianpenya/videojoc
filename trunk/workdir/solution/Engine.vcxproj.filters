@@ -99,6 +99,9 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\CameraController.h">
       <Filter>Graphics\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Camera\CameraManager.h">
+      <Filter>Graphics\Camera</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\CinematicCameraController.h">
       <Filter>Graphics\Camera</Filter>
     </ClInclude>
@@ -426,6 +429,9 @@
       <Filter>Graphics\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\CameraController.cpp">
+      <Filter>Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Camera\CameraManager.cpp">
       <Filter>Graphics\Camera</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\CinematicCameraController.cpp">

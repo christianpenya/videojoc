@@ -21,6 +21,10 @@ public:
         eBump,
         eLightMap,
         eSpecular,
+        eShadowMap,
+        eShadowMask,
+        eNoEstaClar,
+        eCubeTexture,
         eIndexCount
     };
 
@@ -67,6 +71,9 @@ Begin_Enum_String(CMaterial::ETextureIndex)
     Enum_String_Id(CMaterial::eBump, "bump");
     Enum_String_Id(CMaterial::eLightMap, "lightmap");
     Enum_String_Id(CMaterial::eSpecular, "specular");
+    Enum_String_Id(CMaterial::eShadowMap, "shadowmap");
+    Enum_String_Id(CMaterial::eShadowMask, "shadowmask");
+    Enum_String_Id(CMaterial::eCubeTexture, "cubemap");
 }
 End_Enum_String;
 

@@ -3,8 +3,6 @@
 
 void CCameraController::Update(float ElapsedTime)
 {
-    //.CEngine.GetInstance().GetSceneManager()
-
 }
 
 Vect4f CCameraController::GetPositionInScreenCoordinates(const Vect3f &Position) const

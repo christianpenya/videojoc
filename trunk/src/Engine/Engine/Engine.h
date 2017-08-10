@@ -5,11 +5,7 @@
 
 #include "Render/RenderManager.h"
 #include "Utils/Singleton.h"
-#include "Graphics/Camera/SphericalCameraController.h"
-#include "Graphics/Camera/FpsCameraController.h"
-#include "Graphics/Camera/TpsCameraController.h"
-#include "Graphics/Camera/FreeCameraController.h"
-#include "Input/CharacterController.h"
+
 #include <chrono>
 #include "Imgui/imgui_impl_dx11.h"
 #include "Utils/StringUtils.h"
@@ -35,6 +31,8 @@ class CPhysXManager;
 class CParticleManager;
 class ISoundManager;//class CNavMeshManager;
 class CGUIManager;
+class CCameraManager;
+class CCharacterController;
 
 #define BUILD_GET_SET_ENGINE_MANAGER( Manager ) \
 private: \
@@ -67,7 +65,6 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(MaterialManager)
     BUILD_GET_SET_ENGINE_MANAGER(TextureManager)
     BUILD_GET_SET_ENGINE_MANAGER(RenderManager)
-    BUILD_GET_SET_ENGINE_MANAGER(CameraController)
     BUILD_GET_SET_ENGINE_MANAGER(SceneManager)
     BUILD_GET_SET_ENGINE_MANAGER(InputManager)
     BUILD_GET_SET_ENGINE_MANAGER(ActionManager)
@@ -85,6 +82,7 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(ParticleManager)
     //  BUILD_GET_SET_ENGINE_MANAGER(NavMeshManager)
     BUILD_GET_SET_ENGINE_MANAGER(GUIManager)
+    BUILD_GET_SET_ENGINE_MANAGER(CameraManager)
 
     ISoundManager* m_SoundManager;
 
@@ -92,19 +90,6 @@ public:
     clock_t m_DeltaTimeAcum = 0;
     unsigned int m_Frames;
     double m_FPS;
-
-    CFreeCameraController* m_FreeCam;
-    CFpsCameraController* m_FpsCam;
-    CSphericalCameraController* m_OrbitalCam;
-    CTpsCameraController* m_TPSCam;
-    int m_CameraSelector;
-    int m_PrevCameraSelector;
-
-    void fpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt);
-    void tpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, Vect3f sphereCenter, float dt);
-    void orbitalCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt);
-    void sphereUpdate(CRenderManager& renderManager, CActionManager* actionManager, Vect3f front = Vect3f(0, 0, 1), Vect3f up = Vect3f(0, 1, 0));
-    void sphereRender(CRenderManager& renderManager);
 
     CCharacterController* m_CharacterController;
     // void CharacterControllerUpdate(CActionManager* aActionManager, float dt);

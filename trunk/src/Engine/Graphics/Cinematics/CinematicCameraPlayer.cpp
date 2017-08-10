@@ -3,6 +3,7 @@
 #include "Engine/Engine.h"
 #include "XML/tinyxml2/tinyxml2.h"
 #include "Graphics/Camera/CinematicCameraController.h"
+#include "Graphics/Camera/CameraManager.h"
 #include "Utils/Logger.h"
 
 CCinematicCameraPlayer::CCinematicCameraPlayer() : m_CurrentCinematicCamera(nullptr), m_lastCameraState(nullptr) {}
@@ -53,13 +54,13 @@ void CCinematicCameraPlayer::Apply(float aPercentage, CCinematicKey* A, CCinemat
 void CCinematicCameraPlayer::Finish()
 {
     LOG_INFO_APPLICATION("Finishing camera");
-    CEngine::GetInstance().SetCameraController(m_lastCameraState);
+    CEngine::GetInstance().GetCameraManager().SetCurrentCamera(m_lastCameraState);
 }
 
 void CCinematicCameraPlayer::Start()
 {
     LOG_INFO_APPLICATION("Starting camera");
     CEngine& lEngine = CEngine::GetInstance();
-    m_lastCameraState = &(lEngine.GetCameraController());
-    lEngine.SetCameraController(m_CurrentCinematicCamera);
+    m_lastCameraState = &(lEngine.GetCameraManager().GetCurrentCamera());
+    lEngine.GetCameraManager().SetCurrentCamera(m_CurrentCinematicCamera);
 }

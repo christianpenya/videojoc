@@ -1,6 +1,6 @@
 <effects>   
-	<!-- FORWARD -->
-	<effect name="PositionNormalTechniqueForward" shader_family="PositionNormalForward">
+  <!-- FORWARD -->
+  <effect name="PositionNormalTechniqueForward" shader_family="PositionNormalForward">
    <shader stage="vertex"   name="PositionNormalForward"/>
    <shader stage="pixel"    name="PositionNormalForward"/>
   </effect>
@@ -21,10 +21,12 @@
 	<shader stage="pixel" name="AnimatedModelForward"/>
   </effect>
   
-<!--  <effect name="EnvironmentMapTechniqueForward" shader_family="EnvironmentMapForward">
+<!--  
+  <effect name="EnvironmentMapTechniqueForward" shader_family="EnvironmentMapForward">
    <shader stage="vertex"   name="EnvironmentMapForward"/>
    <shader stage="pixel"    name="EnvironmentMapForward"/>
-  </effect>-->
+  </effect>
+  -->
 
   
   <!-- DEFERRED -->
@@ -47,6 +49,40 @@
   <effect name="AnimatedModelTechniqueDeferred"  shader_family="AnimatedModelDeferred">
 	<shader stage="vertex" name="AnimatedModelDeferred"/>
 	<shader stage="pixel" name="AnimatedModelDeferred"/>
+  </effect>
+  <effect name="DeferredQuadTechnique" shader_family="DeferredQuad">
+   <shader stage="vertex"   name="DeferredQuad"/>
+   <shader stage="pixel"    name="DeferredQuad"/>
+  </effect>
+  
+   <!-- PBR G BUFFER -->
+  <effect name="PositionNormalPBRGBufferTechnique" shader_family="PositionNormalPBRGBuffer">
+   <shader stage="vertex"   name="PositionNormalPBRGBuffer"/>
+   <shader stage="pixel"    name="PositionNormalPBRGBuffer"/>
+  </effect>
+  <effect name="PositionNormalUVPBRGBufferTechnique" shader_family="PositionNormalUVPBRGBuffer">
+   <shader stage="vertex"   name="PositionNormalUVPBRGBuffer"/>
+   <shader stage="pixel"    name="PositionNormalUVPBRGBuffer"/>
+  </effect>
+  <effect name="PositionNormalUVUV2PBRGBufferTechnique" shader_family="PositionNormalUVUV2PBRGBuffer">
+   <shader stage="vertex"   name="PositionNormalUVUV2PBRGBuffer"/>
+   <shader stage="pixel"    name="PositionNormalUVUV2PBRGBuffer"/>
+  </effect>
+  <effect name="PositionBumpUVPBRGBufferTechnique" shader_family="PositionBumpUVPBRGBuffer">
+   <shader stage="vertex"   name="PositionBumpUVPBRGBuffer"/>
+   <shader stage="pixel"    name="PositionBumpUVPBRGBuffer"/>
+  </effect>
+  <effect name="AnimatedModelPBRGBufferTechnique"  shader_family="AnimatedModelPBRGBuffer">
+	<shader stage="vertex" name="AnimatedModelPBRGBuffer"/>
+	<shader stage="pixel" name="AnimatedModelPBRGBuffer"/>
+  </effect>
+  <effect name="PBRDeferredQuadTechnique" shader_family="PBRDeferredQuad">
+   <shader stage="vertex"   name="PBRDeferredQuad"/>
+   <shader stage="pixel"    name="PBRDeferredQuad"/>
+  </effect>
+  <effect name="PBRCompositeTechnique" shader_family="PBRComposite">
+   <shader stage="vertex"   name="Quad"/>
+   <shader stage="pixel"    name="PBRComposite"/>
   </effect>
   
   <!-- SHADOWS -->
@@ -137,11 +173,6 @@
   <effect name="QuadTechnique" shader_family="Quad">
    <shader stage="vertex"   name="Quad"/>
    <shader stage="pixel"    name="Quad"/>
-  </effect>
-  
-  <effect name="DeferredQuadTechnique" shader_family="DeferredQuad">
-   <shader stage="vertex"   name="DeferredQuad"/>
-   <shader stage="pixel"    name="DeferredQuad"/>
   </effect>
   
   <effect name="SpriteVertexTechnique" shader_family="SpriteVertex">

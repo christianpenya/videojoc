@@ -47,8 +47,6 @@ void CTpsCameraController::Update(float ElapsedTime)
 
 void CTpsCameraController::Init(CCharacterController* player)
 {
-
     m_player = player;
-
     actionManager = &CEngine::GetInstance().GetActionManager();
 }

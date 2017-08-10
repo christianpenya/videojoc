@@ -109,7 +109,7 @@ void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
     lConstanBufferManager.mLightsDesc.m_LightAttenuationEndRange[idLight] = alight->GetRangeAttenuation().y;
     lConstanBufferManager.mLightsDesc.m_LightDirection[idLight] = Vect4f(alight->GetForward(), 0.0f);// Vect4f(alight->GetPitch(), alight->GetYaw(), alight->GetRoll(), 0.0f);
     lConstanBufferManager.mLightsDesc.m_LightPosition[idLight] = Vect4f(alight->GetPosition(), 0.0f);
-    lConstanBufferManager.mLightsDesc.m_LightAmbient = 0.25f; //TODO LUZ AMBIENT HARDCODED
+    lConstanBufferManager.mLightsDesc.m_LightAmbient = 0.75f; //TODO LUZ AMBIENT HARDCODED
     if (alight->GetLightType() == CLight::eSpot) //Spot
     {
         lConstanBufferManager.mLightsDesc.m_LightFallOffAngle[idLight] = ((CSpotLight *)alight)->GetFallOff();

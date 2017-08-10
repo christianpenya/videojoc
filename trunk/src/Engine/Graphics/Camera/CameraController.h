@@ -32,8 +32,9 @@ public:
         _RenderManager.SetProjectionMatrix(m_CameraInfo.z, m_CameraInfo.w, m_CameraInfo.x, m_CameraInfo.y);
     }
 
-    Vect4f GetPositionInScreenCoordinates(const Vect3f &Position) const;	
-	Vect3f GetFront()    {
+    Vect4f GetPositionInScreenCoordinates(const Vect3f &Position) const;
+    Vect3f GetFront()
+    {
         return m_Front;
     }
 

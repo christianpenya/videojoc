@@ -5,6 +5,10 @@
 #include <vector>
 #include "Utils/StringUtils.h"
 #include "Utils/CheckedRelease.h"
+#include "Utils/FileUtils.cpp"
+
+#include <d3dcompiler.h>
+#include <filesystem>
 
 CShader::CShader(const std::string& aShaderCode, EShaderStage aType) :
     m_Type(aType),
@@ -41,8 +45,39 @@ bool CShader::Load()
 
     if (!m_ShaderCode.empty())
     {
+        std::string lCompiledFileName = m_Filename + "." + CreateMacroHash() + ".blob";
+        std::wstring tmp = base::utils::String2WString(lCompiledFileName);
+        LPCWSTR lCompiledFileNameLPCWSTR = tmp.c_str();
+
+        std::wstring lWideFilename = base::utils::String2WString(m_Filename);
+        LPCWSTR lFilename = lWideFilename.c_str();
+
         CreateShaderMacro();
-        m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), m_ShaderMacros);
+        HRESULT hr;
+
+        if (base::utils::DoesFileExist(lCompiledFileName))
+        {
+            if (base::utils::IsFileOlder(lCompiledFileName, m_Filename))
+            {
+                //hr = D3DCompileFromFile(lFilename,  )
+                m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), m_ShaderMacros);
+                hr = D3DWriteBlobToFile(m_pBlob, lCompiledFileNameLPCWSTR, true);
+            }
+            else
+            {
+                //std::ifstream input(lCompiledFileName, std::ios::binary);
+                //m_pBlob = input.get();
+                hr = D3DReadFileToBlob(lCompiledFileNameLPCWSTR, &m_pBlob);
+                assert(m_pBlob != nullptr);
+            }
+        }
+        else
+        {
+            m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), m_ShaderMacros);
+            hr = D3DWriteBlobToFile(m_pBlob, lCompiledFileNameLPCWSTR, true);
+        }
+
+        assert(SUCCEEDED(hr));
     }
 
     return m_pBlob != nullptr;
@@ -98,3 +133,8 @@ void CShader::CreateShaderMacro()
     m_ShaderMacros[l_PreprocessorItems.size()].Definition = NULL;
 }
 
+std::string CShader::CreateMacroHash() const
+{
+    std::hash<std::string> hash;
+    return std::to_string(hash(m_Preprocessor + m_EntryPoint));
+}

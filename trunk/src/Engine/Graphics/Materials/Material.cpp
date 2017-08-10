@@ -14,14 +14,17 @@
 #include "Graphics/Effects/TechniquePoolManager.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
 
+#define INDEX_DIFFUSE_TEXTURE 0
+#define INDEX_NORMAL_TEXTURE 1
+#define INDEX_LIGHTMAP_TEXTURE 2
+#define INDEX_SPECULAR_TEXTURE 3
+#define INDEX_SHADOWMAP_TEXTURE 4
+#define INDEX_SHADOWMASK_TEXTURE 5
+#define INDEX_CUBEMAP_TEXTURE8
+#define INDEX_SPECULAR_TEXTURE 10
+
 CMaterial::~CMaterial()
 {
-    /*
-    for (std::vector< CMaterialParameter *>::iterator iMaterialParameter = mParameters.begin();
-                iMaterialParameter != mParameters.end();
-                ++iMaterialParameter)
-    {}
-    */
     base::utils::CheckedDelete(mParameters);
 }
 
@@ -29,27 +32,25 @@ CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
 {
     CEngine &l_Engine = CEngine::GetInstance();
     CTechniquePoolManager &l_TechniquePoolManager = l_Engine.GetTechniquePoolManager();
+    CTextureManager &lTextureManager = l_Engine.GetTextureManager();
 
     std::string lVertexType = aElement->GetAttribute<std::string>("vertex_type", "");
     std::string lEffect = aElement->GetAttribute<std::string>("effect", "");
 
     mTechnique = l_TechniquePoolManager(lVertexType);
     mTechnique = l_TechniquePoolManager(lEffect);
-
-
     mTechnique = strcmp(lEffect.c_str(), "") == 0 ? l_TechniquePoolManager(lVertexType) : l_TechniquePoolManager(lEffect);
+
+    mTextures.resize(ETextureIndex::eIndexCount);
 
     for (tinyxml2::XMLElement *iTextureOrParameter = aElement->FirstChildElement(); iTextureOrParameter != nullptr; iTextureOrParameter = iTextureOrParameter->NextSiblingElement())
     {
         if (strcmp(iTextureOrParameter->Name(), "texture") == 0)
         {
             //leemos textura
-            //std::string textureName = iTextureOrParameter->GetAttribute<std::string>("type", "");
-            std::string textureFilename = iTextureOrParameter->GetAttribute<std::string>("filename", "");
-
-            CTextureManager &lTextureManager = l_Engine.GetTextureManager();
-            CTexture * lTexture = lTextureManager.GetTexture(textureFilename);
-            mTextures.push_back(lTexture);
+            ETextureIndex eTextureIndex;
+            EnumString<ETextureIndex>::ToEnum(eTextureIndex, iTextureOrParameter->GetAttribute<std::string>("type", ""));
+            mTextures[eTextureIndex] = lTextureManager.GetTexture(iTextureOrParameter->GetAttribute<std::string>("filename", ""));
         }
         else if (strcmp(iTextureOrParameter->Name(), "parameter") == 0)
         {
@@ -92,297 +93,27 @@ break;\
 
 void CMaterial::Apply()
 {
-	assert(mTechnique);
-	ID3D11DeviceContext * lContext = CEngine::GetInstance().GetRenderManager().GetDeviceContext();
 
-	// Bind the technique that will render this geometry
-	mTechnique->Bind(lContext);
+    assert(mTechnique);
+    ID3D11DeviceContext * lContext = CEngine::GetInstance().GetRenderManager().GetDeviceContext();
 
-	for (size_t i = 0, lCount = mTextures.size(); i < lCount; ++i)
-	{
-		if (mTextures[i])
-		{
-			mTextures[i]->Bind(i, lContext);
-		}
-	}
+    // Bind the technique that will render this geometry
+    mTechnique->Bind(lContext);
 
-	int l_pos = -1;
-	int l_posFloat2 = -1;
-	int l_posColor = -1;
-	CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
-	for (size_t i = 0, lCount = mParameters.size(); i < lCount; ++i)
-	{
+    for (size_t i = 0, lCount = mTextures.size(); i < lCount; ++i)
+    {
+        if (mTextures[i])
+        {
+            mTextures[i]->Bind(i, lContext);
+        }
+    }
 
-		/*****************************************************************************
-		SWITCH COLOCANDO PROPIEDADES DE MATERIALES EN EL CONSTANT BUFFER
-		Cuidado con colocar dos propiedades que puedan coexistir en un mismo material
-		en la misma casilla del vector!
-		Posiciones ocupadas del vector:
-		[0] -> COLOR DIFUSO
-		[1] -> BUMP, FOG
-		[2] -> REBOTES DE LUZ ESPECULAR
-		*****************************************************************************/
+    CConstantBufferManager& lCBM = CEngine::GetInstance().GetConstantBufferManager();
 
-		switch (mParameters[i]->GetType())
-		{
-		case eFloat:
-
-
-			/*
-			if (mParameters[i]->GetName() == "bump")
-			{
-			mParameters[i]->SetDescription("Bump");
-			l_pos = 1;
-			}//INICIO PARAMETROS BLOOM
-			else if (mParameters[i]->GetName() == "threshold")
-			{
-			mParameters[i]->SetDescription("Threshold");
-			l_pos = 4;
-			}
-			else if (mParameters[i]->GetName() == "bloomActive")
-			{
-			mParameters[i]->SetDescription("Enabled");
-			l_pos = 5;
-			}
-			else if (mParameters[i]->GetName() == "bloomIntensity")
-			{
-			mParameters[i]->SetDescription("Bloom Intensity");
-			l_pos = 6;
-			}
-			else if (mParameters[i]->GetName() == "originalIntensity")
-			{
-			mParameters[i]->SetDescription("Original Intensity");
-			l_pos = 7;
-			}
-			else if (mParameters[i]->GetName() == "bloomSaturation")
-			{
-			mParameters[i]->SetDescription("Bloom Saturation");
-			l_pos = 8;
-			}
-			else if (mParameters[i]->GetName() == "originalSaturation")
-			{
-			mParameters[i]->SetDescription("Original Saturation");
-			l_pos = 9;
-			} //FIN PARAMETROS BLOOM
-			//INICIO PARAMETROS COLOR GRADING
-			else if (mParameters[i]->GetName() == "enabled")
-			{
-			mParameters[i]->SetDescription("Enabled");
-			l_pos = 4;
-			}
-			else if (mParameters[i]->GetName() == "brownSepiaColorGrading")
-			{
-			mParameters[i]->SetDescription("Brown Sepia");
-			l_pos = 5;
-			}
-			else if (mParameters[i]->GetName() == "greenSepiaColorGrading")
-			{
-			mParameters[i]->SetDescription("Green Sepia");
-			l_pos = 6;
-			}
-			else if (mParameters[i]->GetName() == "blueSepiaColorGrading")
-			{
-			mParameters[i]->SetDescription("Blue Sepia");
-			l_pos = 7;
-			}
-			else if (mParameters[i]->GetName() == "monochromeColorGrading")
-			{
-			mParameters[i]->SetDescription("Monochrome");
-			l_pos = 8;
-			}
-			else if (mParameters[i]->GetName() == "colorColorGrading")
-			{
-			mParameters[i]->SetDescription("Color");
-			l_pos = 9;
-			}
-			else if (mParameters[i]->GetName() == "contrastColorGrading")
-			{
-			mParameters[i]->SetDescription("Contrast");
-			l_pos = 10;
-			}
-			else if (mParameters[i]->GetName() == "brightnessColorGrading")
-			{
-			mParameters[i]->SetDescription("Brightness");
-			l_pos = 11;
-			}//FIN PARAMETERS COLOR GRADING
-			//INICIO PARAMETERS GAUSSIAN
-			else if (mParameters[i]->GetName() == "textureSize")
-			{
-			mParameters[i]->SetDescription("Texture Size");
-			l_pos = 12;
-			}
-			else if (mParameters[i]->GetName() == "blurScale")
-			{
-			mParameters[i]->SetDescription("Blur Scale");
-			l_pos = 13;
-			}//FIN PARAMETERS GAUSSIAN
-			//INICIO PARAMETERS HDAO
-			else if (mParameters[i]->GetName() == "HDAOActive")
-			{
-			mParameters[i]->SetDescription("Enabled");
-			l_pos = 4;
-			}
-			else if (mParameters[i]->GetName() == "HDAOShowNormals")
-			{
-			mParameters[i]->SetDescription("Show Normals");
-			l_pos = 5;
-			}
-			else if (mParameters[i]->GetName() == "HDAOShowAO")
-			{
-			mParameters[i]->SetDescription("Show AO");
-			l_pos = 6;
-			}
-			else if (mParameters[i]->GetName() == "HDAOUseNormals")
-			{
-			mParameters[i]->SetDescription("Use Normals");
-			l_pos = 7;
-			}
-			else if (mParameters[i]->GetName() == "AcceptAngle")
-			{
-			mParameters[i]->SetDescription("Accept Angle");
-			l_pos = 9;
-			}
-			else if (mParameters[i]->GetName() == "HDAOIntensity")
-			{
-			mParameters[i]->SetDescription("Intensity");
-			l_pos = 10;
-			}
-			else if (mParameters[i]->GetName() == "NormalScale")
-			{
-			mParameters[i]->SetDescription("Normal Scale");
-			l_pos = 11;
-			}
-			else if (mParameters[i]->GetName() == "HDAORejectRadius")
-			{
-			mParameters[i]->SetDescription("Reject Radius");
-			l_pos = 12;
-			}
-			else if (mParameters[i]->GetName() == "HDAOAcceptRadius")
-			{
-			mParameters[i]->SetDescription("AcceptRadius");
-			l_pos = 13;
-			}
-			//FIN PARAMETERS HDAO
-			//INICIO PARAMETROS NOISE
-			else if (mParameters[i]->GetName() == "noisePct")
-			{
-			mParameters[i]->SetDescription("Noise Pct");
-			l_pos = 4;
-			}
-			else if (mParameters[i]->GetName() == "vignettingPct")
-			{
-			mParameters[i]->SetDescription("Vignetting Pct");
-			l_pos = 5;
-			}
-			else if (mParameters[i]->GetName() == "noiseAmount")
-			{
-			mParameters[i]->SetDescription("Noise Amount");
-			l_pos = 6;
-			}//FIN PARAMETROS NOISE
-			//INICIO PARAMETROS ZBLUR
-			else if (mParameters[i]->GetName() == "ZBlurActive")
-			{
-			mParameters[i]->SetDescription("Enabled");
-			l_pos = 4;
-			}
-			else if (mParameters[i]->GetName() == "ZBlurShowDepths")
-			{
-			mParameters[i]->SetDescription("Show Depths");
-			l_pos = 5;
-			}
-			else if (mParameters[i]->GetName() == "ZBlurConstantBlur")
-			{
-			mParameters[i]->SetDescription("Constant Blur");
-			l_pos = 6;
-			}
-			else if (mParameters[i]->GetName() == "ZBlurFocalStart")
-			{
-			mParameters[i]->SetDescription("Focal Start");
-			l_pos = 7;
-			}
-			else if (mParameters[i]->GetName() == "ZBlurFocalEnd")
-			{
-			mParameters[i]->SetDescription("Focal End");
-			l_pos = 8;
-			}
-			else if (mParameters[i]->GetName() == "ZBlurEnd")
-			{
-			mParameters[i]->SetDescription("ZBlur End");
-			l_pos = 9;
-			}//FIN PARAMETROS ZBLUR
-			//INICIO PARAMETROS SSR
-			else if (mParameters[i]->GetName() == "ssr_enabled")
-			{
-			mParameters[i]->SetDescription("Enabled");
-			l_pos = 4;
-			}
-			//FIN PARAMETROS SSR
-			else
-			{
-			mParameters[i]->SetDescription(mParameters[i]->GetName());
-			l_pos = 4;
-			}
-			}*/
-			mParameters[i]->SetDescription(mParameters[i]->GetName());
-			lCBM.mMaterialDesc.m_RawData[i] = Vect4f(*(float*)mParameters[i]->GetAddr(0), 0.0f, 0.0f, 0.0f);
-			break;
-		case eFloat2:
-			/*
-			if (mParameters[i]->GetName() == "fog_start_end")
-			l_posFloat2 = 1;
-			else if (mParameters[i]->GetName() == "specular_exponent_contrib")
-			l_posFloat2 = 2;
-			//INICIO PARAMETROS HDAO
-			else if (mParameters[i]->GetName() == "RTSize")
-			l_posFloat2 = 8;
-			//FIN PARAMETROS HDAO
-			//INICIO PARAMETROS SSR
-			else if (mParameters[i]->GetName() == "ssr_screen_resolution")
-			l_posFloat2 = 7;
-			//FIN PARAMETROS SSR
-			*/
-			lCBM.mMaterialDesc.m_RawData[i] = Vect4f(*(float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), 0.0f, 0.0f);
-			break;
-
-		case eFloat3:
-			mParameters[i]->SetDescription(mParameters[i]->GetName());
-			lCBM.mMaterialDesc.m_RawData[i] = Vect4f(*(float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), 0);
-			break;
-		case eFloat4:
-			/*
-			//INICIO PARAMETROS SSR
-			if (mParameters[i]->GetName() == "ssr_opacity")
-			{
-			mParameters[i]->SetDescription("Opacity");
-			lCBM.mMaterialDesc.m_RawData[5] = Vect4f(*(float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), *(float*)mParameters[i]->GetAddr(3));
-			}
-			else if (mParameters[i]->GetName() == "ssr_offset_screen")
-			{
-			mParameters[i]->SetDescription("Offset Screen");
-			lCBM.mMaterialDesc.m_RawData[6] = Vect4f(*(float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), *(float*)mParameters[i]->GetAddr(3));
-			}*/
-			mParameters[i]->SetDescription(mParameters[i]->GetName());
-			lCBM.mMaterialDesc.m_RawData[i] = Vect4f(*(float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), *(float*)mParameters[i]->GetAddr(3));
-			break;
-		case eColor:
-
-			mParameters[i]->SetDescription(mParameters[i]->GetName());
-			lCBM.mMaterialDesc.m_RawData[i] = Vect4f(*(float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), *(float*)mParameters[i]->GetAddr(3));
-			/*
-			l_posColor = 0;
-			lCBM.mMaterialDesc.m_RawData[l_posColor] = Vect4f(*(float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), *(float*)mParameters[i]->GetAddr(3));
-			*/
-			break;
-		}
-		/*
-		if (l_pos>=0)
-		lCBM.mMaterialDesc.m_RawData[i] = Vect4f(*(float*)mParameters[i]->GetAddr(0), 0.0f, 0.0f, 0.0f);
-		else if (l_posFloat2>=0)
-		lCBM.mMaterialDesc.m_RawData[i] = Vect4f(*(float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), 0.0f, 0.0f);
-		*/
-		l_pos = -1;
-		l_posFloat2 = -1;
-	}
+    for (size_t i = 0, lCount = mParameters.size(); i < lCount; ++i)
+    {
+        lCBM.mMaterialDesc.m_RawData[i] = *(Vect4f *)mParameters[i]->GetAddr();
+    }
 
     lCBM.BindBuffer(lContext, CConstantBufferManager::CB_Material);
 }
@@ -416,7 +147,7 @@ void CMaterial::DrawImgui()
                     {
                         ImGui::SliderFloat(mParameters[i]->GetDescription().c_str(), (float*)mParameters[i]->GetAddr(0), 0.0f, 1024.0f);
                     }
-                    else if ((mParameters[i]->GetName() == "blurScale") || (mParameters[i]->GetName() == "diffuse"))
+                    else if ((mParameters[i]->GetName() == "blurScale") || (mParameters[i]->GetName() == "diffuse") || (mParameters[i]->GetName() == "num_samples"))
                     {
                         ImGui::SliderFloat(mParameters[i]->GetDescription().c_str(), (float*)mParameters[i]->GetAddr(0), 0.0f, 100.0f);
                     }
@@ -447,6 +178,11 @@ void CMaterial::DrawImgui()
                     {
                         ImGui::SliderFloat("Screen Resolution X", (float*)mParameters[i]->GetAddr(0), 0.0f, 1366.0f);
                         ImGui::SliderFloat("Screen Resolution Y", (float*)mParameters[i]->GetAddr(1), 0.0f, 768.0f);
+                    }
+                    else if (mParameters[i]->GetName() == "light_position")
+                    {
+                        ImGui::SliderFloat("Light Position X", (float*)mParameters[i]->GetAddr(0), 0.0f, 1366.0f);
+                        ImGui::SliderFloat("Light Position Y", (float*)mParameters[i]->GetAddr(1), 0.0f, 768.0f);
                     }
                     else
                         ImGui::SliderFloat2(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1)), 0.0f, 1.0f);
@@ -480,4 +216,3 @@ void CMaterial::DrawImgui()
     }
 
 }
-
