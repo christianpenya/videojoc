@@ -1,6 +1,4 @@
 <effects>   
-	<!-- FORWARD -->
-	<effect name="PositionNormalTechniqueForward" shader_family="PositionNormalForward">
   <!-- FORWARD -->
   <effect name="PositionNormalTechniqueForward" shader_family="PositionNormalForward">
    <shader stage="vertex"   name="PositionNormalForward"/>

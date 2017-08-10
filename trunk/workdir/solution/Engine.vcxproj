@@ -245,6 +245,7 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Buffers\ConstantBuffer.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Buffers\ConstantBufferManager.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\CameraController.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\Camera\CameraManager.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\CinematicCameraController.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\FpsCameraController.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\FreeCameraController.h" />
@@ -356,6 +357,7 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Buffers\ConstantBuffer.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Buffers\ConstantBufferManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\CameraController.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\Camera\CameraManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\CinematicCameraController.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\FpsCameraController.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\FreeCameraController.cpp" />

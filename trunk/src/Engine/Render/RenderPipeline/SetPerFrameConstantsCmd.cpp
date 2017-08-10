@@ -5,6 +5,9 @@
 #include "Graphics/Lights/lightManager.h"
 #include <ctime>
 
+#include "Graphics/Camera/CameraManager.h"
+#include "Graphics/Camera/CameraController.h"
+
 CSetPerFrameConstantsCmd::CSetPerFrameConstantsCmd() {}
 CSetPerFrameConstantsCmd::~CSetPerFrameConstantsCmd() {}
 
@@ -24,7 +27,7 @@ void CSetPerFrameConstantsCmd::Execute(CRenderManager& lRM)
 void CSetPerFrameConstantsCmd::UpdateConstants()
 {
     CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
-    CCameraController& lCC = CEngine::GetInstance().GetCameraController();
+    CCameraController& lCC = CEngine::GetInstance().GetCameraManager().GetCurrentCamera();
 
     CEngine::GetInstance().GetLightManager().SetLightsConstants();
 

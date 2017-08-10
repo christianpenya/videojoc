@@ -3,7 +3,8 @@
 #include "ImGUI/imgui.h"
 #include "Utils/Logger.h"
 
-#include "Graphics/Camera/CameraController.h"
+#include "Graphics/Camera/CameraManager.h"
+
 #include "Input/ActionManager.h"
 #include "Graphics/Materials/MaterialManager.h"
 #include "Graphics/Textures/TextureManager.h"
@@ -25,6 +26,7 @@
 #include "GUI/GUIManager.h"
 #include "GUI/GUIPosition.h"
 #include "Graphics/Animation/SceneAnimatedModel.h"
+#include "Input/CharacterController.h"
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
@@ -36,7 +38,7 @@ CEngine::CEngine()
     : m_MaterialManager(nullptr)
     , m_TextureManager(nullptr)
     , m_RenderManager(nullptr)
-    , m_CameraController(nullptr)
+    , m_CameraManager(nullptr)
     , m_SceneManager(nullptr)
     , m_InputManager(nullptr)
     , m_ActionManager(nullptr)
@@ -58,14 +60,7 @@ CEngine::CEngine()
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
     , m_FPS (0.0)
-    , m_CameraSelector(0)
-    , m_PrevCameraSelector(0)
 {
-    m_CharacterController = new CCharacterController();
-    m_FreeCam = new CFreeCameraController(Vect3f(0, 10, 0), Vect3f(0, 0, 1), Vect3f(0, 1, 0), Vect4f(1, 500, 1.13f, 1.7f), 1.5f, -1.5f, 10.0f, -10.0f);
-    m_FpsCam = new CFpsCameraController(Vect3f(0, 1, 0), 1.5f, -1.5f);
-    m_OrbitalCam = new CSphericalCameraController();
-    m_TPSCam = new CTpsCameraController();
 }
 
 CEngine::~CEngine()
@@ -91,12 +86,9 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_ActionManager);
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
-    base::utils::CheckedDelete(m_SoundManager);//  base::utils::CheckedDelete(m_NavMeshManager);
+    base::utils::CheckedDelete(m_SoundManager);
+    // base::utils::CheckedDelete(m_NavMeshManager);
     base::utils::CheckedDelete(m_GUIManager);
-
-    base::utils::CheckedDelete(m_FreeCam);
-    base::utils::CheckedDelete(m_FpsCam);
-    base::utils::CheckedDelete(m_OrbitalCam);
 }
 
 void CEngine::LoadFiles()
@@ -172,6 +164,11 @@ void CEngine::LoadFiles()
     m_GUIManager->Load("data/gui.xml");
     LOG_INFO_APPLICATION("Engine -> GUI Loaded! \\(^-^)/");
 
+    m_CharacterController = new CCharacterController();
+    m_CharacterController->Init(m_SceneManager);
+
+    m_CameraManager = new CCameraManager();
+    m_CameraManager->Init(m_CharacterController);
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
@@ -184,8 +181,8 @@ void CEngine::Init(HWND hWnd)
 
     ImGui_ImplDX11_Init(hWnd, m_RenderManager->GetDevice(), m_RenderManager->GetDeviceContext());
     m_InputManager = new CInputManager(hWnd);
-
     m_ScriptManager = new CScriptManager();
+
     if (m_ScriptManager->Load("data/scripts/engine.lua"))
     {
         lua_State* mLS = m_ScriptManager->GetScript("data/scripts/engine.lua")->GetState();
@@ -214,9 +211,7 @@ void CEngine::Init(HWND hWnd)
         LoadFiles();
     }
 
-    m_CharacterController->Init(m_SceneManager);
-    m_TPSCam->Init(m_CharacterController);
-    SetCameraController(m_TPSCam);
+
     //SetCameraController(m_FreeCam);
 
     //TEST SOUND
@@ -240,46 +235,21 @@ double clockToMilliseconds(clock_t ticks)
 
 void CEngine::Update()
 {
-    // Reiniciem posició de l'esfera quan canviem de camera
-
-    if (m_CameraSelector != m_PrevCameraSelector)
-    {
-        m_RenderManager->m_SphereOffset = Vect3f(0, 0, 0);
-    }
-
-    m_PrevCameraSelector = m_CameraSelector;
-    /*
-    switch (m_CameraSelector)
-    {
-    case 0: //Free
-        SetCameraController(m_FreeCam);
-        // orbitalCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
-
-        break;
-    case 1: //FPS
-        SetCameraController(m_FpsCam);
-    //fpsCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
-    case 2: //Free
-        SetCameraController(m_OrbitalCam);
-        // orbitalCameraUpdate(*m_CameraController, m_ActionManager, (float)m_DeltaTime);
-
-        break;
-    default:
-        break;
-    }*/
-
     //CharacterControllerUpdate(m_ActionManager, (float)m_DeltaTime);
 
     m_PhysXManager->Update(m_DeltaTime);
     m_CharacterController->Update(m_DeltaTime);
     //m_PhysXManager->MoveCharacterController("player", m_CharacterController->m_Movement, PHYSX_UPDATE_STEP);
 
-    m_CameraController->Update((float)m_DeltaTime);
     //m_CameraController->SetToRenderManager(*m_RenderManager);
+    m_CameraManager->Update((float)m_DeltaTime);
+
     m_RenderManager->Update();
     m_SceneManager->Update(m_DeltaTime);
     m_CinematicManager->Update(m_DeltaTime);
-    m_SoundManager->Update(m_CameraController);
+
+    m_SoundManager->Update(&m_CameraManager->GetCurrentCamera());
+
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
     /*if (m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))
@@ -311,71 +281,11 @@ void CEngine::Render()
     }
 }
 
-void CEngine::fpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt)
-{
-    CFpsCameraController *fpsCamera = static_cast<CFpsCameraController*>(&camera);
-    fpsCamera->xSpeed = 0.1f * (*actionManager)("x_move")->value;
-    fpsCamera->zSpeed = 0.1f * (*actionManager)("z_move")->value;
-
-    fpsCamera->yawSpeed = 0.1f * (*actionManager)("pitch")->value;
-    fpsCamera->pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
-
-    fpsCamera->Update(dt);
-}
-
-void CEngine::orbitalCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt)
-{
-    CSphericalCameraController *sphericalCamera = static_cast<CSphericalCameraController*>(&camera);
-    sphericalCamera->zoomSpeed = (*actionManager)("zoom")->value;
-
-    if ((*actionManager)("enable_rotation")->active)
-    {
-        sphericalCamera->yawSpeed = 0.1f * (*actionManager)("pitch")->value;
-        sphericalCamera->pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
-    }
-    else
-    {
-        sphericalCamera->yawSpeed = 0.0;
-        sphericalCamera->pitchSpeed = 0.0;
-    }
-
-    sphericalCamera->Update(dt);
-}
-
-void CEngine::tpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, Vect3f sphereCenter, float dt)
-{
-    CTpsCameraController *tpsCamera = static_cast<CTpsCameraController*>(&camera);
-    tpsCamera->center = sphereCenter;
-
-    tpsCamera->yawSpeed = 0.1f * (*actionManager)("pitch")->value;
-    tpsCamera->pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
-    tpsCamera->zoomSpeed = (*actionManager)("zoom")->value;
-
-    tpsCamera->Update(dt);
-}
-
 float clamp(float x, float upper, float lower)
 {
     return min(upper, max(x, lower));
 }
 
-void CEngine::sphereUpdate(CRenderManager& renderManager, CActionManager* actionManager, Vect3f front, Vect3f up)
-{
-    Vect3f right = front ^ up;
-    float smoother = 0.1f;
-
-    renderManager.m_SphereOffset += (*actionManager)("z_move")->value * front * smoother;
-    renderManager.m_SphereOffset += (*actionManager)("x_move")->value * right * smoother;
-
-    renderManager.m_SphereOffset.x = clamp(renderManager.m_SphereOffset.x, 5.0, -5.0);
-    renderManager.m_SphereOffset.y = 1;
-    renderManager.m_SphereOffset.z = clamp(renderManager.m_SphereOffset.z, 5.0, -5.0);
-}
-
-void CEngine::sphereRender(CRenderManager& renderManager)
-{
-    renderManager.DrawSphere(1, CColor(1, 1, 1, 1));
-}
 /*
 void CEngine::CharacterControllerUpdate(CActionManager* actionManager, float dt)
 {

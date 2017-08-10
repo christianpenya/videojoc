@@ -7,6 +7,8 @@
 #include "Graphics\Mesh\TemplatedGeometry.h"
 #include "Graphics\Mesh\VertexBuffer.h"
 #include "Graphics\Buffers\ConstantBufferManager.h"
+#include "Graphics/Camera/CameraManager.h"
+#include "Graphics/Camera/CameraController.h"
 
 CParticleSystemInstance::CParticleSystemInstance()
 {
@@ -210,9 +212,9 @@ bool CParticleSystemInstance::Update(float ElapsedTime)
 
 float CParticleSystemInstance::GetDistanceToCamera(Vect3f particlePosition)
 {
-    Vect3f l_CameraDirection = CEngine::GetInstance().GetCameraController().GetFront();
+    Vect3f l_CameraDirection = CEngine::GetInstance().GetCameraManager().GetCurrentCamera().GetFront();
     Vect3f a = (particlePosition*l_CameraDirection);
-    Vect3f b = (CEngine::GetInstance().GetCameraController().GetPosition()*l_CameraDirection);
+    Vect3f b = (CEngine::GetInstance().GetCameraManager().GetCurrentCamera().GetPosition()*l_CameraDirection);
 
     return a.Distance(b);
 }
