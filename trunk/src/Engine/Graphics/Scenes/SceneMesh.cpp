@@ -14,6 +14,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     : CSceneNode(aElement)
     , mMesh(CEngine::GetInstance().GetMeshManager().GetMesh(aElement->GetAttribute<std::string>("mesh", "")))
     , mRigidBodyEnum(eRigidBodyCount)
+    , mOriginalUnmodifiedPosition(m_Position)
 {
     m_ignoreFrustum = aElement->GetAttribute<bool>("ignore_frustum", false);
     m_NodeType = CSceneNode::eMesh;
@@ -142,8 +143,11 @@ void CSceneMesh::DrawImgui()
 {
     if (ImGui::CollapsingHeader(m_Name.c_str()))
     {
-        ImGui::SliderFloat3("Position", (float*)&m_Position, -100.0f, 100.0f);
-        ImGui::SliderFloat3("Scale", (float*)&m_Scale, 0.0f, 100.0f);
+        ImGui::SliderFloat("XPosition", (float*)&m_Position.x, mOriginalUnmodifiedPosition.x - 5.0f, mOriginalUnmodifiedPosition.x + 5.0f);
+        ImGui::SliderFloat("YPosition", (float*)&m_Position.y, mOriginalUnmodifiedPosition.y - 5.0f, mOriginalUnmodifiedPosition.y + 5.0f);
+        ImGui::SliderFloat("ZPosition", (float*)&m_Position.z, mOriginalUnmodifiedPosition.z - 5.0f, mOriginalUnmodifiedPosition.z + 5.0f);
+
+        ImGui::SliderFloat3("Scale", (float*)&m_Scale, 0.0f, 5.0f);
 
         float lYawTmp = mathUtils::Rad2Deg(m_Yaw);
         float lPitchTmp = mathUtils::Rad2Deg(m_Pitch);

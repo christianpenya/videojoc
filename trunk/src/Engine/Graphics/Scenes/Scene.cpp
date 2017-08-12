@@ -141,6 +141,7 @@ void CScene::DrawImGui()
 
             ImGui::PopID();
         }
+
         ImGui::PopItemWidth();
         ImGui::EndChild();
     }
