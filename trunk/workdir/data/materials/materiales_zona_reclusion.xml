@@ -9,6 +9,33 @@
 		<parameter type="float" name="occlusion" value="1.0" />
 	</material>
 
+	TELEFONOS
+	<material name="telefono" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\txttelefono.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	
+	DECAL PASILLO TELÉFONO
+	<material name="15 - Default" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\aviso.png" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	
+	CONDUCTO
+	<material name="conducto" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\conducto.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	
 	POSTER SUICIDIO
 	<material name="20 - Default" vertex_type="PositionNormalUV" >
 		<texture type="diffuse" filename="data\textures\cartelitos.jpg" />

@@ -4,7 +4,7 @@ CCameraManager::CCameraManager():
     m_CameraSelector(1)
     , m_PrevCameraSelector(-1)
 {
-    m_FreeCam = new CFreeCameraController(Vect3f(0, 10, 0), Vect3f(0, 0, 1), Vect3f(0, 1, 0), Vect4f(1, 500, 1.13f, 1.7f), 1.5f, -1.5f, 10.0f, -10.0f);
+    m_FreeCam = new CFreeCameraController(Vect3f(19.4196f, 2.36218f, 30.1499f), Vect3f(0, 0, 1), Vect3f(0, 1, 0), Vect4f(1, 500, 1.13f, 1.7f), 1.5f, -1.5f, 10.0f, -10.0f);
     m_FpsCam = new CFpsCameraController(Vect3f(0, 1, 0), 1.5f, -1.5f);
     m_OrbitalCam = new CSphericalCameraController();
     m_TPSCam = new CTpsCameraController();
