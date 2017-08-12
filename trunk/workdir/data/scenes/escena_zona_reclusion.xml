@@ -1,10 +1,305 @@
 <scene >
 	
 	<layer name="opaque" active="true" >
-		tuberia\d{3}.mesh
+		tuberia.mesh
+		
+		SALA2
+		<scene_mesh name="sala2" mesh="data/meshes/reclusion/sala2.mesh" >
+			<transform position="0.0 0.0 24.1714" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="zonaA" mesh="data/meshes/reclusion/zonaA.mesh" >
+			<transform position="3.3741 2.68145 29.2261" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="decall zonaB" mesh="data/meshes/reclusion/decall_zonaB.mesh" >
+			<transform position="1.62796 2.59722 14.6553" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="mesa021" mesh="data/meshes/reclusion/mesa.mesh" >
+			<transform position="2.6528 1.0 22.9967" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+		</scene_mesh>
+		<scene_mesh name="camara008" mesh="data/meshes/reclusion/camara.mesh" >
+			<transform position="3.17316 2.17163 25.8959" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="marco_puerta666" mesh="data/meshes/reclusion/marco_puerta.mesh" >
+			<transform position="3.48627 1.13614 27.0429" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cerradura666" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="3.38936 1.22019 28.2185" yaw="-90.0" pitch="0.0" roll="90" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Puerta666" mesh="data/meshes/reclusion/Puerta.mesh" >
+			<transform position="3.46906 0.0271935 27.6865" yaw="-90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="tuberia074" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 24.4062" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia073" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 25.7544" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia072" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 27.2717" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia071" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 28.6262" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia070" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 30.1704" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia069" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 31.7084" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia068" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 32.0726" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia067" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 30.394" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia066" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 28.9975" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia065" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 27.4696" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia064" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 25.9267" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia063" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 24.3867" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia062" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 15.3659" yaw="0" pitch="-90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia061" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 16.7142" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia060" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 18.2315" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia059" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 19.7707" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia058" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 21.3149" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia057" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.87017 22.8529" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia056" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 22.8529" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia0" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 21.3197" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia054" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 19.7777" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia053" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 18.2498" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia052" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 16.707" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia051" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.8 1.70228 15.167" yaw="0" pitch="90" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		
+		SALA1
+		<scene_mesh name="sala1" mesh="data/meshes/reclusion/sala1.mesh" rigid_body="plane" >
+			<transform position="0.840901 3.20359 -0.466283" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="pared marcosalida001" mesh="data/meshes/reclusion/marco_puerta.mesh" >
+			<transform position="-0.0211294 1.14164 14.5566" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="poster_suicidio001" mesh="data/meshes/reclusion/poster_suicidio.mesh" >
+			<transform position="1.82886 1.36313 14.433" yaw="-90" pitch="-90" roll="-90" scale="-0.34553 0.34553 0.34553" />
+		</scene_mesh>
+		
+		<scene_mesh name="tuberia014" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.51424 6.64498 6.10203" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia013" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.51802 5.11627 6.10203" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="codo_tuberia002" mesh="data/meshes/reclusion/codo_tuberia.mesh" >
+			<transform position="-2.53727 4.26421 6.13251" yaw="90" pitch="45" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="codo_tuberia001" mesh="data/meshes/reclusion/codo_tuberia.mesh" >
+			<transform position="-2.53727 4.0954 5.92667" yaw="90" pitch="45" roll="0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="codo_tuberia006" mesh="data/meshes/reclusion/codo_tuberia.mesh" >
+			<transform position="-2.56812 5.77567 5.89005" yaw="0" pitch="0" roll="45" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia050" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53937 4.93275 5.89005" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia012" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.23443 6.96841" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia011" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.23443 8.31663" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia010" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.23443 9.83393" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia009" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.23443 11.3732" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia008" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.23443 12.9174" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia007" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.23443 14.4554" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia006" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.06654 14.4554" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia005" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.06654 12.9222" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia004" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.06654 11.3802" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia003" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.06654 9.85231" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia002" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.06654 8.3095" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="tuberia001" mesh="data/meshes/reclusion/tuberia.mesh" >
+			<transform position="-2.53727 4.06654 6.76949" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		
+		<scene_mesh name="armario_seguridad" mesh="data/meshes/reclusion/armario_seguridad.mesh" >
+			<transform position="5.1993 0.0478152 14.0944" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+		</scene_mesh>
+		
+		<scene_mesh name="rejilla1" mesh="data/meshes/reclusion/rejilla.mesh" >
+			<transform position="5.6 0.181816 13.7141" yaw="0.0" pitch="90.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+		</scene_mesh>
+		<scene_mesh name="rejilla2" mesh="data/meshes/reclusion/rejilla.mesh" >
+			<transform position="4.2 0.181816 13.7141" yaw="0.0" pitch="90.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+		</scene_mesh>
+		
+		<scene_mesh name="taburete101" mesh="data/meshes/reclusion/taburete.mesh" >
+			<transform position="3.32011 0.0 8.0203" yaw="0.0" pitch="0.0871555" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="taburete100" mesh="data/meshes/reclusion/taburete.mesh" >
+			<transform position="5.30205 0.0 8.99638" yaw="0.0" pitch="0.0871555" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="taburete099" mesh="data/meshes/reclusion/taburete.mesh" >
+			<transform position="5.48027 0.0 11.2304" yaw="0.0" pitch="-0.34202" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="taburete098" mesh="data/meshes/reclusion/taburete.mesh" >
+			<transform position="8.6 0.0 9.4" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="taburete097" mesh="data/meshes/reclusion/taburete.mesh" >
+			<transform position="9.40366 1.28735 9.03194" yaw="0.0" pitch="0.0" roll="180.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		
+		<scene_mesh name="mesa026" mesh="data/meshes/reclusion/mesa.mesh" >
+			<transform position="2.6528 0.720369 9.41823" yaw="-38.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+		</scene_mesh>
+		<scene_mesh name="mesa025" mesh="data/meshes/reclusion/mesa.mesh" >
+			<transform position="-2.45199 0.6 9.92594" yaw="1.0" pitch="0.0" roll="85.0" scale="-0.969886 0.969886 0.969886" />
+		</scene_mesh>
+		<scene_mesh name="mesa052" mesh="data/meshes/reclusion/mesa.mesh" >
+			<transform position="9.46969 0.720369 9.41823" yaw="50.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+		</scene_mesh>
+		<scene_mesh name="mesa051" mesh="data/meshes/reclusion/mesa.mesh" >
+			<transform position="5.87985 0.720369 9.41823" yaw="-12.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+		</scene_mesh>
+		
+		<scene_mesh name="camara013" mesh="data/meshes/reclusion/camara.mesh" >
+			<transform position="8.11169 2.4729 14.2724" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="camara012" mesh="data/meshes/reclusion/camara.mesh" >
+			<transform position="16.6686 5.61597 2.03317" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="camara011" mesh="data/meshes/reclusion/camara.mesh" >
+			<transform position="-2.40106 5.61597 2.03317" yaw="-90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="camara010" mesh="data/meshes/reclusion/camara.mesh" >
+			<transform position="-1.45562 2.17163 4.06155" yaw="-180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="CerraduraCelda" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="1.88966 4.42795 0.895253" yaw="0.0" pitch="-90.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="PuertaS11" mesh="data/meshes/reclusion/Puerta.mesh" >
+			<transform position="7.23 3.23044 0.809352" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Box066" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="7.75001 4.42795 0.895253" yaw="0.0" pitch="-90.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="PuertaS012" mesh="data/meshes/reclusion/Puerta.mesh" >
+			<transform position="12.27 3.23044 0.809352" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Box067" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="12.7728 4.42795 0.895253" yaw="0.0" pitch="-90.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="PuertaS014" mesh="data/meshes/reclusion/Puerta.mesh" >
+			<transform position="16.9569 3.23044 11.10" yaw="-90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="CerraduraS014" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="16.8532 4.42795 6.79088" yaw="-90.0" pitch="0.0" roll="90.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="PuertaS013" mesh="data/meshes/reclusion/Puerta.mesh" >
+			<transform position="16.9569 3.23044 6.32" yaw="-90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="CerraduraS013" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="16.8532 4.42795 11.5568" yaw="-90.0" pitch="0.0" roll="90.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="PuertaS017" mesh="data/meshes/reclusion/Puerta.mesh" >
+			<transform position="1.475 0.00418329 3.78933" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="CerraduraS017" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="2.02357 1.22019 3.86825" yaw="0.0" pitch="-90.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="PuertaS016" mesh="data/meshes/reclusion/Puerta.mesh" >
+			<transform position="7.22 0.00418329 3.78933" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="CerraduraS016" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="7.81953 1.22019 3.86825" yaw="0.0" pitch="-90.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="PuertaS015" mesh="data/meshes/reclusion/Puerta.mesh" >
+			<transform position="12.27 0.00418329 3.78933" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="CerraduraS015" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="12.864 1.22019 3.86825" yaw="0.0" pitch="-90.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="PuertaS018" mesh="data/meshes/reclusion/Puerta.mesh" >
+			<transform position="13.9646 0.00418329 6.32" yaw="-90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="CerraduraS018" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="13.8757 1.22019 6.85433" yaw="-90.0" pitch="0.0" roll="90.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="PuertaS019" mesh="data/meshes/reclusion/Puerta.mesh" >
+			<transform position="13.9646 0.00418329 11.10" yaw="-90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="CerraduraS019" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="13.8757 1.22019 11.5568" yaw="-90.0" pitch="0.0" roll="90.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
 		SALA0
 		<scene_mesh name="sala0" mesh="data/meshes/reclusion/sala0.mesh" > rigid_body="box">
 			<transform position="0.840901 3.20359 -1.46628" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="codo_tuberia003" mesh="data/meshes/reclusion/codo_tuberia.mesh" >
+			<transform position="-2.31739 4.80021 -1.21017" yaw="11.25" pitch="-6.43" roll="43.39" scale="-0.356294 0.356294 0.356294" />
+		</scene_mesh>
+		<scene_mesh name="Puerta" mesh="data/meshes/reclusion/Puerta.mesh" >
+			<transform position="1.475 3.23044 0.809352" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="pared marcosalida" mesh="data/meshes/reclusion/marco_puerta.mesh" >
+			<transform position="0.8425 4.33939 0.8" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="cama" mesh="data/meshes/reclusion/cama.mesh">
 			<transform position="3.47903 3.61838 -1.13012" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -19,24 +314,9 @@
 		<scene_mesh name="tuberia015" mesh="data/meshes/reclusion/tuberia.mesh" >
 			<transform position="-2.28864 3.95728 -1.21017" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.356294 0.356294 0.356294" />
 		</scene_mesh>
-		<scene_mesh name="codo_tuberia003" mesh="data/meshes/reclusion/codo_tuberia.mesh" >
-			<transform position="-2.31739 4.80021 -1.21017" yaw="-0.382683" pitch="-0.92388" roll="0.0" scale="-0.356294 0.356294 0.356294" />
-		</scene_mesh>
+
 		<scene_mesh name="decallhumedadesquina" mesh="data/meshes/reclusion/decallhumedadesquina.mesh" >
 			<transform position="-1.93928 5.42975 -3.62341" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>	
-		<scene_mesh name="Puerta" mesh="data/meshes/reclusion/Puerta.mesh" >
-			<transform position="0.190266 3.23044 0.809352" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
-		
-		SALA1
-		<scene_mesh name="sala1" mesh="data/meshes/reclusion/sala1.mesh" rigid_body="plane" >
-			<transform position="0.840901 3.20359 -0.466283" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
-
-		SALA2
-		<scene_mesh name="sala2" mesh="data/meshes/reclusion/sala2.mesh" >
-			<transform position="0.0 0.0 24.1714" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>	
 
 		SALA3
@@ -74,14 +354,6 @@
 		
 	</layer>
 	
-	<layer name="guardias" active="true" >
-		<scene_animated_model name="guardiaTEST" core="guardia"> rigid_body = "player">
-			<transform position="0.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
-		</scene_animated_model>
-		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
-			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
-		</scene_animated_model>
-	</layer>
 		
 	<layer name="lights" active="true" >
 		<scene_light name="FDirect001" id_light="0" />
@@ -92,5 +364,17 @@
 			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
 		</scene_mesh>
 	</layer>
+	
+	<!--
+	<layer name="guardias" active="true" >
+		<scene_animated_model name="guardiaTEST" core="guardia"> rigid_body = "player">
+			<transform position="0.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
+			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+	</layer>
+	-->
+	
 </scene>
 
