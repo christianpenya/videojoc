@@ -1,5 +1,52 @@
 <materials >
 
+	MONITOR
+	<material name="ordenador003Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.6 0.894118 0.6 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="ordenadorMaterial" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.6 0.894118 0.6 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="ordenador002Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.6 0.894118 0.6 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="ordenador001Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.6 0.894118 0.6 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="ordenador004Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.6 0.894118 0.6 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="ordenador010Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.6 0.894118 0.6 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+
+	ORDENADOR
+	<material name="computer" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\txt_computer.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+
 	DECALL ZONA B
 	<material name="19 - Default" vertex_type="PositionNormalUV" >
 		<texture type="diffuse" filename="data\textures\letreros.png" />
@@ -9,6 +56,22 @@
 		<parameter type="float" name="occlusion" value="1.0" />
 	</material>
 
+	PICAS
+	<material name="escaleones" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\metalescaleras.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="hierro" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\metal.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	
 	TELEFONOS
 	<material name="telefono" vertex_type="PositionNormalUV" >
 		<texture type="diffuse" filename="data\textures\txttelefono.jpg" />
@@ -63,7 +126,7 @@
 
 	MESA
 	<material name="Material #36" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\metal_negro.jpg" />
+		<texture type="diffuse" filename="data\textures\negro metal.jpg" />
 		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
 		<parameter type="float" name="metalness" value="1.0" />
 		<parameter type="float" name="roughness" value="1.0" />
