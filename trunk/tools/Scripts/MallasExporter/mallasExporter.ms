@@ -14,7 +14,7 @@ global ePosition4 = 0x0080
 global eDummy = 0x0100
 
 fn preProcess = (
-	
+	print "PreProcess"
 	local lSelectionMaterial = gSelection.material
 	
 	if lSelectionMaterial == undefined then (
@@ -28,13 +28,36 @@ fn preProcess = (
 		tempMaterial.setFlags(lSelectionMaterial)
 		append gMatsArray tempMaterial
 	)else if classOf lSelectionMaterial == Multimaterial then	(
+		print "Multi"
 		local lSubMaterialsCount = lSelectionMaterial.numsubs			
 		for iSubMaterial =  1 to lSubMaterialsCount do(
 			local lSubMaterial = lSelectionMaterial[iSubMaterial]
-			local tempMaterial = sMaterial()
-			tempMaterial.m_name = lSubMaterial.name
-			tempMaterial.setFlags(lSubMaterial)
-			append gMatsArray tempMaterial
+			if classOf lSubMaterial == Standardmaterial then (
+				local tempMaterial = sMaterial()
+				tempMaterial.m_name = lSubMaterial.name
+				tempMaterial.setFlags(lSubMaterial)
+				append gMatsArray tempMaterial
+			)
+			else if classOf lSubMaterial == Multimaterial then(
+				
+				print "Multi"
+				local lSubMaterialsCount2 = lSubMaterial.numsubs			
+				for iSubMaterial2 =  1 to lSubMaterialsCount2 do(
+					local lSubMaterial2 = lSubMaterial[iSubMaterial2]
+					if classOf lSubMaterial2 == Standardmaterial then (
+						print "UEE"
+						local tempMaterial2 = sMaterial()
+						tempMaterial2.m_name = lSubMaterial2.name
+						tempMaterial2.setFlags(lSubMaterial2)
+						append gMatsArray tempMaterial2
+					)
+					else (
+
+						print classOf lSubMaterial2
+					)
+			
+				)
+			)
 		)
 	)
 )
@@ -223,9 +246,9 @@ fn boundingBox = (
 fn boundingSphere = (
 	local lBSphere = sBSphere()
 
-	lBSphere.m_center.x = ((gBBox.m_max.x - gBBox.m_min.x) / 2)
-	lBSphere.m_center.y = ((gBBox.m_max.y - gBBox.m_min.y) / 2)
-	lBSphere.m_center.z = ((gBBox.m_max.z - gBBox.m_min.z) / 2)
+	lBSphere.m_center.x = ((gBBox.m_max.x + gBBox.m_min.x) / 2)
+	lBSphere.m_center.y = ((gBBox.m_max.y + gBBox.m_min.y) / 2)
+	lBSphere.m_center.z = ((gBBox.m_max.z + gBBox.m_min.z) / 2)
 
 	local tmpDistance = 0
 	local auxDistance = 0

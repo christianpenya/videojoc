@@ -41,14 +41,24 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
         rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
 
         sizeX = abs(abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x);
-        sizeY = abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y;
-        sizeZ = abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z;
-        cubeOffset = Vect3f(0, -sizeY/2.0, 0);
+        sizeY = abs(abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y);
+        sizeZ = abs(abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z);
+        cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
 
-        lCenter = mMesh->GetBoundingSphere().GetCenter() + m_Position;
-        CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f);
+
+        lCenter = m_Position + mMesh->GetBoundingSphere().GetCenter();
+        //CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f);
+        CEngine::GetInstance().GetPhysXManager().CreateStaticBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ);
         break;
 
+    case eShape:
+        lDebug = "Attached physx SHAPE to " + m_Name;
+        rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+        CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, m_Position, );
+
+        // mMesh->;
+        // CEngine::GetInstance().GetPhysXManager().CreateDynamicShape(m_Name, "Default", rotation, m_Position, nullptr, 1.0f);
+        break;
     case eSphere:
         lDebug = "Attached physx SPHERE to " + m_Name;
         rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
@@ -77,8 +87,10 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement, CMesh* aMesh)
     : CSceneMesh(aElement)
 {
     mMesh = aMesh;
+
+    //Reescalado del radio de la bounding sphere según escena
     float radius = mMesh->GetBoundingSphere().GetRadius();
-    mMesh->GetBoundingSphere().SetRadius(radius * m_Scale.x); // TODO el reescalado es muy trapero
+    mMesh->GetBoundingSphere().SetRadius(radius * m_Scale.x);
 }
 
 CSceneMesh::~CSceneMesh() {}
@@ -94,7 +106,6 @@ bool CSceneMesh::Update(float aDeltaTime)
         CPhysXManager& lPM = CEngine::GetInstance().GetPhysXManager();
         Quatf lRotation;
 
-        Vect3f hola;
         switch (mRigidBodyEnum)
         {
         case ePlane:
@@ -109,6 +120,8 @@ bool CSceneMesh::Update(float aDeltaTime)
             m_Roll = lRotation.GetRotationMatrix().GetAngleZ();
 
             lRotation.GetRotationMatrix().GetYaw();
+            break;
+        case eShape:
             break;
         case ePlayer:
             m_Position = lPM.GetActorPosition(m_Name);
