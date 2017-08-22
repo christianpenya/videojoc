@@ -19,68 +19,85 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     m_ignoreFrustum = aElement->GetAttribute<bool>("ignore_frustum", false);
     m_NodeType = CSceneNode::eMesh;
 
-    std::string lRigidBody = aElement->GetAttribute<std::string>("rigid_body", "");
-    EnumString<ERigidBody>::ToEnum(mRigidBodyEnum, lRigidBody);
+    //COLLIDERS
 
-    CAxisAlignedBoundingBox lAABB = mMesh->GetAABB();
-    float size = 1.0f;
-    float sizeX, sizeY, sizeZ;
-    Quatf rotation = Quatf();
-    std::string lDebug;
-    Vect3f lCenter;
-
-    switch (mRigidBodyEnum)
+    for (tinyxml2::XMLElement *iCollider = aElement->FirstChildElement(); iCollider != nullptr; iCollider = iCollider->NextSiblingElement())
     {
-    case ePlane:
-        lDebug = "Attached physx PLANE to " + m_Name;
-        CEngine::GetInstance().GetPhysXManager().CreatePlane("Default", 0, 1, 0, 0, 1);
-        break;
+        if (strcmp(iCollider->Name(), "collider") == 0)
+        {
 
-    case eBox:
-        lDebug = "Attached physx BOX to " + m_Name;
-        rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+            // (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0) ? aElement->FirstChildElement() : nullptr;
 
-        sizeX = abs(abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x);
-        sizeY = abs(abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y);
-        sizeZ = abs(abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z);
-        cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
+            std::string lRigidBody = iCollider->GetAttribute<std::string>("rigid_body", "");
+            std::string lFilename = iCollider->GetAttribute<std::string>("filename", "");
+
+            EnumString<ERigidBody>::ToEnum(mRigidBodyEnum, lRigidBody);
+
+            CAxisAlignedBoundingBox lAABB = mMesh->GetAABB();
+            float size = 1.0f;
+            float sizeX, sizeY, sizeZ;
+            Quatf rotation = Quatf();
+            std::string lDebug;
+            Vect3f lCenter;
+
+            switch (mRigidBodyEnum)
+            {
+            case ePlane:
+                lDebug = "Attached physx PLANE to " + m_Name;
+                CEngine::GetInstance().GetPhysXManager().CreatePlane("Default", 0, 1, 0, 0, 1);
+                break;
+
+            case eBox:
+                lDebug = "Attached physx BOX to " + m_Name;
+                rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+
+                sizeX = abs(abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x);
+                sizeY = abs(abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y);
+                sizeZ = abs(abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z);
+                cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
 
 
-        lCenter = m_Position + mMesh->GetBoundingSphere().GetCenter();
-        //CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f);
-        CEngine::GetInstance().GetPhysXManager().CreateStaticBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ);
-        break;
+                lCenter = m_Position + mMesh->GetBoundingSphere().GetCenter();
+                //CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f);
+                CEngine::GetInstance().GetPhysXManager().CreateStaticBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ);
+                break;
 
-    case eShape:
-        lDebug = "Attached physx SHAPE to " + m_Name;
-        rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
-        CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, m_Position, );
+            case eShape:
+                lDebug = "Attached physx SHAPE to " + m_Name;
+                rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
 
-        // mMesh->;
-        // CEngine::GetInstance().GetPhysXManager().CreateDynamicShape(m_Name, "Default", rotation, m_Position, nullptr, 1.0f);
-        break;
-    case eSphere:
-        lDebug = "Attached physx SPHERE to " + m_Name;
-        rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
-        CEngine::GetInstance().GetPhysXManager().CreateDynamicSphere(m_Name, "Default", rotation, m_Position, size / 5, 0.5f);
-        break;
+                assert(strcmp(lFilename.c_str(), "") != 0);
 
-    case ePlayer:
-        lDebug = "Attached physx PLAYER CONTROLLER to " + m_Name;
-        break;
+                CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, m_Position, lFilename);
+                //CEngine::GetInstance().GetPhysXManager().CreateStaticTriangleMesh(m_Name, "Default", rotation, m_Position, );
+                // CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, m_Position, );
+                // mMesh->;
+                // CEngine::GetInstance().GetPhysXManager().CreateDynamicShape(m_Name, "Default", rotation, m_Position, nullptr, 1.0f);
+                break;
+            case eSphere:
+                lDebug = "Attached physx SPHERE to " + m_Name;
+                rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+                CEngine::GetInstance().GetPhysXManager().CreateDynamicSphere(m_Name, "Default", rotation, m_Position, size / 5, 0.5f);
+                break;
 
-    case eTriggerBox:
-        lDebug = "Attached physx Trigger Box to " + m_Name;
-        rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
-        CEngine::GetInstance().GetPhysXManager().AddTriggerBox(m_Name, size, size, size, m_Position, rotation);
+            case ePlayer:
+                lDebug = "Attached physx PLAYER CONTROLLER to " + m_Name;
+                break;
 
-        break;
-    default:
-        lDebug = "NO physx were added to " + m_Name;
-        break;
+            case eTriggerBox:
+                lDebug = "Attached physx Trigger Box to " + m_Name;
+                rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+                CEngine::GetInstance().GetPhysXManager().AddTriggerBox(m_Name, size, size, size, m_Position, rotation);
+
+                break;
+            default:
+                lDebug = "NO physx were added to " + m_Name;
+                break;
+            }
+            LOG_INFO_APPLICATION(lDebug.c_str());
+
+        }
     }
-
-    LOG_INFO_APPLICATION(lDebug.c_str());
 }
 
 CSceneMesh::CSceneMesh(CXMLElement* aElement, CMesh* aMesh)

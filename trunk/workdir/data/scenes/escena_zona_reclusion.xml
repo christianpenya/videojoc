@@ -1,7 +1,12 @@
 <scene >
 	
 	<layer name="opaque" active="true" >
+		
 		tuberia\d{3}.mesh
+		<scene_mesh name="sala0" mesh="data/meshes/reclusion/sala0.mesh">
+			<transform position="0.840901 3.20359 -1.46628" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala0.mesh" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
 		
 		SALA8
 		<scene_mesh name="sala8" mesh="data/meshes/reclusion/sala8.mesh" >
@@ -155,11 +160,13 @@
 			<transform position="46.2896 2.11858 18.501" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
-		<scene_mesh name="puerta003" mesh="data/meshes/reclusion/puerta.mesh" rigid_body="box">
+		<scene_mesh name="puerta003" mesh="data/meshes/reclusion/puerta.mesh">
 			<transform position="32.2 0.0271935 15" yaw="57" pitch="0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="puerta002" mesh="data/meshes/reclusion/puerta.mesh" rigid_body="box">
+		
+		<scene_mesh name="puerta002" mesh="data/meshes/reclusion/puerta.mesh">
 			<transform position="45.1 0.03 35.3" yaw="-27" pitch="0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
 		<scene_mesh name="pared marcosalida016" mesh="data/meshes/reclusion/marco_puerta.mesh" >
@@ -414,70 +421,91 @@
 		<scene_mesh name="taburete019" mesh="data/meshes/reclusion/taburete.mesh" >
 			<transform position="29.4042 0.0 26.6243" yaw="-9.94" pitch="0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa049" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa049" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="41.6305 0.7 36.3149" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa047" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa047" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="41.7807 0.7 31.8697" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa046" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa046" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="41.9344 0.7 18.2489" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa045" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa045" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="42.2699 0.7 23.3204" yaw="5" pitch="0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa044" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa044" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="41.7819 0.7 26.989" yaw="-10" pitch="0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa043" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa043" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="37.4963 0.7 36.3302" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa042" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa042" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="37.0508 0.7 32.267" yaw="-5" pitch="0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa041" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa041" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="37.7233 0.7 18.5054" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa040" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa040" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="37.2919 0.7 22.8514" yaw="10" pitch="0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa039" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa039" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="37.6791 0.7 27.7852" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa038" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa038" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="33.1372 0.7 35.9545" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa037" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa037" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="33.2105 0.7 31.751" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa036" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa036" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="33.364 0.7 18.1292" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa035" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa035" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="33.7425 0.7 22.4551" yaw="5" pitch="0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa034" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa034" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="33.234 0.7 27.6168" yaw="-10" pitch="0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa033" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa033" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="30.3153 0.7 36.5402" yaw="10" pitch="0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa032" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa032" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="29.7083 0.7 31.8406" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa031" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa031" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="29.8617 0.7 18.2187" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa030" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa030" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="29.6602 0.7 22.7748" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa029" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa029" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="29.7316 0.7 26.9814" yaw="-5" pitch="0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
 		
-		<scene_mesh name="lavavo015" mesh="data/meshes/reclusion/lavavo.mesh" rigid_body="box">
+		<scene_mesh name="lavavo015" mesh="data/meshes/reclusion/lavavo.mesh" >
 			<transform position="45.1097 1.01263 15.0062" yaw="-90.0" pitch="0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="lavavo014" mesh="data/meshes/reclusion/lavavo.mesh" >
 			<transform position="43.6008 1.01263 15.0062" yaw="-90.0" pitch="0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
@@ -950,8 +978,9 @@
 			<transform position="1.62796 2.59722 14.6553" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
-		<scene_mesh name="mesa021" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa021" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="2.6528 0.7 22.9967" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="camara008" mesh="data/meshes/reclusion/camara.mesh" >
 			<transform position="3.17316 2.17163 25.8959" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -963,8 +992,9 @@
 		<scene_mesh name="cerradura666" mesh="data/meshes/reclusion/cerradura.mesh" >
 			<transform position="3.38936 1.22019 28.2185" yaw="-90.0" pitch="0.0" roll="90" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="puerta666" mesh="data/meshes/reclusion/puerta.mesh" rigid_body="box">
+		<scene_mesh name="puerta666" mesh="data/meshes/reclusion/puerta.mesh" >
 			<transform position="2.8 0.0271935 27" yaw="-90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
 		<scene_mesh name="tuberia074" mesh="data/meshes/reclusion/tuberia.mesh" >
@@ -1043,6 +1073,7 @@
 		SALA1
 		<scene_mesh name="sala1" mesh="data/meshes/reclusion/sala1.mesh" rigid_body="plane" >
 			<transform position="0.840901 3.20359 -0.466283" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala1.mesh" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
 		<scene_mesh name="pared marcosalida001" mesh="data/meshes/reclusion/marco_puerta.mesh" >
@@ -1108,8 +1139,9 @@
 			<transform position="-2.53727 4.06654 6.76949" yaw="0.5" pitch="90" roll="0.5" scale="-0.356294 0.356294 0.356294" />
 		</scene_mesh>
 		
-		<scene_mesh name="armario_seguridad" mesh="data/meshes/reclusion/armario_seguridad.mesh" rigid_body="box">
+		<scene_mesh name="armario_seguridad" mesh="data/meshes/reclusion/armario_seguridad.mesh" >
 			<transform position="5.1993 0.0478152 14.0944" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
 		<scene_mesh name="rejilla1" mesh="data/meshes/reclusion/rejilla.mesh" >
@@ -1136,17 +1168,21 @@
 		</scene_mesh>
 		
 		
-		<scene_mesh name="mesa026" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa026" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="2.6528 0.720369 9.41823" yaw="-38.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa025" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa025" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="-1.4 0.720369 9.92594" yaw="1.0" pitch="0.0" roll="85.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa052" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa052" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="9.46969 0.720369 9.41823" yaw="50.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="mesa051" mesh="data/meshes/reclusion/mesa.mesh" rigid_body="box">
+		<scene_mesh name="mesa051" mesh="data/meshes/reclusion/mesa.mesh" >
 			<transform position="5.87985 0.720369 9.41823" yaw="-12.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
 		<scene_mesh name="camara013" mesh="data/meshes/reclusion/camara.mesh" >
@@ -1192,33 +1228,38 @@
 			<transform position="16.8532 4.42795 11.5568" yaw="-90.0" pitch="0.0" roll="90.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
-		<scene_mesh name="puertaS017" mesh="data/meshes/reclusion/puerta.mesh" rigid_body="box">
+		<scene_mesh name="puertaS017" mesh="data/meshes/reclusion/puerta.mesh" >
 			<transform position="0.2 0.00418329 3.78933" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="CerraduraS017" mesh="data/meshes/reclusion/cerradura.mesh" >
 			<transform position="2.02357 1.22019 3.86825" yaw="0.0" pitch="-90.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="puertaS016" mesh="data/meshes/reclusion/puerta.mesh" rigid_body="box">
+		<scene_mesh name="puertaS016" mesh="data/meshes/reclusion/puerta.mesh" >
 			<transform position="5.94 0.00418329 3.78933" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="CerraduraS016" mesh="data/meshes/reclusion/cerradura.mesh" >
 			<transform position="7.81953 1.22019 3.86825" yaw="0.0" pitch="-90.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="puertaS015" mesh="data/meshes/reclusion/puerta.mesh" rigid_body="box">
+		<scene_mesh name="puertaS015" mesh="data/meshes/reclusion/puerta.mesh" >
 			<transform position="10.99 0.00418329 3.78933" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="CerraduraS015" mesh="data/meshes/reclusion/cerradura.mesh" >
 			<transform position="12.864 1.22019 3.86825" yaw="0.0" pitch="-90.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
-		<scene_mesh name="puertaS018" mesh="data/meshes/reclusion/puerta.mesh" rigid_body="box">
+		<scene_mesh name="puertaS018" mesh="data/meshes/reclusion/puerta.mesh" >
 			<transform position="13.4 0.00418329 5.7" yaw="-90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="CerraduraS018" mesh="data/meshes/reclusion/cerradura.mesh" >
 			<transform position="13.8757 1.22019 6.85433" yaw="-90.0" pitch="0.0" roll="90.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="puertaS019" mesh="data/meshes/reclusion/puerta.mesh" rigid_body="box">
+		<scene_mesh name="puertaS019" mesh="data/meshes/reclusion/puerta.mesh" >
 			<transform position="13.4 0.00418329 10.5" yaw="-90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" filename="" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="CerraduraS019" mesh="data/meshes/reclusion/cerradura.mesh" >
 			<transform position="13.8757 1.22019 11.5568" yaw="-90.0" pitch="0.0" roll="90.0" scale="-1.0 1.0 1.0" />
@@ -1226,9 +1267,7 @@
 		
 		SALA0
 
-		<scene_mesh name="sala0" mesh="data/meshes/reclusion/sala0.mesh">
-			<transform position="0.840901 3.20359 -1.46628" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
+		
 		<scene_mesh name="codo_tuberia003" mesh="data/meshes/reclusion/codo_tuberia.mesh" >
 			<transform position="-2.31739 4.80021 -1.21017" yaw="11.25" pitch="-6.43" roll="43.39" scale="-0.356294 0.356294 0.356294" />
 		</scene_mesh>
