@@ -59,24 +59,24 @@ public:
         return lAddr;
     }
 
+    template<> std::string CBinFileReader::Read<std::string>()
+    {
+        unsigned short lCount = 0;
+        std::fread(&lCount, sizeof(unsigned short), 1, mStream);
+        ++lCount; // Handle \0
+        char* lString = (char *)malloc(sizeof(char) * (lCount));
+        ZeroMemory(lString, sizeof(char) * lCount);
+        std::fread(lString, sizeof(char) * lCount, 1, mStream);
+        std::string lStandardString(lString);
+        free(lString);
+        return lStandardString;
+    }
+
 protected:
     DISALLOW_COPY_AND_ASSIGN(CBinFileReader);
     std::string mFilename;
     std::FILE* mStream;
 };
-
-template<> std::string CBinFileReader::Read<std::string>()
-{
-    unsigned short lCount = 0;
-    std::fread(&lCount, sizeof(unsigned short), 1, mStream);
-    ++lCount; // Handle \0
-    char* lString = (char *)malloc(sizeof(char) * (lCount));
-    ZeroMemory(lString, sizeof(char) * lCount);
-    std::fread(lString, sizeof(char) * lCount, 1, mStream);
-    std::string lStandardString(lString);
-    free(lString);
-    return lStandardString;
-}
 }
 }
 

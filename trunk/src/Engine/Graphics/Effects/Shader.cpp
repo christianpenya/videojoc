@@ -25,8 +25,7 @@ CShader::CShader(const CXMLElement* aElement, const std::string aPath, EShaderSt
     m_Filename(aPath + aElement->GetAttribute<std::string>("file", "")),
     m_EntryPoint(aElement->GetAttribute<std::string>("entry_point", "")),
     m_Preprocessor(aElement->GetAttribute<std::string>("preprocessor", ""))
-{
-}
+{}
 
 CShader::~CShader()
 {
@@ -59,14 +58,11 @@ bool CShader::Load()
         {
             if (base::utils::IsFileOlder(lCompiledFileName, m_Filename))
             {
-                //hr = D3DCompileFromFile(lFilename,  )
                 m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), m_ShaderMacros);
                 hr = D3DWriteBlobToFile(m_pBlob, lCompiledFileNameLPCWSTR, true);
             }
             else
             {
-                //std::ifstream input(lCompiledFileName, std::ios::binary);
-                //m_pBlob = input.get();
                 hr = D3DReadFileToBlob(lCompiledFileNameLPCWSTR, &m_pBlob);
                 assert(m_pBlob != nullptr);
             }

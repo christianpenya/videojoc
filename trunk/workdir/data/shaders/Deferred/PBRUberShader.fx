@@ -155,14 +155,21 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 	float g_SpecularExponent = 80.0;
     float g_SpecularContrib = 1.0;
 
-    float3 pixelColor = m_Color;
+    float4 pixelColor = float4(m_Color.xyz, 1.0);
     float3 l_LAmbient = m_LightAmbient.xyz;
 
-    float3 l_Normal = IN.WorldNormal;
+	float3 l_PixelNormal = IN.WorldNormal;
+	
 	float3 l_EyeToWorldPosition = normalize(IN.WorldPosition.xyz -  m_CameraPosition.xyz);
 
     #if USE_UV		
-		pixelColor = (T0Texture.Sample(S0Sampler, IN.UV) * float4(pixelColor, 1.0)).xyz;
+		pixelColor = T0Texture.Sample(S0Sampler, IN.UV) * pixelColor;
+		
+		if (pixelColor.w <0.1)
+		{
+			clip(-1);
+		}
+		
 		#if USE_UV2
 			float4 l_LightmapPixel = T2Texture.Sample(S2Sampler, IN.UV2) * 2;
 			//pixelColor = l_LightmapPixel.xyz * pixelColor;
@@ -171,8 +178,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
  	#endif
  	#if USE_BUMP
 	 	float3 bump = m_RawData[1].x * (T1Texture.Sample(S1Sampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
-	 	l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
-    	l_Normal = normalize(l_Normal);
+    	l_PixelNormal = normalize(l_PixelNormal + bump.x*IN.Tangent + bump.y*IN.Binormal);
  	#endif
 
 	//l_Normal=Normal2Texture(l_Normal);
@@ -184,17 +190,17 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
     l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1.0);
 	*/
 	
-	m_Metalness = 1.0f;
+	m_Metalness = 0.0f;
 	m_Occlusion = 1.0f;
-	m_Roughness = 0.0f;
+	m_Roughness = 1.0f;
 	
 	l_Output.Target0 = float4(pixelColor.xyz, m_Metalness);
 	l_Output.Target1 = float4(l_LAmbient.xyz, m_Occlusion);
 	
-	float3 l_ReflectVector = normalize(reflect(l_EyeToWorldPosition, l_Normal));
-	float2 l_PlaneNormal = Encode(l_Normal);
-	float2 tmp = Encode(l_ReflectVector);
-	l_Output.Target2=float4(l_PlaneNormal.x, l_PlaneNormal.y, tmp.x, tmp.y);
+	float3 l_ReflectVector = normalize(reflect(l_EyeToWorldPosition, IN.WorldNormal));
+	float2 l_EncodedPlaneNormal = Encode(IN.WorldNormal);
+	float2 l_EncodedPixelNormal = Encode(l_PixelNormal);
+	l_Output.Target2=float4(l_EncodedPlaneNormal.x, l_EncodedPlaneNormal.y, l_EncodedPixelNormal.x, l_EncodedPixelNormal.y);
 
     float l_Depth = IN.Depth.x/IN.Depth.y;
 	l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1);

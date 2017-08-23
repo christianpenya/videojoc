@@ -34,6 +34,7 @@ protected:
     CSceneMesh::ERigidBody mRigidBodyEnum;
 private:
     Vect3f cubeOffset;
+    Vect3f mOriginalUnmodifiedPosition;
 };
 
 //--------------------------------------------------------------------------------------------------------

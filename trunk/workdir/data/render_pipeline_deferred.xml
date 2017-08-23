@@ -1,5 +1,5 @@
 <render_pipeline>
-	<begin_render name = "beginrender"/>
+	<begin_render/>
 	<set_depth_stencil_state name="Depth Stencil Deferred Multiple Target" enable_z_test = "true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	<set_rasterizer_state cull_mode="front" clock_wise="1" type="solid"/> <!-- type  -->
 	
@@ -7,73 +7,23 @@
 	<generate_shadow_maps />	
 	<set_per_frame_constants name="set_per_frame_cmd"/>
 	
-	Generate GBuffer
 	<set_render_target name="deferred_multiple_render_target">
-		<dynamic_texture name="AlbedoTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format="RGBA16_FLOAT"/>
-		<dynamic_texture name="LightMapTexture" texture_width_as_frame_buffer="true" format="RGBA16_FLOAT"/>
-		<dynamic_texture name="NormalMapTexture" texture_width_as_frame_buffer="true" format="RGBA16_FLOAT"/>
+		<dynamic_texture name="AlbedoTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format="RGBA8_UNORM"/>
+		<dynamic_texture name="LightMapTexture" texture_width_as_frame_buffer="true" format="RGBA8_UNORM"/>
+		<dynamic_texture name="NormalMapTexture" texture_width_as_frame_buffer="true" format="RGBA8_UNORM"/>
 		<dynamic_texture name="DepthMapTexture" texture_width_as_frame_buffer="true" format="R32_FLOAT"/>
-		<dynamic_texture name="SpecularMapTexture" texture_width_as_frame_buffer="true" format="RGBA16_FLOAT"/>
-	</set_render_target>
+	</set_render_target>	
 	
 	<clear render_target="true" depth_stencil="true" color="0.0 0.0 0.0 0.0"/>
-	<apply_technique_pool pool_name="pbr_gbuffer"/>
+	<set_depth_stencil_state name="Depth Stencil Deferred Layer" enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
+	<apply_technique_pool pool_name="deferred"/>
 	<render_layer layer="opaque"/>
-	<unset_render_target/>	
-	End generate gbuffer
-	
-	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false"/>
-	
-	Generate buffer diffuse y specular lighting
-	<set_render_target name="GbufferLighting">
-		<dynamic_texture name="DiffuseLightingTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format_type="RGBA16_FLOAT"/>
-		<dynamic_texture name="SpecularLightingTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format_type="RGBA16_FLOAT"/>
-	</set_render_target>
-	
-	<clear render_target="true" depth_stencil="true" color="0.0 0.0 0.0 0.0"/>
-	<apply_technique_pool pool_name="pbr_lighting"/>
+		<render_layer layer="guardias"/>
 
-	<deferred_shading material="DeferredShadingMaterial">
-		<texture stage_id="0" name="AlbedoTexture"/>
-		<texture stage_id="1" name="LightMapTexture"/>
-		<texture stage_id="2" name="NormalMapTexture"/>
-		<texture stage_id="3" name="DepthMapTexture"/>
-		<texture stage_id="4" name="SpecularMapTexture"/>
-	</deferred_shading>
+	<!--	<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />	-->
 	
 	<unset_render_target/>
-	End generate buffer diffuse y specular lighting
-	
-	<set_render_target name="hdr">
-		<dynamic_texture name="HDRCapturedTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format_type="RGBA16_FLOAT"/>
-	</set_render_target>
-	
-	<apply_technique_pool name="apply_composite" pool_name="pbr_composite"/>
-	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false"/>
-	
-	Composite final pixel
-
-	<draw_quad material="DrawQuadMaterial">
-		<texture stage_id="0" name="AlbedoTexture"/>
-		<texture stage_id="1" name="LightMapTexture"/>
-		<texture stage_id="2" name="NormalMapTexture"/>
-		<texture stage_id="3" name="DepthMapTexture"/>
-		<texture stage_id="4" name="SpecularMapTexture"/>
-		<texture stage_id="5" name="DiffuseLightingTexture"/>
-		<texture stage_id="6" name="SpecularLightingTexture"/>
-	</draw_quad>
-
-	<set_depth_stencil_state enable_z_test="true" write_z_buffer="true"/>
-	
-	<!--
-	<set_pool_renderable_objects_technique pool="forward_shading"/>
-	<render_layer layer="skybox" active="true"/>
-	-->
-	
-	<unset_render_target/>
-	End composite final pixel
-	
-	<!--
+		
 	<apply_technique_pool pool_name="quad"/>
 	<set_depth_stencil_state name="Depth Stencil Deferred Shading" enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>
 	
@@ -86,16 +36,15 @@
 		 <texture name="NormalMapTexture" stage_id="1"/>
 		 <texture name="DepthMapTexture" stage_id="2"/>		 
 	</deferred_shading>
-	-->
 	
+	<set_depth_stencil_state name="Depth Stencil Skybox" enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	<!--<apply_technique_pool pool_name="forward"/>
 	<render_layer layer="objetos_transparentes"/>-->
 	
 	SKYBOX
-	<set_depth_stencil_state name="Depth Stencil Skybox" enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	<apply_technique_pool pool_name="skybox"/>
 	<render_layer layer="Skybox"/>
-
+<!--
 	INICIO LIGHT SCATTERING
 <!--
 	<set_render_target name="LightScattering">
@@ -263,51 +212,17 @@
         <texture name="FDirect001" stage_id="0"/>
     </draw_quad>
 	-->
-	<apply_technique_pool pool_name="quad"/>
+	
 
-
-	<draw_quad  material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
-        <texture name="AlbedoTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "0 129" viewport_size = "128 128">
-        <texture name="LightMapTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">
-        <texture name="NormalMapTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "129 129" viewport_size = "128 128">
-        <texture name="DepthMapTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "258 0" viewport_size = "128 128">
-        <texture name="SpecularMapTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "258 129" viewport_size = "128 128">
-        <texture name="DiffuseLightingTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad name="ola k ase" material="DrawQuadMaterial" viewport_position = "387 0" viewport_size = "512 512">
-        <texture name="HDRCapturedTexture" stage_id="0"/>
-    </draw_quad>
-	
-	
-	
-	<!--
-	<draw_quad material="DrawQuadMaterial" viewport_position = "387 0" viewport_size = "128 128">
-        <texture name="SpecularLightingTexture" stage_id="0"/>
-    </draw_quad>
-	
+		<apply_technique_pool pool_name="post_process"/>
+		<render_gui/>
 	
 	<set_depth_stencil_state name ="Depth Stencil Particles" enable_z_test="false"  write_z_buffer = "false" enable_stencil = "false" comparison_func = "4"/>	
 	<apply_technique_pool pool_name="forward"/>
 	<set_alpha_blend_state name ="Alpha Blend Particles" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="SrcAlpha" dst_blend_alpha="InvSrcAlpha" blend_op_alpha="add"  render_target_write_mask="all" />
+	<!--<enable_alpha_blend/>	-->
 	<render_layer layer="Principal"/>
 	<disable_alpha_blend/>
-	-->
 	
 	<!--<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="One" dst_blend_alpha="One" blend_op_alpha="add"  render_target_write_mask="all" />--> TEXTURAS TRANSPARENTES
 	
