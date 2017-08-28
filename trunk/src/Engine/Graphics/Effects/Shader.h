@@ -5,7 +5,8 @@
 #include "Utils\Name.h"
 #include "Utils\Defines.h"
 #include "Utils\EnumToString.h"
-#include <d3d11.h>
+#include "d3d11.h"
+#include <d3dcompiler.h>
 #include <vector>
 
 class CShader : public CName

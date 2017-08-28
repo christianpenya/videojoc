@@ -14,29 +14,56 @@ global ePosition4 = 0x0080
 global eDummy = 0x0100
 
 fn preProcess = (
-	
-	local lSelectionMaterial = gSelection.material
-	
-	if lSelectionMaterial == undefined then (
-		lSelectionMaterial = StandardMaterial()
-		lSelectionMaterial.name = gSelection.name+"Material"
-		lSelectionMaterial.diffuse = gSelection.wirecolor
-	)
-	if classOf lSelectionMaterial == StandardMaterial then	(
-		local tempMaterial = sMaterial()
-		tempMaterial.m_name = lSelectionMaterial.name
-		tempMaterial.setFlags(lSelectionMaterial)
-		append gMatsArray tempMaterial
-	)else if classOf lSelectionMaterial == Multimaterial then	(
-		local lSubMaterialsCount = lSelectionMaterial.numsubs			
-		for iSubMaterial =  1 to lSubMaterialsCount do(
-			local lSubMaterial = lSelectionMaterial[iSubMaterial]
+	print "PreProcess"
+	try (
+		local lSelectionMaterial = gSelection.material
+		
+		if lSelectionMaterial == undefined then (
+			lSelectionMaterial = StandardMaterial()
+			lSelectionMaterial.name = gSelection.name+"Material"
+			lSelectionMaterial.diffuse = gSelection.wirecolor
+		)
+		if classOf lSelectionMaterial == StandardMaterial then	(
 			local tempMaterial = sMaterial()
-			tempMaterial.m_name = lSubMaterial.name
-			tempMaterial.setFlags(lSubMaterial)
+			tempMaterial.m_name = lSelectionMaterial.name
+			tempMaterial.setFlags(lSelectionMaterial)
 			append gMatsArray tempMaterial
+		)else if classOf lSelectionMaterial == Multimaterial then	(
+			print "Multi"
+			local lSubMaterialsCount = lSelectionMaterial.numsubs			
+			for iSubMaterial =  1 to lSubMaterialsCount do(
+				local lSubMaterial = lSelectionMaterial[iSubMaterial]
+				if classOf lSubMaterial == Standardmaterial then (
+					local tempMaterial = sMaterial()
+					tempMaterial.m_name = lSubMaterial.name
+					tempMaterial.setFlags(lSubMaterial)
+					append gMatsArray tempMaterial
+				)
+				else if classOf lSubMaterial == Multimaterial then(
+					
+					print "Multi"
+					local lSubMaterialsCount2 = lSubMaterial.numsubs			
+					for iSubMaterial2 =  1 to lSubMaterialsCount2 do(
+						local lSubMaterial2 = lSubMaterial[iSubMaterial2]
+						if classOf lSubMaterial2 == Standardmaterial then (
+							print "UEE"
+							local tempMaterial2 = sMaterial()
+							tempMaterial2.m_name = lSubMaterial2.name
+							tempMaterial2.setFlags(lSubMaterial2)
+							append gMatsArray tempMaterial2
+						)
+						else (
+
+							print classOf lSubMaterial2
+						)
+				
+					)
+				)
+			)
 		)
 	)
+	catch(
+		)
 )
 
 fn process = (

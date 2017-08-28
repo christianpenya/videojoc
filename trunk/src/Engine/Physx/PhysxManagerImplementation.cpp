@@ -66,7 +66,7 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
 
     // default material
     RegisterMaterial("Default", 0.5f, 0.5f, 0.6f);
-    AddCharacterController("player", 2.0f, 0.25f, Vect3f(0, 0, 0), Quatf(0, 0, 0, 1), "Default", 0.5f);
+    AddCharacterController("player", 1.6f, 0.25f, Vect3f(0, 0, 0), Quatf(0, 0, 0, 1), "Default", 1.f, 0.25f);
 
     m_LeftoverSeconds = 0.0f;
 }
@@ -102,7 +102,7 @@ void CPhysXManagerImplementation::onTrigger(physx::PxTriggerPair* pairs, physx::
     }
 }
 
-void CPhysXManagerImplementation::AddCharacterController(const std::string& characterControllerName, float height, float radius, const Vect3f& position = Vect3f(0, 0, 0), const Quatf& orientation = Quatf(0, 0, 0, 1), const std::string& material = "Default", float density = 15)
+void CPhysXManagerImplementation::AddCharacterController(const std::string& characterControllerName, float height, float radius, const Vect3f& position = Vect3f(0, 0, 0), const Quatf& orientation = Quatf(0, 0, 0, 1), const std::string& material = "Default", float density = 15, float stepOffset = 0.5f)
 {
     assert(m_Materials.find(material) != m_Materials.end()); // missing material!
     assert(m_CharacterControllers.find(characterControllerName) == m_CharacterControllers.end()); // duplicated key!
@@ -120,9 +120,9 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
     physx::PxCapsuleControllerDesc desc;
     desc.height = height;
     desc.radius = radius;
-    desc.climbingMode = physx::PxCapsuleClimbingMode::eEASY;
+    desc.climbingMode = physx::PxCapsuleClimbingMode::eCONSTRAINED;
     desc.slopeLimit = cosf(3.1415f / 6); // 30
-    desc.stepOffset = 0.5f;
+    desc.stepOffset = stepOffset;
     desc.density = density;
     desc.reportCallback = this;
     desc.position = physx::PxExtendedVec3(position.x, position.y + radius + height * 0.5f, position.z);

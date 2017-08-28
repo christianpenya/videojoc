@@ -25,9 +25,9 @@
 		<scene_mesh name="decallhumedadesquina" mesh="data/meshes/reclusion/decallhumedadesquina.mesh" >
 			<transform position="-1.93928 5.42975 -3.62341" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>	
-		<scene_mesh name="Puerta" mesh="data/meshes/reclusion/Puerta.mesh" >
+		<!--<scene_mesh name="Puerta" mesh="data/meshes/reclusion/Puerta.mesh" >
 			<transform position="0.190266 3.23044 0.809352" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
+		</scene_mesh>-->
 		
 		SALA1
 		<scene_mesh name="sala1" mesh="data/meshes/reclusion/sala1.mesh" rigid_body="plane" >
