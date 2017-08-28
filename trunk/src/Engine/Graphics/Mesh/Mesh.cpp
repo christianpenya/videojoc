@@ -117,14 +117,13 @@ bool CMesh::Load(const std::string& aFilename)
 
             if (lNumMaterialesMallas > 0)
             {
-                mMaterials.resize(lNumMaterialesMallas);
+                mMaterials.reserve(lNumMaterialesMallas);
                 mGeometries.reserve(lNumMaterialesMallas);
 
                 for (unsigned short iMatMesh = 0; iMatMesh < lNumMaterialesMallas; ++iMatMesh)
                 {
                     //MATERIAL
                     std::string lMaterialName = lBinFileReader->Read<std::string>();
-                    mMaterials[iMatMesh] = lMM(lMaterialName);
 
                     //VERTEX
                     unsigned short lVertexFlags = lBinFileReader->Read<unsigned short>();
@@ -163,6 +162,7 @@ bool CMesh::Load(const std::string& aFilename)
                     if (lNumVertices > 0 && lNumIndex > 0)
                     {
                         CGeometry* lGeometry = CreateGeometry(lRM, lVertexFlags, lNumVertices, lNumIndex, lVertexData, lIndexData);
+                        mMaterials.push_back(lMM(lMaterialName));
                         mGeometries.push_back(lGeometry);
                     }
 

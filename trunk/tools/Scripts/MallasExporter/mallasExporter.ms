@@ -250,9 +250,9 @@ fn boundingBox = (
 fn boundingSphere = (
 	local lBSphere = sBSphere()
 
-	lBSphere.m_center.x = ((gBBox.m_max.x - gBBox.m_min.x) / 2)
-	lBSphere.m_center.y = ((gBBox.m_max.y - gBBox.m_min.y) / 2)
-	lBSphere.m_center.z = ((gBBox.m_max.z - gBBox.m_min.z) / 2)
+	lBSphere.m_center.x = ((gBBox.m_max.x + gBBox.m_min.x) / 2)
+	lBSphere.m_center.y = ((gBBox.m_max.y + gBBox.m_min.y) / 2)
+	lBSphere.m_center.z = ((gBBox.m_max.z + gBBox.m_min.z) / 2)
 
 	local tmpDistance = 0
 	local auxDistance = 0

@@ -50,7 +50,6 @@ float4 PS(PS_INPUT IN) : SV_Target
 	float3 l_CameraToPixel=normalize(l_WorldPosition-m_InverseView[3].xyz);
 	float3 l_NormalDotCam=max(dot(lerp(l_NormalPlane, l_NormalPixel,max(dot(l_NormalPlane, -l_CameraToPixel), 0)), -l_CameraToPixel), 0);
 	float3 l_ShlickFresnel=saturate(l_SpecularColor.xyz+(1-l_SpecularColor.xyz)*pow(1-l_NormalDotCam.xyz, 5));
-	float3 hola = lerp(l_NormalPlane, l_NormalPixel,max(dot(l_NormalPlane, -l_CameraToPixel), 0));
 	
 	float3 l_DiffuseLight=T5Texture.Sample(S5Sampler, IN.UV).xyz;
 	float3 l_SpecularLight=T6Texture.Sample(S6Sampler, IN.UV).xyz;
@@ -61,5 +60,5 @@ float4 PS(PS_INPUT IN) : SV_Target
 	l_FinalColor.xyz+=l_SpecularLight.xyz;
 	l_FinalColor.xyz=pow(abs(l_FinalColor.xyz), .4545);
 
-	return float4(l_NormalPixel.xyz, 1.0);
+	return float4(l_FinalColor.xyz, 1.0);
 }

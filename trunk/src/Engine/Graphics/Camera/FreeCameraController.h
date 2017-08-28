@@ -18,7 +18,7 @@ public:
     bool block;
 
     CFreeCameraController(Vect3f position = Vect3f(0, 10, 0), Vect3f forward = Vect3f(0, 0, 1), Vect3f up = Vect3f(0, 1, 0),
-                          Vect4f cameraInfo = Vect4f(1, 500, 1.13f, 1.7f), float maxPitch = 1.5f, float minPitch = -1.5f, float maxZoom = 10.0f, float minZoom = -10.0f)
+                          Vect4f cameraInfo = Vect4f(0.01f, 500, 1.13f, 1.7f), float maxPitch = 1.5f, float minPitch = -1.5f, float maxZoom = 10.0f, float minZoom = -10.0f)
         : CCameraController(position, forward, up, cameraInfo)
         , center(Vect3f(0, 0, 0))
         , maxPitch(maxPitch)
