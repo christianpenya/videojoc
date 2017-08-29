@@ -156,7 +156,7 @@ bool CNavMesh::Render(CRenderManager& lRM)
     mMaterials->Apply();
     mGeometries->RenderIndexed(lRM.GetDeviceContext());
 
-    CPathfinding* lpath = new CPathfinding(Vect3f(-55.5f, 0.01214442f, 41.7f), Vect3f(-42.66667f, 0.01214442f, 42.66667f));
+    /*CPathfinding* lpath = new CPathfinding(Vect3f(-55.5f, 0.01214442f, 41.7f), Vect3f(-42.66667f, 0.01214442f, 42.66667f), "navMeshScene01");
     lpath->GetPath();
     bool encontro = lpath->PathfindStep();
 
@@ -164,7 +164,7 @@ bool CNavMesh::Render(CRenderManager& lRM)
     int indice = atTriangle(Vect3f(-55.36667f,0.01214442f, 44.16667f));
     Triangle* l_triangle = GetTriangle(indice);
     std::string temp = "En triangulo: " + indice;
-    LOG_INFO_APPLICATION("triangle ", temp);
+    LOG_INFO_APPLICATION("triangle ", temp);*/
     return lOk;
 }
 

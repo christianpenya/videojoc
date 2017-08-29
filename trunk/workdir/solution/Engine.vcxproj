@@ -266,6 +266,9 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Effects\TechniquePool.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Effects\TechniquePoolManager.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Effects\VertexShader.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Dron.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\EnemiesManager.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\enemy.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\IA\NavMesh.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\IA\NavMeshManager.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\IA\Pathfinding.h" />
@@ -372,6 +375,9 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Effects\TechniquePool.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Effects\TechniquePoolManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Effects\VertexShader.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Dron.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\EnemiesManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\enemy.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMesh.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMeshManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\Pathfinding.cpp" />

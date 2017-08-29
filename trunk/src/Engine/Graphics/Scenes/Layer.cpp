@@ -10,6 +10,7 @@
 #include "Graphics/Particles/ParticleSystemInstance.h"
 #include "Graphics/Particles/ParticleManager.h"
 #include "Graphics/Particles/ParticleSystemType.h"
+#include "Graphics/IA/EnemiesManager.h"
 #include "Graphics/IA/NavMesh.h"
 #include "Graphics/IA/NavMeshManager.h"
 
@@ -28,6 +29,7 @@ bool CLayer::Load(CXMLElement* aElement)
 {
     bool lOk = true;
     CLightManager &lLM = CEngine::GetInstance().GetLightManager();
+    CEnemiesManager &lEnemiesManager = CEngine::GetInstance().GetEnemiesManager();
     CNavMeshManager &l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
 
     for (tinyxml2::XMLElement *iSceneMesh = aElement->FirstChildElement(); iSceneMesh != nullptr; iSceneMesh = iSceneMesh->NextSiblingElement())
@@ -75,6 +77,17 @@ bool CLayer::Load(CXMLElement* aElement)
         {
             lNode = l_NavMeshManager(iSceneMesh->GetAttribute<std::string>("name", ""));
             lNode->SetNodeType(CSceneNode::eNavMesh);
+        }
+        else if (strcmp(iSceneMesh->Name(), "scene_enemies") == 0)
+        {
+            std::string l_EnemyName = iSceneMesh->GetAttribute<std::string>("name", "");
+            CEnemy *l_enemy = nullptr;
+
+            if (lEnemiesManager.Exist(l_EnemyName))
+            {
+                lNode = lEnemiesManager(l_EnemyName);
+                lNode->SetNodeType(CSceneNode::eEnemy);
+            }
         }
 
         if (lNode)

@@ -381,6 +381,15 @@
     <ClInclude Include="..\..\src\Engine\Graphics\IA\Pathfinding.h">
       <Filter>Graphics\IA</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\enemy.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Dron.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\EnemiesManager.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp">
@@ -657,6 +666,15 @@
       <Filter>Sound</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\IA\Pathfinding.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\enemy.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Dron.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\EnemiesManager.cpp">
       <Filter>Graphics\IA</Filter>
     </ClCompile>
   </ItemGroup>

@@ -4,20 +4,26 @@
 #include "NavMesh.h"
 #include "NavMeshManager.h"
 #include "Engine/Engine.h"
+#include <luabind/luabind.hpp>
+#include <luabind/function.hpp>
+#include <luabind/class.hpp>
+#include <luabind/operator.hpp>
+#include <luabind/iterator_policy.hpp>
+#include "Scripts/ScriptManager.h"
 
 CPathfinding * CPathfinding::m_pathfinding = nullptr;
 
-CPathfinding &CPathfinding::Instance(Vect3f startPos, Vect3f endPos)
+CPathfinding &CPathfinding::Instance(Vect3f startPos, Vect3f endPos, std::string navMeshFile)
 {
     if (!m_pathfinding)
-        m_pathfinding = new CPathfinding(startPos, endPos);
+        m_pathfinding = new CPathfinding(startPos, endPos, navMeshFile);
     return *m_pathfinding;
 }
 
-CPathfinding::CPathfinding(Vect3f startPos, Vect3f endPos)
+CPathfinding::CPathfinding(Vect3f startPos, Vect3f endPos, std::string navMeshFile)
 {
     CNavMeshManager& l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
-    navmeshFilename = "navMeshScene01";
+    navmeshFilename = navMeshFile;
     m_navmesh = l_NavMeshManager(navmeshFilename);
 
     m_pathfinding = this;
@@ -127,7 +133,6 @@ void CPathfinding::UpdatePath()
                     {
                         nextNode = &(*pathNodeItr);
 
-                        printf("Triangle**: %d - %d\n", nextNode->GetTriangle()->id, m_endNode->GetTriangle()->id);
                         if (nextNode == m_endNode)
                         {
                             nextNode->SetParent(node);
@@ -213,9 +218,9 @@ void CPathfinding::BuildPath(CPathNode * lastNode)
 void CPathfinding::DrawDebug()
 {
     //draw Polygons path
-    for (std::vector<CPathNode *>::iterator pathItr = m_finalPath.begin();
-            pathItr != m_finalPath.end(); ++pathItr)
+    for (std::vector<CPathNode *>::iterator pathItr = m_finalPath.begin(); pathItr != m_finalPath.end(); ++pathItr)
     {
+        printf("Triangle: %d - %d\n", (*pathItr)->GetTriangle()->id, m_navmesh->GetVertex((*pathItr)->GetTriangle()->id));
         /*        gfxDevice.SetPenColor(1.0f, 1.0f, 1.0f, 0.1f);
                 MOAIDraw::DrawPolygonFilled((*pathItr)->GetPolygon()->m_vertices);*/
     }
@@ -265,3 +270,83 @@ bool CPathfinding::PathfindStep()
     // returns true if pathfinding process finished
     return m_ObjectiveFound;
 }
+/*
+void CPathfinding::RegisterLUAFunctions()
+{
+
+    CScriptManager* m_ScriptManager = new CScriptManager();
+    if (m_ScriptManager->Load("data/scripts/pathfinding.lua"))
+    {
+        mLS = m_ScriptManager->GetScript("data/scripts/pathfinding.lua")->GetState();
+
+        module(mLS)[
+            class_<CPathfinding>("CPathfinding")
+            .def(constructor<>())
+            .def(constructor<const std::string&>())
+            .def("initStartPosition", &CPathfinding::_initStartPosition)
+            .def("initEndPosition", &CPathfinding::_initEndPosition)
+            .def("setStartPosition", &CPathfinding::_setStartPosition)
+            .def("setEndPosition", &CPathfinding::_setEndPosition)
+            .def("pathfindStep", &CPathfinding::_pathfindStep)
+            .def(NULL, &CPathfinding::NULL)
+
+            //.def_readwrite("name", &CPathfinding::TNode::name)
+        ];
+    }
+}
+
+
+//lua configuration ----------------------------------------------------------------//
+
+
+luaL_register(state, 0, regTable);
+}
+
+int CPathfinding::_initStartPosition(lua_State* L)
+{
+    MOAI_LUA_SETUP(Pathfinder, "U")
+
+    float pX = state.GetValue<float>(2, 0.0f);
+    float pY = state.GetValue<float>(3, 0.0f);
+    self->InitStartPosition(pX, pY);
+    return 0;
+}
+
+int CPathfinding::_initEndPosition(lua_State* L)
+{
+    MOAI_LUA_SETUP(Pathfinder, "U")
+
+    float pX = state.GetValue<float>(2, 0.0f);
+    float pY = state.GetValue<float>(3, 0.0f);
+    self->InitEndPosition(pX, pY);
+    return 0;
+}
+
+int CPathfinding::_setStartPosition(lua_State* L)
+{
+    MOAI_LUA_SETUP(Pathfinder, "U")
+
+    float pX = state.GetValue<float>(2, 0.0f);
+    float pY = state.GetValue<float>(3, 0.0f);
+    self->SetStartPosition(pX, pY);
+    return 0;
+}
+
+int CPathfinding::_setEndPosition(lua_State* L)
+{
+    MOAI_LUA_SETUP(Pathfinder, "U")
+
+    float pX = state.GetValue<float>(2, 0.0f);
+    float pY = state.GetValue<float>(3, 0.0f);
+    self->SetEndPosition(pX, pY);
+    return 0;
+}
+
+int CPathfinding::_pathfindStep(lua_State* L)
+{
+    MOAI_LUA_SETUP(Pathfinder, "U")
+
+    self->PathfindStep();
+    return 0;
+}
+*/

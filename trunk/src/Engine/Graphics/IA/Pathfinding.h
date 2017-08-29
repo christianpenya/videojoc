@@ -2,7 +2,9 @@
 #define __PATHFINDING_H__
 
 #include "NavMesh.h"
-
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
 
 class CNavMesh;
 class CPathNode
@@ -77,16 +79,22 @@ private:
 class CPathfinding
 {
 public:
-    static CPathfinding &Instance(Vect3f startPos, Vect3f endPos);
+    static CPathfinding &Instance(Vect3f startPos, Vect3f endPos, std::string navMeshFile);
     CPathfinding();
-    CPathfinding(Vect3f startPos, Vect3f endPos);
+    CPathfinding(Vect3f startPos, Vect3f endPos, std::string navMeshFile);
     ~CPathfinding();
 
     virtual void DrawDebug();
     const std::vector<Vect3f> &GetPath() const;
     bool PathfindStep();
+    lua_State * GetLuaState() const
+    {
+        return mLS;
+    }
+    void RegisterLUAFunctions();
 
 private:
+    lua_State *mLS;
     void UpdatePath();
     void BuildPath(CPathNode * lastNode);
 

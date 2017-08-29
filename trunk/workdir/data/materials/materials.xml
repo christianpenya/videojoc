@@ -1,5 +1,13 @@
 <materials >
 
+	<material name="Dron001Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.0 0.0 0.0 1.0 " />
+	</material>
+
+	<material name="PatrolPoint002Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.0 1.0 1.0 1.0 " />
+	</material>
+	
 	<material name="ElectricMaterial" vertex_type="ParticleVertex" >
 		<texture type="diffuse" filename="data\particles\fire.dds" />		
 		<parameter type="float2" name="sprite_size" value="1.0 1.0" />

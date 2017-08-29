@@ -49,7 +49,7 @@
 	
 	SKYBOX
 	<apply_technique_pool pool_name="skybox"/>
-	<render_layer layer="Skybox"/>
+	<render_layer layer="Skybox"/>	
 
 	INICIO LIGHT SCATTERING
 <!--
@@ -216,13 +216,15 @@
 	-->
 	
 	
-	
 	<set_depth_stencil_state name ="Depth Stencil Particles" enable_z_test="false"  write_z_buffer = "false" enable_stencil = "false" comparison_func = "4"/>	
 	<apply_technique_pool pool_name="forward"/>
 	<set_alpha_blend_state name ="Alpha Blend Particles" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="SrcAlpha" dst_blend_alpha="InvSrcAlpha" blend_op_alpha="add"  render_target_write_mask="all" />
 	<!--<enable_alpha_blend/>	-->
 	<render_layer layer="Principal"/>
 	<disable_alpha_blend/>
+
+	DRONES
+	<render_layer layer="drones"/>
 	
 	<!--<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="One" dst_blend_alpha="One" blend_op_alpha="add"  render_target_write_mask="all" />--> TEXTURAS TRANSPARENTES
 	<render_imgui name="imediate_gui_render"/>

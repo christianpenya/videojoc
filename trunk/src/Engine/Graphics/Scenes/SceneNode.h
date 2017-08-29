@@ -23,6 +23,7 @@ public:
         eLight,
         eParticle,
         eNavMesh,
+        eEnemy,
         eSceneNodeCount
     };
 

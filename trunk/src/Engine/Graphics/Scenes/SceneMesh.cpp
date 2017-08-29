@@ -58,6 +58,20 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
         lDebug = "Attached physx PLAYER CONTROLLER to " + m_Name;
         break;
 
+    case eEnemy:
+        lDebug = "Attached physx ENEMY CONTROLLER to " + m_Name;
+        rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+
+        sizeX = abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x;
+        sizeY = abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y;
+        sizeZ = abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z;
+        cubeOffset = Vect3f(0, -sizeY / 2.0, 0);
+
+        lCenter = mMesh->GetBoundingSphere().GetCenter() + m_Position;
+        CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f);
+        break;
+
+
     case eTriggerBox:
         lDebug = "Attached physx Trigger Box to " + m_Name;
         rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
@@ -112,6 +126,10 @@ bool CSceneMesh::Update(float aDeltaTime)
         case ePlayer:
             m_Position = lPM.GetActorPosition(m_Name);
             break;
+        case eEnemy:
+            m_Position = lPM.GetActorPosition(m_Name);
+            break;
+
         default:
             break;
         }
