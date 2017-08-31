@@ -15,7 +15,7 @@ public:
         m_Position(0, 0, 0),
         m_Front(0, 0, 1),
         m_Up(0, 1, 0),
-        m_CameraInfo(1, 500, 1.13f, 1.7f) {} //	m_CameraInfo x = near, y = far, z = fov, w = aspect ratio
+        m_CameraInfo(0.01f, 500, 1.13f, 1.7f) {} //	m_CameraInfo x = near, y = far, z = fov, w = aspect ratio
 
     CCameraController(Vect3f position, Vect3f front, Vect3f up, Vect4f cameraInfo) :
         m_Position(position),
@@ -29,47 +29,46 @@ public:
     void SetToRenderManager(CRenderManager &_RenderManager) const
     {
         _RenderManager.SetViewMatrix(m_Position, m_Position + m_Front, m_Up);
-        _RenderManager.SetProjectionMatrix(m_CameraInfo.z, m_CameraInfo.w, m_CameraInfo.x, m_CameraInfo.y);
+        _RenderManager.SetProjectionMatrix(m_CameraInfo.z, m_CameraInfo.w, 0.01f, m_CameraInfo.y);
     }
 
     Vect4f GetPositionInScreenCoordinates(const Vect3f &Position) const;
-
-    Vect3f getFront()
+    Vect3f GetFront()
     {
         return m_Front;
     }
 
-    Vect3f getUp()
+    Vect3f GetUp()
     {
         return m_Up;
     }
 
-    Vect3f getPosition()
+    Vect3f GetPosition()
     {
         return m_Position;
     }
 
-    Vect4f getCameraInfo()
+    Vect4f GetCameraInfo()
     {
         return m_CameraInfo;
     }
 
-    void setFront(Vect3f front)
+    void SetFront(Vect3f front)
     {
         m_Front = front;
     }
 
-    void setUp(Vect3f up)
+    void SetUp(Vect3f up)
     {
         m_Up = up;
     }
 
-    void setPosition(Vect3f pos)
+    void SetPosition(Vect3f pos)
     {
         m_Position = pos;
     }
 
-    void setCameraInfo(Vect4f info)
+    void SetCameraInfo(Vect4f info)
     {
         m_CameraInfo = info;
     }
@@ -80,10 +79,11 @@ protected:
     Vect3f 					m_Up;
     Vect4f 					m_CameraInfo;
 
-    float clamp(float x, float upper, float lower)
+    float Clamp(float x, float upper, float lower)
     {
         return min(upper, max(x, lower));
     }
 };
 
 #endif //_ENGINE_CAMERACONTROLLER_CPB_20161126_H
+

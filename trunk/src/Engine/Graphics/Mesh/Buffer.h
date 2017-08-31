@@ -9,13 +9,6 @@
 class CBuffer
 {
 public:
-    enum BufferUsage
-    {
-        eDefault = 0,
-        eImmutable,
-        eDynamic,
-        eStaging
-    };
 
     CBuffer() : m_pBuffer(nullptr) {}
     virtual ~CBuffer() {}

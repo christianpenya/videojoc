@@ -2,16 +2,15 @@
 #include "Engine/Engine.h"
 #include "XML\XML.h"
 #include "Graphics/Lights/LightManager.h"
-#include "Graphics/Buffers/ConstantBufferManager.h"
+
 
 //Leera el nodo
-//	<deferred_shading name="deffered_shading" material="DrawQuadDeferredShadingPerLightMaterial">
+// <deferred_shading name="deffered_shading" material="DrawQuadDeferredShadingPerLightMaterial">
 // <texture stage = "0" name = "AlbedoTexture" / >
 // <texture stage = "1" name = "LightMapTexture" / >
 // <texture stage = "2" name = "NormalMapTexture" / >
 // <texture stage = "3" name = "DepthMapTexture" / >
 // </ deferred_shading>
-
 
 CDeferredShading::CDeferredShading()
     : CDrawQuad()
@@ -39,7 +38,6 @@ bool CDeferredShading::CreateBlendState()
     return lOk;
 }
 
-
 bool CDeferredShading::Load(const CXMLElement* aElement)
 {
     return CDrawQuad::Load(aElement);
@@ -47,21 +45,18 @@ bool CDeferredShading::Load(const CXMLElement* aElement)
 
 void CDeferredShading::Execute(CRenderManager &lRM)
 {
-    //CreateBlendState(lRM);
     lRM.GetDeviceContext()->OMSetBlendState(m_EnabledAlphaBlendState, NULL, 0xffffffff);
     CLightManager* l_LM = &CEngine::GetInstance().GetLightManager();
-	CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
-	lConstanBufferManager.mLightsDesc.m_LightEnabled[0] = 0;
-    lConstanBufferManager.mLightsDesc.m_LightEnabled[1] = 0;
-    lConstanBufferManager.mLightsDesc.m_LightEnabled[2] = 0;
-    lConstanBufferManager.mLightsDesc.m_LightEnabled[3] = 0;
+
     for (int i = 0; i < l_LM->GetCount(); i++)
     {
-        l_LM->SetLightConstants(0, l_LM->GetLightByIdx(i));
-        CDrawQuad::Execute(lRM);
-
+        CLight *light = l_LM->GetLightByIdx(i);
+        if (light->IsVisible())
+        {
+            l_LM->SetLightConstants(i, light);
+            CDrawQuad::Execute(lRM);
+        }
     }
+
     lRM.GetDeviceContext()->OMSetBlendState(NULL, NULL, 0xffffffff);
-
-
 }

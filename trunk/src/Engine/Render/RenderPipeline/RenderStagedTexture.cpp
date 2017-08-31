@@ -51,9 +51,9 @@ bool CRenderStagedTexture::Load(const CXMLElement* aElement)
         }
         else if (strcmp(iNTexture->Name(), "texture") == 0)
         {
-            CTexture* l_Texture = lTextureManager.GetTexture(iNTexture->GetAttribute<std::string>("name", "AlbedoTexture"));
+            CTexture* l_Texture = lTextureManager.GetTexture(iNTexture->GetAttribute<std::string>("name", "nothing_in_particular"));
             CStagedTexture* l_stagedTexture = new CStagedTexture(iNTexture->GetAttribute<uint32>("stage_id", 1), l_Texture);
-            l_stagedTexture->m_filename = iNTexture->GetAttribute<std::string>("name", "AlbedoTexture");
+            l_stagedTexture->m_filename = iNTexture->GetAttribute<std::string>("name", "nothing_in_particular");
             m_StagedTextures.push_back(l_stagedTexture);
         }
     }

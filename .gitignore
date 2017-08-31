@@ -5,6 +5,7 @@ trunk/src/Engine/ReadMe.txt
 *.suo
 *.pdb
 *.user
+*.blob
 
 *.exp
 trunk/workdir/solution/obj/x32/Debug/Base/Base.tlog/Base.lastbuildstate
@@ -12,3 +13,4 @@ trunk/workdir/solution/obj/x32/Debug/Base/Base.tlog/Base.lastbuildstate
 *.idb
 *.vcxproj
 *.filters
+trunk/workdir/imgui.ini

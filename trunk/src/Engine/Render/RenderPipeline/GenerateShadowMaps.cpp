@@ -29,7 +29,7 @@ void CGenerateShadowMaps::Execute(CRenderManager& lRM)
             // TODO Añadir condición dentro frustum + luz en escena activa
         {
             lLight->SetShadowMap(CEngine::GetInstance().GetRenderManager());
-            lRM.Clear(true, true, CColor(lRM.m_BackgroundColor));
+            lRM.Clear(true, true, CColor(0.0f, 0.0f, 0.0f, 0.0f));
             CScene* lScene = lLight->GetParent()->GetParent();
             std::vector<std::string> lLayerNames = lLight->GetLayerNames();
 
@@ -38,6 +38,7 @@ void CGenerateShadowMaps::Execute(CRenderManager& lRM)
                 CLayer* lLayer = lScene->GetLayerByName(*it);
                 if (lLayer)
                 {
+                    LOG_INFO_APPLICATION(("Rendering shadows for layer " + lLayer->GetName()).c_str());
                     lLayer->Render();
                 }
             }

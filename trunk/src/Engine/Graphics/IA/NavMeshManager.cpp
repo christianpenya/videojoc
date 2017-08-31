@@ -8,7 +8,7 @@ CNavMeshManager::CNavMeshManager() {}
 
 CNavMeshManager::~CNavMeshManager()
 {
-    CTemplatedMap<CNavMesh>::Destroy();
+//    CTemplatedMap<CNavMesh>::Destroy();
 }
 
 bool CNavMeshManager::Load(const std::string &aFilename)

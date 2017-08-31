@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Engine">
       <UniqueIdentifier>{DBC7D3B0-C769-FE86-B024-12DB9C6585D7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{2AEC870B-96F5-877C-1F71-9E7C8B79937C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Graphics">
       <UniqueIdentifier>{1653CE33-0220-293F-2B39-17E717655ECD}</UniqueIdentifier>
@@ -69,6 +72,18 @@
     <ClInclude Include="..\..\src\Engine\Engine\Engine.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\GUI\Button.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\GUI\GUIManager.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\GUI\GUIPosition.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\GUI\Slider.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Animation\AnimatedCoreModel.h">
       <Filter>Graphics\Animation</Filter>
     </ClInclude>
@@ -85,6 +100,9 @@
       <Filter>Graphics\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\CameraController.h">
+      <Filter>Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Camera\CameraManager.h">
       <Filter>Graphics\Camera</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Camera\CinematicCameraController.h">
@@ -162,10 +180,22 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Effects\VertexShader.h">
       <Filter>Graphics\Effects</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Dron.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\EnemiesManager.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\IA\NavMesh.h">
       <Filter>Graphics\IA</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\IA\NavMeshManager.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Pathfinding.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\enemy.h">
       <Filter>Graphics\IA</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\IA\tiny_obj_loader.h">
@@ -336,6 +366,9 @@
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderCmd.h">
       <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderGUI.h">
+      <Filter>Render\RenderPipeline</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Render\RenderPipeline\RenderImGUI.h">
       <Filter>Render\RenderPipeline</Filter>
     </ClInclude>
@@ -375,25 +408,28 @@
     <ClInclude Include="..\..\src\Engine\Scripts\lua_utils.h">
       <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Sound\SoundManager.h">
+    <ClInclude Include="..\..\src\Engine\Sound\ISoundManager.h">
       <Filter>Sound</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\IA\Pathfinding.h">
-      <Filter>Graphics\IA</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\IA\enemy.h">
-      <Filter>Graphics\IA</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\IA\Dron.h">
-      <Filter>Graphics\IA</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\IA\EnemiesManager.h">
-      <Filter>Graphics\IA</Filter>
+    <ClInclude Include="..\..\src\Engine\Sound\SoundManager.h">
+      <Filter>Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\GUI\Button.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\GUI\GUIManager.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\GUI\GUIPosition.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\GUI\Slider.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Animation\AnimatedCoreModel.cpp">
       <Filter>Graphics\Animation</Filter>
@@ -411,6 +447,9 @@
       <Filter>Graphics\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\CameraController.cpp">
+      <Filter>Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Camera\CameraManager.cpp">
       <Filter>Graphics\Camera</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Camera\CinematicCameraController.cpp">
@@ -485,10 +524,22 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Effects\VertexShader.cpp">
       <Filter>Graphics\Effects</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Dron.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\EnemiesManager.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMesh.cpp">
       <Filter>Graphics\IA</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMeshManager.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Pathfinding.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\enemy.cpp">
       <Filter>Graphics\IA</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\IA\tiny_obj_loader.cc">
@@ -617,6 +668,9 @@
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderCmd.cpp">
       <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderGUI.cpp">
+      <Filter>Render\RenderPipeline</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Render\RenderPipeline\RenderImGUI.cpp">
       <Filter>Render\RenderPipeline</Filter>
     </ClCompile>
@@ -664,18 +718,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Sound\SoundManager.cpp">
       <Filter>Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\IA\Pathfinding.cpp">
-      <Filter>Graphics\IA</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\IA\enemy.cpp">
-      <Filter>Graphics\IA</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\IA\Dron.cpp">
-      <Filter>Graphics\IA</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\IA\EnemiesManager.cpp">
-      <Filter>Graphics\IA</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

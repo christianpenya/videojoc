@@ -16,6 +16,8 @@ public:
     virtual bool Load(const CXMLElement* aElement) = 0;
     void PlayFoward(float currentTime); //TODO
     void PlayBackward(float currentTime);//TODO
+    virtual void Start() = 0;
+    virtual void Finish() = 0;
     std::string mName;
 protected:
 

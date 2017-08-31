@@ -1,7 +1,6 @@
 #include "Utils/MemLeaks/MemLeaks.h"
 #include "Render\RenderManager.h"
 #include "Input\InputManager.h"
-#include "Input\ActionManager.h"
 #include "imGUI/imgui_impl_dx11.h"
 #include "ImGUI\imgui.h"
 #include "Engine\Engine.h"
@@ -10,8 +9,12 @@
 
 #define APPLICATION_NAME	"ESCAPE FROM ALCATRAZ"
 
-float m_width = 1024;
-float m_height = 768;
+float m_width = 2048 * 0.9;
+float m_height = 1052 * 0.9;
+
+//float m_width = 1024;
+//float m_height = 576;
+
 
 const Mat44f m_model_matrix = Mat44f(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 const Vect3f m_vpos = Vect3f(10, 5, 7);
@@ -63,6 +66,13 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
         }
     }
     break;
+    case WM_CHAR:
+    {
+        if (CEngine::GetInstance().ExistInputManager())
+        {
+            CEngine::GetInstance().GetInputManager().SetLastCharInput(wParam);
+        }
+    }
 
     }//end switch( msg )
 
@@ -93,7 +103,6 @@ int main()
 
     // Create the application's window
     HWND hWnd = CreateWindow(APPLICATION_NAME, APPLICATION_NAME, WS_OVERLAPPEDWINDOW, 0, 0, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, wc.hInstance, NULL);
-
 
     //RENDER MANAGER
     CRenderManager l_RenderManager;

@@ -20,13 +20,17 @@
 		<parameter type="float2" name="fog_start_end" value="35.0 100.0" />
 	</material>
 
-	<material name="DrawQuadMaterial" vertex_type="Quad">
+	<material name="DrawQuadMaterial" vertex_type="PositionUV">
 	</material>
 	
-	<material name="DeferredShadingMaterial" vertex_type="DeferredQuad">
+	<material name="DeferredShadingMaterial" vertex_type="PositionUV">
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
 	</material>
-
+	
+	<material name="PBRDeferredShadingMaterial" vertex_type="PositionUV">
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+	</material>
+	
 	<material name="ZBlurMaterial" vertex_type="ZBlur">
 		<parameter type="float" name="ZBlurActive" value="1.0" />
 		<parameter type="float" name="ZBlurShowDepths" value="0.0" />
@@ -48,7 +52,7 @@
 		<parameter type="float" name="originalSaturation" value="1.0" />
 	</material>
 
-	<material name="StartGaussianMaterial" vertex_type="Quad">
+	<material name="StartGaussianMaterial" vertex_type="PositionUV">
 		<parameter type="float" name="textureSize" value="512.0" />
 		<parameter type="float" name="blurScale" value="6.0" />
 	</material>

@@ -9,14 +9,16 @@
 #include <sstream>
 #include <stdio.h>
 
-namespace base {
-    namespace utils
-    {
-		void FormatString(std::string& output, const char* format, ...);
-		std::vector<std::string>& Split(const std::string& s, char delim, std::vector<std::string>& elems);
-	    std::vector<std::string> Split(const std::string& s, char delim);
-        std::string GetFileNameExtension(const std::string& FileName);
-    }
+namespace base
+{
+namespace utils
+{
+void FormatString(std::string& output, const char* format, ...);
+std::vector<std::string>& Split(const std::string& s, char delim, std::vector<std::string>& elems);
+std::vector<std::string> Split(const std::string& s, char delim);
+std::string GetFileNameExtension(const std::string& FileName);
+std::wstring String2WString(const std::string &str);
+}
 }
 
 #endif // _H_VISIBLE__

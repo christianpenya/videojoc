@@ -4,6 +4,13 @@
 #include "Graphics/Lights/lightManager.h"
 #include "Imgui/imgui.h"
 
+#ifdef _DEBUG
+
+#include "Utils/MemLeaks/MemLeaks.h"
+#endif
+#include <chrono>
+#include "Utils/Logger.h"
+
 CScene::CScene(const std::string& aName)
     : CName(aName),
       CActive(false)
@@ -12,6 +19,20 @@ CScene::CScene(const std::string& aName)
 CScene::~CScene()
 {
     CTemplatedMapVector<CLayer>::Destroy();
+}
+
+bool CScene::Refresh()
+{
+    for (TVectorResources::iterator iLayer = m_ResourcesVector.begin(); iLayer != m_ResourcesVector.end(); ++iLayer)
+    {
+        if ((*iLayer)->GetActive())
+        {
+            LOG_INFO_APPLICATION(("Refresh layer " + (*iLayer)->GetName() + std::to_string(clock())).c_str());
+            (*iLayer)->Refresh();
+        }
+    }
+
+    return true;
 }
 
 bool CScene::Load(const std::string& aFilename)
@@ -103,23 +124,24 @@ CLayer* CScene::GetLayerByName(std::string aName)
 void CScene::DrawImGui()
 {
     ImGui::Checkbox("Active", &m_Active);
-    if (m_Active == true)
+    if (m_Active)
     {
-        ImGui::BeginChild("#Layer", ImVec2(400, 200), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::BeginChild("#Layer", ImVec2(400, 200), true);
         ImGui::PushItemWidth(-130);
 
-        for (TMapResources::iterator iLayer = m_ResourcesMap.begin(); iLayer != m_ResourcesMap.end(); ++iLayer)
+        for (std::vector<CLayer*>::iterator iLayer = m_ResourcesVector.begin(); iLayer != m_ResourcesVector.end(); ++iLayer)
         {
-            CLayer* llayer = iLayer->second.m_Value;
-            ImGui::PushID(iLayer->second.m_Id);
+            ImGui::PushID((*iLayer)->GetName().c_str());
             static bool show_app_auto_resize = true;
-            ImGui::Begin("Layer", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
 
-            llayer->DrawImgui();
+            if (ImGui::CollapsingHeader((*iLayer)->GetName().c_str()))
+            {
+                (*iLayer)->DrawImgui();
+            }
 
-            ImGui::End();
             ImGui::PopID();
         }
+
         ImGui::PopItemWidth();
         ImGui::EndChild();
     }

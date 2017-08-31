@@ -20,9 +20,6 @@ public:
         m_Speed(.5f),
         player(nullptr)
     {
-
-
-
     }
 
     virtual ~CCharacterController() {}

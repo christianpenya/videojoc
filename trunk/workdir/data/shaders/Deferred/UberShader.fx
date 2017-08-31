@@ -1,6 +1,5 @@
 #include "globals.fx"
 
-
 #if USE_UV
 	Texture2D DiffuseTexture :
 	register(t0);
@@ -20,9 +19,6 @@
 		register(s1);
 	#endif
 #endif
-
-
-
 
 struct VS_INPUT
 {
@@ -52,8 +48,6 @@ struct VS_INPUT
 			    TEXCOORD1;
 		#endif
 	#endif
-
-
 };
 
 
@@ -156,9 +150,9 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 
    
     float g_SpecularExponent = 0.5;
-    float g_SpecularContrib = 1.0;
+    float g_SpecularContrib = 0.5;
 
-     float4 pixelColor = float4(m_RawData[0].xyz,1.0);
+    float4 pixelColor = float4(m_RawData[0].xyz,1.0);
     float3 l_LAmbient = m_LightAmbient.xyz;
 
     float3 l_WorldPos = IN.WorldPosition;
@@ -168,13 +162,18 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 
     PixelOutputType l_Output = (PixelOutputType)0;
     #if USE_BUMP
-			 float3 bump = m_RawData[1].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
+			 float3 bump = m_RawData[2].x * (NormalMapTexture.Sample(NormalMapTextureSampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
 			 l_Normal = normalize(IN.Normal);
 			 l_Normal = l_Normal + bump.x*IN.Tangent + bump.y*IN.Binormal;
 		     l_Normal = normalize(l_Normal);
 	#endif
     #if USE_UV
-		pixelColor = DiffuseTexture.Sample(LinearSampler, IN.UV) * pixelColor;
+		#if USE_WEIGHTIDX
+			pixelColor = DiffuseTexture.Sample(LinearSampler, IN.UV);
+		#else
+			pixelColor = DiffuseTexture.Sample(LinearSampler, IN.UV) * pixelColor;
+		#endif
+		
 		if (pixelColor.w <0.1)
 		{
 			clip(-1);
@@ -187,9 +186,6 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		//pixelColor = float3(0.0 , 1.0, 0.0);
  	#endif
 
- #if USE_WEIGHTIDX
- 	
- #endif
 
 	l_Normal=Normal2Texture(l_Normal);
 

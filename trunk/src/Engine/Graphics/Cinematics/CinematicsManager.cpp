@@ -1,5 +1,5 @@
 #include "CinematicsManager.h"
-#include "XML\tinyxml2\tinyxml2.h"
+#include "XML/tinyxml2/tinyxml2.h"
 #include "XML/XML.h"
 #include "Cinematic.h"
 

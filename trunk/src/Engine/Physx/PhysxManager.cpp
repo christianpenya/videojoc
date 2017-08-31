@@ -1,7 +1,8 @@
 #include "Math/Quaternion.h"
 #include "PhysxManagerImplementation.h"
-#include <vector>
 #include <array>
+#include "Utils/BinFileReader.h"
+#include "Utils/CheckedRelease.h"
 
 /* Otro aspecto destacable es que estas librerías llevan el sufijo “ DEBUG ”. Esto se tiene que
 corregir en la versión final ya que estas son más lentas que las librerías “release”(sin sufijo)
@@ -27,14 +28,9 @@ de PhysX al llevar más comprobaciones de errores.Hay además otro tipo de librerí
 #pragma comment(lib, "PhysX3Cooking_x86.lib")
 #endif
 
-#if USE_PHYSX_DEBUG
-#define					PVD_HOST			"127.0.0.1"
-#endif
 
-#ifdef CHECKED_RELEASE
-#undef CHECKED_RELEASE
-#endif
-#define CHECKED_RELEASE(x) if(x!=nullptr) {x->release(); x=nullptr;}
+#define HEADER 65109
+#define FOOTER 22014
 
 CPhysXManager::CPhysXManager():
     m_Foundation(nullptr),
@@ -49,17 +45,17 @@ CPhysXManager::CPhysXManager():
 
 CPhysXManager::~CPhysXManager()
 {
-    CHECKED_RELEASE(m_ControllerManager);
-    CHECKED_RELEASE(m_Scene);
-    CHECKED_RELEASE(m_Dispatcher);
+    __H_CHECKED_RELEASE__(m_ControllerManager);
+    __H_CHECKED_RELEASE__(m_Scene);
+    __H_CHECKED_RELEASE__(m_Dispatcher);
     physx::PxProfileZoneManager* profileZoneManager = m_PhysX->getProfileZoneManager();
 #	if USE_PHYSX_DEBUG
-    CHECKED_RELEASE(m_DebugConnection);
+    __H_CHECKED_RELEASE__(m_DebugConnection);
 #	endif
-    CHECKED_RELEASE(m_Cooking);
-    CHECKED_RELEASE(m_PhysX);
-    CHECKED_RELEASE(profileZoneManager);
-    CHECKED_RELEASE(m_Foundation);
+    __H_CHECKED_RELEASE__(m_Cooking);
+    __H_CHECKED_RELEASE__(m_PhysX);
+    __H_CHECKED_RELEASE__(profileZoneManager);
+    __H_CHECKED_RELEASE__(m_Foundation);
 
     for (auto it = m_CharacterControllers.begin(); it != m_CharacterControllers.end(); ++it)
     {
@@ -167,34 +163,117 @@ void CPhysXManager::CreateStaticSphere(const std::string& actorName, std::string
 }
 
 void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
-                                      const Vect3f position, std::vector<PxVec3> vertices)
+                                      const Vect3f position, std::string aFileName)
 {
-    const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
-    size_t index = GetActorSize(actorName);
 
-    physx::PxConvexMeshDesc convexDesc;
-    convexDesc.points.count = vertices.size();
-    convexDesc.points.stride = sizeof(Vect3f);
-    convexDesc.points.data = &vertices[0];
-    convexDesc.flags = physx::PxConvexFlag::eCOMPUTE_CONVEX;
+    unsigned short vertexNum = 0;
+    void* vertexData = nullptr;
+    unsigned short indexNum = 0;
+    void* indexData = nullptr;
 
-    physx::PxDefaultMemoryOutputStream buf;
-    physx::PxConvexMeshCookingResult::Enum result;
-    bool success = m_Cooking->cookConvexMesh(convexDesc, buf, &result);
-    assert(success);
-    physx::PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
-    physx::PxConvexMesh* convexMesh = m_PhysX->createConvexMesh(input);
+    if (LoadMeshFile(aFileName, &vertexNum, &vertexData, &indexNum, &indexData))
+    {
+        physx::PxTriangleMeshDesc meshDesc;
+        meshDesc.points.count = vertexNum;
+        meshDesc.points.stride = sizeof(physx::PxVec3);
+        meshDesc.points.data = vertexData;
 
-    physx::PxShape* shape = m_PhysX->createShape(physx::PxConvexMeshGeometry(convexMesh), *l_Material);
-    physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+        meshDesc.triangles.count = indexNum;
+        meshDesc.triangles.stride = 3 * sizeof(physx::PxU16);
+        meshDesc.triangles.data = indexData;
+        meshDesc.flags = physx::PxMeshFlag::e16_BIT_INDICES;
 
-    body->attachShape(*shape);
-    body->userData = (void*)index;
-    m_Scene->addActor(*body);
 
-    AddActor(actorName, index, body, orientation, position);
+        physx::PxDefaultMemoryOutputStream buf;
+        m_Cooking->cookTriangleMesh(meshDesc, buf);
 
-    shape->release();
+        physx::PxDefaultMemoryInputData input(buf.getData(), buf.getSize());
+        physx::PxTriangleMesh* triangleMesh = m_PhysX->createTriangleMesh(input);
+        physx::PxMaterial* l_Material = m_Materials[aMaterialName];
+
+        physx::PxShape* shape = m_PhysX->createShape(physx::PxTriangleMeshGeometry(triangleMesh), *l_Material);
+        physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+
+        body->attachShape(*shape);
+        m_Scene->addActor(*body);
+
+        size_t index = GetActorSize(actorName);
+        AddActor(actorName, index, body, orientation, position);
+
+        shape->release();
+    }
+}
+
+bool CPhysXManager::LoadMeshFile(std::string aFilename, unsigned short* vertexNum, void** vertexData, unsigned short* indexNum, void** indexData)
+{
+    base::utils::CBinFileReader MeshBin(aFilename);
+
+    if (MeshBin.Open())
+    {
+        if (MeshBin.Read<unsigned short>() == HEADER)
+        {
+            //Lee el nmero de vertices para crear la geometra
+            *vertexNum = MeshBin.Read<unsigned short>();
+            //Lee los vertices segun el flag
+            size_t lNumBytesVertices = *vertexNum * (sizeof(float) * 3);
+            *vertexData = MeshBin.ReadRaw(lNumBytesVertices);
+
+            //Lee el nmero de indices para crear la geometra
+            *indexNum = MeshBin.Read<unsigned short>();
+            //Lee los vertices segun el tipo de dato. Coloco unsigned short de momento.
+            size_t lNumBytesIndices = *indexNum * sizeof(unsigned short);
+            *indexData = MeshBin.ReadRaw(lNumBytesIndices);
+
+            int val = MeshBin.Read<unsigned short>();
+            if (val == FOOTER)
+            {
+                //MeshBin.Close();
+                //loaded = true;
+            }
+            else
+            {
+                //TODO ERROR DE LECTURA DE MALLA EN ARCHIVO AFileName. Detener el programa
+                return false;
+            }
+            MeshBin.Close();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    return false;
+    /*
+    std::fstream l_File(aFilename, std::ios::binary | std::ios::in);
+    if (!l_File.is_open())
+    {
+        return false;
+    }
+    else
+    {
+    	        unsigned short l_BufferUnsignedShort;
+        l_File.read((char*)&l_BufferUnsignedShort, sizeof(unsigned short));
+        if (l_BufferUnsignedShort != HEADER)
+        {
+            return false;
+        }
+
+
+        l_File.read((char*)Size_, sizeof(physx::PxU32));
+
+        *Data_ = (physx::PxU8*)malloc(sizeof(physx::PxU8)*(*Size_));
+        l_File.read((char*)*Data_, *Size_);
+
+        l_File.read((char*)&l_BufferUnsignedShort, sizeof(unsigned short));
+        if (l_BufferUnsignedShort != FOOTER)
+        {
+            return false;
+        }
+    }
+    return true;
+    */
 }
 
 void CPhysXManager::CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
@@ -523,43 +602,3 @@ void CPhysXManager::DeleteActor(std::string actorName, size_t index)
     m_Actors[index]->userData = (void*)index;
 }
 
-
-
-
-/* OLD
-void CPhysXManager::CreateDynamicBox(std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, size_t index, physx::PxReal density)
-{
-	    std::string actorName = "Prueba";
-
-	assert(m_ActorIndexs.find(actorName) == m_ActorIndexs.end()); // duplicated key!
-
-	assert(m_Actors.size() == m_ActorNames.size()); // AOS sync fail
-	assert(m_Actors.size() == m_ActorPositions.size()); // AOS sync fail
-	assert(m_Actors.size() == m_ActorOrientations.size()); // AOS sync fail
-	assert(m_Actors.size() == m_ActorIndexs.size()); // AOS sync fail*/
-/*
-const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
-
-physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
-//physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
-//body->attachShape(*shape);
-//index = m_Actors.size();
-
-body->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
-/*body->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
-body->setAngularVelocity(PxVec3(0.f, 0.f, 5.f));
-body->setAngularDamping(0.f);
-body->userData = (void*)index;
-physx::PxRigidBodyExt::updateMassAndInertia(*body, density);
-
-m_Scene->addActor(*body);
-
-//shape->release();
-
-/* m_ActorIndexs[actorName] = index;
-m_ActorNames.push_back(actorName);
-m_ActorPositions.push_back(position);
-m_ActorOrientations.push_back(orientation);
-m_Actors.push_back(body);*/
-
-//}

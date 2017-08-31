@@ -21,11 +21,12 @@ public:
     {
         RGBA32_FLOAT = 2,
         RGBA8_UNORM = 28,
-        R32_FLOAT = 41
+        R32_FLOAT = 41,
+        RGBA16_FLOAT = 10
     };
 
     CDynamicTexture(const CXMLElement *TreeNode);
-    CDynamicTexture(std::string aName, Vect2u aSize);
+    CDynamicTexture(std::string aName, Vect2u aSize, std::string aFormat, bool CreateDepthStencilBuffer);
     virtual ~CDynamicTexture();
 
     GET_SET_PTR(ID3D11RenderTargetView, RenderTargetView);
@@ -49,6 +50,7 @@ Begin_Enum_String(CDynamicTexture::TFormatType)
     Enum_String_Id(CDynamicTexture::R32_FLOAT, "R32_FLOAT");
     Enum_String_Id(CDynamicTexture::RGBA32_FLOAT, "RGBA32_FLOAT");
     Enum_String_Id(CDynamicTexture::RGBA8_UNORM, "RGBA8_UNORM");
+    Enum_String_Id(CDynamicTexture::RGBA16_FLOAT, "RGBA16_FLOAT");
 }
 End_Enum_String;
 

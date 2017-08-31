@@ -7,6 +7,8 @@
 #include "Graphics\Mesh\TemplatedGeometry.h"
 #include "Graphics\Mesh\VertexBuffer.h"
 #include "Graphics\Buffers\ConstantBufferManager.h"
+#include "Graphics/Camera/CameraManager.h"
+#include "Graphics/Camera/CameraController.h"
 
 CParticleSystemInstance::CParticleSystemInstance()
 {
@@ -210,13 +212,12 @@ bool CParticleSystemInstance::Update(float ElapsedTime)
 
 float CParticleSystemInstance::GetDistanceToCamera(Vect3f particlePosition)
 {
-    Vect3f l_CameraDirection = CEngine::GetInstance().GetCameraController().getFront();
+    Vect3f l_CameraDirection = CEngine::GetInstance().GetCameraManager().GetCurrentCamera().GetFront();
     Vect3f a = (particlePosition*l_CameraDirection);
-    Vect3f b = (CEngine::GetInstance().GetCameraController().getPosition()*l_CameraDirection);
+    Vect3f b = (CEngine::GetInstance().GetCameraManager().GetCurrentCamera().GetPosition()*l_CameraDirection);
 
     return a.Distance(b);
 }
-
 
 void CParticleSystemInstance::orderParticles(ParticleData arr[], int length)
 {
@@ -235,7 +236,6 @@ void CParticleSystemInstance::orderParticles(ParticleData arr[], int length)
         }
     }
 }
-
 
 bool CParticleSystemInstance::Render(CRenderManager& lRM)
 {
@@ -276,15 +276,3 @@ bool CParticleSystemInstance::Render(CRenderManager& lRM)
 
     return true;
 }
-
-/*void CParticleSystemInstance::DrawImgui()
-{
-	if (ImGui::CollapsingHeader(m_Name.c_str()))
-	{
-		ImGui::SliderFloat("Next Particle Emission", (float*)&m_NextParticleEmission, 0.25f, 10.0f);
-		ImGui::Checkbox("Awake", &m_Awake);
-		ImGui::SliderFloat("Awake Timer", (float*)&m_AwakeTimer, 0.1f, 10.0f);
-		ImGui::SliderFloat3("Emission Box Size", (float*)&m_EmissionBoxHalfSize, 0.1f, 10.0f);
-		m_Type->DrawImgui();
-	}
-}*/

@@ -1,5 +1,5 @@
 //Globals.fxh
-#define MAXBONES 40
+#define MAXBONES 80
 #define MAX_LIGHTS_BY_SHADER 4
 #define MAX_OBJECT_RAW_PARAMETER 16
 
@@ -59,7 +59,6 @@ cbuffer LightsConstantBuffer : register (b4)
     float4x4 m_LightProjection[MAX_LIGHTS_BY_SHADER];
 }
 
-
 static float m_LightEnabledArray[4]=(float[4])m_LightEnabled;
 static float m_LightTypeArray[4]=(float[4])m_LightType;
 static float m_LightAngleArray[4]=(float[4])m_LightAngle;
@@ -74,6 +73,11 @@ static float m_UseShadowMapArray[4]=(float[4])m_UseShadowMap;
 static float m_UseShadowMaskArray[4]=(float[4])m_UseShadowMask;
 static float m_ShadowMapBiasArray[4]=(float[4])m_ShadowMapBias;
 static float m_ShadowMapStrengthArray[4]=(float[4])m_ShadowMapStrength;
+
+static float3 m_Color = m_RawData[0].xyz;
+static float m_Metalness = m_RawData[1].x;
+static float m_Roughness = m_RawData[2].x;
+static float m_Occlusion = m_RawData[3].x;
 
 static float m_RawDataValues[64]=((float[64])m_RawData);
 

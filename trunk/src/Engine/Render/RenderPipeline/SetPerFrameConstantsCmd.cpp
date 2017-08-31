@@ -5,6 +5,9 @@
 #include "Graphics/Lights/lightManager.h"
 #include <ctime>
 
+#include "Graphics/Camera/CameraManager.h"
+#include "Graphics/Camera/CameraController.h"
+
 CSetPerFrameConstantsCmd::CSetPerFrameConstantsCmd() {}
 CSetPerFrameConstantsCmd::~CSetPerFrameConstantsCmd() {}
 
@@ -24,7 +27,9 @@ void CSetPerFrameConstantsCmd::Execute(CRenderManager& lRM)
 void CSetPerFrameConstantsCmd::UpdateConstants()
 {
     CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
-    CCameraController& lCC = CEngine::GetInstance().GetCameraController();
+    CCameraController& lCC = CEngine::GetInstance().GetCameraManager().GetCurrentCamera();
+
+    CEngine::GetInstance().GetLightManager().SetLightsConstants();
 
     if (CEngine::GetInstance().ExistConstantBufferManager())
     {
@@ -34,15 +39,15 @@ void CSetPerFrameConstantsCmd::UpdateConstants()
         lConstanBufferManager.mFrameDesc.m_View = lRM.GetViewMatrix();
         lConstanBufferManager.mFrameDesc.m_Projection = lRM.GetProjectionMatrix();
         lConstanBufferManager.mFrameDesc.m_ViewProjection = lRM.GetViewProjectionMatrix();
-        lConstanBufferManager.mFrameDesc.m_CameraPosition = lCC.getPosition();
-        lConstanBufferManager.mFrameDesc.m_CameraFrontVector = lCC.getFront();
-        lConstanBufferManager.mFrameDesc.m_CameraUpVector = lCC.getUp();
+        lConstanBufferManager.mFrameDesc.m_CameraPosition = lCC.GetPosition();
+        lConstanBufferManager.mFrameDesc.m_CameraFrontVector = lCC.GetFront();
+        lConstanBufferManager.mFrameDesc.m_CameraUpVector = lCC.GetUp();
         lConstanBufferManager.mFrameDesc.m_InverseView = lConstanBufferManager.mFrameDesc.m_View.GetInverted();
         lConstanBufferManager.mFrameDesc.m_InverseProjection = lConstanBufferManager.mFrameDesc.m_Projection.GetInverted();
-        lConstanBufferManager.mFrameDesc.m_CameraInfo = lCC.getCameraInfo();
+        lConstanBufferManager.mFrameDesc.m_CameraInfo = lCC.GetCameraInfo();
 
         lConstanBufferManager.mFrameDesc.m_TimeSeconds.x = std::clock();
-        lConstanBufferManager.mFrameDesc.m_CameraPositionInScreen = lCC.GetPositionInScreenCoordinates(lCC.getPosition());
+        lConstanBufferManager.mFrameDesc.m_CameraPositionInScreen = lCC.GetPositionInScreenCoordinates(lCC.GetPosition());
 
         lConstanBufferManager.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Frame);
     }

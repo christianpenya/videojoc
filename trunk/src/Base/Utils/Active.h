@@ -12,9 +12,9 @@ public:
     virtual ~CActive();
 
     GET_SET_REF(bool, Active);
-
-protected:
     bool m_Active;
+protected:
+
 };
 
 #endif // __H_ACTIVE__

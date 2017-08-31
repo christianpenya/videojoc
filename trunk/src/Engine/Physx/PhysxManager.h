@@ -103,7 +103,7 @@ public:
     //STATIC
     void CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ);
     void CreateStaticSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius);
-    void CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices);
+    void CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::string aFileName);
     void CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices);
 
     //DYNAMIC
@@ -123,6 +123,8 @@ public:
 
     Vect3f GetActorPosition(const std::string& actorName) const;
     Quatf GetActorOrientation(const std::string& actorName) const;
+
+    bool LoadMeshFile(std::string _FileName, unsigned short* vertexNum, void** vertexData, unsigned short* indexNum, void** indexData);
 };
 
 #endif //_ENGINE_RENDERMANAGER_CPB_2016110320428_H

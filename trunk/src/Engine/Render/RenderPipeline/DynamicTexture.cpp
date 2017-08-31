@@ -1,8 +1,9 @@
 #include "DynamicTexture.h"
-#include "XML\XML.h"
-#include "Utils\Logger.h"
-#include "Engine\Engine.h"
-#include "Render\RenderManager.h"
+#include "XML/XML.h"
+#include "Utils/Logger.h"
+#include "Engine/Engine.h"
+#include "Render/RenderManager.h"
+#include "Utils/Logger.h"
 
 CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     : CTexture(TreeNode->GetAttribute<std::string>("name", ""))
@@ -28,16 +29,16 @@ CDynamicTexture::CDynamicTexture(const CXMLElement *TreeNode)
     Init();
 }
 
-CDynamicTexture::CDynamicTexture(std::string aName, Vect2u aSize)
+CDynamicTexture::CDynamicTexture(std::string aName, Vect2u aSize, std::string aFormat, bool CreateDepthStencilBuffer)
     : CTexture(aName)
     , m_pRenderTargetTexture(nullptr)
     , m_pRenderTargetView(nullptr)
     , m_pDepthStencilBuffer(nullptr)
     , m_pDepthStencilView(nullptr)
-    , m_CreateDepthStencilBuffer(false)
+    , m_CreateDepthStencilBuffer(CreateDepthStencilBuffer)
 {
 
-    if (!EnumString<TFormatType>::ToEnum(m_FormatType, "RGBA8_UNORM"))
+    if (!EnumString<TFormatType>::ToEnum(m_FormatType, aFormat))
         LOG_ERROR_APPLICATION("Invalid format type for dynamic texture");
 
     m_Size = aSize;
@@ -76,6 +77,8 @@ void CDynamicTexture::Init()
     {
         LOG_ERROR_APPLICATION("Error in dynamic texture");
     }
+
+
     assert(!FAILED(l_HR));
 
     D3D11_RENDER_TARGET_VIEW_DESC l_RenderTargetViewDescription;
@@ -100,8 +103,8 @@ void CDynamicTexture::Init()
         D3D11_TEXTURE2D_DESC l_DepthBufferDescription;
         ZeroMemory(&l_DepthBufferDescription, sizeof(D3D11_TEXTURE2D_DESC));
 
-        l_textureDescription.Width = m_Size.x;
-        l_textureDescription.Height = m_Size.y;
+        l_DepthBufferDescription.Width = m_Size.x;
+        l_DepthBufferDescription.Height = m_Size.y;
         l_DepthBufferDescription.MipLevels = 1;
         l_DepthBufferDescription.ArraySize = 1;
         l_DepthBufferDescription.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;

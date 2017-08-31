@@ -6,8 +6,8 @@
 
 CSpotLight::CSpotLight(CXMLElement* aElement)
     : CLight(aElement)
-    , m_Angle(aElement->GetAttribute<float>("angle",45.0f))
-    , m_FallOff(aElement->GetAttribute<float>("fall_off",45.0f))
+    , m_Angle(mathUtils::Deg2Rad(aElement->GetAttribute<float>("angle", 45.0f)))
+    , m_FallOff(mathUtils::Deg2Rad(aElement->GetAttribute<float>("fall_off", 45.0f)))
 {
     m_LightType = CLight::eSpot;
 }
@@ -20,7 +20,9 @@ void CSpotLight::SetShadowMap(CRenderManager &RM)
         return;
 
     m_ViewShadowMap.SetIdentity();
-    m_ViewShadowMap.SetFromLookAt(m_Position, m_Position + m_PrevPos, v3fY);
+    GetForward();
+
+    m_ViewShadowMap.SetFromLookAt(m_Position, m_Position + GetForward(), v3fY);
     unsigned int l_ShadowMapWidth = m_pShadowMap->GetSize().x;
     unsigned int l_ShadowMapHeight = m_pShadowMap->GetSize().y;
     m_ProjectionShadowMap.SetIdentity();
@@ -53,5 +55,12 @@ void CSpotLight::DrawImgui()
 {
     ImGui::SliderFloat("Fall Off Angle",&m_FallOff, 0.0f, 360.0f);
     ImGui::SliderFloat("Angle", &m_Angle, 0.0f, 360.0f);
+}
+
+void CSpotLight::Initialize(CXMLElement* aElement)
+{
+    m_Angle = mathUtils::Deg2Rad(aElement->GetAttribute<float>("angle", 45.0f));
+    m_FallOff = mathUtils::Deg2Rad(aElement->GetAttribute<float>("fall_off", 45.0f));
+    CLight::Initialize(aElement);
 }
 

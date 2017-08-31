@@ -55,17 +55,17 @@ public:
 
     void Remove(const std::string &aName)
     {
-        CMapResouceValue l_ResourceValue = m_ResourcesMap[aName];
+        CMapResourceValue l_ResourceValue = m_ResourcesMap[aName];
         size_t index = l_ResourceValue.m_Id;
         CheckedDelete(m_ResourcesVector[index]);
-        CheckedDelete(m_ResourcesMap[aName]);
+        //CheckedDelete(m_ResourcesMap[aName]);
         m_ResourcesMap.erase(aName);
         m_ResourcesVector.erase(m_ResourcesVector.begin() + index);
         for (TMapResources::iterator lItb = m_ResourcesMap.begin(), lIte = m_ResourcesMap.end(); lItb != lIte; ++lItb)
         {
-            if (lItb->second->m_Id > index)
+            if (lItb->second.m_Id > index)
             {
-                lItb->second->m_Id--;
+                lItb->second.m_Id--;
             }
         }
     }

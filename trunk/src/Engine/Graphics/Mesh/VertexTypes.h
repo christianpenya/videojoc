@@ -176,6 +176,19 @@ struct ParticleVertex
     END_INPUT_LAYOUT
 };
 
+struct SpriteVertex
+{
+    POSITION;
+    UV;
+    GET_VERTEX_FLAGS(ePosition | eUV );
+    BEGIN_INPUT_LAYOUT
+    {
+        LAYOUT_POSITION(0),
+        LAYOUT_UV(12),
+    }
+    END_INPUT_LAYOUT
+};
+
 
 
 uint32 GetVertexSize(uint32 aVertexFlags);

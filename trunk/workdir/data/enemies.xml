@@ -1,0 +1,16 @@
+<enemies>
+	<enemy type="dron" name="DronReclusion1" mesh="data/meshes/carcel/dron.mesh" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1.8" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="1.0" investigatingTolerance="1.0" navmesh="navMeshScene01">
+		<transform position="1.0 0.0 1.0" forward="0.0 0.0 -1.0" /> 
+		<point name="PatrolPoint"/>
+		<point name="PatrolPoint2"/>
+		<point name="PatrolPoint3"/>	
+	</enemy>	
+	
+	<enemy type="dron" name="DronReclusion2" mesh="data/meshes/carcel/dron.mesh" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1.8" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.8" speedChasing="1.0" investigatingTolerance="1.0" navmesh="navMeshScene01">
+		<transform position="-3.0 0.0 0.0" forward="0.0 0.0 -1.0" /> 
+		<point name="PatrolPoint4"/>
+		<point name="PatrolPoint5"/>
+		<point name="PatrolPoint6"/>	
+	</enemy>	
+	
+</enemies>

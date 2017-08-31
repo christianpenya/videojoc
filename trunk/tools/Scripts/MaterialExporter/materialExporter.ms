@@ -12,12 +12,12 @@ function preProcess = (
 		)
 		if classOf iMaterial == StandardMaterial then	(	
 			appendIfUnique mArrayMaterial iMaterial
-		)else if classOf iMaterial == Multimaterial then	(
+		)else if classOf iMaterial == Multimaterial then	
+		(
 			local lSubMaterialsCount = iMaterial.numsubs			
 			for iSubMaterial =  1 to lSubMaterialsCount do(
 				local lSubMaterial = iMaterial[iSubMaterial]
 				appendIfUnique mArrayMaterial lSubMaterial
-
 			)
 		)
 	)
@@ -191,18 +191,13 @@ function parse outPath =
 	
 	for object in mArrayMaterialStruct do
 	(
+		-- tag pare: material
 		local matNode = XmlNode tag:"material"
 		rootNode.addChild matNode
 		matNode.AddAttribute "name" object.m_name
 		matNode.AddAttribute "vertex_type" object.m_vertexType
 		
-		local colorNode = XmlNode tag:"parameter"
-		matNode.addChild colorNode
-		colorNode.addAttribute "type" "color"
-		colorNode.addAttribute "name" "diffuse_color"
-		local strColor = colorToString(object.m_diffuseColor)
-		colorNode.addAttribute "value" strColor
-		
+		-- textura de difus
 		if object.m_diffuseEnabled == true then
 		(
 			local textNode = XmlNode tag:"texture"
@@ -210,33 +205,72 @@ function parse outPath =
 			textNode.addAttribute "type" "diffuse"			
 			local filename = copyTexture object.m_diffuseBitmap outPath
 			textNode.addAttribute "filename" (dataStr + filename)
-			
+		)
+		
+		-- color difus del material
+		local colorNode = XmlNode tag:"parameter"
+		matNode.addChild colorNode
+		colorNode.addAttribute "type" "color"
+		colorNode.addAttribute "name" "diffuse_color"
+		local strColor = colorToString(object.m_diffuseColor)
+		colorNode.addAttribute "value" strColor
+		
+		--metalness
+		local paramNode = XmlNode tag:"parameter"
+		matNode.addChild paramNode
+		paramNode.addAttribute "type" "float"
+		paramNode.addAttribute "name" "metalness"
+		paramNode.addAttribute "value" 1.0		
+		
+		--roughness
+		local paramNode = XmlNode tag:"parameter"
+		matNode.addChild paramNode
+		paramNode.addAttribute "type" "float"
+		paramNode.addAttribute "name" "roughness"
+		paramNode.addAttribute "value" 1.0		
+		
+		--occlusion
+		local paramNode = XmlNode tag:"parameter"
+		matNode.addChild paramNode
+		paramNode.addAttribute "type" "float"
+		paramNode.addAttribute "name" "occlusion"
+		paramNode.addAttribute "value" 1.0		
+		
+		/*
+			-- quantitat de difus
 			local paramNode = XmlNode tag:"parameter"
 			matNode.addChild paramNode
 			paramNode.addAttribute "type" "float"
 			paramNode.addAttribute "name" "diffuse"
 			paramNode.addAttribute "value" object.m_diffuseAmount			
-		)
+		
+		
+		
 		if object.m_bumpEnabled == true then(
+			-- bump
 			local textNode = XmlNode tag:"texture"
 			matNode.addChild textNode
 			textNode.addAttribute "type" "bump"
 			local filename = copyTexture object.m_bumpBitmap outPath
 			textNode.addAttribute "filename" (dataStr + filename)
 			
+			-- quantitat de bump
 			local paramNode = XmlNode tag:"parameter"
 			matNode.addChild paramNode
 			paramNode.addAttribute "type" "float"
 			paramNode.addAttribute "name" "bump"
 			paramNode.addAttribute "value" object.m_bumpAmount
 		)
+		
 		if object.m_selfIllumEnabled == true then(
+			-- lightmap
 			local textNode = XmlNode tag:"texture"
 			matNode.addChild textNode
 			textNode.addAttribute "type" "selfIllum"
 			local filename = copyTexture object.m_selfIllumBitmap outPath
 			textNode.addAttribute "filename" (dataStr + filename)
 			
+			-- cuantitat de lightmap
 			local paramNode = XmlNode tag:"parameter"
 			matNode.addChild paramNode
 			paramNode.addAttribute "type" "float"
@@ -246,18 +280,21 @@ function parse outPath =
 		)
 		
 		if object.m_ambientEnabled == true then(
+			-- textura d'ambient
 			local textNode = XmlNode tag:"texture"
 			matNode.addChild textNode
 			textNode.addAttribute "type" "ambient"
 			local filename = copyTexture object.m_ambientBitmap outPath
 			textNode.addAttribute "filename" (dataStr + filename)
 
+			-- color
 			local colorNode = XmlNode tag:"color"
 			matNode.addChild colorNode
 			colorNode.addAttribute "type" "ambient"
 			local strColor = colorToString(object.m_ambientColor)
 			colorNode.addAttribute "value" strColor
 			
+			-- quantitat
 			local paramNode = XmlNode tag:"parameter"
 			matNode.addChild paramNode
 			paramNode.addAttribute "type" "float"
@@ -266,12 +303,15 @@ function parse outPath =
 		)
 
 		if object.m_specularLevelEnabled == true then(
+			
+			-- textura nivell d'especular
 			local textNode = XmlNode tag:"texture"
 			matNode.addChild textNode
 			textNode.addAttribute "type" "specularLevel"
 			local filename = copyTexture object.m_specularLevelBitmap outPath
 			textNode.addAttribute "filename" (dataStr + filename)
 			
+			-- quantitat
 			local paramNode = XmlNode tag:"parameter"
 			matNode.addChild paramNode
 			paramNode.addAttribute "type" "float"
@@ -280,6 +320,7 @@ function parse outPath =
 		)
 
 		if object.m_specularEnabled == true then(
+			-- textura d'especular
 			local textNode = XmlNode tag:"texture"
 			matNode.addChild textNode
 			textNode.addAttribute "type" "specular"
@@ -300,6 +341,7 @@ function parse outPath =
 		)
 
 		if object.m_glossinessEnabled == true then(
+			-- de brillo
 			local textNode = XmlNode tag:"texture"
 			matNode.addChild textNode
 			textNode.addAttribute "type" "glossiness"
@@ -312,6 +354,7 @@ function parse outPath =
 			paramNode.addAttribute "name" "glossiness"
 			paramNode.addAttribute "value" object.m_glossinessAmount
 		)	
+		*/
 	)
 )
 

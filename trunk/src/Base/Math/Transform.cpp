@@ -46,9 +46,9 @@ CTransform::CTransform(const CXMLElement* aTreeNode)
     : m_Position(aTreeNode->GetAttribute<Vect3f>("position", Vect3f(0.0f, 0.0f, 0.0f)))
     , m_PrevPos(m_Position)
     , m_Scale(aTreeNode->GetAttribute<Vect3f>("scale", Vect3f(1.0f, 1.0f, 1.0f)))
-    , m_Yaw(aTreeNode->GetAttribute<float>("yaw", 0.0f))
-    , m_Pitch(aTreeNode->GetAttribute<float>("pitch", 0.0f))
-    , m_Roll(aTreeNode->GetAttribute<float>("roll", 0.0f))
+    , m_Yaw(mathUtils::Deg2Rad(aTreeNode->GetAttribute<float>("yaw", 0.0f)))
+    , m_Pitch(mathUtils::Deg2Rad(aTreeNode->GetAttribute<float>("pitch", 0.0f)))
+    , m_Roll(mathUtils::Deg2Rad(aTreeNode->GetAttribute<float>("roll", 0.0f)))
 {
 }
 
@@ -115,7 +115,8 @@ Vect3f CTransform::GetUp() const
 
 void CTransform::SetForward(const Vect3f& aForward)
 {
-    SetYaw(mathUtils::ATan2(aForward.z, aForward.x));
+    SetYaw(mathUtils::ATan2(aForward.x, aForward.z));
     SetPitch(mathUtils::ATan2(aForward.y, mathUtils::Sqrt(aForward.z * aForward.z + aForward.x * aForward.x)));
+    SetPitch(0.0f);
     SetRoll(0.0f);
 }

@@ -5,11 +5,7 @@
 
 #include "Render/RenderManager.h"
 #include "Utils/Singleton.h"
-#include "Graphics/Camera/SphericalCameraController.h"
-#include "Graphics/Camera/FpsCameraController.h"
-#include "Graphics/Camera/TpsCameraController.h"
-#include "Graphics/Camera/FreeCameraController.h"
-#include "Input/CharacterController.h"
+
 #include <chrono>
 #include "Imgui/imgui_impl_dx11.h"
 #include "Utils/StringUtils.h"
@@ -33,6 +29,10 @@ class CAnimatedModelManager;
 class CScriptManager;
 class CPhysXManager;
 class CParticleManager;
+class ISoundManager;
+class CGUIManager;
+class CCameraManager;
+class CCharacterController;
 class CNavMeshManager;
 class CEnemiesManager;
 
@@ -58,12 +58,15 @@ public:
     void Render();
     void Init(HWND hWnd);
     void LoadFiles();
+
     std::string m_FileDefaultMaterial;
+    std::string m_SoundFilesPath;
+    std::string m_SpeakersFile;
+    std::string m_BanksFile;
 
     BUILD_GET_SET_ENGINE_MANAGER(MaterialManager)
     BUILD_GET_SET_ENGINE_MANAGER(TextureManager)
     BUILD_GET_SET_ENGINE_MANAGER(RenderManager)
-    BUILD_GET_SET_ENGINE_MANAGER(CameraController)
     BUILD_GET_SET_ENGINE_MANAGER(SceneManager)
     BUILD_GET_SET_ENGINE_MANAGER(InputManager)
     BUILD_GET_SET_ENGINE_MANAGER(ActionManager)
@@ -81,28 +84,22 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(ParticleManager)
     BUILD_GET_SET_ENGINE_MANAGER(NavMeshManager)
     BUILD_GET_SET_ENGINE_MANAGER(EnemiesManager)
+    BUILD_GET_SET_ENGINE_MANAGER(GUIManager)
+    BUILD_GET_SET_ENGINE_MANAGER(CameraManager)
+
+    ISoundManager* m_SoundManager;
 
     double m_DeltaTime;
     clock_t m_DeltaTimeAcum = 0;
     unsigned int m_Frames;
     double m_FPS;
 
-    CFreeCameraController* m_FreeCam;
-    CFpsCameraController* m_FpsCam;
-    CSphericalCameraController* m_OrbitalCam;
-    int m_CameraSelector;
-    int m_PrevCameraSelector;
-
-    void fpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt);
-    void tpsCameraUpdate(CCameraController& camera, CActionManager* actionManager, Vect3f sphereCenter, float dt);
-    void orbitalCameraUpdate(CCameraController& camera, CActionManager* actionManager, float dt);
-    void sphereUpdate(CRenderManager& renderManager, CActionManager* actionManager, Vect3f front = Vect3f(0, 0, 1), Vect3f up = Vect3f(0, 1, 0));
-    void sphereRender(CRenderManager& renderManager);
-
-    CCharacterController m_CharacterController;
-    void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
+    CCharacterController* m_CharacterController;
+    // void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
+    void DrawImgui();
 };
 
 #undef BUILD_GET_SET_ENGINE_MANAGER
 
 #endif //_ENGINE_ENGINE_CPB_20161127_H
+

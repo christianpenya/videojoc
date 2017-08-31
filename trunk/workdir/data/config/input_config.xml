@@ -36,13 +36,20 @@
 		<trigger type="GAMEPAD_BUTTON" button="B" value="1"/>
 		<trigger type="GAMEPAD_BUTTON" button="X" value="-1"/>
 		<trigger type="GAMEPAD_BUTTON" button="Y" value="1"/>
-
+	</action>
+	<action name = "block">
+		<trigger type="KEYBOARD" button_type="BecomesPressed" key_code="B" value="1"/>
+		<trigger type="KEYBOARD" key_code="VK_SPACE" value="1"/>
 	</action>
 	<action name = "enable_rotation">
 		<trigger type="MOUSE_BUTTON" button="MIDDLE" value="1"/>
 		<trigger type="MOUSE_BUTTON" button="LEFT" value="1"/>
 		<trigger type="MOUSE_BUTTON" button="RIGHT" value="-1"/>
 		<trigger type="GAMEPAD_BUTTON" button="RIGHT_THUMB" value="1"/>
+	</action>
+	<action name = "run">
+		<trigger type="KEYBOARD" key_code="CONTROL" value ="1"/>
+		<trigger type="KEYBOARD" key_code="SHIFT" value ="1"/>
 	</action>
 	
 	<action name = "mouse_right_pressed">

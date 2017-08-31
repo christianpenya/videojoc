@@ -1,14 +1,14 @@
 #include "TpsCameraController.h"
-#include "Input/ActionManager.h"
 #include "Engine/Engine.h"
 
 void CTpsCameraController::Update(float ElapsedTime)
 {
-    CActionManager* actionManager = &CEngine::GetInstance().GetActionManager();
+
+    center = m_player->m_Position+playerHeight;
     yawSpeed = 0.1f * (*actionManager)("pitch")->value;
     pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
 
-    zoomSpeed = (*actionManager)("zoom")->value;
+    zoomSpeed = 0.5f*(*actionManager)("zoom")->value;
 
     yaw += yawSpeed * ElapsedTime;
     pitch += pitchSpeed * ElapsedTime;
@@ -40,7 +40,13 @@ void CTpsCameraController::Update(float ElapsedTime)
     m_Front.y = -sin(-pitch);
     m_Front.z = -cos(yaw) * cos(-pitch);
 
-    // TODO roll
+
 
     m_Position = center - m_Front * zoom;
+}
+
+void CTpsCameraController::Init(CCharacterController* player)
+{
+    m_player = player;
+    actionManager = &CEngine::GetInstance().GetActionManager();
 }

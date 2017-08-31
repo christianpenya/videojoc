@@ -16,7 +16,7 @@ public:
     {
     }
 
-    virtual bool Render(ID3D11DeviceContext*)
+    virtual bool Render(ID3D11DeviceContext*, int num = -1)
     {
         assert(!"This method mustn't be called");
         return false;
