@@ -66,16 +66,13 @@ void CDron::patrol()
 {
     std::cout << " Dron " << GetName() << "patroling." << std::endl;
 
-    if ((m_Destination == Vect3f{ 0.0f, -99.9f, 0.0f }) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_Destination.x,m_Destination.z)<=1.5f))
+    if ((m_Destination == Vect3f{ 0.0f, -99.9f, 0.0f }) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_Destination.x,m_Destination.z)<=1.0f))
         GotoNextPoint();
 
-    m_Movement.Lerp(m_Destination, 0.5f);
-    m_Movement = m_Movement.GetNormalized();
-    this->SetForward(m_Movement);
-
-    m_Movement *= m_speedPatroling;
-    m_Position = m_Position + m_Movement;
-    m_PhysXManager.MoveCharacterController(GetName(), m_Movement, PHYSX_UPDATE_STEP);
+    m_Movement.Lerp(m_Destination, m_speedPatroling);
+    m_Position = m_Movement;
+    this->SetForward(m_Destination - m_Position);
+    m_PhysXManager.MoveCharacterController(GetName(), m_Position, PHYSX_UPDATE_STEP);
     this->SetPosition(m_Position);
 }
 

@@ -90,7 +90,7 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_ScriptManager);
     base::utils::CheckedDelete(m_SoundManager);
     base::utils::CheckedDelete(m_GUIManager);
-    base::utils::CheckedDelete(m_NavMeshManager);
+//    base::utils::CheckedDelete(m_NavMeshManager);
     base::utils::CheckedDelete(m_EnemiesManager);
 
 }
