@@ -124,3 +124,5 @@ bool CLight::GetGenerateShadowMap()
 {
     return m_GenerateShadowMap;
 }
+
+void CLight::Deactivate() {}

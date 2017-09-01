@@ -109,7 +109,7 @@ std::vector<CLayer*> CScene::GetLayers()
     return m_ResourcesVector;
 }
 
-CLayer* CScene::GetLayerByName(std::string aName)
+CLayer* CScene::GetLayer(std::string aName)
 {
     CLayer* lOut = nullptr;
 

@@ -92,9 +92,9 @@ bool CLayer::Load(CXMLElement* aElement)
 bool CLayer::Update(float elapsedTime)
 {
     bool lOk = true;
-    for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode) // #TODO RECORRER VECTOR
+    for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
     {
-        lOk &= iSceneNode->second.m_Value->Update(elapsedTime);
+        lOk &= (*iSceneNode)->Update(elapsedTime);
     }
     return lOk;
 }
@@ -220,4 +220,9 @@ void CLayer::DrawImgui()
         ImGui::PopItemWidth();
         ImGui::EndChild();
     }
+}
+
+CSceneNode* CLayer::GetSceneNode(std::string aName)
+{
+    return  m_ResourcesMap.find(aName)->second.m_Value;
 }

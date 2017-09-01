@@ -33,6 +33,7 @@ class ISoundManager;//class CNavMeshManager;
 class CGUIManager;
 class CCameraManager;
 class CCharacterController;
+class CEventManager;
 
 #define BUILD_GET_SET_ENGINE_MANAGER( Manager ) \
 private: \
@@ -83,6 +84,7 @@ public:
     //  BUILD_GET_SET_ENGINE_MANAGER(NavMeshManager)
     BUILD_GET_SET_ENGINE_MANAGER(GUIManager)
     BUILD_GET_SET_ENGINE_MANAGER(CameraManager)
+    BUILD_GET_SET_ENGINE_MANAGER(EventManager)
 
     ISoundManager* m_SoundManager;
 

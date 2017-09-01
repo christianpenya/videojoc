@@ -18,6 +18,7 @@ public:
     bool Render();
     bool Render(CRenderManager& lRenderManager);
 
+    CSceneNode* GetSceneNode(std::string aName);
     std::vector<CSceneNode*> GetNodes();
     void DrawImgui();
 

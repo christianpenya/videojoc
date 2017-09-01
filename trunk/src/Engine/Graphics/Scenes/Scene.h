@@ -16,7 +16,7 @@ public:
     bool Render();
     bool Render(const std::string& aLayerName);
     std::vector<CLayer*> GetLayers();
-    CLayer* GetLayerByName(std::string);
+    CLayer* GetLayer(std::string);
     void DrawImGui();
 private:
     DISALLOW_COPY_AND_ASSIGN(CScene);

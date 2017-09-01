@@ -153,3 +153,14 @@ void CSceneManager::DrawImgui()
         ImGui::EndChild();
     }
 }
+
+CScene* CSceneManager::GetCurrentScene()
+{
+    for (std::vector<CScene*>::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
+    {
+        if ((*iScene)->GetActive())
+        {
+            return (*iScene);
+        }
+    }
+}

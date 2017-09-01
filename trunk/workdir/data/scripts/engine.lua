@@ -24,6 +24,11 @@ f_CinematicsManager = "data/cinematics.xml";
 f_SoundPath = "data/sound/";
 f_SoundBankFile = "SoundbanksInfo.xml";
 f_SpeakersFile = "speakers.xml";
+f_EventManager = "data/scenes/events.xml";
+
+function getFileEventManager()
+	return f_EventManager
+end
 
 function getFileCinematicManager()
 	return f_CinematicsManager

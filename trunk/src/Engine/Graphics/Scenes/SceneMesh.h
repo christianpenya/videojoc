@@ -4,12 +4,15 @@
 
 #include "SceneNode.h"
 #include "Utils/EnumToString.h"
+#include "Physx/PhysxManager.h"
 
 class CMesh;
 class CRenderManager;
+
 class CSceneMesh : public CSceneNode
 {
 public:
+
     enum ERigidBody
     {
         ePlane = 0,
@@ -20,7 +23,6 @@ public:
         ePlayer,
         eTriggerBox,
         eRigidBodyCount
-
     };
 
     explicit CSceneMesh(CXMLElement* aElement);
@@ -29,12 +31,18 @@ public:
     bool Update(float aDeltaTime);
     virtual bool Render(CRenderManager& aRendermanager);
     void DrawImgui();
+    void Deactivate();
+
 protected:
     CMesh* mMesh;
     CSceneMesh::ERigidBody mRigidBodyEnum;
+
 private:
+    size_t mPhysxIndex;
     Vect3f cubeOffset;
     Vect3f mOriginalUnmodifiedPosition;
+
+    void DeletePhysx();
 };
 
 //--------------------------------------------------------------------------------------------------------
