@@ -14,7 +14,7 @@ CSceneNode::CSceneNode(const CXMLElement* aElement)
     : CTransform((strcmp(aElement->FirstChildElement()->Name(), "transform") == 0) ? aElement->FirstChildElement() : nullptr),
       CName(aElement->GetAttribute<std::string>("name", "")),
       m_ignoreFrustum(false),
-      CActive(aElement->GetAttribute<bool>("active", false)),
+      CActive(aElement->GetAttribute<bool>("active", true)),
       m_Visible(false),
       m_NodeType(ESceneNodeType::eSceneNodeCount)
 {}

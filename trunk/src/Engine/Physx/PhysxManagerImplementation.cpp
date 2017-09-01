@@ -6,6 +6,10 @@
 #include "PxSceneDesc.h"
 #include "extensions/PxDefaultSimulationFilterShader.h"
 #include <characterkinematic/PxControllerManager.h>
+#include "Utils/Logger.h"
+#include "Engine/Engine.h"
+#include "Events/Event.h"
+#include "Events/EventManager.h"
 
 CPhysXManagerImplementation::CPhysXManagerImplementation()
 {
@@ -55,7 +59,6 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
     m_ControllerManager = PxCreateControllerManager(*m_Scene, true);
     m_ControllerManager->setOverlapRecoveryModule(true);
 
-    // TODO recolocar més amunt
 #	if USE_PHYSX_DEBUG
     if (m_DebugConnection != nullptr)
     {
@@ -87,18 +90,26 @@ void CPhysXManagerImplementation::onTrigger(physx::PxTriggerPair* pairs, physx::
         std::string triggerName = m_ActorNames[indexTrigger];
         std::string actorName = m_ActorNames[indexActor];
 
-        printf("Trigger \"%s\" fired with \"%s\"", triggerName.c_str(), actorName.c_str());
+        CEvent* lEvent = CEngine::GetInstance().GetEventManager().GetEvent(triggerName);
+
+        if (lEvent)
+        {
+            lEvent->Start();
+        }
+
+        /*
+
+        LOG_INFO_APPLICATION("Trigger \"%s\" fired with \"%s\"", triggerName.c_str(), actorName.c_str());
 
         if (actorName == "player")
         {
-
-
-            bool hitted = Raycast(m_ActorPositions[indexTrigger], Vect3f(4.0, 0.0, 0.0), 0001,nullptr);//TODO Inicializar RaycastData y pasar-lo como parametro en lugar de nullptr
+            bool hitted = Raycast(m_ActorPositions[indexTrigger], Vect3f(4.0, 0.0, 0.0), 0001, nullptr);//TODO Inicializar RaycastData y pasar-lo como parametro en lugar de nullptr
             if (hitted)
             {
-                printf("Box hitted");
+                //CEngine::GetInstance().GetEventManager()("Box hitted");
             }
         }
+        */
     }
 }
 
