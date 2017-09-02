@@ -66,7 +66,7 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
 
     // default material
     RegisterMaterial("Default", 0.5f, 0.5f, 0.6f);
-    AddCharacterController("player", 1.6f, 0.25f, Vect3f(0, 0, 0), Quatf(0, 0, 0, 1), "Default", 1.f, 0.25f);
+    AddCharacterController("player", 1.8f, 0.3f, Vect3f(0, 0, 0), Quatf(0, 0, 0, 1), "Default", 1.f, 0.25f);
 
     m_LeftoverSeconds = 0.0f;
 }
