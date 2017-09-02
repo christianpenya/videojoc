@@ -17,5 +17,40 @@
 		<point name="PatrolPoint2_DronReclusion2"/>
 	</enemy>	
 
+	<enemy type="dron" name="DroneComedorInicioIzquierda" mesh="data/meshes/reclusion/Dron.mesh" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1.8" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="1.0" investigatingTolerance="1.0" navmesh="navMeshScene01">
+		<transform position="33.29 1.19 24.84" forward="-1.0 0.0 0.0" /> 
+		<point name="PatrolPoint_DroneComedorInicioIzquierda"/>
+		<point name="PatrolPoint2_DroneComedorInicioIzquierda"/>
+		<point name="PatrolPoint3_DroneComedorInicioIzquierda"/>
+		<point name="PatrolPoint4_DroneComedorInicioIzquierda"/>
+	</enemy>	
+
+	<enemy type="dron" name="DroneComedorInicioDerecha" mesh="data/meshes/reclusion/Dron.mesh" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1.8" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="1.0" investigatingTolerance="1.0" navmesh="navMeshScene01">
+		<transform position="31.51 1.19 33.83" forward="-1.0 0.0 0.0" /> 
+		<point name="PatrolPoint_DroneComedorInicioDerecha"/>
+		<point name="PatrolPoint2_DroneComedorInicioDerecha"/>
+		<point name="PatrolPoint3_DroneComedorInicioDerecha"/>
+		<point name="PatrolPoint4_DroneComedorInicioDerecha"/>
+	</enemy>	
+
+	<enemy type="dron" name="DroneComedorMitad" mesh="data/meshes/reclusion/Dron.mesh" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1.8" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="1.0" investigatingTolerance="1.0" navmesh="navMeshScene01">
+		<transform position="35.95 1.19 20.60" forward="-1.0 0.0 0.0" /> 
+		<point name="PatrolPoint_DroneComedorMitad"/>
+		<point name="PatrolPoint2_DroneComedorMitad"/>
+		<point name="PatrolPoint3_DroneComedorMitad"/>
+		<point name="PatrolPoint4_DroneComedorMitad"/>
+	</enemy>	
+
+	<enemy type="dron" name="DroneComedorFinIzquierda" mesh="data/meshes/reclusion/Dron.mesh" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1.8" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="1.0" investigatingTolerance="1.0" navmesh="navMeshScene01">
+		<transform position="44.02 1.19 22.47" forward="-1.0 0.0 0.0" /> 
+		<point name="PatrolPoint_DroneComedorFinIzquierda"/>
+		<point name="PatrolPoint2_DroneComedorFinIzquierda"/>
+	</enemy>	
+	
+	<enemy type="dron" name="DroneComedorFinDerecha" mesh="data/meshes/reclusion/Dron.mesh" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1.8" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="1.0" investigatingTolerance="1.0" navmesh="navMeshScene01">
+		<transform position="39.54 1.19 33.5" forward="-1.0 0.0 0.0" /> 
+		<point name="PatrolPoint_DroneComedorFinDerecha"/>
+		<point name="PatrolPoint2_DroneComedorFinDerecha"/>
+	</enemy>	
 	
 </enemies>
