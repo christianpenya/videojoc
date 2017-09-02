@@ -99,6 +99,7 @@ public:
     {
         std::cout << GetName() << "chase" << std::endl;
     }
+
 };
 
 Begin_Enum_String(CEnemy::EEnemyType)

@@ -276,3 +276,5 @@ bool CParticleSystemInstance::Render(CRenderManager& lRM)
 
     return true;
 }
+
+void CParticleSystemInstance::Deactivate() {}

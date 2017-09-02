@@ -1,5 +1,9 @@
 <materials>
 	
+	<material name="02 - Default" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.8431 0.7686 0.651 1.0" />
+	</material>
+	
 	<material name="Skybox001Material" vertex_type="PositionNormalUV" > 
 		<!-- TODO: Cambiar vertex_type por technique en skybox para no tener que cambiar de pool-->
 		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />

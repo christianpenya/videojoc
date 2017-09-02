@@ -84,4 +84,3 @@ void CChasingState::update(CEnemy& enemy)
 void CEnemy::DrawImgui()
 {
 }
-

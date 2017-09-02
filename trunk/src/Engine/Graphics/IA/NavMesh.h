@@ -86,6 +86,7 @@ public:
     Vect3f GetCenter(Triangle* triangle);
     bool Render(CRenderManager& lRM);
     void DrawImgui();
+    void Deactivate();
 };
 
 

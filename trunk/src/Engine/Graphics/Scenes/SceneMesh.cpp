@@ -5,7 +5,6 @@
 #include "XML\tinyxml2\tinyxml2.h"
 #include "Engine\Engine.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
-#include "Physx/PhysxManager.h"
 #include "Utils\EnumToString.h"
 #include "Utils/Logger.h"
 #include "Math/Quaternion.h"
@@ -59,7 +58,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
 
                 lCenter = m_Position + mMesh->GetBoundingSphere().GetCenter();
                 //CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f);
-                CEngine::GetInstance().GetPhysXManager().CreateStaticBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ);
+                mPhysxIndex = CEngine::GetInstance().GetPhysXManager().CreateStaticBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ);
                 break;
             case eEnemy:
                 lDebug = "Attached physx ENEMY CONTROLLER to " + m_Name;
@@ -99,15 +98,22 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
             case eTriggerBox:
                 lDebug = "Attached physx Trigger Box to " + m_Name;
                 rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
-                CEngine::GetInstance().GetPhysXManager().AddTriggerBox(m_Name, size, size, size, m_Position, rotation);
 
+                sizeX = abs(abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x);
+                sizeY = abs(abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y);
+                sizeZ = abs(abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z);
+                cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
+                lCenter = m_Position + mMesh->GetBoundingSphere().GetCenter();
+
+                CEngine::GetInstance().GetPhysXManager().AddTriggerBox(m_Name, sizeX, sizeY, sizeZ, lCenter, rotation);
                 break;
+
             default:
                 lDebug = "NO physx were added to " + m_Name;
                 break;
             }
-            LOG_INFO_APPLICATION(lDebug.c_str());
 
+            LOG_INFO_APPLICATION(lDebug.c_str());
         }
     }
 }
@@ -128,59 +134,79 @@ bool CSceneMesh::Update(float aDeltaTime)
 {
     bool lOk = true;
 
-    mBS = mMesh->GetBoundingSphere();
-
-    if (mRigidBodyEnum < eRigidBodyCount)
+    if (m_Active)
     {
-        CPhysXManager& lPM = CEngine::GetInstance().GetPhysXManager();
-        Quatf lRotation;
+        mBS = mMesh->GetBoundingSphere();
 
-        switch (mRigidBodyEnum)
+        if (mRigidBodyEnum < eRigidBodyCount)
         {
-        case ePlane:
-            break;
-        case eSphere:
-        case eBox:
+            CPhysXManager& lPM = CEngine::GetInstance().GetPhysXManager();
+            Quatf lRotation;
 
-            lRotation = lPM.GetActorOrientation(m_Name);
-            m_Position = lPM.GetActorPosition(m_Name) + lRotation.Rotate(cubeOffset);
-            m_Pitch = lRotation.GetRotationMatrix().GetAngleX();
-            m_Yaw = lRotation.GetRotationMatrix().GetAngleY();
-            m_Roll = lRotation.GetRotationMatrix().GetAngleZ();
+            switch (mRigidBodyEnum)
+            {
+            case ePlane:
+                break;
+            case eSphere:
+            case eBox:
 
-            lRotation.GetRotationMatrix().GetYaw();
-            break;
-        case eShape:
-            break;
-        case ePlayer:
-            m_Position = lPM.GetActorPosition(m_Name);
-            break;
-        case eEnemy:
-            m_Position = lPM.GetActorPosition(m_Name);
-            break;
+                lRotation = lPM.GetActorOrientation(m_Name);
+                m_Position = lPM.GetActorPosition(m_Name) + lRotation.Rotate(cubeOffset);
+                m_Pitch = lRotation.GetRotationMatrix().GetAngleX();
+                m_Yaw = lRotation.GetRotationMatrix().GetAngleY();
+                m_Roll = lRotation.GetRotationMatrix().GetAngleZ();
 
-        default:
-            break;
+                lRotation.GetRotationMatrix().GetYaw();
+                break;
+            case eShape:
+                break;
+            case ePlayer:
+                m_Position = lPM.GetActorPosition(m_Name);
+                break;
+	        case eEnemy:
+    	        m_Position = lPM.GetActorPosition(m_Name);
+        	    break;
+            case eTriggerBox:
+                break;
+            default:
+                break;
+            }
         }
     }
 
     return lOk;
 }
 
+void CSceneMesh::DeletePhysx()
+{
+    CEngine::GetInstance().GetPhysXManager().DeleteActor(m_Name, mPhysxIndex);
+}
+
+void CSceneMesh::Deactivate()
+{
+    DeletePhysx();
+    m_Active = false;
+}
+
 bool CSceneMesh::Render(CRenderManager& aRendermanager)
 {
-    bool lOk = CSceneNode::Render(aRendermanager);
+    bool lOk = true;
 
-    if (lOk && mMesh)
+    if (m_Active)
     {
-        CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
-        lCB.mObjDesc.m_World = GetMatrix();
+        lOk = CSceneNode::Render(aRendermanager);
 
-        lCB.BindBuffer(aRendermanager.GetDeviceContext(), CConstantBufferManager::CB_Object);
-        lOk = mMesh->Render(aRendermanager);
+        if (lOk && mMesh)
+        {
+            CConstantBufferManager& lCB = CEngine::GetInstance().GetConstantBufferManager();
+            lCB.mObjDesc.m_World = GetMatrix();
+
+            lCB.BindBuffer(aRendermanager.GetDeviceContext(), CConstantBufferManager::CB_Object);
+            lOk = mMesh->Render(aRendermanager);
+        }
+        else
+            lOk = false;
     }
-    else
-        lOk = false;
 
     return lOk;
 }

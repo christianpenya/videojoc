@@ -28,6 +28,7 @@
 #include "GUI/GUIPosition.h"
 #include "Graphics/Animation/SceneAnimatedModel.h"
 #include "Input/CharacterController.h"
+#include "Events/EventManager.h"
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
@@ -89,8 +90,9 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
     base::utils::CheckedDelete(m_SoundManager);
+    base::utils::CheckedDelete(m_NavMeshManager);
     base::utils::CheckedDelete(m_GUIManager);
-//    base::utils::CheckedDelete(m_NavMeshManager);
+    base::utils::CheckedDelete(m_EventManager);
     base::utils::CheckedDelete(m_EnemiesManager);
 
 }
@@ -163,6 +165,7 @@ void CEngine::LoadFiles()
 
 
 
+
     m_SoundManager = ISoundManager::InstantiateSoundManager();
     m_SoundManager->SetPath(m_SoundFilesPath);
     m_SoundManager->Init();
@@ -177,6 +180,9 @@ void CEngine::LoadFiles()
 
     m_CameraManager = new CCameraManager();
     m_CameraManager->Init(m_CharacterController);
+
+    m_EventManager = new CEventManager();
+    m_EventManager->Load(m_FileEventManager);
 
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
@@ -214,6 +220,7 @@ void CEngine::Init(HWND hWnd)
         m_FileRenderPipeline = call_function<std::string>(mLS, "getRenderPipeline");
         m_FileParticleManager = call_function<std::string>(mLS, "getFileParticleManager");
         m_FileCinematicManager = call_function<std::string>(mLS, "getFileCinematicManager");
+        m_FileEventManager = call_function<std::string>(mLS, "getFileEventManager");
         m_SoundFilesPath = call_function<std::string>(mLS, "getSoundFilesPath");
         m_SpeakersFile = call_function<std::string>(mLS, "getSoundSpeakersFile");
         m_BanksFile = call_function<std::string>(mLS, "getSoundBankFile");
@@ -261,7 +268,7 @@ void CEngine::Update()
     m_CinematicManager->Update(m_DeltaTime);
 
     m_SoundManager->Update(&m_CameraManager->GetCurrentCamera());
-
+    m_EventManager->Update();
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
     /*if (m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))

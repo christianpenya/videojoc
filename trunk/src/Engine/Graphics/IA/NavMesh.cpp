@@ -207,3 +207,7 @@ void CNavMesh::DrawImgui()
 {
 
 }
+
+void CNavMesh::Deactivate()
+{
+}

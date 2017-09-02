@@ -30,9 +30,11 @@ class CScriptManager;
 class CPhysXManager;
 class CParticleManager;
 class ISoundManager;
+class ISoundManager;
 class CGUIManager;
 class CCameraManager;
 class CCharacterController;
+class CEventManager;
 class CNavMeshManager;
 class CEnemiesManager;
 
@@ -86,6 +88,7 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(EnemiesManager)
     BUILD_GET_SET_ENGINE_MANAGER(GUIManager)
     BUILD_GET_SET_ENGINE_MANAGER(CameraManager)
+    BUILD_GET_SET_ENGINE_MANAGER(EventManager)
 
     ISoundManager* m_SoundManager;
 

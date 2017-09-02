@@ -66,6 +66,7 @@ public:
     float m_EmissionVolume, m_EmissionScaler;
     int m_ActiveParticles;
     //void DrawImgui();
+    void Deactivate();
 
     VertexTypes::ParticleVertex m_ParticleRenderableData[s_MaxParticlesPerInstance];
     std::mt19937 m_RandomEngine;

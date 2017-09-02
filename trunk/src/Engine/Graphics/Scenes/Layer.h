@@ -22,6 +22,7 @@ public:
         return m_Name;
     }
 
+    CSceneNode* GetSceneNode(std::string aName);
     std::vector<CSceneNode*> GetNodes();
     void DrawImgui();
 

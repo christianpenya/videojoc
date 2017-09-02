@@ -38,12 +38,14 @@ public:
     GET_SET(ESceneNodeType, NodeType);
 
     virtual void DrawImgui();
+    virtual void Deactivate();
 
 protected:
     bool m_ignoreFrustum;
     bool m_Visible;
     ESceneNodeType m_NodeType;
     CBoundingSphere mBS;
+
 };
 
 #endif //_ENGINE_SCENENODE_20170110_H
