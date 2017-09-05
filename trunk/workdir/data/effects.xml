@@ -20,7 +20,11 @@
 	<shader stage="vertex" name="AnimatedModelForward"/>
 	<shader stage="pixel" name="AnimatedModelForward"/>
   </effect>
-  
+
+	<effect name="PositionTechnique" shader_family="Position">
+   <shader stage="vertex"   name="Position"/>
+   <shader stage="pixel"    name="Position"/>
+  </effect>  
 <!--  
   <effect name="EnvironmentMapTechniqueForward" shader_family="EnvironmentMapForward">
    <shader stage="vertex"   name="EnvironmentMapForward"/>

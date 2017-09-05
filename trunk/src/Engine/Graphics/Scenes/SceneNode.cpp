@@ -14,7 +14,7 @@ CSceneNode::CSceneNode(const CXMLElement* aElement)
     : CTransform((strcmp(aElement->FirstChildElement()->Name(), "transform") == 0) ? aElement->FirstChildElement() : nullptr),
       CName(aElement->GetAttribute<std::string>("name", "")),
       m_ignoreFrustum(false),
-      CActive(aElement->GetAttribute<bool>("active", false)),
+      CActive(aElement->GetAttribute<bool>("active", true)),
       m_Visible(false),
       m_NodeType(ESceneNodeType::eSceneNodeCount)
 {}
@@ -54,4 +54,8 @@ void CSceneNode::DrawImgui()
         ImGui::SliderFloat3("Forward", (float*)&m_PrevPos, -100.0f, 100.0f);
         ImGui::SliderFloat3("Scale", (float*)&m_Scale, -100.0f, 100.0f);
     }
+}
+
+void CSceneNode::Deactivate()
+{
 }

@@ -17,7 +17,12 @@ public:
     bool Update(float elapsedTime);
     bool Render();
     bool Render(CRenderManager& lRenderManager);
+    std::string GetLayerName()
+    {
+        return m_Name;
+    }
 
+    CSceneNode* GetSceneNode(std::string aName);
     std::vector<CSceneNode*> GetNodes();
     void DrawImgui();
 

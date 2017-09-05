@@ -28,7 +28,6 @@ de PhysX al llevar más comprobaciones de errores.Hay además otro tipo de librerí
 #pragma comment(lib, "PhysX3Cooking_x86.lib")
 #endif
 
-
 #define HEADER 65109
 #define FOOTER 22014
 
@@ -135,8 +134,8 @@ void CPhysXManager::CreatePlane(std::string aMaterialName, float x, float y, flo
     assert(numShapes == 1);
 }
 
-void CPhysXManager::CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
-                                    const Vect3f position, float sizeX, float sizeY, float sizeZ)
+size_t CPhysXManager::CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
+                                      const Vect3f position, float sizeX, float sizeY, float sizeZ)
 {
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
     size_t index = GetActorSize(actorName);
@@ -146,6 +145,8 @@ void CPhysXManager::CreateStaticBox(const std::string& actorName, std::string aM
 
     m_Scene->addActor(*body);
     AddActor(actorName, index, body, orientation, position);
+
+    return index;
 }
 
 void CPhysXManager::CreateStaticSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
@@ -165,7 +166,6 @@ void CPhysXManager::CreateStaticSphere(const std::string& actorName, std::string
 void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
                                       const Vect3f position, std::string aFileName)
 {
-
     unsigned short vertexNum = 0;
     void* vertexData = nullptr;
     unsigned short indexNum = 0;
@@ -183,7 +183,16 @@ void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string 
         meshDesc.triangles.data = indexData;
         meshDesc.flags = physx::PxMeshFlag::e16_BIT_INDICES;
 
+        PxTolerancesScale toleranceScale;
+        bool value = toleranceScale.isValid(); // make sure this value is always true
+        PxCookingParams params(toleranceScale);
+        params.meshWeldTolerance = 0.001f;
+        params.meshPreprocessParams = PxMeshPreprocessingFlags(
+                                          PxMeshPreprocessingFlag::eWELD_VERTICES |
+                                          PxMeshPreprocessingFlag::eREMOVE_UNREFERENCED_VERTICES |
+                                          PxMeshPreprocessingFlag::eREMOVE_DUPLICATED_TRIANGLES);
 
+        m_Cooking->setParams(params);
         physx::PxDefaultMemoryOutputStream buf;
         m_Cooking->cookTriangleMesh(meshDesc, buf);
 
@@ -199,6 +208,10 @@ void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string 
 
         size_t index = GetActorSize(actorName);
         AddActor(actorName, index, body, orientation, position);
+
+        delete(vertexData);
+        delete(indexData);
+
 
         shape->release();
     }
@@ -471,15 +484,12 @@ void CPhysXManager::Update(float _dt)
 
 void CPhysXManager::AddTriggerBox(const std::string& actorName, float sizeX, float sizeY, float sizeZ, const Vect3f& position, const Quatf& orientation)
 {
-
-
-
-
     auto *l_Material = m_Materials["Default"];
     size_t index = GetActorSize(actorName);
     physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
-    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX, sizeY,  sizeZ), *l_Material);
+    physx::PxShape* shape = m_PhysX->createShape(physx::PxBoxGeometry(sizeX/2, sizeY/2,  sizeZ/2), *l_Material);
     shape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, false);
+    shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
     shape->setFlag(physx::PxShapeFlag::eTRIGGER_SHAPE, true);
 
     body->attachShape(*shape);

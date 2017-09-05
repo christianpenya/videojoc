@@ -11,6 +11,9 @@
 #include "Graphics/Buffers/ConstantBufferManager.h"
 #include "Graphics/Particles/ParticleManager.h"
 #include "Graphics/Particles/ParticleSystemType.h"
+#include "Graphics/IA/EnemiesManager.h"
+#include "Graphics/IA/NavMesh.h"
+#include "Graphics/IA/NavMeshManager.h"
 
 #ifdef _DEBUG
 #include <chrono>
@@ -32,6 +35,8 @@ bool CLayer::Load(CXMLElement* aElement)
 {
     bool lOk = true;
     CLightManager &lLM = CEngine::GetInstance().GetLightManager();
+    CEnemiesManager &lEnemiesManager = CEngine::GetInstance().GetEnemiesManager();
+    CNavMeshManager &l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
 
     for (tinyxml2::XMLElement *iSceneMesh = aElement->FirstChildElement(); iSceneMesh != nullptr; iSceneMesh = iSceneMesh->NextSiblingElement())
     {
@@ -78,6 +83,22 @@ bool CLayer::Load(CXMLElement* aElement)
             lNode = new CParticleSystemInstance(iSceneMesh);
             lNode->SetNodeType(CSceneNode::eParticle);
         }
+        else if (strcmp(iSceneMesh->Name(), "scene_navmesh") == 0)
+        {
+            lNode = l_NavMeshManager(iSceneMesh->GetAttribute<std::string>("name", ""));
+            lNode->SetNodeType(CSceneNode::eNavMesh);
+        }
+        else if (strcmp(iSceneMesh->Name(), "scene_enemies") == 0)
+        {
+            std::string l_EnemyName = iSceneMesh->GetAttribute<std::string>("name", "");
+            CEnemy *l_enemy = nullptr;
+
+            if (lEnemiesManager.Exist(l_EnemyName))
+            {
+                lNode = lEnemiesManager(l_EnemyName);
+                lNode->SetNodeType(CSceneNode::eEnemy);
+            }
+        }
 
         if (lNode)
         {
@@ -92,9 +113,9 @@ bool CLayer::Load(CXMLElement* aElement)
 bool CLayer::Update(float elapsedTime)
 {
     bool lOk = true;
-    for (TMapResources::iterator iSceneNode = m_ResourcesMap.begin(); iSceneNode != m_ResourcesMap.end(); ++iSceneNode) // #TODO RECORRER VECTOR
+    for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
     {
-        lOk &= iSceneNode->second.m_Value->Update(elapsedTime);
+        lOk &= (*iSceneNode)->Update(elapsedTime);
     }
     return lOk;
 }
@@ -204,9 +225,15 @@ void CLayer::DrawImgui()
                     lParticle->DrawImgui();
                 }
             }
+            break;
+            case CSceneNode::eNavMesh:
+            {
+                CNavMesh *lNavMesh = CEngine::GetInstance().GetNavMeshManager()((*iSceneNode)->GetName());
+                if (lNavMesh != nullptr)
+                    lNavMesh->DrawImgui();
+            }
 
             break;
-
             default:
             {
                 LOG_WARNING_APPLICATION("Unknown Scene Node Type");
@@ -220,4 +247,9 @@ void CLayer::DrawImgui()
         ImGui::PopItemWidth();
         ImGui::EndChild();
     }
+}
+
+CSceneNode* CLayer::GetSceneNode(std::string aName)
+{
+    return  m_ResourcesMap.find(aName)->second.m_Value;
 }

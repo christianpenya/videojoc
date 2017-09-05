@@ -35,7 +35,7 @@ void CGenerateShadowMaps::Execute(CRenderManager& lRM)
 
             for (std::vector<std::string>::iterator it = lLayerNames.begin(); it != lLayerNames.end(); ++it)
             {
-                CLayer* lLayer = lScene->GetLayerByName(*it);
+                CLayer* lLayer = lScene->GetLayer(*it);
                 if (lLayer)
                 {
                     LOG_INFO_APPLICATION(("Rendering shadows for layer " + lLayer->GetName()).c_str());

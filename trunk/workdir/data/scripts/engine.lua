@@ -19,11 +19,18 @@ f_SceneManager = "data/scenes.xml"
 f_ActionManager = "data/config/input_config.xml"
 f_RenderPipeline = "data/render_pipeline.xml"
 f_ParticleManager = "data/particles.xml"
-f_ParticleManager = "data/particles.xml"
+
 f_CinematicsManager = "data/cinematics.xml";
 f_SoundPath = "data/sound/";
 f_SoundBankFile = "SoundbanksInfo.xml";
 f_SpeakersFile = "speakers.xml";
+f_EventManager = "data/scenes/events.xml";
+f_NavMeshManager = "data/navMesh.xml"
+f_EnemiesManager = "data/enemies.xml"
+
+function getFileEventManager()
+	return f_EventManager
+end
 
 function getFileCinematicManager()
 	return f_CinematicsManager
@@ -87,4 +94,12 @@ end
 
 function getFileParticleManager()
 	return f_ParticleManager
+end
+
+function getFileNavMeshManager()
+	return f_NavMeshManager
+end
+
+function getFileEnemiesManager()
+	return f_EnemiesManager
 end

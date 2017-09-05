@@ -21,12 +21,14 @@
 #include "Graphics/Cinematics/CinematicsManager.h"
 #include "Physx/PhysxManager.h"
 #include "Graphics/Particles/ParticleManager.h"
-//#include "Graphics/Mesh/NavMeshManager.h"
+#include "Graphics/IA/NavMeshManager.h"
+#include "Graphics/IA/EnemiesManager.h"
 #include "Sound/ISoundManager.h"
 #include "GUI/GUIManager.h"
 #include "GUI/GUIPosition.h"
 #include "Graphics/Animation/SceneAnimatedModel.h"
 #include "Input/CharacterController.h"
+#include "Events/EventManager.h"
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
@@ -54,7 +56,8 @@ CEngine::CEngine()
     , m_CinematicManager(nullptr)
     , m_PhysXManager(nullptr)
     , m_ParticleManager(nullptr)
-      //  , m_NavMeshManager(nullptr)
+    , m_NavMeshManager(nullptr)
+    , m_EnemiesManager(nullptr)
     , m_GUIManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
@@ -87,8 +90,11 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_InputManager);
     base::utils::CheckedDelete(m_ScriptManager);
     base::utils::CheckedDelete(m_SoundManager);
-    // base::utils::CheckedDelete(m_NavMeshManager);
+    base::utils::CheckedDelete(m_NavMeshManager);
     base::utils::CheckedDelete(m_GUIManager);
+    base::utils::CheckedDelete(m_EventManager);
+    base::utils::CheckedDelete(m_EnemiesManager);
+
 }
 
 void CEngine::LoadFiles()
@@ -141,6 +147,14 @@ void CEngine::LoadFiles()
     m_ParticleManager->Load(m_FileParticleManager);
     LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
 
+    m_NavMeshManager = new CNavMeshManager;
+    m_NavMeshManager->Load("data/navMesh.xml");
+    LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
+
+    m_EnemiesManager = new CEnemiesManager;
+    m_EnemiesManager->Load("data/enemies.xml");
+    LOG_INFO_APPLICATION("Engine -> Enemies Loaded! \\(^-^)/");
+
     m_SceneManager = new CSceneManager();
     m_SceneManager->Load(m_FileSceneManager);
     LOG_INFO_APPLICATION("Engine -> Scenes Loaded! \\(^-^)/");
@@ -149,11 +163,8 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load(m_FileCinematicManager);
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
-    /*
-    	m_NavMeshManager = new CNavMeshManager;
-        m_NavMeshManager->Load("data/navMesh.xml");
-        LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
-    */
+
+
 
     m_SoundManager = ISoundManager::InstantiateSoundManager();
     m_SoundManager->SetPath(m_SoundFilesPath);
@@ -170,9 +181,14 @@ void CEngine::LoadFiles()
     m_CameraManager = new CCameraManager();
     m_CameraManager->Init(m_CharacterController);
 
+    m_EventManager = new CEventManager();
+    m_EventManager->Load(m_FileEventManager);
+
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
+
+
 }
 
 void CEngine::Init(HWND hWnd)
@@ -193,6 +209,8 @@ void CEngine::Init(HWND hWnd)
         m_FileDefaultMaterial = call_function<std::string>(mLS, "getFileDefaultMaterial");
         m_FileEffectManager = call_function<std::string>(mLS, "getFileEffects");
         m_FileMaterialManager = call_function<std::string>(mLS, "getFileLevelMaterial");
+        m_FileNavMeshManager = call_function<std::string>(mLS, "getFileNavMeshManager");
+        m_FileEnemiesManager = call_function<std::string>(mLS, "getFileEnemiesManager");
         m_FileLightManager = call_function<std::string>(mLS, "getFileLightManager");
         m_FileSceneManager = call_function<std::string>(mLS, "getFileSceneManager");
         m_FileShaderManager = call_function<std::string>(mLS, "getFileShaderManager");
@@ -202,6 +220,7 @@ void CEngine::Init(HWND hWnd)
         m_FileRenderPipeline = call_function<std::string>(mLS, "getRenderPipeline");
         m_FileParticleManager = call_function<std::string>(mLS, "getFileParticleManager");
         m_FileCinematicManager = call_function<std::string>(mLS, "getFileCinematicManager");
+        m_FileEventManager = call_function<std::string>(mLS, "getFileEventManager");
         m_SoundFilesPath = call_function<std::string>(mLS, "getSoundFilesPath");
         m_SpeakersFile = call_function<std::string>(mLS, "getSoundSpeakersFile");
         m_BanksFile = call_function<std::string>(mLS, "getSoundBankFile");
@@ -249,7 +268,7 @@ void CEngine::Update()
     m_CinematicManager->Update(m_DeltaTime);
 
     m_SoundManager->Update(&m_CameraManager->GetCurrentCamera());
-
+    m_EventManager->Update();
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
     /*if (m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))
@@ -286,13 +305,13 @@ float clamp(float x, float upper, float lower)
     return min(upper, max(x, lower));
 }
 
+
 /*
 void CEngine::CharacterControllerUpdate(CActionManager* actionManager, float dt)
 {
-    float x = (*actionManager)("x_move")->value * 0.5f;
-    float z = (*actionManager)("z_move")->value * 0.5f;
-
-    m_CharacterController.m_Movement = {x, 0.0f, z};
+float x = (*actionManager)("x_move")->value * 0.5f;
+float z = (*actionManager)("z_move")->value * 0.5f;
+m_CharacterController.m_Movement = {x, 0.0f, z};
 }*/
 
 void CEngine::DrawImgui()
@@ -300,4 +319,3 @@ void CEngine::DrawImgui()
     m_SceneManager->DrawImgui();
     m_SoundManager->DrawImgui();
 }
-

@@ -6,6 +6,10 @@
 #include "PxSceneDesc.h"
 #include "extensions/PxDefaultSimulationFilterShader.h"
 #include <characterkinematic/PxControllerManager.h>
+#include "Utils/Logger.h"
+#include "Engine/Engine.h"
+#include "Events/Event.h"
+#include "Events/EventManager.h"
 
 CPhysXManagerImplementation::CPhysXManagerImplementation()
 {
@@ -55,7 +59,6 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
     m_ControllerManager = PxCreateControllerManager(*m_Scene, true);
     m_ControllerManager->setOverlapRecoveryModule(true);
 
-    // TODO recolocar més amunt
 #	if USE_PHYSX_DEBUG
     if (m_DebugConnection != nullptr)
     {
@@ -66,7 +69,7 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
 
     // default material
     RegisterMaterial("Default", 0.5f, 0.5f, 0.6f);
-    AddCharacterController("player", 1.8f, 0.3f, Vect3f(0, 0, 0), Quatf(0, 0, 0, 1), "Default", 1.f, 0.25f);
+    AddCharacterController("player", 1.8f, 0.25f, Vect3f(0, 0, 4), Quatf(0, 0, 0, 1), "Default", 0.5f);
 
     m_LeftoverSeconds = 0.0f;
 }
@@ -87,22 +90,30 @@ void CPhysXManagerImplementation::onTrigger(physx::PxTriggerPair* pairs, physx::
         std::string triggerName = m_ActorNames[indexTrigger];
         std::string actorName = m_ActorNames[indexActor];
 
-        printf("Trigger \"%s\" fired with \"%s\"", triggerName.c_str(), actorName.c_str());
+        CEvent* lEvent = CEngine::GetInstance().GetEventManager().GetEvent(triggerName);
+
+        if (lEvent)
+        {
+            lEvent->Start();
+        }
+
+        /*
+
+        LOG_INFO_APPLICATION("Trigger \"%s\" fired with \"%s\"", triggerName.c_str(), actorName.c_str());
 
         if (actorName == "player")
         {
-
-
-            bool hitted = Raycast(m_ActorPositions[indexTrigger], Vect3f(4.0, 0.0, 0.0), 0001,nullptr);//TODO Inicializar RaycastData y pasar-lo como parametro en lugar de nullptr
+            bool hitted = Raycast(m_ActorPositions[indexTrigger], Vect3f(4.0, 0.0, 0.0), 0001, nullptr);//TODO Inicializar RaycastData y pasar-lo como parametro en lugar de nullptr
             if (hitted)
             {
-                printf("Box hitted");
+                //CEngine::GetInstance().GetEventManager()("Box hitted");
             }
         }
+        */
     }
 }
 
-void CPhysXManagerImplementation::AddCharacterController(const std::string& characterControllerName, float height, float radius, const Vect3f& position = Vect3f(0, 0, 0), const Quatf& orientation = Quatf(0, 0, 0, 1), const std::string& material = "Default", float density = 15, float stepOffset = 0.5f)
+void CPhysXManagerImplementation::AddCharacterController(const std::string& characterControllerName, float height, float radius, const Vect3f& position = Vect3f(0, 0, 0), const Quatf& orientation = Quatf(0, 0, 0, 1), const std::string& material = "Default", float density = 15)
 {
     assert(m_Materials.find(material) != m_Materials.end()); // missing material!
     assert(m_CharacterControllers.find(characterControllerName) == m_CharacterControllers.end()); // duplicated key!
@@ -122,7 +133,7 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
     desc.radius = radius;
     desc.climbingMode = physx::PxCapsuleClimbingMode::eCONSTRAINED;
     desc.slopeLimit = cosf(3.1415f / 6); // 30
-    desc.stepOffset = stepOffset;
+    desc.stepOffset = 0.25f;
     desc.density = density;
     desc.reportCallback = this;
     desc.position = physx::PxExtendedVec3(position.x, position.y + radius + height * 0.5f, position.z);

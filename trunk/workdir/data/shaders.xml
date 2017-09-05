@@ -46,6 +46,7 @@
 		
 		
 		<shader name="ParticleVertex" file="particleShader.fx" entry_point="VS" vertex_type="ParticleVertex" preprocessor=""/>
+		<shader name="Position" file="Forward/Position.fx" entry_point="VS" vertex_type="Position" preprocessor=""/>
 		
 	</vertex_shaders>     
 
@@ -98,6 +99,10 @@
 		
 		<shader name="Mascara" file="PostProcess/mascara.fx" entry_point="PS" preprocessor=""/>	
 		<shader name="ParticleVertex" file="particleShader.fx" entry_point="PS" preprocessor=""/>
+		
+			
+		<shader name="Position" file="Forward/Position.fx" entry_point="PS" preprocessor=""/>
+		
 		
 		<!--other-->
 		<shader name="Skybox" file="Skybox.fx" entry_point="PS"  preprocessor=""/>

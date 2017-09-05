@@ -21,7 +21,7 @@ void CCharacterController::Update(float ElapsedTime)
     float l_Speed = m_Speed;
     if (run>0.f && z>0.1f)
     {
-        x/= 2;
+        x /= 2;
         l_Speed *= 1.4;
     }
     if (crouch>0.f)
@@ -50,7 +50,6 @@ void CCharacterController::Update(float ElapsedTime)
 
     }
 
-
 }
 
 void CCharacterController::Init(CSceneManager* sceneManager)
@@ -73,5 +72,6 @@ void CCharacterController::Init(CSceneManager* sceneManager)
     }
     if (player != nullptr)
         player->SetPosition(m_Position);
+
 }
 

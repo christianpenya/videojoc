@@ -28,7 +28,7 @@ private:
     int m_NumFaces;
     bool LoadVertexBuffer();
     void LoadMaterials();
-
+    void Deactivate();
 public:
     CSceneAnimatedModel(const CXMLElement &TreeNode);
     virtual ~CSceneAnimatedModel();
