@@ -1,0 +1,6 @@
+<events>
+	<event name="trigger_pasillo" active="true">
+		<reactor name="open_door" param1="puerta666" />
+		<actor name="dumb" param1="trigger_pasillo"/>
+	</event>
+</events>
