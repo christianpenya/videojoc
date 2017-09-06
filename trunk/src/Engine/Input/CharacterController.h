@@ -16,13 +16,10 @@ class CCharacterController
 public:
     CCharacterController() :
         m_Movement(0, 0, 0),
-        m_Position(0,0,5),
-        m_Speed(.5f),
+        m_Position(0, 0, 8),
+        m_Speed(.3f),
         player(nullptr)
     {
-
-
-
     }
 
     virtual ~CCharacterController() {}

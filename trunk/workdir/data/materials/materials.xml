@@ -6,12 +6,29 @@
 		<texture type="diffuse" filename="data\textures\poster.png" />
 		<parameter type="float" name="diffuse" value="100.0" />
 	</material>
+	
+	<material name="ElectricMaterial" vertex_type="ParticleVertex" >
+		<texture type="diffuse" filename="data\particles\fire.dds" />		
+		<parameter type="float2" name="sprite_size" value="1.0 1.0" />
+		<parameter type="float" name="lerp_sprite" value="0.1" />
+		<parameter type="float" name="ratio_y" value="0.8" />
+	</material>
 
 	CAMA
 	<material name="catre" vertex_type="PositionNormalUV" >
 		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
 		<texture type="diffuse" filename="data\textures\TexturesCom_Carpet0012_1_seamless_S.jpg" />
 		<parameter type="float" name="diffuse" value="100.0" />
+	</material>
+	<material name="SmokeMaterial" vertex_type="ParticleVertex" >
+		<texture type="diffuse" filename="data\particles\Smoke15Frames.png" />		
+		<parameter type="float2" name="sprite_size" value="5.0 3.0" />
+		<parameter type="float" name="lerp_sprite" value="0.1" />
+		<parameter type="float" name="ratio_y" value="0.8" />
+	</material>	
+	
+	<material name="02 - Default" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="1.0 0.0 0.0 1.0" />
 	</material>
 	<material name="manta almohada" vertex_type="PositionNormalUV" >
 		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />

@@ -29,10 +29,14 @@ class CAnimatedModelManager;
 class CScriptManager;
 class CPhysXManager;
 class CParticleManager;
-class ISoundManager;//class CNavMeshManager;
+class ISoundManager;
+class ISoundManager;
 class CGUIManager;
 class CCameraManager;
 class CCharacterController;
+class CEventManager;
+class CNavMeshManager;
+class CEnemiesManager;
 
 #define BUILD_GET_SET_ENGINE_MANAGER( Manager ) \
 private: \
@@ -80,9 +84,11 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(CinematicManager)
     BUILD_GET_SET_ENGINE_MANAGER(PhysXManager)
     BUILD_GET_SET_ENGINE_MANAGER(ParticleManager)
-    //  BUILD_GET_SET_ENGINE_MANAGER(NavMeshManager)
+    BUILD_GET_SET_ENGINE_MANAGER(NavMeshManager)
+    BUILD_GET_SET_ENGINE_MANAGER(EnemiesManager)
     BUILD_GET_SET_ENGINE_MANAGER(GUIManager)
     BUILD_GET_SET_ENGINE_MANAGER(CameraManager)
+    BUILD_GET_SET_ENGINE_MANAGER(EventManager)
 
     ISoundManager* m_SoundManager;
 

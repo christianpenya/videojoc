@@ -122,6 +122,19 @@ int main()
 
     CInputManager& l_InputManager = CEngine::GetInstance().GetInputManager();
 
+    /*
+    CEnemy dron("Dron");
+    int choice = 1;
+    const Input input1 = static_cast<Input>(choice - 1);
+    dron.handleInput(input1);
+
+    choice = 2;
+    const Input input2 = static_cast<Input>(choice - 1);
+    dron.handleInput(input2);
+    */
+
+
+
     while (msg.message != WM_QUIT)
     {
 
@@ -182,6 +195,9 @@ int main()
             l_Engine.Update();
             l_Engine.Render();
         }
+
+
+
     }
 
     // TODO Añadir una llamada a la alicación para finalizar/liberar memoria de todos sus datos

@@ -177,4 +177,4 @@ bool CSceneAnimatedModel::Render(CRenderManager &RenderManager)
     return true;
 }
 
-
+void CSceneAnimatedModel::Deactivate() {}

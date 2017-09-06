@@ -69,6 +69,20 @@ template<> Vect3f XMLElement::GetAttribute<Vect3f>(const char* name, const Vect3
     return l_V3f;
 }
 
+/*template<> Vect3i XMLElement::GetAttribute<Vect3i>(const char* name, const Vect3i& defval) const
+{
+    Vect3i l_V3i(0, 0, 0);
+    const char* pszRet = nullptr;
+
+    pszRet = Attribute(name);
+    if (pszRet == nullptr)
+        l_V3i = defval;
+    else
+        sscanf_s(pszRet, "%d %d %d", &l_V3i.x, &l_V3i.y, &l_V3i.z);
+
+    return l_V3i;
+}*/
+
 template<> Vect4f XMLElement::GetAttribute<Vect4f>(const char* name, const Vect4f& defval) const
 {
     Vect4f l_V4f(0.0f, 0.0f, 0.0f, 0.0f);

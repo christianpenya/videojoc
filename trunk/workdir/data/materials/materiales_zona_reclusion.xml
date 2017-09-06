@@ -1,4 +1,14 @@
 <materials >
+	DRONES
+	
+	<material name="Dron001Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.0 0.0 0.0 1.0 " />
+	</material>
+
+	<material name="PatrolPoint002Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.0 1.0 1.0 1.0 " />
+	</material>
+
 
 	MONITOR
 	<material name="ordenador003Material" vertex_type="PositionNormal" >

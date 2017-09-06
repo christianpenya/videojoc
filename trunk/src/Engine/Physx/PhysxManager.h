@@ -101,7 +101,7 @@ public:
     void CreatePlane(std::string aMaterialName, float x, float y, float z, float d, size_t index);
 
     //STATIC
-    void CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ);
+    size_t CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ);
     void CreateStaticSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius);
     void CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::string aFileName);
     void CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices);
@@ -119,6 +119,7 @@ public:
     bool Raycast(const Vect3f& origin, const Vect3f& end, int filterMask, RaycastData* result_ = nullptr);
     void AddFixedJoint(const std::string& jointName, const std::string& actor1Name, const std::string& actor2Name);
     void DeleteActor(std::string actorName, size_t index);
+    virtual void AddCharacterController(const std::string& actorName, float height, float radius, const Vect3f& position, const Quatf& orientation, const std::string& material, float density) {};
 
     Vect3f GetActorPosition(const std::string& actorName) const;
     Quatf GetActorOrientation(const std::string& actorName) const;

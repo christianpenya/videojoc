@@ -33,6 +33,7 @@ CTechniquePool::CTechniquePool(CXMLElement* aElement) :
 
             if (strcmp(lName.c_str(), "") == 0)
             {
+                //assert(lEM(lEffect));
                 CTemplatedMapVector<CEffect>::Add(lVertexType, lEM(lEffect));
             }
             else

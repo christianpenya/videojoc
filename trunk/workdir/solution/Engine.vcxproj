@@ -235,6 +235,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Engine\Engine\Engine.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Actor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Event.h" />
+    <ClInclude Include="..\..\src\Engine\Events\EventManager.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\OpenDoorReactor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Reactor.h" />
     <ClInclude Include="..\..\src\Engine\GUI\Button.h" />
     <ClInclude Include="..\..\src\Engine\GUI\GUIManager.h" />
     <ClInclude Include="..\..\src\Engine\GUI\GUIPosition.h" />
@@ -271,6 +278,13 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Effects\TechniquePool.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Effects\TechniquePoolManager.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Effects\VertexShader.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Dron.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\EnemiesManager.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\NavMesh.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\NavMeshManager.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Pathfinding.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\enemy.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\tiny_obj_loader.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Lights\DirectionalLight.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Lights\Light.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Lights\LightManager.h" />
@@ -287,8 +301,6 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\IndexBuffer.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\Mesh.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\MeshManager.h" />
-    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\NavMesh.h" />
-    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\NavMeshManager.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\Plane.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\TemplatedGeometry.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Mesh\TemplatedIndexedGeometry.h" />
@@ -347,6 +359,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Event.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\EventManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\OpenDoorReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\GUI\Button.cpp" />
     <ClCompile Include="..\..\src\Engine\GUI\GUIManager.cpp" />
     <ClCompile Include="..\..\src\Engine\GUI\GUIPosition.cpp" />
@@ -382,6 +399,13 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Effects\TechniquePool.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Effects\TechniquePoolManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Effects\VertexShader.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Dron.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\EnemiesManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMesh.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMeshManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Pathfinding.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\enemy.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\tiny_obj_loader.cc" />
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\DirectionalLight.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\Light.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\LightManager.cpp" />
@@ -391,8 +415,6 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Materials\MaterialManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\Mesh.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\MeshManager.cpp" />
-    <ClCompile Include="..\..\src\Engine\Graphics\Mesh\NavMesh.cpp" />
-    <ClCompile Include="..\..\src\Engine\Graphics\Mesh\NavMeshManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\Plane.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\VertexTypes.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Particles\ParticleManager.cpp" />

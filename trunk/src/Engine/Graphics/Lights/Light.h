@@ -25,6 +25,7 @@ public:
     virtual ~CLight();
 
     virtual void Initialize(CXMLElement* aElement);
+    virtual void Deactivate();
 
     GET_SET(ELightType, LightType);
     GET_SET(std::string, Name);

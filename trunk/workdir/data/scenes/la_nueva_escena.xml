@@ -8,12 +8,12 @@
 			<transform position="0.0 0.0 1.0" forward="0.0 0.0 0.0" />
 		</scene_particle> 
 	
- 
+		<scene_navmesh name="navMeshScene01">
+			<transform position="0.0 0.0 0.0" forward="0.0 0.0 0.0" />
+		</scene_navmesh> 
+		-->
 		
-		<!--
-		
-			<transform position="0.0 10.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" />
-		</scene_light>
+
 		<scene_light name="Omni002" id_light="1" >
 			<transform position="0.0 10.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" />
 		</scene_light>
@@ -67,8 +67,29 @@
 		-->
 		
 	</layer>
+	<layer name="drones" active="true">
+		<scene_mesh name="PatrolPoint" mesh="data/meshes/carcel/PatrolPoint.mesh" >
+			<transform position="3.0 0.0 3.0" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint2" mesh="data/meshes/carcel/PatrolPoint.mesh" >
+			<transform position="-3.0 0.0 -3.0" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint3" mesh="data/meshes/carcel/PatrolPoint.mesh" >
+			<transform position="5.0 0.0 5.0" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		
+		<scene_enemies type="dron" name="DronReclusion1" mesh="data/meshes/carcel/dron.mesh" rigid_body = "enemy">
+			<transform position="1.0 0.0 1.0" yaw="-0.0204287" pitch="-0.0389342" roll="0.0157009" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		<!--<scene_enemies type="dron" name="DronReclusion2" mesh="data/meshes/carcel/dron.mesh" rigid_body = "DronReclusion2">
+			<transform position="-5.0 0.0 0.0" yaw="-0.0204287" pitch="-0.0389342" roll="0.0157009" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		-->
+	</layer>
 	
 	<layer name="deferred_opaque" active="true">
+		
+		<!--
 		<scene_mesh name="x!" mesh="data/meshes/Box01.mesh">
 			<transform position="5.0 0.0 0.0" yaw="0.5" pitch ="0.5" roll="0.5" scale="2.0 2.0 2.0"/>
 		</scene_mesh>
@@ -80,12 +101,12 @@
 		</scene_mesh>
 
 		<scene_mesh name="Cub!" mesh="data/meshes/Box01.mesh">
-			<transform position="0.0 0.0 0.0" yaw="0.5" pitch ="0.5" roll="0.5" scale="2.0 2.0 2.0"/>
+			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
 		</scene_mesh>
 		<scene_mesh name="Plane01" mesh="data/meshes/Plane01.mesh" rigid_body = "plane" >
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 3.0" />
 		</scene_mesh>
-	
+	-->
 
 	</layer>
 
