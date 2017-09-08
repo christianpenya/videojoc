@@ -55,11 +55,17 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 sizeZ = abs(abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z);
                 cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
 
-
-                lCenter = m_Position + mMesh->GetBoundingSphere().GetCenter();
-                //CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f);
+                lCenter = m_Position;// +mMesh->GetBoundingSphere().GetCenter();
                 mPhysxIndex = CEngine::GetInstance().GetPhysXManager().CreateStaticBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ);
+
+                rotation = CEngine::GetInstance().GetPhysXManager().GetActorOrientation(m_Name);
+                m_Position = CEngine::GetInstance().GetPhysXManager().GetActorPosition(m_Name) + rotation.Rotate(cubeOffset);
+                m_Pitch = rotation.GetRotationMatrix().GetAngleX();
+                m_Yaw = rotation.GetRotationMatrix().GetAngleY();
+                m_Roll = rotation.GetRotationMatrix().GetAngleZ();
                 break;
+
+            case eDynamicBox:
             case eEnemy:
                 lDebug = "Attached physx ENEMY CONTROLLER to " + m_Name;
                 rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
@@ -150,22 +156,18 @@ bool CSceneMesh::Update(float aDeltaTime)
             case eSphere:
             case eBox:
 
-                lRotation = lPM.GetActorOrientation(m_Name);
-                m_Position = lPM.GetActorPosition(m_Name) + lRotation.Rotate(cubeOffset);
-                m_Pitch = lRotation.GetRotationMatrix().GetAngleX();
-                m_Yaw = lRotation.GetRotationMatrix().GetAngleY();
-                m_Roll = lRotation.GetRotationMatrix().GetAngleZ();
-
-                lRotation.GetRotationMatrix().GetYaw();
                 break;
             case eShape:
                 break;
             case ePlayer:
                 m_Position = lPM.GetActorPosition(m_Name);
                 break;
-	        case eEnemy:
-    	        m_Position = lPM.GetActorPosition(m_Name);
-        	    break;
+
+            case eDynamicBox:
+            case eEnemy:
+                m_Position = lPM.GetActorPosition(m_Name);
+                break;
+
             case eTriggerBox:
                 break;
             default:

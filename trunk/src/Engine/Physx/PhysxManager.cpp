@@ -3,6 +3,7 @@
 #include <array>
 #include "Utils/BinFileReader.h"
 #include "Utils/CheckedRelease.h"
+#include "Math/Transform.h"
 
 /* Otro aspecto destacable es que estas librerías llevan el sufijo “ DEBUG ”. Esto se tiene que
 corregir en la versión final ya que estas son más lentas que las librerías “release”(sin sufijo)
@@ -95,19 +96,26 @@ inline Quatf CastQuat(const physx::PxQuat& q)
     return Quatf(q.x, q.y, q.z, q.w);
 }
 
-Vect3f CPhysXManager::GetActorPosition(const std::string& actorName) const
+Vect3f CPhysXManager::GetActorPosition(const std::string& actorName)
 {
     return m_ActorPositions[GetActorIndex(actorName)];
 }
 
-Quatf CPhysXManager::GetActorOrientation(const std::string& actorName) const
+Quatf CPhysXManager::GetActorOrientation(const std::string& actorName)
 {
     return m_ActorOrientations[GetActorIndex(actorName)];
 }
 
-physx::PxTransform CPhysXManager::GetActorTransform(const std::string& actorName) const
+physx::PxTransform CPhysXManager::GetActorTransform(const std::string& actorName)
 {
     return physx::PxTransform(CastVec(GetActorPosition(actorName)), CastQuat(GetActorOrientation(actorName)));
+}
+
+void CPhysXManager::SetActorTransform(const std::string& actorName, const Vect3f& aPosition, float aYaw, float aPitch, float aRoll)
+{
+    m_ActorPositions[GetActorIndex(actorName)] = aPosition;
+    m_ActorOrientations[GetActorIndex(actorName)].Rotate(Vect3f(aYaw, aPitch, aRoll));
+    //.SetComplex(Vect3f(aYaw, aPitch, aRoll));
 }
 
 void CPhysXManager::RegisterMaterial(const std::string &name, float staticFriction, float dynamicFriction, float restitution)

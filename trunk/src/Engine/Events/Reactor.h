@@ -11,8 +11,9 @@ public:
     CReactor() : mIsFinished(false) {}
     ~CReactor() {}
 
+    virtual void Load(CXMLElement* aElement) = 0;
     virtual void React() = 0;
-    virtual void Update() = 0;
+    virtual void Update(float elapsedTime) = 0;
 
     bool IsFinished()
     {

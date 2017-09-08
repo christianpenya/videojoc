@@ -16,7 +16,7 @@ public:
     ~CDumbActor();
 
     void Act();
-    void Update();
+    void Update(float elapsedTime);
 };
 
 #endif //_ENGINE_DUMBACTOR_20170831_H

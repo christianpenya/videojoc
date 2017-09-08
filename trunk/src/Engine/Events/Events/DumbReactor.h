@@ -16,8 +16,9 @@ public:
     CDumbReactor();
     ~CDumbReactor();
 
+    void Load(CXMLElement* aElement);
     void React();
-    void Update();
+    void Update(float elapsedTime);
 };
 
 #endif //_ENGINE_DUMBREACTOR_20170831_H

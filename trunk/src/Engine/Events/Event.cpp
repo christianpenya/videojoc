@@ -30,6 +30,7 @@ CEvent::CEvent(CXMLElement* aEvent) :
         {
             std::string lReactorName = iElement->GetAttribute<std::string>("name", "");
             mReactor = CEngine::GetInstance().GetEventManager().GetReactor(lReactorName);
+            mReactor->Load(iElement);
         }
     }
 }
@@ -42,7 +43,7 @@ void CEvent::Start()
     mActor->Act();
 }
 
-void CEvent::Update()
+void CEvent::Update(float elapsedTime)
 {
     if (mActor->IsFinished() && !mAlreadyReacting)
     {
@@ -52,11 +53,11 @@ void CEvent::Update()
 
     if (!mActor->IsFinished())
     {
-        mActor->Update();
+        mActor->Update(elapsedTime);
     }
     else if (mActor->IsFinished() && !mReactor->IsFinished())
     {
-        mReactor->Update();
+        mReactor->Update(elapsedTime);
     }
     else if (mActor->IsFinished() && mReactor->IsFinished())
     {

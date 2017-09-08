@@ -66,6 +66,8 @@ public:
     virtual ~CPhysXManager();
     static CPhysXManager* CreatePhysXManager();
 
+    void SetActorTransform(const std::string& actorName,const Vect3f& aPostion, float aYaw, float aPitch, float aRoll);
+
 protected:
     physx::PxFoundation							*m_Foundation;
     physx::PxPhysics							*m_PhysX;
@@ -85,7 +87,8 @@ protected:
     std::vector<Quatf>							m_ActorOrientations;
     std::vector<physx::PxActor*>				m_Actors;
 
-    physx::PxTransform GetActorTransform(const std::string& actorName) const;
+    physx::PxTransform GetActorTransform(const std::string& actorName);
+
     size_t GetActorSize(const std::string& actorName);
     size_t GetActorIndex(const std::string& actorName) const;
     void AddActor(std::string actorName, size_t index, physx::PxRigidDynamic* body, const Quatf orientation, const Vect3f position);
@@ -121,8 +124,8 @@ public:
     void DeleteActor(std::string actorName, size_t index);
     virtual void AddCharacterController(const std::string& actorName, float height, float radius, const Vect3f& position, const Quatf& orientation, const std::string& material, float density) {};
 
-    Vect3f GetActorPosition(const std::string& actorName) const;
-    Quatf GetActorOrientation(const std::string& actorName) const;
+    Vect3f GetActorPosition(const std::string& actorName);
+    Quatf GetActorOrientation(const std::string& actorName);
 
     bool LoadMeshFile(std::string _FileName, unsigned short* vertexNum, void** vertexData, unsigned short* indexNum, void** indexData);
 };

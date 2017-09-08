@@ -55,13 +55,13 @@ bool CEventManager::Load()
     return lOk;
 }
 
-void CEventManager::Update()
+void CEventManager::Update(float elapsedTime)
 {
     for (std::vector<CEvent*>::iterator iEvent = m_ResourcesVector.begin(); iEvent != m_ResourcesVector.end(); ++iEvent)
     {
         if ((*iEvent)->mIsEnCours)
         {
-            (*iEvent)->Update();
+            (*iEvent)->Update(elapsedTime);
         }
     }
 }

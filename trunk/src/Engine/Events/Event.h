@@ -18,7 +18,7 @@ public:
     ~CEvent();
 
     void Start();
-    void Update();
+    void Update(float elapsedTime);
 
     bool mIsEnCours;
 

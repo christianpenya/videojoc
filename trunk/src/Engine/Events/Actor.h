@@ -13,7 +13,7 @@ public:
     ~CActor() {}
 
     virtual void Act() = 0;
-    virtual void Update() = 0;
+    virtual void Update(float elapsedTime) = 0;
 
     bool IsFinished()
     {

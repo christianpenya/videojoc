@@ -148,11 +148,11 @@ void CEngine::LoadFiles()
     LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
 
     m_NavMeshManager = new CNavMeshManager;
-    m_NavMeshManager->Load("data/navMesh.xml");
-    LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
+    //m_NavMeshManager->Load("data/navMesh.xml");
+    //LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
 
-    m_EnemiesManager = new CEnemiesManager;
-    m_EnemiesManager->Load("data/enemies.xml");
+    //m_EnemiesManager = new CEnemiesManager;
+    //m_EnemiesManager->Load("data/enemies.xml");
     LOG_INFO_APPLICATION("Engine -> Enemies Loaded! \\(^-^)/");
 
     m_SceneManager = new CSceneManager();
@@ -162,9 +162,6 @@ void CEngine::LoadFiles()
     m_CinematicManager = new CCinematicManager;
     m_CinematicManager->Load(m_FileCinematicManager);
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
-
-
-
 
     m_SoundManager = ISoundManager::InstantiateSoundManager();
     m_SoundManager->SetPath(m_SoundFilesPath);
@@ -187,8 +184,6 @@ void CEngine::LoadFiles()
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
-
-
 }
 
 void CEngine::Init(HWND hWnd)
@@ -268,7 +263,7 @@ void CEngine::Update()
     m_CinematicManager->Update(m_DeltaTime);
 
     m_SoundManager->Update(&m_CameraManager->GetCurrentCamera());
-    m_EventManager->Update();
+    m_EventManager->Update(m_DeltaTime);
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
     /*if (m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))

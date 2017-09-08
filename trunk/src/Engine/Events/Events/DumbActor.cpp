@@ -26,7 +26,7 @@ void CDumbActor::Act()
 
 }
 
-void CDumbActor::Update()
+void CDumbActor::Update(float elapsedTime)
 {
     LOG_INFO_APPLICATION("ACTOR UPDATING");
     // is audio finished?
