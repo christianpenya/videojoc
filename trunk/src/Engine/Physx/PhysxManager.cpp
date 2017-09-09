@@ -111,11 +111,20 @@ physx::PxTransform CPhysXManager::GetActorTransform(const std::string& actorName
     return physx::PxTransform(CastVec(GetActorPosition(actorName)), CastQuat(GetActorOrientation(actorName)));
 }
 
-void CPhysXManager::SetActorTransform(const std::string& actorName, const Vect3f& aPosition, float aYaw, float aPitch, float aRoll)
+physx::PxActor* CPhysXManager::GetActor(const std::string& actorName)
 {
-    m_ActorPositions[GetActorIndex(actorName)] = aPosition;
-    m_ActorOrientations[GetActorIndex(actorName)].Rotate(Vect3f(aYaw, aPitch, aRoll));
-    //.SetComplex(Vect3f(aYaw, aPitch, aRoll));
+    return m_Actors[GetActorIndex(actorName)];
+}
+
+
+void CPhysXManager::SetActorTransform(const std::string& actorName, const Vect3f& position, Quatf orientation)
+{
+    physx::PxActor* tmp = m_Actors[GetActorIndex(actorName)];
+
+    if (PxRigidActor * p = static_cast<PxRigidActor *>(tmp))
+    {
+        p->setGlobalPose(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+    }
 }
 
 void CPhysXManager::RegisterMaterial(const std::string &name, float staticFriction, float dynamicFriction, float restitution)
@@ -150,7 +159,6 @@ size_t CPhysXManager::CreateStaticBox(const std::string& actorName, std::string 
     physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
     body->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
     body->userData = (void*)index;
-
     m_Scene->addActor(*body);
     AddActor(actorName, index, body, orientation, position);
 
@@ -332,6 +340,12 @@ void CPhysXManager::CreateStaticTriangleMesh(const std::string& actorName, std::
 void CPhysXManager::CreateDynamicBox(std::string actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position,
                                      float sizeX, float sizeY, float sizeZ, physx::PxReal density)
 {
+    CreateDynamicBox(actorName, aMaterialName, orientation, position, sizeX, sizeY, sizeZ, density, false);
+}
+
+void CPhysXManager::CreateDynamicBox(std::string actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position,
+                                     float sizeX, float sizeY, float sizeZ, physx::PxReal density, bool isKinematic)
+{
     size_t index = GetActorSize(actorName);
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
 
@@ -343,20 +357,15 @@ void CPhysXManager::CreateDynamicBox(std::string actorName, std::string aMateria
     filterData.word0 = 0001;
     shape->setQueryFilterData(filterData);
 
-    body->attachShape(*shape);
+    body->setRigidBodyFlag(physx::PxRigidBodyFlag::eKINEMATIC, isKinematic);
 
+    body->attachShape(*shape);
     body->userData = (void*)index;
 
     physx::PxRigidBodyExt::updateMassAndInertia(*body, density);
     m_Scene->addActor(*body);
 
     AddActor(actorName, index, body, orientation, position);
-
-    /* Esto solo son ejemplos que vi en el tutorial,por si nos interesa
-    body->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
-    body->setAngularVelocity(PxVec3(0.f, 0.f, 5.f));
-    body->setAngularDamping(0.f);
-    */
 }
 
 void CPhysXManager::CreateDynamicSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation,

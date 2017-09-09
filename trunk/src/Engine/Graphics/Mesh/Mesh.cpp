@@ -10,6 +10,7 @@
 #include "Graphics/Materials/MaterialManager.h"
 #include "Graphics/Mesh/TemplatedIndexedGeometry.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
+#include "Utils/Logger.h"
 
 CMesh::CMesh():
     mCount(0)

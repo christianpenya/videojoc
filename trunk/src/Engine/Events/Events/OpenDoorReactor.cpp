@@ -28,13 +28,8 @@ void COpenDoorReactor::Load(CXMLElement* aElement)
 
 void COpenDoorReactor::React()
 {
-    // std::string lLayerName = "opaque";
-    // std::string lDoorName = "puerta666";
-
-    // CSceneNode* lDoor = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(lDoorName);
-    // LOG_INFO_APPLICATION(lDoor->GetName().c_str());
-    //mDoor->Deactivate();
     LOG_INFO_APPLICATION("Hold the DOOOOOOOR! HOLD THE DOOOOOR!");
+    mDoor->Deactivate();
 }
 
 void COpenDoorReactor::Update(float elapsedTime)
@@ -49,8 +44,24 @@ void COpenDoorReactor::Update(float elapsedTime)
 
     if (mDoor->GetActive())
     {
-        //mDoor->Deactivate();
+        /*
+        Esto no va fino.
+        Hace falta mover primero el physx, y luego actualizar la malla con esta posicion.
+        El problema es que physx pivota sobre el centro, por lo tanto hay dos opciones:
+        - Hacer un joint
+        - Hacer el movimiento más trapero
+
+        Se podría mejorar también poniendo un objeto dinámico y kinematico al collider de la puerta... pero se desfasan los colliders respecto la malla.
+        La solucion chapucera de las mallas estáticas no parece funcionar igual de bien.
+
         mDoor->SetYaw(mDoor->GetYaw() + elapsedTime);
-        CEngine::GetInstance().GetPhysXManager().SetActorTransform(mDoor->GetName(), mDoor->GetPosition(), mDoor->GetYaw() + elapsedTime, mDoor->GetPitch(), mDoor->GetRoll());
+
+        Quatf rotation = Quatf();
+        rotation.QuatFromYawPitchRoll(mDoor->GetYaw(), mDoor->GetPitch(), mDoor->GetRoll());
+
+        Vect3f position = mDoor->GetPosition4Physx();
+
+        CEngine::GetInstance().GetPhysXManager().SetActorTransform(mDoor->GetName(), position, rotation);
+        */
     }
 }

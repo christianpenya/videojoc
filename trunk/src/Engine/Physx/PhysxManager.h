@@ -66,8 +66,7 @@ public:
     virtual ~CPhysXManager();
     static CPhysXManager* CreatePhysXManager();
 
-    void SetActorTransform(const std::string& actorName,const Vect3f& aPostion, float aYaw, float aPitch, float aRoll);
-
+    void SetActorTransform(const std::string& actorName,const Vect3f& aPostion, Quatf aOrientation);
 protected:
     physx::PxFoundation							*m_Foundation;
     physx::PxPhysics							*m_PhysX;
@@ -91,6 +90,8 @@ protected:
 
     size_t GetActorSize(const std::string& actorName);
     size_t GetActorIndex(const std::string& actorName) const;
+    physx::PxActor* GetActor(const std::string& actorName);
+
     void AddActor(std::string actorName, size_t index, physx::PxRigidDynamic* body, const Quatf orientation, const Vect3f position);
     void AddActor(std::string actorName, size_t index, physx::PxRigidStatic* body, const Quatf orientation, const Vect3f position);
 
@@ -111,6 +112,7 @@ public:
 
     //DYNAMIC
     void CreateDynamicBox(std::string actorName,std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density);
+    void CreateDynamicBox(std::string actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density, bool isKinematic);
     void CreateDynamicSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius, physx::PxReal density);
     void CreateDynamicShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal);
     void CreateDynamicTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal);
