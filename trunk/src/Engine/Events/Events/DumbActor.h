@@ -15,6 +15,7 @@ public:
     CDumbActor();
     ~CDumbActor();
 
+    void Load(CXMLElement* aElement);
     void Act();
     void Update(float elapsedTime);
 };

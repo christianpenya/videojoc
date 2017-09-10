@@ -457,6 +457,11 @@ bool CSoundManager::InitBanks()
     return true;
 }
 
+void CSoundManager::OnEventEnd()
+{
+
+}
+
 void CSoundManager::DrawImgui()
 {
     if (ImGui::CollapsingHeader("Sound Manager"))

@@ -263,7 +263,9 @@ void CEngine::Update()
     m_CinematicManager->Update(m_DeltaTime);
 
     m_SoundManager->Update(&m_CameraManager->GetCurrentCamera());
+
     m_EventManager->Update(m_DeltaTime);
+
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
     /*if (m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))

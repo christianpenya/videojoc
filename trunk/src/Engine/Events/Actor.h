@@ -9,19 +9,17 @@ class CActor : public CName
 {
 public:
 
-    CActor() : mIsFinished(false) {}
+    CActor() : m_Finished(false) {}
     ~CActor() {}
 
+    virtual void Load(CXMLElement* aElement) = 0;
     virtual void Act() = 0;
     virtual void Update(float elapsedTime) = 0;
 
-    bool IsFinished()
-    {
-        return mIsFinished;
-    }
+    GET_SET_BOOL(Finished);
 
 protected:
-    bool mIsFinished;
+    bool m_Finished;
 };
 
 #endif //_ENGINE_ACTOR_20170215_H

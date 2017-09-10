@@ -102,6 +102,8 @@ public:
     virtual void BroadcastRTPCValue(const SoundRTPC &_rtpc, float value);
     virtual void BroadcastState(const SoundStateValue &_state);
 
+    virtual void OnEventEnd();
+
     virtual void Terminate();
     virtual void Clean();
     virtual bool LoadSoundBanksXML();

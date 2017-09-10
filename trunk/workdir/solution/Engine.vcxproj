@@ -238,6 +238,7 @@
     <ClInclude Include="..\..\src\Engine\Events\Actor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Event.h" />
     <ClInclude Include="..\..\src\Engine\Events\EventManager.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\OpenDoorReactor.h" />
@@ -322,6 +323,7 @@
     <ClInclude Include="..\..\src\Engine\Input\CharacterController.h" />
     <ClInclude Include="..\..\src\Engine\Input\InputDefinitions.h" />
     <ClInclude Include="..\..\src\Engine\Input\InputManager.h" />
+    <ClInclude Include="..\..\src\Engine\Physx\Collider.h" />
     <ClInclude Include="..\..\src\Engine\Physx\PhysxManager.h" />
     <ClInclude Include="..\..\src\Engine\Physx\PhysxManagerImplementation.h" />
     <ClInclude Include="..\..\src\Engine\Render\RenderManager.h" />
@@ -361,6 +363,7 @@
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Event.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\EventManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\OpenDoorReactor.cpp" />
@@ -431,6 +434,7 @@
     <ClCompile Include="..\..\src\Engine\Input\ActionManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Input\CharacterController.cpp" />
     <ClCompile Include="..\..\src\Engine\Input\InputManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Physx\Collider.cpp" />
     <ClCompile Include="..\..\src\Engine\Physx\PhysxManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Physx\PhysxManagerImplementation.cpp" />
     <ClCompile Include="..\..\src\Engine\Render\RenderManager.cpp" />

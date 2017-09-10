@@ -87,6 +87,9 @@
     <ClInclude Include="..\..\src\Engine\Events\EventManager.h">
       <Filter>Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerActor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
@@ -339,6 +342,9 @@
     <ClInclude Include="..\..\src\Engine\Input\InputManager.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Physx\Collider.h">
+      <Filter>Physx</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Physx\PhysxManager.h">
       <Filter>Physx</Filter>
     </ClInclude>
@@ -451,6 +457,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\EventManager.cpp">
       <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerActor.cpp">
+      <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp">
       <Filter>Events\Events</Filter>
@@ -661,6 +670,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Input\InputManager.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physx\Collider.cpp">
+      <Filter>Physx</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Physx\PhysxManager.cpp">
       <Filter>Physx</Filter>

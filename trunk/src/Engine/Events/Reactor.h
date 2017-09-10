@@ -8,20 +8,17 @@
 class CReactor : public CName
 {
 public:
-    CReactor() : mIsFinished(false) {}
+    CReactor() : m_Finished(false) {}
     ~CReactor() {}
 
     virtual void Load(CXMLElement* aElement) = 0;
     virtual void React() = 0;
     virtual void Update(float elapsedTime) = 0;
 
-    bool IsFinished()
-    {
-        return mIsFinished;
-    }
+    GET_SET_BOOL(Finished);
 
 protected:
-    bool mIsFinished;
+    bool m_Finished;
 };
 
 #endif //_ENGINE_REACTOR_20170215_H

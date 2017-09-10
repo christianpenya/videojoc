@@ -10,10 +10,9 @@
 #include "Graphics/Scenes/Layer.h"
 #include "Graphics/Scenes/SceneNode.h"
 
-CDumbActor::CDumbActor()
-{
-}
+CDumbActor::CDumbActor() {}
 CDumbActor::~CDumbActor() {}
+void CDumbActor::Load(CXMLElement* aElement) {}
 
 void CDumbActor::Act()
 {
@@ -30,6 +29,6 @@ void CDumbActor::Update(float elapsedTime)
 {
     LOG_INFO_APPLICATION("ACTOR UPDATING");
     // is audio finished?
-    mIsFinished = true;
+    m_Finished = true;
 
 }

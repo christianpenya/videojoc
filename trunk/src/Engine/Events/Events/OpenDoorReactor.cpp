@@ -30,6 +30,7 @@ void COpenDoorReactor::React()
 {
     LOG_INFO_APPLICATION("Hold the DOOOOOOOR! HOLD THE DOOOOOR!");
     mDoor->Deactivate();
+    m_Finished = true;
 }
 
 void COpenDoorReactor::Update(float elapsedTime)
