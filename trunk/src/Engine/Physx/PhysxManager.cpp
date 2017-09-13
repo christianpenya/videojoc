@@ -228,7 +228,6 @@ void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string 
         delete(vertexData);
         delete(indexData);
 
-
         shape->release();
     }
 }

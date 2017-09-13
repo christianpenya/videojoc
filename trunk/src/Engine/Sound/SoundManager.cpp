@@ -5,10 +5,14 @@
 #include "Utils/Logger.h"
 #include "Imgui/imgui.h"
 
+bool CSoundManager::m_EndOfEventPendantToNotify = false;
+
 CSoundManager::CSoundManager()
+    : m_LastGameObjectID(1)
 {
-    m_LastGameObjectID = 1;
+    CSoundManager::m_EndOfEventPendantToNotify = false;
 }
+
 CSoundManager::~CSoundManager()
 {
     Terminate();
@@ -457,9 +461,31 @@ bool CSoundManager::InitBanks()
     return true;
 }
 
-void CSoundManager::OnEventEnd()
+void CSoundManager::PlayEvent(SoundEvent &_event, const bool callback)
 {
+    void* in_pCookie = nullptr;
+    AK::SoundEngine::PostEvent(_event.eventName.c_str(), m_DefaultSpeakerId, AkCallbackType::AK_EndOfEvent, OnEventEnd,in_pCookie);
+}
 
+
+void CSoundManager::OnEventEnd(
+    AkCallbackType in_eType,            // Type of callback reason, in this case it could be AK_MusicSyncBeat
+    AkCallbackInfo* in_pCallbackInfo    // Pointer to callback information structure, in this case
+    // AkMusicSyncCallbackInfo*.
+)
+{
+    CSoundManager::m_EndOfEventPendantToNotify = true;
+}
+
+bool CSoundManager::NotifyEndOfEvent()
+{
+    if (CSoundManager::m_EndOfEventPendantToNotify)
+    {
+        CSoundManager::m_EndOfEventPendantToNotify = false;
+        return true;
+    }
+
+    return false;
 }
 
 void CSoundManager::DrawImgui()

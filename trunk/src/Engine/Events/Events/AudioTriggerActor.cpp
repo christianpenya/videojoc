@@ -30,12 +30,15 @@ void CAudioTriggerActor::Act()
     LOG_INFO_APPLICATION("ACTING! I'M ACTING!");
     SoundEvent se;
     se.eventName = "pasillo";
-    CEngine::GetInstance().m_SoundManager->PlayEvent(se);
+    CEngine::GetInstance().m_SoundManager->PlayEvent(se, true);
 }
 
 void CAudioTriggerActor::Update(float elapsedTime)
 {
     LOG_INFO_APPLICATION("ACTOR UPDATING");
-    // is audio finished?
-    m_Finished = true;
+
+    if (CEngine::GetInstance().m_SoundManager->NotifyEndOfEvent())
+    {
+        m_Finished = true;
+    }
 }

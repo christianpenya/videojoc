@@ -66,6 +66,7 @@ public:
     virtual void UnregisterSpeaker(const CSceneNode* _speaker) = 0;
 
     virtual void PlayEvent(SoundEvent &_event) = 0;
+    virtual void PlayEvent(SoundEvent &_event, const bool _callback) = 0;
     virtual void PlayEvent(SoundEvent &_event, const std::string &_speaker) = 0;
     virtual void PlayEvent(SoundEvent &_event, const CSceneNode* _speaker) = 0;
 
@@ -80,13 +81,12 @@ public:
     virtual void BroadcastState(const SoundStateValue &_state) = 0;
     virtual void BroadcastRTPCValue(const SoundRTPC &_rtpc, float value) = 0;
 
-    //virtual void PostMusicEvent() = 0;
-    //virtual void OnEventEnd() = 0;
-
     virtual void Terminate() = 0;
     virtual void Clean() = 0;
     virtual bool LoadSoundBanksXML() = 0;
     virtual bool LoadSpeakersXML() = 0;
+
+    virtual bool NotifyEndOfEvent() = 0;
 
     virtual void DrawImgui() = 0;
 
