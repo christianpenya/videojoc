@@ -17,10 +17,16 @@ void CCharacterController::Update(float ElapsedTime)
     float x = (*actionManager)("x_move")->value;
     float z = (*actionManager)("z_move")->value;
     float run = (*actionManager)("run")->value;
-    if (run>0.f)
+    float crouch = (*actionManager)("crouch")->value;
+    float l_Speed = m_Speed;
+    if (run>0.f && z>0.1f)
     {
-        printf("HIHIHI");
+        x /= 2;
+        l_Speed *= 1.4;
     }
+    if (crouch>0.f)
+        l_Speed *= .6f;
+
     Vect3f forwardMove = z * l_Front;
     Vect3f horizontalMove = x * l_Right;
     // m_Movement = { x, 0.0f, z };
@@ -30,7 +36,7 @@ void CCharacterController::Update(float ElapsedTime)
         m_Movement = m_Movement.GetNormalized();
         Vect3f l_Dir = m_Movement;
 
-        m_Movement *= m_Speed;
+        m_Movement *= l_Speed;
         m_Position = m_Position + m_Movement;
         physXManager->MoveCharacterController("player", m_Movement, PHYSX_UPDATE_STEP);
         if (player != nullptr)
@@ -43,7 +49,6 @@ void CCharacterController::Update(float ElapsedTime)
 
 
     }
-
 
 }
 
@@ -67,5 +72,6 @@ void CCharacterController::Init(CSceneManager* sceneManager)
     }
     if (player != nullptr)
         player->SetPosition(m_Position);
+
 }
 

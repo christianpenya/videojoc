@@ -32,7 +32,7 @@ public:
         , yaw(0.0f)
         , pitch(-1.0f)
         , roll(0.0f)
-        , zoom(6.0f)
+        , zoom(3.0f)
     {
 
     };

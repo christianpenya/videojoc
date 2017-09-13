@@ -69,7 +69,7 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
 
     // default material
     RegisterMaterial("Default", 0.5f, 0.5f, 0.6f);
-    AddCharacterController("player", 2.0f, 0.25f, Vect3f(0, 0, 0), Quatf(0, 0, 0, 1), "Default", 0.5f);
+    AddCharacterController("player", 1.f, 0.25f, Vect3f(0, 0, 4), Quatf(0, 0, 0, 1), "Default", 0.5f);
 
     m_LeftoverSeconds = 0.0f;
 }
@@ -131,9 +131,9 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
     physx::PxCapsuleControllerDesc desc;
     desc.height = height;
     desc.radius = radius;
-    desc.climbingMode = physx::PxCapsuleClimbingMode::eEASY;
+    desc.climbingMode = physx::PxCapsuleClimbingMode::eCONSTRAINED;
     desc.slopeLimit = cosf(3.1415f / 6); // 30
-    desc.stepOffset = 0.5f;
+    desc.stepOffset = 0.25f;
     desc.density = density;
     desc.reportCallback = this;
     desc.position = physx::PxExtendedVec3(position.x, position.y + radius + height * 0.5f, position.z);
