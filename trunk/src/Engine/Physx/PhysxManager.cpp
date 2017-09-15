@@ -179,8 +179,8 @@ void CPhysXManager::CreateStaticSphere(const std::string& actorName, std::string
     AddActor(actorName, index, body, orientation, position);
 }
 
-void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
-                                      const Vect3f position, std::string aFileName)
+void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf aOrientation,
+                                      const Vect3f aPosition, std::string aFileName)
 {
     unsigned short vertexNum = 0;
     void* vertexData = nullptr;
@@ -217,13 +217,13 @@ void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string 
         physx::PxMaterial* l_Material = m_Materials[aMaterialName];
 
         physx::PxShape* shape = m_PhysX->createShape(physx::PxTriangleMeshGeometry(triangleMesh), *l_Material);
-        physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
+        physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(aPosition), CastQuat(aOrientation)));
 
         body->attachShape(*shape);
         m_Scene->addActor(*body);
 
         size_t index = GetActorSize(actorName);
-        AddActor(actorName, index, body, orientation, position);
+        AddActor(actorName, index, body, aOrientation, aPosition);
 
         delete(vertexData);
         delete(indexData);

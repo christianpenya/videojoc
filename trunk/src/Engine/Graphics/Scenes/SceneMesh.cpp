@@ -29,7 +29,9 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
 
             std::string lRigidBody = iCollider->GetAttribute<std::string>("rigid_body", "");
             std::string lFilename = iCollider->GetAttribute<std::string>("filename", "");
+            Vect3f lOffset = iCollider->GetAttribute<Vect3f>("offset", Vect3f(0.0f, 0.0f, 0.0f));
             bool isKinematic = iCollider->GetAttribute<bool>("kinematic", false);
+            Vect3f lColliderPosition;
 
             EnumString<ERigidBody>::ToEnum(mRigidBodyEnum, lRigidBody);
 
@@ -92,8 +94,8 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
 
                 assert(strcmp(lFilename.c_str(), "") != 0);
-
-                CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, m_Position, lFilename);
+                lColliderPosition = m_Position + lOffset;
+                CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, lColliderPosition, lFilename);
                 //CEngine::GetInstance().GetPhysXManager().CreateStaticTriangleMesh(m_Name, "Default", rotation, m_Position, );
                 // CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, m_Position, );
                 // mMesh->;

@@ -126,7 +126,7 @@
 		SALA2
 		<scene_mesh name="sala2" mesh="data/meshes/reclusion/sala2.mesh" >
 			<transform position="0.0 0.0 24.1714" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala2.mesh" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala2.mesh" offset="1.5 0.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="conducto2" mesh="data/meshes/reclusion/conducto.mesh" >
 			<transform position="-2.99534 3.31189 30.8678" yaw="0.0" pitch="0.0" roll="180.0" scale="-1.0 1.0 1.0" />

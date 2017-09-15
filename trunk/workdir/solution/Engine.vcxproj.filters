@@ -342,9 +342,6 @@
     <ClInclude Include="..\..\src\Engine\Input\InputManager.h">
       <Filter>Input</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physx\Collider.h">
-      <Filter>Physx</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Physx\PhysxManager.h">
       <Filter>Physx</Filter>
     </ClInclude>
@@ -670,9 +667,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Input\InputManager.cpp">
       <Filter>Input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Physx\Collider.cpp">
-      <Filter>Physx</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Physx\PhysxManager.cpp">
       <Filter>Physx</Filter>

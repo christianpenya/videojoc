@@ -107,7 +107,7 @@ public:
     //STATIC
     size_t CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ);
     void CreateStaticSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius);
-    void CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::string aFileName);
+    void CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf aOrientation, const Vect3f aPosition, std::string aFileName);
     void CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices);
 
     //DYNAMIC
