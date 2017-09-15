@@ -62,5 +62,5 @@ project "Base"
 project "Engine"
     kind "StaticLib"
 	characterset ("MBCS")
-    files { "../src/Engine/**.h", "../src/Engine/**.cpp", "../src/Engine/**.inl", "../src/Engine/**.cc"}
+    files { "../src/Engine/**.h", "../src/Engine/**.cpp", "../src/Engine/**.inl"}
 	includedirs { "../src/Engine", "../src/Base", "../src/3rdParty/Cal3D/", "../src/3rdParty/lua/", "../src/3rdParty/luabind/", "../src/3rdParty/DirectXTex/", "../src/3rdParty/", "../include/physx/", "../include/", "../include/SoundEngine/Win32/"}
