@@ -58,14 +58,14 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 sizeZ = abs(abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z);
                 cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
 
-                lCenter = m_Position;
+                lCenter = m_Position + lOffset;
                 mPhysxIndex = CEngine::GetInstance().GetPhysXManager().CreateStaticBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ);
 
-                rotation = CEngine::GetInstance().GetPhysXManager().GetActorOrientation(m_Name);
-                m_Position = CEngine::GetInstance().GetPhysXManager().GetActorPosition(m_Name) + rotation.Rotate(cubeOffset);
-                m_Pitch = rotation.GetRotationMatrix().GetAngleX();
-                m_Yaw = rotation.GetRotationMatrix().GetAngleY();
-                m_Roll = rotation.GetRotationMatrix().GetAngleZ();
+                //rotation = CEngine::GetInstance().GetPhysXManager().GetActorOrientation(m_Name);
+                //m_Position = CEngine::GetInstance().GetPhysXManager().GetActorPosition(m_Name) + rotation.Rotate(cubeOffset);
+                //m_Pitch = rotation.GetRotationMatrix().GetAngleX();
+                //m_Yaw = rotation.GetRotationMatrix().GetAngleY();
+                //m_Roll = rotation.GetRotationMatrix().GetAngleZ();
                 break;
 
             case eDynamicBox:
