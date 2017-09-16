@@ -48,8 +48,11 @@
 		<trigger type="GAMEPAD_BUTTON" button="RIGHT_THUMB" value="1"/>
 	</action>
 	<action name = "run">
-		<trigger type="KEYBOARD" key_code="CONTROL" value ="1"/>
 		<trigger type="KEYBOARD" key_code="SHIFT" value ="1"/>
+	</action>
+	<action name = "crouch">
+		<trigger type="KEYBOARD" key_code="CONTROL" value ="1"/>
+	
 	</action>
 	
 	<action name = "mouse_right_pressed">

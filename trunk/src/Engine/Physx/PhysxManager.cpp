@@ -523,8 +523,8 @@ CPhysXManager::CharacterControllerData CPhysXManager::MoveCharacterController(co
 
     physx::PxRigidDynamic* actor = cct->getActor();
     size_t index = (size_t)actor->userData;
-
-    cct->move(CastVec(movement), movement.Length() * 0.01f, elapsedTime, filters);
+    Vect3f movement2 = movement + Vect3f(0, -1, 0);
+    cct->move(CastVec(movement2), movement.Length() * 0.01f, elapsedTime, filters);
 
     physx::PxExtendedVec3 p = cct->getFootPosition();
     physx::PxVec3 v = actor->getLinearVelocity();

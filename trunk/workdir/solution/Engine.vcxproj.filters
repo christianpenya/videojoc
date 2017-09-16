@@ -590,9 +590,6 @@
     <ClCompile Include="..\..\src\Engine\Graphics\IA\enemy.cpp">
       <Filter>Graphics\IA</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\IA\tiny_obj_loader.cc">
-      <Filter>Graphics\IA</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\DirectionalLight.cpp">
       <Filter>Graphics\Lights</Filter>
     </ClCompile>
