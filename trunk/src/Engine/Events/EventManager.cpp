@@ -21,6 +21,7 @@ CEventManager::CEventManager()
 
 CEventManager::~CEventManager()
 {
+    __H_CHECKED_DELETE__(mFilename);
     __H_CHECKED_DELETE__(mActors);
     __H_CHECKED_DELETE__(mReactors);
 }

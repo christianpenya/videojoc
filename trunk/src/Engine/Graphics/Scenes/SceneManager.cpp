@@ -51,6 +51,7 @@ bool CSceneManager::Render(const std::string& aLayer)
             lOk &= lScene->Render(aLayer);
         }
     }
+
     return lOk;
 }
 

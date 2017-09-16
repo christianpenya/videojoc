@@ -6,7 +6,7 @@
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 	</layer>
-	<!--
+	
 	<layer name="drones" active="true">
 		<scene_mesh name="PatrolPoint_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="8.46 1.19 22.11" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
@@ -118,7 +118,6 @@
 		</scene_enemies>				
 
 	</layer>
-	-->
 	
 	<layer name="opaque" active="true" >		
 		tuberia\d{3}.mesh
@@ -235,6 +234,39 @@
 			<transform position="0.840901 3.20359 -0.466283" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala1.mesh" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
+		
+		<scene_mesh name="valla002" mesh="data/meshes/reclusion/valla002.mesh" >
+			<transform position="13.9242 5.1 5.66695" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="valla1" mesh="data/meshes/reclusion/valla1.mesh" >
+			<transform position="11.33 5.1 3.70398" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="palovalla008" mesh="data/meshes/reclusion/palovalla.mesh" >
+			<transform position="6.27802 0.0 34.7543" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="palovalla007" mesh="data/meshes/reclusion/palovalla.mesh" >
+			<transform position="10.444 0.0 34.7543" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="palovalla006" mesh="data/meshes/reclusion/palovalla.mesh" >
+			<transform position="13.9309 3.198 12.8205" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="palovalla005" mesh="data/meshes/reclusion/palovalla.mesh" >
+			<transform position="13.9309 3.198 9.24239" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="palovalla004" mesh="data/meshes/reclusion/palovalla.mesh" >
+			<transform position="13.9309 3.198 3.70133" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="palovalla003" mesh="data/meshes/reclusion/palovalla.mesh" >
+			<transform position="9.922 3.198 3.70133" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="palovalla002" mesh="data/meshes/reclusion/palovalla.mesh" >
+			<transform position="5.75151 3.198 3.70133" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="palovalla001" mesh="data/meshes/reclusion/palovalla.mesh" >
+			<transform position="1.58102 3.198 3.70133" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+
 		
 		<scene_mesh name="pared marcosalida001" mesh="data/meshes/reclusion/marco_puerta.mesh" >
 			<transform position="-0.0211294 1.14164 14.5566" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -1426,13 +1458,18 @@
 
 		<scene_mesh name="decallhumedadesquina" mesh="data/meshes/reclusion/decallhumedadesquina.mesh" >
 			<transform position="-1.93928 5.42975 -3.62341" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>	
+		</scene_mesh>
 	</layer>
 		
 	<layer name="lights" active="true" >
-		<scene_light name="FDirect001" id_light="0" />
-		<!--<scene_light name="Fspot001" id_light="1" />-->
+	
+	<!--	
+	<scene_light name="FDirect001" id_light="0" />
+	<scene_light name="Fspot001" id_light="1" />
+	-->
+	
 	</layer>
+	
 	<layer name="Skybox" active="true">
 		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true" active="true">
 			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
@@ -1441,11 +1478,13 @@
 	
 	<layer name="guardias" active="true" >
 		<scene_animated_model name="guardiaTEST" core="guardia"> rigid_body = "player">
-			<transform position="0.0 3.0 20.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
+		<!--
 		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
 			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
+		-->
 	</layer>
 	
 	<layer name="Skybox" active="true">

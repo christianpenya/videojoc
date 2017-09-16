@@ -144,7 +144,10 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement, CMesh* aMesh)
     mMesh->GetBoundingSphere().SetRadius(radius * m_Scale.x);
 }
 
-CSceneMesh::~CSceneMesh() {}
+CSceneMesh::~CSceneMesh()
+{
+    __H_CHECKED_DELETE__(mMesh);
+}
 
 bool CSceneMesh::Update(float aDeltaTime)
 {

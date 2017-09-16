@@ -76,8 +76,8 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_RenderPipeline);
     base::utils::CheckedDelete(m_ParticleManager);
     base::utils::CheckedDelete(m_CinematicManager);
-    base::utils::CheckedDelete(m_SceneManager);
     base::utils::CheckedDelete(m_LightManager);
+    base::utils::CheckedDelete(m_SceneManager);
     base::utils::CheckedDelete(m_MeshManager);
     base::utils::CheckedDelete(m_AnimatedModelManager);
     base::utils::CheckedDelete(m_MaterialManager);
@@ -148,11 +148,11 @@ void CEngine::LoadFiles()
     LOG_INFO_APPLICATION("Engine -> Particles Loaded! \\(^-^)/");
 
     m_NavMeshManager = new CNavMeshManager;
-    //m_NavMeshManager->Load("data/navMesh.xml");
-    //LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
+    m_NavMeshManager->Load("data/navMesh.xml");
+    LOG_INFO_APPLICATION("Engine -> NavMesh Loaded! \\(^-^)/");
 
-    //m_EnemiesManager = new CEnemiesManager;
-    //m_EnemiesManager->Load("data/enemies.xml");
+    m_EnemiesManager = new CEnemiesManager;
+    m_EnemiesManager->Load("data/enemies.xml");
     LOG_INFO_APPLICATION("Engine -> Enemies Loaded! \\(^-^)/");
 
     m_SceneManager = new CSceneManager();
