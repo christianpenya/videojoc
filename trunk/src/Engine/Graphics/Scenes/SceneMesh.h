@@ -17,6 +17,7 @@ public:
     {
         ePlane = 0,
         eBox,
+        eDynamicBox,
         eSphere,
         eShape,
         eTriangleMesh,
@@ -51,6 +52,7 @@ Begin_Enum_String(CSceneMesh::ERigidBody)
 {
     Enum_String_Id(CSceneMesh::ePlane, "plane");
     Enum_String_Id(CSceneMesh::eBox, "box");
+    Enum_String_Id(CSceneMesh::eDynamicBox, "dynamic_box");
     Enum_String_Id(CSceneMesh::eSphere, "sphere");
     Enum_String_Id(CSceneMesh::eShape, "shape");
     Enum_String_Id(CSceneMesh::eTriangleMesh, "triangle_mesh");

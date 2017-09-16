@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1818940147	pasillo			\Default Work Unit\pasillo	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	434193538	bdmthrfckr	C:\Users\christian\Desktop\Prometeo\.cache\Windows\SFX\bdmthrfckr_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\bdmthrfckr		1047104
+

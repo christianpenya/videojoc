@@ -5,12 +5,15 @@
 #include "Imgui/imgui.h"
 
 #include "Events/DumbActor.h"
+#include "Events/AudioTriggerActor.h"
+
 #include "Events/DumbReactor.h"
 #include "Events/OpenDoorReactor.h"
 
 CEventManager::CEventManager()
 {
     mActors.Add("dumb", new CDumbActor());
+    mActors.Add("audio_trigger", new CAudioTriggerActor());
 
     mReactors.Add("dumb", new CDumbReactor());
     mReactors.Add("open_door", new COpenDoorReactor());
@@ -18,6 +21,7 @@ CEventManager::CEventManager()
 
 CEventManager::~CEventManager()
 {
+    __H_CHECKED_DELETE__(mFilename);
     __H_CHECKED_DELETE__(mActors);
     __H_CHECKED_DELETE__(mReactors);
 }
@@ -55,13 +59,13 @@ bool CEventManager::Load()
     return lOk;
 }
 
-void CEventManager::Update()
+void CEventManager::Update(float elapsedTime)
 {
     for (std::vector<CEvent*>::iterator iEvent = m_ResourcesVector.begin(); iEvent != m_ResourcesVector.end(); ++iEvent)
     {
-        if ((*iEvent)->mIsEnCours)
+        if ((*iEvent)->IsHappeningRightFuckingNow())
         {
-            (*iEvent)->Update();
+            (*iEvent)->Update(elapsedTime);
         }
     }
 }

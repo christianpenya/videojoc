@@ -14,10 +14,26 @@ function preProcess = (
 			appendIfUnique mArrayMaterial iMaterial
 		)else if classOf iMaterial == Multimaterial then	
 		(
+			
+			
 			local lSubMaterialsCount = iMaterial.numsubs			
 			for iSubMaterial =  1 to lSubMaterialsCount do(
 				local lSubMaterial = iMaterial[iSubMaterial]
-				appendIfUnique mArrayMaterial lSubMaterial
+				
+				if classOf lSubMaterial == Standardmaterial then (
+					appendIfUnique mArrayMaterial lSubMaterial
+				)
+				else if classOf lSubMaterial == Multimaterial then (
+				
+					local lSubMaterialsCount2 = lSubMaterial.numsubs
+					for iSubMaterial2 =  1 to lSubMaterialsCount2 do (
+						local lSubMaterial2 = lSubMaterial[iSubMaterial2]
+					
+						if classOf lSubMaterial2 == Standardmaterial then (
+							appendIfUnique mArrayMaterial lSubMaterial2
+						)
+					)
+				)
 			)
 		)
 	)

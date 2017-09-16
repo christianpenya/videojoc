@@ -1,0 +1,38 @@
+<scene>
+
+	<layer name="opaque" active="true" >
+
+		<scene_mesh name="sala009" mesh="data/meshes/reclusion/sala009.mesh" >
+			<transform position="0.300117 0.0 -9.63795" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="sala21" mesh="data/meshes/reclusion/sala21.mesh" >
+			<transform position="0.74099 0.0 3.28947" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.660169 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="sala022" mesh="data/meshes/reclusion/sala022.mesh" >
+			<transform position="15.7384 0.0 3.2236" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="sala023" mesh="data/meshes/reclusion/sala023.mesh" >
+			<transform position="-14.4054 0.0 3.2236" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="sala024" mesh="data/meshes/reclusion/sala024.mesh" >
+			<transform position="15.7384 -3.25726 23.1834" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="sala025" mesh="data/meshes/reclusion/sala025.mesh" >
+			<transform position="-14.3591 -3.25726 22.7361" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+	
+	</layer>
+
+	<layer name="lights" active="true" >
+		<scene_light name="FDirect001" id_light="0" />
+	</layer>
+
+	<layer name="Skybox" active="true">
+		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true" active="true">
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+	</layer>
+	
+	
+		
+</scene>

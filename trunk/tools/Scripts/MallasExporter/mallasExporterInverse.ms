@@ -28,13 +28,36 @@ fn preProcess = (
 		tempMaterial.setFlags(lSelectionMaterial)
 		append gMatsArray tempMaterial
 	)else if classOf lSelectionMaterial == Multimaterial then	(
+		print "Multi"
 		local lSubMaterialsCount = lSelectionMaterial.numsubs			
 		for iSubMaterial =  1 to lSubMaterialsCount do(
 			local lSubMaterial = lSelectionMaterial[iSubMaterial]
-			local tempMaterial = sMaterial()
-			tempMaterial.m_name = lSubMaterial.name
-			tempMaterial.setFlags(lSubMaterial)
-			append gMatsArray tempMaterial
+			if classOf lSubMaterial == Standardmaterial then (
+				local tempMaterial = sMaterial()
+				tempMaterial.m_name = lSubMaterial.name
+				tempMaterial.setFlags(lSubMaterial)
+				append gMatsArray tempMaterial
+			)
+			else if classOf lSubMaterial == Multimaterial then(
+				
+				print "Multi"
+				local lSubMaterialsCount2 = lSubMaterial.numsubs			
+				for iSubMaterial2 =  1 to lSubMaterialsCount2 do(
+					local lSubMaterial2 = lSubMaterial[iSubMaterial2]
+					if classOf lSubMaterial2 == Standardmaterial then (
+						print "UEE"
+						local tempMaterial2 = sMaterial()
+						tempMaterial2.m_name = lSubMaterial2.name
+						tempMaterial2.setFlags(lSubMaterial2)
+						append gMatsArray tempMaterial2
+					)
+					else (
+
+						print classOf lSubMaterial2
+					)
+			
+				)
+			)
 		)
 	)
 )
@@ -46,15 +69,16 @@ fn process = (
 		local Vtx1 = sVertex()
 		local Vtx2 = sVertex()
 		local Vtx3 = sVertex()
-
+		
 		local auxPos1 = (getVert gSelection IdxsFace.x) * gInverseTransform
 		local auxPos2 = (getVert gSelection IdxsFace.y) * gInverseTransform
 		local auxPos3 = (getVert gSelection IdxsFace.z) * gInverseTransform
-
+		
 		Vtx1.m_pos = TranslationToRH(auxPos1)
 		Vtx2.m_pos = TranslationToRH(auxPos2)
 		Vtx3.m_pos = TranslationToRH(auxPos3)
-
+		
+		
 		--SAVING POINTS FOR BOUNDING BOX AND SPHERE		
 		append gAX Vtx1.m_pos.x
 		append gAX Vtx2.m_pos.x
@@ -67,26 +91,25 @@ fn process = (
 		append gAZ Vtx1.m_pos.z
 		append gAZ Vtx2.m_pos.z
 		append gAZ Vtx3.m_pos.z
-
-
+		
 		UABCalcVertexsNormals gSelection
 		local lFaceNormal = getFaceNormal gSelection nFace
 		local lSmoothValue = getFaceSmoothGroup gSelection nFace
-
+print("4")
 		local auxNorm1 = (UABGetVertexNormal gSelection IdxsFace.x lSmoothValue lFaceNormal) --* gInverseTransform
 		local auxNorm2 = (UABGetVertexNormal gSelection IdxsFace.y lSmoothValue lFaceNormal) --* gInverseTransform
 		local auxNorm3 = (UABGetVertexNormal gSelection IdxsFace.z lSmoothValue lFaceNormal) --* gInverseTransform
-
+print("3")
 		Vtx1.m_norm = TranslationToRH(auxNorm1)
 		Vtx2.m_norm = TranslationToRH(auxNorm2)
 		Vtx3.m_norm = TranslationToRH(auxNorm3)
-
+print("2")
 		local IdxsMap = meshop.getMapFace gSelection 1 nFace
-
+print("ta mere!")
 		local auxUV_1 = meshop.getMapVert gSelection 1 IdxsMap.x
 		local auxUV_2 = meshop.getMapVert gSelection 1 IdxsMap.y
 		local auxUV_3 = meshop.getMapVert gSelection 1 IdxsMap.z
-
+print("1")
 		Vtx1.m_uv = TranslationUV(auxUV_1)
 		Vtx2.m_uv = TranslationUV(auxUV_2)
 		Vtx3.m_uv = TranslationUV(auxUV_3)

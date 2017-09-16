@@ -14,7 +14,7 @@ public:
 
     bool Load(std::string aFilename);
     bool Load();
-    void Update();
+    void Update(float elapsedTime);
 
     CEvent* GetEvent(std::string aEvent);
     CActor* GetActor(std::string aActor);

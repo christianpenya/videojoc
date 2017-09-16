@@ -20,7 +20,6 @@
 	<render_layer layer="opaque"/>
 	<render_layer layer="drones"/>
 	<render_layer layer="guardias"/>
-	<render_layer layer="triggers" />
 	<!--	<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />	-->
 	
 	<unset_render_target/>

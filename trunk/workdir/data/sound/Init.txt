@@ -1,11 +1,3 @@
-State Group	ID	Name			Wwise Object Path	Notes
-	3253893225	music_enabling			\Default Work Unit\music_enabling	
-
-State	ID	Name	State Group			Notes
-	748895195	None	music_enabling			
-	930712164	off	music_enabling			
-	1651971902	on	music_enabling			
-
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	805203703	Master Secondary Bus			\Default Work Unit\Master Secondary Bus	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	

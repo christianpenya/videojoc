@@ -1,6 +1,28 @@
 <materials >
+
+	PALO VALLA
+	<material name="Material #121" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="escaleones" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\metalescaleras.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="hierro" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\metal.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+
 	DRONES
-	
 	<material name="Dron001Material" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.0 0.0 0.0 1.0 " />
 	</material>
@@ -111,7 +133,7 @@
 	
 	POSTER SUICIDIO
 	<material name="20 - Default" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\cartelitos.jpg" />
+		<texture type="diffuse" filename="data\textures\pollas.tga" />
 		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
 		<parameter type="float" name="metalness" value="1.0" />
 		<parameter type="float" name="roughness" value="1.0" />
