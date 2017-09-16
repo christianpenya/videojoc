@@ -11,9 +11,14 @@
 #include "Graphics/Scenes/SceneNode.h"
 #include "Physx/PhysxManager.h"
 
+#include "Utils/CheckedRelease.h"
+
 COpenDoorReactor::COpenDoorReactor() {}
 
-COpenDoorReactor::~COpenDoorReactor() {}
+COpenDoorReactor::~COpenDoorReactor()
+{
+    __H_CHECKED_RELEASE__(mDoor);
+}
 
 void COpenDoorReactor::Load(CXMLElement* aElement)
 {

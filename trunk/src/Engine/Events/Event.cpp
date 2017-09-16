@@ -38,7 +38,11 @@ CEvent::CEvent(CXMLElement* aEvent) :
     }
 }
 
-CEvent::~CEvent() {}
+CEvent::~CEvent()
+{
+    __H_CHECKED_DELETE__(mReactor);
+    __H_CHECKED_DELETE__(mActor);
+}
 
 void CEvent::Start()
 {

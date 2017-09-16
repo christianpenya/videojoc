@@ -11,8 +11,13 @@
 #include "Graphics/Scenes/SceneNode.h"
 #include "Sound/ISoundManager.h"
 
+#include "Utils/CheckedRelease.h"
+
 CAudioTriggerActor::CAudioTriggerActor() {}
-CAudioTriggerActor::~CAudioTriggerActor() {}
+CAudioTriggerActor::~CAudioTriggerActor()
+{
+    __H_CHECKED_RELEASE__(mTrigger);
+}
 
 void CAudioTriggerActor::Load(CXMLElement* aElement)
 {

@@ -28,7 +28,7 @@ CLayer::CLayer(const std::string& aName) :
 
 CLayer::~CLayer()
 {
-    //CTemplatedMapVector<CSceneNode>::Destroy();
+    CTemplatedMapVector<CSceneNode>::Destroy();
 }
 
 bool CLayer::Load(CXMLElement* aElement)
