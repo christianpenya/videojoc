@@ -1,5 +1,7 @@
 #include "TpsCameraController.h"
 #include "Engine/Engine.h"
+#include "Physx/PhysxManager.h"
+#include "Utils/Logger.h"
 
 void CTpsCameraController::Update(float ElapsedTime)
 {
@@ -43,10 +45,28 @@ void CTpsCameraController::Update(float ElapsedTime)
 
 
     m_Position = center - m_Front * zoom;
+    //Vect3f dir = m_Position - m_player->m_Position;
+    Vect3f origin = m_player->m_Position + (0.25f * -m_Front);
+    CPhysXManager::RaycastData *data = new CPhysXManager::RaycastData;
+    bool hit = physX->Raycast(origin, m_Position, 0,data);
+    if (hit)
+    {
+        LOG_INFO_APPLICATION("HIT \\(^-^)/");
+        data->distance;
+        m_Position = center - m_Front * data->distance;
+    }
+    else
+    {
+        LOG_INFO_APPLICATION("NOt HIT \\(^-^)/");
+    }
+
+
+
 }
 
 void CTpsCameraController::Init(CCharacterController* player)
 {
     m_player = player;
     actionManager = &CEngine::GetInstance().GetActionManager();
+    physX = &CEngine::GetInstance().GetPhysXManager();
 }
