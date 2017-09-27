@@ -30,6 +30,10 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
             std::string lRigidBody = iCollider->GetAttribute<std::string>("rigid_body", "");
             std::string lFilename = iCollider->GetAttribute<std::string>("filename", "");
             Vect3f lOffset = iCollider->GetAttribute<Vect3f>("offset", Vect3f(0.0f, 0.0f, 0.0f));
+            float lYawOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("yaw", 0.0f));
+            float lPitchOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("pitch", 0.0f));
+            float lRollOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("roll", 0.0f));
+
             bool isKinematic = iCollider->GetAttribute<bool>("kinematic", false);
             Vect3f lColliderPosition;
 
@@ -91,15 +95,13 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
 
             case eShape:
                 lDebug = "Attached physx SHAPE to " + m_Name;
-                rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+                rotation.QuatFromYawPitchRoll(m_Yaw + lYawOffset, m_Pitch + lPitchOffset, m_Roll + lRollOffset);
 
                 assert(strcmp(lFilename.c_str(), "") != 0);
                 lColliderPosition = m_Position + lOffset;
+
                 CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, lColliderPosition, lFilename);
-                //CEngine::GetInstance().GetPhysXManager().CreateStaticTriangleMesh(m_Name, "Default", rotation, m_Position, );
-                // CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, m_Position, );
-                // mMesh->;
-                // CEngine::GetInstance().GetPhysXManager().CreateDynamicShape(m_Name, "Default", rotation, m_Position, nullptr, 1.0f);
+
                 break;
             case eSphere:
                 lDebug = "Attached physx SPHERE to " + m_Name;
@@ -230,11 +232,11 @@ void CSceneMesh::DrawImgui()
 {
     if (ImGui::CollapsingHeader(m_Name.c_str()))
     {
-        ImGui::SliderFloat("XPosition", (float*)&m_Position.x, mOriginalUnmodifiedPosition.x - 5.0f, mOriginalUnmodifiedPosition.x + 5.0f);
-        ImGui::SliderFloat("YPosition", (float*)&m_Position.y, mOriginalUnmodifiedPosition.y - 5.0f, mOriginalUnmodifiedPosition.y + 5.0f);
-        ImGui::SliderFloat("ZPosition", (float*)&m_Position.z, mOriginalUnmodifiedPosition.z - 5.0f, mOriginalUnmodifiedPosition.z + 5.0f);
+        ImGui::SliderFloat("XPosition", (float*)&m_Position.x, mOriginalUnmodifiedPosition.x - 1.0f, mOriginalUnmodifiedPosition.x + 1.0f);
+        ImGui::SliderFloat("YPosition", (float*)&m_Position.y, mOriginalUnmodifiedPosition.y - 1.0f, mOriginalUnmodifiedPosition.y + 1.0f);
+        ImGui::SliderFloat("ZPosition", (float*)&m_Position.z, mOriginalUnmodifiedPosition.z - 1.0f, mOriginalUnmodifiedPosition.z + 1.0f);
 
-        ImGui::SliderFloat3("Scale", (float*)&m_Scale, 0.0f, 5.0f);
+        ImGui::SliderFloat3("Scale", (float*)&m_Scale, -2.0f, 2.0f);
 
         float lYawTmp = mathUtils::Rad2Deg(m_Yaw);
         float lPitchTmp = mathUtils::Rad2Deg(m_Pitch);

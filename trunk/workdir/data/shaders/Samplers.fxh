@@ -2,8 +2,8 @@
 #define SAMPLERS_FXH
 
 Texture2D T0Texture: register( t0 );	// Diffuse
-Texture2D T1Texture: register( t1 );	// NormalMap
-Texture2D T2Texture: register( t2 );	// LightMap
+Texture2D T1Texture: register( t1 );	// LightMap
+Texture2D T2Texture: register( t2 );	// NormalMap
 Texture2D T3Texture: register( t3 );	// Specular
 Texture2D T4Texture: register( t4 );	// ShadowMap
 Texture2D T5Texture: register( t5 );	// ShadowMask

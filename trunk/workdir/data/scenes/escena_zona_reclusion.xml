@@ -1349,14 +1349,17 @@
 	</layer>
 		
 		
-		<layer name="triggers" active="true">
-		<scene_mesh name="trigger_pasillo" mesh="data/meshes/Box01.mesh">
+	<layer name="triggers" active="true">
+	
+	<scene_mesh name="trigger_pasillo" mesh="data/meshes/Box01.mesh">
 			<transform position="0.0 1.0 25.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
+
 	</layer>
 	
 	<layer name="drones" active="true">
+		
 		<scene_mesh name="PatrolPoint_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="8.46 1.19 22.11" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
@@ -1465,7 +1468,7 @@
 			<transform position="39.54 1.19 33.5" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
 			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
 		</scene_enemies>				
-
+		
 	</layer>
 		
 	<layer name="lights" active="true" >
@@ -1492,15 +1495,7 @@
 			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
 		-->
-	</layer>
-	
-	<layer name="Skybox" active="true">
-		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true">
-			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
-		</scene_mesh>
-	</layer>
-	
-	
+	</layer>	
 	
 </scene>
 

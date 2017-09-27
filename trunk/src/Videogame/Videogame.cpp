@@ -9,8 +9,8 @@
 
 #define APPLICATION_NAME	"ESCAPE FROM ALCATRAZ"
 
-float m_width = 2048 * 0.9;
-float m_height = 1052 * 0.9;
+float m_width = 2048 * 0.75;
+float m_height = 1052 * 0.75;
 
 //float m_width = 1024;
 //float m_height = 576;

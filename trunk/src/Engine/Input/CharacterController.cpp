@@ -4,6 +4,14 @@
 #include "Graphics/Camera/CameraManager.h"
 
 #include "Physx/PhysxManager.h"
+#include "Utils/CheckedRelease.h"
+
+CCharacterController::~CCharacterController()
+{
+    __H_CHECKED_RELEASE__(sceneManager);
+    __H_CHECKED_RELEASE__(actionManager);
+    __H_CHECKED_RELEASE__(physXManager);
+}
 
 void CCharacterController::Update(float ElapsedTime)
 {
@@ -56,20 +64,18 @@ void CCharacterController::Init(CSceneManager* sceneManager)
 {
     actionManager = &CEngine::GetInstance().GetActionManager();
     physXManager = &CEngine::GetInstance().GetPhysXManager();
+    sceneManager = &CEngine::GetInstance().GetSceneManager();
 
-    if (sceneManager->Exist("escena_zona_reclusion"))
+    if (sceneManager->GetCurrentScene()->Exist("guardias"))
     {
-        CScene* scene = (*sceneManager)("escena_zona_reclusion");
-        if (scene->Exist("guardias"))
+        CLayer* layer = sceneManager->GetCurrentScene()->GetLayer("guardias");
+        if (layer->Exist("guardiaTEST"))
         {
-            CLayer* layer = (*scene)("guardias");
-            if (layer->Exist("guardiaTEST"))
-            {
-                CSceneAnimatedModel* anim = (CSceneAnimatedModel*)(*layer)("guardiaTEST");
-                player = anim;
-            }
+            CSceneAnimatedModel* anim = (CSceneAnimatedModel*)(*layer)("guardiaTEST");
+            player = anim;
         }
     }
+
     if (player != nullptr)
         player->SetPosition(m_Position);
 

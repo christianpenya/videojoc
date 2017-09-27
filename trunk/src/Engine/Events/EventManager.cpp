@@ -10,7 +10,7 @@
 #include "Events/DumbReactor.h"
 #include "Events/OpenDoorReactor.h"
 
-CEventManager::CEventManager()
+CEventManager::CEventManager() : mEnabled(false)
 {
     mActors.Add("dumb", new CDumbActor());
     mActors.Add("audio_trigger", new CAudioTriggerActor());
@@ -36,36 +36,42 @@ bool CEventManager::Load()
 {
     bool lOk = true;
 
-    CXMLDocument document;
-    EXMLParseError error = document.LoadFile((mFilename).c_str());
-
-    if (base::xml::SucceedLoad(error))
+    if (mEnabled)
     {
-        CXMLElement * lEvents = document.FirstChildElement("events");
+        CXMLDocument document;
+        EXMLParseError error = document.LoadFile((mFilename).c_str());
 
-        if (lEvents)
+        if (base::xml::SucceedLoad(error))
         {
-            for (tinyxml2::XMLElement *iEvent = lEvents->FirstChildElement(); iEvent != nullptr; iEvent = iEvent->NextSiblingElement())
+            CXMLElement * lEvents = document.FirstChildElement("events");
+
+            if (lEvents)
             {
-                if (strcmp(iEvent->Name(), "event") == 0)
+                for (tinyxml2::XMLElement *iEvent = lEvents->FirstChildElement(); iEvent != nullptr; iEvent = iEvent->NextSiblingElement())
                 {
-                    CEvent* lEvent = new CEvent(iEvent);
-                    lOk &= Add(lEvent->GetName(), lEvent);
+                    if (strcmp(iEvent->Name(), "event") == 0)
+                    {
+                        CEvent* lEvent = new CEvent(iEvent);
+                        lOk &= Add(lEvent->GetName(), lEvent);
+                    }
                 }
             }
         }
-    }
 
-    return lOk;
+        return lOk;
+    }
 }
 
 void CEventManager::Update(float elapsedTime)
 {
-    for (std::vector<CEvent*>::iterator iEvent = m_ResourcesVector.begin(); iEvent != m_ResourcesVector.end(); ++iEvent)
+    if (mEnabled)
     {
-        if ((*iEvent)->IsHappeningRightFuckingNow())
+        for (std::vector<CEvent*>::iterator iEvent = m_ResourcesVector.begin(); iEvent != m_ResourcesVector.end(); ++iEvent)
         {
-            (*iEvent)->Update(elapsedTime);
+            if ((*iEvent)->IsHappeningRightFuckingNow())
+            {
+                (*iEvent)->Update(elapsedTime);
+            }
         }
     }
 }
@@ -83,4 +89,28 @@ CActor* CEventManager::GetActor(std::string aActor)
 CReactor* CEventManager::GetReactor(std::string aReactor)
 {
     return mReactors(aReactor);
+}
+
+void CEventManager::DrawImgui()
+{
+    if (ImGui::CollapsingHeader("Event Manager"))
+    {
+        ImGui::BeginChild("#Event", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::PushItemWidth(-130);
+
+        for (std::vector<CEvent*>::iterator iEvent = m_ResourcesVector.begin(); iEvent != m_ResourcesVector.end(); ++iEvent)
+        {
+            ImGui::PushID((*iEvent)->GetName().c_str());
+
+            if (ImGui::CollapsingHeader((*iEvent)->GetName().c_str()))
+            {
+                //(*iEvent)->DrawImGui();
+            }
+
+            ImGui::PopID();
+        }
+
+        ImGui::PopItemWidth();
+        ImGui::EndChild();
+    }
 }
