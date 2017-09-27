@@ -1431,7 +1431,7 @@
 	
 	<layer name="guardias" active="true" >
 		<scene_animated_model name="guardiaTEST" core="guardia"> rigid_body = "player">
-			<transform position="0.0 3.0 20.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
 		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
 			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />

@@ -17,7 +17,7 @@ public:
     CCharacterController() :
         m_Movement(0, 0, 0),
         m_Position(0, 0, 8),
-        m_Speed(.3f),
+        m_Speed(3.f),
         player(nullptr)
     {
     }

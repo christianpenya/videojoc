@@ -34,6 +34,8 @@ public:
         , pitch(-4.0f)
         , roll(0.0f)
         , zoom(3.0f)
+        , hitOffset(0.3f)
+        , pRadius(0.3f)
     {
 
     };
@@ -49,6 +51,9 @@ private:
 
     float maxPitch, minPitch;
     float maxZoom, minZoom;
+    float hitOffset;
+    float pRadius;
+
 
 };
 
