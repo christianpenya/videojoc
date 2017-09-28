@@ -132,25 +132,14 @@ std::vector<CScene*> CSceneManager::GetScenes()
 
 void CSceneManager::DrawImgui()
 {
-    if (ImGui::CollapsingHeader("Scenes Manager"))
+    for (std::vector<CScene*>::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
     {
-        ImGui::BeginChild("#Scenes", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-        ImGui::PushItemWidth(-130);
-
-        for (std::vector<CScene*>::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
+        if(ImGui::TreeNode((*iScene)->GetName().c_str()))
         {
-            ImGui::PushID((*iScene)->GetName().c_str());
-
-            if (ImGui::CollapsingHeader((*iScene)->GetName().c_str()))
-            {
-                (*iScene)->DrawImGui();
-            }
-
-            ImGui::PopID();
+            (*iScene)->DrawImGui();
+            ImGui::TreePop();
         }
 
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
     }
 }
 

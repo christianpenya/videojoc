@@ -27,90 +27,68 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 {
     CEngine& lEngine = CEngine::GetInstance();
 
-    static bool show_app_auto_resize = true;
-    ImGui::Begin("Menu", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
+    static bool show_cameras = false;
 
-    //FPS
-    ImGui::Text("%.1f FPS", lEngine.m_FPS);
-    if (ImGui::Button("PLAY"))
+    if (show_cameras)
     {
-        lEngine.GetCinematicManager().Play("Animation01");
-    }
-
-    //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-    // #TODO el contador de fps de imgui es bueno?
-
-    // TECHNIQUES
-    if (ImGui::CollapsingHeader("Cameras"))
-    {
-        // CAMERA SELECTION
+        ImGui::Begin("Camera Selection", &show_cameras, ImGuiWindowFlags_AlwaysAutoResize);
+        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+        ImGui::Separator();
         ImGui::RadioButton("TPS", &lEngine.GetCameraManager().m_CameraSelector, 0);
         ImGui::SameLine();
         ImGui::RadioButton("Free", &lEngine.GetCameraManager().m_CameraSelector, 1);
+        ImGui::End();
     }
 
-    // RELOADS
-    Reloads(lEngine);
 
-    //SCENE MANAGEMENT
-    lEngine.DrawImgui();
 
-    ImGui::End();
-    ImGui::Render();
-}
-
-void CRenderImGUI::SceneManager(CEngine& lEngine)
-{
-    if (ImGui::CollapsingHeader("Scenes Manager"))
+    if (ImGui::BeginMainMenuBar())
     {
-        ImGui::BeginChild("#Scenes", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-        ImGui::PushItemWidth(-130);
-
-        std::vector<CScene*> scenes = lEngine.GetSceneManager().GetScenes();
-
-        for (std::vector<CScene*>::iterator iScene = scenes.begin(); iScene != scenes.end(); ++iScene)
+        if (ImGui::BeginMenu("Main"))
         {
-            ImGui::PushID((*iScene)->GetName().c_str());
-
-            if (ImGui::CollapsingHeader((*iScene)->GetName().c_str()))
-            {
-                bool lSceneActive = (*iScene)->GetActive();
-                ImGui::Checkbox("Active", &lSceneActive);
-
-                if (lSceneActive)
-                {
-                    ImGui::BeginChild("#Layer", ImVec2(400, 200), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-                    ImGui::PushItemWidth(-130);
-
-                    std::vector<CLayer*> layers = (*iScene)->GetLayers();
-                    for (std::vector<CLayer*>::iterator iLayer = layers.begin(); iLayer != layers.end(); ++iLayer)
-                    {
-                        ImGui::PushID((*iLayer)->GetName().c_str());
-                        static bool show_app_auto_resize = true;
-
-                        ImGui::Begin("Layer", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
-
-                        //llayer->DrawImgui();
-
-                        ImGui::End();
-                        ImGui::PopID();
-                    }
-                    ImGui::PopItemWidth();
-                    ImGui::EndChild();
-                }
-            }
-            ImGui::PopID();
+            ImGui::MenuItem("Cameras", NULL, &show_cameras);
+            ImGui::EndMenu();
         }
+        if (ImGui::BeginMenu("Scene Manager"))
+        {
+            lEngine.DrawImgui(0);
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Sound Manager"))
+        {
+            lEngine.DrawImgui(1);
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Reloads"))
+        {
+            Reloads(lEngine);
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Shaders"))
+        {
+            ImGui::EndMenu();
+        }
+        ImGui::EndMainMenuBar();
 
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
     }
+
+    ImGui::Render();
+
+    /*    //FPS
+    	ImGui::Text("%.1f FPS", lEngine.m_FPS);
+    	if (ImGui::Button("PLAY"))
+    	{
+    	lEngine.GetCinematicManager().Play("Animation01");
+    	}
+    	*/
+
+
+
 }
 
 void CRenderImGUI::Reloads(CEngine& lEngine)
 {
-    // TECHNIQUES
-    if (ImGui::CollapsingHeader("Reload"))
+    if (ImGui::TreeNode(m_Name.c_str()))
     {
         //SHADERS
         ImGui::PushID(RELOAD_SHADER_BUTTON_ID);
@@ -159,5 +137,7 @@ void CRenderImGUI::Reloads(CEngine& lEngine)
         if (ImGui::Button("RenderPipeline"))
             lEngine.GetRenderPipeline().Reload();
         ImGui::PopID();
+        ImGui::TreePop();
+
     }
 }

@@ -459,11 +459,9 @@ bool CSoundManager::InitBanks()
 
 void CSoundManager::DrawImgui()
 {
-    if (ImGui::CollapsingHeader("Sound Manager"))
-    {
-        ImGui::BeginChild("#Sounds", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-        ImGui::PushItemWidth(-130);
 
+    if (ImGui::TreeNode("Sounds"))
+    {
         if (ImGui::Button("Dentro evento!"))
         {
             SoundEvent se;
@@ -521,8 +519,6 @@ void CSoundManager::DrawImgui()
 
             BroadcastState(lSSV);
         }
-
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
+        ImGui::TreePop();
     }
 }

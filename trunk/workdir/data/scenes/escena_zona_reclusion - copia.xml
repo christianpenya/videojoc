@@ -1,52 +1,28 @@
 <scene>
-	<layer name="Principal" active="true" >	
-		<scene_particle name="Smoke" nextParticleEmission="0.5"  awake="true" awakeTimer="0.8"  activeParticles="200" emission_box_size="1.0 1.0 1.0" > 
-			<transform position="0.0 0.0 1.0" forward="0.0 0.0 0.0" />
-		</scene_particle> 
-		<scene_particle name="LightDrone" nextParticleEmission="0.5"  awake="true" awakeTimer="0.8"  activeParticles="200" emission_box_size="1.0 1.0 1.0" > 
-			<transform position="0.0 0.0 5.0" forward="0.0 0.0 0.0" />
-		</scene_particle> 
 
-	</layer>
-
-	<layer name="lights" active="true" >
-		<scene_light name="FDirect001" id_light="0" />
-		<scene_light name="LDronReclusion1" id_light="1">
-				<transform position="0.0 10.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" />
-		</scene_light>
-
-		<!--<scene_light name="Fspot001" id_light="1" />-->
-	</layer>
-	
-	<!--<layer name="triggers" active="true">
+	<layer name="triggers" active="true">
 		<scene_mesh name="trigger_pasillo" mesh="data/meshes/Box01.mesh">
 			<transform position="0.0 1.0 25.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 	</layer>
--->
 
-		
 	<layer name="drones" active="true">
-	
-	
 		<scene_navmesh name="navMeshScene01">
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch="-90.0" roll="0.0" forward="0.0 0.0 0.0" />
 		</scene_navmesh> 
-
 		<scene_mesh name="PatrolPoint_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="8.46 1.19 22.11" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="8.46 1.19 33.49" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
-		
 		<scene_enemies type="dron" name="DronReclusion1" mesh="data/meshes/reclusion/Dron.mesh">
 			<transform position="8.46 1.19 30.40" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
 			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
 		</scene_enemies>
-
-<!--		<scene_mesh name="PatrolPoint_DronCabinas" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+		
+		<scene_mesh name="PatrolPoint_DronCabinas" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="14.5 1.19 27.19" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DronCabinas" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
@@ -143,10 +119,10 @@
 			<transform position="39.54 1.19 33.5" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
 			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
 		</scene_enemies>				
--->
+
 	</layer>
-	<!--
-	<layer name="opaque" active="false" >		
+	
+		<layer name="opaque" active="true" >		
 		tuberia\d{3}.mesh
 		SALA8
 		<scene_mesh name="sala8" mesh="data/meshes/reclusion/sala8.mesh" >
@@ -1445,8 +1421,11 @@
 			<transform position="-1.93928 5.42975 -3.62341" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>	
 	</layer>
-	-->	
-
+		
+	<layer name="lights" active="true" >
+		<scene_light name="FDirect001" id_light="0" />
+		<!--<scene_light name="Fspot001" id_light="1" />-->
+	</layer>
 	<layer name="Skybox" active="true">
 		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true" active="true">
 			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
@@ -1466,10 +1445,6 @@
 		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true">
 			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
 		</scene_mesh>
-	</layer>
-	
-	<layer name="navmesh" active="false">
-
 	</layer>
 	
 	

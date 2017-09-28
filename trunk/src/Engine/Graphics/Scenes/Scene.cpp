@@ -126,23 +126,13 @@ void CScene::DrawImGui()
     ImGui::Checkbox("Active", &m_Active);
     if (m_Active)
     {
-        ImGui::BeginChild("#Layer", ImVec2(400, 200), true);
-        ImGui::PushItemWidth(-130);
-
         for (std::vector<CLayer*>::iterator iLayer = m_ResourcesVector.begin(); iLayer != m_ResourcesVector.end(); ++iLayer)
         {
-            ImGui::PushID((*iLayer)->GetName().c_str());
-            static bool show_app_auto_resize = true;
-
-            if (ImGui::CollapsingHeader((*iLayer)->GetName().c_str()))
+            if (ImGui::TreeNode((*iLayer)->GetName().c_str()))
             {
                 (*iLayer)->DrawImgui();
+                ImGui::TreePop();
             }
-
-            ImGui::PopID();
         }
-
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
     }
 }

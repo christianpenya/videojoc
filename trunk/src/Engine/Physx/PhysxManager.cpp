@@ -523,6 +523,7 @@ CPhysXManager::CharacterControllerData CPhysXManager::MoveCharacterController(co
 
 bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterMask, RaycastData* result_)
 {
+    /*
     Vect3f dir = end - origin;
     float len = dir.Length();
     if (origin != Vect3f(0, 0, 0))
@@ -547,8 +548,39 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
         result_->normal = Vect3f(hit.block.normal.x, hit.block.normal.y, hit.block.normal.z);
         result_->distance = hit.block.distance;
         result_->actor = m_ActorNames[(size_t)hit.block.actor->userData];
+
     }
     return status;
+    */
+
+    physx::PxFilterData filterData;
+    filterData.setToDefault();
+    filterData.word0 = 0000;  //GROUP1 | GROUP2;
+    physx::PxRaycastBuffer hit;
+    bool status = m_Scene->raycast(
+                      CastVec(origin),
+                      CastVec((end - origin).GetNormalized()),
+                      origin.Distance(end),
+                      hit,
+                      physx::PxHitFlags(physx::PxHitFlag::eDEFAULT),
+                      physx::PxQueryFilterData(
+                          filterData,
+                          physx::PxQueryFlag::eDYNAMIC | physx::PxQueryFlag::eSTATIC)
+                  );
+    if (status)
+    {
+        if (hit.hasBlock)
+        {
+            result_->position = CastVec(hit.block.position);
+            result_->normal = CastVec(hit.block.normal);
+            result_->distance = origin.Distance(end); //hit.block.distance
+            result_->actor = m_ActorNames[(size_t)hit.block.actor->userData];
+        }
+        else
+            status = false;
+    }
+    return status;
+
 }
 
 void CPhysXManager::AddFixedJoint(const std::string& jointName, const std::string& actor1Name, const std::string& actor2Name)

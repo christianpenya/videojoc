@@ -15,10 +15,12 @@
 #include "Utils/EnumToString.h"
 #include "Render/RenderPipeline/DynamicTexture.h"
 #include "Graphics/Scenes/Layer.h"
+#include "Graphics\IA\NavMeshManager.h"
+#include "Pathfinding.h"
 
 
 using namespace std;
-enum Input { PATROL, CHASE };
+enum Input { PATROL, CHASE, STOP};
 
 class CEnemy;
 class CPatrolingState;
@@ -69,6 +71,30 @@ public:
 
     CEnemy(CXMLElement* aElement, EEnemyType aEnemyType);
     virtual ~CEnemy();
+    CPhysXManager &m_PhysXManager;
+    CPhysXManager::RaycastData* resultado;
+    float m_SightDistance;
+    float m_MaxDetectDistance;
+    float m_DeadDistance;
+    Vect3f m_Destination;
+    Vect3f m_DestinationChase;
+    CNavMesh *m_pnavMesh;
+    CPathfinding *m_ppath;
+    int m_DestPoint = 0;
+    int m_DestPointChase = 0;
+    bool m_Calculated;
+    Vect3f m_Movement;
+    Vect3f m_Position;
+    bool m_CalculateReturn;
+    std::vector<std::string> m_patrolPoints;
+    Input m_State;
+
+    GET_SET(float, SightDistance);
+    GET_SET(float, MaxDetectDistance);
+    GET_SET(float, DeadDistance);
+    GET_SET_PTR(CNavMesh, navMesh);
+    std::vector<Vect3f> m_pathChasing;
+    std::vector<Vect3f> m_pathChasingAux;
 
 
     GET_SET(EEnemyType, EnemyType);
@@ -81,6 +107,8 @@ public:
     EEnemyType m_EnemyType;
     void DrawImgui();
     bool Update(float ElapsedTime);
+    double distanceBetweenTwoPoints(double x, double y, double a, double b);
+    Vect3f GetPatrolPosition();
 
     virtual void handleInput(Input input)
     {
@@ -95,7 +123,7 @@ public:
     {
         std::cout << GetName() << "patrol" << std::endl;
     }
-    void chase()
+    virtual void chase()
     {
         std::cout << GetName() << "chase" << std::endl;
     }
@@ -110,25 +138,3 @@ Begin_Enum_String(CEnemy::EEnemyType)
 End_Enum_String;
 
 #endif
-
-/*int main()
-{
-    Enemy dron("Dron");
-    dron.patrol();
-
-    int choice=2;
-
-    auto chooseAction = [&choice](Enemy& enemy)
-    {
-        const Input input1 = static_cast<Input>(choice - 1);
-        enemy.handleInput(input1);
-    };
-    while (true)
-    {
-        chooseAction(dron);
-    }
-
-}
-
-
-*/

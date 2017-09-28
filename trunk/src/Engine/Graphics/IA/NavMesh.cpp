@@ -54,7 +54,7 @@ CNavMesh::CNavMesh(const CXMLElement* aTreeNode)
         //m_VertexData.push_back(Vect3f(attrib.vertices[v], attrib.vertices[v + 1], attrib.vertices[v + 2]));
 
         Vertex lvertex;
-        lvertex.position = Vect3f(attrib.vertices[v], attrib.vertices[v + 1], attrib.vertices[v + 2]);
+        lvertex.position = Vect3f(attrib.vertices[v], attrib.vertices[v + 1], attrib.vertices[v+2]);
         m_Vertexs.push_back(lvertex);
     }
 
@@ -65,20 +65,6 @@ CNavMesh::CNavMesh(const CXMLElement* aTreeNode)
     for (size_t v = 0; v < shapes[0].mesh.indices.size(); v+=3)
     {
         Triangle ltriangle;
-        /*
-                ltriangle.m_id = v;
-                ltriangle.m_vertices.push_back(GetVertex(shapes[0].mesh.indices[v].vertex_index)->position);
-                ltriangle.m_vertices.push_back(GetVertex(shapes[0].mesh.indices[v+1].vertex_index)->position);
-                ltriangle.m_vertices.push_back(GetVertex(shapes[0].mesh.indices[v+2].vertex_index)->position);
-
-        		Triangle::Edge lEdge;
-        		lEdge.m_verticesID[0] = shapes[0].mesh.indices[v].vertex_index;
-        		lEdge.m_verticesID[1] = shapes[0].mesh.indices[v+1].vertex_index;
-        		ltriangle.m_edges.push_back(lEdge);
-
-        		lEdge.m_neighbour =
-        		*/
-
         ltriangle.id = i;
         ltriangle.idx1 = shapes[0].mesh.indices[v].vertex_index;
         ltriangle.idx2 = shapes[0].mesh.indices[v+1].vertex_index;
@@ -156,16 +142,16 @@ bool CNavMesh::Render(CRenderManager& lRM)
     mMaterials->Apply();
     mGeometries->RenderIndexed(lRM.GetDeviceContext());
 
-    /*CPathfinding* lpath = new CPathfinding(Vect3f(-55.5f, 0.01214442f, 41.7f), Vect3f(-42.66667f, 0.01214442f, 42.66667f), "navMeshScene01");
-    lpath->GetPath();
-    bool encontro = lpath->PathfindStep();
+    /*    CPathfinding* lpath = new CPathfinding(Vect3f(-55.5f, 1.19f, 41.7f), Vect3f(-42.66667f, 0.01214442f, 42.66667f), "navMeshScene01");
+        lpath->GetPath();
+        bool encontro = lpath->PathfindStep();
 
 
-    int indice = atTriangle(Vect3f(-55.36667f,0.01214442f, 44.16667f));
-    Triangle* l_triangle = GetTriangle(indice);
-    std::string temp = "En triangulo: " + indice;
-    LOG_INFO_APPLICATION("triangle ", temp);*/
-    return lOk;
+        int indice = atTriangle(Vect3f(-55.36667f,0.01214442f, 44.16667f));
+        Triangle* l_triangle = GetTriangle(indice);
+        std::string temp = "En triangulo: " + indice;
+        LOG_INFO_APPLICATION("triangle ", temp);
+    */    return lOk;
 }
 
 Vect3f CNavMesh::GetCenter(Triangle* triangle)
@@ -205,6 +191,11 @@ int CNavMesh::atTriangle(Vect3f position)
 
 void CNavMesh::DrawImgui()
 {
+    if (ImGui::TreeNode("NavMesh"))
+    {
+        ImGui::TreePop();
+    }
+
 
 }
 

@@ -71,7 +71,7 @@ CParticleSystemType::CParticleSystemType(const CXMLElement* aTreeNode)
 
 void CParticleSystemType::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::TreeNode(m_Name.c_str()))
     {
         ImGui::SliderInt("No. Frames", &m_NumFrames,1,30);
         ImGui::SliderFloat("Time Per Frame", &m_TimePerFrame, 0.25f, 100.0f);
@@ -94,5 +94,6 @@ void CParticleSystemType::DrawImgui()
         ImGui::ColorEdit4("Control Color 1", (float*)&m_ControlPointColors[0].m_Color1, false);
         ImGui::ColorEdit4("Control Color 2", (float*)&m_ControlPointColors[0].m_Color2, false);
         ImGui::SliderFloat2("Control Color Time", (float*)&m_ControlPointColors[0].m_Time, 0.25f, 10.0f);
+        ImGui::TreePop();
     }
 }

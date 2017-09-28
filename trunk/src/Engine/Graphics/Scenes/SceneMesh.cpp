@@ -163,9 +163,9 @@ bool CSceneMesh::Update(float aDeltaTime)
             case ePlayer:
                 m_Position = lPM.GetActorPosition(m_Name);
                 break;
-	        case eEnemy:
-    	        m_Position = lPM.GetActorPosition(m_Name);
-        	    break;
+            case eEnemy:
+                m_Position = lPM.GetActorPosition(m_Name);
+                break;
             case eTriggerBox:
                 break;
             default:
@@ -213,7 +213,7 @@ bool CSceneMesh::Render(CRenderManager& aRendermanager)
 
 void CSceneMesh::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::TreeNode(m_Name.c_str()))
     {
         ImGui::SliderFloat("XPosition", (float*)&m_Position.x, mOriginalUnmodifiedPosition.x - 5.0f, mOriginalUnmodifiedPosition.x + 5.0f);
         ImGui::SliderFloat("YPosition", (float*)&m_Position.y, mOriginalUnmodifiedPosition.y - 5.0f, mOriginalUnmodifiedPosition.y + 5.0f);
@@ -232,5 +232,7 @@ void CSceneMesh::DrawImgui()
         m_Yaw = mathUtils::Deg2Rad(lYawTmp);
         m_Pitch = mathUtils::Deg2Rad(lPitchTmp);
         m_Roll = mathUtils::Deg2Rad(lRollTmp);
+        ImGui::TreePop();
     }
+
 }

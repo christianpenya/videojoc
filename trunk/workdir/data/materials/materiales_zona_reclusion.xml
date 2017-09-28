@@ -9,7 +9,21 @@
 		<parameter type="color" name="diffuse_color" value="0.0 1.0 1.0 1.0 " />
 	</material>
 
+	<material name="SmokeMaterial" vertex_type="ParticleVertex" >
+		<texture type="diffuse" filename="data\particles\Smoke15Frames.png" />		
+		<parameter type="float2" name="sprite_size" value="5.0 3.0" />
+		<parameter type="float" name="lerp_sprite" value="0.1" />
+		<parameter type="float" name="ratio_y" value="0.8" />
+	</material>	
 
+	<material name="LightDroneMaterial" vertex_type="ParticleVertex" >
+		<texture type="diffuse" filename="Side-Flare-psd55228.png" />		
+		<parameter type="float2" name="sprite_size" value="3.0 10.0" />
+		<parameter type="float" name="lerp_sprite" value="0.1" />
+		<parameter type="float" name="ratio_y" value="0.8" />
+	</material>	
+
+	
 	MONITOR
 	<material name="ordenador003Material" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.6 0.894118 0.6 1.0 " />

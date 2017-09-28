@@ -105,8 +105,9 @@ void CLight::Initialize(CXMLElement* aElement)
 
 void CLight::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::TreeNode(m_Name.c_str()))
     {
+        ImGui::Checkbox("Visible", &m_Visible);
         ImGui::ColorEdit4("Color", (float*)&m_Color, true);
         ImGui::SliderFloat("Intensity", &m_Intensity, 0.25f, 1.0f);
         ImGui::SliderFloat2("Attenuation Range", (float*)&m_RangeAttenuation, 0.25f, 100.0f);
@@ -114,10 +115,11 @@ void CLight::DrawImgui()
         ImGui::SliderFloat("Yaw", (float*)&m_Yaw, -6.28f, 6.28f);
         ImGui::SliderFloat("Pitch", (float*)&m_Pitch, -6.28f, 6.28f);
         ImGui::SliderFloat("Roll", (float*)&m_Roll, -6.28f, 6.28f);
-        ImGui::Checkbox("Visible", &m_Visible);
         if (m_LightType == 1) //Spot
             ((CSpotLight *)this)->DrawImgui();
+        ImGui::TreePop();
     }
+
 }
 
 bool CLight::GetGenerateShadowMap()
