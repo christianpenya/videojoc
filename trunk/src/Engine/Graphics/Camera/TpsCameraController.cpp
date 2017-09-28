@@ -46,7 +46,7 @@ void CTpsCameraController::Update(float ElapsedTime)
     float l_zoom = zoom;
     Vect3f l_Position = center - m_Front * l_zoom;
     //Vect3f dir = m_Position - m_player->m_Position;
-    Vect3f origin = m_player->m_Position - (m_Front * pRadius);
+    Vect3f origin = center - (m_Front * pRadius);
     CPhysXManager::RaycastData *data = new CPhysXManager::RaycastData;
     bool hit = physX->Raycast(origin, l_Position, 0, data);
     if (hit)
