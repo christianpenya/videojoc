@@ -27,32 +27,40 @@ fn preProcess = (
 		tempMaterial.m_name = lSelectionMaterial.name
 		tempMaterial.setFlags(lSelectionMaterial)
 		append gMatsArray tempMaterial
-	)else if classOf lSelectionMaterial == Multimaterial then	(
-		print "Multi"
+		print "introduced1: "
+		print tempMaterial.m_name
+	)else if classOf lSelectionMaterial == Multimaterial then(
 		local lSubMaterialsCount = lSelectionMaterial.numsubs			
 		for iSubMaterial =  1 to lSubMaterialsCount do(
 			local lSubMaterial = lSelectionMaterial[iSubMaterial]
 			if classOf lSubMaterial == Standardmaterial then (
 				local tempMaterial = sMaterial()
+				--print lSubMaterial.name
 				tempMaterial.m_name = lSubMaterial.name
 				tempMaterial.setFlags(lSubMaterial)
 				append gMatsArray tempMaterial
+				print "introduced2: "
+				print tempMaterial.m_name
 			)
 			else if classOf lSubMaterial == Multimaterial then(
 				
 				print "Multi"
 				local lSubMaterialsCount2 = lSubMaterial.numsubs			
+				
 				for iSubMaterial2 =  1 to lSubMaterialsCount2 do(
+					
 					local lSubMaterial2 = lSubMaterial[iSubMaterial2]
+					
 					if classOf lSubMaterial2 == Standardmaterial then (
-						print "UEE"
 						local tempMaterial2 = sMaterial()
+						--print lSubMaterial2.name
 						tempMaterial2.m_name = lSubMaterial2.name
 						tempMaterial2.setFlags(lSubMaterial2)
 						append gMatsArray tempMaterial2
+						print "introduced3: "
+						print tempMaterial2.m_name
 					)
 					else (
-
 						print classOf lSubMaterial2
 					)
 			
@@ -95,21 +103,20 @@ fn process = (
 		UABCalcVertexsNormals gSelection
 		local lFaceNormal = getFaceNormal gSelection nFace
 		local lSmoothValue = getFaceSmoothGroup gSelection nFace
-print("4")
+
 		local auxNorm1 = (UABGetVertexNormal gSelection IdxsFace.x lSmoothValue lFaceNormal) --* gInverseTransform
 		local auxNorm2 = (UABGetVertexNormal gSelection IdxsFace.y lSmoothValue lFaceNormal) --* gInverseTransform
 		local auxNorm3 = (UABGetVertexNormal gSelection IdxsFace.z lSmoothValue lFaceNormal) --* gInverseTransform
-print("3")
+
 		Vtx1.m_norm = TranslationToRH(auxNorm1)
 		Vtx2.m_norm = TranslationToRH(auxNorm2)
 		Vtx3.m_norm = TranslationToRH(auxNorm3)
-print("2")
+
 		local IdxsMap = meshop.getMapFace gSelection 1 nFace
-print("ta mere!")
 		local auxUV_1 = meshop.getMapVert gSelection 1 IdxsMap.x
 		local auxUV_2 = meshop.getMapVert gSelection 1 IdxsMap.y
 		local auxUV_3 = meshop.getMapVert gSelection 1 IdxsMap.z
-print("1")
+
 		Vtx1.m_uv = TranslationUV(auxUV_1)
 		Vtx2.m_uv = TranslationUV(auxUV_2)
 		Vtx3.m_uv = TranslationUV(auxUV_3)
@@ -136,6 +143,7 @@ print("1")
 			MaterialID = 1
 		)else(
 			MaterialID = getFaceMatID gSelection nFace
+			print MaterialID
 		)
 
 		--gMatsArray[MaterialID].addVertex(Vtx1)
@@ -158,10 +166,16 @@ fn writeToBin = (
 
 	writter.PrintUnsignedShort(header)
 	writter.PrintUnsignedShort(gMatsArray.count)
+	
+	--local lMaterialsCount = gMatsArray.count
+	--for lMat = 1 to lMaterialsCount do (
+	
+	--for iSubMaterial2 =  1 to lSubMaterialsCount2 do(
 	for lMat in gMatsArray do (
 		writter.PrintString(lMat.m_name)
 
-  format "%\n" lMat.flag_value
+		print lMat.m_name
+		print lMat.m_aVB.count
 		writter.PrintUnsignedShort(lMat.flag_value)
 		writter.PrintUnsignedShort(lMat.m_aVB.count)
 		for lVrtx in lMat.m_aVB do(

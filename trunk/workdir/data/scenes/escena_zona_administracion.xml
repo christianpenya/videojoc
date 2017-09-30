@@ -1,28 +1,605 @@
 <scene>
 
-	<layer name="opaque" active="true" >
-
-		<scene_mesh name="sala009" mesh="data/meshes/reclusion/sala009.mesh" >
-			<transform position="0.300117 0.0 -9.63795" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	<layer name="test" active="true">
+		
+		<scene_mesh name="trigger_pasillo" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+			<collider rigid_body="box" />
 		</scene_mesh>
-		<scene_mesh name="sala21" mesh="data/meshes/reclusion/sala21.mesh" >
-			<transform position="0.74099 0.0 3.28947" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.660169 1.0 1.0" />
-		</scene_mesh>
-		<scene_mesh name="sala022" mesh="data/meshes/reclusion/sala022.mesh" >
-			<transform position="15.7384 0.0 3.2236" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
-		<scene_mesh name="sala023" mesh="data/meshes/reclusion/sala023.mesh" >
-			<transform position="-14.4054 0.0 3.2236" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
-		<scene_mesh name="sala024" mesh="data/meshes/reclusion/sala024.mesh" >
-			<transform position="15.7384 -3.25726 23.1834" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
-		<scene_mesh name="sala025" mesh="data/meshes/reclusion/sala025.mesh" >
-			<transform position="-14.3591 -3.25726 22.7361" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
-	
+		
+		<!-- <scene_mesh name="Sphere001" mesh="data/meshes/olakase/Sphere001.mesh" > -->
+			<!-- <transform position="0.0 5.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.01 0.01 0.01" /> -->
+		<!-- </scene_mesh> -->
+		<!-- <scene_mesh name="Plane001" mesh="data/meshes/olakase/Plane001.mesh" > -->
+			<!-- <transform position="42.2644 0.0 403.031" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" /> -->
+		<!-- </scene_mesh> -->
 	</layer>
 
+	<layer name="opaque" active="true" >
+		
+		SALA DRONES
+		<scene_mesh name="sala_drones" mesh="data/meshes/administracion/sala023.mesh" >
+			<transform position="-16.715 1.75 -9.6" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala023.mesh" offset="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" /> 
+		</scene_mesh>
+		
+		<scene_mesh name="ordenador005" mesh="data/meshes/administracion/monitor.mesh" >
+			<transform position="-21.5323 1.70303 -12.3542" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ordenador006" mesh="data/meshes/administracion/monitor.mesh" >
+			<transform position="-21.5293 1.70303 -14.1884" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ordenador007" mesh="data/meshes/administracion/monitor.mesh" >
+			<transform position="-21.5848 2.7643 -13.2315" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="computer001" mesh="data/meshes/administracion/ordenador.mesh" >
+			<transform position="-21.2227 0.420402 -13.8555" yaw="0.0" pitch="-1.0" roll="0.0" scale="-0.918878 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="mesa053" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="-21.0916 0.394963 -13.1499" yaw="0.0" pitch="-1.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		<scene_mesh name="armario_seguridad001" mesh="data/meshes/administracion/armario_seguridad.mesh" >
+			<transform position="-18.588 0.038 -2.829" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="armario_seguridad002" mesh="data/meshes/administracion/armario_seguridad.mesh" >
+			<transform position="-15.0656 0.038 -2.829" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="armario_seguridad003" mesh="data/meshes/administracion/armario_seguridad.mesh" >
+			<transform position="-12.0767 0.038 -4.73616" yaw="90.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="armario_seguridad004" mesh="data/meshes/administracion/armario_seguridad.mesh" >
+			<transform position="-21.2928 0.038 -4.73302" yaw="-90.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		<scene_mesh name="mesa054" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="-16.7752 0.378018 -5.65825" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mesa055" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="-16.7752 0.378018 -8.8947" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		SALA COMEDOR
+		<scene_mesh name="sala_comedor" mesh="data/meshes/administracion/sala022.mesh" >
+			<transform position="19.8 1.75 -8.8" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala022.mesh" offset="0.0 0.0 0.0" yaw="180.0" pitch="0.0" roll="0.0" />						 
+		</scene_mesh>
+
+		<scene_mesh name="Box086" mesh="data/meshes/administracion/mueble_cocina.mesh" >
+			<transform position="25.4495 0.436634 -8.75367" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.873267 0.873267 0.873267" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="tiesto" mesh="data/meshes/administracion/tiesto.mesh" >
+			<transform position="25.4755 0.833493 -13.5017" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="nevera" mesh="data/meshes/administracion/nevera.mesh" >
+			<transform position="25.5455 1.00008 -12.0167" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="tarta" mesh="data/meshes/administracion/tarta.mesh" >
+			<transform position="25.3796 0.941892 -9.8877" yaw="0.0" pitch="-0.258819" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="microondas" mesh="data/meshes/administracion/microondas.mesh" >
+			<transform position="25.4081 1.05543 -6.86614" yaw="0.0" pitch="0.258819" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="tarjeta" mesh="data/meshes/administracion/tarjeta.mesh" >
+			<transform position="25.5248 0.87953 -6.3488" yaw="0.0" pitch="0.422618" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="mesa056" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="16.5101 0.378018 -9.1946" yaw="0.0" pitch="-1.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mesa057" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="16.5101 0.378018 -13.2704" yaw="0.0" pitch="-1.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mesa058" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="16.5101 0.378018 -5.4491" yaw="0.0" pitch="-1.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mesa059" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="19.2674 0.378018 -9.1946" yaw="0.0" pitch="-1.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mesa060" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="19.2674 0.378018 -13.2704" yaw="0.0" pitch="-1.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mesa061" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="19.2674 0.378018 -5.4491" yaw="0.0" pitch="-1.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		SALA VIS A VIS
+		<scene_mesh name="sala_vis_a_vis" mesh="data/meshes/administracion/sala025.mesh" >
+			<transform position="-21.259 -1.554 10.38" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala025.mesh" offset="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" /> 
+		</scene_mesh>
+
+		<scene_mesh name="silladeescritorio004" mesh="data/meshes/administracion/silladeescritorio.mesh" >
+			<transform position="-29.3479 -2.58237 10.6343" yaw="0.0" pitch="-0.976296" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="monitor_vis_a_vis" mesh="data/meshes/administracion/monitor.mesh" >
+			<transform position="-27.8431 -1.9581 10.6923" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ordenador" mesh="data/meshes/administracion/ordenador.mesh" >
+			<transform position="-28.0304 -2.82824 11.296" yaw="0.0" pitch="-1.50996e-07" roll="0.0" scale="-0.918878 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="mesa062" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="-28.1615 -2.85368 10.5904" yaw="0.0" pitch="-1.50996e-07" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+		</scene_mesh>
+		
+		<scene_mesh name="Puerta005" mesh="data/meshes/administracion/puerta.mesh" >
+			<transform position="-25.06 -3.25 12.562" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Puerta006" mesh="data/meshes/administracion/puerta.mesh" >
+			<transform position="-25.06 -3.25 7.327" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Puerta007" mesh="data/meshes/administracion/puerta.mesh" >
+			<transform position="-30.8351 -2.15073 13.657" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Puerta008" mesh="data/meshes/administracion/puerta.mesh" >
+			<transform position="-30.8351 -2.15073 8.1054" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="pared marcosalida034" mesh="data/meshes/administracion/marco_puerta_peque.mesh" >
+			<transform position="-25.0598 -2.14071 13.2308" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="pared marcosalida035" mesh="data/meshes/administracion/marco_puerta_peque.mesh" >
+			<transform position="-25.0598 -2.14071 8.41531" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="pared marcosalida036" mesh="data/meshes/administracion/marco_puerta_peque.mesh" >
+			<transform position="-30.8055 -2.14071 13.6641" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="pared marcosalida037" mesh="data/meshes/administracion/marco_puerta_peque.mesh" >
+			<transform position="-30.86 -2.14071 8.11245" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="valla003" mesh="data/meshes/administracion/valla_vis_a_vis.mesh" >
+			<transform position="-24.9849 -1.41122 10.8714" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="valla004" mesh="data/meshes/administracion/valla_vis_a_vis.mesh" >
+			<transform position="-18.3138 -1.41122 14.7209" yaw="90.0" pitch="-0.707107" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="valla005" mesh="data/meshes/administracion/valla_vis_a_vis_peque.mesh" >
+			<transform position="-18.3138 -1.41122 6.99332" yaw="90.0" pitch="-0.707107" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="valla006" mesh="data/meshes/administracion/valla_vis_a_vis_peque.mesh" >
+			<transform position="-25.158 -1.41122 10.8714" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+
+		<scene_mesh name="taburete105" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-18.369 -3.05244 13.7094" yaw="0.0" pitch="0.707107" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete106" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-15.8683 -3.05244 13.7094" yaw="0.0" pitch="0.793353" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete107" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-13.1219 -3.05244 13.7094" yaw="0.0" pitch="0.608761" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete108" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-23.5711 -3.05244 13.7094" yaw="0.0" pitch="0.608761" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete109" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-18.3897 -3.05244 8.1833" yaw="0.0" pitch="-0.887011" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete110" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-20.8673 -3.05244 8.1833" yaw="0.0" pitch="-0.819152" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete111" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-13.1219 -3.05244 8.1833" yaw="0.0" pitch="-0.939693" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete112" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-23.5918 -3.05244 8.1833" yaw="0.0" pitch="-0.939693" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete113" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-18.3897 -3.05244 6.02769" yaw="0.0" pitch="-0.984808" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete114" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-20.8673 -3.05244 6.02769" yaw="0.0" pitch="-0.999048" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete115" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-13.1219 -3.05244 6.02769" yaw="0.0" pitch="-0.953717" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete116" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-23.5918 -3.05244 6.02769" yaw="0.0" pitch="-0.953717" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete117" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-15.7289 -3.05244 6.02769" yaw="0.0" pitch="-0.984808" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete118" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-18.3897 -3.05244 15.8071" yaw="0.0" pitch="-0.819152" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete119" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-20.8673 -3.05244 15.8071" yaw="0.0" pitch="-0.737277" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete120" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-13.1219 -3.05244 15.8071" yaw="0.0" pitch="-0.887011" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete121" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-23.5918 -3.05244 15.8071" yaw="0.0" pitch="-0.887011" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="taburete122" mesh="data/meshes/administracion/taburete.mesh" >
+			<transform position="-15.7289 -3.05244 15.8071" yaw="0.0" pitch="-0.819152" roll="0.0" scale="-1.36765 1.36765 1.36765" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		<scene_mesh name="mampara009" mesh="data/meshes/administracion/mampara.mesh" >
+			<transform position="-14.3437 -1.946 15.2102" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.37467 1.10761" />
+		</scene_mesh>
+		<scene_mesh name="mampara010" mesh="data/meshes/administracion/mampara.mesh" >
+			<transform position="-16.9295 -1.946 15.2102" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.37467 1.10761" />
+		</scene_mesh>
+		<scene_mesh name="mampara011" mesh="data/meshes/administracion/mampara.mesh" >
+			<transform position="-19.6633 -1.946 15.2102" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.37467 1.10761" />
+		</scene_mesh>
+		<scene_mesh name="mampara012" mesh="data/meshes/administracion/mampara.mesh" >
+			<transform position="-22.2491 -1.946 15.2102" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.37467 1.10761" />
+		</scene_mesh>
+		<scene_mesh name="mampara013" mesh="data/meshes/administracion/mampara.mesh" >
+			<transform position="-24.9397 -1.946 15.2102" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.37467 1.10761" />
+		</scene_mesh>
+		
+		<scene_mesh name="mampara014" mesh="data/meshes/administracion/mampara.mesh" >
+			<transform position="-22.2926 -1.946 6.54128" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.37467 1.10761" />
+		</scene_mesh>
+		<scene_mesh name="mampara015" mesh="data/meshes/administracion/mampara.mesh" >
+			<transform position="-19.7068 -1.946 6.54128" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.37467 1.10761" />
+		</scene_mesh>
+		<scene_mesh name="mampara016" mesh="data/meshes/administracion/mampara.mesh" >
+			<transform position="-16.973 -1.946 6.54128" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.37467 1.10761" />
+		</scene_mesh>
+		<scene_mesh name="mampara017" mesh="data/meshes/administracion/mampara.mesh" >
+			<transform position="-14.3872 -1.946 6.54128" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.37467 1.10761" />
+		</scene_mesh>
+		<scene_mesh name="mampara018" mesh="data/meshes/administracion/mampara.mesh" >
+			<transform position="-25.0076 -1.946 6.54128" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.37467 1.10761" />
+		</scene_mesh>
+		
+		<scene_mesh name="mostrador002" mesh="data/meshes/administracion/mostrador.mesh" >
+			<transform position="-15.011 -2.72721 14.7199" yaw="180.0" pitch="0.0" roll="0.0" scale="-0.830434 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mostrador003" mesh="data/meshes/administracion/mostrador.mesh" >
+			<transform position="-21.6741 -2.72721 14.7199" yaw="180.0" pitch="0.0" roll="0.0" scale="-0.830434 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mostrador004" mesh="data/meshes/administracion/mostrador.mesh" >
+			<transform position="-25.2821 -2.72721 10.8298" yaw="90.0" pitch="0.0" roll="0.0" scale="-0.382769 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mostrador005" mesh="data/meshes/administracion/mostrador.mesh" >
+			<transform position="-21.6253 -2.72721 7.03166" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.830434 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mostrador006" mesh="data/meshes/administracion/mostrador.mesh" >
+			<transform position="-14.9622 -2.72721 7.03166" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.830434 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+	
+		SALA BOSS
+		<scene_mesh name="sala_boss" mesh="data/meshes/administracion/sala024.mesh" >
+			<transform position="18.8 -1.5 10.7" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />			
+			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala024.mesh" offset="0.0 0.0 0.0" yaw="180.0" pitch="0.0" roll="0.0" /> 
+		</scene_mesh>
+		
+		<scene_mesh name="silladeescritorio" mesh="data/meshes/administracion/silladeescritorio.mesh" >
+			<transform position="21.2885 -2.58237 9.82883" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+
+		<scene_mesh name="revistas" mesh="data/meshes/administracion/revistas.mesh" >
+			<transform position="20.4877 -3.13845 11.9613" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="papelera" mesh="data/meshes/administracion/papelera.mesh" >
+			<transform position="19.9065 -2.92112 12.9663" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="kleenex" mesh="data/meshes/administracion/kleenex.mesh" >
+			<transform position="19.943 -1.99749 12.1145" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.931383" />
+		</scene_mesh>
+		<scene_mesh name="estanteria_boss" mesh="data/meshes/administracion/estanteria_boss.mesh" >
+			<transform position="19.3371 -1.95421 3.78047" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.636604 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="computer_boss" mesh="data/meshes/administracion/ordenador.mesh" >
+			<transform position="19.7575 -1.74644 10.1178" yaw="0.0" pitch="-1.0" roll="0.0" scale="-0.918878 1.44976 1.0" />
+		</scene_mesh>
+		<scene_mesh name="monitor_boss" mesh="data/meshes/administracion/monitor.mesh" >
+			<transform position="19.5249 -1.67346 10.6157" yaw="0.0" pitch="-0.991445" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		SALA CENTRAL
+		<scene_mesh name="sala_central" mesh="data/meshes/administracion/sala21.mesh" >
+			<transform position="1.10308 0.373827 2.66537" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala21.mesh" offset="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.660169 1.0 1.0"/> 
+		</scene_mesh>
+		
+		<scene_mesh name="cerradura_sala_drones" mesh="data/meshes/administracion/cerradura.mesh" >
+			<transform position="-11.4755 0.767888 -10.4083" yaw="90" pitch="0.5" roll="-90" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Puerta004" mesh="data/meshes/administracion/puerta.mesh" >
+			<transform position="-11.6178 0.0 -9.79798" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="cajon" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="-6.48706 -2.06295 3.11634" yaw="0.0" pitch="0.21644" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon001" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="8.27677 -2.06295 3.11634" yaw="0.0" pitch="-0.300706" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon002" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="8.21286 -2.34493 -2.86169" yaw="0.0" pitch="-0.0871558" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon003" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="8.21286 -2.24947 -2.86169" yaw="0.0" pitch="-0.0871558" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon004" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="8.21286 -2.15871 -2.86169" yaw="0.0" pitch="-0.0871558" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon005" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="8.21286 -2.07241 -2.86169" yaw="0.0" pitch="-0.0871558" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon006" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="8.21286 -1.98769 -2.86169" yaw="0.0" pitch="-0.0871558" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon007" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="5.82077 -2.34493 -2.86169" yaw="0.0" pitch="0.300706" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon008" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="5.82077 -2.24947 -2.86169" yaw="0.0" pitch="0.300706" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon009" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="5.82077 -2.15871 -2.86169" yaw="0.0" pitch="0.300706" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon010" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="5.82077 -2.07241 -2.86169" yaw="0.0" pitch="0.300706" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon011" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="-4.67001 -2.34493 -2.86169" yaw="0.0" pitch="-0.0871558" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon012" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="-4.67001 -2.24947 -2.86169" yaw="0.0" pitch="-0.0871558" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon013" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="-4.67001 -2.15871 -2.86169" yaw="0.0" pitch="-0.0871558" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="cajon014" mesh="data/meshes/administracion/cajon.mesh" >
+			<transform position="-9.80908 -2.33864 13.4132" yaw="0.0" pitch="0.21644" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="marco_puerta_exterior" mesh="data/meshes/administracion/marco_puerta_principal.mesh" >
+			<transform position="1.10753 -1.61969 17.8249" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="puerta_izquierda" mesh="data/meshes/administracion/puerta_exterior_izq.mesh" >
+			<transform position="2.13762 -1.65978 17.7056" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="puerta_derecha" mesh="data/meshes/administracion/puerta_exterior_drch.mesh" >
+			<transform position="0.0162506 -1.65978 17.707" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		<scene_mesh name="banqueta" mesh="data/meshes/administracion/banqueta.mesh" >
+			<transform position="7.03534 -2.77634 8.10934" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.562564" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="banqueta001" mesh="data/meshes/administracion/banqueta.mesh" >
+			<transform position="1.02926 -2.77634 8.10934" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.562564" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="banqueta002" mesh="data/meshes/administracion/banqueta.mesh" >
+			<transform position="-4.97682 -2.77634 8.10934" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.562564" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="banqueta003" mesh="data/meshes/administracion/banqueta.mesh" >
+			<transform position="7.03534 -2.77634 10.6791" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.562564" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="banqueta004" mesh="data/meshes/administracion/banqueta.mesh" >
+			<transform position="1.02926 -2.77634 10.6791" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.562564" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="banqueta005" mesh="data/meshes/administracion/banqueta.mesh" >
+			<transform position="-4.97682 -2.77634 10.6791" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.562564" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="banqueta006" mesh="data/meshes/administracion/banqueta.mesh" >
+			<transform position="7.03534 -2.77634 13.2489" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.562564" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="banqueta007" mesh="data/meshes/administracion/banqueta.mesh" >
+			<transform position="1.02926 -2.77634 13.2489" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.562564" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="banqueta008" mesh="data/meshes/administracion/banqueta.mesh" >
+			<transform position="-4.97682 -2.77634 13.2489" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.562564" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="banqueta009" mesh="data/meshes/administracion/banqueta.mesh" >
+			<transform position="13.3707 -2.77634 14.2881" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.562564" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		<scene_mesh name="aRCO DE SEGURIDAD" mesh="data/meshes/administracion/arco_seguridad.mesh" >
+			<transform position="-9.053 -1.62128 3.00537" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.866438 1.0 0.848414" />
+		</scene_mesh>
+		<scene_mesh name="aRCO DE SEGURIDAD001" mesh="data/meshes/administracion/arco_seguridad.mesh" >
+			<transform position="11.6 -1.62128 3.00537" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.866438 1.0 0.848414" />
+		</scene_mesh>
+		<scene_mesh name="aRCO DE SEGURIDAD002" mesh="data/meshes/administracion/arco_seguridad.mesh" >
+			<transform position="-9.63347 -1.62128 10.3231" yaw="90.0" pitch="-0.707107" roll="0.0" scale="-0.866438 1.0 0.848414" />
+		</scene_mesh>
+		
+		<scene_mesh name="tabique" mesh="data/meshes/administracion/tabique.mesh" >
+			<transform position="10.3131 -1.63474 12.7001" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		<scene_mesh name="mostrador" mesh="data/meshes/administracion/mostrador.mesh" >
+			<transform position="-3.179 -2.72721 3.06873" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mostrador001" mesh="data/meshes/administracion/mostrador.mesh" >
+			<transform position="4.84462 -2.72721 3.06873" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		<scene_mesh name="VALLA008" mesh="data/meshes/administracion/valla_superpeque.mesh" >
+			<transform position="-9.55011 -2.74588 8.54335" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.16237 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="VALLA009" mesh="data/meshes/administracion/valla_superpeque.mesh" >
+			<transform position="-9.55011 -2.74588 11.8961" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.16237 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="VALLA010" mesh="data/meshes/administracion/valla_peque.mesh" >
+			<transform position="-10.5599 -2.72622 12.4711" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.16237 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="VALLA011" mesh="data/meshes/administracion/valla_peque.mesh" >
+			<transform position="-10.5599 -2.72622 7.97589" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.16237 1.0 1.0" />
+			<collider rigid_body="box" offset="2.0 0.0 0.0"/>
+		</scene_mesh>
+		
+		<scene_mesh name="VALLA007" mesh="data/meshes/administracion/valla_par_de_peque.mesh" >
+			<transform position="-9.34908 -2.74588 2.92071" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="VALLA006" mesh="data/meshes/administracion/valla_par_de_peque.mesh" >
+			<transform position="11.331 -2.74588 2.92071" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" offset="-2.0 0.0 0.0"/>
+		</scene_mesh>
+		
+		<scene_mesh name="vayavalla" mesh="data/meshes/administracion/valla_par_de_grande.mesh" >
+			<transform position="-9.34908 -2.74588 2.92071" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="vayavalla2" mesh="data/meshes/administracion/valla_par_de_grande.mesh" >
+			<transform position="11.331 -2.74588 2.92071" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		<scene_mesh name="mesa063" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="-5.77879 -2.86694 -2.94139" yaw="90.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mesa064" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="-3.35288 -2.86694 -2.94139" yaw="90.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mesa065" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="5.16363 -2.86694 -2.94139" yaw="90.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mesa066" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="7.58953 -2.86694 -2.94139" yaw="90.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="mesa067" mesh="data/meshes/administracion/mesa.mesh" >
+			<transform position="-10.3109 -2.86694 13.4191" yaw="90.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		<scene_mesh name="pared marcosalida022" mesh="data/meshes/administracion/marco_puerta_peque.mesh" >
+			<transform position="13.855 -2.12112 10.322b" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="pared marcosalida023" mesh="data/meshes/administracion/marco_puerta_peque.mesh" >
+			<transform position="-11.636 -2.12112 10.787" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="pared marcosalida019" mesh="data/meshes/administracion/marco_puerta_peque.mesh" >
+			<transform position="1.472 1.13614 -12.4399" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="pared marcosalida020" mesh="data/meshes/administracion/marco_puerta_peque.mesh" >
+			<transform position="-11.613 1.13614 -9.19092" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="pared marcosalida021" mesh="data/meshes/administracion/marco_puerta_peque.mesh" >
+			<transform position="13.8102 1.13614 -9.19092" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="VALLA002" mesh="data/meshes/administracion/VALLA.mesh" >
+			<transform position="-6.04668 0.593477 -6.16425" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.16237 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="VALLA005" mesh="data/meshes/administracion/VALLA.mesh" >
+			<transform position="8.14956 0.593477 -6.16425" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.16237 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="escalera003" mesh="data/meshes/administracion/StraightStair001.mesh" >
+			<transform position="3.76715 -3.1 -0.5" yaw="180.0" pitch="-0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/administracion/physx/StraightStair001.mesh" scale="-1.0 1.0 1.0" offset="-3.5 0.0 0.0"/>
+		</scene_mesh>
+		<scene_mesh name="escalera004" mesh="data/meshes/administracion/StraightStair001.mesh" >
+			<transform position="2.176114 -3.1 -0.5" yaw="180.0" pitch="-0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/administracion/physx/StraightStair001.mesh" scale="-1.0 1.0 1.0" offset="-3.5 0.0 0.0"/>
+		</scene_mesh>
+	
+		SALA ENTRADA
+		<scene_mesh name="sala_entrada" mesh="data/meshes/administracion/sala009.mesh" >
+			<transform position="1.7 2.0 -20.25" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala009.mesh" offset="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="pared marcosalida032" mesh="data/meshes/administracion/marco_puerta_grande.mesh" >
+			<transform position="1.471 1.181 -28.122" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+	
+		<scene_mesh name="aRCO DE SEGURIDAD003" mesh="data/meshes/administracion/arco_seguridad.mesh" >
+			<transform position="1.64 1.63713 -19.6901" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.866438 1.0 0.848414" />
+		</scene_mesh>
+		
+		<scene_mesh name="VALLA003" mesh="data/meshes/administracion/VALLA.mesh" >
+			<transform position="6.35 0.593477 -19.6718" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.723617 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		<scene_mesh name="VALLA004" mesh="data/meshes/administracion/VALLA.mesh" >
+			<transform position="-2.95 0.593477 -19.6718" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.723617 1.0 1.0" />
+			<collider rigid_body="box" />
+		</scene_mesh>
+		
+		<scene_mesh name="conducto004" mesh="data/meshes/administracion/conducto.mesh" >
+			<transform position="1.67 3.32146 -20.3878" yaw="0.0" pitch="0.0" roll="-1.0" scale="1.0 -1.0 -1.0" />
+		</scene_mesh>
+					
+	</layer>
+
+	<layer name="guardias" active="true" >
+		<scene_animated_model name="guardiaTEST" core="guardia"> rigid_body = "player">
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+		<!--
+		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
+			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+		-->
+	</layer>
+	
 	<layer name="lights" active="true" >
 		<scene_light name="FDirect001" id_light="0" />
 	</layer>
@@ -33,6 +610,4 @@
 		</scene_mesh>
 	</layer>
 	
-	
-		
 </scene>

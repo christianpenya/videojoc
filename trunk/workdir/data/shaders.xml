@@ -66,7 +66,7 @@
 		<shader name="PositionNormalUVDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_UV"/>
 		<shader name="PositionNormalUVUV2Deferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_UV;USE_UV2;"/>
 		<shader name="PositionBumpUVDeferred" file="Deferred/UberShader.fx" entry_point="PS" preprocessor="USE_UV;USE_BUMP;"/>
-		<shader name="DefferredQuad" file="Deferred/PBRDeferred.fx" entry_point="PS" preprocessor=""/>
+		<shader name="DefferredQuad" file="Deferred/DeferredShading.fx" entry_point="PS" preprocessor=""/>
 		
 		<!-- pbr deferred -->
 		<shader name="AnimatedModelPBRGBuffer" file="Deferred/PBRUberShader.fx" entry_point="PS" preprocessor="USE_UV;USE_WEIGHTIDX;"/>
@@ -107,7 +107,6 @@
 		<!--other-->
 		<shader name="Skybox" file="Skybox.fx" entry_point="PS"  preprocessor=""/>
 		<shader name="Quad" file="Quad.fx" entry_point="PS" preprocessor=""/>
-		<shader name="DeferredQuad" file="Deferred/PBRDeferred.fx" entry_point="PS" preprocessor=""/>	
 		<shader name="SpriteVertex" file="guiShader.fx" entry_point="PS" preprocessor=""/>
 	</pixel_shaders>
 	

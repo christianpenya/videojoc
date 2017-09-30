@@ -17,6 +17,8 @@ public:
     void Load(const std::string &LevelFilename, const std::string &DefaultsFileName = "");
     void Reload();
     void Save();
+    void DrawImgui();
+
 private:
     std::string m_LevelMaterialsFilename;
     std::string m_DefaultMaterialsFilename;

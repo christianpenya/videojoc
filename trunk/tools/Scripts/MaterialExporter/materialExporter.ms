@@ -223,6 +223,22 @@ function parse outPath =
 			textNode.addAttribute "filename" (dataStr + filename)
 		)
 		
+		if object.m_selfIllumEnabled == true then(
+			-- lightmap
+			local textNode = XmlNode tag:"texture"
+			matNode.addChild textNode
+			textNode.addAttribute "type" "lightmap"
+			local filename = copyTexture object.m_selfIllumBitmap outPath
+			textNode.addAttribute "filename" (dataStr + filename)
+			
+			-- cuantitat de lightmap
+			local paramNode = XmlNode tag:"parameter"
+			matNode.addChild paramNode
+			paramNode.addAttribute "type" "float"
+			paramNode.addAttribute "name" "lightmap"
+			paramNode.addAttribute "value" object.m_selfIllumAmount
+		)
+		
 		-- color difus del material
 		local colorNode = XmlNode tag:"parameter"
 		matNode.addChild colorNode

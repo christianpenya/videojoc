@@ -18,8 +18,8 @@ public:
     enum ETextureIndex
     {
         eDiffuse = 0,
-        eBump,
         eLightMap,
+        eBump,
         eSpecular,
         eShadowMap,
         eShadowMask,
@@ -42,19 +42,24 @@ public:
     CMaterial(CXMLElement* aElement);
     virtual ~CMaterial();
     void Apply();
+
     void SetTechnique(CTechnique* aTechnique)
     {
         mTechnique = aTechnique;
     };
+
     CTechnique* GetTechnique()
     {
         return mTechnique;
     };
+
     CTexture* GetTexture(ETextureIndex aIndex);
+
     const std::vector<CMaterialParameter *> & GetParameters() const
     {
         return mParameters;
     }
+
     void DrawImgui();
 
 private:
@@ -68,8 +73,8 @@ private:
 Begin_Enum_String(CMaterial::ETextureIndex)
 {
     Enum_String_Id(CMaterial::eDiffuse, "diffuse");
-    Enum_String_Id(CMaterial::eBump, "bump");
     Enum_String_Id(CMaterial::eLightMap, "lightmap");
+    Enum_String_Id(CMaterial::eBump, "bump");
     Enum_String_Id(CMaterial::eSpecular, "specular");
     Enum_String_Id(CMaterial::eShadowMap, "shadowmap");
     Enum_String_Id(CMaterial::eShadowMask, "shadowmask");
