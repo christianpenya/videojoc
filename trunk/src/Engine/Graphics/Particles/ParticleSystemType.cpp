@@ -8,19 +8,12 @@
 #include "XML\XML.h"
 
 
-CParticleSystemType::CParticleSystemType()
-{
-
-}
-
-
-CParticleSystemType::~CParticleSystemType()
-{
-
-}
+CParticleSystemType::CParticleSystemType() {}
+CParticleSystemType::~CParticleSystemType() {}
 
 CParticleSystemType::CParticleSystemType(const CXMLElement* aTreeNode)
-    : m_NumFrames(aTreeNode->GetAttribute<int>("numFrames", 15))
+    : CName(aTreeNode)
+    , m_NumFrames(aTreeNode->GetAttribute<int>("numFrames", 15))
     , m_TimePerFrame(aTreeNode->GetAttribute<float>("timePerFrame", 1.0f))
     , m_LoopFrames(aTreeNode->GetAttribute<bool>("loopFrames", true))
     , m_EmitAbsolute(aTreeNode->GetAttribute<bool>("emitAbsolute", true))
@@ -43,7 +36,6 @@ CParticleSystemType::CParticleSystemType(const CXMLElement* aTreeNode)
 {
     CMaterialManager& lMaterialManager = CEngine::GetInstance().GetMaterialManager();
     m_pmaterial = lMaterialManager(aTreeNode->GetAttribute<std::string>("material", ""));
-    CName::SetName(aTreeNode->GetAttribute<std::string>("name", ""));
 
     const tinyxml2::XMLElement* aElement = aTreeNode->FirstChildElement();
 

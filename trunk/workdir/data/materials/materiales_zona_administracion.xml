@@ -215,139 +215,6 @@
 		<parameter type="float" name="occlusion" value="1.0" />
 	</material>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<material name="madera sucia" vertex_type="PositionNormalUV" >a
-		<texture type="diffuse" filename="data\textures\madera sucia.jpg" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="lightmap" value="100.0" />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="microcemento" vertex_type="PositionNormalUV" >a
-		<texture type="diffuse" filename="data\textures\microcemento.jpg" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="lightmap" value="100.0" />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="metal" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\metal.jpg" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="Material #86" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\escayola.jpg" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="baldosnes" vertex_type="PositionNormalUV" >a
-		<texture type="diffuse" filename="data\textures\baldosinespeques.jpg" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="lightmap" value="100.0" />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="barreraalpha" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\TexturesCom_MetalVarious0044_1_alphamasked_S.png" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="Material #132" vertex_type="PositionNormal" >
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="color" name="diffuse_color" value="0.858824 0.00392157 0.00392157 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="Material #155" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\fibra de vidrio.jpg" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="persiana" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\persiana.jpg" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="Material #223" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\paredes_bano.jpg" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="espejo" vertex_type="PositionNormal" >
-		<parameter type="color" name="diffuse_color" value="0.662745 0.862745 1.0 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="Material #297" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\TexturesCom_Rust_albedo_S.tif" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="luz" vertex_type="PositionNormal" >
-		<parameter type="color" name="diffuse_color" value="0.952941 0.952941 0.952941 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="Material #344" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\corcho.jpg" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-	<material name="negro" vertex_type="PositionNormal" >
-		<parameter type="color" name="diffuse_color" value="0.137255 0.137255 0.137255 1.0 " />
-		<parameter type="float" name="metalness" value="1.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="1.0" />
-	</material>
-
 	PALO VALLA
 	<material name="Material #121" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
@@ -378,7 +245,12 @@
 	<material name="PatrolPoint002Material" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.0 1.0 1.0 1.0 " />
 	</material>
-
+	<material name="SmokeMaterial" vertex_type="ParticleVertex" >
+		<texture type="diffuse" filename="data\particles\Smoke15Frames.png" />		
+		<parameter type="float2" name="sprite_size" value="5.0 3.0" />
+		<parameter type="float" name="lerp_sprite" value="0.1" />
+		<parameter type="float" name="ratio_y" value="0.8" />
+	</material>
 
 	MONITOR
 	<material name="ordenador003Material" vertex_type="PositionNormal" >
@@ -550,12 +422,12 @@
 
 	CAMA
 	<material name="catre" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\TexturesCom_Carpet0012_1_seamless_S.jpg" />
+		<texture type="diffuse" filename="data\textures\baldosines.jpg" />
 		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
 		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
 	</material>
 	<material name="manta almohada" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\TexturesCom_FabricWool0005_2_seamless_S.jpg" />
+		<texture type="diffuse" filename="data\textures\baldosines.jpg" />
 		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
 		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
 	</material>

@@ -209,7 +209,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
     float l_Depth = IN.Depth.x/IN.Depth.y;
 	l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1);
 
-	int m_EnvironmentMipLevels = 1; // TODO esto tiene que venir por parámetro
+	int m_EnvironmentMipLevels = 10; // TODO esto tiene que venir por parámetro
 	float3 l_SpecularColor = T7Texture.SampleLevel(S7Sampler, l_ReflectVector, GetSpecPowToMip(m_Roughness, m_EnvironmentMipLevels)).xyz;
 	l_Output.Target4 = float4(l_SpecularColor, m_Roughness);
 

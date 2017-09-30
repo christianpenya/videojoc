@@ -120,10 +120,9 @@ void CMaterial::Apply()
 
 void CMaterial::DrawImgui()
 {
-    if ((mParameters.size() > 0))
-    {
 
-        /*
+    /*if ((mParameters.size() > 0))
+    {
         static bool show_app_auto_resize = true;
         ImGui::Begin("Menu", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
 
@@ -205,12 +204,14 @@ void CMaterial::DrawImgui()
                 }
                 break;
                 }
+
                 ImGui::PopID();
             }
+
             ImGui::PopItemWidth();
             ImGui::EndChild();
         }
+
         ImGui::End();
-        */
-    }
+    }*/
 }

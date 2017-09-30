@@ -314,6 +314,6 @@ m_CharacterController.m_Movement = {x, 0.0f, z};
 void CEngine::DrawImgui()
 {
     m_SceneManager->DrawImgui();
-    //m_MaterialManager->DrawImgui();
+    m_MaterialManager->DrawImgui();
     m_SoundManager->DrawImgui();
 }

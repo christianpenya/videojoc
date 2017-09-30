@@ -6,10 +6,17 @@
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
 			<collider rigid_body="box" />
 		</scene_mesh>
+		
+		<!-- <scene_mesh name="Sphere001" mesh="data/meshes/olakase/Sphere001.mesh" > -->
+			<!-- <transform position="0.0 5.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.01 0.01 0.01" /> -->
+		<!-- </scene_mesh> -->
+		<!-- <scene_mesh name="Plane001" mesh="data/meshes/olakase/Plane001.mesh" > -->
+			<!-- <transform position="42.2644 0.0 403.031" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" /> -->
+		<!-- </scene_mesh> -->
 	</layer>
 
 	<layer name="opaque" active="true" >
-
+		
 		SALA DRONES
 		<scene_mesh name="sala_drones" mesh="data/meshes/administracion/sala023.mesh" >
 			<transform position="-16.715 1.75 -9.6" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -579,9 +586,7 @@
 		<scene_mesh name="conducto004" mesh="data/meshes/administracion/conducto.mesh" >
 			<transform position="1.67 3.32146 -20.3878" yaw="0.0" pitch="0.0" roll="-1.0" scale="1.0 -1.0 -1.0" />
 		</scene_mesh>
-			
-		
-		
+					
 	</layer>
 
 	<layer name="guardias" active="true" >
@@ -596,7 +601,7 @@
 	</layer>
 	
 	<layer name="lights" active="true" >
-		<!--<scene_light name="FDirect001" id_light="0" />-->
+		<scene_light name="FDirect001" id_light="0" />
 	</layer>
 
 	<layer name="Skybox" active="true">

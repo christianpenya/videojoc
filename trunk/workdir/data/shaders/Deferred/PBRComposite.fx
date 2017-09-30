@@ -40,22 +40,27 @@ float4 PS(PS_INPUT IN) : SV_Target
 
 	l_SpecularEnvironmentColor=pow(abs(l_SpecularEnvironmentColor), 2.2);
 	l_SpecularEnvironmentColor*=l_Occlusion;
+	
+	//return float4(l_SpecularEnvironmentColor.xyz, 1.0);
 	l_BaseColor.xyz=lerp(l_BaseColor.xyz, 0.0f.xxx, l_BaseColor.w);
 	l_BaseColor.xyz=pow(abs(l_BaseColor.xyz), 2.2);
 	
 	float4 l_Normal=T2Texture.Sample(S2Sampler, IN.UV);
 	float3 l_NormalPlane=Decode(l_Normal.xy);
-	float3 l_NormalPixel=Decode(l_Normal.zw);		
-	
+	float3 l_NormalPixel=Decode(l_Normal.zw);
+		
 	//return float4(l_NormalPlane, 1);
 	
 	float3 l_CameraToPixel=normalize(l_WorldPosition-m_InverseView[3].xyz);
 	float3 l_NormalDotCam=max(dot(lerp(l_NormalPlane, l_NormalPixel,max(dot(l_NormalPlane, -l_CameraToPixel), 0)), -l_CameraToPixel), 0);
+	//Comment next line to set fresnel or find another operation to calculate fresnel
+	//l_NormalDotCam=float3(1,1,1);
+	
 	float3 l_ShlickFresnel=saturate(l_SpecularColor.xyz+(1-l_SpecularColor.xyz)*pow(1-l_NormalDotCam.xyz, 5));
 	
 	float3 l_DiffuseLight=T5Texture.Sample(S5Sampler, IN.UV).xyz;
 	float3 l_SpecularLight=T6Texture.Sample(S6Sampler, IN.UV).xyz;
-	
+	//return float4(l_SpecularLight.xyz, 1.0);
 	l_DiffuseLight.xyz+=l_AmbientColor.xyz*l_BaseColor.xyz;
 	float3 l_FinalColor=0;
 	l_FinalColor.xyz=lerp(l_DiffuseLight.xyz, l_SpecularEnvironmentColor.xyz,l_ShlickFresnel);
