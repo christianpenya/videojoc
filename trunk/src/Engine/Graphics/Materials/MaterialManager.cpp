@@ -10,7 +10,6 @@ CMaterialManager::~CMaterialManager()
     CTemplatedMap<CMaterial>::Destroy();
 }
 
-
 void CMaterialManager::Load(const std::string & aLevelFilename, const std::string &aDefaultsFileName)
 {
     m_LevelMaterialsFilename = aLevelFilename;
@@ -46,7 +45,7 @@ bool CMaterialManager::Load(const std::string &Filename, bool UpdateFlag)
         {
             for (tinyxml2::XMLElement *iMaterial = lMaterials->FirstChildElement(); iMaterial != nullptr; iMaterial = iMaterial->NextSiblingElement())
             {
-                LOG_INFO_APPLICATION(iMaterial->GetAttribute<std::string>("name", "").c_str());
+                //LOG_INFO_APPLICATION(iMaterial->GetAttribute<std::string>("name", "").c_str());
 
                 if (strcmp(iMaterial->Name(), "material") == 0)
                 {
@@ -82,26 +81,17 @@ void CMaterialManager::DrawImgui()
 
         for (std::map<std::string, CMaterial*>::iterator iMaterial = m_ResourcesMap.begin(); iMaterial != m_ResourcesMap.end(); ++iMaterial)
         {
+            LOG_INFO_APPLICATION(iMaterial->first.c_str());
+
             if (iMaterial->first != "")
             {
-                LOG_INFO_APPLICATION(iMaterial->first.c_str());
                 ImGui::PushID(iMaterial->second->GetName().c_str());
-
-                if (ImGui::CollapsingHeader(iMaterial->second->GetName().c_str()))
-                {
-                    iMaterial->second->DrawImgui();
-                }
-
+                iMaterial->second->DrawImgui();
                 ImGui::PopID();
             }
         }
 
         ImGui::PopItemWidth();
         ImGui::EndChild();
-    }
-
-    for (std::map<std::string, CMaterial*>::iterator iMaterial = m_ResourcesMap.begin(); iMaterial != m_ResourcesMap.end(); ++iMaterial)
-    {
-        (*iMaterial).second;
     }
 }

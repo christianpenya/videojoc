@@ -16,7 +16,7 @@ void CDumbActor::Load(CXMLElement* aElement) {}
 
 void CDumbActor::Act()
 {
-    LOG_INFO_APPLICATION("ACTING! I'M ACTING!");
+    //LOG_INFO_APPLICATION("ACTING! I'M ACTING!");
     std::string lLayerName = "triggers";
     std::string lDoorName = "trigger_pasillo";
 
@@ -27,7 +27,7 @@ void CDumbActor::Act()
 
 void CDumbActor::Update(float elapsedTime)
 {
-    LOG_INFO_APPLICATION("ACTOR UPDATING");
+    //LOG_INFO_APPLICATION("ACTOR UPDATING");
     // is audio finished?
     m_Finished = true;
 

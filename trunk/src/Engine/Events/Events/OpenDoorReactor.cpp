@@ -33,18 +33,18 @@ void COpenDoorReactor::Load(CXMLElement* aElement)
 
 void COpenDoorReactor::React()
 {
-    LOG_INFO_APPLICATION("Hold the DOOOOOOOR! HOLD THE DOOOOOR!");
+    //LOG_INFO_APPLICATION("Hold the DOOOOOOOR! HOLD THE DOOOOOR!");
     mDoor->Deactivate();
     m_Finished = true;
 }
 
 void COpenDoorReactor::Update(float elapsedTime)
 {
-    LOG_INFO_APPLICATION("React updating!");
+    //LOG_INFO_APPLICATION("React updating!");
 
     if (!mDoor)
     {
-        LOG_INFO_APPLICATION("Door is missing in scene!");
+        // LOG_INFO_APPLICATION("Door is missing in scene!");
         return;
     }
 

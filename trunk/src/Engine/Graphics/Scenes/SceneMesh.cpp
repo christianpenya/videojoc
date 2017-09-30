@@ -130,8 +130,6 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 lDebug = "NO physx were added to " + m_Name;
                 break;
             }
-
-            LOG_INFO_APPLICATION(lDebug.c_str());
         }
     }
 }

@@ -37,7 +37,6 @@ void CApplyFilter::Execute(CRenderManager &lRM)
 
             static bool show_app_auto_resize = true;
             ImGui::Begin("Menu Dynamic", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
-            m_DynamicTexturesMaterials[i]->m_Material->DrawImgui();
             ImGui::End();
 
         }

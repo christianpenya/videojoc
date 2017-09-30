@@ -1,6 +1,7 @@
 <materials>
 	
-	<material name="02 - Default" vertex_type="PositionNormal" >
+	
+ 	<material name="02 - Default" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.8431 0.7686 0.651 1.0" />
 	</material>
 	
@@ -11,7 +12,15 @@
 		<parameter type="float" name="diffuse" value="100.0" />
 	</material>
 
-	<material name="NoiseVignettingMaterial" effect="NoiseVignetting">
+	<material name="DrawQuadMaterial" vertex_type="PositionUV">
+	</material>
+	
+	<material name="DeferredShadingMaterial" vertex_type="PositionUV">
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+	</material>
+	
+<!-- 	
+<material name="NoiseVignettingMaterial" effect="NoiseVignetting">
 		<texture type="diffuse" filename="data\textures\post_process\noise.png" />
 		<texture type="diffuse" filename="data\textures\post_process\vignetting.png" />
 		<parameter type="float" name="noisePct" value="0.2" />
@@ -24,8 +33,7 @@
 		<parameter type="float2" name="fog_start_end" value="35.0 100.0" />
 	</material>
 
-	<material name="DrawQuadMaterial" vertex_type="PositionUV">
-	</material>
+
 	
 	<material name="DeferredShadingMaterial" vertex_type="PositionUV">
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
@@ -113,7 +121,7 @@
 		<parameter type="float2" name="light_position" value="0.5 0.5"/>
 	</material>
 
-	<material name="NavMeshMaterial" vertex_type="Position"/>
+	<material name="NavMeshMaterial" vertex_type="Position"/> -->
 
 	
 </materials>

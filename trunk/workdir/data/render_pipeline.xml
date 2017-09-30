@@ -27,8 +27,7 @@
 	<unset_render_target/>	
 	End generate gbuffer
 	
-	<apply_technique_pool pool_name="pbr_lighting"/>
-	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>
+	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false"/>
 	
 	Generate buffer diffuse y specular lighting
 	<set_render_target name="GbufferLighting">
@@ -36,8 +35,10 @@
 		<dynamic_texture name="SpecularLightingTexture" texture_width_as_frame_buffer="true" create_depth_stencil_buffer="false" format_type="RGBA16_FLOAT"/>
 	</set_render_target>
 	
-	<clear render_target="true" depth_stencil="true" color="0.0 0.0 0.0 0.0"/>
+	AQUIFdasfadsfadsadsfdffffffffffffffffffffffffffffffffffffffffff
+	<clear render_target="true" depth_stencil="false" color="0.0 0.0 0.0 1.0"/>
 
+	<apply_technique_pool pool_name="pbr_lighting"/>
 	<deferred_shading material="DeferredShadingMaterial">
 		<texture stage_id="0" name="AlbedoTexture"/>
 		<texture stage_id="1" name="LightMapTexture"/>
@@ -45,7 +46,6 @@
 		<texture stage_id="3" name="DepthMapTexture"/>
 		<texture stage_id="4" name="SpecularMapTexture"/>
 	</deferred_shading>
-	
 	<unset_render_target/>
 	End generate buffer diffuse y specular lighting
 	
@@ -69,6 +69,10 @@
 	</draw_quad>
 
 	<set_depth_stencil_state enable_z_test="true" write_z_buffer="true"/>	
+	
+	SKYBOX
+	<apply_technique_pool pool_name="skybox"/>
+	<render_layer layer="Skybox"/>
 	<unset_render_target/>
 	End composite final pixel
 	
@@ -78,14 +82,11 @@
         <texture name="HDRCapturedTexture" stage_id="0"/>
     </draw_quad>
 	
-	SKYBOX
-	<set_depth_stencil_state enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
-	<apply_technique_pool pool_name="skybox"/>
-	<render_layer layer="Skybox"/>
+	
 
 	DEBUG SHIT
 	
-	<apply_technique_pool pool_name="quad"/>
+	<!--<apply_technique_pool pool_name="quad"/>
 	
 	<draw_quad  material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
         <texture name="AlbedoTexture" stage_id="0"/>
@@ -106,23 +107,8 @@
 	<draw_quad material="DrawQuadMaterial" viewport_position = "258 0" viewport_size = "128 128">
         <texture name="SpecularMapTexture" stage_id="0"/>
     </draw_quad>
-	
-	
-	<!--
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "258 0" viewport_size = "128 128">
-        <texture name="SpecularLightingTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "258 129" viewport_size = "128 128">
-        <texture name="DiffuseLightingTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "512 512">
-        <texture name="LightMapTexture" stage_id="0"/>
-    </draw_quad>
-	
 	-->
+	
 	
 	INICIO LIGHT SCATTERING
 	<!--
@@ -274,7 +260,8 @@
 
 	
 	<!--<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="blend_one" dst_blend_alpha="blend_one" blend_op_alpha="add"  render_target_write_mask="all" />-->
-<!--	<draw_quad name="Tst1" material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
+	<!--	
+	<draw_quad name="Tst1" material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
         <texture name="AlbedoTexture" stage_id="0"/>
     </draw_quad>
 	<draw_quad name="Tst2" material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">

@@ -151,12 +151,6 @@ PS_INPUT VS( VS_INPUT IN )
 PixelOutputType PS(PS_INPUT IN) : SV_Target
 {
     PixelOutputType l_Output = (PixelOutputType)0;
-
-	l_Output.Target0 = float4(1,1,1,1);
-	l_Output.Target1 = float4(1,1,1,1);
-	l_Output.Target2 = float4(1,1,1,1);
-	l_Output.Target3 = float4(1,1,1,1);
-	l_Output.Target4 = float4(1,1,1,1);
 	
     float4 pixelColor = float4(m_Color.xyz, 1.0);
     float3 l_LAmbient = m_LightAmbient.xyz;
@@ -185,19 +179,6 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
     	l_PixelNormal = normalize(l_PixelNormal + bump.x*IN.Tangent + bump.y*IN.Binormal);
  	#endif
 
-	//l_Normal=Normal2Texture(l_Normal);
-
-    /*
-	l_Output.Target0 = float4(pixelColor, g_SpecularContrib);
-    l_Output.Target1 = float4(l_LAmbient.xyz*pixelColor, g_SpecularExponent);
-    l_Output.Target2 = float4(l_Normal, 0.0);	
-    l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1.0);
-	*/
-	
-	m_Metalness = 0.0f;
-	m_Occlusion = 1.0f;
-	m_Roughness = 1.0f;
-	
 	l_Output.Target0 = float4(pixelColor.xyz, m_Metalness);
 	l_Output.Target1 = float4(l_LAmbient.xyz, m_Occlusion);
 	

@@ -20,7 +20,10 @@ bool CApplyTechniquePool::Load(const CXMLElement* aElement)
 {
     bool lOk = CRenderCmd::Load(aElement);
     if (lOk)
-        m_PoolName = aElement->GetAttribute<std::string>("pool_name","forward");
+    {
+        m_PoolName = aElement->GetAttribute<std::string>("pool_name", "forward");
+    }
+
     return lOk;
 }
 
