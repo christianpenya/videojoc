@@ -83,6 +83,17 @@
     </draw_quad>
 	
 	
+	INICIO POST PROCESS
+	
+	<apply_technique_pool pool_name="post_process"/>
+	INICIO NOISE VIGNETTING
+	<enable_alpha_blend/>	
+	<draw_quad name="noise_vignetting" material="NoiseVignettingMaterial">
+		<texture name="noise" />	
+		<texture name="vignetting" />
+	</draw_quad>	
+	<disable_alpha_blend/>	
+	FIN NOISE VIGNETTING
 
 	DEBUG SHIT
 	
@@ -223,14 +234,7 @@
 	FIN COLORGRADING
 
 	
-	INICIO NOISE VIGNETTING
-	<enable_alpha_blend/>	
-	<draw_quad name="noise_vignetting" material="NoiseVignettingMaterial">
-		<texture name="noise" />	
-		<texture name="vignetting" />
-	</draw_quad>	
-	<disable_alpha_blend/>	
-	FIN NOISE VIGNETTING
+	
 -->
 	INICIO EFECTO GAUSSIANO
 <!--	

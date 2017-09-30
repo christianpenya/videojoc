@@ -19,14 +19,16 @@
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
 	</material>
 	
-<!-- 	
-<material name="NoiseVignettingMaterial" effect="NoiseVignetting">
+	<material name="NoiseVignettingMaterial" effect="NoiseVignetting">
 		<texture type="diffuse" filename="data\textures\post_process\noise.png" />
 		<texture type="diffuse" filename="data\textures\post_process\vignetting.png" />
-		<parameter type="float" name="noisePct" value="0.2" />
-		<parameter type="float" name="vignettingPct" value="0.2" />
-		<parameter type="float" name="noiseAmount" value="0.2" />
+		<parameter type="float" name="noisePct" value="0.15" />
+		<parameter type="float" name="vignettingPct" value="0.5" />
+		<parameter type="float" name="noiseAmount" value="0.15" />
 	</material>
+	
+<!-- 	
+
 
 	<material name="FogMaterial" effect="Fog" vertex_type="Fog">
 		<parameter type="color" name="diffuse_color" value="0.7 0.7 0.7 1.0" />

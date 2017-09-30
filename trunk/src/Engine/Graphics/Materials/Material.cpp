@@ -127,7 +127,7 @@ void CMaterial::DrawImgui()
             switch (mParameters[i]->GetType())
             {
             case eFloat:
-                ImGui::SliderFloat(mParameters[i]->GetName().c_str(), (float*)mParameters[i]->GetAddr(0), 0.0f, 1.0f);
+                ImGui::SliderFloat(mParameters[i]->GetName().c_str(), (float*)mParameters[i]->GetAddr(0), -5.0f, 5.0f);
                 break;
 
             case eColor:
