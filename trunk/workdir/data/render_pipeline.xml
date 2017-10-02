@@ -23,6 +23,8 @@
 	<render_layer layer="opaque"/>
 	<render_layer layer="guardias"/>
 	<render_layer layer="triggers"/>
+	<render_layer layer="navmesh"/>
+	<render_layer layer="drones"/>
 
 	<unset_render_target/>	
 	End generate gbuffer

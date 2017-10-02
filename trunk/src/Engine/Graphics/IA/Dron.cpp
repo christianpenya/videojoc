@@ -54,7 +54,7 @@ void CDron::DrawImgui()
 
 void CDron::patrol()
 {
-    std::cout << " Dron " << GetName() << "patroling." << std::endl;
+//    std::cout << " Dron " << GetName() << "patroling." << std::endl;
     if ((m_Destination == Vect3f{ 0.0f, -99.9f, 0.0f }) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_Destination.x,m_Destination.z)<=1.0f))
         GotoNextPoint();
 
@@ -87,7 +87,7 @@ void CDron::GotoNextPoint()
 
 void CDron::chase()
 {
-    std::cout << " Dron " << GetName() << "chasing." << std::endl;
+    //  std::cout << " Dron " << GetName() << "chasing." << std::endl;
 
     if ((!m_Calculated) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_DestinationChase.x, m_DestinationChase.z) <= 0.2f))
         GotoNextPointChase();
@@ -125,7 +125,7 @@ void CDron::GotoNextPointChase()
 
 void CDron::ComputePath()
 {
-    std::cout << " Dron " << GetName() << "chasing, calculó nuevo path" << std::endl;
+    //std::cout << " Dron " << GetName() << "chasing, calculó nuevo path" << std::endl;
     m_lastPositionView = m_PhysXManager.GetActorPosition("player");
     m_ppath = new CPathfinding(m_lastPositionView, m_Position, m_pnavMesh->GetName());
     m_DestPointChase = 0;
