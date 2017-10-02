@@ -124,8 +124,6 @@ void CMaterial::DrawImgui()
     if ((mParameters.size() > 0))
     {
 
-        //static bool show_app_auto_resize = true;
-        //ImGui::Begin("Menu", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
         ImGui::ColorEditMode(ImGuiColorEditMode_RGB);
 
         if (ImGui::CollapsingHeader(GetName().c_str(), ImGuiWindowFlags_AlwaysAutoResize))

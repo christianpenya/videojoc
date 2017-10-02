@@ -27,6 +27,7 @@ CEnemy::CEnemy(CXMLElement* aElement, EEnemyType aEnemyType)
     , m_Movement(GetPosition())
     , m_CalculateReturn(false)
     , m_State(Input::PATROL)
+    , m_DetectAngle(aElement->GetAttribute<float>("detectAngle", 45.0f))
 
 {
     m_Visible = aElement->GetAttribute<bool>("active", true);
@@ -50,20 +51,34 @@ Vect3f CEnemy::GetPatrolPosition()
     return (*this->GetParent())(m_patrolPoints[m_DestPoint].data())->GetPosition();
 }
 
+bool CEnemy::PlayerOnSight()
+{
+    float angulo = getAngle(m_Position.x, m_Position.y, m_Position.z, m_PhysXManager.GetActorPosition("player").x, m_PhysXManager.GetActorPosition("player").y, m_PhysXManager.GetActorPosition("player").z);
+    return ((angulo <= m_DetectAngle) && (angulo >= -m_DetectAngle)) ? true : false;
+}
+
+
 bool CEnemy::Update(float ElapsedTime)
 {
     bool hitted = m_PhysXManager.Raycast(m_Position, m_PhysXManager.GetActorPosition("player"), 0001, resultado);
+
     if (hitted && (resultado->actor == "player"))
     {
-        /*        if (resultado->distance <= m_DeadDistance)
-                {
-                    choice = Input::STOP;
-                    std::cout << "Muere protagonista" << std::endl;
-                }*/
+        if (resultado->distance <= m_DeadDistance)
+        {
+            if (PlayerOnSight())
+            {
+                m_State = Input::STOP;
+                std::cout << "Muere protagonista" << std::endl;
+            }
+        }
         if (resultado->distance <= m_SightDistance)
         {
-            m_State = Input::CHASE;
-            m_CalculateReturn = true;
+            if (PlayerOnSight())
+            {
+                m_State = Input::CHASE;
+                m_CalculateReturn = true;
+            }
         }
         else if (resultado->distance >= m_MaxDetectDistance)
         {
@@ -145,4 +160,17 @@ void CChasingState::update(CEnemy& enemy)
 
 void CEnemy::DrawImgui()
 {
+}
+
+
+float CEnemy::getAngle(float x1, float y1, float z1, float x2, float y2, float z2)
+{
+    float theta = atan2(z1 - z2, x1 - x2);
+    return -theta * 180 / 3.1415926;
+}
+float CEnemy::getAngle2(float x1, float y1, float z1, float x2, float y2, float z2)
+{
+    float dist = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2) + pow(z1 - z2, 2));
+    float dist2 = sqrt(pow(x1 - x2, 2) + pow(z1 - z2, 2));
+    return acos(dist2 / dist) * 180 / 3.1415926;
 }

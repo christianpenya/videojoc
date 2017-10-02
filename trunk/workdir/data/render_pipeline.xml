@@ -212,12 +212,19 @@
 		<apply_technique_pool pool_name="post_process"/>
 		<render_gui/>
 	
-	<set_depth_stencil_state name ="Depth Stencil Particles" enable_z_test="false"  write_z_buffer = "false" enable_stencil = "false" comparison_func = "4"/>	
+<!--	<set_depth_stencil_state name ="Depth Stencil Particles" enable_z_test="false"  write_z_buffer = "false" enable_stencil = "false" comparison_func = "4"/>	
 	<apply_technique_pool pool_name="forward"/>
 	<set_alpha_blend_state name ="Alpha Blend Particles" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="SrcAlpha" dst_blend_alpha="InvSrcAlpha" blend_op_alpha="add"  render_target_write_mask="all" />
 	<!--<enable_alpha_blend/>	-->
-	<render_layer layer="Principal"/>
+<!--	<render_layer layer="Principal"/>
 	<disable_alpha_blend/>
+
+    <set_depth_stencil_state name ="Depth Stencil Dron Particles" enable_z_test="false"  write_z_buffer = "false" enable_stencil = "false" comparison_func = "4"/>	
+	<apply_technique_pool pool_name="forward"/>
+	<set_alpha_blend_state name ="Alpha Blend Dron Particles" state="enabled" src_blend="SrcColor" dst_blend="InvSrcColor" blend_op="add" src_blend_alpha="SrcAlpha" dst_blend_alpha="InvSrcAlpha" blend_op_alpha="add"  render_target_write_mask="all" />
+	<render_layer layer="DronesLight"/>
+	<disable_alpha_blend/>	
+-->
 	
 	<!--<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="One" dst_blend_alpha="One" blend_op_alpha="add"  render_target_write_mask="all" />--> TEXTURAS TRANSPARENTES
 	

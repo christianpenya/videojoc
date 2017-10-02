@@ -215,7 +215,9 @@ void CLayer::DrawImgui()
             {
                 CParticleSystemType *lParticle = CEngine::GetInstance().GetParticleManager()((*iSceneNode)->GetName());
                 if (lParticle != nullptr)
+                {
                     lParticle->DrawImgui();
+                }
             }
             break;
             case CSceneNode::eNavMesh:

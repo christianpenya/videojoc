@@ -88,10 +88,14 @@ public:
     bool m_CalculateReturn;
     std::vector<std::string> m_patrolPoints;
     Input m_State;
+    float m_DetectAngle;
+
 
     GET_SET(float, SightDistance);
     GET_SET(float, MaxDetectDistance);
     GET_SET(float, DeadDistance);
+    GET_SET(float, DetectAngle);
+
     GET_SET_PTR(CNavMesh, navMesh);
     std::vector<Vect3f> m_pathChasing;
     std::vector<Vect3f> m_pathChasingAux;
@@ -109,6 +113,10 @@ public:
     bool Update(float ElapsedTime);
     double distanceBetweenTwoPoints(double x, double y, double a, double b);
     Vect3f GetPatrolPosition();
+    bool PlayerOnSight();
+
+    float getAngle(float x1, float y1, float z1, float x2, float y2, float z2);
+    float getAngle2(float x1, float y1, float z1, float x2, float y2, float z2);
 
     virtual void handleInput(Input input)
     {

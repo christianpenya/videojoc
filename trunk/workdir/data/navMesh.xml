@@ -1,5 +1,5 @@
 <navmeshs>
-<navmesh name="navMeshScene01" color="1.0 0.0 0.0 1.0" material="NavMeshMaterial" obj="C:/zona1_NavMesh.obj">
+<navmesh name="navMeshScene01" color="1.0 0.0 0.0 1.0" material="NavMeshMaterial" obj="data\zona1_navMesh.obj">
 <transform position="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="-90.0"  forward="0.0 0.0 0.0" />	
 <vertex position="-55.3 0.01214442 39.9" /> 
 <vertex position="-55.3 0.01214442 41.76667" /> 

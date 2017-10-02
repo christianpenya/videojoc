@@ -40,12 +40,13 @@ CNavMesh::CNavMesh(const CXMLElement* aTreeNode)
 
     if (!err.empty())
     {
-        // std::cerr << err << std::endl;
+//        std::cerr << err << std::endl;
+        printf("error obj");
     }
 
     if (!ret)
     {
-        //printf("Failed to load/parse .obj.\n");
+        printf("Failed to load/parse .obj.\n");
 
     }
 
