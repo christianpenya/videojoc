@@ -80,6 +80,7 @@
 	</material>
 	
 	<material name="ShadowMapMaterial" vertex_type="ShadowMap" />
+	
 	<material name="HdaoMaterial" vertex_type="Hdao" >
 		<parameter type="float" name="HDAOActive" value="1.0" />
 		<parameter type="float" name="HDAOShowNormals" value="0.0" />

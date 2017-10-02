@@ -1,6 +1,6 @@
 <events>
 	<event name="trigger_pasillo" active="true">
-		<reactor name="open_door" param1="puerta666" />
-		<actor name="dumb" param1="trigger_pasillo"/>
+		<actor name="audio_trigger" layer="triggers" obj_name="trigger_pasillo"/>
+		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
 	</event>
 </events>

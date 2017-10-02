@@ -28,7 +28,7 @@ CLayer::CLayer(const std::string& aName) :
 
 CLayer::~CLayer()
 {
-    //CTemplatedMapVector<CSceneNode>::Destroy();
+    CTemplatedMapVector<CSceneNode>::Destroy();
 }
 
 bool CLayer::Load(CXMLElement* aElement)
@@ -245,5 +245,14 @@ void CLayer::DrawImgui()
 
 CSceneNode* CLayer::GetSceneNode(std::string aName)
 {
-    return  m_ResourcesMap.find(aName)->second.m_Value;
+    CSceneNode* lOut = nullptr;
+
+    auto lNodePair = m_ResourcesMap.find(aName);
+
+    if (lNodePair != m_ResourcesMap.end())
+    {
+        lOut = lNodePair->second.m_Value;
+    }
+
+    return lOut;
 }

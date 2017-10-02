@@ -118,7 +118,6 @@ void CRenderImGUI::Reloads(CEngine& lEngine)
         ImGui::PopStyleColor(2);
         ImGui::PopID();
 
-
         //LUCES
         ImGui::PushID(RELOAD_LIGHTS_BUTTON_ID);
         ImGui::PushStyleColor(ImGuiCol_Button, GREEN);

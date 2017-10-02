@@ -57,6 +57,4 @@ void CSceneNode::DrawImgui()
     }
 }
 
-void CSceneNode::Deactivate()
-{
-}
+void CSceneNode::Deactivate() {}

@@ -14,10 +14,26 @@ function preProcess = (
 			appendIfUnique mArrayMaterial iMaterial
 		)else if classOf iMaterial == Multimaterial then	
 		(
+			
+			
 			local lSubMaterialsCount = iMaterial.numsubs			
 			for iSubMaterial =  1 to lSubMaterialsCount do(
 				local lSubMaterial = iMaterial[iSubMaterial]
-				appendIfUnique mArrayMaterial lSubMaterial
+				
+				if classOf lSubMaterial == Standardmaterial then (
+					appendIfUnique mArrayMaterial lSubMaterial
+				)
+				else if classOf lSubMaterial == Multimaterial then (
+				
+					local lSubMaterialsCount2 = lSubMaterial.numsubs
+					for iSubMaterial2 =  1 to lSubMaterialsCount2 do (
+						local lSubMaterial2 = lSubMaterial[iSubMaterial2]
+					
+						if classOf lSubMaterial2 == Standardmaterial then (
+							appendIfUnique mArrayMaterial lSubMaterial2
+						)
+					)
+				)
 			)
 		)
 	)
@@ -205,6 +221,22 @@ function parse outPath =
 			textNode.addAttribute "type" "diffuse"			
 			local filename = copyTexture object.m_diffuseBitmap outPath
 			textNode.addAttribute "filename" (dataStr + filename)
+		)
+		
+		if object.m_selfIllumEnabled == true then(
+			-- lightmap
+			local textNode = XmlNode tag:"texture"
+			matNode.addChild textNode
+			textNode.addAttribute "type" "lightmap"
+			local filename = copyTexture object.m_selfIllumBitmap outPath
+			textNode.addAttribute "filename" (dataStr + filename)
+			
+			-- cuantitat de lightmap
+			local paramNode = XmlNode tag:"parameter"
+			matNode.addChild paramNode
+			paramNode.addAttribute "type" "float"
+			paramNode.addAttribute "name" "lightmap"
+			paramNode.addAttribute "value" object.m_selfIllumAmount
 		)
 		
 		-- color difus del material

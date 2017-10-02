@@ -7,7 +7,19 @@
 #include "Engine\Engine.h"
 #include "Graphics\Textures\TextureManager.h"
 
-CLight::~CLight() {}
+CLight::~CLight()
+{
+    __H_CHECKED_DELETE__(m_pShadowMap);
+    __H_CHECKED_DELETE__(m_LightType);
+    __H_CHECKED_DELETE__(m_Intensity);
+    __H_CHECKED_DELETE__(m_Color);
+    __H_CHECKED_DELETE__(m_RangeAttenuation);
+    __H_CHECKED_DELETE__(m_Name);
+    __H_CHECKED_DELETE__(m_GenerateShadowMap);
+    __H_CHECKED_DELETE__(m_pShadowMaskTexture);
+    __H_CHECKED_DELETE__(m_ViewShadowMap);
+    __H_CHECKED_DELETE__(m_ProjectionShadowMap);
+}
 
 CLight::CLight(ELightType aLightType):
     m_Intensity(0),

@@ -93,7 +93,6 @@ break;\
 
 void CMaterial::Apply()
 {
-
     assert(mTechnique);
     ID3D11DeviceContext * lContext = CEngine::GetInstance().GetRenderManager().GetDeviceContext();
 
@@ -121,8 +120,11 @@ void CMaterial::Apply()
 
 void CMaterial::DrawImgui()
 {
-    if ((mParameters.size() > 0))
+
+    /*if ((mParameters.size() > 0))
     {
+        static bool show_app_auto_resize = true;
+        ImGui::Begin("Menu", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
 
         ImGui::ColorEditMode(ImGuiColorEditMode_RGB);
 
@@ -202,13 +204,14 @@ void CMaterial::DrawImgui()
                 }
                 break;
                 }
+
                 ImGui::PopID();
             }
+
             ImGui::PopItemWidth();
             ImGui::EndChild();
         }
-//       ImGui::End();
-    }
 
+        ImGui::End();
+    }*/
 }
-

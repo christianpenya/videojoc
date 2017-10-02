@@ -151,10 +151,13 @@ PS_INPUT VS( VS_INPUT IN )
 PixelOutputType PS(PS_INPUT IN) : SV_Target
 {
     PixelOutputType l_Output = (PixelOutputType)0;
-	
-	float g_SpecularExponent = 80.0;
-    float g_SpecularContrib = 1.0;
 
+	l_Output.Target0 = float4(1,1,1,1);
+	l_Output.Target1 = float4(1,1,1,1);
+	l_Output.Target2 = float4(1,1,1,1);
+	l_Output.Target3 = float4(1,1,1,1);
+	l_Output.Target4 = float4(1,1,1,1);
+	
     float4 pixelColor = float4(m_Color.xyz, 1.0);
     float3 l_LAmbient = m_LightAmbient.xyz;
 
@@ -171,13 +174,14 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		}
 		
 		#if USE_UV2
-			float4 l_LightmapPixel = T2Texture.Sample(S2Sampler, IN.UV2) * 2;
+			float4 l_LightmapPixel = T1Texture.Sample(S1Sampler, IN.UV2) * 2;
 			//pixelColor = l_LightmapPixel.xyz * pixelColor;
 			l_LAmbient = l_LightmapPixel.xyz;
 		#endif
  	#endif
  	#if USE_BUMP
-	 	float3 bump = m_RawData[1].x * (T1Texture.Sample(S1Sampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
+		return l_Output;
+		float3 bump = m_RawData[1].x * (T2Texture.Sample(S2Sampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
     	l_PixelNormal = normalize(l_PixelNormal + bump.x*IN.Tangent + bump.y*IN.Binormal);
  	#endif
 
@@ -205,7 +209,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
     float l_Depth = IN.Depth.x/IN.Depth.y;
 	l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1);
 
-	int m_EnvironmentMipLevels = 1; // TODO esto tiene que venir por parámetro
+	int m_EnvironmentMipLevels = 10; // TODO esto tiene que venir por parámetro
 	float3 l_SpecularColor = T7Texture.SampleLevel(S7Sampler, l_ReflectVector, GetSpecPowToMip(m_Roughness, m_EnvironmentMipLevels)).xyz;
 	l_Output.Target4 = float4(l_SpecularColor, m_Roughness);
 

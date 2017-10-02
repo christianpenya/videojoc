@@ -205,6 +205,7 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 	CalculatePBRSingleLight(0, l_BaseColor, l_WorldPosition, l_WorldNormal, l_SpecularColor, l_Roughness, l_DiffuseContrib, l_SpecularContrib);
 	l_OUT.Target0=float4(l_DiffuseContrib,1);
 	l_OUT.Target1=float4(l_SpecularContrib,1);
+	
 	return l_OUT;
 }
 	

@@ -76,8 +76,8 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_RenderPipeline);
     base::utils::CheckedDelete(m_ParticleManager);
     base::utils::CheckedDelete(m_CinematicManager);
-    base::utils::CheckedDelete(m_SceneManager);
     base::utils::CheckedDelete(m_LightManager);
+    base::utils::CheckedDelete(m_SceneManager);
     base::utils::CheckedDelete(m_MeshManager);
     base::utils::CheckedDelete(m_AnimatedModelManager);
     base::utils::CheckedDelete(m_MaterialManager);
@@ -165,9 +165,6 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load(m_FileCinematicManager);
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
-
-
-
     m_SoundManager = ISoundManager::InstantiateSoundManager();
     m_SoundManager->SetPath(m_SoundFilesPath);
     m_SoundManager->Init();
@@ -189,8 +186,6 @@ void CEngine::LoadFiles()
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
-
-
 }
 
 void CEngine::Init(HWND hWnd)
@@ -270,7 +265,9 @@ void CEngine::Update()
     m_CinematicManager->Update(m_DeltaTime);
 
     m_SoundManager->Update(&m_CameraManager->GetCurrentCamera());
-    m_EventManager->Update();
+
+    m_EventManager->Update(m_DeltaTime);
+
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
     /*if (m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))

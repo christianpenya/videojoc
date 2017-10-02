@@ -21,12 +21,18 @@ fn writeMesh arx VtxID matFlags vertexs indexs BBMin BBMax BSphere forPhysx =
 			(
 				-- por vertice
 				local limit = 0
+				
 				for k = 1 to vertexs[i][j].count do
 				(				
 					--solo escribimos la info de los 3 primeros float, pos x y z
 					if k < 4 then
 					(
+						print vertexs[i][j][k]
+						--format "\n" 
+						--format "vertexs[j] \n"
+						--format "vertexs[k] \n"
 						writeFloat arx vertexs[i][j][k] --info vertice
+						
 					)
 					else
 					(
@@ -40,6 +46,7 @@ fn writeMesh arx VtxID matFlags vertexs indexs BBMin BBMax BSphere forPhysx =
 		writeShort arx indexs[i].count #unsigned--indices
 		for j = 1 to indexs[i].count do
 		(
+			print indexs[i][j]
 			writeShort arx indexs[i][j] #unsigned
 		)
 	)
@@ -306,11 +313,13 @@ fn processFaces arx Obj forPhysx =
 fn writeMeshFromObject arx Obj	forPhysx =
 (
 	WriteShort arx 0xFE55
+	print 0xFE55
 	local nMaterials
 	--getMaterials arx Obj
     processFaces arx Obj forPhysx
 	WriteShort arx 0x55FE
-)
+	print 0x55FE
+	)
 
 fn createMeshFromObjects  =
 (

@@ -20,13 +20,13 @@ bool CParticleManager::Load(const std::string &aFilename)
     if (base::xml::SucceedLoad(error))
     {
         m_Filename = aFilename;
-        CXMLElement* l_Meshes = document.FirstChildElement("particle_systems");
+        CXMLElement* lParticles = document.FirstChildElement("particle_systems");
 
-        if (l_Meshes)
+        if (lParticles)
         {
-            for (tinyxml2::XMLElement* iMeshes = l_Meshes->FirstChildElement(); iMeshes != nullptr; iMeshes = iMeshes->NextSiblingElement())
+            for (tinyxml2::XMLElement* iParticle = lParticles->FirstChildElement(); iParticle != nullptr; iParticle = iParticle->NextSiblingElement())
             {
-                CParticleSystemType *l_ParticleSystemType = new CParticleSystemType(iMeshes);
+                CParticleSystemType *l_ParticleSystemType = new CParticleSystemType(iParticle);
                 if (!Add(l_ParticleSystemType->GetName(), l_ParticleSystemType))
                 {
                     base::utils::CheckedDelete(l_ParticleSystemType);

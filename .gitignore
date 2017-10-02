@@ -6,7 +6,7 @@ trunk/src/Engine/ReadMe.txt
 *.pdb
 *.user
 *.blob
-
+*.ini
 *.exp
 trunk/workdir/solution/obj/x32/Debug/Base/Base.tlog/Base.lastbuildstate
 *.tlog

@@ -18,14 +18,17 @@ public:
     ~CEvent();
 
     void Start();
-    void Update();
+    void Update(float elapsedTime);
 
-    bool mIsEnCours;
+    GET_SET_BOOL(Finished);
+    GET_SET_BOOL(HappeningRightFuckingNow);
 
 private:
     CActor* mActor;
     CReactor* mReactor;
 
+    bool m_Finished;
+    bool m_HappeningRightFuckingNow;
     bool mAlreadyReacting;
 };
 

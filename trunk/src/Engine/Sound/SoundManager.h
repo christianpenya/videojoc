@@ -86,6 +86,7 @@ public:
 
     virtual void PlayEvent(SoundEvent &_event, const AkGameObjectID &id);
     virtual void PlayEvent(SoundEvent &_event);
+    virtual void PlayEvent(SoundEvent &_event, const bool _callback);
     virtual void PlayEvent(SoundEvent &_event, const std::string &_speaker);
     virtual void PlayEvent(SoundEvent &_event, const CSceneNode* _speaker);
 
@@ -101,6 +102,9 @@ public:
 
     virtual void BroadcastRTPCValue(const SoundRTPC &_rtpc, float value);
     virtual void BroadcastState(const SoundStateValue &_state);
+
+    static void OnEventEnd(AkCallbackType in_eType, AkCallbackInfo* in_pCallbackInfo);
+    virtual bool NotifyEndOfEvent();
 
     virtual void Terminate();
     virtual void Clean();
@@ -124,6 +128,7 @@ protected:
 
     virtual void SetListenerPosition(CCameraController *camera);
 
+    static bool CSoundManager::m_EndOfEventPendantToNotify;
 };
 
 #endif // __H_SOUNDMANAGER__20170516
