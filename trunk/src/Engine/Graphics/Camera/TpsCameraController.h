@@ -35,7 +35,7 @@ public:
         , roll(0.0f)
         , zoom(3.0f)
         , hitOffset(0.3f)
-        , pRadius(0.2f)
+        , pRadius(0.15f)
     {
 
     };
@@ -46,7 +46,7 @@ public:
 
 
 private:
-    Vect3f playerHeight = Vect3f(0, 1.5f, 0);
+    Vect3f playerHeight = Vect3f(0, 1.6f, 0);
     float yaw, pitch, roll, zoom;
 
     float maxPitch, minPitch;

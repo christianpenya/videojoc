@@ -536,7 +536,7 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
 
     physx::PxFilterData filterData;
     filterData.setToDefault();
-    filterData.word0 = 0000;
+    filterData.word0 = filterMask;
 
     physx::PxRaycastBuffer hit;
 
