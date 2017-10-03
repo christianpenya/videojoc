@@ -1,7 +1,10 @@
 #include "MaterialManager.h"
 #include "XML/XML.h"
+#include "Imgui/imgui.h"
+#include "Utils/Logger.h"
 
 CMaterialManager::CMaterialManager() {}
+
 CMaterialManager::~CMaterialManager()
 {
     CTemplatedMap<CMaterial>::Destroy();
@@ -43,6 +46,8 @@ bool CMaterialManager::Load(const std::string &Filename, bool UpdateFlag)
         {
             for (tinyxml2::XMLElement *iMaterial = lMaterials->FirstChildElement(); iMaterial != nullptr; iMaterial = iMaterial->NextSiblingElement())
             {
+                LOG_INFO_APPLICATION(iMaterial->GetAttribute<std::string>("name", "").c_str());
+
                 if (strcmp(iMaterial->Name(), "material") == 0)
                 {
                     CMaterial *lMaterial = new CMaterial(iMaterial);
@@ -66,4 +71,37 @@ bool CMaterialManager::Load(const std::string &Filename, bool UpdateFlag)
     }
 
     return out;
+}
+
+void CMaterialManager::DrawImgui()
+{
+    if (ImGui::CollapsingHeader("Material Manager"))
+    {
+        ImGui::BeginChild("#Scenes", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
+        ImGui::PushItemWidth(-130);
+
+        for (std::map<std::string, CMaterial*>::iterator iMaterial = m_ResourcesMap.begin(); iMaterial != m_ResourcesMap.end(); ++iMaterial)
+        {
+            if (iMaterial->first != "")
+            {
+                LOG_INFO_APPLICATION(iMaterial->first.c_str());
+                ImGui::PushID(iMaterial->second->GetName().c_str());
+
+                if (ImGui::CollapsingHeader(iMaterial->second->GetName().c_str()))
+                {
+                    iMaterial->second->DrawImgui();
+                }
+
+                ImGui::PopID();
+            }
+        }
+
+        ImGui::PopItemWidth();
+        ImGui::EndChild();
+    }
+
+    for (std::map<std::string, CMaterial*>::iterator iMaterial = m_ResourcesMap.begin(); iMaterial != m_ResourcesMap.end(); ++iMaterial)
+    {
+        (*iMaterial).second;
+    }
 }

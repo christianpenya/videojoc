@@ -29,6 +29,13 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
 
             std::string lRigidBody = iCollider->GetAttribute<std::string>("rigid_body", "");
             std::string lFilename = iCollider->GetAttribute<std::string>("filename", "");
+            Vect3f lOffset = iCollider->GetAttribute<Vect3f>("offset", Vect3f(0.0f, 0.0f, 0.0f));
+            float lYawOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("yaw", 0.0f));
+            float lPitchOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("pitch", 0.0f));
+            float lRollOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("roll", 0.0f));
+
+            bool isKinematic = iCollider->GetAttribute<bool>("kinematic", false);
+            Vect3f lColliderPosition;
 
             EnumString<ERigidBody>::ToEnum(mRigidBodyEnum, lRigidBody);
 
@@ -55,35 +62,46 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 sizeZ = abs(abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z);
                 cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
 
-
-                lCenter = m_Position + mMesh->GetBoundingSphere().GetCenter();
-                //CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f);
+                lCenter = m_Position + lOffset;
                 mPhysxIndex = CEngine::GetInstance().GetPhysXManager().CreateStaticBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ);
+
+                //rotation = CEngine::GetInstance().GetPhysXManager().GetActorOrientation(m_Name);
+                //m_Position = CEngine::GetInstance().GetPhysXManager().GetActorPosition(m_Name) + rotation.Rotate(cubeOffset);
+                //m_Pitch = rotation.GetRotationMatrix().GetAngleX();
+                //m_Yaw = rotation.GetRotationMatrix().GetAngleY();
+                //m_Roll = rotation.GetRotationMatrix().GetAngleZ();
                 break;
+
+            case eDynamicBox:
             case eEnemy:
-                lDebug = "Attached physx ENEMY CONTROLLER to " + m_Name;
+                lDebug = "Attached physx DYNAMIC BOX to " + m_Name;
                 rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
 
-                sizeX = abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x;
-                sizeY = abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y;
-                sizeZ = abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z;
-                cubeOffset = Vect3f(0, -sizeY / 2.0, 0);
+                sizeX = abs(abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x);
+                sizeY = abs(abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y);
+                sizeZ = abs(abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z);
+                cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
 
-                lCenter = mMesh->GetBoundingSphere().GetCenter() + m_Position;
-                CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f);
+                lCenter = m_Position;
+                CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f, isKinematic);
+
+                rotation = CEngine::GetInstance().GetPhysXManager().GetActorOrientation(m_Name);
+                m_Position = CEngine::GetInstance().GetPhysXManager().GetActorPosition(m_Name) + rotation.Rotate(cubeOffset);
+                m_Pitch = rotation.GetRotationMatrix().GetAngleX();
+                m_Yaw = rotation.GetRotationMatrix().GetAngleY();
+                m_Roll = rotation.GetRotationMatrix().GetAngleZ();
+
                 break;
 
             case eShape:
                 lDebug = "Attached physx SHAPE to " + m_Name;
-                rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+                rotation.QuatFromYawPitchRoll(m_Yaw + lYawOffset, m_Pitch + lPitchOffset, m_Roll + lRollOffset);
 
                 assert(strcmp(lFilename.c_str(), "") != 0);
+                lColliderPosition = m_Position + lOffset;
 
-                CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, m_Position, lFilename);
-                //CEngine::GetInstance().GetPhysXManager().CreateStaticTriangleMesh(m_Name, "Default", rotation, m_Position, );
-                // CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, m_Position, );
-                // mMesh->;
-                // CEngine::GetInstance().GetPhysXManager().CreateDynamicShape(m_Name, "Default", rotation, m_Position, nullptr, 1.0f);
+                CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, lColliderPosition, lFilename);
+
                 break;
             case eSphere:
                 lDebug = "Attached physx SPHERE to " + m_Name;
@@ -128,7 +146,10 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement, CMesh* aMesh)
     mMesh->GetBoundingSphere().SetRadius(radius * m_Scale.x);
 }
 
-CSceneMesh::~CSceneMesh() {}
+CSceneMesh::~CSceneMesh()
+{
+    __H_CHECKED_DELETE__(mMesh);
+}
 
 bool CSceneMesh::Update(float aDeltaTime)
 {
@@ -150,22 +171,18 @@ bool CSceneMesh::Update(float aDeltaTime)
             case eSphere:
             case eBox:
 
-                lRotation = lPM.GetActorOrientation(m_Name);
-                m_Position = lPM.GetActorPosition(m_Name) + lRotation.Rotate(cubeOffset);
-                m_Pitch = lRotation.GetRotationMatrix().GetAngleX();
-                m_Yaw = lRotation.GetRotationMatrix().GetAngleY();
-                m_Roll = lRotation.GetRotationMatrix().GetAngleZ();
-
-                lRotation.GetRotationMatrix().GetYaw();
                 break;
             case eShape:
                 break;
             case ePlayer:
                 m_Position = lPM.GetActorPosition(m_Name);
                 break;
-	        case eEnemy:
-    	        m_Position = lPM.GetActorPosition(m_Name);
-        	    break;
+
+            case eDynamicBox:
+            case eEnemy:
+                m_Position = lPM.GetActorPosition(m_Name);
+                break;
+
             case eTriggerBox:
                 break;
             default:
@@ -213,13 +230,13 @@ bool CSceneMesh::Render(CRenderManager& aRendermanager)
 
 void CSceneMesh::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::TreeNode(m_Name.c_str()))
     {
-        ImGui::SliderFloat("XPosition", (float*)&m_Position.x, mOriginalUnmodifiedPosition.x - 5.0f, mOriginalUnmodifiedPosition.x + 5.0f);
-        ImGui::SliderFloat("YPosition", (float*)&m_Position.y, mOriginalUnmodifiedPosition.y - 5.0f, mOriginalUnmodifiedPosition.y + 5.0f);
-        ImGui::SliderFloat("ZPosition", (float*)&m_Position.z, mOriginalUnmodifiedPosition.z - 5.0f, mOriginalUnmodifiedPosition.z + 5.0f);
+        ImGui::SliderFloat("XPosition", (float*)&m_Position.x, mOriginalUnmodifiedPosition.x - 1.0f, mOriginalUnmodifiedPosition.x + 1.0f);
+        ImGui::SliderFloat("YPosition", (float*)&m_Position.y, mOriginalUnmodifiedPosition.y - 1.0f, mOriginalUnmodifiedPosition.y + 1.0f);
+        ImGui::SliderFloat("ZPosition", (float*)&m_Position.z, mOriginalUnmodifiedPosition.z - 1.0f, mOriginalUnmodifiedPosition.z + 1.0f);
 
-        ImGui::SliderFloat3("Scale", (float*)&m_Scale, 0.0f, 5.0f);
+        ImGui::SliderFloat3("Scale", (float*)&m_Scale, -2.0f, 2.0f);
 
         float lYawTmp = mathUtils::Rad2Deg(m_Yaw);
         float lPitchTmp = mathUtils::Rad2Deg(m_Pitch);
@@ -232,5 +249,7 @@ void CSceneMesh::DrawImgui()
         m_Yaw = mathUtils::Deg2Rad(lYawTmp);
         m_Pitch = mathUtils::Deg2Rad(lPitchTmp);
         m_Roll = mathUtils::Deg2Rad(lRollTmp);
+        ImGui::TreePop();
     }
+
 }

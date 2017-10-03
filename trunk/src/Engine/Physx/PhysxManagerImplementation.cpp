@@ -93,7 +93,7 @@ void CPhysXManagerImplementation::onTrigger(physx::PxTriggerPair* pairs, physx::
 
         CEvent* lEvent = CEngine::GetInstance().GetEventManager().GetEvent(triggerName);
 
-        if (lEvent)
+        if (lEvent && !lEvent->IsFinished() && !lEvent->IsHappeningRightFuckingNow())
         {
             lEvent->Start();
         }

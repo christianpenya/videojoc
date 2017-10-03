@@ -76,8 +76,8 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_RenderPipeline);
     base::utils::CheckedDelete(m_ParticleManager);
     base::utils::CheckedDelete(m_CinematicManager);
-    base::utils::CheckedDelete(m_SceneManager);
     base::utils::CheckedDelete(m_LightManager);
+    base::utils::CheckedDelete(m_SceneManager);
     base::utils::CheckedDelete(m_MeshManager);
     base::utils::CheckedDelete(m_AnimatedModelManager);
     base::utils::CheckedDelete(m_MaterialManager);
@@ -99,6 +99,8 @@ CEngine::~CEngine()
 
 void CEngine::LoadFiles()
 {
+    ImGui_ImplDX11_NewFrame();
+
     m_ActionManager = new CActionManager(*m_InputManager);
     m_ActionManager->LoadActions(m_FileActionManager);
     LOG_INFO_APPLICATION("Engine -> Action Manager Loaded! \\(^-^)/");
@@ -163,9 +165,6 @@ void CEngine::LoadFiles()
     m_CinematicManager->Load(m_FileCinematicManager);
     LOG_INFO_APPLICATION("Engine -> Cinematics Loaded! \\(^-^)/");
 
-
-
-
     m_SoundManager = ISoundManager::InstantiateSoundManager();
     m_SoundManager->SetPath(m_SoundFilesPath);
     m_SoundManager->Init();
@@ -187,8 +186,6 @@ void CEngine::LoadFiles()
     m_RenderPipeline = new CRenderPipeline();
     m_RenderPipeline->Load(m_FileRenderPipeline);
     LOG_INFO_APPLICATION("Engine -> Render Pipeline Loaded! \\(^-^)/");
-
-
 }
 
 void CEngine::Init(HWND hWnd)
@@ -268,7 +265,9 @@ void CEngine::Update()
     m_CinematicManager->Update(m_DeltaTime);
 
     m_SoundManager->Update(&m_CameraManager->GetCurrentCamera());
-    m_EventManager->Update();
+
+    m_EventManager->Update(m_DeltaTime);
+
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
     /*if (m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))
@@ -314,8 +313,10 @@ float z = (*actionManager)("z_move")->value * 0.5f;
 m_CharacterController.m_Movement = {x, 0.0f, z};
 }*/
 
-void CEngine::DrawImgui()
+void CEngine::DrawImgui(int choice)
 {
-    m_SceneManager->DrawImgui();
-    m_SoundManager->DrawImgui();
+    if (choice == 0)
+        m_SceneManager->DrawImgui();
+    else
+        m_SoundManager->DrawImgui();
 }

@@ -137,7 +137,6 @@ bool CShader::Load()
          CreateShaderMacro();
          m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), m_ShaderMacros);
      }
-
      return m_pBlob != nullptr;
     */
 }

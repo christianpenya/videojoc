@@ -53,8 +53,22 @@ void CSpotLight::SetShadowMap(CRenderManager &RM)
 
 void CSpotLight::DrawImgui()
 {
-    ImGui::SliderFloat("Fall Off Angle",&m_FallOff, 0.0f, 360.0f);
-    ImGui::SliderFloat("Angle", &m_Angle, 0.0f, 360.0f);
+    if (ImGui::TreeNode(m_Name.c_str()))
+    {
+        ImGui::Checkbox("Visible", &m_Visible);
+        ImGui::ColorEdit4("Color", (float*)&m_Color, true);
+        ImGui::SliderFloat("Intensity", &m_Intensity, 0.25f, 1.0f);
+        ImGui::SliderFloat2("Attenuation Range", (float*)&m_RangeAttenuation, 0.25f, 100.0f);
+        ImGui::SliderFloat3("Position", (float*)&m_Position, -100.0f, 100.0f);
+        ImGui::SliderFloat("Yaw", (float*)&m_Yaw, -6.28f, 6.28f);
+        ImGui::SliderFloat("Pitch", (float*)&m_Pitch, -6.28f, 6.28f);
+        ImGui::SliderFloat("Roll", (float*)&m_Roll, -6.28f, 6.28f);
+        ImGui::SliderFloat("Fall Off Angle", &m_FallOff, 0.0f, 360.0f);
+        ImGui::SliderFloat("Angle", &m_Angle, 0.0f, 360.0f);
+        ImGui::TreePop();
+    }
+
+
 }
 
 void CSpotLight::Initialize(CXMLElement* aElement)

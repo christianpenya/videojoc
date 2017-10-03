@@ -87,6 +87,9 @@
     <ClInclude Include="..\..\src\Engine\Events\EventManager.h">
       <Filter>Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerActor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
@@ -452,6 +455,9 @@
     <ClCompile Include="..\..\src\Engine\Events\EventManager.cpp">
       <Filter>Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerActor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
@@ -582,6 +588,9 @@
       <Filter>Graphics\IA</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\IA\enemy.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\tiny_obj_loader.cc">
       <Filter>Graphics\IA</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\DirectionalLight.cpp">

@@ -99,7 +99,7 @@ public:
 
     CCharacterController* m_CharacterController;
     // void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
-    void DrawImgui();
+    void DrawImgui(int choice);
 };
 
 #undef BUILD_GET_SET_ENGINE_MANAGER

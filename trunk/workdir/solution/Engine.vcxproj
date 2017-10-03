@@ -238,6 +238,7 @@
     <ClInclude Include="..\..\src\Engine\Events\Actor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Event.h" />
     <ClInclude Include="..\..\src\Engine\Events\EventManager.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\OpenDoorReactor.h" />
@@ -361,6 +362,7 @@
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Event.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\EventManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\OpenDoorReactor.cpp" />
@@ -405,6 +407,7 @@
     <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMeshManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\Pathfinding.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\enemy.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\tiny_obj_loader.cc" />
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\DirectionalLight.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\Light.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\LightManager.cpp" />

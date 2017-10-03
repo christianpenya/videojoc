@@ -82,6 +82,7 @@ public:
     virtual ~CNavMesh();
     CNavMesh(const CXMLElement* aElement);
 
+
     int atTriangle(Vect3f position);
     Vect3f GetCenter(Triangle* triangle);
     bool Render(CRenderManager& lRM);

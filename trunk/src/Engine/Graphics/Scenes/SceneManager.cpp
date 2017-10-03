@@ -51,6 +51,7 @@ bool CSceneManager::Render(const std::string& aLayer)
             lOk &= lScene->Render(aLayer);
         }
     }
+
     return lOk;
 }
 
@@ -104,19 +105,25 @@ bool CSceneManager::Load()
             {
                 if (strcmp(iScene->Name(), "scene") == 0)
                 {
-                    std::string lName = iScene->GetAttribute<std::string>("name", "");
-                    CScene* lScene = new CScene(lName);
-                    lScene->SetActive(iScene->GetAttribute<bool>("active", false));
-                    std::string lFilename = iScene->GetAttribute<std::string>("folder", "") + lName;
-                    std::string lExtension = ".xml";
+                    bool lActive = iScene->GetAttribute<bool>("active", false);
 
-                    if (lFilename.find(lExtension) == std::string::npos)
+                    if (lActive)
                     {
-                        lFilename += lExtension;
-                    }
+                        std::string lName = iScene->GetAttribute<std::string>("name", "");
 
-                    lScene->Load(lFilename);
-                    lOk &= Add(lScene->GetName(), lScene);
+                        CScene* lScene = new CScene(lName);
+                        lScene->SetActive(iScene->GetAttribute<bool>("active", false));
+                        std::string lFilename = iScene->GetAttribute<std::string>("folder", "") + lName;
+                        std::string lExtension = ".xml";
+
+                        if (lFilename.find(lExtension) == std::string::npos)
+                        {
+                            lFilename += lExtension;
+                        }
+
+                        lScene->Load(lFilename);
+                        lOk &= Add(lScene->GetName(), lScene);
+                    }
                 }
             }
         }
@@ -132,25 +139,14 @@ std::vector<CScene*> CSceneManager::GetScenes()
 
 void CSceneManager::DrawImgui()
 {
-    if (ImGui::CollapsingHeader("Scenes Manager"))
+    for (std::vector<CScene*>::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
     {
-        ImGui::BeginChild("#Scenes", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-        ImGui::PushItemWidth(-130);
-
-        for (std::vector<CScene*>::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
+        if(ImGui::TreeNode((*iScene)->GetName().c_str()))
         {
-            ImGui::PushID((*iScene)->GetName().c_str());
-
-            if (ImGui::CollapsingHeader((*iScene)->GetName().c_str()))
-            {
-                (*iScene)->DrawImGui();
-            }
-
-            ImGui::PopID();
+            (*iScene)->DrawImGui();
+            ImGui::TreePop();
         }
 
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
     }
 }
 

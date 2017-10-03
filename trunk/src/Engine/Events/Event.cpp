@@ -9,11 +9,13 @@
 #include "Utils/Logger.h"
 
 CEvent::CEvent() :
-    mIsEnCours(false),
+    m_Finished(false),
+    m_HappeningRightFuckingNow(false),
     mAlreadyReacting(false) {}
 
 CEvent::CEvent(CXMLElement* aEvent) :
-    mIsEnCours(false),
+    m_Finished(false),
+    m_HappeningRightFuckingNow(false),
     mAlreadyReacting(false),
     CName(aEvent->GetAttribute<std::string>("name", ""))
 {
@@ -25,24 +27,30 @@ CEvent::CEvent(CXMLElement* aEvent) :
         {
             std::string lActorName = iElement->GetAttribute<std::string>("name", "");
             mActor = CEngine::GetInstance().GetEventManager().GetActor(lActorName);
+            mActor->Load(iElement);
         }
         else if (strcmp(iElement->Name(), "reactor") == 0)
         {
             std::string lReactorName = iElement->GetAttribute<std::string>("name", "");
             mReactor = CEngine::GetInstance().GetEventManager().GetReactor(lReactorName);
+            mReactor->Load(iElement);
         }
     }
 }
 
-CEvent::~CEvent() {}
+CEvent::~CEvent()
+{
+    __H_CHECKED_DELETE__(mReactor);
+    __H_CHECKED_DELETE__(mActor);
+}
 
 void CEvent::Start()
 {
-    mIsEnCours = true;
     mActor->Act();
+    m_HappeningRightFuckingNow = true;
 }
 
-void CEvent::Update()
+void CEvent::Update(float elapsedTime)
 {
     if (mActor->IsFinished() && !mAlreadyReacting)
     {
@@ -52,14 +60,15 @@ void CEvent::Update()
 
     if (!mActor->IsFinished())
     {
-        mActor->Update();
+        mActor->Update(elapsedTime);
     }
     else if (mActor->IsFinished() && !mReactor->IsFinished())
     {
-        mReactor->Update();
+        mReactor->Update(elapsedTime);
     }
     else if (mActor->IsFinished() && mReactor->IsFinished())
     {
-        mIsEnCours = false;
+        m_Finished = true;
+        m_HappeningRightFuckingNow = false;
     }
 }

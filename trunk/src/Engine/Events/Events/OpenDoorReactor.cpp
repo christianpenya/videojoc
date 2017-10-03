@@ -9,22 +9,65 @@
 #include "Graphics/Scenes/Scene.h"
 #include "Graphics/Scenes/Layer.h"
 #include "Graphics/Scenes/SceneNode.h"
+#include "Physx/PhysxManager.h"
+
+#include "Utils/CheckedRelease.h"
 
 COpenDoorReactor::COpenDoorReactor() {}
-COpenDoorReactor::~COpenDoorReactor() {}
+
+COpenDoorReactor::~COpenDoorReactor()
+{
+    __H_CHECKED_RELEASE__(mDoor);
+}
+
+void COpenDoorReactor::Load(CXMLElement* aElement)
+{
+    std::string lLayerName = aElement->GetAttribute<std::string>("layer", "");
+    std::string lObjectName = aElement->GetAttribute<std::string>("obj_name", "");
+
+    assert(lLayerName != "");
+    assert(lObjectName != "");
+
+    mDoor = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(lObjectName);
+}
 
 void COpenDoorReactor::React()
 {
-    std::string lLayerName = "opaque";
-    std::string lDoorName = "puerta666";
-
-    CSceneNode* temare = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(lDoorName);
-    LOG_INFO_APPLICATION(temare->GetName().c_str());
-    temare->Deactivate();
     LOG_INFO_APPLICATION("Hold the DOOOOOOOR! HOLD THE DOOOOOR!");
+    mDoor->Deactivate();
+    m_Finished = true;
 }
 
-void COpenDoorReactor::Update()
+void COpenDoorReactor::Update(float elapsedTime)
 {
     LOG_INFO_APPLICATION("React updating!");
+
+    if (!mDoor)
+    {
+        LOG_INFO_APPLICATION("Door is missing in scene!");
+        return;
+    }
+
+    if (mDoor->GetActive())
+    {
+        /*
+        Esto no va fino.
+        Hace falta mover primero el physx, y luego actualizar la malla con esta posicion.
+        El problema es que physx pivota sobre el centro, por lo tanto hay dos opciones:
+        - Hacer un joint
+        - Hacer el movimiento más trapero
+
+        Se podría mejorar también poniendo un objeto dinámico y kinematico al collider de la puerta... pero se desfasan los colliders respecto la malla.
+        La solucion chapucera de las mallas estáticas no parece funcionar igual de bien.
+
+        mDoor->SetYaw(mDoor->GetYaw() + elapsedTime);
+
+        Quatf rotation = Quatf();
+        rotation.QuatFromYawPitchRoll(mDoor->GetYaw(), mDoor->GetPitch(), mDoor->GetRoll());
+
+        Vect3f position = mDoor->GetPosition4Physx();
+
+        CEngine::GetInstance().GetPhysXManager().SetActorTransform(mDoor->GetName(), position, rotation);
+        */
+    }
 }

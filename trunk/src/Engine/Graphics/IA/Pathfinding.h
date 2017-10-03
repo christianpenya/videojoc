@@ -119,7 +119,13 @@ private:
     std::vector<CPathNode*> m_finalPath;
     std::vector<Vect3f> m_edgesPath; //edges points to calc pathfollowing
     bool m_ObjectiveFound = false;
+    float m_radioSelected = 1.0f;
+    std::vector<Vect3f> m_edgesPathAux; //edges points to calc pathfollowing
+    void depurarCercanos();
+
 };
 
 
 #endif
+
+

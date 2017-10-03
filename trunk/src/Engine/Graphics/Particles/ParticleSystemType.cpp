@@ -8,19 +8,12 @@
 #include "XML\XML.h"
 
 
-CParticleSystemType::CParticleSystemType()
-{
-
-}
-
-
-CParticleSystemType::~CParticleSystemType()
-{
-
-}
+CParticleSystemType::CParticleSystemType() {}
+CParticleSystemType::~CParticleSystemType() {}
 
 CParticleSystemType::CParticleSystemType(const CXMLElement* aTreeNode)
-    : m_NumFrames(aTreeNode->GetAttribute<int>("numFrames", 15))
+    : CName(aTreeNode)
+    , m_NumFrames(aTreeNode->GetAttribute<int>("numFrames", 15))
     , m_TimePerFrame(aTreeNode->GetAttribute<float>("timePerFrame", 1.0f))
     , m_LoopFrames(aTreeNode->GetAttribute<bool>("loopFrames", true))
     , m_EmitAbsolute(aTreeNode->GetAttribute<bool>("emitAbsolute", true))
@@ -43,7 +36,6 @@ CParticleSystemType::CParticleSystemType(const CXMLElement* aTreeNode)
 {
     CMaterialManager& lMaterialManager = CEngine::GetInstance().GetMaterialManager();
     m_pmaterial = lMaterialManager(aTreeNode->GetAttribute<std::string>("material", ""));
-    CName::SetName(aTreeNode->GetAttribute<std::string>("name", ""));
 
     const tinyxml2::XMLElement* aElement = aTreeNode->FirstChildElement();
 
@@ -71,7 +63,7 @@ CParticleSystemType::CParticleSystemType(const CXMLElement* aTreeNode)
 
 void CParticleSystemType::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::TreeNode(m_Name.c_str()))
     {
         ImGui::SliderInt("No. Frames", &m_NumFrames,1,30);
         ImGui::SliderFloat("Time Per Frame", &m_TimePerFrame, 0.25f, 100.0f);
@@ -94,5 +86,6 @@ void CParticleSystemType::DrawImgui()
         ImGui::ColorEdit4("Control Color 1", (float*)&m_ControlPointColors[0].m_Color1, false);
         ImGui::ColorEdit4("Control Color 2", (float*)&m_ControlPointColors[0].m_Color2, false);
         ImGui::SliderFloat2("Control Color Time", (float*)&m_ControlPointColors[0].m_Time, 0.25f, 10.0f);
+        ImGui::TreePop();
     }
 }

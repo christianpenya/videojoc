@@ -44,6 +44,8 @@ const float PHYSX_UPDATE_STEP = 0.017f;
 
 class CPhysXManager
 {
+
+public:
     struct CharacterControllerData
     {
         Vect3f position;
@@ -67,6 +69,7 @@ public:
     virtual ~CPhysXManager();
     static CPhysXManager* CreatePhysXManager();
 
+    void SetActorTransform(const std::string& actorName,const Vect3f& aPostion, Quatf aOrientation);
 protected:
     physx::PxFoundation							*m_Foundation;
     physx::PxPhysics							*m_PhysX;
@@ -86,9 +89,12 @@ protected:
     std::vector<Quatf>							m_ActorOrientations;
     std::vector<physx::PxActor*>				m_Actors;
 
-    physx::PxTransform GetActorTransform(const std::string& actorName) const;
+    physx::PxTransform GetActorTransform(const std::string& actorName);
+
     size_t GetActorSize(const std::string& actorName);
     size_t GetActorIndex(const std::string& actorName) const;
+    physx::PxActor* GetActor(const std::string& actorName);
+
     void AddActor(std::string actorName, size_t index, physx::PxRigidDynamic* body, const Quatf orientation, const Vect3f position);
     void AddActor(std::string actorName, size_t index, physx::PxRigidStatic* body, const Quatf orientation, const Vect3f position);
 
@@ -104,11 +110,12 @@ public:
     //STATIC
     size_t CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ);
     void CreateStaticSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius);
-    void CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::string aFileName);
+    void CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf aOrientation, const Vect3f aPosition, std::string aFileName);
     void CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices);
 
     //DYNAMIC
     void CreateDynamicBox(std::string actorName,std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density);
+    void CreateDynamicBox(std::string actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density, bool isKinematic);
     void CreateDynamicSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius, physx::PxReal density);
     void CreateDynamicShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal);
     void CreateDynamicTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal);
@@ -122,8 +129,8 @@ public:
     void DeleteActor(std::string actorName, size_t index);
     virtual void AddCharacterController(const std::string& actorName, float height, float radius, const Vect3f& position, const Quatf& orientation, const std::string& material, float density) {};
 
-    Vect3f GetActorPosition(const std::string& actorName) const;
-    Quatf GetActorOrientation(const std::string& actorName) const;
+    Vect3f GetActorPosition(const std::string& actorName);
+    Quatf GetActorOrientation(const std::string& actorName);
 
     bool LoadMeshFile(std::string _FileName, unsigned short* vertexNum, void** vertexData, unsigned short* indexNum, void** indexData);
 };
