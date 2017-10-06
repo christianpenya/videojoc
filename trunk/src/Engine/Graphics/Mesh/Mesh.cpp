@@ -140,15 +140,23 @@ bool CMesh::Load(const std::string& aFilename)
                     size_t lNumBytesIndexes = lNumIndex * sizeof(unsigned short);
                     void* lIndexData = lBinFileReader->ReadRaw(lNumBytesIndexes);
 
-                    if (lVertexFlags == VertexTypes::PositionBumpUV::GetVertexFlags())
+                    if (lVertexFlags == VertexTypes::PositionBumpUV::GetVertexFlags() || lVertexFlags == VertexTypes::PositionBumpUVUV2::GetVertexFlags())
                     {
                         unsigned short* IdxsData = (unsigned short*) lIndexData;
-                        size_t lVertexStride = sizeof(VertexTypes::PositionBumpUV);
                         size_t lGeometryStride = 0;
                         size_t lNormalStride = sizeof(Vect3f);
                         size_t lTangentStride = lNormalStride + sizeof(Vect3f);
                         size_t lBiNormalStride = lTangentStride + sizeof(Vect4f);
-                        size_t TextureCoordsStride = lBiNormalStride + sizeof(Vect4f);
+                        size_t TextureCoordsStride;
+
+                        if (lVertexFlags == VertexTypes::PositionBumpUVUV2::GetVertexFlags())
+                        {
+                            TextureCoordsStride = lBiNormalStride + sizeof(Vect4f);
+                        }
+                        else
+                        {
+                            TextureCoordsStride = lBiNormalStride + sizeof(Vect4f);
+                        }
 
                         for (size_t i = 0; i < lNumIndex; ++i)
                         {
@@ -156,7 +164,7 @@ bool CMesh::Load(const std::string& aFilename)
                                 i = i;
                         }
 
-                        CalcTangentsAndBinormals(lVertexData, (unsigned short *)lIndexData, lNumVertices, lNumIndex, lVertexStride, lGeometryStride,
+                        CalcTangentsAndBinormals(lVertexData, (unsigned short *)lIndexData, lNumVertices, lNumIndex, lVertexSize, lGeometryStride,
                                                  lNormalStride, lTangentStride, lBiNormalStride, TextureCoordsStride);
                     }
 

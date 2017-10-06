@@ -8,14 +8,11 @@ function preProcess = (
 			iMaterial = StandardMaterial()
 			iMaterial.name = object.name+"Material"
 			iMaterial.diffuse = object.wirecolor
-
 		)
 		if classOf iMaterial == StandardMaterial then	(	
 			appendIfUnique mArrayMaterial iMaterial
 		)else if classOf iMaterial == Multimaterial then	
 		(
-			
-			
 			local lSubMaterialsCount = iMaterial.numsubs			
 			for iSubMaterial =  1 to lSubMaterialsCount do(
 				local lSubMaterial = iMaterial[iSubMaterial]
@@ -214,30 +211,15 @@ function parse outPath =
 		matNode.AddAttribute "vertex_type" object.m_vertexType
 		
 		-- textura de difus
+		local textNode = XmlNode tag:"texture"
+		matNode.addChild textNode
+		textNode.addAttribute "type" "diffuse"			
+		local filename  ="";
 		if object.m_diffuseEnabled == true then
-		(
-			local textNode = XmlNode tag:"texture"
-			matNode.addChild textNode
-			textNode.addAttribute "type" "diffuse"			
-			local filename = copyTexture object.m_diffuseBitmap outPath
-			textNode.addAttribute "filename" (dataStr + filename)
+		(		
+			filename = dataStr + copyTexture object.m_diffuseBitmap outPath
 		)
-		
-		if object.m_selfIllumEnabled == true then(
-			-- lightmap
-			local textNode = XmlNode tag:"texture"
-			matNode.addChild textNode
-			textNode.addAttribute "type" "lightmap"
-			local filename = copyTexture object.m_selfIllumBitmap outPath
-			textNode.addAttribute "filename" (dataStr + filename)
-			
-			-- cuantitat de lightmap
-			local paramNode = XmlNode tag:"parameter"
-			matNode.addChild paramNode
-			paramNode.addAttribute "type" "float"
-			paramNode.addAttribute "name" "lightmap"
-			paramNode.addAttribute "value" object.m_selfIllumAmount
-		)
+		textNode.addAttribute "filename" (filename)
 		
 		-- color difus del material
 		local colorNode = XmlNode tag:"parameter"
@@ -247,26 +229,70 @@ function parse outPath =
 		local strColor = colorToString(object.m_diffuseColor)
 		colorNode.addAttribute "value" strColor
 		
+		-- lightmap
+		local textNode = XmlNode tag:"texture"
+		matNode.addChild textNode
+		textNode.addAttribute "type" "lightmap"
+		local filename = "";
+		if object.m_selfIllumEnabled == true then(
+			filename = dataStr + copyTexture object.m_selfIllumBitmap outPath
+		)
+		textNode.addAttribute "filename" (filename)
+		
+		-- cuantitat de lightmap
+		local paramNode = XmlNode tag:"parameter"
+		matNode.addChild paramNode
+		paramNode.addAttribute "type" "float"
+		paramNode.addAttribute "name" "lightmap"
+		paramNode.addAttribute "value" (object.m_selfIllumAmount/100)
+		
+		-- bump
+		local textNode = XmlNode tag:"texture"
+		matNode.addChild textNode
+		textNode.addAttribute "type" "bump"
+		local filename = ""
+		if object.m_bumpEnabled == true then
+		(
+			filename =dataStr + copyTexture object.m_bumpBitmap outPath
+		)
+			
+		textNode.addAttribute "filename" (filename)
+		
+		-- quantitat de bump
+		local paramNode = XmlNode tag:"parameter"
+		matNode.addChild paramNode
+		paramNode.addAttribute "type" "float"
+		paramNode.addAttribute "name" "bump"
+		paramNode.addAttribute "value" (object.m_bumpAmount/100)
+		paramNode.addAttribute "min_value" 0.0
+		paramNode.addAttribute "max_value" 10.0
+		-- cubemap
+		local textNode = XmlNode tag:"texture"
+		matNode.addChild textNode
+		textNode.addAttribute "type" "cubemap"
+		local filename = "data\\textures\KGSkyBox.dds"
+		textNode.addAttribute "filename" (filename)
+		
 		--metalness
 		local paramNode = XmlNode tag:"parameter"
 		matNode.addChild paramNode
 		paramNode.addAttribute "type" "float"
 		paramNode.addAttribute "name" "metalness"
-		paramNode.addAttribute "value" 1.0		
+		paramNode.addAttribute "value" 0.0		
 		
 		--roughness
 		local paramNode = XmlNode tag:"parameter"
 		matNode.addChild paramNode
 		paramNode.addAttribute "type" "float"
 		paramNode.addAttribute "name" "roughness"
-		paramNode.addAttribute "value" 1.0		
+		paramNode.addAttribute "value" 0.0		
 		
 		--occlusion
 		local paramNode = XmlNode tag:"parameter"
 		matNode.addChild paramNode
 		paramNode.addAttribute "type" "float"
 		paramNode.addAttribute "name" "occlusion"
-		paramNode.addAttribute "value" 1.0		
+		paramNode.addAttribute "value" 0.0		
 		
 		/*
 			-- quantitat de difus

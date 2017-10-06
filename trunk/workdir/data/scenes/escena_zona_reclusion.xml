@@ -5,7 +5,7 @@
 
 		SALA0
 		<scene_mesh name="sala0" mesh="data/meshes/reclusion/sala0.mesh">
-			<transform position="0.840901 3.20359 -1.46628" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<transform position="0.840901 3.20359 -1.46628" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala0.mesh" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
@@ -38,7 +38,7 @@
 		
 		SALA2
 		<scene_mesh name="sala2" mesh="data/meshes/reclusion/sala2.mesh" >
-			<transform position="0.0 0.0 24.1714" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<transform position="0.0 0.0 24.1714" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala2.mesh" offset="1.5 0.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="conducto2" mesh="data/meshes/reclusion/conducto.mesh" >
@@ -144,7 +144,7 @@
 		</scene_mesh>
 		
 		SALA1
-		<scene_mesh name="sala1" mesh="data/meshes/reclusion/sala1.mesh" rigid_body="plane" >
+		<scene_mesh name="sala1" mesh="data/meshes/reclusion/sala1.mesh" >
 			<transform position="0.840901 3.20359 -0.466283" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala1.mesh" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
@@ -386,7 +386,7 @@
 		
 		SALA8
 		<scene_mesh name="sala8" mesh="data/meshes/reclusion/sala8.mesh" >
-			<transform position="40.9102 0.0 49.2461" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<transform position="40.9102 0.0 49.2461" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala8.mesh" group="atrezzo" scale="-1.0 1.0 1.0" />	
 		</scene_mesh>	
 		<scene_mesh name="pared marcosalida017" mesh="data/meshes/reclusion/marco_puerta.mesh" >
@@ -401,7 +401,7 @@
 		
 		SALA7
 		<scene_mesh name="sala7" mesh="data/meshes/reclusion/sala7.mesh" >
-			<transform position="32.3296 0.0 7.11373" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<transform position="32.3296 0.0 7.11373" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala7.mesh" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 
@@ -493,7 +493,7 @@
 		
 		SALA6
 		<scene_mesh name="sala6" mesh="data/meshes/reclusion/sala6.mesh" >
-			<transform position="48.7235 0.0 34.9913" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<transform position="48.7235 0.0 34.9913" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala6.mesh" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="mesa050" mesh="data/meshes/reclusion/mesa.mesh" >
@@ -522,7 +522,7 @@
 
 		SALA5
 		<scene_mesh name="sala5" mesh="data/meshes/reclusion/sala5.mesh" >
-			<transform position="36.2941 0.0 27.0982" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<transform position="36.2941 0.0 27.0982" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala5.mesh" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
@@ -960,7 +960,7 @@
 		
 		SALA4
 		<scene_mesh name="sala4" mesh="data/meshes/reclusion/sala4.mesh" >
-			<transform position="18.8656 0.0 27.2178" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<transform position="18.8656 0.0 27.2178" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala4.mesh" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
@@ -1245,7 +1245,7 @@
 		
 		SALA3
 		<scene_mesh name="sala3" mesh="data/meshes/reclusion/sala3.mesh" >
-			<transform position="7.66677 0.0 27.5317" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<transform position="7.66677 0.0 27.5317" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala3.mesh" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		

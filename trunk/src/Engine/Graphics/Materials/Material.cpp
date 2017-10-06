@@ -65,7 +65,9 @@ case parameter_type: \
 { \
     lParameter = new CTemplatedMaterialParameter<parameter_class_type>(\
         iTextureOrParameter->GetAttribute<std::string>("name", ""), \
-        iTextureOrParameter->GetAttribute<parameter_class_type>("value", parameter_def_value), \
+		iTextureOrParameter->GetAttribute<parameter_class_type>("value", parameter_def_value), \
+		iTextureOrParameter->GetAttribute<float>("min_value", 0.0f), \
+		iTextureOrParameter->GetAttribute<float>("max_value", 1.0f), \
         parameter_type);\
 }\
 break;\
@@ -127,7 +129,7 @@ void CMaterial::DrawImgui()
             switch (mParameters[i]->GetType())
             {
             case eFloat:
-                ImGui::SliderFloat(mParameters[i]->GetName().c_str(), (float*)mParameters[i]->GetAddr(0), -5.0f, 5.0f);
+                ImGui::SliderFloat(mParameters[i]->GetName().c_str(), (float*)mParameters[i]->GetAddr(0), mParameters[i]->GetImGuiMin(), mParameters[i]->GetImGuiMax());
                 break;
 
             case eColor:

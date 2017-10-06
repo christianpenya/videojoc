@@ -86,17 +86,38 @@
 	INICIO POST PROCESS
 	
 	<apply_technique_pool pool_name="post_process"/>
+	
 	INICIO NOISE VIGNETTING
-	<enable_alpha_blend/>	
+	<!-- <enable_alpha_blend/>	
 	<draw_quad name="noise_vignetting" material="NoiseVignettingMaterial">
 		<texture name="noise" />	
 		<texture name="vignetting" />
 	</draw_quad>	
-	<disable_alpha_blend/>	
+	<disable_alpha_blend/>	 -->
 	FIN NOISE VIGNETTING
 
 	DEBUG SHIT
+	<apply_technique_pool pool_name="quad"/>
 	
+	<draw_quad  material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
+        <texture name="AlbedoTexture" stage_id="0"/>
+    </draw_quad>
+	
+	<draw_quad material="DrawQuadMaterial" viewport_position = "0 129" viewport_size = "128 128">
+        <texture name="LightMapTexture" stage_id="0"/>
+    </draw_quad>
+	
+	<draw_quad material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">
+        <texture name="NormalMapTexture" stage_id="0"/>
+    </draw_quad>
+	
+	<draw_quad material="DrawQuadMaterial" viewport_position = "129 129" viewport_size = "128 128">
+        <texture name="DepthMapTexture" stage_id="0"/>
+    </draw_quad>
+	
+	<draw_quad material="DrawQuadMaterial" viewport_position = "258 0" viewport_size = "128 128">
+        <texture name="SpecularMapTexture" stage_id="0"/>
+    </draw_quad>
 	<!--<apply_technique_pool pool_name="quad"/>
 	
 	<draw_quad  material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
