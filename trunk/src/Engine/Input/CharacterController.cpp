@@ -44,8 +44,8 @@ void CCharacterController::Update(float ElapsedTime)
         m_Movement = m_Movement.GetNormalized();
         Vect3f l_Dir = m_Movement;
 
-        m_Movement *= l_Speed;
-        m_Position = m_Position + m_Movement;
+        m_Movement *= l_Speed * ElapsedTime;
+        //m_Position = m_Position + m_Movement;
         physXManager->MoveCharacterController("player", m_Movement, PHYSX_UPDATE_STEP);
         if (player != nullptr)
         {
@@ -56,6 +56,17 @@ void CCharacterController::Update(float ElapsedTime)
         }
 
 
+    }
+    else
+    {
+        physXManager->MoveCharacterController("player", m_Movement, PHYSX_UPDATE_STEP);
+        if (player != nullptr)
+        {
+            //player->SetPosition(m_Position);
+            m_Position = physXManager->GetActorPosition("player");
+            player->SetPosition(m_Position);
+
+        }
     }
 
 }
@@ -78,6 +89,7 @@ void CCharacterController::Init(CSceneManager* sceneManager)
 
     if (player != nullptr)
         player->SetPosition(m_Position);
+
 
 }
 

@@ -52,6 +52,12 @@ public:
         Vect3f linearVelocity;
     };
 
+
+
+protected:
+    CPhysXManager();
+
+public:
     struct RaycastData
     {
         Vect3f position;
@@ -60,11 +66,6 @@ public:
         std::string actor;
 
     };
-
-protected:
-    CPhysXManager();
-
-public:
     virtual ~CPhysXManager();
     static CPhysXManager* CreatePhysXManager();
 

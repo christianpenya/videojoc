@@ -18,8 +18,9 @@ public:
     float zoomSpeed;
     CActionManager* actionManager;
     CCharacterController* m_player;
+    CPhysXManager* physX;
 
-    CTpsCameraController( Vect3f center = Vect3f(0, 0, 0), float maxPitch = 1.0f, float minPitch = -1.0f, float maxZoom = 20.0f, float minZoom = 0.5f)
+    CTpsCameraController( Vect3f center = Vect3f(0, 0, 0), float maxPitch = 0.5f, float minPitch = -0.6f, float maxZoom = 20.0f, float minZoom = 0.5f)
         : center(center)
         , maxPitch(maxPitch)
         , minPitch(minPitch)
@@ -30,9 +31,11 @@ public:
         , rollSpeed(0.0f)
         , zoomSpeed(0.0f)
         , yaw(0.0f)
-        , pitch(-1.0f)
+        , pitch(-4.0f)
         , roll(0.0f)
         , zoom(3.0f)
+        , hitOffset(0.3f)
+        , pRadius(0.15f)
     {
 
     };
@@ -43,11 +46,14 @@ public:
 
 
 private:
-    Vect3f playerHeight = Vect3f(0, 2.0f, 0);
+    Vect3f playerHeight = Vect3f(0, 1.6f, 0);
     float yaw, pitch, roll, zoom;
 
     float maxPitch, minPitch;
     float maxZoom, minZoom;
+    float hitOffset;
+    float pRadius;
+
 
 };
 

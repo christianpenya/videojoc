@@ -1,5 +1,7 @@
 #include "TpsCameraController.h"
 #include "Engine/Engine.h"
+#include "Physx/PhysxManager.h"
+#include "Utils/Logger.h"
 
 void CTpsCameraController::Update(float ElapsedTime)
 {
@@ -8,7 +10,7 @@ void CTpsCameraController::Update(float ElapsedTime)
     yawSpeed = 0.1f * (*actionManager)("pitch")->value;
     pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
 
-    zoomSpeed = 0.5f*(*actionManager)("zoom")->value;
+    //zoomSpeed = 0.5f*(*actionManager)("zoom")->value;
 
     yaw += yawSpeed * ElapsedTime;
     pitch += pitchSpeed * ElapsedTime;
@@ -41,12 +43,33 @@ void CTpsCameraController::Update(float ElapsedTime)
     m_Front.z = -cos(yaw) * cos(-pitch);
 
 
+    float l_zoom = zoom;
+    Vect3f l_Position = center - m_Front * l_zoom;
+    //Vect3f dir = m_Position - m_player->m_Position;
+    Vect3f origin = center - (m_Front * pRadius);
+    CPhysXManager::RaycastData *data = new CPhysXManager::RaycastData;
+    bool hit = physX->Raycast(origin, l_Position, 0, data);
+    if (hit)
+    {
+        LOG_INFO_APPLICATION("HIT \\(^-^)/");
+        l_zoom = data->distance-hitOffset;
 
-    m_Position = center - m_Front * zoom;
+    }
+    else
+    {
+        LOG_INFO_APPLICATION("NOt HIT \\(^-^)/");
+    }
+    if (l_zoom < pRadius)
+        l_zoom = -pRadius/2;
+
+    m_Position = center - m_Front * l_zoom;
+
+
 }
 
 void CTpsCameraController::Init(CCharacterController* player)
 {
     m_player = player;
     actionManager = &CEngine::GetInstance().GetActionManager();
+    physX = &CEngine::GetInstance().GetPhysXManager();
 }
