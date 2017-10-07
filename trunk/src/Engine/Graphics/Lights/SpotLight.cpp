@@ -53,8 +53,26 @@ void CSpotLight::SetShadowMap(CRenderManager &RM)
 
 void CSpotLight::DrawImgui()
 {
-    ImGui::SliderFloat("Fall Off Angle",&m_FallOff, 0.0f, 360.0f);
-    ImGui::SliderFloat("Angle", &m_Angle, 0.0f, 360.0f);
+    ImGui::SliderFloat("XPosition", (float*)&m_Position.x, mOriginalUnmodifiedPosition.x - 1.0f, mOriginalUnmodifiedPosition.x + 1.0f);
+    ImGui::SliderFloat("YPosition", (float*)&m_Position.y, mOriginalUnmodifiedPosition.y - 1.0f, mOriginalUnmodifiedPosition.y + 1.0f);
+    ImGui::SliderFloat("ZPosition", (float*)&m_Position.z, mOriginalUnmodifiedPosition.z - 1.0f, mOriginalUnmodifiedPosition.z + 1.0f);
+
+    ImGui::SliderFloat("Fall Off Angle", &m_FallOff, -3.1416f, 3.1416f);
+    ImGui::SliderFloat("Angle", &m_Angle, -3.1416f, 3.1416f);
+    ImGui::SliderFloat("Intensity", &m_Intensity, 0.0f, 2.5f);
+
+    float lYawTmp = mathUtils::Rad2Deg(m_Yaw);
+    float lPitchTmp = mathUtils::Rad2Deg(m_Pitch);
+    float lRollTmp = mathUtils::Rad2Deg(m_Roll);
+
+    ImGui::SliderFloat("Yaw", (float*)&lYawTmp, -180.0f, 180.0f);
+    ImGui::SliderFloat("Pitch", (float*)&lPitchTmp, -180.0f, 180.0f);
+    ImGui::SliderFloat("Roll", (float*)&lRollTmp, -180.0f, 180.0f);
+
+    m_Yaw = mathUtils::Deg2Rad(lYawTmp);
+    m_Pitch = mathUtils::Deg2Rad(lPitchTmp);
+    m_Roll = mathUtils::Deg2Rad(lRollTmp);
+
 }
 
 void CSpotLight::Initialize(CXMLElement* aElement)

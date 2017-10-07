@@ -151,10 +151,11 @@ void CalculatePBRSingleLight(int IdLight, float3 BaseColor, float3 WorldPosition
 				if(l_LightDepth>l_DepthShadowMap)
 					l_ShadowContrib=saturate(1.0f - m_ShadowMapStrengthArray[IdLight]);
 			}
+			DiffuseContrib = float3(l_DepthShadowMap,0,0);
 		}
 		
-	DiffuseContrib=l_Attenuation*BaseColor*l_Diffuse*m_LightIntensityArray[IdLight]*l_ShadowContrib;
-	SpecularContrib=max(float3(0,0,0), l_Attenuation*l_Specular*m_LightIntensityArray[IdLight]*l_ShadowContrib);
+		DiffuseContrib=l_Attenuation*BaseColor*l_Diffuse*m_LightIntensityArray[IdLight]*l_ShadowContrib;
+		SpecularContrib=max(float3(0,0,0), l_Attenuation*l_Specular*m_LightIntensityArray[IdLight]*l_ShadowContrib);
 
 	}
 }

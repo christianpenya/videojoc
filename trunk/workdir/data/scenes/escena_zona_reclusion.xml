@@ -1,5 +1,13 @@
 <scene>
 	
+	<layer name="lights" active="true" >
+		
+		<scene_light name="FDirect001" id_light="0" />
+		<!-- <scene_light name="Fspot001" id_light="0" /> -->
+
+	
+	</layer>
+	
 	<layer name="opaque" active="true" >		
 		tuberia\d{3}.mesh
 
@@ -1471,14 +1479,7 @@
 		
 	</layer>
 		
-	<layer name="lights" active="true" >
 	
-	<!--	
-	<scene_light name="FDirect001" id_light="0" />
-	<scene_light name="Fspot001" id_light="1" />
-	-->
-	
-	</layer>
 	
 	<layer name="Skybox" active="true">
 		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true" active="true">

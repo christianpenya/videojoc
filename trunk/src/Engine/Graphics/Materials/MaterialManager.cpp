@@ -83,7 +83,7 @@ void CMaterialManager::DrawImgui()
         {
             LOG_INFO_APPLICATION(iMaterial->first.c_str());
 
-            if (iMaterial->first != "")
+            if (iMaterial->first != "" && iMaterial->second != NULL)
             {
                 ImGui::PushID(iMaterial->second->GetName().c_str());
                 iMaterial->second->DrawImgui();

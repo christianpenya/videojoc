@@ -119,6 +119,8 @@ void CLight::DrawImgui()
 {
     if (ImGui::CollapsingHeader(m_Name.c_str()))
     {
+
+        /*
         ImGui::ColorEdit4("Color", (float*)&m_Color, true);
         ImGui::SliderFloat("Intensity", &m_Intensity, 0.25f, 1.0f);
         ImGui::SliderFloat2("Attenuation Range", (float*)&m_RangeAttenuation, 0.25f, 100.0f);
@@ -129,6 +131,7 @@ void CLight::DrawImgui()
         ImGui::Checkbox("Visible", &m_Visible);
         if (m_LightType == 1) //Spot
             ((CSpotLight *)this)->DrawImgui();
+        	*/
     }
 }
 

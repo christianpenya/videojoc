@@ -87,7 +87,7 @@
 		<technique vertex_type="PositionBump" effect="PositionBumpTechniqueForward"/>
 		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVShadowTechnique"/>
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
-		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
+		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelShadowTechnique"/>
 		<technique vertex_type="Position" effect="PositionTechnique"/>		
 	</pool>
 	

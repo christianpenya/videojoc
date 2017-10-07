@@ -29,7 +29,7 @@
 		<shader name="PBRDeferredQuad" file="Deferred/PBRDeferredShading.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
 		
 		<!--shadow-->	
-		<shader name="AnimatedModelShadow" file="PostProcess/ShadowUberShader.fx" entry_point="VS" vertex_type="PositionWeightIndicesNormalUV" preprocessor="USE_WEIGHTIDX"/>
+		<shader name="AnimatedModelShadow" file="PostProcess/ShadowUberShader.fx" entry_point="VS" vertex_type="PositionWeightIndicesNormalUV" preprocessor="USE_UV;USE_WEIGHTIDX;"/>
 		<shader name="PositionNormalShadow" file="PostProcess/ShadowUberShader.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/>
 		<shader name="PositionNormalUVShadow" file="PostProcess/ShadowUberShader.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor="USE_UV"/>
 		<shader name="PositionNormalUVUV2Shadow" file="PostProcess/ShadowUberShader.fx" entry_point="VS" vertex_type="PositionNormalUVUV2" preprocessor="USE_UV;USE_UV2;"/>
