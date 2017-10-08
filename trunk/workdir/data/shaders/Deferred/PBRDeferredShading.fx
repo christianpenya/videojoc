@@ -37,7 +37,7 @@ float3 GetPBRLightDirection(int IdLight, float3 PixelPosition, out float LightDi
 	}
 	else if(m_LightTypeArray[IdLight]==2)
 	{
-	//Directional Light
+		//Directional Light
 		l_LightDirection=m_LightDirection[IdLight].xyz;
 		LightDistance=0;
 	}

@@ -118,7 +118,7 @@ void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
     lConstanBufferManager.mLightsDesc.m_LightAttenuationEndRange[idLight] = alight->GetRangeAttenuation().y;
     lConstanBufferManager.mLightsDesc.m_LightDirection[idLight] = Vect4f(alight->GetForward(), 0.0f);// Vect4f(alight->GetPitch(), alight->GetYaw(), alight->GetRoll(), 0.0f);
     lConstanBufferManager.mLightsDesc.m_LightPosition[idLight] = Vect4f(alight->GetPosition(), 0.0f);
-    lConstanBufferManager.mLightsDesc.m_LightAmbient = 0.0f; //TODO LUZ AMBIENT HARDCODED
+    lConstanBufferManager.mLightsDesc.m_LightAmbient = 0.0f;
     if (alight->GetLightType() == CLight::eSpot) //Spot
     {
         lConstanBufferManager.mLightsDesc.m_LightFallOffAngle[idLight] = ((CSpotLight *)alight)->GetFallOff();
@@ -135,10 +135,10 @@ void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
         lConstanBufferManager.mLightsDesc.m_LightProjection[idLight] = alight->GetProjectionShadowMap();
 
         // TODO cuidad, numero de sampler para shadowmap Hardcoded
-        l_ShadowMap->Bind(4, lRM.GetDeviceContext());
+        l_ShadowMap->Bind(5, lRM.GetDeviceContext());
 
         if (l_ShadowMask != NULL)
-            l_ShadowMask->Bind(4 + 1, lRM.GetDeviceContext());
+            l_ShadowMask->Bind(5 + 1, lRM.GetDeviceContext());
     }
     else
     {

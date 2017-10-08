@@ -10,7 +10,7 @@
 #include "Events/DumbReactor.h"
 #include "Events/OpenDoorReactor.h"
 
-CEventManager::CEventManager() : mEnabled(false)
+CEventManager::CEventManager() : mEnabled(true)
 {
     mActors.Add("dumb", new CDumbActor());
     mActors.Add("audio_trigger", new CAudioTriggerActor());

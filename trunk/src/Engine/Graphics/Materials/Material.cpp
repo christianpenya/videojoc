@@ -57,6 +57,7 @@ CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
             TParameterType lType;
 
             if (EnumString<TParameterType>::ToEnum(lType, iTextureOrParameter->GetAttribute<std::string>("type", "")))
+
             {
                 CMaterialParameter* lParameter = nullptr;
 

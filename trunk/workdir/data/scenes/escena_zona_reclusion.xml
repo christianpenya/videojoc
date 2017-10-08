@@ -2,8 +2,33 @@
 	
 	<layer name="lights" active="true" >
 		
-		<scene_light name="FDirect001" id_light="0" />
-		<!-- <scene_light name="Fspot001" id_light="0" /> -->
+		<scene_light name="Fspot001" />
+		<scene_light name="Fspot002" />
+		<scene_light name="Fspot003" />
+		<scene_light name="Fspot004" />
+		<scene_light name="Fspot005" />
+		<scene_light name="Fspot006" />
+		<scene_light name="Fspot007" />
+		<scene_light name="Fspot008" />
+		<scene_light name="Fspot009" />
+		<scene_light name="Fspot010" />
+		<scene_light name="Fspot011" />
+		<scene_light name="Fspot012" />
+		<scene_light name="Fspot013" />
+		<scene_light name="Fspot014" />
+		<scene_light name="Fspot015" />
+		<scene_light name="Fspot016" />
+		<scene_light name="Fspot017" />
+		<scene_light name="Fspot018" />
+		<scene_light name="Fspot019" />
+		<scene_light name="Fspot020" />
+		<scene_light name="Fspot021" />
+		<scene_light name="Fspot022" />
+		<scene_light name="Fspot023" />
+		<scene_light name="Fspot024" />
+		<scene_light name="Fspot025" />
+
+		<!-- <scene_light name="FDirect001" id_light="0" /> -->
 
 	
 	</layer>

@@ -59,7 +59,7 @@ void CSpotLight::DrawImgui()
 
     ImGui::SliderFloat("Fall Off Angle", &m_FallOff, -3.1416f, 3.1416f);
     ImGui::SliderFloat("Angle", &m_Angle, -3.1416f, 3.1416f);
-    ImGui::SliderFloat("Intensity", &m_Intensity, 0.0f, 2.5f);
+    ImGui::SliderFloat("Intensity", &m_Intensity, 0.0f, 10.0f);
 
     float lYawTmp = mathUtils::Rad2Deg(m_Yaw);
     float lPitchTmp = mathUtils::Rad2Deg(m_Pitch);
