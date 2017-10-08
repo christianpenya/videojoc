@@ -20,6 +20,11 @@ CPathfinding &CPathfinding::Instance(Vect3f startPos, Vect3f endPos, std::string
     return *m_pathfinding;
 }
 
+CPathfinding::CPathfinding()
+{
+    m_ObjectiveFound = false;
+}
+
 CPathfinding::CPathfinding(Vect3f startPos, Vect3f endPos, std::string navMeshFile)
 {
     CNavMeshManager& l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
@@ -27,6 +32,7 @@ CPathfinding::CPathfinding(Vect3f startPos, Vect3f endPos, std::string navMeshFi
     m_navmesh = l_NavMeshManager(navmeshFilename);
 
     m_pathfinding = this;
+    m_ObjectiveFound = false;
     //fill m_nodes
     uint16_t numTriangles = m_navmesh->GetNumTriangles();
     float cost = 0;
@@ -55,11 +61,15 @@ const std::vector<Vect3f> &CPathfinding::GetPath() const
 CPathNode * CPathfinding::NearestNode(Vect3f &point)
 {
     float currDist;
-    float minDist = (m_nodes.begin()->GetPos() - point).Length();
+    //    float minDist = (m_nodes.begin()->GetPos() - point).Length(); //vertices
+    float minDist = (m_navmesh->GetCenter(m_nodes.begin()->GetTriangle()) - point).Length(); //centro
+
+
     CPathNode * nearest = &(*m_nodes.begin());
     for (std::vector<CPathNode>::iterator itr = m_nodes.begin(); itr != m_nodes.end(); ++itr)
     {
-        currDist = (itr->GetPos() - point).Length();
+        //currDist = (itr->GetPos() - point).Length(); //vertices
+        currDist = (m_navmesh->GetCenter(itr->GetTriangle()) - point).Length();//centro
         if (currDist <= minDist)
         {
             minDist = currDist;
@@ -90,7 +100,8 @@ void CPathfinding::UpdatePath()
         {
             //estimated based on pixels distance
             float cost = node->GetCost();
-            float estimated = (sqrt(pow((m_endNode->GetPos().x - node->GetPos().x), 2) + pow(m_endNode->GetPos().z - node->GetPos().z, 2)));
+            //float estimated = (sqrt(pow((m_endNode->GetPos().x - node->GetPos().x), 2) + pow(m_endNode->GetPos().z - node->GetPos().z, 2))); //vertices
+            float estimated = (sqrt(pow((m_navmesh->GetCenter(m_endNode->GetTriangle()).x - node->GetPos().x), 2) + pow(m_navmesh->GetCenter(m_endNode->GetTriangle()).z - node->GetPos().z, 2))); //centro
             node->SetEstimatedCost(estimated);
             node->SetCost(cost + estimated);
             node->SetTotalCost(cost + estimated);
@@ -112,12 +123,10 @@ void CPathfinding::UpdatePath()
         CPathNode * node = *(m_openNodes.begin());
         m_openNodes.erase(m_openNodes.begin());
 
-        float Posx = node->GetPos().x;
-        float Posx2 = m_endNode->GetPos().x;
-        float Posz = node->GetPos().z;
-        float Posz2 = m_endNode->GetPos().z;
 
-        if (node->GetPos() == m_endNode->GetPos())
+
+        if (m_navmesh->GetCenter(node->GetTriangle()) == m_navmesh->GetCenter(m_endNode->GetTriangle())) //centro
+            //if (node->GetPos() == m_endNode->GetPos()) //vertices
             BuildPath(node);
         else
         {
@@ -125,7 +134,7 @@ void CPathfinding::UpdatePath()
 
             for (size_t v = 0; v < lneighbours.size(); ++v)
             {
-                printf("Triangle: %d - %d\n", node->GetTriangle()->id, lneighbours[v].id);
+                //printf("Triangle: %d - %d\n", node->GetTriangle()->id, lneighbours[v].id);
                 CPathNode * nextNode = nullptr;
                 for (std::vector<CPathNode>::iterator pathNodeItr = m_nodes.begin(); pathNodeItr != m_nodes.end(); ++pathNodeItr)
                 {
@@ -164,12 +173,14 @@ void CPathfinding::UpdatePath()
                     }
                 }
             }
-            std::vector<CPathNode *>::iterator el = find(m_openNodes.begin(),m_openNodes.end(), node);
+            std::vector<CPathNode *>::iterator el = find(m_openNodes.begin(), m_openNodes.end(), node);
             if (el != m_openNodes.end())
                 m_openNodes.erase(el);
             m_closedNodes.push_back(node);
         }
     }
+
+    depurarCercanos();
 }
 
 Vect3f CPathfinding::NormVector(Vect3f vect)
@@ -203,44 +214,70 @@ void CPathfinding::BuildPath(CPathNode * lastNode)
         {
             if (m_navmesh->GetTriangle(lneighbours[v].id) == node->GetParent()->GetTriangle())
             {
-                edgeDir = m_navmesh->GetVertex(node->GetTriangle()->idx2)->position - m_navmesh->GetVertex(node->GetTriangle()->idx1)->position;
+                //edgeDir = m_navmesh->GetVertex(node->GetTriangle()->idx2)->position - m_navmesh->GetVertex(node->GetTriangle()->idx1)->position; //vertices
+                edgeDir = m_navmesh->GetCenter(node->GetParent()->GetTriangle()) - m_navmesh->GetCenter(node->GetTriangle());
                 edgeLength = edgeDir.Length();
 
-                edgePos = m_navmesh->GetVertex(node->GetTriangle()->idx1)->position + (NormVector(edgeDir) * (edgeLength / 2)); //Visualmente comprobar si se mueve naturalmente, caso contrario se puede usar el getpos que se moveria por el centro del triangulo
+                //edgePos = m_navmesh->GetVertex(node->GetTriangle()->idx1)->position + (NormVector(edgeDir) * (edgeLength / 2)); //Vertices
+                edgePos = m_navmesh->GetCenter(node->GetTriangle()) + (NormVector(edgeDir) * (edgeLength / 2)); //Centro
                 m_edgesPath.push_back(edgePos);
             }
         }
         node = node->GetParent();
     }
-    node = node;
 }
+
+void CPathfinding::depurarCercanos()
+{
+
+    if (m_edgesPath.size()>3)
+    {
+
+        std::vector<Vect3f> m_pathnew;
+        m_pathnew = m_edgesPath;
+        float l_distance = 0.0f;
+        for (size_t i = 0; i < m_pathnew.size(); ++i)
+        {
+            for (size_t j = 0; j < m_pathnew.size(); ++j)
+            {
+                if (i != j)
+                {
+                    l_distance = m_pathnew[i].Distance(m_pathnew[j]);
+                    if ((l_distance < m_radioSelected) && (m_pathnew[j] != Vect3f(0.0f, -99.0f, 0.0f)))
+                        m_pathnew[j] = Vect3f(0.0f, -99.0f, 0.0f);
+                }
+            }
+        }
+
+        m_edgesPathAux.clear();
+        for (size_t i = 0; i < m_pathnew.size(); ++i)
+        {
+            if (m_pathnew[i] != Vect3f(0.0f, -99.0f, 0.0f))
+                m_edgesPathAux.push_back(m_pathnew[i]);
+        }
+        m_edgesPath = m_edgesPathAux;
+    }
+}
+
 
 void CPathfinding::DrawDebug()
 {
     //draw Polygons path
-    for (std::vector<CPathNode *>::iterator pathItr = m_finalPath.begin(); pathItr != m_finalPath.end(); ++pathItr)
+    /*for (std::vector<CPathNode *>::iterator pathItr = m_finalPath.begin(); pathItr != m_finalPath.end(); ++pathItr)
     {
-        printf("Triangle: %d - %d\n", (*pathItr)->GetTriangle()->id, m_navmesh->GetVertex((*pathItr)->GetTriangle()->id));
-        /*        gfxDevice.SetPenColor(1.0f, 1.0f, 1.0f, 0.1f);
-                MOAIDraw::DrawPolygonFilled((*pathItr)->GetPolygon()->m_vertices);*/
-    }
+    //printf("Triangle: %d - %d\n", (*pathItr)->GetTriangle()->id, m_navmesh->GetVertex((*pathItr)->GetTriangle()->id));
+    /*        gfxDevice.SetPenColor(1.0f, 1.0f, 1.0f, 0.1f);
+    MOAIDraw::DrawPolygonFilled((*pathItr)->GetPolygon()->m_vertices);*/
+    /*}
 
     //draw Edges path
-    std::vector<Vect3f>::iterator edgeItr = m_edgesPath.begin();
+    /*std::vector<Vect3f>::iterator edgeItr = m_edgesPath.begin();
     uint16_t edgeIt = 0;
     while (edgeIt < m_edgesPath.size() - 1)
     {
-        /*        gfxDevice.SetPenColor(1.0f, 0.0f, 0.0f, 0.1f);
-                MOAIDraw::DrawLine(m_edgesPath.at(edgeIt), m_edgesPath.at(edgeIt++));*/
-    }
-
-    //startNode
-    /*gfxDevice.SetPenColor(0.0f, 1.0f, 0.0f, 0.1f);
-    MOAIDraw::DrawPolygonFilled(m_startNode->GetPolygon()->m_vertices);
-
-    //endNode
-    gfxDevice.SetPenColor(1.0f, 0.0f, 1.0f, 0.1f);
-    MOAIDraw::DrawPolygonFilled(m_endNode->GetPolygon()->m_vertices);*/
+    /*        gfxDevice.SetPenColor(1.0f, 0.0f, 0.0f, 0.1f);
+    MOAIDraw::DrawLine(m_edgesPath.at(edgeIt), m_edgesPath.at(edgeIt++));*/
+    //}
 }
 
 void CPathfinding::InitStartPosition(Vect3f position)
@@ -270,83 +307,7 @@ bool CPathfinding::PathfindStep()
     // returns true if pathfinding process finished
     return m_ObjectiveFound;
 }
-/*
-void CPathfinding::RegisterLUAFunctions()
-{
-
-    CScriptManager* m_ScriptManager = new CScriptManager();
-    if (m_ScriptManager->Load("data/scripts/pathfinding.lua"))
-    {
-        mLS = m_ScriptManager->GetScript("data/scripts/pathfinding.lua")->GetState();
-
-        module(mLS)[
-            class_<CPathfinding>("CPathfinding")
-            .def(constructor<>())
-            .def(constructor<const std::string&>())
-            .def("initStartPosition", &CPathfinding::_initStartPosition)
-            .def("initEndPosition", &CPathfinding::_initEndPosition)
-            .def("setStartPosition", &CPathfinding::_setStartPosition)
-            .def("setEndPosition", &CPathfinding::_setEndPosition)
-            .def("pathfindStep", &CPathfinding::_pathfindStep)
-            .def(NULL, &CPathfinding::NULL)
-
-            //.def_readwrite("name", &CPathfinding::TNode::name)
-        ];
-    }
-}
 
 
-//lua configuration ----------------------------------------------------------------//
 
 
-luaL_register(state, 0, regTable);
-}
-
-int CPathfinding::_initStartPosition(lua_State* L)
-{
-    MOAI_LUA_SETUP(Pathfinder, "U")
-
-    float pX = state.GetValue<float>(2, 0.0f);
-    float pY = state.GetValue<float>(3, 0.0f);
-    self->InitStartPosition(pX, pY);
-    return 0;
-}
-
-int CPathfinding::_initEndPosition(lua_State* L)
-{
-    MOAI_LUA_SETUP(Pathfinder, "U")
-
-    float pX = state.GetValue<float>(2, 0.0f);
-    float pY = state.GetValue<float>(3, 0.0f);
-    self->InitEndPosition(pX, pY);
-    return 0;
-}
-
-int CPathfinding::_setStartPosition(lua_State* L)
-{
-    MOAI_LUA_SETUP(Pathfinder, "U")
-
-    float pX = state.GetValue<float>(2, 0.0f);
-    float pY = state.GetValue<float>(3, 0.0f);
-    self->SetStartPosition(pX, pY);
-    return 0;
-}
-
-int CPathfinding::_setEndPosition(lua_State* L)
-{
-    MOAI_LUA_SETUP(Pathfinder, "U")
-
-    float pX = state.GetValue<float>(2, 0.0f);
-    float pY = state.GetValue<float>(3, 0.0f);
-    self->SetEndPosition(pX, pY);
-    return 0;
-}
-
-int CPathfinding::_pathfindStep(lua_State* L)
-{
-    MOAI_LUA_SETUP(Pathfinder, "U")
-
-    self->PathfindStep();
-    return 0;
-}
-*/

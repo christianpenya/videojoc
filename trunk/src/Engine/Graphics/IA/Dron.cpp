@@ -7,7 +7,7 @@
 #include "Utils\EnumToString.h"
 #include "Utils\Logger.h"
 #include "XML\XML.h"
-
+#include "Pathfinding.h"
 
 CDron::~CDron()
 {
@@ -16,23 +16,13 @@ CDron::~CDron()
 
 CDron::CDron(CXMLElement* aTreeNode)
     : CEnemy(aTreeNode, CEnemy::eDron)
-    , m_PhysXManager(CEngine::GetInstance().GetPhysXManager())
-    , m_SightDistance(aTreeNode->GetAttribute<float>("sightDistance", 4.0f))
-    , m_MaxDetectDistance(aTreeNode->GetAttribute<float>("maxDetectDistance", 7.0f))
-    , m_DeadDistance(aTreeNode->GetAttribute<float>("deadDistance", 1.8f))
     , m_DetectAngle(aTreeNode->GetAttribute<float>("detectAngle", 45.0f))
     , m_soundDetected(aTreeNode->GetAttribute<std::string>("soundDetected", ""))
     , m_speedPatroling(aTreeNode->GetAttribute<float>("speedPatroling", 0.8f))
     , m_speedChasing(aTreeNode->GetAttribute<float>("speedChasing", 1.0f))
     , m_investigatingTolerance(aTreeNode->GetAttribute<float>("investigatingTolerance", 1.0f))
-    , m_Position(GetPosition())
-    , m_Movement(GetPosition())
-    , m_Destination(Vect3f{ 0.0f, -99.9f, 0.0f })
+    , m_lastPositionView(Vect3f(0.0f,0.0f,0.0f))
 {
-
-    CNavMeshManager& lNavMeshManager = CEngine::GetInstance().GetNavMeshManager();
-    m_pnavMesh = lNavMeshManager(aTreeNode->GetAttribute<std::string>("navmesh", "navMeshScene01"));
-
     const tinyxml2::XMLElement* aElement = aTreeNode->FirstChildElement();
 
     while (aElement != NULL)
@@ -64,8 +54,7 @@ void CDron::DrawImgui()
 
 void CDron::patrol()
 {
-    std::cout << " Dron " << GetName() << "patroling." << std::endl;
-
+//    std::cout << " Dron " << GetName() << "patroling." << std::endl;
     if ((m_Destination == Vect3f{ 0.0f, -99.9f, 0.0f }) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_Destination.x,m_Destination.z)<=1.0f))
         GotoNextPoint();
 
@@ -76,22 +65,73 @@ void CDron::patrol()
     this->SetPosition(m_Position);
 }
 
-double CDron::distanceBetweenTwoPoints(double x, double y, double a, double b)
-{
-    return sqrt(pow(x - a, 2) + pow(y - b, 2));
-}
 
 void CDron::GotoNextPoint()
 {
-    if (m_patrolPoints.size() == 0)
-        return;
+    if (m_pathChasingAux.size() > 0)  //Si se salió de la ruta para perseguir, se calcula de nuevo el camino de regreso
+    {
+        m_Destination = m_pathChasingAux[m_pathChasingAux.size()-1];
+        m_Destination = Vect3f(m_Destination.x, m_Position.y, m_Destination.z);
+        m_pathChasingAux.pop_back();
+    }
+    else
+    {
+        if (m_patrolPoints.size() == 0)
+            return;
 
-    m_Destination = GetPatrolPosition();
-    m_DestPoint = (m_DestPoint + 1) % m_patrolPoints.size();
-
+        m_Destination = GetPatrolPosition();
+        m_DestPoint = (m_DestPoint + 1) % m_patrolPoints.size();
+        m_Destination = Vect3f(m_Destination.x, m_Position.y, m_Destination.z);
+    }
 }
 
-Vect3f CDron::GetPatrolPosition()
+void CDron::chase()
 {
-    return (*this->GetParent())(m_patrolPoints[m_DestPoint].data())->GetPosition();
+    //  std::cout << " Dron " << GetName() << "chasing." << std::endl;
+
+    if ((!m_Calculated) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_DestinationChase.x, m_DestinationChase.z) <= 0.2f))
+        GotoNextPointChase();
+
+    m_Movement.Lerp(m_DestinationChase, m_speedChasing);
+    m_Position = m_Movement;
+    this->SetForward(m_DestinationChase - m_Position);
+    m_PhysXManager.MoveCharacterController(GetName(), m_Position, PHYSX_UPDATE_STEP);
+    this->SetPosition(m_Position);
+}
+
+void CDron::GotoNextPointChase()
+{
+
+    if (!m_Calculated)
+        ComputePath();
+
+    if (m_ppath->PathfindStep())
+    {
+        m_pathChasing = m_ppath->GetPath();
+        if (m_pathChasing.size() == 0)
+            return;
+
+        if ((m_DestPointChase + 1) == m_pathChasing.size())
+            ComputePath();
+
+        m_DestPointChase = (m_DestPointChase + 1) % m_pathChasing.size();
+        m_DestinationChase = m_pathChasing[m_DestPointChase];
+        m_DestinationChase = Vect3f(m_DestinationChase.x, m_Position.y, m_DestinationChase.z);
+    }
+    else
+        ComputePath();
+}
+
+
+void CDron::ComputePath()
+{
+    //std::cout << " Dron " << GetName() << "chasing, calculó nuevo path" << std::endl;
+    m_lastPositionView = m_PhysXManager.GetActorPosition("player");
+    m_ppath = new CPathfinding(m_lastPositionView, m_Position, m_pnavMesh->GetName());
+    m_DestPointChase = 0;
+    m_Calculated = true;
+
+    if (m_ppath->PathfindStep())
+        m_pathChasing.push_back(m_lastPositionView);
+
 }

@@ -227,7 +227,7 @@ bool CSceneMesh::Render(CRenderManager& aRendermanager)
 
 void CSceneMesh::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::TreeNode(m_Name.c_str()))
     {
         ImGui::SliderFloat("XPosition", (float*)&m_Position.x, mOriginalUnmodifiedPosition.x - 1.0f, mOriginalUnmodifiedPosition.x + 1.0f);
         ImGui::SliderFloat("YPosition", (float*)&m_Position.y, mOriginalUnmodifiedPosition.y - 1.0f, mOriginalUnmodifiedPosition.y + 1.0f);
@@ -246,5 +246,7 @@ void CSceneMesh::DrawImgui()
         m_Yaw = mathUtils::Deg2Rad(lYawTmp);
         m_Pitch = mathUtils::Deg2Rad(lPitchTmp);
         m_Roll = mathUtils::Deg2Rad(lRollTmp);
+        ImGui::TreePop();
     }
+
 }

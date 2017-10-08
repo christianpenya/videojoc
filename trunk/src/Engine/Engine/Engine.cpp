@@ -99,6 +99,8 @@ CEngine::~CEngine()
 
 void CEngine::LoadFiles()
 {
+    ImGui_ImplDX11_NewFrame();
+
     m_ActionManager = new CActionManager(*m_InputManager);
     m_ActionManager->LoadActions(m_FileActionManager);
     LOG_INFO_APPLICATION("Engine -> Action Manager Loaded! \\(^-^)/");
@@ -311,9 +313,10 @@ float z = (*actionManager)("z_move")->value * 0.5f;
 m_CharacterController.m_Movement = {x, 0.0f, z};
 }*/
 
-void CEngine::DrawImgui()
+void CEngine::DrawImgui(int choice)
 {
-    m_SceneManager->DrawImgui();
-    m_MaterialManager->DrawImgui();
-    m_SoundManager->DrawImgui();
+    if (choice == 0)
+        m_SceneManager->DrawImgui();
+    else
+        m_SoundManager->DrawImgui();
 }

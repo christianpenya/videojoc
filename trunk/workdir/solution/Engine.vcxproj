@@ -407,6 +407,7 @@
     <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMeshManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\Pathfinding.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\enemy.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\tiny_obj_loader.cc" />
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\DirectionalLight.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\Light.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Lights\LightManager.cpp" />

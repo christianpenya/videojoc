@@ -168,11 +168,10 @@ std::vector<CSceneNode*> CLayer::GetNodes()
 void CLayer::DrawImgui()
 {
     ImGui::Checkbox("Active", &m_Active);
-
     if (m_Active)
     {
-        ImGui::BeginChild("#layer", ImVec2(400, 400), true);
-        ImGui::PushItemWidth(-130);
+//        ImGui::BeginChild("#layer", ImVec2(800, 400), true, ImGuiWindowFlags_AlwaysAutoResize);
+//       ImGui::PushItemWidth(-130);
 
         for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
         {
@@ -194,9 +193,7 @@ void CLayer::DrawImgui()
                 CAnimatedCoreModel *lAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()((*iSceneNode)->GetName());
 
                 if (lAnimatedCoreModel != nullptr)
-                {
                     lAnimatedCoreModel->DrawImgui();
-                }
             }
             break;
 
@@ -210,16 +207,13 @@ void CLayer::DrawImgui()
             {
                 CLight *lLight = CEngine::GetInstance().GetLightManager()((*iSceneNode)->GetName());
                 if (lLight != nullptr)
-                {
                     lLight->DrawImgui();
-                }
             }
             break;
 
             case CSceneNode::eParticle:
             {
                 CParticleSystemType *lParticle = CEngine::GetInstance().GetParticleManager()((*iSceneNode)->GetName());
-
                 if (lParticle != nullptr)
                 {
                     lParticle->DrawImgui();
@@ -244,8 +238,8 @@ void CLayer::DrawImgui()
             ImGui::PopID();
         }
 
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
+        /*        ImGui::PopItemWidth();
+                ImGui::EndChild();*/
     }
 }
 

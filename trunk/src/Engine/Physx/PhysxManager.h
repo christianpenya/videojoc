@@ -44,12 +44,20 @@ const float PHYSX_UPDATE_STEP = 0.017f;
 
 class CPhysXManager
 {
+
+public:
     struct CharacterControllerData
     {
         Vect3f position;
         Vect3f linearVelocity;
     };
 
+
+
+protected:
+    CPhysXManager();
+
+public:
     struct RaycastData
     {
         Vect3f position;
@@ -58,11 +66,6 @@ class CPhysXManager
         std::string actor;
 
     };
-
-protected:
-    CPhysXManager();
-
-public:
     virtual ~CPhysXManager();
     static CPhysXManager* CreatePhysXManager();
 

@@ -42,9 +42,19 @@ public:
     }
 
 
+    virtual bool Render(ID3D11DeviceContext* aContext)
+    {
+        // Send the vertex buffer to the GPU
+        m_VertexBuffer->Bind(aContext);
 
+        // Configure the type of topology to be renderer ( p.e. Triangles, Quads, points,... )
+        aContext->IASetPrimitiveTopology(m_PrimitiveTopology);
 
+        // Finally draw the geometry
+        aContext->Draw(m_VertexBuffer->GetNumVertexs(), 0);
 
+        return true;
+    }
 
     bool UpdateVertex(void *Vtxs, unsigned int VtxsCount)
     {
