@@ -1,6 +1,6 @@
 <lights >
 
-	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="5.0" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
 		<transform position="00.0 80.0 0.0" forward="0 -1.0 0" />
 		<layer name = "guardias" />
 		<!-- <layer name = "objetos_transparentes" />		 -->

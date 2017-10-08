@@ -19,7 +19,7 @@ fn preProcess = (
 	
 	if lSelectionMaterial == undefined then (
 		lSelectionMaterial = StandardMaterial()
-		lSelectionMaterial.name = gSelection.name+"Material"
+		lSelectionMaterial.name = gSelection.name+"Material"m
 		lSelectionMaterial.diffuse = gSelection.wirecolor
 	)
 	if classOf lSelectionMaterial == StandardMaterial then	(
@@ -169,7 +169,7 @@ fn writeToBin = (
 
 		print lMat.m_name
 		print (lMat.m_aVB.count as string)
-
+		print("flag value : " + lMat.flag_value as string)
 		writter.PrintUnsignedShort(lMat.flag_value)
 		writter.PrintUnsignedShort(lMat.m_aVB.count)
 		for lVrtx in lMat.m_aVB do(
