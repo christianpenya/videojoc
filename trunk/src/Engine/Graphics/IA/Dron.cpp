@@ -32,7 +32,7 @@ CDron::CDron(CXMLElement* aTreeNode)
         aElement = aElement->NextSiblingElement();
     }
 
-    m_PhysXManager.AddCharacterController(GetName(), this->GetScale().y, 0.25f, Vect3f(0, 0, 0), Quatf(0, 0, 0, 1), "Default", 0.5f);
+    m_PhysXManager.AddCharacterController(GetName(), this->GetScale().y, 0.25f, m_Position, Quatf(), "Default", 0.5f, 2);
 }
 
 
@@ -57,13 +57,26 @@ void CDron::patrol()
 //    std::cout << " Dron " << GetName() << "patroling." << std::endl;
     if ((m_Destination == Vect3f{ 0.0f, -99.9f, 0.0f }) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_Destination.x,m_Destination.z)<=1.0f))
         GotoNextPoint();
-
+    Vect3f lastMove = m_Movement;
     m_Movement.Lerp(m_Destination, m_speedPatroling);
     m_Position = m_Movement;
     this->SetForward(m_Destination - m_Position);
-    m_PhysXManager.MoveCharacterController(GetName(), m_Position, PHYSX_UPDATE_STEP);
-    this->SetPosition(m_Position);
+    m_PhysXManager.MoveCharacterController(GetName(), m_Position - lastMove, PHYSX_UPDATE_STEP);
+    this->SetPosition(m_PhysXManager.GetActorPosition(GetName())+height);
+
+
 }
+
+void CDron::Move(Vect3f movement, Vect3f destination, float speed)
+{
+    Vect3f lastMove = movement;
+    movement.Lerp(destination, speed);
+    m_Position = movement;
+    this->SetForward(destination - m_Position);
+    m_PhysXManager.MoveCharacterController(GetName(), m_Position - lastMove, PHYSX_UPDATE_STEP);
+    this->SetPosition(m_PhysXManager.GetActorPosition(GetName()) + height);
+}
+
 
 
 void CDron::GotoNextPoint()
@@ -91,7 +104,7 @@ void CDron::chase()
 
     if ((!m_Calculated) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_DestinationChase.x, m_DestinationChase.z) <= 0.2f))
         GotoNextPointChase();
-
+    //Move(m_Movement, m_DestinationChase, m_speedChasing);
     m_Movement.Lerp(m_DestinationChase, m_speedChasing);
     m_Position = m_Movement;
     this->SetForward(m_DestinationChase - m_Position);

@@ -71,6 +71,7 @@ public:
 
     void SetActorTransform(const std::string& actorName,const Vect3f& aPostion, Quatf aOrientation);
 protected:
+    Vect3f G_Gravity = Vect3f(0, -1, 0);
     physx::PxFoundation							*m_Foundation;
     physx::PxPhysics							*m_PhysX;
 
@@ -108,17 +109,17 @@ public:
     void CreatePlane(std::string aMaterialName, float x, float y, float z, float d, size_t index);
 
     //STATIC
-    size_t CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ);
-    void CreateStaticSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius);
-    void CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf aOrientation, const Vect3f aPosition, std::string aFileName);
-    void CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices);
+    size_t CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, int group=0);
+    void CreateStaticSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius, int group = 0);
+    void CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf aOrientation, const Vect3f aPosition, std::string aFileName, int group = 0);
+    void CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, int group = 0);
 
     //DYNAMIC
-    void CreateDynamicBox(std::string actorName,std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density);
-    void CreateDynamicBox(std::string actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density, bool isKinematic);
-    void CreateDynamicSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius, physx::PxReal density);
-    void CreateDynamicShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal);
-    void CreateDynamicTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal);
+    void CreateDynamicBox(std::string actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density, int group = 0);
+    void CreateDynamicBox(std::string actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float sizeX, float sizeY, float sizeZ, physx::PxReal density, bool isKinematic, int group = 0);
+    void CreateDynamicSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, float radius, physx::PxReal density, int group = 0);
+    void CreateDynamicShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal, int group = 0);
+    void CreateDynamicTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal, int group = 0);
     void Update(float _dt);
 
     void AddTriggerBox(const std::string& actorName, float sizeX, float sizeY, float sizeZ, const Vect3f& position, const Quatf& orientation);
@@ -127,7 +128,7 @@ public:
     bool Raycast(const Vect3f& origin, const Vect3f& end, int filterMask, RaycastData* result_ = nullptr);
     void AddFixedJoint(const std::string& jointName, const std::string& actor1Name, const std::string& actor2Name);
     void DeleteActor(std::string actorName, size_t index);
-    virtual void AddCharacterController(const std::string& actorName, float height, float radius, const Vect3f& position, const Quatf& orientation, const std::string& material, float density) {};
+    virtual void AddCharacterController(const std::string& actorName, float height, float radius, const Vect3f& position, const Quatf& orientation, const std::string& material, float density, int group = 0) {};
 
     Vect3f GetActorPosition(const std::string& actorName);
     Quatf GetActorOrientation(const std::string& actorName);

@@ -29,6 +29,7 @@ public:
     float m_speedChasing;
     float m_investigatingTolerance;
     Vect3f m_lastPositionView;
+    Vect3f height = Vect3f(0.f, 1.5f, .0f);
 
     void patrol() override;
     void chase() override;
@@ -37,6 +38,7 @@ public:
     void GotoNextPoint();
     void GotoNextPointChase();
     void ComputePath();
+    void Move(Vect3f movement, Vect3f destination, float speed);
 
 };
 

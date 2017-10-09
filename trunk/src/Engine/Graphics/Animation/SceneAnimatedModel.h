@@ -29,6 +29,7 @@ private:
     bool LoadVertexBuffer();
     void LoadMaterials();
     void Deactivate();
+    int lastCycle = -1;
 public:
     CSceneAnimatedModel(const CXMLElement &TreeNode);
     virtual ~CSceneAnimatedModel();

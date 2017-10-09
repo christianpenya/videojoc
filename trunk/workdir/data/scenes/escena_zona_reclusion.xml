@@ -6,7 +6,7 @@
 		SALA0
 		<scene_mesh name="sala0" mesh="data/meshes/reclusion/sala0.mesh">
 			<transform position="0.840901 3.20359 -1.46628" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala0.mesh" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala0.mesh" scale="-1.0 1.0 1.0"  group="3"/>
 		</scene_mesh>
 		
 		<scene_mesh name="codo_tuberia003" mesh="data/meshes/reclusion/codo_tuberia.mesh" >
@@ -39,7 +39,7 @@
 		SALA2
 		<scene_mesh name="sala2" mesh="data/meshes/reclusion/sala2.mesh" >
 			<transform position="0.0 0.0 24.1714" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala2.mesh" offset="1.5 0.0 0.0" />
+			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala2.mesh" offset="1.5 0.0 0.0" group="3"/>
 		</scene_mesh>
 		<scene_mesh name="conducto2" mesh="data/meshes/reclusion/conducto.mesh" >
 			<transform position="-2.99534 3.31189 30.8678" yaw="0.0" pitch="0.0" roll="180.0" scale="-1.0 1.0 1.0" />
@@ -144,14 +144,15 @@
 		</scene_mesh>
 		
 		SALA1
-		<scene_mesh name="sala1" mesh="data/meshes/reclusion/sala1.mesh" rigid_body="plane" >
+		<scene_mesh name="sala1" mesh="data/meshes/reclusion/sala1.mesh" >
 			<transform position="0.840901 3.20359 -0.466283" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala1.mesh" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala1.mesh" scale="-1.0 1.0 1.0" group="3"/>
 		</scene_mesh>
 		
 		<scene_mesh name="escalera" mesh="data/meshes/reclusion/StraightStair001.mesh" >
-			<transform position="8.2 0.2 15.2" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/StraightStair001.mesh" scale="-1.0 1.0 1.0" offset="0.0 0.0 -3.8"/>
+			<transform position="8.2 0.2 15.2" yaw="90.0" pitch="0.0" roll="0.0" scale="-0.8 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/Box086.mesh" scale="-1.0 1.0 1.0" offset="3.6 1.4 -1.8" yaw="-90.0" pitch="0.0" roll="29.0" group="4"/>
+			<collider name="stairs" rigid_body="shape" filename="data/meshes/reclusion/physx/StraightStair001.mesh" scale="-1.0 1.0 1.0" offset="0.0 0.0 -3.8"/>
 		</scene_mesh>
 
 		<scene_mesh name="valla1" mesh="data/meshes/reclusion/valla1.mesh" >
@@ -387,7 +388,7 @@
 		SALA8
 		<scene_mesh name="sala8" mesh="data/meshes/reclusion/sala8.mesh" >
 			<transform position="40.9102 0.0 49.2461" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala8.mesh" group="atrezzo" scale="-1.0 1.0 1.0" />	
+			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/sala8.mesh"  scale="-1.0 1.0 1.0" />	
 		</scene_mesh>	
 		<scene_mesh name="pared marcosalida017" mesh="data/meshes/reclusion/marco_puerta.mesh" >
 			<transform position="40.8302 1.13614 55.5581" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -1358,7 +1359,7 @@
 
 	</layer>
 	
-	<layer name="drones" active="false">
+	<layer name="drones" active="true">
 		
 		<scene_mesh name="PatrolPoint_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="8.46 1.19 22.11" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
@@ -1367,8 +1368,8 @@
 			<transform position="8.46 1.19 33.49" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
 		<scene_enemies type="dron" name="DronReclusion1" mesh="data/meshes/reclusion/Dron.mesh">
-			<transform position="8.46 1.19 30.40" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
-			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
+			<transform position="8.46 1.19 30.40" yaw="-0.0" pitch="-0.0" roll="90.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" group="2"/>
 		</scene_enemies>
 		
 		<scene_mesh name="PatrolPoint_DronCabinas" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
@@ -1483,12 +1484,13 @@
 	<layer name="Skybox" active="true">
 		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true" active="true">
 			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
+			
 		</scene_mesh>
 	</layer>
 	
-	<layer name="guardias" active="true" >
-		<scene_animated_model name="guardiaTEST" core="prota"> rigid_body = "player">
-			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+	<layer name="LPlayer" active="true" >
+		<scene_animated_model name="player" core="prota" height="1.1" radiu="0.17" group="1" >
+			<transform position="0.8 3.2 -1.4" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
 		<!--
 		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >

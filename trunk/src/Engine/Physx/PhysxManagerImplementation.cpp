@@ -70,7 +70,6 @@ CPhysXManagerImplementation::CPhysXManagerImplementation()
     // default material
 
     RegisterMaterial("Default", 0.5f, 0.5f, 0.6f);
-    AddCharacterController("player", 1.1f, 0.17f, Vect3f(0, 1, 8), Quatf(0, 0, 0, 1), "Default", 0.5f);
 
     m_LeftoverSeconds = 0.0f;
 }
@@ -114,7 +113,7 @@ void CPhysXManagerImplementation::onTrigger(physx::PxTriggerPair* pairs, physx::
     }
 }
 
-void CPhysXManagerImplementation::AddCharacterController(const std::string& characterControllerName, float height, float radius, const Vect3f& position = Vect3f(0, 0, 0), const Quatf& orientation = Quatf(0, 0, 0, 1), const std::string& material = "Default", float density = 15)
+void CPhysXManagerImplementation::AddCharacterController(const std::string& characterControllerName, float height, float radius, const Vect3f& position = Vect3f(0, 0, 0), const Quatf& orientation = Quatf(0, 0, 0, 1), const std::string& material = "Default", float density = 15, int group)
 {
     assert(m_Materials.find(material) != m_Materials.end()); // missing material!
     assert(m_CharacterControllers.find(characterControllerName) == m_CharacterControllers.end()); // duplicated key!
@@ -141,6 +140,7 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
     desc.material = l_Material;
     desc.userData = (void*)index;
 
+
     physx::PxController* cct = m_ControllerManager->createController(desc);
 
     m_CharacterControllers[characterControllerName] = cct;
@@ -150,6 +150,5 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
     m_ActorPositions.push_back(position);
     m_ActorOrientations.push_back(Quatf(0, 0, 0, 1));
     m_Actors.push_back(cct->getActor());
-
     cct->getActor()->userData = (void*)index;
 }
