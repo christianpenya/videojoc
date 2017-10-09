@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <actor name="prota" radius_bs="2.0" pos_bs="0.0 1.0 0.0">
-	<skeleton filename="Esqueleto_Prota.CSF"/>
-	<mesh filename="Prota_Mesh2.CMF"/>
+	<skeleton filename="Prota_DEF.CSF"/>
+	<mesh filename="Prota_DEF.CMF"/>
 	
 	<material name="prota_material_1" vertex_type="PositionWeightIndicesNormalUV">
 		<texture type="diffuse" filename="data/animated_models/prota/txt prota.jpg"/>
@@ -15,10 +15,8 @@
 		<parameter type="float" name="cutout_factor" value="1.0"/>
 	</material>
 	
-	<animation name="idle" filename="Anim_IDLE2.CAF" />
-	<animation name="cidle" filename="Anim_CIDLE2.CAF" />
-	<animation name="walk" filename="Anim_WALK.CAF" />
 	<!--
+	<animation name="idle" filename="Prota_IDLE.CAF" />
 	<animation name="walk" filename="walkProtaANIMATION.CAF" />	
 	<animation name="attack_idle" filename="SerenoCombatIdle.CAF" />
 	<animation name="attackNormal" filename="SerenoAttack.CAF" />

@@ -99,6 +99,9 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\OpenDoorReactor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\LevelController.h">
+      <Filter>Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Reactor.h">
       <Filter>Events</Filter>
     </ClInclude>
@@ -466,6 +469,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\OpenDoorReactor.cpp">
       <Filter>Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\LevelController.cpp">
+      <Filter>Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\GUI\Button.cpp">
       <Filter>GUI</Filter>
