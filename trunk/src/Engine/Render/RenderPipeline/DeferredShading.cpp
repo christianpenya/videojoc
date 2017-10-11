@@ -61,3 +61,5 @@ void CDeferredShading::Execute(CRenderManager &lRM)
 
     lRM.GetDeviceContext()->OMSetBlendState(NULL, NULL, 0xffffffff);
 }
+
+void CDeferredShading::DrawImgui() {}

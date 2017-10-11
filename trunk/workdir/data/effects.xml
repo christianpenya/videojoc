@@ -25,6 +25,10 @@
    <shader stage="vertex"   name="Position"/>
    <shader stage="pixel"    name="Position"/>
   </effect>  
+  	<effect name="LineTechnique" shader_family="Line">
+   <shader stage="vertex"   name="Line"/>
+   <shader stage="pixel"    name="Line"/>
+  </effect>  
 <!--  
   <effect name="EnvironmentMapTechniqueForward" shader_family="EnvironmentMapForward">
    <shader stage="vertex"   name="EnvironmentMapForward"/>

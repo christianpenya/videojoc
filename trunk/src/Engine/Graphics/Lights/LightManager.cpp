@@ -159,10 +159,8 @@ void CLightManager::SetLightsConstants()
 
 void CLightManager::DrawImgui()
 {
-    if (ImGui::CollapsingHeader("Lights"))
+    if (ImGui::TreeNode("Lights"))
     {
-        ImGui::BeginChild("#lights", ImVec2(400, 200), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-        ImGui::PushItemWidth(-130);
         ImGui::ColorEditMode(ImGuiColorEditMode_RGB);
 
         for (TMapResources::iterator iLightMapEntry = m_ResourcesMap.begin(); iLightMapEntry != m_ResourcesMap.end(); ++iLightMapEntry)
@@ -172,8 +170,7 @@ void CLightManager::DrawImgui()
             lLight->DrawImgui();
             ImGui::PopID();
         }
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
+        ImGui::TreePop();
     }
 }
 

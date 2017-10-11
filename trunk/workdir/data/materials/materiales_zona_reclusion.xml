@@ -237,14 +237,6 @@
 		<parameter type="float" name="lerp_sprite" value="0.1" />
 		<parameter type="float" name="ratio_y" value="0.8" />
 	</material>	
-
-	<material name="LightDroneMaterial" vertex_type="ParticleVertex" >
-		<texture type="diffuse" filename="data\particles\lighttexture.png" />		
-		<parameter type="float2" name="sprite_size" value="4.0 2.0" />
-		<parameter type="float" name="lerp_sprite" value="0.1" />
-		<parameter type="float" name="ratio_y" value="0.8" />
-	</material>	
-
 	
 	MONITOR
 	<material name="ordenador003Material" vertex_type="PositionNormal" >

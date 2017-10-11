@@ -27,12 +27,17 @@ void CClearCmd::Execute(CRenderManager& lRM)
     lRM.Clear(m_RenderTarget, m_DepthStencil, m_Color);
 }
 
-void CClearCmd::DrawImGui()
+void CClearCmd::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
-    {
-        ImGui::ColorEdit4("Color", (float*)&m_Color, true);
-        ImGui::Checkbox("Render Target", &m_RenderTarget);
-        ImGui::Checkbox("Depth Stencil", &m_DepthStencil);
-    }
+    /*    if (ImGui::TreeNode("ClearCmd"))
+        {
+            if (ImGui::TreeNode(m_Name.c_str()))
+            {
+                ImGui::ColorEdit4("Color", (float*)&m_Color, true);
+                ImGui::Checkbox("Render Target", &m_RenderTarget);
+                ImGui::Checkbox("Depth Stencil", &m_DepthStencil);
+                ImGui::TreePop();
+            }
+            ImGui::TreePop();
+        }*/
 }

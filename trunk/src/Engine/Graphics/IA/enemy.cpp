@@ -6,13 +6,13 @@
 #include "XML\XML.h"
 #include "Graphics/Mesh/MeshManager.h"
 
-
 CEnemy::~CEnemy()
 {
 }
 
 CEnemy::CEnemy(CXMLElement* aElement, EEnemyType aEnemyType)
-    : CSceneMesh(aElement)
+    : //CSceneAnimatedModel(*aElement)
+      CSceneMesh(aElement)
       //, mMesh(CEngine::GetInstance().GetMeshManager().GetMesh(aElement->GetAttribute<std::string>("mesh", "")))
     , state(CEnemyState::patroling)
     , m_PhysXManager(CEngine::GetInstance().GetPhysXManager())
@@ -160,6 +160,18 @@ void CChasingState::update(CEnemy& enemy)
 
 void CEnemy::DrawImgui()
 {
+    if (ImGui::TreeNode(m_Name.c_str()))
+    {
+        ImGui::Checkbox("Visible", &m_Visible);
+        ImGui::SliderFloat("Sight Distance", &m_SightDistance, 0.0f, 20.0f,"%.2f");
+        ImGui::SliderFloat("Max Detect Distance", &m_MaxDetectDistance, 0.0f, 20.0f, "%.2f");
+        ImGui::SliderFloat("Dead Distance", &m_DeadDistance, 0.0f, 10.0f, "%.2f");
+        ImGui::SliderFloat("Detect Angle", &m_DetectAngle, 0.0f, 360.0f, "%.2f");
+        ImGui::Checkbox("Active", &m_Active);
+        ImGui::SliderFloat3("Position", (float*)&m_Position, -500.0f, 500.0f, "%.2f");
+        ImGui::SliderFloat3("Scale", (float*)&m_Scale, 0.0f, 100.0f, "%.2f");
+        ImGui::TreePop();
+    }
 }
 
 

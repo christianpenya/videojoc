@@ -17,7 +17,7 @@ public:
     virtual ~CClearCmd();
     bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager& lRM);
-    virtual void DrawImGui();
+    virtual void DrawImgui();
 private:
     DISALLOW_COPY_AND_ASSIGN(CClearCmd);
     bool m_RenderTarget;

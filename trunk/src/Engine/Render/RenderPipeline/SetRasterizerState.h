@@ -17,13 +17,13 @@ public:
     virtual ~CSetRasterizerState();
     bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager& lRM);
-    virtual void DrawIMGUI();
+    virtual void DrawImgui();
 private:
     DISALLOW_COPY_AND_ASSIGN(CSetRasterizerState);
     ID3D11RasterizerState* m_RasterizerState;
-    int m_CullMode;
+    D3D11_CULL_MODE m_CullMode;
     bool m_ClockWise;
-    int m_FillMode;
+    D3D11_FILL_MODE m_FillMode;
     bool CreateRasterizerState(CRenderManager& lRM);
 };
 

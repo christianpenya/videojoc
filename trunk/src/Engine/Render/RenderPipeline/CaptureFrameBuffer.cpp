@@ -18,12 +18,8 @@ bool CCaptureFrameBuffer::Load(const CXMLElement* aElement)
 {
     bool lOk = false;
 
-    //if (strcmp(aElement->Name(), "capture_frame_buffer") == 0)
-    //{
     m_CapturedFrameBufferTexture = new CCaptureFrameBufferTexture(aElement);
     lOk = CEngine::GetInstance().GetTextureManager().AddTexture(*m_CapturedFrameBufferTexture);
-    //}
-
     return lOk;
 }
 
@@ -31,3 +27,5 @@ void CCaptureFrameBuffer::Execute(CRenderManager& lRM)
 {
     m_CapturedFrameBufferTexture->Capture(0);
 }
+
+void CCaptureFrameBuffer::DrawImgui() {}

@@ -35,10 +35,10 @@ void CApplyFilter::Execute(CRenderManager &lRM)
         {
             m_DynamicTexturesMaterials[i]->m_Material->Apply();
 
-            static bool show_app_auto_resize = true;
-            ImGui::Begin("Menu Dynamic", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
-            m_DynamicTexturesMaterials[i]->m_Material->DrawImgui();
-            ImGui::End();
+            /*     static bool show_app_auto_resize = true;
+                 ImGui::Begin("Menu Dynamic", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
+                 m_DynamicTexturesMaterials[i]->m_Material->DrawImgui();
+                 ImGui::End();*/
 
         }
         ActivateTextures();
@@ -48,4 +48,25 @@ void CApplyFilter::Execute(CRenderManager &lRM)
         lRM.ResetViewport();
         lRM.UnsetRenderTargets();
     }
+}
+
+void CApplyFilter::DrawImgui()
+{
+    if (ImGui::TreeNode("Apply filter"))
+    {
+        for (size_t i = 0; i < m_DynamicTexturesMaterials.size(); ++i)
+        {
+            if (m_DynamicTexturesMaterials[i]->m_Material != nullptr)
+            {
+                if (ImGui::TreeNode(m_DynamicTexturesMaterials[i]->m_DynamicTexture->GetName().c_str()))
+                {
+                    m_DynamicTexturesMaterials[i]->m_Material->DrawImgui();
+                    ImGui::TreePop();
+                }
+            }
+
+        }
+        ImGui::TreePop();
+    }
+
 }

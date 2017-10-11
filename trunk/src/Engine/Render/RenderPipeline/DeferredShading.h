@@ -15,7 +15,7 @@ public:
     virtual ~CDeferredShading();
     bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager &lRM);
-
+    virtual void DrawImgui();
 private:
     bool CreateBlendState();
     DISALLOW_COPY_AND_ASSIGN(CDeferredShading);

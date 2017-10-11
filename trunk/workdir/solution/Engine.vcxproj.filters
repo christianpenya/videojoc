@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Engine">
@@ -444,6 +444,12 @@
     <ClInclude Include="..\..\src\Engine\Sound\SoundManager.h">
       <Filter>Sound</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Laser.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\LaserManager.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp">
@@ -766,6 +772,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Sound\SoundManager.cpp">
       <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Laser.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\LaserManager.cpp">
+      <Filter>Graphics\IA</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

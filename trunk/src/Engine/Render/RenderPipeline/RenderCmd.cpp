@@ -15,10 +15,4 @@ bool CRenderCmd::Load(const CXMLElement* aElement)
     return true;
 }
 
-void CRenderCmd::DrawImgui()
-{
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
-    {
-        ImGui::Checkbox("Active", &m_Active);
-    }
-}
+void CRenderCmd::DrawImgui() {}

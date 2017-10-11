@@ -34,3 +34,5 @@ void CRenderSceneLayer::Execute(CRenderManager& lRM)
         lSceneManager.Render(m_LayerName);
     }
 }
+
+void CRenderSceneLayer::DrawImgui() {}

@@ -86,13 +86,11 @@ void CSetAlphaBlendState::Execute(CRenderManager& lRM)
 {
     CreateAlphaBlendState(lRM);
     lRM.GetDeviceContext()->OMSetBlendState(m_AlphaBlendState, NULL, 0xffffffff);
-    DrawImgui();
 }
 
 void CSetAlphaBlendState::DrawImgui()
 {
-
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::TreeNode(m_Name.c_str()))
     {
         const char* items[] = { "None","Zero", "One", "SrcColor", "InvSrcColor", "SrcAlpha", "InvSrcAlpha", "DestAlpha", "InvDestAlpha", "DestColor", "InvDestColor", "SrcAlphaSat", "None","None","BlendFactor", "InvBlendFactor", "Src1Color", "InvSrc1Color", "Src1Alpha", "InvSrc1Alpha"};
         ImGui::Combo("Src Blend", (int*)&m_SrcBlend, items, IM_ARRAYSIZE(items));
@@ -104,6 +102,6 @@ void CSetAlphaBlendState::DrawImgui()
         ImGui::Combo("Blend Op Alpha", (int*)&m_BlendOpAlpha, items2, IM_ARRAYSIZE(items2));
         const char* items3[] = { "None", "red", "green", "None", "blue", "None", "None", "None", "alpha", "None", "None", "None", "None", "None", "None", "all" };
         ImGui::Combo("Render Target Write Mask", (int*)&m_render_target_write_mask, items3, IM_ARRAYSIZE(items3));
+        ImGui::TreePop();
     }
-
 }

@@ -1,4 +1,8 @@
 <materials>
+
+	<material name="Cylinder003Material" vertex_type="PositionNormal">
+		<parameter type="color" name="diffuse_color" value="0 0 0 1.0" />
+	</material>
 	
 	<material name="02 - Default" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.8431 0.7686 0.651 1.0" />
@@ -113,7 +117,14 @@
 		<parameter type="float2" name="light_position" value="0.5 0.5"/>
 	</material>
 
-	<material name="NavMeshMaterial" vertex_type="Position"/>
+	<material name="NavMeshMaterial" vertex_type="Position">
+		<parameter type="color" name="diffuse_color" value="1 0 0 1.0" />
+	</material>
+
+
+	<material name="LineMaterial" vertex_type="Line">
+		<parameter type="color" name="diffuse_color" value="1 0 0 1.0" />
+	</material>
 
 	
 </materials>

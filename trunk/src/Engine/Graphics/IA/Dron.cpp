@@ -38,16 +38,19 @@ CDron::CDron(CXMLElement* aTreeNode)
 
 void CDron::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::TreeNode(m_Name.c_str()))
     {
-        ImGui::SliderFloat("Sight Distance", &m_SightDistance, 0.01f, 20.0f, "%.2f", 0.01f);
-        ImGui::SliderFloat("Max. Detect Distance", &m_MaxDetectDistance, 0.01f, 20.0f,"%.2f",0.01f);
-        ImGui::SliderFloat("Dead Distance", &m_DeadDistance, 0.01f, 20.0f, "%.2f", 0.01f);
-        ImGui::SliderFloat("Detect Angle", &m_DetectAngle, 0.0f, 360.0f, "%.2f", 0.01f);
-        ImGui::SliderFloat("Speed Patroling", &m_speedPatroling, 0.01f, 20.0f, "%.2f", 0.01f);
-        ImGui::SliderFloat("Speed Chasing", &m_speedChasing, 0.01f, 20.0f, "%.2f", 0.01f);
-        ImGui::SliderFloat("Investigating Tolerance", &m_investigatingTolerance, 0.01f, 20.0f, "%.2f", 0.01f);
-        //ImGui::SliderFloat2("", (float*)&m_ControlPointColors[0].m_Time, 0.25f, 10.0f);
+        ImGui::Checkbox("Visible", &m_Visible);
+        ImGui::SliderFloat("Sight Distance", &m_SightDistance, 0.0f, 20.0f, "%.2f");
+        ImGui::SliderFloat("Max Detect Distance", &m_MaxDetectDistance, 0.0f, 20.0f, "%.2f");
+        ImGui::SliderFloat("Dead Distance", &m_DeadDistance, 0.0f, 10.0f, "%.2f");
+        ImGui::SliderFloat("Detect Angle", &m_DetectAngle, 0.0f, 360.0f, "%.2f");
+        ImGui::SliderFloat("Speed Patroling", &m_speedPatroling, 0.01f, 20.0f, "%.2f");
+        ImGui::SliderFloat("Speed Chasing", &m_speedChasing, 0.01f, 20.0f, "%.2f");
+        ImGui::SliderFloat("Investigating Tolerance", &m_investigatingTolerance, 0.01f, 20.0f, "%.2f");
+        ImGui::SliderFloat3("Position", (float*)&m_Position, -500.0f, 500.0f, "%.2f");
+        ImGui::SliderFloat3("Scale", (float*)&m_Scale, 0.0f, 100.0f, "%.2f");
+        ImGui::TreePop();
     }
 }
 

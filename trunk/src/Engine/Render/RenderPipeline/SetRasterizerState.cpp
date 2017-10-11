@@ -1,12 +1,13 @@
 #include "SetRasterizerState.h"
 #include "Engine\Engine.h"
 #include "XML\XML.h"
+#define IM_ARRAYSIZE(_ARR) ((int)(sizeof(_ARR)/sizeof(*_ARR)))
 
 CSetRasterizerState::CSetRasterizerState():
     m_RasterizerState(nullptr),
-    m_CullMode(0),
+    m_CullMode(D3D11_CULL_FRONT),
     m_ClockWise(false),
-    m_FillMode(0)
+    m_FillMode(D3D11_FILL_SOLID)
 {}
 
 CSetRasterizerState::~CSetRasterizerState() {}
@@ -33,9 +34,9 @@ bool CSetRasterizerState::CreateRasterizerState(CRenderManager& lRM)
 {
     D3D11_RASTERIZER_DESC lRasterDesc;
     ZeroMemory(&lRasterDesc, sizeof(D3D11_RASTERIZER_DESC));
-    lRasterDesc.FillMode = (D3D11_FILL_MODE)m_FillMode;
+    lRasterDesc.FillMode = m_FillMode;
     lRasterDesc.AntialiasedLineEnable=false;
-    lRasterDesc.CullMode = (D3D11_CULL_MODE)m_CullMode;
+    lRasterDesc.CullMode = m_CullMode;
     lRasterDesc.DepthBias = 0;
     lRasterDesc.DepthBiasClamp = 0.0f;
     lRasterDesc.DepthClipEnable	= true;
@@ -55,27 +56,16 @@ void CSetRasterizerState::Execute(CRenderManager& lRM)
     lRM.GetDeviceContext()->RSSetState(m_RasterizerState);
 }
 
-void CSetRasterizerState::DrawIMGUI()
+void CSetRasterizerState::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::TreeNode("SetRasterizerState"))
     {
-        if (ImGui::CollapsingHeader("Cull Mode"))
-        {
-            ImGui::RadioButton("None", &m_CullMode, 0);
-            ImGui::SameLine();
-            ImGui::RadioButton("Back", &m_CullMode, 1);
-            ImGui::SameLine();
-            ImGui::RadioButton("Front", &m_CullMode, 1);
-            ImGui::SameLine();
-        }
-        if (ImGui::CollapsingHeader("Fill Mode"))
-        {
-            ImGui::RadioButton("Solid", &m_FillMode, 0);
-            ImGui::SameLine();
-            ImGui::RadioButton("Wireframe", &m_FillMode, 1);
-            ImGui::SameLine();
-        }
+        const char* items[] = { "none","back","front" };
+        ImGui::Combo("Cull Mode", (int*)&m_CullMode, items, IM_ARRAYSIZE(items));
+        const char* items2[] = { "solid", "wireframe"};
+        ImGui::Combo("Fill Mode", (int*)&m_FillMode, items2, IM_ARRAYSIZE(items2));
         ImGui::Checkbox("Clockwise", &m_ClockWise);
+        ImGui::TreePop();
     }
 
 }

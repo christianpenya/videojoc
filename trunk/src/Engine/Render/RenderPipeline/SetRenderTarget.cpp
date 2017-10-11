@@ -33,3 +33,5 @@ void CSetRenderTarget::Execute(CRenderManager& lRM)
     ID3D11DepthStencilView* l_DepthStencilView = m_DynamicTexturesMaterials.empty() ? nullptr : m_DynamicTexturesMaterials[0]->m_DynamicTexture->GetDepthStencilView();
     lRM.SetRenderTargets((UINT)m_DynamicTexturesMaterials.size(), &m_RenderTargetViews[0], l_DepthStencilView);
 }
+
+void CSetRenderTarget::DrawImgui() {}

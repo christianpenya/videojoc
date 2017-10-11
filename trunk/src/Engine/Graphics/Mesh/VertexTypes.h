@@ -190,6 +190,18 @@ struct SpriteVertex
 };
 
 
+struct Line
+{
+    POSITION;
+    GET_VERTEX_FLAGS(ePosition | eNormal);
+    BEGIN_INPUT_LAYOUT
+    {
+        LAYOUT_POSITION(0),
+        LAYOUT_NORMAL(12),
+
+    }
+    END_INPUT_LAYOUT
+};
 
 uint32 GetVertexSize(uint32 aVertexFlags);
 bool CreateInputLayout(CRenderManager &aRenderManager, uint32 aVertexFlags, ID3DBlob * aBlob, ID3D11InputLayout ** aVertexLayout);
