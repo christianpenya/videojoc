@@ -25,7 +25,8 @@
 	<render_layer layer="triggers"/>
 	<render_layer layer="navmesh"/>
 	<render_layer layer="drones"/>
-
+	<render_layer layer="salas"/>
+	
 	<unset_render_target/>	
 	End generate gbuffer
 	
@@ -99,31 +100,13 @@
 	FIN NOISE VIGNETTING
 
 	DEBUG SHIT
+
+	
+	<!-- 	
 	<apply_technique_pool pool_name="quad"/>
 	
-	<draw_quad  material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
-        <texture name="AlbedoTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "0 129" viewport_size = "128 128">
+	<draw_quad  material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "512 512">
         <texture name="DiffuseLightingTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">
-        <texture name="NormalMapTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "129 129" viewport_size = "128 128">
-        <texture name="DepthMapTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "258 0" viewport_size = "128 128">
-        <texture name="SpecularMapTexture" stage_id="0"/>
-    </draw_quad>
-	<!--<apply_technique_pool pool_name="quad"/>
-	
-	<draw_quad  material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "128 128">
-        <texture name="AlbedoTexture" stage_id="0"/>
     </draw_quad>
 	
 	<draw_quad material="DrawQuadMaterial" viewport_position = "0 129" viewport_size = "128 128">
@@ -140,8 +123,8 @@
 	
 	<draw_quad material="DrawQuadMaterial" viewport_position = "258 0" viewport_size = "128 128">
         <texture name="SpecularMapTexture" stage_id="0"/>
-    </draw_quad>
-	-->
+    </draw_quad> -->
+	
 	
 	
 	INICIO LIGHT SCATTERING

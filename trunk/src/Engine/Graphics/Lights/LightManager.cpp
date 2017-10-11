@@ -131,6 +131,8 @@ void CLightManager::SetLightConstants(size_t idLight, CLight* alight)
         CTexture *l_ShadowMask = alight->GetShadowMaskTexture();
         lConstanBufferManager.mLightsDesc.m_UseShadowMap[idLight] = 1.0f;
         lConstanBufferManager.mLightsDesc.m_UseShadowMask[idLight] = l_ShadowMask != NULL ? 1.0f : 0.0f;
+        lConstanBufferManager.mLightsDesc.m_ShadowMapBias[idLight] = 0.0f;
+        lConstanBufferManager.mLightsDesc.m_ShadowMapStrength[idLight] = 1.0f;
         lConstanBufferManager.mLightsDesc.m_LightView[idLight] = alight->GetViewShadowMap();
         lConstanBufferManager.mLightsDesc.m_LightProjection[idLight] = alight->GetProjectionShadowMap();
 
