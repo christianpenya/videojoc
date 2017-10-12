@@ -56,14 +56,13 @@ bool CLayer::Load(CXMLElement* aElement)
             {
                 lNode = new CSceneAnimatedModel(*iSceneMesh);
                 ((CSceneAnimatedModel *)lNode)->Initialize(l_AnimatedCoreModel);
-                if (strcmp(l_Name.c_str(), "player") == 0)
-                {
-                    Quatf rotation = Quatf();
-                    float height = iSceneMesh->GetAttribute<float>("height", 1.1f);
-                    float radius = iSceneMesh->GetAttribute<float>("radius", 0.17f);
-                    rotation.QuatFromYawPitchRoll(lNode->GetYaw(), lNode->GetPitch(), lNode->GetRoll());
-                    CEngine::GetInstance().GetPhysXManager().AddCharacterController(l_Name, height, radius, lNode->GetPosition(), rotation, "Default", 0.5f, lGroup);
-                }
+
+                Quatf rotation = Quatf();
+                float height = iSceneMesh->GetAttribute<float>("height", 1.1f);
+                float radius = iSceneMesh->GetAttribute<float>("radius", 0.17f);
+                rotation.QuatFromYawPitchRoll(lNode->GetYaw(), lNode->GetPitch(), lNode->GetRoll());
+                CEngine::GetInstance().GetPhysXManager().AddCharacterController(l_Name, height, radius, lNode->GetPosition(), rotation, "Default", 0.5f, lGroup);
+
             }
             lNode->SetNodeType(CSceneNode::eAnimatedModel);
         }

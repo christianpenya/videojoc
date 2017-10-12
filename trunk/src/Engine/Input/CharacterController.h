@@ -18,7 +18,8 @@ public:
     CCharacterController() :
         m_Movement(0, 0, 0),
         m_Position(0, 0, 0),
-        m_Speed(5.f),
+        m_Speed(2.5f),
+        m_RotationSPeed(0.8f),
         player(nullptr)
     {
     }
@@ -30,6 +31,7 @@ public:
     Vect3f m_Movement;
     Vect3f m_Position;
     float m_Speed;
+    float m_RotationSPeed;
     CSceneAnimatedModel* player;
 
 private:
