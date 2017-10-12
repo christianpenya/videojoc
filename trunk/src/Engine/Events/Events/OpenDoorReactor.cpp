@@ -28,13 +28,24 @@ void COpenDoorReactor::Load(CXMLElement* aElement)
     assert(lLayerName != "");
     assert(lObjectName != "");
 
-    mDoor = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(lObjectName);
+    CLayer* lLayer = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName);
+    if (lLayer && lLayer->GetActive())
+    {
+        mDoor = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(lObjectName);
+    }
+    else
+    {
+        mDoor = false;
+    }
 }
 
 void COpenDoorReactor::React()
 {
     //LOG_INFO_APPLICATION("Hold the DOOOOOOOR! HOLD THE DOOOOOR!");
-    mDoor->Deactivate();
+    if (mDoor)
+    {
+        mDoor->Deactivate();
+    }
     m_Finished = true;
 }
 
