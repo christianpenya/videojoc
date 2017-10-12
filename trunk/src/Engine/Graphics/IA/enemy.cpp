@@ -60,7 +60,7 @@ bool CEnemy::PlayerOnSight()
 
 bool CEnemy::Update(float ElapsedTime)
 {
-    bool hitted = m_PhysXManager.Raycast(m_Position, m_PhysXManager.GetActorPosition("player"), 0001, resultado);
+    bool hitted = m_PhysXManager.Raycast(m_Position, m_PhysXManager.GetActorPosition("player"), 0, resultado);
 
     if (hitted && (resultado->actor == "player"))
     {
