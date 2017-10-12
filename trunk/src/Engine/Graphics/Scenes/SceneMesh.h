@@ -42,7 +42,6 @@ protected:
 private:
     size_t mPhysxIndex;
     Vect3f cubeOffset;
-    Vect3f mOriginalUnmodifiedPosition;
 
     void DeletePhysx();
 };

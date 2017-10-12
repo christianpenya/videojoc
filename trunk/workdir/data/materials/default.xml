@@ -1,6 +1,62 @@
 <materials>
 	
-	<material name="02 - Default" vertex_type="PositionNormal" >
+	ANIMATED MODELS MATERIALS START
+	
+	<material name="prota_material_1" vertex_type="PositionWeightIndicesNormalUV">
+		<texture type="diffuse" filename="data/animated_models/prota/txt prota.jpg"/>
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	<material name="guardiaSexy_material_1" vertex_type="PositionWeightIndicesNormalUV">
+		<texture type="diffuse" filename="data/animated_models/guardiaSexy/guardiaSexy.jpg"/>
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="data/animated_models/guardiaSexy/guardiaSexyNRM.jpg"/>
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	<material name="sereno_material_1" vertex_type="PositionWeightIndicesNormalUV">
+		<texture type="diffuse" filename="data/animated_models/sereno/GSereno.dds"/>
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="data/animated_models/sereno/GSerenoNrm.dds"/>
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	<material name="guardia_material_1" vertex_type="PositionWeightIndicesNormalUV">
+		<texture type="diffuse" filename="data/animated_models/guardia/guardia.jpg"/>
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="data/animated_models/guardia/guardiaNRM.jpg"/>
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	ANIMATED MODELS MATERIALS END
+	
+ 	<material name="02 - Default" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="0.8431 0.7686 0.651 1.0" />
 	</material>
 	
@@ -11,21 +67,30 @@
 		<parameter type="float" name="diffuse" value="100.0" />
 	</material>
 
+	<material name="DrawQuadMaterial" vertex_type="PositionUV">
+	</material>
+	
+	<material name="DeferredShadingMaterial" vertex_type="PositionUV">
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+	</material>
+	
 	<material name="NoiseVignettingMaterial" effect="NoiseVignetting">
 		<texture type="diffuse" filename="data\textures\post_process\noise.png" />
 		<texture type="diffuse" filename="data\textures\post_process\vignetting.png" />
-		<parameter type="float" name="noisePct" value="0.2" />
-		<parameter type="float" name="vignettingPct" value="0.2" />
-		<parameter type="float" name="noiseAmount" value="0.2" />
+		<parameter type="float" name="noisePct" value="0.15" />
+		<parameter type="float" name="vignettingPct" value="0.5" />
+		<parameter type="float" name="noiseAmount" value="0.15" />
 	</material>
+	
+<!-- 	
+
 
 	<material name="FogMaterial" effect="Fog" vertex_type="Fog">
 		<parameter type="color" name="diffuse_color" value="0.7 0.7 0.7 1.0" />
 		<parameter type="float2" name="fog_start_end" value="35.0 100.0" />
 	</material>
 
-	<material name="DrawQuadMaterial" vertex_type="PositionUV">
-	</material>
+
 	
 	<material name="DeferredShadingMaterial" vertex_type="PositionUV">
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
@@ -113,7 +178,7 @@
 		<parameter type="float2" name="light_position" value="0.5 0.5"/>
 	</material>
 
-	<material name="NavMeshMaterial" vertex_type="Position"/>
+	<material name="NavMeshMaterial" vertex_type="Position"/> -->
 
 	
 </materials>

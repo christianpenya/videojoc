@@ -28,23 +28,34 @@ void COpenDoorReactor::Load(CXMLElement* aElement)
     assert(lLayerName != "");
     assert(lObjectName != "");
 
-    mDoor = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(lObjectName);
+    CLayer* lLayer = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName);
+    if (lLayer && lLayer->GetActive())
+    {
+        mDoor = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(lObjectName);
+    }
+    else
+    {
+        mDoor = false;
+    }
 }
 
 void COpenDoorReactor::React()
 {
-    LOG_INFO_APPLICATION("Hold the DOOOOOOOR! HOLD THE DOOOOOR!");
-    mDoor->Deactivate();
+    //LOG_INFO_APPLICATION("Hold the DOOOOOOOR! HOLD THE DOOOOOR!");
+    if (mDoor)
+    {
+        mDoor->Deactivate();
+    }
     m_Finished = true;
 }
 
 void COpenDoorReactor::Update(float elapsedTime)
 {
-    LOG_INFO_APPLICATION("React updating!");
+    //LOG_INFO_APPLICATION("React updating!");
 
     if (!mDoor)
     {
-        LOG_INFO_APPLICATION("Door is missing in scene!");
+        // LOG_INFO_APPLICATION("Door is missing in scene!");
         return;
     }
 

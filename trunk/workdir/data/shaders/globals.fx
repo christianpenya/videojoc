@@ -75,9 +75,12 @@ static float m_ShadowMapBiasArray[4]=(float[4])m_ShadowMapBias;
 static float m_ShadowMapStrengthArray[4]=(float[4])m_ShadowMapStrength;
 
 static float3 m_Color = m_RawData[0].xyz;
-static float m_Metalness = m_RawData[1].x;
-static float m_Roughness = m_RawData[2].x;
-static float m_Occlusion = m_RawData[3].x;
+static float m_Lightmap = m_RawData[1].x;
+static float m_NormalMap = m_RawData[2].x;
+static float m_Metalness = m_RawData[3].x;
+static float m_Roughness = m_RawData[4].x;
+static float m_Occlusion = m_RawData[5].x;
+
 
 static float m_RawDataValues[64]=((float[64])m_RawData);
 

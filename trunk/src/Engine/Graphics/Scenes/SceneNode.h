@@ -45,7 +45,7 @@ protected:
     bool m_Visible;
     ESceneNodeType m_NodeType;
     CBoundingSphere mBS;
-
+    Vect3f mOriginalUnmodifiedPosition;
 };
 
 #endif //_ENGINE_SCENENODE_20170110_H

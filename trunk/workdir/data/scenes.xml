@@ -1,15 +1,8 @@
 <scenes>
 
-	<scene name="escena_zona_administracion" folder="data/scenes/" active="false"/>
+	<scene name="escena_parkineo" folder="data/scenes/" active="false" />
 
 	<scene name="escena_zona_reclusion" folder="data/scenes/" active="true"/>
-	
-	<!--
-	<scene name="escena_castillo" folder="data/scenes/" active="true"/>
-	<scene name="la_nueva_escena" folder="data/scenes/" active="true"/>
-	<scene name="bodegon" folder="data/scenes/" active="true"/>
-	<scene name="scene01" folder="data/scenes/scene01/" active="false"/>
-	-->
-	
+
 </scenes>
  

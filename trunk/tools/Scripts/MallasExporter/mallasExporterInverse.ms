@@ -27,8 +27,6 @@ fn preProcess = (
 		tempMaterial.m_name = lSelectionMaterial.name
 		tempMaterial.setFlags(lSelectionMaterial)
 		append gMatsArray tempMaterial
-		print "introduced1: "
-		print tempMaterial.m_name
 	)else if classOf lSelectionMaterial == Multimaterial then(
 		local lSubMaterialsCount = lSelectionMaterial.numsubs			
 		for iSubMaterial =  1 to lSubMaterialsCount do(
@@ -39,12 +37,9 @@ fn preProcess = (
 				tempMaterial.m_name = lSubMaterial.name
 				tempMaterial.setFlags(lSubMaterial)
 				append gMatsArray tempMaterial
-				print "introduced2: "
-				print tempMaterial.m_name
 			)
 			else if classOf lSubMaterial == Multimaterial then(
 				
-				print "Multi"
 				local lSubMaterialsCount2 = lSubMaterial.numsubs			
 				
 				for iSubMaterial2 =  1 to lSubMaterialsCount2 do(
@@ -57,8 +52,6 @@ fn preProcess = (
 						tempMaterial2.m_name = lSubMaterial2.name
 						tempMaterial2.setFlags(lSubMaterial2)
 						append gMatsArray tempMaterial2
-						print "introduced3: "
-						print tempMaterial2.m_name
 					)
 					else (
 						print classOf lSubMaterial2
@@ -175,45 +168,56 @@ fn writeToBin = (
 		writter.PrintString(lMat.m_name)
 
 		print lMat.m_name
-		print lMat.m_aVB.count
+		print (lMat.m_aVB.count as string)
+
 		writter.PrintUnsignedShort(lMat.flag_value)
 		writter.PrintUnsignedShort(lMat.m_aVB.count)
 		for lVrtx in lMat.m_aVB do(
-		 
+			print ("position")
 			writter.PrintFloat(lVrtx.m_pos.x)
 			writter.PrintFloat(lVrtx.m_pos.y)
 			writter.PrintFloat(lVrtx.m_pos.z)
-
+			print ("normal")
 			writter.PrintFloat(lVrtx.m_norm.x)
 			writter.PrintFloat(lVrtx.m_norm.y)
 			writter.PrintFloat(lVrtx.m_norm.z)
 
 			if(bit.and lMat.flag_value eTangent) == eTangent then(
+				print ("tangent")
 				writter.PrintFloat(lVrtx.m_tangencial.x)
 				writter.PrintFloat(lVrtx.m_tangencial.y)
 				writter.PrintFloat(lVrtx.m_tangencial.z)
+				writter.PrintFloat(lVrtx.m_tangencial.z)
 			)
 			if(bit.and lMat.flag_value eBinormal) == eBinormal then (
+				print("binormal")
 				writter.PrintFloat(lVrtx.m_binormal.x)
 				writter.PrintFloat(lVrtx.m_binormal.y)
 				writter.PrintFloat(lVrtx.m_binormal.z)
+				writter.PrintFloat(lVrtx.m_binormal.z)
 			)
 			if(bit.and lMat.flag_value eUV)  == eUV then (
-
+				print("uv")
 				writter.PrintFloat(lVrtx.m_uv.x)
 				writter.PrintFloat(lVrtx.m_uv.y)
 
 				if(bit.and lMat.flag_value eUV2) == eUV2 then (
+					print("uv2")
 					writter.PrintFloat(lVrtx.m_uv2.x)
 					writter.PrintFloat(lVrtx.m_uv2.y)
 				)
 			)
 
 		)
+		
+		print ("indexes")
+		print (lMat.m_aIB.count as string)
 		writter.PrintUnsignedShort(lMat.m_aIB.count)
+	
 		for idx in lMat.m_aIB do(
 			writter.PrintUnsignedShort(idx)
 		)
+	
 	)
 
 	writter.PrintFloat(gBBox.m_min.x)

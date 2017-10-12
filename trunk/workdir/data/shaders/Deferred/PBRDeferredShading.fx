@@ -37,7 +37,7 @@ float3 GetPBRLightDirection(int IdLight, float3 PixelPosition, out float LightDi
 	}
 	else if(m_LightTypeArray[IdLight]==2)
 	{
-	//Directional Light
+		//Directional Light
 		l_LightDirection=m_LightDirection[IdLight].xyz;
 		LightDistance=0;
 	}
@@ -110,6 +110,7 @@ void CalculatePBRSingleLight(int IdLight, float3 BaseColor, float3 WorldPosition
 	float l_ShadowContrib=1.0;
 	DiffuseContrib=float3(0.0,0.0,0.0);
 	SpecularContrib=float3(0.0,0.0,0.0);
+	
 	if(m_LightEnabledArray[IdLight]==true)
 	{
 		float l_LightDistance;
@@ -139,23 +140,24 @@ void CalculatePBRSingleLight(int IdLight, float3 BaseColor, float3 WorldPosition
 		
 		if(m_UseShadowMapArray[IdLight])
 		{
-			float4 l_LightViewPosition=mul(float4(WorldPosition, 1),
-			m_LightView[IdLight]);
+			float4 l_LightViewPosition=mul(float4(WorldPosition, 1), m_LightView[IdLight]);
 			l_LightViewPosition=mul(l_LightViewPosition,m_LightProjection[IdLight]);
 			float2 l_ProjectedLightCoords=float2(((l_LightViewPosition.x/l_LightViewPosition.w)/2.0f)+0.5f,((-l_LightViewPosition.y/l_LightViewPosition.w)/2.0f)+0.5f);
-			float l_DepthShadowMap=T4Texture.Sample(S4Sampler,l_ProjectedLightCoords).r;
+			float l_DepthShadowMap=T5Texture.Sample(S5Sampler,l_ProjectedLightCoords).r;
 			float l_LightDepth=l_LightViewPosition.z/l_LightViewPosition.w;
 			l_DepthShadowMap=l_DepthShadowMap+m_ShadowMapBiasArray[IdLight];
-			if((saturate(l_ProjectedLightCoords.x)==l_ProjectedLightCoords.x) &&(saturate(l_ProjectedLightCoords.y)==l_ProjectedLightCoords.y))
+			
+			if((saturate(l_ProjectedLightCoords.x)==l_ProjectedLightCoords.x) && (saturate(l_ProjectedLightCoords.y)==l_ProjectedLightCoords.y))
 			{
-				if(l_LightDepth>l_DepthShadowMap)
-					l_ShadowContrib=saturate(1.0f - m_ShadowMapStrengthArray[IdLight]);
+				float hola = l_LightDepth - l_DepthShadowMap;
+				
+				if(hola > 0.001)
+					l_ShadowContrib = 0.0;
 			}
 		}
 		
-	DiffuseContrib=l_Attenuation*BaseColor*l_Diffuse*m_LightIntensityArray[IdLight]*l_ShadowContrib;
-	SpecularContrib=max(float3(0,0,0), l_Attenuation*l_Specular*m_LightIntensityArray[IdLight]*l_ShadowContrib);
-
+		DiffuseContrib = l_Attenuation * BaseColor * l_Diffuse * m_LightIntensityArray[IdLight] * l_ShadowContrib;		
+		SpecularContrib=max(float3(0,0,0), l_Attenuation*l_Specular*m_LightIntensityArray[IdLight]*l_ShadowContrib);		
 	}
 }
 

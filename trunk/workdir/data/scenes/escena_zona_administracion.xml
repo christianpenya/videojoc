@@ -6,13 +6,7 @@
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
 			<collider rigid_body="box" />
 		</scene_mesh>
-		
-		<!-- <scene_mesh name="Sphere001" mesh="data/meshes/olakase/Sphere001.mesh" > -->
-			<!-- <transform position="0.0 5.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.01 0.01 0.01" /> -->
-		<!-- </scene_mesh> -->
-		<!-- <scene_mesh name="Plane001" mesh="data/meshes/olakase/Plane001.mesh" > -->
-			<!-- <transform position="42.2644 0.0 403.031" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" /> -->
-		<!-- </scene_mesh> -->
+
 	</layer>
 
 	<layer name="opaque" active="true" >

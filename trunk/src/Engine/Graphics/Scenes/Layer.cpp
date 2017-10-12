@@ -180,8 +180,8 @@ void CLayer::DrawImgui()
     ImGui::Checkbox("Active", &m_Active);
     if (m_Active)
     {
-//        ImGui::BeginChild("#layer", ImVec2(800, 400), true, ImGuiWindowFlags_AlwaysAutoResize);
-//       ImGui::PushItemWidth(-130);
+        ImGui::BeginChild("#layer", ImVec2(800, 400), true, ImGuiWindowFlags_AlwaysAutoResize);
+        ImGui::PushItemWidth(-130);
 
         for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
         {
@@ -215,9 +215,7 @@ void CLayer::DrawImgui()
 
             case CLight::eLight:
             {
-                CLight *lLight = CEngine::GetInstance().GetLightManager()((*iSceneNode)->GetName());
-                if (lLight != nullptr)
-                    lLight->DrawImgui();
+                (*iSceneNode)->DrawImgui();
             }
             break;
 
@@ -248,8 +246,8 @@ void CLayer::DrawImgui()
             ImGui::PopID();
         }
 
-        /*        ImGui::PopItemWidth();
-                ImGui::EndChild();*/
+        ImGui::PopItemWidth();
+        ImGui::EndChild();
     }
 }
 

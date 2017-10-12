@@ -31,7 +31,6 @@ float4 PS(PS_INPUT IN) : SV_Target
 	float4 l_BaseColor=T0Texture.Sample(S0Sampler, IN.UV);
 	float4 l_SpecularColor=float4(lerp(	0.04f.xxx, l_BaseColor.xyz, l_BaseColor.w), 1.0f);
 	float4 l_AmbientColor=T1Texture.Sample(S1Sampler, IN.UV);
-
 	float l_Occlusion=1-(1-l_AmbientColor.a)*0.75;
 	l_AmbientColor.xyz=pow(abs(l_AmbientColor.xyz), 2.2);
 	l_AmbientColor.xyz*=l_Occlusion;
@@ -53,6 +52,7 @@ float4 PS(PS_INPUT IN) : SV_Target
 	
 	float3 l_CameraToPixel=normalize(l_WorldPosition-m_InverseView[3].xyz);
 	float3 l_NormalDotCam=max(dot(lerp(l_NormalPlane, l_NormalPixel,max(dot(l_NormalPlane, -l_CameraToPixel), 0)), -l_CameraToPixel), 0);
+	
 	//Comment next line to set fresnel or find another operation to calculate fresnel
 	//l_NormalDotCam=float3(1,1,1);
 	

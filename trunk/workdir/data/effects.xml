@@ -20,18 +20,10 @@
 	<shader stage="vertex" name="AnimatedModelForward"/>
 	<shader stage="pixel" name="AnimatedModelForward"/>
   </effect>
-
 	<effect name="PositionTechnique" shader_family="Position">
    <shader stage="vertex"   name="Position"/>
    <shader stage="pixel"    name="Position"/>
   </effect>  
-<!--  
-  <effect name="EnvironmentMapTechniqueForward" shader_family="EnvironmentMapForward">
-   <shader stage="vertex"   name="EnvironmentMapForward"/>
-   <shader stage="pixel"    name="EnvironmentMapForward"/>
-  </effect>
-  -->
-
   
   <!-- DEFERRED -->
   <effect name="PositionNormalTechniqueDeferred" shader_family="PositionNormalDeferred">
@@ -75,6 +67,10 @@
   <effect name="PositionBumpUVPBRGBufferTechnique" shader_family="PositionBumpUVPBRGBuffer">
    <shader stage="vertex"   name="PositionBumpUVPBRGBuffer"/>
    <shader stage="pixel"    name="PositionBumpUVPBRGBuffer"/>
+  </effect> 
+  <effect name="PositionBumpUVUV2PBRGBufferTechnique" shader_family="PositionBumpUVUV2PBRGBuffer">
+   <shader stage="vertex"   name="PositionBumpUVUV2PBRGBuffer"/>
+   <shader stage="pixel"    name="PositionBumpUVUV2PBRGBuffer"/>
   </effect>
   <effect name="AnimatedModelPBRGBufferTechnique"  shader_family="AnimatedModelPBRGBuffer">
 	<shader stage="vertex" name="AnimatedModelPBRGBuffer"/>
