@@ -32,8 +32,10 @@ void CCharacterController::Update(float ElapsedTime)
         x /= 2;
         l_Speed *= 1.4;
     }
-    if (crouch>0.f)
+    if (crouch>0.1f)
         l_Speed *= .6f;
+
+
 
     Vect3f forwardMove = z * l_Front;
     Vect3f horizontalMove = x * l_Right;
@@ -41,6 +43,9 @@ void CCharacterController::Update(float ElapsedTime)
     m_Movement = forwardMove + horizontalMove;
     if (m_Movement != (0, 0, 0))
     {
+
+        player->BlendCycle(2, 1, 0);
+
         m_Movement = m_Movement.GetNormalized();
         Vect3f l_Dir = m_Movement;
 
@@ -59,6 +64,26 @@ void CCharacterController::Update(float ElapsedTime)
     }
     else
     {
+        if (crouch > 0.1f)
+        {
+            if (!player->IsCycleAnimationActive(1))
+            {
+                player->ClearCycle(0, 0.5);
+                player->BlendCycle(1, 0.5, 0);
+            }
+
+        }
+        else
+        {
+            if (!player->IsCycleAnimationActive(0))
+            {
+                player->ClearCycle(1, 0.5);
+                player->BlendCycle(0, 0.5, 0);
+
+            }
+        }
+
+
         physXManager->MoveCharacterController("player", m_Movement, PHYSX_UPDATE_STEP);
         if (player != nullptr)
         {
@@ -77,18 +102,19 @@ void CCharacterController::Init(CSceneManager* sceneManager)
     physXManager = &CEngine::GetInstance().GetPhysXManager();
     sceneManager = &CEngine::GetInstance().GetSceneManager();
 
-    if (sceneManager->GetCurrentScene()->Exist("guardias"))
+    if (sceneManager->GetCurrentScene()->Exist("LPlayer"))
     {
-        CLayer* layer = sceneManager->GetCurrentScene()->GetLayer("guardias");
-        if (layer->Exist("guardiaTEST"))
+        CLayer* layer = sceneManager->GetCurrentScene()->GetLayer("LPlayer");
+        if (layer->Exist("player"))
         {
-            CSceneAnimatedModel* anim = (CSceneAnimatedModel*)(*layer)("guardiaTEST");
+            CSceneAnimatedModel* anim = (CSceneAnimatedModel*)(*layer)("player");
             player = anim;
         }
     }
 
     if (player != nullptr)
-        player->SetPosition(m_Position);
+        //    player->SetPosition(m_Position);
+        m_Position = player->GetPosition();
 
 
 }

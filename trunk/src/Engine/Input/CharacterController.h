@@ -8,6 +8,7 @@
 #include "Math/Vector3.h"
 #include "ActionManager.h"
 #include "Graphics/Scenes/SceneManager.h"
+#include "Graphics/Animation/SceneAnimatedModel.h"
 
 class CPhysXManager;
 class CCharacterController
@@ -16,7 +17,7 @@ class CCharacterController
 public:
     CCharacterController() :
         m_Movement(0, 0, 0),
-        m_Position(0, 0, 8),
+        m_Position(0, 0, 0),
         m_Speed(5.f),
         player(nullptr)
     {
@@ -29,7 +30,7 @@ public:
     Vect3f m_Movement;
     Vect3f m_Position;
     float m_Speed;
-    CSceneNode* player;
+    CSceneAnimatedModel* player;
 
 private:
     Vect3f m_Gravity = (0.0f, 9.81f, 0.0f);

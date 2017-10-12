@@ -152,12 +152,15 @@ void CPhysXManager::CreatePlane(std::string aMaterialName, float x, float y, flo
 }
 
 size_t CPhysXManager::CreateStaticBox(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
-                                      const Vect3f position, float sizeX, float sizeY, float sizeZ)
+                                      const Vect3f position, float sizeX, float sizeY, float sizeZ, int group )
 {
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
     size_t index = GetActorSize(actorName);
     physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
-    body->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
+    PxShape* shape = body->createShape(physx::PxBoxGeometry(sizeX / 2, sizeY / 2, sizeZ / 2), (*l_Material));
+    PxFilterData filterData;
+    filterData.word0 = group;
+    shape->setQueryFilterData(filterData);
     body->userData = (void*)index;
     m_Scene->addActor(*body);
     AddActor(actorName, index, body, orientation, position);
@@ -166,13 +169,17 @@ size_t CPhysXManager::CreateStaticBox(const std::string& actorName, std::string 
 }
 
 void CPhysXManager::CreateStaticSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
-                                       const Vect3f position, float radius)
+                                       const Vect3f position, float radius, int group )
 {
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
     size_t index = GetActorSize(actorName);
 
     physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
-    body->createShape(physx::PxSphereGeometry(radius), (*l_Material));
+
+    PxShape* shape = body->createShape(physx::PxSphereGeometry(radius), (*l_Material));
+    PxFilterData filterData;
+    filterData.word0 = group;
+    shape->setQueryFilterData(filterData);
     body->userData = (void*)index;
     m_Scene->addActor(*body);
 
@@ -180,7 +187,7 @@ void CPhysXManager::CreateStaticSphere(const std::string& actorName, std::string
 }
 
 void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string aMaterialName, const Quatf aOrientation,
-                                      const Vect3f aPosition, std::string aFileName)
+                                      const Vect3f aPosition, std::string aFileName, int group )
 {
     unsigned short vertexNum = 0;
     void* vertexData = nullptr;
@@ -219,7 +226,9 @@ void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string 
 
         physx::PxShape* shape = m_PhysX->createShape(physx::PxTriangleMeshGeometry(triangleMesh), *l_Material);
         physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(aPosition), CastQuat(aOrientation)));
-
+        PxFilterData filterData;
+        filterData.word0 = group;
+        shape->setQueryFilterData(filterData);
         body->attachShape(*shape);
         m_Scene->addActor(*body);
 
@@ -306,7 +315,7 @@ bool CPhysXManager::LoadMeshFile(std::string aFilename, unsigned short* vertexNu
 }
 
 void CPhysXManager::CreateStaticTriangleMesh(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
-        const Vect3f position, std::vector<PxVec3> vertices)
+        const Vect3f position, std::vector<PxVec3> vertices, int group )
 {
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
     size_t index = GetActorSize(actorName);
@@ -325,7 +334,9 @@ void CPhysXManager::CreateStaticTriangleMesh(const std::string& actorName, std::
     PxTriangleMesh* lTriangleMesh = m_PhysX->createTriangleMesh(readBuffer);
 
     physx::PxShape* shape = m_PhysX->createShape(physx::PxTriangleMeshGeometry(lTriangleMesh), *l_Material);
-
+    PxFilterData filterData;
+    filterData.word0 = group;
+    shape->setQueryFilterData(filterData);
     physx::PxRigidStatic* body = m_PhysX->createRigidStatic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
 
     body->attachShape(*shape);
@@ -338,13 +349,13 @@ void CPhysXManager::CreateStaticTriangleMesh(const std::string& actorName, std::
 }
 
 void CPhysXManager::CreateDynamicBox(std::string actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position,
-                                     float sizeX, float sizeY, float sizeZ, physx::PxReal density)
+                                     float sizeX, float sizeY, float sizeZ, physx::PxReal density, int group )
 {
-    CreateDynamicBox(actorName, aMaterialName, orientation, position, sizeX, sizeY, sizeZ, density, false);
+    CreateDynamicBox(actorName, aMaterialName, orientation, position, sizeX, sizeY, sizeZ, density, false,group);
 }
 
 void CPhysXManager::CreateDynamicBox(std::string actorName, std::string aMaterialName, const Quatf orientation, const Vect3f position,
-                                     float sizeX, float sizeY, float sizeZ, physx::PxReal density, bool isKinematic)
+                                     float sizeX, float sizeY, float sizeZ, physx::PxReal density, bool isKinematic, int group)
 {
     size_t index = GetActorSize(actorName);
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
@@ -369,13 +380,16 @@ void CPhysXManager::CreateDynamicBox(std::string actorName, std::string aMateria
 }
 
 void CPhysXManager::CreateDynamicSphere(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
-                                        const Vect3f position, float radius, physx::PxReal density)
+                                        const Vect3f position, float radius, physx::PxReal density, int group )
 {
     size_t index = GetActorSize(actorName);
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
 
     physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
-    body->createShape(physx::PxSphereGeometry(radius), (*l_Material));
+    PxShape* shape = body->createShape(physx::PxSphereGeometry(radius), (*l_Material));
+    PxFilterData filterData;
+    filterData.word0 = group;
+    shape->setQueryFilterData(filterData);
     body->userData = (void*)index;
 
     physx::PxRigidBodyExt::updateMassAndInertia(*body, density);
@@ -385,7 +399,7 @@ void CPhysXManager::CreateDynamicSphere(const std::string& actorName, std::strin
 }
 
 void CPhysXManager::CreateDynamicShape(const std::string& actorName, std::string aMaterialName, const Quatf orientation,
-                                       const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal density)
+                                       const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal density, int group )
 {
     size_t index = GetActorSize(actorName);
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
@@ -405,7 +419,9 @@ void CPhysXManager::CreateDynamicShape(const std::string& actorName, std::string
 
     physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
     physx::PxShape* shape = body->createShape(physx::PxConvexMeshGeometry(convexMesh), *l_Material);
-
+    PxFilterData filterData;
+    filterData.word0 = group;
+    shape->setQueryFilterData(filterData);
     body->userData = (void*)index;
     physx::PxRigidBodyExt::updateMassAndInertia(*body, density);
     m_Scene->addActor(*body);
@@ -413,7 +429,7 @@ void CPhysXManager::CreateDynamicShape(const std::string& actorName, std::string
 }
 
 void CPhysXManager::CreateDynamicTriangleMesh(const std::string& actorName, std::string aMaterialName,
-        const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal density)
+        const Quatf orientation, const Vect3f position, std::vector<PxVec3> vertices, physx::PxReal density, int group )
 {
     const physx::PxMaterial* l_Material = m_Materials[aMaterialName];
     size_t index = GetActorSize(actorName);
@@ -433,7 +449,9 @@ void CPhysXManager::CreateDynamicTriangleMesh(const std::string& actorName, std:
 
     physx::PxRigidDynamic* body = m_PhysX->createRigidDynamic(physx::PxTransform(CastVec(position), CastQuat(orientation)));
     physx::PxShape* shape = body->createShape(physx::PxTriangleMeshGeometry(lTriangleMesh), *l_Material);
-
+    PxFilterData filterData;
+    filterData.word0 = group;
+    shape->setQueryFilterData(filterData);
     body->userData = (void*)index;
     m_Scene->addActor(*body);
 
@@ -524,7 +542,7 @@ CPhysXManager::CharacterControllerData CPhysXManager::MoveCharacterController(co
 
     physx::PxRigidDynamic* actor = cct->getActor();
     size_t index = (size_t)actor->userData;
-    Vect3f movement2 = movement + Vect3f(0, -1, 0);
+    Vect3f movement2 = movement + G_Gravity;
     cct->move(CastVec(movement2), movement.Length() * 0.01f, elapsedTime, filters);
 
     physx::PxExtendedVec3 p = cct->getFootPosition();
@@ -540,7 +558,7 @@ CPhysXManager::CharacterControllerData CPhysXManager::MoveCharacterController(co
 
 bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterMask, RaycastData* result_)
 {
-    /*
+
     Vect3f dir = end - origin;
     float len = dir.Length();
     if (origin != Vect3f(0, 0, 0))
@@ -568,7 +586,7 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
 
     }
     return status;
-    */
+    /*
 
     physx::PxFilterData filterData;
     filterData.setToDefault();
@@ -597,7 +615,7 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
             status = false;
     }
     return status;
-
+    */
 }
 
 void CPhysXManager::AddFixedJoint(const std::string& jointName, const std::string& actor1Name, const std::string& actor2Name)

@@ -28,10 +28,12 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
 
             std::string lRigidBody = iCollider->GetAttribute<std::string>("rigid_body", "");
             std::string lFilename = iCollider->GetAttribute<std::string>("filename", "");
+            int lGroup = iCollider->GetAttribute<int>("group", 0);
             Vect3f lOffset = iCollider->GetAttribute<Vect3f>("offset", Vect3f(0.0f, 0.0f, 0.0f));
             float lYawOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("yaw", 0.0f));
             float lPitchOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("pitch", 0.0f));
             float lRollOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("roll", 0.0f));
+            m_Name = iCollider->GetAttribute<std::string>("name", m_Name);
 
             bool isKinematic = iCollider->GetAttribute<bool>("kinematic", false);
             Vect3f lColliderPosition;
@@ -82,7 +84,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
 
                 lCenter = m_Position;
-                CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f, isKinematic);
+                CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f, isKinematic, lGroup);
 
                 rotation = CEngine::GetInstance().GetPhysXManager().GetActorOrientation(m_Name);
                 m_Position = CEngine::GetInstance().GetPhysXManager().GetActorPosition(m_Name) + rotation.Rotate(cubeOffset);
@@ -99,7 +101,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 assert(strcmp(lFilename.c_str(), "") != 0);
                 lColliderPosition = m_Position + lOffset;
 
-                CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, lColliderPosition, lFilename);
+                CEngine::GetInstance().GetPhysXManager().CreateStaticShape(m_Name, "Default", rotation, lColliderPosition, lFilename, lGroup);
 
                 break;
             case eSphere:

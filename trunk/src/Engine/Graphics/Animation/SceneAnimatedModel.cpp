@@ -121,6 +121,7 @@ void CSceneAnimatedModel::ExecuteAction(int Id, float DelayIn, float DelayOut, f
 
 void CSceneAnimatedModel::BlendCycle(int Id, float Weight, float DelayIn)
 {
+    lastCycle = Id;
     m_CalModel->getMixer()->blendCycle(Id, Weight, DelayIn);
 }
 
@@ -132,7 +133,7 @@ void CSceneAnimatedModel::ClearCycle(int Id, float DelayOut)
 bool CSceneAnimatedModel::IsCycleAnimationActive(int Id) const
 {
 
-    return false;
+    return (lastCycle == Id);
 }
 
 bool CSceneAnimatedModel::IsActionAnimationActive(int Id) const

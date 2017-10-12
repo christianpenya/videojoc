@@ -17,7 +17,7 @@ public:
     CPhysXManagerImplementation();
     ~CPhysXManagerImplementation();
 
-    void AddCharacterController(const std::string& actorName, float height, float radius, const Vect3f& position, const Quatf& orientation, const std::string& material, float density);
+    void AddCharacterController(const std::string& actorName, float height, float radius, const Vect3f& position, const Quatf& orientation, const std::string& material, float density, int group = 0);
 
     // PxSimulationEventCallback
     void onConstraintBreak(physx::PxConstraintInfo* constraints, physx::PxU32 count) {}
