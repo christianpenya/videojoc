@@ -151,7 +151,7 @@ void CalculatePBRSingleLight(int IdLight, float3 BaseColor, float3 WorldPosition
 			{
 				float hola = l_LightDepth - l_DepthShadowMap;
 				
-				if(hola > 0.00001)
+				if(hola > 0.001)
 					l_ShadowContrib = 0.0;
 			}
 		}
