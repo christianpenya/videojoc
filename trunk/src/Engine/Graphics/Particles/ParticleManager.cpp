@@ -42,3 +42,20 @@ void CParticleManager::Reload()
     Destroy();
     Load(m_Filename);
 }
+
+void CParticleManager::DrawImgui()
+{
+    if (ImGui::TreeNode("Particles"))
+    {
+        ImGui::ColorEditMode(ImGuiColorEditMode_RGB);
+
+        for (TMapResources::iterator iParticleMapEntry = m_ResourcesMap.begin(); iParticleMapEntry != m_ResourcesMap.end(); ++iParticleMapEntry)
+        {
+            CParticleSystemType* lParticle = iParticleMapEntry->second.m_Value;
+            ImGui::PushID(iParticleMapEntry->second.m_Id);
+            lParticle->DrawImgui();
+            ImGui::PopID();
+        }
+        ImGui::TreePop();
+    }
+}

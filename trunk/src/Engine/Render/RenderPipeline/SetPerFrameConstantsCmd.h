@@ -16,6 +16,7 @@ public:
     bool Load(const CXMLElement* aElement);
     void UpdateConstants();
     virtual void Execute(CRenderManager& lRM);
+    virtual void DrawImgui();
 private:
     DISALLOW_COPY_AND_ASSIGN(CSetPerFrameConstantsCmd);
 };

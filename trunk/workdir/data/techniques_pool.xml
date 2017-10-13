@@ -13,6 +13,7 @@
 		<technique vertex_type="DeferredQuad"/>
 		<technique vertex_type="ParticleVertex"/>
 		<technique vertex_type="Position"/>
+		<technique vertex_type="Line"/>
 		<technique name="NoiseVignetting" />
 		<technique name="Fog" />
 		<technique name="ZBlur" />
@@ -40,6 +41,7 @@
 		<!--<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>-->
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueForward"/>
 		<technique vertex_type="Position" effect="PositionTechnique"/>		
+		<technique vertex_type="Line" effect="LineTechnique"/>		
 		<!--<technique vertex_type="EnvironmentMap" effect="EnvironmentMapTechniqueForward"/>-->
 	</pool>
 	
@@ -55,6 +57,7 @@
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelTechniqueDeferred"/>
 		<technique vertex_type="PositionUV" effect="DeferredQuadTechnique"/>
 		<technique vertex_type="Position" effect="PositionTechnique"/>		
+		<technique vertex_type="Line" effect="LineTechnique"/>		
 	</pool>
 	
 	<pool name="pbr_gbuffer">
@@ -66,7 +69,8 @@
 		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVPBRGBufferTechnique"/>
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2PBRGBufferTechnique"/>
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelPBRGBufferTechnique"/>
-		<technique vertex_type="Position" effect="PositionTechnique"/>		
+		<technique vertex_type="Position" effect="PositionTechnique"/>
+		<technique vertex_type="Line" effect="LineTechnique"/>				
 	</pool>
 
  	<pool name="pbr_lighting">
@@ -88,7 +92,8 @@
 		<technique vertex_type="PositionBumpUV" effect="PositionBumpUVShadowTechnique"/>
 		<technique vertex_type="PositionBumpUVUV2" effect="PositionBumpUVUV2TechniqueForward"/>
 		<technique vertex_type="PositionWeightIndicesNormalUV" effect="AnimatedModelShadowTechnique"/>
-		<technique vertex_type="Position" effect="PositionTechnique"/>		
+		<technique vertex_type="Position" effect="PositionTechnique"/>	
+		<technique vertex_type="Line" effect="LineTechnique"/>				
 	</pool>
 	
 	<!--

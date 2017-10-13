@@ -62,13 +62,16 @@ void CSetDepthStencilStateCmd::Execute(CRenderManager& lRM)
     lRM.GetDeviceContext()->OMSetDepthStencilState(m_DepthStencilState, 0);
 }
 
-void CSetDepthStencilStateCmd::DrawImGui()
+void CSetDepthStencilStateCmd::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if (ImGui::TreeNode(m_Name.c_str()))
     {
+        ImGui::PushID(m_Name.c_str());
         ImGui::Checkbox("Enable Z Test", &m_EnableZTest);
         ImGui::Checkbox("Write Z Buffer", &m_WriteZBuffer);
         ImGui::Checkbox("Enable Stencil", &m_EnableStencil);
         ImGui::SliderInt("Comparison Func", &m_ComparisonFunc, 1, 8);
+        ImGui::PopID();
+        ImGui::TreePop();
     }
 }

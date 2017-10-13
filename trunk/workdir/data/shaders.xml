@@ -48,6 +48,7 @@
 		
 		<shader name="ParticleVertex" file="particleShader.fx" entry_point="VS" vertex_type="ParticleVertex" preprocessor=""/>
 		<shader name="Position" file="Forward/Position.fx" entry_point="VS" vertex_type="Position" preprocessor=""/>
+		<shader name="Line" file="Forward/Line.fx" entry_point="VS" vertex_type="Line" preprocessor=""/>
 		
 	</vertex_shaders>     
 
@@ -104,6 +105,7 @@
 		
 			
 		<shader name="Position" file="Forward/Position.fx" entry_point="PS" preprocessor=""/>
+		<shader name="Line" file="Forward/Line.fx" entry_point="PS" preprocessor=""/>
 		
 		
 		<!--other-->

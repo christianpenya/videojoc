@@ -52,5 +52,5 @@
 		<point name="PatrolPoint_DroneComedorFinDerecha"/>
 		<point name="PatrolPoint2_DroneComedorFinDerecha"/>
 	</enemy>	
-
+	
 </enemies>

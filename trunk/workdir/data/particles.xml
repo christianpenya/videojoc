@@ -3,8 +3,8 @@
 		<control_point_size size="0.5 2.5" time="0.1 15.0" />
 		<control_point_color color1="1.0 1.0 1.0 1.0" color2="0.0 0.0 1.0 1.0" time="0.1 15.0" />
 	</particle>
-	<particle name="LightDrone" material="LightDroneMaterial"  numFrames="8" timePerFrame= "0.1" loopFrames="true" emitAbsolute="true" startingDirectionAngle="0.0" startingAccelerationAngle="1.0" size="0.0 4.0" emitRate="10.0 10.0"  awakeTime="0.0 0.0" sleepTime="0.3 0.3" life="20.0 20.0" startingAngle="0.0 0.0"  startingAngularSpeed="1.0 1.0"	angularAcceleration= "0.5 0.5"  startingSpeed1="0.0 0.0 0.0"  startingSpeed2="0.0 0.0 0.0" startingAcceleration1="0.0 0.0 0.0" startingAcceleration2="0.0 0.0 0.0"  color1="1.0 1.0 1.0 1.0" color2="1.0 1.0 1.0 0.0">
+<!--	<particle name="LightDrone" material="LightDroneMaterial"  numFrames="8" timePerFrame= "0.1" loopFrames="true" emitAbsolute="true" startingDirectionAngle="0.0" startingAccelerationAngle="1.0" size="0.0 4.0" emitRate="10.0 10.0"  awakeTime="0.0 0.0" sleepTime="0.3 0.3" life="20.0 20.0" startingAngle="0.0 0.0"  startingAngularSpeed="1.0 1.0"	angularAcceleration= "0.5 0.5"  startingSpeed1="0.0 0.0 0.0"  startingSpeed2="0.0 0.0 0.0" startingAcceleration1="0.0 0.0 0.0" startingAcceleration2="0.0 0.0 0.0"  color1="1.0 1.0 1.0 1.0" color2="1.0 1.0 1.0 0.0">
 		<control_point_size size="4 4" time="0 0" />
 		<control_point_color color1="1.0 1.0 1.0 1.0" color2="1.0 1.0 1.0 1.0" time="0.1 15.0" />
-	</particle>	
+	</particle>	-->
 </particle_systems>

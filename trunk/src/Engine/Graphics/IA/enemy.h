@@ -12,11 +12,13 @@
 #include "Utils/StringUtils.h"
 //#include "Graphics/Scenes/SceneNode.h"
 #include "Graphics/Scenes/SceneMesh.h"
+#include "Graphics/Animation/SceneAnimatedModel.h"
 #include "Utils/EnumToString.h"
 #include "Render/RenderPipeline/DynamicTexture.h"
 #include "Graphics/Scenes/Layer.h"
 #include "Graphics\IA\NavMeshManager.h"
 #include "Pathfinding.h"
+#include "Physx/PhysxManager.h"
 
 
 using namespace std;

@@ -1,3 +1,4 @@
+#pragma once
 #include "Layer.h"
 #include "XML/tinyxml2/tinyxml2.h"
 #include "SceneMesh.h"
@@ -6,6 +7,8 @@
 #include "Engine/Engine.h"
 #include "Graphics/Animation/SceneAnimatedModel.h"
 #include "Graphics/Animation/AnimatedModelManager.h"
+#include "Graphics/Mesh/MeshManager.h"
+#include "Graphics/Mesh/Mesh.h"
 #include "Graphics/Lights/LightManager.h"
 #include "Graphics/Particles/ParticleSystemInstance.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
@@ -14,6 +17,9 @@
 #include "Graphics/IA/EnemiesManager.h"
 #include "Graphics/IA/NavMesh.h"
 #include "Graphics/IA/NavMeshManager.h"
+#include "Graphics/IA/Laser.h"
+#include "Graphics/IA/LaserManager.h"
+
 
 #ifdef _DEBUG
 #include <chrono>
@@ -36,6 +42,7 @@ bool CLayer::Load(CXMLElement* aElement)
     bool lOk = true;
     CLightManager &lLM = CEngine::GetInstance().GetLightManager();
     CEnemiesManager &lEnemiesManager = CEngine::GetInstance().GetEnemiesManager();
+    CLaserManager &l_LaserManager = CEngine::GetInstance().GetLaserManager();
     CNavMeshManager &l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
 
     for (tinyxml2::XMLElement *iSceneMesh = aElement->FirstChildElement(); iSceneMesh != nullptr; iSceneMesh = iSceneMesh->NextSiblingElement())
@@ -109,7 +116,17 @@ bool CLayer::Load(CXMLElement* aElement)
                 lNode->SetNodeType(CSceneNode::eEnemy);
             }
         }
+        else if (strcmp(iSceneMesh->Name(), "scene_laser") == 0)
+        {
+            std::string l_LaserName = iSceneMesh->GetAttribute<std::string>("name", "");
+            CLaser *l_laser = nullptr;
 
+            if (l_LaserManager.Exist(l_LaserName))
+            {
+                lNode = l_LaserManager(l_LaserName);
+                lNode->SetNodeType(CSceneNode::eLaser);
+            }
+        }
         if (lNode)
         {
             lNode->SetParent(this);
@@ -186,7 +203,6 @@ void CLayer::DrawImgui()
         for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
         {
             ImGui::PushID((*iSceneNode)->GetName().c_str());
-
             switch ((*iSceneNode)->GetNodeType())
             {
 
@@ -234,7 +250,12 @@ void CLayer::DrawImgui()
                 if (lNavMesh != nullptr)
                     lNavMesh->DrawImgui();
             }
-
+            case CSceneNode::eLaser:
+            {
+                CLaser *lLaser = CEngine::GetInstance().GetLaserManager()((*iSceneNode)->GetName());
+                if (lLaser != nullptr)
+                    lLaser->DrawImgui();
+            }
             break;
             default:
             {
@@ -245,9 +266,6 @@ void CLayer::DrawImgui()
 
             ImGui::PopID();
         }
-
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
     }
 }
 

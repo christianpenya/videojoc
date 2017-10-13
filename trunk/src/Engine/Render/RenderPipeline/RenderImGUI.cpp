@@ -59,15 +59,43 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
             lEngine.DrawImgui(1);
             ImGui::EndMenu();
         }
+
+        if (ImGui::BeginMenu("Materials"))
+        {
+            lEngine.DrawImgui(2);
+            ImGui::EndMenu();
+        }
         if (ImGui::BeginMenu("Reloads"))
         {
             Reloads(lEngine);
             ImGui::EndMenu();
         }
-        if (ImGui::BeginMenu("Shaders"))
+        if (ImGui::BeginMenu("Events"))
         {
+            lEngine.DrawImgui(3);
             ImGui::EndMenu();
         }
+        if (ImGui::BeginMenu("Lights"))
+        {
+            lEngine.DrawImgui(4);
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Particles"))
+        {
+            lEngine.DrawImgui(5);
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Render Pipeline"))
+        {
+            lEngine.DrawImgui(6);
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Enemies"))
+        {
+            lEngine.DrawImgui(7);
+            ImGui::EndMenu();
+        }
+
         ImGui::EndMainMenuBar();
 
     }
@@ -140,3 +168,5 @@ void CRenderImGUI::Reloads(CEngine& lEngine)
 
     }
 }
+
+void CRenderImGUI::DrawImgui() {}

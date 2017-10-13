@@ -35,3 +35,7 @@ void CApplyTechniquePool::Execute(CRenderManager& lRM)
         lTechniquePoolManager.Apply(m_PoolName);
     }
 }
+
+
+void CApplyTechniquePool::DrawImgui() {}
+

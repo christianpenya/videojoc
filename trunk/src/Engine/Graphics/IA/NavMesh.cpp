@@ -39,21 +39,13 @@ CNavMesh::CNavMesh(const CXMLElement* aTreeNode)
     bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &err, lObj.c_str(),"",true);
 
     if (!err.empty())
-    {
-//        std::cerr << err << std::endl;
         printf("error obj");
-    }
 
     if (!ret)
-    {
         printf("Failed to load/parse .obj.\n");
-
-    }
 
     for (size_t v = 0; v < attrib.vertices.size(); v += 3)
     {
-        //m_VertexData.push_back(Vect3f(attrib.vertices[v], attrib.vertices[v + 1], attrib.vertices[v + 2]));
-
         Vertex lvertex;
         lvertex.position = Vect3f(attrib.vertices[v], attrib.vertices[v + 1], attrib.vertices[v+2]);
         m_Vertexs.push_back(lvertex);
@@ -72,10 +64,6 @@ CNavMesh::CNavMesh(const CXMLElement* aTreeNode)
         ltriangle.idx3 = shapes[0].mesh.indices[v+2].vertex_index;
         m_Triangles.push_back(ltriangle);
 
-        /*m_Vertexs[ltriangle.idx1].m_neighbour.push_back(m_Triangles[i]);
-        m_Vertexs[ltriangle.idx2].m_neighbour.push_back(m_Triangles[i]);
-        m_Vertexs[ltriangle.idx3].m_neighbour.push_back(m_Triangles[i]);
-        */
         triangles.push_back(ltriangle.idx1);
         triangles.push_back(ltriangle.idx2);
         triangles.push_back(ltriangle.idx3);
@@ -86,10 +74,7 @@ CNavMesh::CNavMesh(const CXMLElement* aTreeNode)
     int valor = 0;
     int valor2 = 0;
     for (size_t v = 0; v < attrib.normals.size(); v += 3)
-    {
         m_Triangles[attrib.normals[v]-1].m_neighbour.push_back(*GetTriangle(attrib.normals[v + 1]-1));
-
-    }
 
     CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
     CMaterialManager& lMM = CEngine::GetInstance().GetMaterialManager();
@@ -100,38 +85,8 @@ CNavMesh::CNavMesh(const CXMLElement* aTreeNode)
         new CIndexBuffer(lRM, triangles.data(), triangles.size(), 16)
     );
 
-
-    //Carga XML
-    /*    CName::SetName(aTreeNode->GetAttribute<std::string>("name", ""));
-        const tinyxml2::XMLElement* aElement = aTreeNode->FirstChildElement();
-        while (aElement != NULL)
-        {
-            if (strcmp(aElement->Name(), "vertex") == 0)
-            {
-                m_VertexData.push_back(aElement->GetAttribute<Vect3f>("position", Vect3f(0.0f, 0.0f, 0.0f)));
-            }
-            if (strcmp(aElement->Name(), "triangle") == 0)
-            {
-                Vect3f indexValue = aElement->GetAttribute<Vect3f>("index", Vect3f(0, 0, 0));
-                Index value;
-                value.v1 = indexValue.x;
-                value.v2 = indexValue.y;
-                value.v3 = indexValue.z;
-                m_IndexData.push_back(value);
-            }
-            aElement = aElement->NextSiblingElement();
-        }
-    CGeometry* lgeometry = new CIndexedGeometryTriangleList<VertexTypes::Position>
-    (
-        new CVertexBuffer<VertexTypes::Position>(lRM, m_VertexData.data(), m_VertexData.size()),
-        new CIndexBuffer(lRM, m_IndexData.data(), m_IndexData.size()*3, 16)
-    );
-    */
-
     mGeometries = lgeometry;
     mMaterials = lMM(aTreeNode->GetAttribute<std::string>("material", ""));
-
-
 
 }
 
@@ -142,17 +97,7 @@ bool CNavMesh::Render(CRenderManager& lRM)
     bool lOk = true;
     mMaterials->Apply();
     mGeometries->RenderIndexed(lRM.GetDeviceContext());
-
-    /*    CPathfinding* lpath = new CPathfinding(Vect3f(-55.5f, 1.19f, 41.7f), Vect3f(-42.66667f, 0.01214442f, 42.66667f), "navMeshScene01");
-        lpath->GetPath();
-        bool encontro = lpath->PathfindStep();
-
-
-        int indice = atTriangle(Vect3f(-55.36667f,0.01214442f, 44.16667f));
-        Triangle* l_triangle = GetTriangle(indice);
-        std::string temp = "En triangulo: " + indice;
-        LOG_INFO_APPLICATION("triangle ", temp);
-    */    return lOk;
+    return lOk;
 }
 
 Vect3f CNavMesh::GetCenter(Triangle* triangle)

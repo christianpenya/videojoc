@@ -17,3 +17,6 @@ void CEndRenderCmd::Execute(CRenderManager& lRM)
 {
     lRM.EndRender();
 }
+
+
+void CEndRenderCmd::DrawImgui() {}

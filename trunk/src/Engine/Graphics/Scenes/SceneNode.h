@@ -24,6 +24,7 @@ public:
         eParticle,
         eNavMesh,
         eEnemy,
+        eLaser,
         eSceneNodeCount
     };
 

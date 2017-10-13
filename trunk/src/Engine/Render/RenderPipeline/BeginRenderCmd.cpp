@@ -25,3 +25,5 @@ void CBeginRenderCmd::Execute(CRenderManager& lRM)
 {
     lRM.BeginRender();
 }
+
+void CBeginRenderCmd::DrawImgui() {}

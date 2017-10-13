@@ -21,3 +21,5 @@ void CUnSetRenderTarget::Execute(CRenderManager& lRM)
 {
     lRM.UnsetRenderTargets();
 }
+
+void CUnSetRenderTarget::DrawImgui() {}
