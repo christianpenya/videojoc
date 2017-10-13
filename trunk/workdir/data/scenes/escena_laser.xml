@@ -1,0 +1,54 @@
+<scene>
+
+
+
+	<layer name="laser" active="true">
+		<scene_laser name="laserBoss">
+			<transform position="6.9 6.67 -107.44" yaw="0.0" pitch="-90.0" roll="0.0" forward="0.0 0.0 0.0" />
+		</scene_laser> 
+					<scene_mesh name="PatrolPoint" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+				<transform position="20 0.0 -47.1" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			</scene_mesh>
+			<scene_mesh name="PatrolPoint2" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+				<transform position="20 0.0 -109.1" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			</scene_mesh>
+
+			<scene_mesh name="PatrolPoint3" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+				<transform position="-30 0.0 -109.1" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			</scene_mesh>
+			<scene_mesh name="PatrolPoint4" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+				<transform position="-30 0.0 -47.1" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			</scene_mesh>			
+
+	</layer>
+
+		<layer name="opaque" active="true" >		
+			<scene_mesh name="gun" mesh="data/meshes/reclusion/Cylinder001.mesh" >
+				<transform position="6.9 6.67 -107.44" yaw="0.0" pitch="50.97" roll="0.0" scale="0.03 0.03 0.03" />
+			</scene_mesh>	
+
+		</layer>
+			
+			
+	<layer name="guardias" active="true" >
+		<scene_animated_model name="guardiaTEST" core="prota"> rigid_body = "player">
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+		<!--
+		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
+			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+		-->
+	</layer>	
+
+			
+	<layer name="Skybox" active="true">
+		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true">
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+	</layer>
+	
+	
+	
+</scene>
+
