@@ -82,7 +82,6 @@ void CMaterialManager::DrawImgui()
 
             if (iMaterial->first != "" && iMaterial->second != NULL)
             {
-                iMaterial->second->DrawImgui();
                 ImGui::PushID(iMaterial->second->GetName().c_str());
                 iMaterial->second->DrawImgui();
                 ImGui::PopID();

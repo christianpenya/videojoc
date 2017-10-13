@@ -57,6 +57,7 @@ void CApplyFilter::DrawImgui()
         for (size_t i = 0; i < m_DynamicTexturesMaterials.size(); ++i)
         {
             if (m_DynamicTexturesMaterials[i]->m_Material != nullptr)
+
             {
                 if (ImGui::TreeNode(m_DynamicTexturesMaterials[i]->m_DynamicTexture->GetName().c_str()))
                 {

@@ -17,8 +17,8 @@
 #include "Graphics/IA/EnemiesManager.h"
 #include "Graphics/IA/NavMesh.h"
 #include "Graphics/IA/NavMeshManager.h"
-#include "Graphics/IA/Laser.h"
-#include "Graphics/IA/LaserManager.h"
+//#include "Graphics/IA/Laser.h"
+//#include "Graphics/IA/LaserManager.h"
 
 
 #ifdef _DEBUG
@@ -116,7 +116,7 @@ bool CLayer::Load(CXMLElement* aElement)
                 lNode->SetNodeType(CSceneNode::eEnemy);
             }
         }
-        else if (strcmp(iSceneMesh->Name(), "scene_laser") == 0)
+        /*else if (strcmp(iSceneMesh->Name(), "scene_laser") == 0)
         {
             std::string l_LaserName = iSceneMesh->GetAttribute<std::string>("name", "");
             CLaser *l_laser = nullptr;
@@ -126,7 +126,8 @@ bool CLayer::Load(CXMLElement* aElement)
                 lNode = l_LaserManager(l_LaserName);
                 lNode->SetNodeType(CSceneNode::eLaser);
             }
-        }
+        }*/
+
         if (lNode)
         {
             lNode->SetParent(this);
@@ -250,13 +251,13 @@ void CLayer::DrawImgui()
                 if (lNavMesh != nullptr)
                     lNavMesh->DrawImgui();
             }
-            case CSceneNode::eLaser:
-            {
-                CLaser *lLaser = CEngine::GetInstance().GetLaserManager()((*iSceneNode)->GetName());
-                if (lLaser != nullptr)
-                    lLaser->DrawImgui();
-            }
-            break;
+            /* case CSceneNode::eLaser:
+             {
+                 CLaser *lLaser = CEngine::GetInstance().GetLaserManager()((*iSceneNode)->GetName());
+                 if (lLaser != nullptr)
+                     lLaser->DrawImgui();
+             }
+             break;*/
             default:
             {
                 LOG_WARNING_APPLICATION("Unknown Scene Node Type");

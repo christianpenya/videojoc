@@ -190,7 +190,7 @@
 	<material name="LineMaterial" vertex_type="Line">
 		<parameter type="color" name="diffuse_color" value="1 0 0 1.0" />
 	</material>
-
+-->
 	
 </materials>
  
