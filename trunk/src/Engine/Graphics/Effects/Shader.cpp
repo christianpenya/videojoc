@@ -8,10 +8,6 @@
 #include "Utils/CheckedRelease.h"
 #include "Utils/FileUtils.cpp"
 
-
-
-
-
 #include <filesystem>
 
 CShader::CShader(const std::string& aShaderCode, EShaderStage aType) :

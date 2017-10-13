@@ -25,13 +25,13 @@
 	<render_layer layer="LPlayer"/>
 	<render_layer layer="triggers"/>
 	<render_layer layer="navmesh"/>
-	<render_layer layer="drones"/>
 	<render_layer layer="salas"/>
 	
 	<unset_render_target/>	
 	End generate gbuffer
 	
-	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false"/>
+	<apply_technique_pool pool_name="pbr_lighting"/>
+	<set_depth_stencil_state name="Depth Stencil Buffer diffuse y specular lighting"  enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>
 	
 	Generate buffer diffuse y specular lighting
 	<set_render_target name="GbufferLighting">
@@ -58,11 +58,11 @@
 	</set_render_target>
 	
 	<apply_technique_pool name="apply_composite" pool_name="pbr_composite"/>
-	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false"/>
+	<set_depth_stencil_state name="Depth Stencil Composite final pixel" enable_z_test="false" write_z_buffer="false"/>
 	
 	Composite final pixel
 
-	<draw_quad material="DrawQuadMaterial">
+	<draw_quad name="Draw Quad Composite final pixel" material="DrawQuadMaterial">
 		<texture stage_id="0" name="AlbedoTexture"/>
 		<texture stage_id="1" name="LightMapTexture"/>
 		<texture stage_id="2" name="NormalMapTexture"/>
@@ -72,7 +72,7 @@
 		<texture stage_id="6" name="SpecularLightingTexture"/>
 	</draw_quad>
 
-	<set_depth_stencil_state enable_z_test="true" write_z_buffer="true"/>	
+	<set_depth_stencil_state name="Depth Stencil End Composite final pixel" enable_z_test="true" write_z_buffer="true"/>	
 	
 	SKYBOX
 	<apply_technique_pool pool_name="skybox"/>
@@ -82,7 +82,7 @@
 	
 	<apply_technique_pool pool_name="quad"/>
 	<!--<set_depth_stencil_state enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>-->
-	<draw_quad material="DrawQuadMaterial">
+	<draw_quad name="Draw Quad HDR" material="DrawQuadMaterial">
         <texture name="HDRCapturedTexture" stage_id="0"/>
     </draw_quad>
 	
@@ -110,19 +110,19 @@
         <texture name="DiffuseLightingTexture" stage_id="0"/>
     </draw_quad>
 	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "0 129" viewport_size = "128 128">
+	<draw_quad name="Draw Quad LightMap" material="DrawQuadMaterial" viewport_position = "0 129" viewport_size = "128 128">
         <texture name="LightMapTexture" stage_id="0"/>
     </draw_quad>
 	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">
+	<draw_quad name="Draw Quad NormalMap" material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">
         <texture name="NormalMapTexture" stage_id="0"/>
     </draw_quad>
 	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "129 129" viewport_size = "128 128">
+	<draw_quad name="Draw Quad DepthMap" material="DrawQuadMaterial" viewport_position = "129 129" viewport_size = "128 128">
         <texture name="DepthMapTexture" stage_id="0"/>
     </draw_quad>
 	
-	<draw_quad material="DrawQuadMaterial" viewport_position = "258 0" viewport_size = "128 128">
+	<draw_quad name="Draw Quad SpecularMap" material="DrawQuadMaterial" viewport_position = "258 0" viewport_size = "128 128">
         <texture name="SpecularMapTexture" stage_id="0"/>
     </draw_quad> -->
 	

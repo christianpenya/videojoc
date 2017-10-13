@@ -18,6 +18,7 @@ public:
     virtual ~CGenerateShadowMaps();
     bool Load(const CXMLElement* aElement) override;
     void Execute(CRenderManager& lRM) override;
+    virtual void DrawImgui();
     bool Refresh(); //TODO cuando se refresque escena hace falta actualizar las luces que generan sombras
 private:
     DISALLOW_COPY_AND_ASSIGN(CGenerateShadowMaps);

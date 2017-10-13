@@ -17,6 +17,7 @@ public:
     virtual ~CCaptureFrameBuffer();
     bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager& lRM);
+    virtual void DrawImgui();
 private:
     DISALLOW_COPY_AND_ASSIGN(CCaptureFrameBuffer);
     CCaptureFrameBufferTexture* m_CapturedFrameBufferTexture;

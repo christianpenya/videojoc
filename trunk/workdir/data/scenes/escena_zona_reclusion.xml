@@ -1560,7 +1560,7 @@
 
 	</layer>
 	
-	<layer name="drones" active="false">
+	<layer name="drones" active="true">
 		
 		<scene_mesh name="PatrolPoint_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="8.46 1.19 22.11" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
@@ -10735,10 +10735,10 @@
 	</layer>	
 	
 	<layer name="DronesLight" active="false" >	
-		<scene_particle name="LightDrone" nextParticleEmission="0.5"  awake="true" awakeTimer="0.8"  activeParticles="200" emission_box_size="0.0 0.0 0.0" > 
+<!--		<scene_particle name="LightDrone" nextParticleEmission="0.5"  awake="true" awakeTimer="0.8"  activeParticles="200" emission_box_size="0.0 0.0 0.0" > 
 			<transform position="0.0 0.0 5.0"  forward="0.0 0.0 0.0" />
 		</scene_particle> 
-
+-->
 	</layer>	
 
 

@@ -21,3 +21,5 @@ void CDisableAlphaBlend::Execute(CRenderManager &lRM)
 {
     lRM.GetDeviceContext()->OMSetBlendState(NULL, NULL, 0xffffffff);
 }
+
+void CDisableAlphaBlend::DrawImgui() {}

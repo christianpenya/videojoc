@@ -17,7 +17,7 @@ public:
     virtual ~CParticleManager();
     bool Load(const std::string& aFilename);
     void Reload();
-    void DrawImgui(const char* title, bool* open);
+    void DrawImgui();
 private:
     std::string m_Filename;
 };

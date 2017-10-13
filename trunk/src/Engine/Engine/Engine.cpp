@@ -23,6 +23,7 @@
 #include "Graphics/Particles/ParticleManager.h"
 #include "Graphics/IA/NavMeshManager.h"
 #include "Graphics/IA/EnemiesManager.h"
+//#include "Graphics/IA/LaserManager.h"
 #include "Sound/ISoundManager.h"
 #include "GUI/GUIManager.h"
 #include "GUI/GUIPosition.h"
@@ -58,6 +59,7 @@ CEngine::CEngine()
     , m_ParticleManager(nullptr)
     , m_NavMeshManager(nullptr)
     , m_EnemiesManager(nullptr)
+    , m_LaserManager(nullptr)
     , m_GUIManager(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
@@ -94,6 +96,7 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_GUIManager);
     base::utils::CheckedDelete(m_EventManager);
     base::utils::CheckedDelete(m_EnemiesManager);
+    base::utils::CheckedDelete(m_LaserManager);
 
 }
 
@@ -157,6 +160,11 @@ void CEngine::LoadFiles()
     m_EnemiesManager->Load("data/enemies.xml");
     LOG_INFO_APPLICATION("Engine -> Enemies Loaded! \\(^-^)/");
 
+    /*m_LaserManager = new CLaserManager;
+    m_LaserManager->Load("data/laser.xml");
+    LOG_INFO_APPLICATION("Engine -> Laser Loaded! \\(^-^)/");*/
+
+
     m_SceneManager = new CSceneManager();
     m_SceneManager->Load(m_FileSceneManager);
     LOG_INFO_APPLICATION("Engine -> Scenes Loaded! \\(^-^)/");
@@ -218,6 +226,7 @@ void CEngine::Init(HWND hWnd)
         m_FileParticleManager = call_function<std::string>(mLS, "getFileParticleManager");
         m_FileCinematicManager = call_function<std::string>(mLS, "getFileCinematicManager");
         m_FileEventManager = call_function<std::string>(mLS, "getFileEventManager");
+        m_FileLaserManager = call_function<std::string>(mLS, "getFileLaserManager");
         m_SoundFilesPath = call_function<std::string>(mLS, "getSoundFilesPath");
         m_SpeakersFile = call_function<std::string>(mLS, "getSoundSpeakersFile");
         m_BanksFile = call_function<std::string>(mLS, "getSoundBankFile");
@@ -317,6 +326,18 @@ void CEngine::DrawImgui(int choice)
 {
     if (choice == 0)
         m_SceneManager->DrawImgui();
-    else
+    else if (choice == 1)
         m_SoundManager->DrawImgui();
+    else if (choice == 2)
+        m_MaterialManager->DrawImgui();
+    else if (choice == 3)
+        m_EventManager->DrawImgui();
+    else if (choice == 4)
+        m_LightManager->DrawImgui();
+    else if (choice == 5)
+        m_ParticleManager->DrawImgui();
+    else if (choice == 6)
+        m_RenderPipeline->DrawImgui();
+    else if (choice == 7)
+        m_EnemiesManager->DrawImgui();
 }

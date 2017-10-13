@@ -22,10 +22,11 @@ PS_INPUT VS( VS_INPUT IN )
     l_Output.WorldPosition=l_Output.Pos.xyz;
     l_Output.Pos = mul( l_Output.Pos, m_View );
     l_Output.Pos = mul( l_Output.Pos, m_Projection );
+		
 	return l_Output;
 }
 
 float4 PS( PS_INPUT IN ) : SV_Target
 {
-    return float4(1.0,0.0,0.0,1.0);
+    return float4(m_RawData[0].xyz,1.0);
 }

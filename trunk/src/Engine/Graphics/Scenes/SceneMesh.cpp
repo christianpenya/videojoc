@@ -248,6 +248,7 @@ void CSceneMesh::DrawImgui()
         m_Yaw = mathUtils::Deg2Rad(lYawTmp);
         m_Pitch = mathUtils::Deg2Rad(lPitchTmp);
         m_Roll = mathUtils::Deg2Rad(lRollTmp);
+        mMesh->DrawImGui();
         ImGui::TreePop();
     }
 

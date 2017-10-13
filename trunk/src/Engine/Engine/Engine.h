@@ -37,6 +37,7 @@ class CCharacterController;
 class CEventManager;
 class CNavMeshManager;
 class CEnemiesManager;
+class CLaserManager;
 
 #define BUILD_GET_SET_ENGINE_MANAGER( Manager ) \
 private: \
@@ -86,6 +87,7 @@ public:
     BUILD_GET_SET_ENGINE_MANAGER(ParticleManager)
     BUILD_GET_SET_ENGINE_MANAGER(NavMeshManager)
     BUILD_GET_SET_ENGINE_MANAGER(EnemiesManager)
+    BUILD_GET_SET_ENGINE_MANAGER(LaserManager)
     BUILD_GET_SET_ENGINE_MANAGER(GUIManager)
     BUILD_GET_SET_ENGINE_MANAGER(CameraManager)
     BUILD_GET_SET_ENGINE_MANAGER(EventManager)

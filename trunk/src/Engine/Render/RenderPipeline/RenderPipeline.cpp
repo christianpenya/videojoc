@@ -120,6 +120,14 @@ void CRenderPipeline::Execute()
 
 }
 
+void CRenderPipeline::DrawImgui()
+{
+    for (size_t i = 0; i < GetCount(); ++i)
+    {
+        m_ResourcesVector[i]->DrawImgui();
+    }
+}
+
 void CRenderPipeline::Reload()
 {
     Destroy();

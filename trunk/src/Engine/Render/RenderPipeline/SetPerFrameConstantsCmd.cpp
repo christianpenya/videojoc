@@ -52,3 +52,6 @@ void CSetPerFrameConstantsCmd::UpdateConstants()
         lConstanBufferManager.BindBuffer(lRM.GetDeviceContext(), CConstantBufferManager::CB_Frame);
     }
 }
+
+
+void CSetPerFrameConstantsCmd::DrawImgui() {}

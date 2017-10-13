@@ -19,7 +19,7 @@ fn preProcess = (
 	
 	if lSelectionMaterial == undefined then (
 		lSelectionMaterial = StandardMaterial()
-		lSelectionMaterial.name = gSelection.name+"Material"m
+		lSelectionMaterial.name = gSelection.name+"Material"
 		lSelectionMaterial.diffuse = gSelection.wirecolor
 	)
 	if classOf lSelectionMaterial == StandardMaterial then	(

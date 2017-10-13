@@ -74,11 +74,8 @@ bool CMaterialManager::Load(const std::string &Filename, bool UpdateFlag)
 
 void CMaterialManager::DrawImgui()
 {
-    if (ImGui::CollapsingHeader("Material Manager"))
+    if (ImGui::TreeNode("Materiales"))
     {
-        ImGui::BeginChild("#Scenes", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-        ImGui::PushItemWidth(-130);
-
         for (std::map<std::string, CMaterial*>::iterator iMaterial = m_ResourcesMap.begin(); iMaterial != m_ResourcesMap.end(); ++iMaterial)
         {
             LOG_INFO_APPLICATION(iMaterial->first.c_str());
@@ -91,7 +88,6 @@ void CMaterialManager::DrawImgui()
             }
         }
 
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
+        ImGui::TreePop();
     }
 }

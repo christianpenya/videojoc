@@ -123,28 +123,42 @@ void CMaterial::Apply()
 
 void CMaterial::DrawImgui()
 {
-    if (ImGui::CollapsingHeader(m_Name.c_str()))
+    if ((mParameters.size() > 0))
     {
-        for (int i = 0; i < mParameters.size(); ++i)
+        ImGui::ColorEditMode(ImGuiColorEditMode_RGB);
+        if (ImGui::TreeNode(GetName().c_str()))
         {
-            switch (mParameters[i]->GetType())
+            for (int i = 0; i < mParameters.size(); ++i)
             {
-            case eFloat:
-                ImGui::SliderFloat(mParameters[i]->GetName().c_str(), (float*)mParameters[i]->GetAddr(0), mParameters[i]->GetImGuiMin(), mParameters[i]->GetImGuiMax());
-                break;
+                ImGui::PushID(i);
 
-            case eColor:
-                ImGui::SliderFloat("Red", (float*)mParameters[i]->GetAddr(0), 0.0f, 1.0f);
-                ImGui::SliderFloat("Green", (float*)mParameters[i]->GetAddr(1), 0.0f, 1.0f);
-                ImGui::SliderFloat("Blue", (float*)mParameters[i]->GetAddr(2), 0.0f, 1.0f);
-                ImGui::SliderFloat("Alpha", (float*)mParameters[i]->GetAddr(3), 0.0f, 1.0f);
-                break;
+                switch (mParameters[i]->GetType())
+                {
+                case eFloat:
+                    ImGui::SliderFloat(mParameters[i]->GetName().c_str(), (float*)mParameters[i]->GetAddr(0), mParameters[i]->GetImGuiMin(), mParameters[i]->GetImGuiMax());
+                    break;
+                case eFloat2:
+                    ImGui::SliderFloat2(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1)), 0.0f, 1.0f, "%.2f");
+                    break;
+                case eFloat3:
+                    ImGui::SliderFloat3(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1), (float*)mParameters[i]->GetAddr(2)), 0.0f, 1.0f, "%.2f");
+                    break;
+                case eFloat4:
+                    ImGui::SliderFloat4(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1), (float*)mParameters[i]->GetAddr(2), (float*)mParameters[i]->GetAddr(4)), 0.0f, 1.0f, "%.2f");
+                    break;
+                case eColor:
+                    ImGui::SliderFloat("Red", (float*)mParameters[i]->GetAddr(0), 0.0f, 1.0f);
+                    ImGui::SliderFloat("Green", (float*)mParameters[i]->GetAddr(1), 0.0f, 1.0f);
+                    ImGui::SliderFloat("Blue", (float*)mParameters[i]->GetAddr(2), 0.0f, 1.0f);
+                    ImGui::SliderFloat("Alpha", (float*)mParameters[i]->GetAddr(3), 0.0f, 1.0f);
+                    break;
 
-            default:
-                ImGui::BulletText("Unexpected paramater.");
-                ImGui::BulletText(mParameters[i]->GetName().c_str());
-                break;
+                default:
+                    ImGui::BulletText("Unexpected paramater.");
+                    ImGui::BulletText(mParameters[i]->GetName().c_str());
+                    break;
 
+                }
             }
         }
     }

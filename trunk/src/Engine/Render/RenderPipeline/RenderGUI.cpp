@@ -24,3 +24,5 @@ void CRenderGUI::Execute(CRenderManager& lRM)
     lGUIMan.Render(&CEngine::GetInstance().GetRenderManager());
 
 }
+
+void CRenderGUI::DrawImgui() {}
