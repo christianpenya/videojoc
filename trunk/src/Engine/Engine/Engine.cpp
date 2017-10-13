@@ -23,7 +23,7 @@
 #include "Graphics/Particles/ParticleManager.h"
 #include "Graphics/IA/NavMeshManager.h"
 #include "Graphics/IA/EnemiesManager.h"
-//#include "Graphics/IA/LaserManager.h"
+#include "Graphics/IA/LaserManager.h"
 #include "Sound/ISoundManager.h"
 #include "GUI/GUIManager.h"
 #include "GUI/GUIPosition.h"
@@ -160,9 +160,9 @@ void CEngine::LoadFiles()
     m_EnemiesManager->Load("data/enemies.xml");
     LOG_INFO_APPLICATION("Engine -> Enemies Loaded! \\(^-^)/");
 
-    /*m_LaserManager = new CLaserManager;
+    m_LaserManager = new CLaserManager;
     m_LaserManager->Load("data/laser.xml");
-    LOG_INFO_APPLICATION("Engine -> Laser Loaded! \\(^-^)/");*/
+    LOG_INFO_APPLICATION("Engine -> Laser Loaded! \\(^-^)/");
 
 
     m_SceneManager = new CSceneManager();

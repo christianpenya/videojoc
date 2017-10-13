@@ -26,6 +26,7 @@
 	<render_layer layer="triggers"/>
 	<render_layer layer="navmesh"/>
 	<render_layer layer="salas"/>
+	<render_layer layer="laser" />
 	
 	<unset_render_target/>	
 	End generate gbuffer
