@@ -8,16 +8,15 @@
 #include "XML\xml.h"
 #include <set>
 #include <cassert>
-
 #include "Utils/CheckedRelease.h"
 
 CLightManager::CLightManager() {}
 CLightManager::~CLightManager()
 {
-
     //base::utils::CTemplatedMapVector<CLight>::Clear();
 
-    /*    for (std::vector<CLight *>::iterator it = m_ResourcesVector.begin(); it != m_ResourcesVector.end(); ++it)
+    /*
+    for (std::vector<CLight *>::iterator it = m_ResourcesVector.begin(); it != m_ResourcesVector.end(); ++it)
     {
         __H_CHECKED_RELEASE__(*it);
     }
