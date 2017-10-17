@@ -10,7 +10,6 @@ CMaterialManager::~CMaterialManager()
     CTemplatedMap<CMaterial>::Destroy();
 }
 
-
 void CMaterialManager::Load(const std::string & aLevelFilename, const std::string &aDefaultsFileName)
 {
     m_LevelMaterialsFilename = aLevelFilename;
@@ -46,7 +45,7 @@ bool CMaterialManager::Load(const std::string &Filename, bool UpdateFlag)
         {
             for (tinyxml2::XMLElement *iMaterial = lMaterials->FirstChildElement(); iMaterial != nullptr; iMaterial = iMaterial->NextSiblingElement())
             {
-                LOG_INFO_APPLICATION(iMaterial->GetAttribute<std::string>("name", "").c_str());
+                //LOG_INFO_APPLICATION(iMaterial->GetAttribute<std::string>("name", "").c_str());
 
                 if (strcmp(iMaterial->Name(), "material") == 0)
                 {
@@ -75,33 +74,20 @@ bool CMaterialManager::Load(const std::string &Filename, bool UpdateFlag)
 
 void CMaterialManager::DrawImgui()
 {
-    if (ImGui::CollapsingHeader("Material Manager"))
+    if (ImGui::TreeNode("Materiales"))
     {
-        ImGui::BeginChild("#Scenes", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-        ImGui::PushItemWidth(-130);
-
         for (std::map<std::string, CMaterial*>::iterator iMaterial = m_ResourcesMap.begin(); iMaterial != m_ResourcesMap.end(); ++iMaterial)
         {
-            if (iMaterial->first != "")
+            LOG_INFO_APPLICATION(iMaterial->first.c_str());
+
+            if (iMaterial->first != "" && iMaterial->second != NULL)
             {
-                LOG_INFO_APPLICATION(iMaterial->first.c_str());
                 ImGui::PushID(iMaterial->second->GetName().c_str());
-
-                if (ImGui::CollapsingHeader(iMaterial->second->GetName().c_str()))
-                {
-                    iMaterial->second->DrawImgui();
-                }
-
+                iMaterial->second->DrawImgui();
                 ImGui::PopID();
             }
         }
 
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
-    }
-
-    for (std::map<std::string, CMaterial*>::iterator iMaterial = m_ResourcesMap.begin(); iMaterial != m_ResourcesMap.end(); ++iMaterial)
-    {
-        (*iMaterial).second;
+        ImGui::TreePop();
     }
 }

@@ -27,13 +27,13 @@
 		<parameter type="float" name="ratio_y" value="0.8" />
 	</material>	
 
-	<material name="LightDroneMaterial" vertex_type="ParticleVertex" >
+<!--	<material name="LightDroneMaterial" vertex_type="ParticleVertex" >
 		<texture type="diffuse" filename="data\particles\lightDrone.png" />		
 		<parameter type="float2" name="sprite_size" value="3.0 3.0" />
 		<parameter type="float" name="lerp_sprite" value="0.1" />
 		<parameter type="float" name="ratio_y" value="0.8" />
 	</material>	
-	
+	-->
 	<material name="02 - Default" vertex_type="PositionNormal" >
 		<parameter type="color" name="diffuse_color" value="1.0 0.0 0.0 1.0" />
 	</material>

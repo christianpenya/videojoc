@@ -120,6 +120,7 @@ void CLight::DrawImgui()
     if (ImGui::TreeNode(m_Name.c_str()))
     {
         ImGui::Checkbox("Visible", &m_Visible);
+
         ImGui::ColorEdit4("Color", (float*)&m_Color, true);
         ImGui::SliderFloat("Intensity", &m_Intensity, 0.25f, 1.0f);
         ImGui::SliderFloat2("Attenuation Range", (float*)&m_RangeAttenuation, 0.25f, 100.0f);

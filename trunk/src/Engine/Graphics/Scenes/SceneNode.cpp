@@ -16,7 +16,8 @@ CSceneNode::CSceneNode(const CXMLElement* aElement)
       m_ignoreFrustum(false),
       CActive(aElement->GetAttribute<bool>("active", true)),
       m_Visible(false),
-      m_NodeType(ESceneNodeType::eSceneNodeCount)
+      m_NodeType(ESceneNodeType::eSceneNodeCount),
+      mOriginalUnmodifiedPosition(m_Position)
 {}
 
 CSceneNode::~CSceneNode() {}

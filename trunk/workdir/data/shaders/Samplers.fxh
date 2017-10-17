@@ -4,10 +4,10 @@
 Texture2D T0Texture: register( t0 );	// Diffuse
 Texture2D T1Texture: register( t1 );	// LightMap
 Texture2D T2Texture: register( t2 );	// NormalMap
-Texture2D T3Texture: register( t3 );	// Specular
-Texture2D T4Texture: register( t4 );	// ShadowMap
-Texture2D T5Texture: register( t5 );	// ShadowMask
-Texture2D T6Texture: register( t6 );	
+Texture2D T3Texture: register( t3 );	// Depth
+Texture2D T4Texture: register( t4 );	// SpecularMap
+Texture2D T5Texture: register( t5 );	// ShadowMap
+Texture2D T6Texture: register( t6 );	// ShadowMask (por implementar)
 TextureCube T7Texture: register (t7);	// Skybox cube texture
 
 SamplerState S0Sampler: register( s0 );

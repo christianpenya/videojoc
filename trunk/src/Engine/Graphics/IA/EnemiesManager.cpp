@@ -63,12 +63,9 @@ bool CEnemiesManager::ReLoad()
 
 void CEnemiesManager::DrawImgui()
 {
-    if (ImGui::CollapsingHeader("enemies"))
+    if (ImGui::TreeNode("Enemies"))
     {
-        ImGui::BeginChild("#enemies", ImVec2(400, 200), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-        ImGui::PushItemWidth(-130);
         ImGui::ColorEditMode(ImGuiColorEditMode_RGB);
-
         for (TMapResources::iterator iEnemiesMapEntry = m_ResourcesMap.begin(); iEnemiesMapEntry != m_ResourcesMap.end(); ++iEnemiesMapEntry)
         {
             CEnemy* lEnemy = iEnemiesMapEntry->second.m_Value;
@@ -76,7 +73,6 @@ void CEnemiesManager::DrawImgui()
             lEnemy->DrawImgui();
             ImGui::PopID();
         }
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
+        ImGui::TreePop();
     }
 }

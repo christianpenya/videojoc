@@ -20,10 +20,9 @@ void CFreeCameraController::Update(float ElapsedTime)
     zoomSpeed = 0.1f * (*actionManager)("zoom")->value;
 
     bool tmp = (*actionManager)("block")->value;
-    LOG_INFO_APPLICATION(std::to_string(tmp).c_str());
+
     if (tmp)
     {
-        LOG_INFO_APPLICATION("temare");
         block = !block;
     }
 

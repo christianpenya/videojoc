@@ -13,7 +13,6 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     : CSceneNode(aElement)
     , mMesh(CEngine::GetInstance().GetMeshManager().GetMesh(aElement->GetAttribute<std::string>("mesh", "")))
     , mRigidBodyEnum(eRigidBodyCount)
-    , mOriginalUnmodifiedPosition(m_Position)
 {
     m_ignoreFrustum = aElement->GetAttribute<bool>("ignore_frustum", false);
     m_NodeType = CSceneNode::eMesh;
@@ -132,8 +131,6 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 lDebug = "NO physx were added to " + m_Name;
                 break;
             }
-
-            LOG_INFO_APPLICATION(lDebug.c_str());
         }
     }
 }
@@ -251,6 +248,7 @@ void CSceneMesh::DrawImgui()
         m_Yaw = mathUtils::Deg2Rad(lYawTmp);
         m_Pitch = mathUtils::Deg2Rad(lPitchTmp);
         m_Roll = mathUtils::Deg2Rad(lRollTmp);
+        mMesh->DrawImGui();
         ImGui::TreePop();
     }
 

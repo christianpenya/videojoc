@@ -52,9 +52,12 @@ bool CScene::Load(const std::string& aFilename)
                 {
                     CLayer* lLayer = new CLayer(iLayer->GetAttribute<std::string>("name", ""));
                     lLayer->SetActive(iLayer->GetAttribute<bool>("active", false));
-                    lLayer->Load(iLayer);
-                    lLayer->SetParent(this);
-                    lOk &= Add(lLayer->GetName(), lLayer);
+                    if (lLayer->GetActive())
+                    {
+                        lLayer->Load(iLayer);
+                        lLayer->SetParent(this);
+                        lOk &= Add(lLayer->GetName(), lLayer);
+                    }
                 }
             }
         }

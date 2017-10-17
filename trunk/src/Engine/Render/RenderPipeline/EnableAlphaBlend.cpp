@@ -33,3 +33,5 @@ void CEnableAlphaBlend::Execute(CRenderManager &RM)
 {
     RM.GetDeviceContext()->OMSetBlendState(m_AlphaBlendState, NULL, 0xffffffff);
 }
+
+void CEnableAlphaBlend::DrawImgui() {}

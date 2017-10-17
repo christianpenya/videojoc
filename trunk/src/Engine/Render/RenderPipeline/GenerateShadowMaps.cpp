@@ -47,3 +47,6 @@ void CGenerateShadowMaps::Execute(CRenderManager& lRM)
         }
     }
 }
+
+
+void CGenerateShadowMaps::DrawImgui() {}

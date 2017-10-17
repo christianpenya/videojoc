@@ -1,3 +1,4 @@
+#pragma once
 #include "Layer.h"
 #include "XML/tinyxml2/tinyxml2.h"
 #include "SceneMesh.h"
@@ -6,6 +7,8 @@
 #include "Engine/Engine.h"
 #include "Graphics/Animation/SceneAnimatedModel.h"
 #include "Graphics/Animation/AnimatedModelManager.h"
+#include "Graphics/Mesh/MeshManager.h"
+#include "Graphics/Mesh/Mesh.h"
 #include "Graphics/Lights/LightManager.h"
 #include "Graphics/Particles/ParticleSystemInstance.h"
 #include "Graphics/Buffers/ConstantBufferManager.h"
@@ -14,6 +17,9 @@
 #include "Graphics/IA/EnemiesManager.h"
 #include "Graphics/IA/NavMesh.h"
 #include "Graphics/IA/NavMeshManager.h"
+#include "Graphics/IA/Laser.h"
+#include "Graphics/IA/LaserManager.h"
+
 
 #ifdef _DEBUG
 #include <chrono>
@@ -36,6 +42,7 @@ bool CLayer::Load(CXMLElement* aElement)
     bool lOk = true;
     CLightManager &lLM = CEngine::GetInstance().GetLightManager();
     CEnemiesManager &lEnemiesManager = CEngine::GetInstance().GetEnemiesManager();
+    CLaserManager &l_LaserManager = CEngine::GetInstance().GetLaserManager();
     CNavMeshManager &l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
 
     for (tinyxml2::XMLElement *iSceneMesh = aElement->FirstChildElement(); iSceneMesh != nullptr; iSceneMesh = iSceneMesh->NextSiblingElement())
@@ -106,6 +113,17 @@ bool CLayer::Load(CXMLElement* aElement)
             {
                 lNode = lEnemiesManager(l_EnemyName);
                 lNode->SetNodeType(CSceneNode::eEnemy);
+            }
+        }
+        else if (strcmp(iSceneMesh->Name(), "scene_laser") == 0)
+        {
+            std::string l_LaserName = iSceneMesh->GetAttribute<std::string>("name", "");
+            CLaser *l_laser = nullptr;
+
+            if (l_LaserManager.Exist(l_LaserName))
+            {
+                lNode = l_LaserManager(l_LaserName);
+                lNode->SetNodeType(CSceneNode::eLaser);
             }
         }
 
@@ -179,76 +197,83 @@ void CLayer::DrawImgui()
     ImGui::Checkbox("Active", &m_Active);
     if (m_Active)
     {
-//        ImGui::BeginChild("#layer", ImVec2(800, 400), true, ImGuiWindowFlags_AlwaysAutoResize);
-//       ImGui::PushItemWidth(-130);
-
-        for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
+        if (ImGui::TreeNode(m_Name.c_str()))
         {
-            ImGui::PushID((*iSceneNode)->GetName().c_str());
 
-            switch ((*iSceneNode)->GetNodeType())
+            for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
             {
-
-            case CSceneMesh::eMesh:
-            {
-                (*iSceneNode)->DrawImgui();
-            }
-            break;
-
-            case CSceneNode::eAnimatedModel:
-            {
-                // TODO animated core models deben formar parte de la escena
-                ((CSceneAnimatedModel *)(*iSceneNode))->DrawImgui();
-                CAnimatedCoreModel *lAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()((*iSceneNode)->GetName());
-
-                if (lAnimatedCoreModel != nullptr)
-                    lAnimatedCoreModel->DrawImgui();
-            }
-            break;
-
-            case CSceneAnimatedModel::eBasicPrimitive:
-            {
-                ((CSceneBasicPrimitive *)(*iSceneNode))->DrawImgui();
-            }
-            break;
-
-            case CLight::eLight:
-            {
-                CLight *lLight = CEngine::GetInstance().GetLightManager()((*iSceneNode)->GetName());
-                if (lLight != nullptr)
-                    lLight->DrawImgui();
-            }
-            break;
-
-            case CSceneNode::eParticle:
-            {
-                CParticleSystemType *lParticle = CEngine::GetInstance().GetParticleManager()((*iSceneNode)->GetName());
-                if (lParticle != nullptr)
+                ImGui::PushID((*iSceneNode)->GetName().c_str());
+                switch ((*iSceneNode)->GetNodeType())
                 {
-                    lParticle->DrawImgui();
+
+                case CSceneMesh::eMesh:
+                {
+                    (*iSceneNode)->DrawImgui();
                 }
-            }
-            break;
-            case CSceneNode::eNavMesh:
-            {
-                CNavMesh *lNavMesh = CEngine::GetInstance().GetNavMeshManager()((*iSceneNode)->GetName());
-                if (lNavMesh != nullptr)
-                    lNavMesh->DrawImgui();
-            }
+                break;
 
-            break;
-            default:
-            {
-                LOG_WARNING_APPLICATION("Unknown Scene Node Type");
-            }
-            break;
-            }
+                case CSceneNode::eAnimatedModel:
+                {
+                    // TODO animated core models deben formar parte de la escena
+                    ((CSceneAnimatedModel *)(*iSceneNode))->DrawImgui();
+                    CAnimatedCoreModel *lAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()((*iSceneNode)->GetName());
 
-            ImGui::PopID();
+                    if (lAnimatedCoreModel != nullptr)
+                        lAnimatedCoreModel->DrawImgui();
+                }
+                break;
+
+                case CSceneAnimatedModel::eBasicPrimitive:
+                {
+                    ((CSceneBasicPrimitive *)(*iSceneNode))->DrawImgui();
+                }
+                break;
+
+                case CLight::eLight:
+                {
+                    (*iSceneNode)->DrawImgui();
+                }
+                break;
+
+                case CSceneNode::eParticle:
+                {
+                    CParticleSystemType *lParticle = CEngine::GetInstance().GetParticleManager()((*iSceneNode)->GetName());
+                    if (lParticle != nullptr)
+                    {
+                        lParticle->DrawImgui();
+                    }
+                }
+                break;
+                case CSceneNode::eNavMesh:
+                {
+                    CNavMesh *lNavMesh = CEngine::GetInstance().GetNavMeshManager()((*iSceneNode)->GetName());
+                    if (lNavMesh != nullptr)
+                        lNavMesh->DrawImgui();
+                }
+                case CSceneNode::eEnemy:
+                {
+                    CEnemy *lenemy = CEngine::GetInstance().GetEnemiesManager()((*iSceneNode)->GetName());
+                    if (lenemy != nullptr)
+                        lenemy->DrawImgui();
+                }
+                    /*                case CSceneNode::eLaser:
+                                    {
+                                        CLaser *lLaser = CEngine::GetInstance().GetLaserManager()((*iSceneNode)->GetName());
+                                        if (lLaser != nullptr)
+                                            lLaser->DrawImgui();
+                                    }*/
+                break;
+                default:
+                {
+                    LOG_WARNING_APPLICATION("Unknown Scene Node Type");
+                }
+                break;
+                }
+
+                ImGui::PopID();
+            }
+            ImGui::TreePop();
         }
-
-        /*        ImGui::PopItemWidth();
-                ImGui::EndChild();*/
     }
 }
 

@@ -32,7 +32,7 @@ void CAudioTriggerActor::Load(CXMLElement* aElement)
 
 void CAudioTriggerActor::Act()
 {
-    LOG_INFO_APPLICATION("ACTING! I'M ACTING!");
+    //LOG_INFO_APPLICATION("ACTING! I'M ACTING!");
     SoundEvent se;
     se.eventName = "pasillo";
     CEngine::GetInstance().m_SoundManager->PlayEvent(se, true);
@@ -40,7 +40,7 @@ void CAudioTriggerActor::Act()
 
 void CAudioTriggerActor::Update(float elapsedTime)
 {
-    LOG_INFO_APPLICATION("ACTOR UPDATING");
+    //LOG_INFO_APPLICATION("ACTOR UPDATING");
 
     if (CEngine::GetInstance().m_SoundManager->NotifyEndOfEvent())
     {

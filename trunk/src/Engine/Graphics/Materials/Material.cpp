@@ -57,6 +57,7 @@ CMaterial::CMaterial(CXMLElement* aElement) : CName( aElement )
             TParameterType lType;
 
             if (EnumString<TParameterType>::ToEnum(lType, iTextureOrParameter->GetAttribute<std::string>("type", "")))
+
             {
                 CMaterialParameter* lParameter = nullptr;
 
@@ -65,7 +66,9 @@ case parameter_type: \
 { \
     lParameter = new CTemplatedMaterialParameter<parameter_class_type>(\
         iTextureOrParameter->GetAttribute<std::string>("name", ""), \
-        iTextureOrParameter->GetAttribute<parameter_class_type>("value", parameter_def_value), \
+		iTextureOrParameter->GetAttribute<parameter_class_type>("value", parameter_def_value), \
+		iTextureOrParameter->GetAttribute<float>("min_value", 0.0f), \
+		iTextureOrParameter->GetAttribute<float>("max_value", 1.0f), \
         parameter_type);\
 }\
 break;\
@@ -120,98 +123,44 @@ void CMaterial::Apply()
 
 void CMaterial::DrawImgui()
 {
-
-    /*if ((mParameters.size() > 0))
+    if ((mParameters.size() > 0))
     {
-        static bool show_app_auto_resize = true;
-        ImGui::Begin("Menu", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
-
         ImGui::ColorEditMode(ImGuiColorEditMode_RGB);
-
-        if (ImGui::CollapsingHeader(GetName().c_str(), ImGuiWindowFlags_AlwaysAutoResize))
+        if (ImGui::TreeNode(GetName().c_str()))
         {
-            ImGui::BeginChild("#Material", ImVec2(400, 200), true, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-            ImGui::PushItemWidth(-130);
-
-            for (size_t i = 0; i < mParameters.size(); ++i)
+            for (int i = 0; i < mParameters.size(); ++i)
             {
                 ImGui::PushID(i);
 
                 switch (mParameters[i]->GetType())
                 {
                 case eFloat:
-                {
-                    if (mParameters[i]->GetName() == "textureSize")
-                    {
-                        ImGui::SliderFloat(mParameters[i]->GetDescription().c_str(), (float*)mParameters[i]->GetAddr(0), 0.0f, 1024.0f);
-                    }
-                    else if ((mParameters[i]->GetName() == "blurScale") || (mParameters[i]->GetName() == "diffuse") || (mParameters[i]->GetName() == "num_samples"))
-                    {
-                        ImGui::SliderFloat(mParameters[i]->GetDescription().c_str(), (float*)mParameters[i]->GetAddr(0), 0.0f, 100.0f);
-                    }
-                    else
-                    {
-
-                        ImGui::SliderFloat(mParameters[i]->GetDescription().c_str(), (float*)mParameters[i]->GetAddr(0), 0.0f, 1.0f);
-                    }
-                }
-                break;
+                    ImGui::SliderFloat(mParameters[i]->GetName().c_str(), (float*)mParameters[i]->GetAddr(0), mParameters[i]->GetImGuiMin(), mParameters[i]->GetImGuiMax());
+                    break;
                 case eFloat2:
-                    if (mParameters[i]->GetName() == "fog_start_end")
-                    {
-                        ImGui::SliderFloat("Fog Start", (float*)mParameters[i]->GetAddr(0), 0.0f, 50.0f);
-                        ImGui::SliderFloat("Fog End", (float*)mParameters[i]->GetAddr(1), 0.0f, 100.0f);
-                    }
-                    else if (mParameters[i]->GetName() == "specular_exponent_contrib")
-                    {
-                        ImGui::SliderFloat("Specular Exponent", (float*)mParameters[i]->GetAddr(0), 0.0f, 100.0f);
-                        ImGui::SliderFloat("Specular Contrib", (float*)mParameters[i]->GetAddr(1), 0.0f, 1.0f);
-                    }
-                    else if (mParameters[i]->GetName() == "RTSize")
-                    {
-                        ImGui::SliderFloat("RT Size X", (float*)mParameters[i]->GetAddr(0), 0.0f, 1366.0f);
-                        ImGui::SliderFloat("RT Size Y", (float*)mParameters[i]->GetAddr(1), 0.0f, 768.0f);
-                    }
-                    else if (mParameters[i]->GetName() == "ssr_screen_resolution")
-                    {
-                        ImGui::SliderFloat("Screen Resolution X", (float*)mParameters[i]->GetAddr(0), 0.0f, 1366.0f);
-                        ImGui::SliderFloat("Screen Resolution Y", (float*)mParameters[i]->GetAddr(1), 0.0f, 768.0f);
-                    }
-                    else if (mParameters[i]->GetName() == "light_position")
-                    {
-                        ImGui::SliderFloat("Light Position X", (float*)mParameters[i]->GetAddr(0), 0.0f, 1366.0f);
-                        ImGui::SliderFloat("Light Position Y", (float*)mParameters[i]->GetAddr(1), 0.0f, 768.0f);
-                    }
-                    else
-                        ImGui::SliderFloat2(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1)), 0.0f, 1.0f);
+                    ImGui::SliderFloat2(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1)), 0.0f, 1.0f, "%.2f");
+                    break;
+                case eFloat3:
+                    ImGui::SliderFloat3(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1), (float*)mParameters[i]->GetAddr(2)), 0.0f, 1.0f, "%.2f");
                     break;
                 case eFloat4:
-                {
-                    if (mParameters[i]->GetName() == "ssr_opacity")
-                    {
-                        ImGui::SliderFloat("Opacity", (float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), "%.1f", *(float*)mParameters[i]->GetAddr(3));
-                    }
-                    else if (mParameters[i]->GetName() == "ssr_offset_screen")
-                    {
-                        ImGui::SliderFloat("Offset Screen", (float*)mParameters[i]->GetAddr(0), *(float*)mParameters[i]->GetAddr(1), *(float*)mParameters[i]->GetAddr(2), "%.2f", *(float*)mParameters[i]->GetAddr(3));
-                    }
-                }
-                break;
+                    ImGui::SliderFloat4(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1), (float*)mParameters[i]->GetAddr(2), (float*)mParameters[i]->GetAddr(4)), 0.0f, 1.0f, "%.2f");
+                    break;
                 case eColor:
-                {
+                    ImGui::ColorEdit4(mParameters[i]->GetName().c_str(), (float*)mParameters[i]->GetAddr(), true);
+                    break;
 
-                    ImGui::ColorEdit4(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1), (float*)mParameters[i]->GetAddr(2), (float*)mParameters[i]->GetAddr(3)), false);
-                }
-                break;
-                }
+                default:
+                    ImGui::BulletText("Unexpected paramater.");
+                    ImGui::BulletText(mParameters[i]->GetName().c_str());
+                    break;
 
+                }
                 ImGui::PopID();
             }
+            ImGui::TreePop();
 
-            ImGui::PopItemWidth();
-            ImGui::EndChild();
         }
+    }
 
-        ImGui::End();
-    }*/
 }

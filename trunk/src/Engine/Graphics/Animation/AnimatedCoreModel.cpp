@@ -4,6 +4,8 @@
 #include "coremodel.h"
 #include "Graphics/Materials/Material.h"
 #include "Utils/CheckedDelete.h"
+#include "Engine/Engine.h"
+#include "Graphics/Materials/MaterialManager.h"
 
 CAnimatedCoreModel::CAnimatedCoreModel(const std::string& aName)
     : CName(aName), m_BSRadius(0)
@@ -47,8 +49,9 @@ void CAnimatedCoreModel::Load(const std::string &Path)
                 }
                 else if (strcmp(iAnimatedModel->Name(), "material") == 0)
                 {
-                    //std::string lName = iAnimatedModel->GetAttribute<std::string>("name", "");
-                    CMaterial * l_Material = new CMaterial(iAnimatedModel);
+                    std::string lName = iAnimatedModel->GetAttribute<std::string>("name", "");
+
+                    CMaterial * l_Material = CEngine::GetInstance().GetMaterialManager()(lName);
                     m_Materials.push_back(l_Material);
                 }
                 else if (strcmp(iAnimatedModel->Name(), "animation") == 0)

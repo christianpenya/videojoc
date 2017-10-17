@@ -16,7 +16,7 @@ public:
     virtual ~CSetAlphaBlendState();
     bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager& lRM);
-    void DrawImgui();
+    virtual void DrawImgui();
 private:
     DISALLOW_COPY_AND_ASSIGN(CSetAlphaBlendState);
     ID3D11BlendState *m_AlphaBlendState;

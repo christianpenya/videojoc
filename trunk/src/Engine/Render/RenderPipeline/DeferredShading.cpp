@@ -54,10 +54,12 @@ void CDeferredShading::Execute(CRenderManager &lRM)
 
         if (light->GetActive() && light->IsVisible())
         {
-            l_LM->SetLightConstants(i, light);
+            l_LM->SetLightConstants(0, light);
             CDrawQuad::Execute(lRM);
         }
     }
 
     lRM.GetDeviceContext()->OMSetBlendState(NULL, NULL, 0xffffffff);
 }
+
+void CDeferredShading::DrawImgui() {}

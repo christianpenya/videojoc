@@ -143,7 +143,7 @@ PS_INPUT VS( VS_INPUT IN )
 
     #if USE_BUMP
      	l_Output.Tangent = normalize(mul(IN.Tangent.xyz, (float3x3)m_World));
-    	l_Output.Binormal = normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
+    	l_Output.Binormal = normalize(mul(IN.Binormal.xyz, (float3x3)m_World));//normalize(mul(cross(IN.Tangent.xyz, IN.Normal.xyz), (float3x3)m_World));
     #endif
     return l_Output;
 }
@@ -151,12 +151,6 @@ PS_INPUT VS( VS_INPUT IN )
 PixelOutputType PS(PS_INPUT IN) : SV_Target
 {
     PixelOutputType l_Output = (PixelOutputType)0;
-
-	l_Output.Target0 = float4(1,1,1,1);
-	l_Output.Target1 = float4(1,1,1,1);
-	l_Output.Target2 = float4(1,1,1,1);
-	l_Output.Target3 = float4(1,1,1,1);
-	l_Output.Target4 = float4(1,1,1,1);
 	
     float4 pixelColor = float4(m_Color.xyz, 1.0);
     float3 l_LAmbient = m_LightAmbient.xyz;
@@ -174,34 +168,22 @@ PixelOutputType PS(PS_INPUT IN) : SV_Target
 		}
 		
 		#if USE_UV2
-			float4 l_LightmapPixel = T1Texture.Sample(S1Sampler, IN.UV2) * 2;
-			//pixelColor = l_LightmapPixel.xyz * pixelColor;
+			float4 l_LightmapPixel = T1Texture.Sample(S1Sampler, IN.UV2) * 2 * m_Lightmap;
 			l_LAmbient = l_LightmapPixel.xyz;
 		#endif
  	#endif
  	#if USE_BUMP
-		return l_Output;
-		float3 bump = m_RawData[1].x * (T2Texture.Sample(S2Sampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
-    	l_PixelNormal = normalize(l_PixelNormal + bump.x*IN.Tangent + bump.y*IN.Binormal);
+		float3 bump = 2.4 * m_NormalMap * (T2Texture.Sample(S2Sampler, IN.UV).rgb - float3(0.5, 0.5, 0.5));
+    	l_PixelNormal = normalize(IN.WorldNormal + bump.x*IN.Tangent + bump.y*IN.Binormal);
  	#endif
-
-	//l_Normal=Normal2Texture(l_Normal);
-
-    /*
-	l_Output.Target0 = float4(pixelColor, g_SpecularContrib);
-    l_Output.Target1 = float4(l_LAmbient.xyz*pixelColor, g_SpecularExponent);
-    l_Output.Target2 = float4(l_Normal, 0.0);	
-    l_Output.Target3 = float4(l_Depth, l_Depth, l_Depth, 1.0);
-	*/
-	
-	m_Metalness = 0.0f;
-	m_Occlusion = 1.0f;
-	m_Roughness = 1.0f;
 	
 	l_Output.Target0 = float4(pixelColor.xyz, m_Metalness);
 	l_Output.Target1 = float4(l_LAmbient.xyz, m_Occlusion);
 	
-	float3 l_ReflectVector = normalize(reflect(l_EyeToWorldPosition, IN.WorldNormal));
+	
+	float3 l_ReflectVector = normalize(reflect(l_EyeToWorldPosition, l_PixelNormal));
+	
+	
 	float2 l_EncodedPlaneNormal = Encode(IN.WorldNormal);
 	float2 l_EncodedPixelNormal = Encode(l_PixelNormal);
 	l_Output.Target2=float4(l_EncodedPlaneNormal.x, l_EncodedPlaneNormal.y, l_EncodedPixelNormal.x, l_EncodedPixelNormal.y);

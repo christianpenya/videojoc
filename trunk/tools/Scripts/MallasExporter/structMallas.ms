@@ -94,15 +94,15 @@ struct sMaterial (
 		)
 
 		if specularE or bumpE or diffuseE or glossinessE then(
-			format "UV\n"
+			print "UV\n"
 			flag_value = bit.or flag_value eUV
 			if selfIllumE then(
-				format "UV2\n"
+				print "UV2\n"
 				flag_value = bit.or flag_value eUV2
 			)
 		)
 		if bumpE then (
-			format "Tang and Bin\n"
+			print "Tang and Bin\n"
 			flag_value = bit.or flag_value eTangent
 			flag_value = bit.or flag_value eBinormal
 		)

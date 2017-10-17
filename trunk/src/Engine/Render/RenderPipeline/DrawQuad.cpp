@@ -38,11 +38,27 @@ void CDrawQuad::Execute(CRenderManager& lRM)
     lRM.SetViewport(m_ViewportPosition, m_ViewportSize);
     mMaterial->Apply();
     static bool show_app_auto_resize = true;
+    /*static bool show_app_auto_resize = true;
     ImGui::Begin("Menu", &show_app_auto_resize, ImGuiWindowFlags_AlwaysAutoResize);
-    mMaterial->DrawImgui();
-    ImGui::End();
+    ImGui::End();*/
     ActivateTextures();
-    LOG_INFO_APPLICATION(mMaterial->GetName().c_str());
     mQuad->Render();
     lRM.ResetViewport();
+}
+
+
+void CDrawQuad::DrawImgui()
+{
+
+    if (ImGui::TreeNode(m_Name.c_str()))
+    {
+        ImGui::SliderFloat2("Viewport Size", (float*)&m_ViewportSize, 0.0f, 1366.0f, "%.2f");
+        ImGui::SliderFloat2("Viewport Position", (float*)&m_ViewportPosition, 0.0f, 1366.0f, "%.2f");
+        if (ImGui::TreeNode(mMaterial->GetName().c_str()))
+        {
+            mMaterial->DrawImgui();
+            ImGui::TreePop();
+        }
+        ImGui::TreePop();
+    }
 }

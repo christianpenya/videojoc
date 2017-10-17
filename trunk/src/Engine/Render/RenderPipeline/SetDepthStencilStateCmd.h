@@ -15,7 +15,7 @@ public:
     virtual ~CSetDepthStencilStateCmd();
     bool Load(const CXMLElement* aElement);
     virtual void Execute(CRenderManager& lRM);
-    virtual void DrawImGui();
+    virtual void DrawImgui();
 private:
     DISALLOW_COPY_AND_ASSIGN(CSetDepthStencilStateCmd);
     ID3D11DepthStencilState *m_DepthStencilState;

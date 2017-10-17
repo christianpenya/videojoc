@@ -1,0 +1,80 @@
+<materials >
+	<material name="LineMaterial" vertex_type="Line">
+		<parameter type="color" name="diffuse_color" value="1.0 0.0 0.0 1.0" />
+	</material>
+	<material name="PatrolPoint002Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.0 1.0 1.0 1.0 " />
+	</material>
+	
+	CARCEL
+	<material name="Plane003Material" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="0.0235294 0.529412 0.443137 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	PUERTA
+	<material name="puerta001Material" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="0.882353 0.560784 0.341176 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	PARED FONDO
+	<material name="Box019Material" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="0.882353 0.560784 0.341176 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	TORRETA
+	<material name="Cylinder004Material" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="0.721569 0.890196 0.6 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	SUELO
+	<material name="02 - Default" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="0.0784314 0.0784314 0.0784314 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	
+</materials>

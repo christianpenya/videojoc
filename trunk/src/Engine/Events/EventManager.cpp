@@ -10,7 +10,7 @@
 #include "Events/DumbReactor.h"
 #include "Events/OpenDoorReactor.h"
 
-CEventManager::CEventManager() : mEnabled(false)
+CEventManager::CEventManager() : mEnabled(true)
 {
     mActors.Add("dumb", new CDumbActor());
     mActors.Add("audio_trigger", new CAudioTriggerActor());
@@ -93,11 +93,8 @@ CReactor* CEventManager::GetReactor(std::string aReactor)
 
 void CEventManager::DrawImgui()
 {
-    if (ImGui::CollapsingHeader("Event Manager"))
+    if (ImGui::TreeNode("Event Manager"))
     {
-        ImGui::BeginChild("#Event", ImVec2(400, 200), false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
-        ImGui::PushItemWidth(-130);
-
         for (std::vector<CEvent*>::iterator iEvent = m_ResourcesVector.begin(); iEvent != m_ResourcesVector.end(); ++iEvent)
         {
             ImGui::PushID((*iEvent)->GetName().c_str());
@@ -106,11 +103,8 @@ void CEventManager::DrawImgui()
             {
                 //(*iEvent)->DrawImGui();
             }
-
             ImGui::PopID();
         }
-
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
+        ImGui::TreePop();
     }
 }

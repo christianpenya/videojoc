@@ -14,7 +14,7 @@ global ePosition4 = 0x0080
 global eDummy = 0x0100
 
 fn preProcess = (
-	print "PreProcess"
+	
 	local lSelectionMaterial = gSelection.material
 	
 	if lSelectionMaterial == undefined then (
@@ -27,32 +27,33 @@ fn preProcess = (
 		tempMaterial.m_name = lSelectionMaterial.name
 		tempMaterial.setFlags(lSelectionMaterial)
 		append gMatsArray tempMaterial
-	)else if classOf lSelectionMaterial == Multimaterial then	(
-		print "Multi"
+	)else if classOf lSelectionMaterial == Multimaterial then(
 		local lSubMaterialsCount = lSelectionMaterial.numsubs			
 		for iSubMaterial =  1 to lSubMaterialsCount do(
 			local lSubMaterial = lSelectionMaterial[iSubMaterial]
 			if classOf lSubMaterial == Standardmaterial then (
 				local tempMaterial = sMaterial()
+				--print lSubMaterial.name
 				tempMaterial.m_name = lSubMaterial.name
 				tempMaterial.setFlags(lSubMaterial)
 				append gMatsArray tempMaterial
 			)
 			else if classOf lSubMaterial == Multimaterial then(
 				
-				print "Multi"
 				local lSubMaterialsCount2 = lSubMaterial.numsubs			
+				
 				for iSubMaterial2 =  1 to lSubMaterialsCount2 do(
+					
 					local lSubMaterial2 = lSubMaterial[iSubMaterial2]
+					
 					if classOf lSubMaterial2 == Standardmaterial then (
-						print "UEE"
 						local tempMaterial2 = sMaterial()
+						--print lSubMaterial2.name
 						tempMaterial2.m_name = lSubMaterial2.name
 						tempMaterial2.setFlags(lSubMaterial2)
 						append gMatsArray tempMaterial2
 					)
 					else (
-
 						print classOf lSubMaterial2
 					)
 			
@@ -69,15 +70,16 @@ fn process = (
 		local Vtx1 = sVertex()
 		local Vtx2 = sVertex()
 		local Vtx3 = sVertex()
-
+		
 		local auxPos1 = (getVert gSelection IdxsFace.x) * gInverseTransform
 		local auxPos2 = (getVert gSelection IdxsFace.y) * gInverseTransform
 		local auxPos3 = (getVert gSelection IdxsFace.z) * gInverseTransform
-
+		
 		Vtx1.m_pos = TranslationToRH(auxPos1)
 		Vtx2.m_pos = TranslationToRH(auxPos2)
 		Vtx3.m_pos = TranslationToRH(auxPos3)
-
+		
+		
 		--SAVING POINTS FOR BOUNDING BOX AND SPHERE		
 		append gAX Vtx1.m_pos.x
 		append gAX Vtx2.m_pos.x
@@ -90,8 +92,7 @@ fn process = (
 		append gAZ Vtx1.m_pos.z
 		append gAZ Vtx2.m_pos.z
 		append gAZ Vtx3.m_pos.z
-
-
+		
 		UABCalcVertexsNormals gSelection
 		local lFaceNormal = getFaceNormal gSelection nFace
 		local lSmoothValue = getFaceSmoothGroup gSelection nFace
@@ -105,7 +106,6 @@ fn process = (
 		Vtx3.m_norm = TranslationToRH(auxNorm3)
 
 		local IdxsMap = meshop.getMapFace gSelection 1 nFace
-
 		local auxUV_1 = meshop.getMapVert gSelection 1 IdxsMap.x
 		local auxUV_2 = meshop.getMapVert gSelection 1 IdxsMap.y
 		local auxUV_3 = meshop.getMapVert gSelection 1 IdxsMap.z
@@ -136,6 +136,7 @@ fn process = (
 			MaterialID = 1
 		)else(
 			MaterialID = getFaceMatID gSelection nFace
+			print MaterialID
 		)
 
 		--gMatsArray[MaterialID].addVertex(Vtx1)
@@ -158,50 +159,65 @@ fn writeToBin = (
 
 	writter.PrintUnsignedShort(header)
 	writter.PrintUnsignedShort(gMatsArray.count)
+	
+	--local lMaterialsCount = gMatsArray.count
+	--for lMat = 1 to lMaterialsCount do (
+	
+	--for iSubMaterial2 =  1 to lSubMaterialsCount2 do(
 	for lMat in gMatsArray do (
 		writter.PrintString(lMat.m_name)
 
-  format "%\n" lMat.flag_value
+		print lMat.m_name
+		print (lMat.m_aVB.count as string)
+		print("flag value : " + lMat.flag_value as string)
 		writter.PrintUnsignedShort(lMat.flag_value)
 		writter.PrintUnsignedShort(lMat.m_aVB.count)
 		for lVrtx in lMat.m_aVB do(
-		 
+			print ("position")
 			writter.PrintFloat(lVrtx.m_pos.x)
 			writter.PrintFloat(lVrtx.m_pos.y)
 			writter.PrintFloat(lVrtx.m_pos.z)
-
+			print ("normal")
 			writter.PrintFloat(lVrtx.m_norm.x)
 			writter.PrintFloat(lVrtx.m_norm.y)
 			writter.PrintFloat(lVrtx.m_norm.z)
 
 			if(bit.and lMat.flag_value eTangent) == eTangent then(
-				writter.PrintFloat(0.0)
-				writter.PrintFloat(0.0)
-				writter.PrintFloat(0.0)
-				writter.PrintFloat(0.0) 
+				print ("tangent")
+				writter.PrintFloat(lVrtx.m_tangencial.x)
+				writter.PrintFloat(lVrtx.m_tangencial.y)
+				writter.PrintFloat(lVrtx.m_tangencial.z)
+				writter.PrintFloat(lVrtx.m_tangencial.z)
 			)
 			if(bit.and lMat.flag_value eBinormal) == eBinormal then (
-				writter.PrintFloat(0.0)
-				writter.PrintFloat(0.0)
-				writter.PrintFloat(0.0)
-				writter.PrintFloat(0.0)
-				)
+				print("binormal")
+				writter.PrintFloat(lVrtx.m_binormal.x)
+				writter.PrintFloat(lVrtx.m_binormal.y)
+				writter.PrintFloat(lVrtx.m_binormal.z)
+				writter.PrintFloat(lVrtx.m_binormal.z)
+			)
 			if(bit.and lMat.flag_value eUV)  == eUV then (
-
+				print("uv")
 				writter.PrintFloat(lVrtx.m_uv.x)
 				writter.PrintFloat(lVrtx.m_uv.y)
 
 				if(bit.and lMat.flag_value eUV2) == eUV2 then (
+					print("uv2")
 					writter.PrintFloat(lVrtx.m_uv2.x)
 					writter.PrintFloat(lVrtx.m_uv2.y)
 				)
 			)
 
 		)
+		
+		print ("indexes")
+		print (lMat.m_aIB.count as string)
 		writter.PrintUnsignedShort(lMat.m_aIB.count)
+	
 		for idx in lMat.m_aIB do(
 			writter.PrintUnsignedShort(idx)
 		)
+	
 	)
 
 	writter.PrintFloat(gBBox.m_min.x)

@@ -25,10 +25,11 @@
 		<shader name="PositionNormalUVPBRGBuffer" file="Deferred/PBRUberShader.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor="USE_UV"/>
 		<shader name="PositionNormalUVUV2PBRGBuffer" file="Deferred/PBRUberShader.fx" entry_point="VS" vertex_type="PositionNormalUVUV2" preprocessor="USE_UV;USE_UV2;"/>
 		<shader name="PositionBumpUVPBRGBuffer" file="Deferred/PBRUberShader.fx" entry_point="VS" vertex_type="PositionBumpUV" preprocessor="USE_UV;USE_BUMP;"/>
+		<shader name="PositionBumpUVUV2PBRGBuffer" file="Deferred/PBRUberShader.fx" entry_point="VS" vertex_type="PositionBumpUVUV2" preprocessor="USE_UV;USE_UV2;USE_BUMP;"/>
 		<shader name="PBRDeferredQuad" file="Deferred/PBRDeferredShading.fx" entry_point="VS" vertex_type="PositionUV" preprocessor=""/>
 		
 		<!--shadow-->	
-		<shader name="AnimatedModelShadow" file="PostProcess/ShadowUberShader.fx" entry_point="VS" vertex_type="PositionWeightIndicesNormalUV" preprocessor="USE_WEIGHTIDX"/>
+		<shader name="AnimatedModelShadow" file="PostProcess/ShadowUberShader.fx" entry_point="VS" vertex_type="PositionWeightIndicesNormalUV" preprocessor="USE_UV;USE_WEIGHTIDX;"/>
 		<shader name="PositionNormalShadow" file="PostProcess/ShadowUberShader.fx" entry_point="VS" vertex_type="PositionNormal" preprocessor=""/>
 		<shader name="PositionNormalUVShadow" file="PostProcess/ShadowUberShader.fx" entry_point="VS" vertex_type="PositionNormalUV" preprocessor="USE_UV"/>
 		<shader name="PositionNormalUVUV2Shadow" file="PostProcess/ShadowUberShader.fx" entry_point="VS" vertex_type="PositionNormalUVUV2" preprocessor="USE_UV;USE_UV2;"/>
@@ -47,6 +48,7 @@
 		
 		<shader name="ParticleVertex" file="particleShader.fx" entry_point="VS" vertex_type="ParticleVertex" preprocessor=""/>
 		<shader name="Position" file="Forward/Position.fx" entry_point="VS" vertex_type="Position" preprocessor=""/>
+		<shader name="Line" file="Forward/Line.fx" entry_point="VS" vertex_type="Line" preprocessor=""/>
 		
 	</vertex_shaders>     
 
@@ -74,6 +76,7 @@
 		<shader name="PositionNormalUVPBRGBuffer" file="Deferred/PBRUberShader.fx" entry_point="PS" preprocessor="USE_UV"/>
 		<shader name="PositionNormalUVUV2PBRGBuffer" file="Deferred/PBRUberShader.fx" entry_point="PS" preprocessor="USE_UV;USE_UV2;"/>
 		<shader name="PositionBumpUVPBRGBuffer" file="Deferred/PBRUberShader.fx" entry_point="PS" preprocessor="USE_UV;USE_BUMP;"/>
+		<shader name="PositionBumpUVUV2PBRGBuffer" file="Deferred/PBRUberShader.fx" entry_point="PS" preprocessor="USE_UV;USE_UV2;USE_BUMP;"/>
 		<shader name="PBRDeferredQuad" file="Deferred/PBRDeferredShading.fx" entry_point="PS" preprocessor=""/>
 		<shader name="PBRComposite" file="Deferred/PBRComposite.fx" entry_point="PS" preprocessor=""/>
 		
@@ -102,6 +105,7 @@
 		
 			
 		<shader name="Position" file="Forward/Position.fx" entry_point="PS" preprocessor=""/>
+		<shader name="Line" file="Forward/Line.fx" entry_point="PS" preprocessor=""/>
 		
 		
 		<!--other-->
