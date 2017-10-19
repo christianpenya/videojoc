@@ -1,9 +1,7 @@
 <scene>
 	
 	<layer name="lights" active="true" >			
-		
 		<scene_light name="FDirect001" />
-		
 	</layer>	
 	
 	<layer name="salas" active="true" >		
@@ -22,7 +20,7 @@
 			<transform position="11.745 -0.222592 48.1769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.2444 1.2444 1.2444" />
 			<collider rigid_body="box" />
 		</scene_mesh>
-		<scene_mesh name="pared_fondo" mesh="data/meshes/parkineo/pared_fondo.mesh" >
+<!-- 		<scene_mesh name="pared_fondo" mesh="data/meshes/parkineo/pared_fondo.mesh" >
 			<transform position="-0.883163 -0.440474 48.3396" yaw="0.0" pitch="0.0" roll="0.0" scale="0.759453 2.16008 0.759453" />
 		</scene_mesh>
 		<scene_mesh name="puerta" mesh="data/meshes/parkineo/puerta.mesh" >
@@ -30,7 +28,7 @@
 		</scene_mesh>
 		<scene_mesh name="carcel" mesh="data/meshes/parkineo/carcel.mesh" >
 			<transform position="-0.883163 -0.222592 1.69872" yaw="0.0" pitch="0.0" roll="0.0" scale="0.759453 0.759453 0.759453" />
-		</scene_mesh>
+		</scene_mesh> -->
 	</layer>
 				
 	<layer name="triggers" active="true">

@@ -13,7 +13,9 @@
 #include "Graphics/Cinematics/CinematicsManager.h"
 #include "Render/RenderPipeline/SetRasterizerState.h"
 #include "Graphics/Lights/LightManager.h"
+#include "Graphics/Materials/MaterialManager.h"
 #include "Graphics/Camera/CameraManager.h"
+#include "Utils/Logger.h"
 
 CRenderImGUI::CRenderImGUI() {}
 CRenderImGUI::~CRenderImGUI() {}
@@ -44,7 +46,7 @@ void CRenderImGUI::Execute(CRenderManager& lRM)
 
     if (ImGui::BeginMainMenuBar())
     {
-        if (ImGui::BeginMenu("Main"))
+        if (ImGui::BeginMenu("Cameras"))
         {
             ImGui::MenuItem("Cameras", NULL, &show_cameras);
             ImGui::EndMenu();
@@ -155,6 +157,20 @@ void CRenderImGUI::Reloads(CEngine& lEngine)
         {
             lEngine.GetLightManager().Load(true);
             //lEngine.GetSceneManager().Refresh();
+        }
+        ImGui::PopStyleColor(2);
+        ImGui::PopID();
+
+        //MATERIALES
+        ImGui::PushID(RELOAD_MATERIALS_BUTTON_ID);
+        ImGui::PushStyleColor(ImGuiCol_Button, GREEN);
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, GREEN_HOVER);
+
+        if (ImGui::Button("Materiales"))
+        {
+            LOG_INFO_APPLICATION("Realoading materials `\\_(:))_/´ ");
+            //lEngine.GetRenderPipeline().ReApplyTechnique("pbr_gbuffer");
+            lEngine.GetMaterialManager().Load(true);
         }
         ImGui::PopStyleColor(2);
         ImGui::PopID();

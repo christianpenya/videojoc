@@ -42,6 +42,8 @@ public:
     CMaterial(CXMLElement* aElement);
     virtual ~CMaterial();
     void Apply();
+    void Initialize(CXMLElement* aElement);
+    void ClearParametersAndTextures();
 
     void SetTechnique(CTechnique* aTechnique)
     {
@@ -68,6 +70,8 @@ private:
     CTechnique* mTechnique;
     std::vector< CTexture* > mTextures;
     std::vector< CMaterialParameter *> mParameters;
+
+
 };
 
 Begin_Enum_String(CMaterial::ETextureIndex)
