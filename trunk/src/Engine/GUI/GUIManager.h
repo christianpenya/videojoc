@@ -17,6 +17,7 @@
 #include "Button.h"
 #include "Slider.h"
 #include "Graphics/Materials/Material.h"
+#include "Graphics/Mesh/TemplatedIndexedGeometry.h"
 class CGUIPosition;
 class CSlider;
 
@@ -53,11 +54,11 @@ class CGUIManager
     static const int MAX_VERTICES_PER_CALL = 128;
 private:
 
-    // CIndexedGeometryTriangleList<VertexTypes::SpriteVertex>  m_CurrentBufferData[5];
+    //CIndexedGeometryTriangleList<VertexTypes::SpriteVertex>  m_CurrentBufferData[5];
     std::string m_ActiveItem;
     std::string m_HotItem;
     std::string m_SelectedItem;
-//    std::vector<CGeometryTriangleList<VertexTypes::SpriteVertex>*> m_VertexBuffers;
+    std::vector<CGeometryTriangleList<VertexTypes::SpriteVertex>*> m_VertexBuffers;
     std::vector<CMaterial*> m_Materials;
     std::map<std::string, SpriteMapInfo> m_SpriteMaps;
     std::map<std::string, SpriteInfo> m_Sprites;

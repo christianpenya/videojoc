@@ -9,7 +9,7 @@ template< class TVertexType >
 class CVertexBuffer : public CBuffer
 {
 public:
-/*    CVertexBuffer(CRenderManager& RenderManager, void* aRawData, uint32 aNumVertexs, bool dynamic = false) :
+    CVertexBuffer(CRenderManager& RenderManager, void* aRawData, uint32 aNumVertexs, bool dynamic = false) :
         mNumVertexs(aNumVertexs)
     {
         D3D11_BUFFER_DESC lVertexBufferDesc;
@@ -24,9 +24,9 @@ public:
         ID3D11Device *lDevice = RenderManager.GetDevice();
         HRESULT l_HR = lDevice->CreateBuffer(&lVertexBufferDesc, aRawData == nullptr ? nullptr : &InitData, &m_pBuffer);
         assert(SUCCEEDED(l_HR));
-    }*/
+    }
 
-	    CVertexBuffer(CRenderManager& RenderManager, void* aRawData, uint32 aNumVertexs) :
+    /*CVertexBuffer(CRenderManager& RenderManager, void* aRawData, uint32 aNumVertexs) :
         mNumVertexs(aNumVertexs)
     {
         D3D11_BUFFER_DESC lVertexBufferDesc;
@@ -41,9 +41,9 @@ public:
         ID3D11Device *lDevice = RenderManager.GetDevice();
         HRESULT l_HR = lDevice->CreateBuffer(&lVertexBufferDesc, &InitData, &m_pBuffer);
         assert(SUCCEEDED(l_HR));
-    }
+    }*/
 
-	
+
     CVertexBuffer(): mNumVertexs(0)
     {
     }
