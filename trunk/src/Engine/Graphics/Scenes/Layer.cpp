@@ -17,8 +17,8 @@
 #include "Graphics/IA/EnemiesManager.h"
 #include "Graphics/IA/NavMesh.h"
 #include "Graphics/IA/NavMeshManager.h"
-//#include "Graphics/IA/Laser.h"
-//#include "Graphics/IA/LaserManager.h"
+#include "Graphics/IA/Laser.h"
+#include "Graphics/IA/LaserManager.h"
 
 #ifdef _DEBUG
 #include <chrono>
@@ -130,8 +130,7 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
                 lNode->SetNodeType(CSceneNode::eEnemy);
             }
         }
-
-        if (lNode)
+        else if (strcmp(iSceneMesh->Name(), "scene_laser") == 0)
         {
             if (!Exist(lNode->GetName()))
             {
@@ -249,74 +248,82 @@ void CLayer::DrawImgui()
     ImGui::Checkbox("Active", &m_Active);
     if (m_Active)
     {
-        ImGui::BeginChild("#layer", ImVec2(800, 400), true, ImGuiWindowFlags_AlwaysAutoResize);
-        ImGui::PushItemWidth(-130);
-
-        for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
+        if (ImGui::TreeNode(m_Name.c_str()))
         {
-            ImGui::PushID((*iSceneNode)->GetName().c_str());
-            switch ((*iSceneNode)->GetNodeType())
-            {
 
-            case CSceneMesh::eMesh:
+            for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
             {
-                (*iSceneNode)->DrawImgui();
-            }
-            break;
-
-            case CSceneNode::eAnimatedModel:
-            {
-                // TODO animated core models deben formar parte de la escena
-                ((CSceneAnimatedModel *)(*iSceneNode))->DrawImgui();
-                CAnimatedCoreModel *lAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()((*iSceneNode)->GetName());
-
-                if (lAnimatedCoreModel != nullptr)
-                    lAnimatedCoreModel->DrawImgui();
-            }
-            break;
-
-            case CSceneAnimatedModel::eBasicPrimitive:
-            {
-                ((CSceneBasicPrimitive *)(*iSceneNode))->DrawImgui();
-            }
-            break;
-
-            case CLight::eLight:
-            {
-                (*iSceneNode)->DrawImgui();
-            }
-            break;
-
-            case CSceneNode::eParticle:
-            {
-                CParticleSystemType *lParticle = CEngine::GetInstance().GetParticleManager()((*iSceneNode)->GetName());
-                if (lParticle != nullptr)
+                ImGui::PushID((*iSceneNode)->GetName().c_str());
+                switch ((*iSceneNode)->GetNodeType())
                 {
-                    lParticle->DrawImgui();
-                }
-            }
-            break;
-            case CSceneNode::eNavMesh:
-            {
-                CNavMesh *lNavMesh = CEngine::GetInstance().GetNavMeshManager()((*iSceneNode)->GetName());
-                if (lNavMesh != nullptr)
-                    lNavMesh->DrawImgui();
-            }
-            /* case CSceneNode::eLaser:
-             {
-                 CLaser *lLaser = CEngine::GetInstance().GetLaserManager()((*iSceneNode)->GetName());
-                 if (lLaser != nullptr)
-                     lLaser->DrawImgui();
-             }
-             break;*/
-            default:
-            {
-                LOG_WARNING_APPLICATION("Unknown Scene Node Type");
-            }
-            break;
-            }
 
-            ImGui::PopID();
+                case CSceneMesh::eMesh:
+                {
+                    (*iSceneNode)->DrawImgui();
+                }
+                break;
+
+                case CSceneNode::eAnimatedModel:
+                {
+                    // TODO animated core models deben formar parte de la escena
+                    ((CSceneAnimatedModel *)(*iSceneNode))->DrawImgui();
+                    CAnimatedCoreModel *lAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()((*iSceneNode)->GetName());
+
+                    if (lAnimatedCoreModel != nullptr)
+                        lAnimatedCoreModel->DrawImgui();
+                }
+                break;
+
+                case CSceneAnimatedModel::eBasicPrimitive:
+                {
+                    ((CSceneBasicPrimitive *)(*iSceneNode))->DrawImgui();
+                }
+                break;
+
+                case CLight::eLight:
+                {
+                    (*iSceneNode)->DrawImgui();
+                }
+                break;
+
+                case CSceneNode::eParticle:
+                {
+                    CParticleSystemType *lParticle = CEngine::GetInstance().GetParticleManager()((*iSceneNode)->GetName());
+                    if (lParticle != nullptr)
+                    {
+                        lParticle->DrawImgui();
+                    }
+                }
+                break;
+                case CSceneNode::eNavMesh:
+                {
+                    CNavMesh *lNavMesh = CEngine::GetInstance().GetNavMeshManager()((*iSceneNode)->GetName());
+                    if (lNavMesh != nullptr)
+                        lNavMesh->DrawImgui();
+                }
+                case CSceneNode::eEnemy:
+                {
+                    CEnemy *lenemy = CEngine::GetInstance().GetEnemiesManager()((*iSceneNode)->GetName());
+                    if (lenemy != nullptr)
+                        lenemy->DrawImgui();
+                }
+                    /*                case CSceneNode::eLaser:
+                                    {
+                                        CLaser *lLaser = CEngine::GetInstance().GetLaserManager()((*iSceneNode)->GetName());
+                                        if (lLaser != nullptr)
+                                            lLaser->DrawImgui();
+                                    }*/
+                break;
+                default:
+                {
+                    LOG_WARNING_APPLICATION("Unknown Scene Node Type");
+                }
+                break;
+                }
+
+                ImGui::PopID();
+            }
+            ImGui::TreePop();
         }
     }
 }

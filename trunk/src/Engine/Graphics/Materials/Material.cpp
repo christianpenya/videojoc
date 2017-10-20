@@ -208,10 +208,7 @@ void CMaterial::DrawImgui()
                     ImGui::SliderFloat4(mParameters[i]->GetName().c_str(), ((float*)mParameters[i]->GetAddr(0), (float*)mParameters[i]->GetAddr(1), (float*)mParameters[i]->GetAddr(2), (float*)mParameters[i]->GetAddr(4)), 0.0f, 1.0f, "%.2f");
                     break;
                 case eColor:
-                    ImGui::SliderFloat("Red", (float*)mParameters[i]->GetAddr(0), 0.0f, 1.0f);
-                    ImGui::SliderFloat("Green", (float*)mParameters[i]->GetAddr(1), 0.0f, 1.0f);
-                    ImGui::SliderFloat("Blue", (float*)mParameters[i]->GetAddr(2), 0.0f, 1.0f);
-                    ImGui::SliderFloat("Alpha", (float*)mParameters[i]->GetAddr(3), 0.0f, 1.0f);
+                    ImGui::ColorEdit4(mParameters[i]->GetName().c_str(), (float*)mParameters[i]->GetAddr(), true);
                     break;
 
                 default:
@@ -220,7 +217,10 @@ void CMaterial::DrawImgui()
                     break;
 
                 }
+                ImGui::PopID();
             }
+            ImGui::TreePop();
+
         }
     }
 

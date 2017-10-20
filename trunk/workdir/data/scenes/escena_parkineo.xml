@@ -1,5 +1,40 @@
 <scene>
 	
+	<layer name="lights" active="true" >			
+		
+		<scene_light name="FDirect001" />
+		
+	</layer>	
+	
+	<layer name="salas" active="true" >		
+		
+		<scene_mesh name="suelo" mesh="data/meshes/parkineo/suelo.mesh" >
+			<transform position="-1.7837 -0.229552 -1.17354" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/suelo.mesh" scale="-1.0 1.0 1.0" />
+		</scene_mesh>
+		
+	</layer>
+	
+	<layer name="laser" active="true">
+		<scene_laser name="laserBoss">
+			<transform position="11.4629 15.3719 45.84" yaw="0.0" pitch="-90.0" roll="0.0" forward="0.0 0.0 0.0" />
+		</scene_laser> 		
+		<scene_mesh name="PatrolPoint" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="27.75 0.0 48.95" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint2" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-27.75 0.0 48.95" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+
+		<scene_mesh name="PatrolPoint3" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="27.75 0.0 -26.65" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint4" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-27.75 0.0 -26.65" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>			
+
+	</layer>
+	
 	<layer name="opaque" active="true" >		
 		
 		<scene_mesh name="torreta" mesh="data/meshes/parkineo/torreta.mesh" >

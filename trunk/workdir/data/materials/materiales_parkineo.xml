@@ -1,4 +1,10 @@
 <materials >
+	<material name="LineMaterial" vertex_type="Line">
+		<parameter type="color" name="diffuse_color" value="1.0 0.0 0.0 1.0" />
+	</material>
+	<material name="PatrolPoint002Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.0 1.0 1.0 1.0 " />
+	</material>
 	
 	SUELO
 	<material name="02 - Default" vertex_type="PositionNormal" >
