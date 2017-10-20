@@ -51,7 +51,7 @@ struct FontChar
 
 class CGUIManager
 {
-    static const int MAX_VERTICES_PER_CALL = 128;
+    static const int MAX_VERTICES_PER_CALL = 256;
 private:
 
     //CIndexedGeometryTriangleList<VertexTypes::SpriteVertex>  m_CurrentBufferData[5];

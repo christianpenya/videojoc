@@ -25,7 +25,7 @@ void CTextGUIReactor::Load(CXMLElement* aElement)
 {
     GUIMan = &CEngine::GetInstance().GetGUIManager();
     RenderMan = &CEngine::GetInstance().GetRenderManager();
-    mText = aElement->GetAttribute<std::string>("text", "TText Not Found :S");
+    mText = aElement->GetAttribute<std::string>("text", "Text Not Found :S");
     mFont = aElement->GetAttribute<std::string>("font", "font1");
     mPortion = aElement->GetAttribute<Vect2f>("portion", Vect2f(0, 0));
     mTime = aElement->GetAttribute<float>("time", 5.f);
