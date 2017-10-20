@@ -130,13 +130,22 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
                 lNode->SetNodeType(CSceneNode::eEnemy);
             }
         }
-        else if (strcmp(iSceneMesh->Name(), "scene_laser") == 0)
+        else if (strcmp(iSceneNode->Name(), "scene_laser") == 0)
         {
-            if (!Exist(lNode->GetName()))
+            std::string l_LaserName = iSceneNode->GetAttribute<std::string>("name", "");
+            CLaser *l_laser = nullptr;
+
+            if (l_LaserManager.Exist(l_LaserName))
             {
-                lNode->SetParent(this);
-                lOk &= Add(lNode->GetName(), lNode);
+                lNode = l_LaserManager(l_LaserName);
+                lNode->SetNodeType(CSceneNode::eLaser);
             }
+        }
+
+        if (lNode)
+        {
+            lNode->SetParent(this);
+            lOk &= Add(lNode->GetName(), lNode);
         }
     }
 

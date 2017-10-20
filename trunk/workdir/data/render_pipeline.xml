@@ -21,7 +21,6 @@
 	
 	<render_layer layer="test"/>
 	<render_layer layer="opaque"/>
-	<render_layer layer="guardias"/>
 	<render_layer layer="LPlayer"/>
 	<render_layer layer="triggers"/>
 	<render_layer layer="navmesh"/>
