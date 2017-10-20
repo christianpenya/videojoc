@@ -21,25 +21,19 @@ CScene::~CScene()
     CTemplatedMapVector<CLayer>::Destroy();
 }
 
-bool CScene::Refresh()
-{
-    for (TVectorResources::iterator iLayer = m_ResourcesVector.begin(); iLayer != m_ResourcesVector.end(); ++iLayer)
-    {
-        if ((*iLayer)->GetActive())
-        {
-            LOG_INFO_APPLICATION(("Refresh layer " + (*iLayer)->GetName() + std::to_string(clock())).c_str());
-            (*iLayer)->Refresh();
-        }
-    }
-
-    return true;
-}
-
 bool CScene::Load(const std::string& aFilename)
 {
+    mFilename = aFilename;
+    return Load();
+}
+
+bool CScene::Load(bool update)
+{
     bool lOk = true;
+
     CXMLDocument document;
-    EXMLParseError error = document.LoadFile((aFilename).c_str());
+    EXMLParseError error = document.LoadFile((mFilename).c_str());
+    std::set< std::string > lLayerNamesFromXML;
 
     if (base::xml::SucceedLoad(error))
     {
@@ -50,14 +44,47 @@ bool CScene::Load(const std::string& aFilename)
             {
                 if (strcmp(iLayer->Name(), "layer") == 0)
                 {
-                    CLayer* lLayer = new CLayer(iLayer->GetAttribute<std::string>("name", ""));
-                    lLayer->SetActive(iLayer->GetAttribute<bool>("active", false));
-                    if (lLayer->GetActive())
+                    const std::string lLayerName = iLayer->GetAttribute<std::string>("name", "");
+                    lLayerNamesFromXML.insert(lLayerName);
+
+                    CLayer* lLayer = (*this)(lLayerName);
+
+                    if (lLayer && lLayer->GetActive())
                     {
-                        lLayer->Load(iLayer);
-                        lLayer->SetParent(this);
+                        lLayer->Load(iLayer, update);
+                    }
+                    else
+                    {
+                        lLayer = new CLayer(lLayerName);
+                        lLayer->SetActive(iLayer->GetAttribute<bool>("active", false));
+
+                        if (lLayer->GetActive())
+                        {
+                            lLayer->Load(iLayer);
+                            lLayer->SetParent(this);
+                        }
+
                         lOk &= Add(lLayer->GetName(), lLayer);
                     }
+                }
+            }
+
+            if (update)
+            {
+                std::set<std::string> lMissingLayers;
+                for (std::vector<CLayer *>::iterator it = m_ResourcesVector.begin(); it != m_ResourcesVector.end(); ++it)
+                {
+                    if (lLayerNamesFromXML.find((*it)->GetName()) == lLayerNamesFromXML.end())
+                    {
+                        assert(lMissingLayers.count((*it)->GetName()) == 0);
+                        lMissingLayers.insert((*it)->GetName());
+                    }
+                }
+
+                for (std::set<std::string>::iterator iMissingLayer = lMissingLayers.begin(); iMissingLayer != lMissingLayers.end(); ++iMissingLayer)
+                {
+                    (*this)(*iMissingLayer)->DeleteAllNodes();
+                    Remove(*iMissingLayer);
                 }
             }
         }
@@ -65,7 +92,6 @@ bool CScene::Load(const std::string& aFilename)
 
     return lOk;
 }
-
 bool CScene::Update(float elapsedTime)
 {
     bool lOk = true;

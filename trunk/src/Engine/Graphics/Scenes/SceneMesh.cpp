@@ -13,19 +13,17 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     : CSceneNode(aElement)
     , mMesh(CEngine::GetInstance().GetMeshManager().GetMesh(aElement->GetAttribute<std::string>("mesh", "")))
     , mRigidBodyEnum(eRigidBodyCount)
+    , mPhysxIndex(0)
 {
     m_ignoreFrustum = aElement->GetAttribute<bool>("ignore_frustum", false);
     m_NodeType = CSceneNode::eMesh;
-
     //COLLIDERS
 
     for (tinyxml2::XMLElement *iCollider = aElement->FirstChildElement(); iCollider != nullptr; iCollider = iCollider->NextSiblingElement())
     {
         if (strcmp(iCollider->Name(), "collider") == 0)
         {
-
             // (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0) ? aElement->FirstChildElement() : nullptr;
-
             std::string lRigidBody = iCollider->GetAttribute<std::string>("rigid_body", "");
             std::string lFilename = iCollider->GetAttribute<std::string>("filename", "");
             int lGroup = iCollider->GetAttribute<int>("group", 0);
@@ -135,10 +133,41 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     }
 }
 
+void CSceneMesh::Initialize(CXMLElement* aElement)
+{
+    mMesh = CEngine::GetInstance().GetMeshManager().GetMesh(aElement->GetAttribute<std::string>("mesh", ""));
+
+    m_ignoreFrustum = aElement->GetAttribute<bool>("ignore_frustum", false);
+    m_NodeType = CSceneNode::eMesh;
+    //COLLIDERS
+
+    for (tinyxml2::XMLElement *iNode = aElement->FirstChildElement(); iNode != nullptr; iNode = iNode->NextSiblingElement())
+    {
+        // BEAR IN MIND, for proper update transform tag must be read before collider
+        if (strcmp(iNode->Name(), "transform") == 0)
+        {
+            m_Position = iNode->GetAttribute<Vect3f>("position", Vect3f(0.0f, 0.0f, 0.0f));
+            m_PrevPos = m_Position;
+            m_Scale = iNode->GetAttribute<Vect3f>("scale", Vect3f(1.0f, 1.0f, 1.0f));
+            m_Yaw = mathUtils::Deg2Rad(iNode->GetAttribute<float>("yaw", 0.0f));
+            m_Pitch = mathUtils::Deg2Rad(iNode->GetAttribute<float>("pitch", 0.0f));
+            m_Roll = mathUtils::Deg2Rad(iNode->GetAttribute<float>("roll", 0.0f));
+        }
+        else if (strcmp(iNode->Name(), "collider") == 0)
+        {
+            Quatf rotation = Quatf();
+            rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
+            CEngine::GetInstance().GetPhysXManager().SetActorTransform(m_Name, m_Position, rotation);
+        }
+    }
+}
+
 CSceneMesh::CSceneMesh(CXMLElement* aElement, CMesh* aMesh)
     : CSceneMesh(aElement)
+
 {
     mMesh = aMesh;
+    mPhysxIndex = 0;
 
     //Reescalado del radio de la bounding sphere según escena
     float radius = mMesh->GetBoundingSphere().GetRadius();
@@ -225,6 +254,18 @@ bool CSceneMesh::Render(CRenderManager& aRendermanager)
     }
 
     return lOk;
+}
+
+bool CSceneMesh::HasGotPhysx()
+{
+    bool out = true;
+
+    if (mPhysxIndex == 0)
+    {
+        out = false;
+    }
+
+    return out;
 }
 
 void CSceneMesh::DrawImgui()

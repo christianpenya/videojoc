@@ -11,10 +11,10 @@ public:
     CSceneManager();
     virtual ~CSceneManager();
     bool Load(const std::string& aFilename);
+    bool ReloadCurrentScene();
+
     bool Update(float elapsedTime);
     bool Render(const std::string& aLayer);
-    bool Reload();
-    bool Refresh();
     void Activate(const std::string& aScene, bool aBool);
     std::vector<CScene*> GetScenes();
     CScene* GetCurrentScene();

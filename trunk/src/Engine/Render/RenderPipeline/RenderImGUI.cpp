@@ -141,7 +141,7 @@ void CRenderImGUI::Reloads(CEngine& lEngine)
 
         if (ImGui::Button("Scene"))
         {
-            lEngine.GetSceneManager().Reload();
+            lEngine.GetSceneManager().ReloadCurrentScene();
             //lEngine.GetEffectManager().Refresh();
         }
 

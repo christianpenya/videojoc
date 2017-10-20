@@ -662,20 +662,56 @@ void CPhysXManager::AddFixedJoint(const std::string& jointName, const std::strin
 
 void CPhysXManager::DeleteActor(std::string actorName, size_t index)
 {
-    auto it_controller = m_CharacterControllers.find(actorName);
-    if (it_controller != m_CharacterControllers.end())
+    if (m_ActorIndexs.find(actorName) != m_ActorIndexs.end())
     {
-        it_controller->second->release();
-        m_CharacterControllers.erase(it_controller);
-    }
-    else
-    {
-        m_Actors[index]->release();
-    }
+        size_t lIndex = m_ActorIndexs.find(actorName)->second;
+        auto it_controller = m_CharacterControllers.find(actorName);
+        if (it_controller != m_CharacterControllers.end())
+        {
+            __H_CHECKED_RELEASE__(it_controller->second);
+            m_CharacterControllers.erase(it_controller);
+        }
+        else
+        {
+            m_Scene->removeActor(*m_Actors[lIndex]);
+            m_Actors[lIndex]->release();
+        }
+        if (lIndex == (m_Actors.size() - 1))
+        {
+            m_Actors.resize(m_Actors.size() - 1);
+            m_ActorNames.resize(m_Actors.size());
+            m_ActorPositions.resize(m_Actors.size());
+            m_ActorOrientations.resize(m_Actors.size());
+            m_ActorIndexs.erase(actorName);
+        }
+        else if (m_Actors.size() > 1)
+        {
+            m_Actors[m_Actors.size() - 1]->userData = (void *)lIndex;
+            m_Actors[lIndex] = m_Actors[m_Actors.size() - 1];
+            m_Actors.resize(m_Actors.size() - 1);
 
-    m_Actors[index] = m_Actors[m_Actors.size() - 1];
-    m_Actors.resize(m_Actors.size() - 1);
-    m_ActorIndexs[m_ActorNames[index]] = index;
-    m_Actors[index]->userData = (void*)index;
+            m_ActorNames[lIndex] = m_ActorNames[m_Actors.size()];
+            m_ActorNames.resize(m_Actors.size());
+
+            m_ActorPositions[lIndex] = m_ActorPositions[m_Actors.size()];
+            m_ActorPositions.resize(m_Actors.size());
+
+            m_ActorOrientations[lIndex] = m_ActorOrientations[m_Actors.size()];
+            m_ActorOrientations.resize(m_Actors.size());
+
+            m_ActorIndexs[m_ActorNames[lIndex]] = lIndex;
+
+            m_ActorIndexs.erase(actorName);
+        }
+        else
+        {
+            m_Actors.resize(0);
+            m_ActorNames.resize(0);
+            m_ActorPositions.resize(0);
+            m_ActorOrientations.resize(0);
+            m_ActorIndexs.clear();
+        }
+
+    }
 }
 

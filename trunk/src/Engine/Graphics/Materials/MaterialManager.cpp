@@ -41,7 +41,6 @@ bool CMaterialManager::Load(std::set< std::string > &filenames, bool update)
 {
     CXMLDocument document;
     std::set< std::string > lMaterialNamesFromXML;
-    //assert(lMaterialNamesFromXML.count(lMaterialName) == 0);
 
     for (auto iFilename : filenames)
     {
@@ -59,6 +58,7 @@ bool CMaterialManager::Load(std::set< std::string > &filenames, bool update)
                     if (strcmp(iMaterial->Name(), "material") == 0)
                     {
                         const std::string lMaterialName = iMaterial->GetAttribute<std::string>("name", "");
+                        assert(lMaterialNamesFromXML.count(lMaterialName) == 0);
                         lMaterialNamesFromXML.insert(lMaterialName);
 
                         CMaterial* lMaterial = (*this)(lMaterialName);
