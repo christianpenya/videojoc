@@ -55,27 +55,9 @@ bool CSceneManager::Render(const std::string& aLayer)
     return lOk;
 }
 
-bool CSceneManager::Reload()
+bool CSceneManager::ReloadCurrentScene()
 {
-    base::utils::CTemplatedMapVector<CScene>::Clear();
-    return Load();
-}
-
-bool CSceneManager::Refresh()
-{
-    bool lOut = false;
-
-    for (TVectorResources::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
-    {
-        if ((*iScene)->GetActive())
-        {
-            LOG_INFO_APPLICATION(("Refresh layer " + (*iScene)->GetName() + std::to_string(clock())).c_str());
-            lOut = (*iScene)->Refresh();
-        }
-    }
-
-    base::utils::CTemplatedMapVector<CScene>::Clear();
-    return lOut;
+    return GetCurrentScene()->Load(true);
 }
 
 void CSceneManager::Activate(const std::string& aScene, bool aBool)
