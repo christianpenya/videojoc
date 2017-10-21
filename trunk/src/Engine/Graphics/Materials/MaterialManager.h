@@ -15,14 +15,13 @@ public:
     CMaterialManager();
     virtual ~CMaterialManager();
     void Load(const std::string &LevelFilename, const std::string &DefaultsFileName = "");
-    void Reload();
-    void Save();
+    bool Load(bool update = false);
     void DrawImgui();
 
 private:
     std::string m_LevelMaterialsFilename;
     std::string m_DefaultMaterialsFilename;
-    bool Load(const std::string &Filename, bool Update = false);
+    bool Load(std::set< std::string > &Filename, bool update = false);
 
 };
 

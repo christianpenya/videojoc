@@ -12,7 +12,7 @@ class CLayer : public CName, public CActive, public base::utils::CTemplatedMapVe
 public:
     CLayer(const std::string& aName);
     virtual ~CLayer();
-    bool Load(CXMLElement* aElement);
+    bool Load(CXMLElement* aElement, bool update = false);
     bool Refresh();
     bool Update(float elapsedTime);
     bool Render();
@@ -24,6 +24,8 @@ public:
 
     CSceneNode* GetSceneNode(std::string aName);
     std::vector<CSceneNode*> GetNodes();
+    void DeleteAllNodes();
+
     void DrawImgui();
 
 private:
