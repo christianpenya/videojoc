@@ -10,6 +10,7 @@
 #include "XML/XML.h"
 #include "Graphics/Mesh/TemplatedGeometry.h"
 #include "GUIPosition.h"
+#include "GUISprite.h"
 
 
 CGUIManager::CGUIManager(): m_MouseX(0), m_MouseY(0)
@@ -136,8 +137,14 @@ bool CGUIManager::Load(std::string _FileName)
                 }
                 else if (strcmp(iElement->Name(), "button") == 0)
                 {
-                    //TODO
+                    //TODODoB
                     m_Buttons[iElement->GetAttribute<std::string>("name", "")] = new CButon(&m_Sprites[iElement->GetAttribute<std::string>("normal", "")], &m_Sprites[iElement->GetAttribute<std::string>("highlight", "")], &m_Sprites[iElement->GetAttribute<std::string>("pressed", "")]);
+
+                }
+                else if (strcmp(iElement->Name(), "guisprite") == 0)
+                {
+                    //TODODoB
+                    m_GUISprites[iElement->GetAttribute<std::string>("name", "")] = new CGUISPrite(&m_Sprites[iElement->GetAttribute<std::string>("normal", "")]);
 
                 }
 
@@ -425,7 +432,20 @@ void CGUIManager::FillCommandQueueWithText(const std::string& _font, const std::
         m_Commands[i].y2 += (int)adjustment.y;
     }
 }
-
+bool CGUIManager::DoGUISprite(const std::string& guiID, const std::string& SpriteID, CGUIPosition& position)
+{
+    SpriteInfo* l_sprite;
+    l_sprite = m_GUISprites[SpriteID]->GetNormal();
+    GUICommand command =
+    {
+        l_sprite,
+        position.Getx(), position.Gety(), position.Getx() + position.Getwidth(), position.Gety() + position.Getheight(),
+        0, 0, 1, 1,
+        CColor(1, 1, 1, 1)
+    };
+    m_Commands.push_back(command);
+    return true;
+}
 
 bool CGUIManager::DoButton(const std::string& guiID, const std::string& buttonID,  CGUIPosition& position)
 {

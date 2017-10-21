@@ -46,11 +46,13 @@ void CCharacterController::Update(float ElapsedTime)
         if (crouch > 0.1f)
         {
             player->ClearActiveAnimationCycle(0.5f);
+            player->BlendCycle(4, 1, 0.5f);
             //player->BlendCycle(1, 1, 0); crouch moving animation
         }
         else if (run > 0.1f)
         {
             player->ClearActiveAnimationCycle(0.5f);
+            player->BlendCycle(3, 1, 0.5f);
             //player->BlendCycle(4, 1, 0); run animation
         }
         else
