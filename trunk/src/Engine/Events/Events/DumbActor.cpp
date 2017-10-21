@@ -17,12 +17,12 @@ void CDumbActor::Load(CXMLElement* aElement) {}
 void CDumbActor::Act()
 {
     //LOG_INFO_APPLICATION("ACTING! I'M ACTING!");
-    std::string lLayerName = "triggers";
+    /*std::string lLayerName = "triggers";
     std::string lDoorName = "trigger_pasillo";
 
     CSceneNode* temare = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(lDoorName);
     temare->SetActive(false);
-
+    */
 }
 
 void CDumbActor::Update(float elapsedTime)
