@@ -28,5 +28,6 @@
 	<button name="teula_button" normal="teula" highlight="teula2" pressed="teula3"/>
 	<slider name="teula_slider" base="slider_base" top="slider_top" handle="slider_handle" pressed_handle="slider_pressed_handle"/>	
 	<font name="font1" filename="data/fonts/Font1.xml"/>
+	<guisprite name="testImage" normal="teula"/>
 
 </gui_elements>

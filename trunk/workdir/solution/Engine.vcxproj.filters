@@ -117,6 +117,9 @@
     <ClInclude Include="..\..\src\Engine\GUI\GUIPosition.h">
       <Filter>GUI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\GUI\GUISprite.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\GUI\Slider.h">
       <Filter>GUI</Filter>
     </ClInclude>
@@ -492,6 +495,9 @@
       <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\GUI\GUIPosition.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\GUI\GUISprite.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\GUI\Slider.cpp">

@@ -198,7 +198,7 @@
     <char id="254" x="156" y="27" width="14" height="25" xoffset="1" yoffset="6" xadvance="15" page="0" chnl="15" />
     <char id="255" x="140" y="53" width="14" height="23" xoffset="0" yoffset="8" xadvance="14" page="0" chnl="15" />
   </chars>
-  <kernings count="91">
+  <kernings count="88">
     <kerning first="32" second="65" amount="-2" />
     <kerning first="32" second="84" amount="-1" />
     <kerning first="32" second="89" amount="-1" />
@@ -244,8 +244,7 @@
     <kerning first="84" second="58" amount="-3" />
     <kerning first="89" second="118" amount="-2" />
     <kerning first="84" second="65" amount="-2" />
-    <kerning first="84" second="79" amount="-1" />
-    
+    <kerning first="84" second="79" amount="-1" />    
     <kerning first="84" second="105" amount="-1" />
     <kerning first="84" second="111" amount="-3" />
     <kerning first="84" second="114" amount="-1" />

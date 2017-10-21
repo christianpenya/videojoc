@@ -16,6 +16,7 @@
 //#include"GUIPosition.h"
 #include "Button.h"
 #include "Slider.h"
+#include "GUISprite.h"
 #include "Graphics/Materials/Material.h"
 #include "Graphics/Mesh/TemplatedIndexedGeometry.h"
 class CGUIPosition;
@@ -64,6 +65,7 @@ private:
     std::map<std::string, SpriteInfo> m_Sprites;
     std::map<std::string, CButon*> m_Buttons;
     std::map<std::string, CSlider*> m_Sliders;
+    std::map<std::string, CGUISPrite*> m_GUISprites;
     std::vector<GUICommand> m_Commands;
     std::string m_FileName;
     std::unordered_map< std::string, int16 > m_LineHeightPerFont;
@@ -126,6 +128,7 @@ public:
     void Render(CRenderManager *RenderManager);
 
     bool DoButton(const std::string& guiID, const std::string& buttonID, CGUIPosition& position);
+    bool DoGUISprite(const std::string& guiID, const std::string& SpriteID, CGUIPosition& position);
     std::string DoTextBox(const std::string& guiID, const std::string& _font, const std::string& currentText, CGUIPosition position);
     struct SliderResult
     {

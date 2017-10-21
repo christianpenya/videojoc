@@ -8,6 +8,10 @@
 #include "Utils/CheckedRelease.h"
 #include "Utils/FileUtils.cpp"
 
+
+
+
+
 #include <filesystem>
 
 CShader::CShader(const std::string& aShaderCode, EShaderStage aType) :
@@ -32,6 +36,38 @@ CShader::~CShader()
 {
     base::utils::CheckedRelease(m_pBlob);
     base::utils::CheckedDelete(m_ShaderMacros);
+}
+
+bool WriteBlobToFile(const std::string &Filename, ID3DBlob *Blob)
+{
+    FILE *l_File = NULL;
+    fopen_s(&l_File, Filename.c_str(), "wb+");
+    if (l_File != NULL)
+    {
+        SIZE_T l_Size = Blob->GetBufferSize();
+        fwrite(&l_Size, sizeof(SIZE_T), 1, l_File);
+        fwrite(Blob->GetBufferPointer(), Blob->GetBufferSize(), 1, l_File);
+        fclose(l_File);
+        return true;
+    }
+    return false;
+}
+bool ReadBlobFromFile(const std::string &Filename, ID3DBlob **Blob)
+{
+    FILE *l_File = NULL;
+    fopen_s(&l_File, Filename.c_str(), "rb");
+    if (l_File != NULL)
+    {
+        SIZE_T l_Size;
+        fread(&l_Size, sizeof(SIZE_T), 1, l_File);
+        D3DCreateBlob(l_Size, Blob);
+        void *l_Address = (*Blob)->GetBufferPointer();
+        //void *l_Address=
+        fread(l_Address, l_Size, 1, l_File);
+        fclose(l_File);
+        return true;
+    }
+    return false;
 }
 
 bool CShader::Load()
@@ -61,20 +97,27 @@ bool CShader::Load()
             {
                 //hr = D3DCompileFromFile(lFilename,  )
                 m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), m_ShaderMacros);
-                hr = D3DWriteBlobToFile(m_pBlob, lCompiledFileNameLPCWSTR, true);
+                //hr = D3DWriteBlobToFile(m_pBlob, lCompiledFileNameLPCWSTR, true);
+                WriteBlobToFile(lCompiledFileName, m_pBlob);
+                hr = S_OK;
             }
             else
             {
                 //std::ifstream input(lCompiledFileName, std::ios::binary);
                 //m_pBlob = input.get();
-                hr = D3DReadFileToBlob(lCompiledFileNameLPCWSTR, &m_pBlob);
+                //hr = D3DReadFileToBlob(lCompiledFileNameLPCWSTR, &m_pBlob);
+                ReadBlobFromFile(lCompiledFileName, &m_pBlob);
+                hr = S_OK;
+
                 assert(m_pBlob != nullptr);
             }
         }
         else
         {
             m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), m_ShaderMacros);
-            hr = D3DWriteBlobToFile(m_pBlob, lCompiledFileNameLPCWSTR, true);
+            // hr = D3DWriteBlobToFile(m_pBlob, lCompiledFileNameLPCWSTR, true);
+            WriteBlobToFile(lCompiledFileName, m_pBlob);
+            hr = S_OK;
         }
 
         assert(SUCCEEDED(hr));
@@ -82,6 +125,19 @@ bool CShader::Load()
 
 
     return m_pBlob != nullptr;
+    /* if (!m_Filename.empty())
+    {
+    std::ifstream lStream(m_Filename);
+    m_ShaderCode = std::string((std::istreambuf_iterator<char>(lStream)),
+    (std::istreambuf_iterator<char>()));
+    }
+    if (!m_ShaderCode.empty())
+    {
+    CreateShaderMacro();
+    m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), m_ShaderMacros);
+    }
+    return m_pBlob != nullptr;
+    */
 }
 
 bool CShader::Reload()
