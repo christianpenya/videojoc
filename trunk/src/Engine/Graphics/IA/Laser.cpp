@@ -91,6 +91,7 @@ void CLaser::FireLaser()
 
     /*if (m_PhysXManager.GetActorPosition("player").y > -10.0f)
     {*/
+    CPhysXManager::RaycastData* resultado = new CPhysXManager::RaycastData();
     bool hitted = m_PhysXManager.Raycast(m_StartPosition, m_PhysXManager.GetActorPosition("player"), 0001, resultado);
 
     if (hitted && (resultado->actor == "player"))

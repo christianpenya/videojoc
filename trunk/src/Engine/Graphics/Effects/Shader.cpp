@@ -42,7 +42,7 @@ bool WriteBlobToFile(const std::string &Filename, ID3DBlob *Blob)
 {
     FILE *l_File = NULL;
     fopen_s(&l_File, Filename.c_str(), "wb+");
-    if (l_File!=NULL)
+    if (l_File != NULL)
     {
         SIZE_T l_Size = Blob->GetBufferSize();
         fwrite(&l_Size, sizeof(SIZE_T), 1, l_File);
@@ -126,18 +126,17 @@ bool CShader::Load()
 
     return m_pBlob != nullptr;
     /* if (!m_Filename.empty())
-     {
-         std::ifstream lStream(m_Filename);
-         m_ShaderCode = std::string((std::istreambuf_iterator<char>(lStream)),
-                                    (std::istreambuf_iterator<char>()));
-     }
-
-     if (!m_ShaderCode.empty())
-     {
-         CreateShaderMacro();
-         m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), m_ShaderMacros);
-     }
-     return m_pBlob != nullptr;
+    {
+    std::ifstream lStream(m_Filename);
+    m_ShaderCode = std::string((std::istreambuf_iterator<char>(lStream)),
+    (std::istreambuf_iterator<char>()));
+    }
+    if (!m_ShaderCode.empty())
+    {
+    CreateShaderMacro();
+    m_pBlob = ShaderUtils::CompileShader(m_ShaderCode, m_EntryPoint, GetShaderModel(), m_ShaderMacros);
+    }
+    return m_pBlob != nullptr;
     */
 }
 

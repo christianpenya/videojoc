@@ -43,58 +43,60 @@ void CCharacterController::Update(float ElapsedTime)
     m_Movement = forwardMove + horizontalMove;
     if (m_Movement != (0, 0, 0))
     {
+        if (crouch > 0.1f)
+        {
+            player->ClearActiveAnimationCycle(0.5f);
+            player->BlendCycle(4, 1, 0.5f);
+            //player->BlendCycle(1, 1, 0); crouch moving animation
+        }
+        else if (run > 0.1f)
+        {
+            player->ClearActiveAnimationCycle(0.5f);
+            player->BlendCycle(3, 1, 0.5f);
+            //player->BlendCycle(4, 1, 0); run animation
+        }
+        else
+        {
+            player->ClearActiveAnimationCycle(0.5f);
+            player->BlendCycle(2, 1, 0.5f);
+        }
 
-        player->BlendCycle(2, 1, 0);
 
         m_Movement = m_Movement.GetNormalized();
         Vect3f l_Dir = m_Movement;
-
+        Vect3f l_For = player->GetForward();
+        l_For.Lerp(l_Dir, m_RotationSPeed);
         m_Movement *= l_Speed * ElapsedTime;
-        //m_Position = m_Position + m_Movement;
-        physXManager->MoveCharacterController("player", m_Movement, PHYSX_UPDATE_STEP);
-        if (player != nullptr)
-        {
-            //player->SetPosition(m_Position);
-            m_Position = physXManager->GetActorPosition("player");
-            player->SetPosition(m_Position);
-            player->SetForward(l_Dir);
-        }
-
+        player->SetForward(l_Dir);
 
     }
     else
     {
         if (crouch > 0.1f)
         {
-            if (!player->IsCycleAnimationActive(1))
-            {
-                player->ClearCycle(0, 0.5);
-                player->BlendCycle(1, 0.5, 0);
-            }
-
+            player->ClearActiveAnimationCycle(0.5f);
+            player->BlendCycle(1, 1, 0.5f);
         }
         else
         {
-            if (!player->IsCycleAnimationActive(0))
-            {
-                player->ClearCycle(1, 0.5);
-                player->BlendCycle(0, 0.5, 0);
-
-            }
-        }
-
-
-        physXManager->MoveCharacterController("player", m_Movement, PHYSX_UPDATE_STEP);
-        if (player != nullptr)
-        {
-            //player->SetPosition(m_Position);
-            m_Position = physXManager->GetActorPosition("player");
-            player->SetPosition(m_Position);
-
+            player->ClearActiveAnimationCycle(0.5f);
+            player->BlendCycle(0, 1, 0.5f);
         }
     }
+    physXManager->MoveCharacterController("player", m_Movement, PHYSX_UPDATE_STEP);
+    if (player != nullptr)
+    {
+        //player->SetPosition(m_Position);
+        m_Position = physXManager->GetActorPosition("player");
+
+        player->SetPosition(m_Position);
+
+    }
+
 
 }
+
+
 
 void CCharacterController::Init(CSceneManager* sceneManager)
 {

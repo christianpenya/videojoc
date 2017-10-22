@@ -86,7 +86,7 @@ bool CSceneAnimatedModel::Initialize(CAnimatedCoreModel * AnimatedCoreModel)
     LoadVertexBuffer();
     LoadMaterials();
 
-    //BlendCycle(0, 1.0f, 0.0f);
+    BlendCycle(0, 1.0f, 0.0f);
     m_CalModel->update(0.0f);
 
     const std::vector<CMaterial *> &l_Materials = m_AnimatedCoreModel->GetMaterials();
@@ -127,6 +127,7 @@ void CSceneAnimatedModel::BlendCycle(int Id, float Weight, float DelayIn)
 
 void CSceneAnimatedModel::ClearCycle(int Id, float DelayOut)
 {
+    lastCycle = -1;
     m_CalModel->getMixer()->clearCycle(Id, DelayOut);
 }
 
@@ -140,6 +141,13 @@ bool CSceneAnimatedModel::IsActionAnimationActive(int Id) const
 {
     return false;
 }
+
+void  CSceneAnimatedModel::ClearActiveAnimationCycle(float DelayOut)
+{
+    if (lastCycle != -1)
+        ClearCycle(lastCycle, DelayOut);
+}
+
 
 bool CSceneAnimatedModel::Render(CRenderManager &RenderManager)
 {

@@ -74,7 +74,7 @@ public:
     Input m_State;
     float m_DetectAngle;
     int m_Group;
-    Vect3f m_Height = Vect3f(0.f, 0.0f, .0f); //1.5 y
+    Vect3f m_Height = Vect3f(0.f, 0.0f, 0.0f); //Vect3f(0.f, 0.0f, .0f); Para guardias
     std::string m_Corename;
     CSceneAnimatedModel* m_SceneAnimatedModel;
 
@@ -106,11 +106,11 @@ public:
     }
     virtual void patrol()
     {
-        std::cout << GetName() << "patrol" << std::endl;
+        //  std::cout << GetName() << "patrol" << std::endl;
     }
     virtual void chase()
     {
-        std::cout << GetName() << "chase" << std::endl;
+        //    std::cout << GetName() << "chase" << std::endl;
     }
 
 };

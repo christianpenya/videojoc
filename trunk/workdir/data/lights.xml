@@ -182,7 +182,6 @@
 		<layer name = "LPlayer"/>
 		<!-- <layer name = "objetos_transparentes" />		 
 	</light>
-
 	
 	
 	<light type="directional" name="FDirect002" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
@@ -195,9 +194,6 @@
 		<transform position="8.46 1.19 25.40" forward="-1.0 0.0 0.0" /> 
 		<layer name = "drones" />
 	</light>
-
-
-
 	<light type="spot" name="Fspot001"  angle="20.0" fall_off="60.0"  color="1.0 1.0 1.0" active="true" intensity="0.1" attenuation_range="0.0 100.0" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024">
 		<transform position="-4.0 5.0 -7.5" forward="0.0 -0.5 -1.0" />
 		<layer name = "opaque" />
@@ -210,7 +206,6 @@
 	</light>
 	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
 				<transform position="-6.23034 48.7916 37.74" forward="0.0 -0.819152 -0.573576" />
-
 	
 	<!--
 	<light type="point" name="Omni001" color="1.0 1.0 1.0" active="true" intensity="0.2" attenuation_range="0.0 100.0" >

@@ -64,16 +64,6 @@ void CDron::patrol()
     Move(m_Destination, m_speedPatroling);
 }
 
-void CDron::Move(Vect3f destination, float speed)
-{
-    Vect3f lastMove = m_Movement;
-    m_Movement.Lerp(destination, speed);
-    m_Position = m_Movement;
-    this->SetForward(destination - m_Position);
-    m_PhysXManager.MoveCharacterController(GetName(), m_Position - lastMove, PHYSX_UPDATE_STEP);
-    this->SetPosition(m_PhysXManager.GetActorPosition(GetName()) + m_Height);
-}
-
 void CDron::GotoNextPoint()
 {
     if (m_pathChasingAux.size() > 0)  //Si se salió de la ruta para perseguir, se calcula de nuevo el camino de regreso
@@ -102,14 +92,25 @@ void CDron::chase()
     Move(m_DestinationChase, m_speedChasing);
 }
 
+void CDron::Move(Vect3f destination, float speed)
+{
+    Vect3f lastMove = m_Movement;
+    m_Movement.Lerp(destination, speed);
+    m_Position = m_Movement;
+    this->SetForward(destination - m_Position);
+    m_PhysXManager.MoveCharacterController(GetName(), m_Position - lastMove, PHYSX_UPDATE_STEP);
+    this->SetPosition(m_PhysXManager.GetActorPosition(GetName()) + m_Height);
+
+}
 
 void CDron::GotoNextPointChase()
 {
     m_lastPositionView = Vect3f(m_PhysXManager.GetActorPosition("player").x, m_Height.y, m_PhysXManager.GetActorPosition("player").z);
 
-    bool hitted = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, resultado);
+    CPhysXManager::RaycastData* result = new CPhysXManager::RaycastData();
+    bool hitted = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, result);
 
-    if (hitted && (resultado->actor == "player"))
+    if (hitted && (result->actor == "player"))
         m_DestinationChase = m_lastPositionView;
     else
     {
@@ -132,6 +133,7 @@ void CDron::GotoNextPointChase()
         else
             ComputePath();
     }
+    delete result;
 }
 
 

@@ -142,7 +142,16 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
 
 
     physx::PxController* cct = m_ControllerManager->createController(desc);
+    physx::PxShape* shape;
+    physx::PxRigidDynamic* l_actor = cct->getActor();
+    l_actor->getShapes(&shape, 1);
 
+    physx::PxFilterData filterData;
+    filterData.setToDefault();
+    filterData.word0 = 0001;
+    shape->setQueryFilterData(filterData);
+
+    shape->setQueryFilterData(filterData);
     m_CharacterControllers[characterControllerName] = cct;
 
     m_ActorIndexs[characterControllerName] = index;

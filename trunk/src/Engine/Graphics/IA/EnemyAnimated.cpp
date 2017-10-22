@@ -16,7 +16,6 @@ CEnemyAnimated::~CEnemyAnimated()
 
 CEnemyAnimated::CEnemyAnimated(CXMLElement* aElement)
     : CSceneAnimatedModel(*aElement)
-      //  CSceneMesh(aElement)
     , CEnemy(aElement)
     , state(CEnemyState::patroling)
     , m_SightDistance(aElement->GetAttribute<float>("sightDistance", 4.0f))
@@ -29,7 +28,7 @@ CEnemyAnimated::CEnemyAnimated(CXMLElement* aElement)
     , m_CalculateReturn(false)
     , m_State(Input::PATROL)
     , m_DetectAngle(aElement->GetAttribute<float>("detectAngle", 45.0f))
-    , m_Corename(aElement->GetAttribute<std::string>("core", "prota"))
+    , m_Corename(aElement->GetAttribute<std::string>("core", "dron"))
     , m_Group(aElement->GetAttribute<int>("group", 2))
 {
     m_Visible = aElement->GetAttribute<bool>("active", true);
@@ -40,6 +39,8 @@ CEnemyAnimated::CEnemyAnimated(CXMLElement* aElement)
     CNavMeshManager& lNavMeshManager = CEngine::GetInstance().GetNavMeshManager();
     m_pnavMesh = lNavMeshManager(aElement->GetAttribute<std::string>("navmesh", "navMeshScene01"));
     m_ppath = new CPathfinding();
+
+    std::cout << " Dron " << GetName() << "inicializado." << std::endl;
 
     m_PhysXManager.AddCharacterController(GetName(), aElement->GetAttribute<float>("height", 1.1f), aElement->GetAttribute<float>("radiu", 0.17f), m_Position, Quatf(), "Default", 0.5f, m_Group);
 
@@ -65,9 +66,10 @@ bool CEnemyAnimated::Update(float ElapsedTime)
     m_CalModel->update(ElapsedTime);
 
     Vect3f actorpos = m_PhysXManager.GetActorPosition("player");
-    bool hitted = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, resultado);
+    CPhysXManager::RaycastData* resultado = new CPhysXManager::RaycastData();
+    bool hittedP = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, resultado);
 
-    if (hitted && (resultado->actor == "player"))//GetName()))//
+    if (hittedP && (resultado->actor == "player"))
     {
         if (resultado->distance <= m_DeadDistance)
         {
@@ -77,13 +79,13 @@ bool CEnemyAnimated::Update(float ElapsedTime)
                 std::cout << "Muere protagonista" << std::endl;
             }
         }
-        if (resultado->distance <= m_SightDistance)
+        else if (resultado->distance <= m_SightDistance)
         {
             if (PlayerOnSight())
             {
                 m_State = Input::CHASE;
                 m_CalculateReturn = true;
-                std::cout << "Chasing-" << std::endl;
+                //std::cout << "Chasing-" << std::endl;
             }
         }
         else if (resultado->distance >= m_MaxDetectDistance)
@@ -109,6 +111,7 @@ bool CEnemyAnimated::Update(float ElapsedTime)
         }
         //CEngine::GetInstance().GetEventManager()("Box hitted");
     }
+    delete resultado;
     handleInput(m_State);
     return true;
 }

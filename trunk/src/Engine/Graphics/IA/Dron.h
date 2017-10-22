@@ -30,8 +30,8 @@ public:
     float m_investigatingTolerance;
     Vect3f m_lastPositionView;
 
-    void patrol() override;
-    void chase() override;
+    void patrol();
+    void chase();
     CCharacterController m_DronController;
 
     void GotoNextPoint();

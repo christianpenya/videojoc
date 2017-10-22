@@ -44,6 +44,7 @@ public:
     void ClearCycle(int Id, float DelayOut);
     bool IsCycleAnimationActive(int Id) const;
     bool IsActionAnimationActive(int Id) const;
+    void ClearActiveAnimationCycle(float DelayOut);
 };
 
 #endif //_ENGINE_SCENEANIMATEDMODEL_20170117

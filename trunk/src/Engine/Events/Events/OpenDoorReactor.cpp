@@ -9,6 +9,7 @@
 #include "Graphics/Scenes/Scene.h"
 #include "Graphics/Scenes/Layer.h"
 #include "Graphics/Scenes/SceneNode.h"
+#include "Graphics/Scenes/SceneMesh.h"
 #include "Physx/PhysxManager.h"
 
 #include "Utils/CheckedRelease.h"
@@ -44,7 +45,7 @@ void COpenDoorReactor::React()
     //LOG_INFO_APPLICATION("Hold the DOOOOOOOR! HOLD THE DOOOOOR!");
     if (mDoor)
     {
-        mDoor->Deactivate();
+        ((CSceneMesh*)mDoor)->Deactivate();
     }
     m_Finished = true;
 }

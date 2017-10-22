@@ -2,6 +2,7 @@
 #include "XML/XML.h"
 #include "Imgui/imgui.h"
 #include "Utils/Logger.h"
+#include <cassert>
 
 CMaterialManager::CMaterialManager() {}
 
@@ -13,63 +14,96 @@ CMaterialManager::~CMaterialManager()
 void CMaterialManager::Load(const std::string & aLevelFilename, const std::string &aDefaultsFileName)
 {
     m_LevelMaterialsFilename = aLevelFilename;
-    Load(m_LevelMaterialsFilename, false);
-
     m_DefaultMaterialsFilename = aDefaultsFileName;
-    Load(m_DefaultMaterialsFilename, true);
+
+    std::set< std::string > lMaterialFilenames;
+    lMaterialFilenames.insert(m_LevelMaterialsFilename);
+    lMaterialFilenames.insert(m_DefaultMaterialsFilename);
+
+    Load(lMaterialFilenames);
 }
 
-void CMaterialManager::Reload()
+
+bool CMaterialManager::Load(bool update)
 {
-    Load(m_LevelMaterialsFilename, true);
-    Load(m_DefaultMaterialsFilename, true);
+    bool out = true;
+
+    std::set< std::string > lMaterialFilenames;
+    lMaterialFilenames.insert(m_LevelMaterialsFilename);
+    lMaterialFilenames.insert(m_DefaultMaterialsFilename);
+
+    out &= Load(lMaterialFilenames, update);
+
+    return out;
 }
 
-void CMaterialManager::Save()
+bool CMaterialManager::Load(std::set< std::string > &filenames, bool update)
 {
-    //TODO
-}
-
-bool CMaterialManager::Load(const std::string &Filename, bool UpdateFlag)
-{
-    bool out = false;
-
     CXMLDocument document;
-    EXMLParseError error = document.LoadFile(Filename.c_str());
+    std::set< std::string > lMaterialNamesFromXML;
 
-    if (base::xml::SucceedLoad(error))
+    for (auto iFilename : filenames)
     {
-        CXMLElement * lMaterials = document.FirstChildElement("materials");
+        EXMLParseError error = document.LoadFile(iFilename.c_str());
 
-        if (lMaterials)
+        if (base::xml::SucceedLoad(error))
         {
-            for (tinyxml2::XMLElement *iMaterial = lMaterials->FirstChildElement(); iMaterial != nullptr; iMaterial = iMaterial->NextSiblingElement())
+            CXMLElement * lMaterials = document.FirstChildElement("materials");
+
+            if (lMaterials)
             {
-                //LOG_INFO_APPLICATION(iMaterial->GetAttribute<std::string>("name", "").c_str());
-
-                if (strcmp(iMaterial->Name(), "material") == 0)
+                for (tinyxml2::XMLElement *iMaterial = lMaterials->FirstChildElement(); iMaterial != nullptr; iMaterial = iMaterial->NextSiblingElement())
                 {
-                    CMaterial *lMaterial = new CMaterial(iMaterial);
-
-                    if (!Add(lMaterial->GetName(), lMaterial))
+                    LOG_INFO_APPLICATION(iMaterial->GetAttribute<std::string>("name", "").c_str());
+                    if (strcmp(iMaterial->Name(), "material") == 0)
                     {
-                        if (UpdateFlag)
+                        const std::string lMaterialName = iMaterial->GetAttribute<std::string>("name", "");
+                        assert(lMaterialNamesFromXML.count(lMaterialName) == 0);
+                        lMaterialNamesFromXML.insert(lMaterialName);
+
+                        CMaterial* lMaterial = (*this)(lMaterialName);
+
+                        if (lMaterial)
                         {
-                            Update(lMaterial->GetName(), lMaterial);
+                            lMaterial->ClearParametersAndTextures();
+                            lMaterial->Initialize(iMaterial);
                         }
                         else
                         {
-                            base::utils::CheckedDelete(lMaterial);
+                            lMaterial = new CMaterial(iMaterial);
+                            Update(lMaterial->GetName(), lMaterial);
                         }
                     }
                 }
             }
-
-            out = true;
         }
     }
 
-    return out;
+    if (update)
+    {
+        std::set<std::string> lMissingMaterials;
+        for (std::map<std::string, CMaterial*>::iterator iMaterial = m_ResourcesMap.begin(); iMaterial != m_ResourcesMap.end(); ++iMaterial)
+        {
+            if ((*iMaterial).first != "" && iMaterial->second != NULL)
+            {
+                std::string temp = (*iMaterial).second->GetName();
+                auto burru = lMaterialNamesFromXML.find(temp);
+                if (lMaterialNamesFromXML.find(temp) == lMaterialNamesFromXML.end())
+                {
+                    assert(lMissingMaterials.count(temp) == 0);
+                    lMissingMaterials.insert(temp);
+                }
+            }
+        }
+
+        for (std::set<std::string>::iterator iMissingMaterial = lMissingMaterials.begin(); iMissingMaterial != lMissingMaterials.end(); ++iMissingMaterial)
+        {
+            Remove(*iMissingMaterial);
+        }
+    }
+
+
+    return true;
 }
 
 void CMaterialManager::DrawImgui()

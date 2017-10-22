@@ -19,6 +19,22 @@
 		<parameter type="float" name="occlusion" value="0.0" />
 	</material>
 	
+	
+	
+	
+	<!-- <material name="prota_material_2" vertex_type="PositionWeightIndicesNormalUV">
+		<texture type="diffuse" filename="data/animated_models/prota2/txt prota.jpg"/>
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material> -->
+	
 	<material name="guardiaSexy_material_1" vertex_type="PositionWeightIndicesNormalUV">
 		<texture type="diffuse" filename="data/animated_models/guardiaSexy/guardiaSexy.jpg"/>
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
@@ -45,6 +61,19 @@
 		<parameter type="float" name="occlusion" value="0.0" />
 	</material>
 	
+	<material name="dron_material_1" vertex_type="PositionWeightIndicesNormalUV">
+		<texture type="diffuse" filename="data/animated_models/dron/drontxt.jpg"/>
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
 	<material name="guardia_material_1" vertex_type="PositionWeightIndicesNormalUV">
 		<texture type="diffuse" filename="data/animated_models/guardia/guardia.jpg"/>
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
@@ -59,10 +88,6 @@
 	</material>
 	
 	ANIMATED MODELS MATERIALS END
-	
- 	<material name="02 - Default" vertex_type="PositionNormal" >
-		<parameter type="color" name="diffuse_color" value="0.8431 0.7686 0.651 1.0" />
-	</material>
 	
 	<material name="Skybox001Material" vertex_type="PositionNormalUV" > 
 		<!-- TODO: Cambiar vertex_type por technique en skybox para no tener que cambiar de pool-->

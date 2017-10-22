@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<actor name="dron" radius_bs="2.0" pos_bs="0.0 1.0 0.0">
+	<skeleton filename="DRON.CSF"/>
+	 <mesh filename="DRON.CMF"/> 
+	<!-- <mesh filename="Prota_Mesh2.CMF"/> -->
+	
+	<material name="dron_material_1" vertex_type="PositionWeightIndicesNormalUV"/>
+	
+	
+	<animation name="idle" filename="IDLE.CAF" />
+	<!--<animation name="cidle" filename="Anim_CIDLE2.CAF" />
+	<animation name="walk" filename="Anim_WALK.CAF" />
+	<animation name="run" filename="Anim_RUN.CAF" />
+	<animation name="cwalk" filename="Anim_CWALK.CAF" />
+	
+	<animation name="walk" filename="walkProtaANIMATION.CAF" />	
+	<animation name="attack_idle" filename="SerenoCombatIdle.CAF" />
+	<animation name="attackNormal" filename="SerenoAttack.CAF" />
+	<animation name="onHit" filename="SerenoHit.CAF" />
+	<animation name="die" filename="SerenoDie.CAF" />
+	-->
+</actor>

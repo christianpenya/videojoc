@@ -28,7 +28,6 @@ public:
     CEnemy(CXMLElement* aElement);
     virtual ~CEnemy();
     CPhysXManager &m_PhysXManager;
-    CPhysXManager::RaycastData* resultado;
     float m_DeadDistance;
 
     GET_SET(EEnemyType, EnemyType);

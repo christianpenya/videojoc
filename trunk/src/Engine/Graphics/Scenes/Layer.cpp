@@ -19,6 +19,8 @@
 #include "Graphics/IA/NavMesh.h"
 #include "Graphics/IA/NavMeshManager.h"
 #include "Graphics/IA/Laser.h"
+#include "Graphics/IA/Dron.h"
+
 
 #ifdef _DEBUG
 #include <chrono>
@@ -36,90 +38,117 @@ CLayer::~CLayer()
     CTemplatedMapVector<CSceneNode>::Destroy();
 }
 
-bool CLayer::Load(CXMLElement* aElement)
+bool CLayer::Load(CXMLElement* aElement, bool update)
 {
     bool lOk = true;
     CLightManager &lLM = CEngine::GetInstance().GetLightManager();
     CEnemiesManager &lEnemiesManager = CEngine::GetInstance().GetEnemiesManager();
     CNavMeshManager &l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
 
-    for (tinyxml2::XMLElement *iSceneMesh = aElement->FirstChildElement(); iSceneMesh != nullptr; iSceneMesh = iSceneMesh->NextSiblingElement())
+    std::string lNodeName;
+    std::set< std::string > lNodeNamesFromXML;
+
+    for (tinyxml2::XMLElement *iSceneNode = aElement->FirstChildElement(); iSceneNode != nullptr; iSceneNode = iSceneNode->NextSiblingElement())
     {
         CSceneNode* lNode = nullptr;
-        if (strcmp(iSceneMesh->Name(), "scene_mesh") == 0)
+        lNodeName = iSceneNode->GetAttribute<std::string>("name", "");
+        lNodeNamesFromXML.insert(lNodeName);
+
+        if (strcmp(iSceneNode->Name(), "scene_mesh") == 0)
         {
-            lNode = new CSceneMesh(iSceneMesh);
-            lNode->SetNodeType(CSceneNode::eMesh);
-        }
-        else if (strcmp(iSceneMesh->Name(), "scene_animated_model") == 0)
-        {
-            std::string l_Name = iSceneMesh->GetAttribute<std::string>("name", "");
-            std::string l_CoreName = iSceneMesh->GetAttribute<std::string>("core", "");
-            int lGroup = iSceneMesh->GetAttribute<int>("group", 0);
-            CAnimatedCoreModel *l_AnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_CoreName);
-            if (l_AnimatedCoreModel != nullptr)
+            CSceneMesh* lTmpSceneMesh = (CSceneMesh*)(*this)(lNodeName);
+
+            if (lTmpSceneMesh)
             {
-                lNode = new CSceneAnimatedModel(*iSceneMesh);
-                ((CSceneAnimatedModel *)lNode)->Initialize(l_AnimatedCoreModel);
-                if (strcmp(l_Name.c_str(), "player") == 0)
-                {
-                    Quatf rotation = Quatf();
-                    float height = iSceneMesh->GetAttribute<float>("height", 1.1f);
-                    float radius = iSceneMesh->GetAttribute<float>("radius", 0.17f);
-                    rotation.QuatFromYawPitchRoll(lNode->GetYaw(), lNode->GetPitch(), lNode->GetRoll());
-                    CEngine::GetInstance().GetPhysXManager().AddCharacterController(l_Name, height, radius, lNode->GetPosition(), rotation, "Default", 0.5f, lGroup);
-                }
+                lTmpSceneMesh->Initialize(iSceneNode);
             }
-            lNode->SetNodeType(CSceneNode::eAnimatedModel);
+            else
+            {
+                lNode = new CSceneMesh(iSceneNode);
+                lNode->SetNodeType(CSceneNode::eMesh);
+            }
         }
-        else if (strcmp(iSceneMesh->Name(), "scene_basic_primitive") == 0)
+        else if (strcmp(iSceneNode->Name(), "scene_animated_model") == 0)
         {
-            lNode = new  CSceneBasicPrimitive(iSceneMesh);
+            if (!Exist(lNodeName))
+            {
+                std::string l_CoreName = iSceneNode->GetAttribute<std::string>("core", "");
+                int lGroup = iSceneNode->GetAttribute<int>("group", 0);
+                CAnimatedCoreModel *l_AnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_CoreName);
+                if (l_AnimatedCoreModel != nullptr)
+                {
+                    lNode = new CSceneAnimatedModel(*iSceneNode);
+                    ((CSceneAnimatedModel *)lNode)->Initialize(l_AnimatedCoreModel);
+                    if (strcmp(lNodeName.c_str(), "player") == 0)
+                    {
+                        Quatf rotation = Quatf();
+                        float height = iSceneNode->GetAttribute<float>("height", 1.1f);
+                        float radius = iSceneNode->GetAttribute<float>("radius", 0.17f);
+                        rotation.QuatFromYawPitchRoll(lNode->GetYaw(), lNode->GetPitch(), lNode->GetRoll());
+                        CEngine::GetInstance().GetPhysXManager().AddCharacterController(lNodeName, height, radius, lNode->GetPosition(), rotation, "Default", 0.5f, lGroup);
+                    }
+                }
+                lNode->SetNodeType(CSceneNode::eAnimatedModel);
+            }
+        }
+        else if (strcmp(iSceneNode->Name(), "scene_basic_primitive") == 0)
+        {
+            lNode = new  CSceneBasicPrimitive(iSceneNode);
             lNode->SetNodeType(CSceneNode::eBasicPrimitive);
         }
-        else if (strcmp(iSceneMesh->Name(), "scene_light") == 0)
+        else if (strcmp(iSceneNode->Name(), "scene_light") == 0)
         {
-            std::string l_lightName = iSceneMesh->GetAttribute<std::string>("name", "");
             CLight *l_light = nullptr;
             CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
             lConstanBufferManager.mLightsDesc.m_LightEnabled[0] = 0;
             lConstanBufferManager.mLightsDesc.m_LightEnabled[1] = 0;
             lConstanBufferManager.mLightsDesc.m_LightEnabled[2] = 0;
             lConstanBufferManager.mLightsDesc.m_LightEnabled[3] = 0;
-            if (lLM.Exist(l_lightName))
+            if (lLM.Exist(lNodeName))
             {
-                lNode = lLM(l_lightName);
-                lLM.SetLightConstants(iSceneMesh->GetAttribute<int>("id_light", 0), lLM(l_lightName));
+                lNode = lLM(lNodeName);
+                lLM.SetLightConstants(iSceneNode->GetAttribute<int>("id_light", 0), lLM(lNodeName));
                 lNode->SetNodeType(CSceneNode::eLight);
             }
         }
-        else if (strcmp(iSceneMesh->Name(), "scene_particle") == 0)
+        else if (strcmp(iSceneNode->Name(), "scene_particle") == 0)
         {
-            lNode = new CParticleSystemInstance(iSceneMesh);
+            lNode = new CParticleSystemInstance(iSceneNode);
             lNode->SetNodeType(CSceneNode::eParticle);
         }
-        else if (strcmp(iSceneMesh->Name(), "scene_navmesh") == 0)
+        else if (strcmp(iSceneNode->Name(), "scene_navmesh") == 0)
         {
-            lNode = l_NavMeshManager(iSceneMesh->GetAttribute<std::string>("name", ""));
+            lNode = l_NavMeshManager(lNodeName);
             lNode->SetNodeType(CSceneNode::eNavMesh);
         }
-        else if (strcmp(iSceneMesh->Name(), "scene_enemies") == 0)
+        else if (strcmp(iSceneNode->Name(), "scene_enemies") == 0)
         {
-            std::string l_EnemyName = iSceneMesh->GetAttribute<std::string>("name", "");
-            if (lEnemiesManager.Exist(l_EnemyName))
+            if (lEnemiesManager.Exist(lNodeName))
             {
-                if (lEnemiesManager(l_EnemyName)->GetEnemyType() == CEnemy::eLaser)
-                    lNode = ((CLaser*)lEnemiesManager(l_EnemyName));
+                if (lEnemiesManager(lNodeName)->GetEnemyType() == CEnemy::eLaser)
+                    lNode = ((CLaser*)lEnemiesManager(lNodeName));
                 else
                 {
-                    CEnemyAnimated * l_Enemy = (CEnemyAnimated*)lEnemiesManager(l_EnemyName);
+                    CDron * l_Enemy = (CDron*)lEnemiesManager(lNodeName);
                     CAnimatedCoreModel *l_EnemyAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_Enemy->GetCorename());
                     if (l_EnemyAnimatedCoreModel != nullptr)
                     {
-                        lNode = l_Enemy;
-                        ((CEnemyAnimated *)lNode)->Initialize(l_EnemyAnimatedCoreModel);
-                        ((CEnemyAnimated *)lNode)->BlendCycle(2, 1, 0);
+                        //                        lNode = l_Enemy;
+                        lNode = new CDron(*l_Enemy);
+                        ((CDron*)lNode)->Initialize(l_EnemyAnimatedCoreModel);
+                        //((CEnemyAnimated *)lNode)->BlendCycle(2, 1, 0);
                     }
+
+
+                    /*CEnemyAnimated * l_Enemy = (CEnemyAnimated*)lEnemiesManager(lNodeName);
+                    CAnimatedCoreModel *l_EnemyAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_Enemy->GetCorename());
+                    if (l_EnemyAnimatedCoreModel != nullptr)
+                    {
+                    //                        lNode = l_Enemy;
+                        lNode = new CEnemyAnimated(*l_Enemy);
+                        ((CEnemyAnimated *)lNode)->Initialize(l_EnemyAnimatedCoreModel);
+                        //((CEnemyAnimated *)lNode)->BlendCycle(2, 1, 0);
+                    }*/
                 }
                 lNode->SetNodeType(CSceneNode::eEnemy);
             }
@@ -133,7 +162,52 @@ bool CLayer::Load(CXMLElement* aElement)
         }
     }
 
+    if (update)
+    {
+        std::set<std::string> lMissingNodes;
+
+        for (std::vector<CSceneNode*>::iterator it = m_ResourcesVector.begin(); it != m_ResourcesVector.end(); ++it)
+        {
+            if (lNodeNamesFromXML.find((*it)->GetName()) == lNodeNamesFromXML.end())
+            {
+                assert(lMissingNodes.count((*it)->GetName()) == 0);
+                lMissingNodes.insert((*it)->GetName());
+            }
+        }
+
+        for (std::set<std::string>::iterator iMissingNode = lMissingNodes.begin(); iMissingNode != lMissingNodes.end(); ++iMissingNode)
+        {
+            if ((*this)(*iMissingNode)->GetNodeType() == CSceneNode::eMesh)
+            {
+                ((CSceneMesh*)(*this)(*iMissingNode))->DeletePhysx();
+            }
+
+            Remove(*iMissingNode);
+        }
+    }
+
     return lOk;
+}
+
+void CLayer::DeleteAllNodes()
+{
+    std::set<std::string> lMissingNodes;
+
+    for (std::vector<CSceneNode*>::iterator it = m_ResourcesVector.begin(); it != m_ResourcesVector.end(); ++it)
+    {
+        assert(lMissingNodes.count((*it)->GetName()) == 0);
+        lMissingNodes.insert((*it)->GetName());
+    }
+
+    for (std::set<std::string>::iterator iMissingNode = lMissingNodes.begin(); iMissingNode != lMissingNodes.end(); ++iMissingNode)
+    {
+        if ((*this)(*iMissingNode)->GetNodeType() == CSceneNode::eMesh)
+        {
+            ((CSceneMesh*)(*this)(*iMissingNode))->DeletePhysx();
+        }
+
+        Remove(*iMissingNode);
+    }
 }
 
 bool CLayer::Update(float elapsedTime)

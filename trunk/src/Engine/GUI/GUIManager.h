@@ -16,7 +16,9 @@
 //#include"GUIPosition.h"
 #include "Button.h"
 #include "Slider.h"
+#include "GUISprite.h"
 #include "Graphics/Materials/Material.h"
+#include "Graphics/Mesh/TemplatedIndexedGeometry.h"
 class CGUIPosition;
 class CSlider;
 
@@ -50,19 +52,20 @@ struct FontChar
 
 class CGUIManager
 {
-    static const int MAX_VERTICES_PER_CALL = 128;
+    static const int MAX_VERTICES_PER_CALL = 256;
 private:
 
-    // CIndexedGeometryTriangleList<VertexTypes::SpriteVertex>  m_CurrentBufferData[5];
+    //CIndexedGeometryTriangleList<VertexTypes::SpriteVertex>  m_CurrentBufferData[5];
     std::string m_ActiveItem;
     std::string m_HotItem;
     std::string m_SelectedItem;
-//    std::vector<CGeometryTriangleList<VertexTypes::SpriteVertex>*> m_VertexBuffers;
+    std::vector<CGeometryTriangleList<VertexTypes::SpriteVertex>*> m_VertexBuffers;
     std::vector<CMaterial*> m_Materials;
     std::map<std::string, SpriteMapInfo> m_SpriteMaps;
     std::map<std::string, SpriteInfo> m_Sprites;
     std::map<std::string, CButon*> m_Buttons;
     std::map<std::string, CSlider*> m_Sliders;
+    std::map<std::string, CGUISPrite*> m_GUISprites;
     std::vector<GUICommand> m_Commands;
     std::string m_FileName;
     std::unordered_map< std::string, int16 > m_LineHeightPerFont;
@@ -125,6 +128,7 @@ public:
     void Render(CRenderManager *RenderManager);
 
     bool DoButton(const std::string& guiID, const std::string& buttonID, CGUIPosition& position);
+    bool DoGUISprite(const std::string& guiID, const std::string& SpriteID, CGUIPosition& position);
     std::string DoTextBox(const std::string& guiID, const std::string& _font, const std::string& currentText, CGUIPosition position);
     struct SliderResult
     {

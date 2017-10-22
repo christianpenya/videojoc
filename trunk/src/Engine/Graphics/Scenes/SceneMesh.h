@@ -30,10 +30,15 @@ public:
     explicit CSceneMesh(CXMLElement* aElement);
     CSceneMesh(CXMLElement* aElement, CMesh* aMesh);
     virtual ~CSceneMesh();
+    void Initialize(CXMLElement* aElement);
     bool Update(float aDeltaTime);
     virtual bool Render(CRenderManager& aRendermanager);
+
     void DrawImgui();
     void Deactivate();
+
+    bool HasGotPhysx();
+    void DeletePhysx();
 
 protected:
     CMesh* mMesh;
@@ -43,7 +48,6 @@ private:
     size_t mPhysxIndex;
     Vect3f cubeOffset;
 
-    void DeletePhysx();
 };
 
 //--------------------------------------------------------------------------------------------------------

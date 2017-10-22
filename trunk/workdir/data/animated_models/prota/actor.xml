@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <actor name="prota" radius_bs="2.0" pos_bs="0.0 1.0 0.0">
 	<skeleton filename="Esqueleto_Prota.CSF"/>
-	<mesh filename="Prota_Mesh2.CMF"/>
+	 <mesh filename="SENSE_RASTES.CMF"/> 
+	<!-- <mesh filename="Prota_Mesh2.CMF"/> -->
 	
-	<material name="prota_material_1" vertex_type="PositionWeightIndicesNormalUV">
-		<texture type="diffuse" filename="data/animated_models/prota/txt prota.jpg"/>
-		<!--<texture type="bump" filename="data/animated_models/prota/protaNRM.jpg"/>-->
-		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
-		<parameter type="float" name="diffuse" value="100.0" />
-		<parameter type="float" name="bump" value="2.0"/>
-		<parameter type="float" name="specular" value="1.0"/>
-		<parameter type="float" name="gloss" value="10.0"/>
-		<parameter type="float" name="environment_factor" value="0.4"/>
-		<parameter type="float" name="cutout_factor" value="1.0"/>
-	</material>
+	<material name="prota_material_1" vertex_type="PositionWeightIndicesNormalUV"/>
+		
 	
-	<animation name="idle" filename="Anim_IDLE2.CAF" />
-	<animation name="cidle" filename="Anim_CIDLE2.CAF" />
+	<animation name="idle" filename="Anim_IDLE.CAF" />
+	<animation name="cidle" filename="Anim_CIDLE.CAF" />
 	<animation name="walk" filename="Anim_WALK.CAF" />
+	<animation name="run" filename="Anim_RUN.CAF" />
+	<animation name="cwalk" filename="Anim_CWALK.CAF" />
 	<!--
 	<animation name="walk" filename="walkProtaANIMATION.CAF" />	
 	<animation name="attack_idle" filename="SerenoCombatIdle.CAF" />

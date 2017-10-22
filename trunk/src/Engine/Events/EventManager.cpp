@@ -9,14 +9,17 @@
 
 #include "Events/DumbReactor.h"
 #include "Events/OpenDoorReactor.h"
+#include "Events/TextGUIReactor.h"
 
 CEventManager::CEventManager() : mEnabled(true)
 {
     mActors.Add("dumb", new CDumbActor());
     mActors.Add("audio_trigger", new CAudioTriggerActor());
 
+
     mReactors.Add("dumb", new CDumbReactor());
     mReactors.Add("open_door", new COpenDoorReactor());
+    mReactors.Add("textGUI", new CTextGUIReactor());
 }
 
 CEventManager::~CEventManager()
