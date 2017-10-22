@@ -2,6 +2,7 @@
 #include "EnemiesManager.h"
 #include "Enemy.h"
 #include "Dron.h"
+#include "Laser.h"
 #include "Engine\engine.h"
 #include "XML\xml.h"
 
@@ -43,8 +44,13 @@ bool CEnemiesManager::Load()
                     }
                     else if (lEnemyType == CEnemy::eGuard)
                     {
-                        /*CGuard* lEnemy = new CGuard(iEnemy);
-                        lOk = Add(lEnemy->GetName(), lEnemy);*/
+                        CDron* lEnemy = new CDron(iEnemy);
+                        lOk = Add(lEnemy->GetName(), lEnemy);
+                    }
+                    else if (lEnemyType == CEnemy::eLaser)
+                    {
+                        CLaser* lLaser = new CLaser(iEnemy);
+                        lOk = Add(lLaser->GetName(), lLaser);
                     }
                 }
             }

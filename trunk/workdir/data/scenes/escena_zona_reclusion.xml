@@ -86,7 +86,7 @@
 	</layer>
 	
 	
-	<layer name="opaque" active="true" >		
+	<layer name="opaque" active="false" >		
 		tuberia\d{3}.mesh
 
 		SALA0
@@ -1551,7 +1551,7 @@
 	</layer>
 		
 		
-	<layer name="triggers" active="true">
+	<layer name="triggers" active="false">
 	
 		<scene_mesh name="trigger_pasillo" mesh="data/meshes/Box01.mesh">
 			<transform position="0.0 1.0 25.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
@@ -1561,18 +1561,22 @@
 	</layer>
 	
 	<layer name="drones" active="true">
-		
+
 		<scene_mesh name="PatrolPoint_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="8.46 1.19 22.11" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="8.46 1.19 33.49" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
-		<scene_enemies type="dron" name="DronReclusion1" mesh="data/meshes/reclusion/Dron.mesh">
+		<scene_enemies name="DronReclusion1" core="prota"  height="1.1" radiu="0.17" group="1">
+			<transform position="8.46 1.19 30.4" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		
+<!--		<scene_enemies type="dron" name="DronReclusion1" mesh="data/meshes/reclusion/Dron.mesh">
 			<transform position="8.46 1.19 30.40" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
 			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
 		</scene_enemies>
-		
+	
 		<scene_mesh name="PatrolPoint_DronCabinas" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="14.5 1.19 27.19" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
@@ -1670,7 +1674,7 @@
 			<transform position="39.54 1.19 33.5" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
 			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
 		</scene_enemies>				
-		
+	-->		
 	</layer>
 		
 	
@@ -1685,6 +1689,7 @@
 		<scene_animated_model name="player" core="prota" height="1.1" radiu="0.17" group="1" >
 			<transform position="0.8 3.2 -1.4" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
+		
 		<!--
 		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
 			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
@@ -1694,7 +1699,7 @@
 
 
 	<layer name="navmesh" active="false">
-			<scene_navmesh name="navMeshScene01">
+		<scene_navmesh name="navMeshScene01">
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch="-90.0" roll="0.0" forward="0.0 0.0 0.0" />
 		</scene_navmesh> 
 

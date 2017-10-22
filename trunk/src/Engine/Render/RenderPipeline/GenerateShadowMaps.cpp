@@ -30,6 +30,7 @@ void CGenerateShadowMaps::Execute(CRenderManager& lRM)
         {
             lLight->SetShadowMap(CEngine::GetInstance().GetRenderManager());
             lRM.Clear(true, true, CColor(0.0f, 0.0f, 0.0f, 0.0f));
+
             CScene* lScene = lLight->GetParent()->GetParent();
             std::vector<std::string> lLayerNames = lLight->GetLayerNames();
 

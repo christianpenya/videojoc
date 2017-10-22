@@ -10,11 +10,11 @@ bar["key"] = "there"
 f_ShaderManager = "data/shaders.xml"
 f_Effects = "data/effects.xml"
 f_TPManager = "data/techniques_pool.xml"
-f_LevelMaterial = "data/materials/materiales_parkineo.xml"
+f_LevelMaterial = "data/materials/materiales_zona_reclusion.xml"
 f_DefaultMaterial = "data/materials/default.xml"
 f_Texture = "data/textures/BARK5.jpg"
 f_AnimatedModel = "data/animated_models.xml"
-f_LightManager = "data/lights.xml"
+f_LightManager = "data/lights_reclusion.xml"
 f_SceneManager = "data/scenes.xml"
 f_ActionManager = "data/config/input_config.xml"
 f_RenderPipeline = "data/render_pipeline.xml"
@@ -27,7 +27,6 @@ f_SpeakersFile = "speakers.xml";
 f_EventManager = "data/scenes/events.xml";
 f_NavMeshManager = "data/navMesh.xml"
 f_EnemiesManager = "data/enemies.xml"
-f_LaserManager = "data/laser.xml"
 
 function getFileEventManager()
 	return f_EventManager
@@ -103,8 +102,4 @@ end
 
 function getFileEnemiesManager()
 	return f_EnemiesManager
-end
-
-function getFileLaserManager()
-	return f_LaserManager
 end

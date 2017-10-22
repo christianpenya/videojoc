@@ -558,7 +558,7 @@ CPhysXManager::CharacterControllerData CPhysXManager::MoveCharacterController(co
 
 bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterMask, RaycastData* result_)
 {
-
+    /*
     Vect3f dir = end - origin;
     float len = dir.Length();
     if (origin != Vect3f(0, 0, 0))
@@ -572,7 +572,7 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
 
     physx::PxFilterData filterData;
     filterData.setToDefault();
-    filterData.word0 = filterMask;
+    filterData.word0 = 0000;  //GROUP1 | GROUP2;//filterMask;
 
     physx::PxRaycastBuffer hit;
 
@@ -586,11 +586,11 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
 
     }
     return status;
-    /*
+    */
 
     physx::PxFilterData filterData;
     filterData.setToDefault();
-    filterData.word0 = 0000;  //GROUP1 | GROUP2;
+    filterData.word0 = 0000;  //GROUP1 | GROUP2;*/
     physx::PxRaycastBuffer hit;
     bool status = m_Scene->raycast(
                       CastVec(origin),
@@ -615,7 +615,7 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
             status = false;
     }
     return status;
-    */
+
 }
 
 void CPhysXManager::AddFixedJoint(const std::string& jointName, const std::string& actor1Name, const std::string& actor2Name)

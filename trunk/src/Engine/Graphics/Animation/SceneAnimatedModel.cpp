@@ -86,7 +86,7 @@ bool CSceneAnimatedModel::Initialize(CAnimatedCoreModel * AnimatedCoreModel)
     LoadVertexBuffer();
     LoadMaterials();
 
-    BlendCycle(0, 1.0f, 0.0f);
+    //BlendCycle(0, 1.0f, 0.0f);
     m_CalModel->update(0.0f);
 
     const std::vector<CMaterial *> &l_Materials = m_AnimatedCoreModel->GetMaterials();

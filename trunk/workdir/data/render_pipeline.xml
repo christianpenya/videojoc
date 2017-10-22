@@ -18,12 +18,14 @@
 	
 	<clear render_target="true" depth_stencil="true" color="0.0 0.0 0.0 0.0"/>
 	<apply_technique_pool pool_name="pbr_gbuffer"/>
-	
+
+	<render_layer layer="lights" />	
 	<render_layer layer="test"/>
 	<render_layer layer="opaque"/>
-	<render_layer layer="guardias"/>
+<!--	<render_layer layer="guardias"/>-->
 	<render_layer layer="LPlayer"/>
-	<render_layer layer="triggers"/>
+	<render_layer layer="drones"/>
+<!--	<render_layer layer="triggers"/>-->
 	<render_layer layer="navmesh"/>
 	<render_layer layer="salas"/>
 	<render_layer layer="laser" />

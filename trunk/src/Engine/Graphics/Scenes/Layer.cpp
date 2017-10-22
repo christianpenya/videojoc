@@ -15,11 +15,10 @@
 #include "Graphics/Particles/ParticleManager.h"
 #include "Graphics/Particles/ParticleSystemType.h"
 #include "Graphics/IA/EnemiesManager.h"
+#include "Graphics/IA/EnemyAnimated.h"
 #include "Graphics/IA/NavMesh.h"
 #include "Graphics/IA/NavMeshManager.h"
 #include "Graphics/IA/Laser.h"
-#include "Graphics/IA/LaserManager.h"
-
 
 #ifdef _DEBUG
 #include <chrono>
@@ -42,7 +41,6 @@ bool CLayer::Load(CXMLElement* aElement)
     bool lOk = true;
     CLightManager &lLM = CEngine::GetInstance().GetLightManager();
     CEnemiesManager &lEnemiesManager = CEngine::GetInstance().GetEnemiesManager();
-    CLaserManager &l_LaserManager = CEngine::GetInstance().GetLaserManager();
     CNavMeshManager &l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
 
     for (tinyxml2::XMLElement *iSceneMesh = aElement->FirstChildElement(); iSceneMesh != nullptr; iSceneMesh = iSceneMesh->NextSiblingElement())
@@ -108,24 +106,24 @@ bool CLayer::Load(CXMLElement* aElement)
         else if (strcmp(iSceneMesh->Name(), "scene_enemies") == 0)
         {
             std::string l_EnemyName = iSceneMesh->GetAttribute<std::string>("name", "");
-            CEnemy *l_enemy = nullptr;
-
             if (lEnemiesManager.Exist(l_EnemyName))
             {
-                lNode = lEnemiesManager(l_EnemyName);
+                if (lEnemiesManager(l_EnemyName)->GetEnemyType() == CEnemy::eLaser)
+                    lNode = ((CLaser*)lEnemiesManager(l_EnemyName));
+                else
+                {
+                    CEnemyAnimated * l_Enemy = (CEnemyAnimated*)lEnemiesManager(l_EnemyName);
+                    CAnimatedCoreModel *l_EnemyAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_Enemy->GetCorename());
+                    if (l_EnemyAnimatedCoreModel != nullptr)
+                    {
+                        lNode = l_Enemy;
+                        ((CEnemyAnimated *)lNode)->Initialize(l_EnemyAnimatedCoreModel);
+                        ((CEnemyAnimated *)lNode)->BlendCycle(2, 1, 0);
+                    }
+                }
                 lNode->SetNodeType(CSceneNode::eEnemy);
             }
-        }
-        else if (strcmp(iSceneMesh->Name(), "scene_laser") == 0)
-        {
-            std::string l_LaserName = iSceneMesh->GetAttribute<std::string>("name", "");
-            CLaser *l_laser = nullptr;
 
-            if (l_LaserManager.Exist(l_LaserName))
-            {
-                lNode = l_LaserManager(l_LaserName);
-                lNode->SetNodeType(CSceneNode::eLaser);
-            }
         }
 
         if (lNode)
@@ -257,12 +255,6 @@ void CLayer::DrawImgui()
                     if (lenemy != nullptr)
                         lenemy->DrawImgui();
                 }
-                    /*                case CSceneNode::eLaser:
-                                    {
-                                        CLaser *lLaser = CEngine::GetInstance().GetLaserManager()((*iSceneNode)->GetName());
-                                        if (lLaser != nullptr)
-                                            lLaser->DrawImgui();
-                                    }*/
                 break;
                 default:
                 {

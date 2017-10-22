@@ -1,5 +1,8 @@
 <materials >
-
+	<material name="NavMeshMaterial" vertex_type="Position">
+		<parameter type="color" name="diffuse_color" value="1 0 0 1.0" />
+	</material>
+	
 	SALA
 	KGSkyBox.dds
 	<material name="escayolaconladrillos" vertex_type="PositionBumpUVUV2" >

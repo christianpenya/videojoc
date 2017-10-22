@@ -9,14 +9,12 @@
 #include "Math\MathUtils.h"
 #include <iostream>
 
-CLaser::CLaser()
-    :m_PhysXManager(CEngine::GetInstance().GetPhysXManager())
-{}
 
 CLaser::~CLaser() {}
 
 CLaser::CLaser(CXMLElement* aTreeNode)
-    : CSceneNode(aTreeNode)
+    : CEnemy(aTreeNode)
+    , CSceneNode(aTreeNode)
     , m_NormalSpeed(aTreeNode->GetAttribute<float>("normalSpeed", 15.0f))
     , m_SprintSpeed(aTreeNode->GetAttribute<float>("sprintSpeed", 25.0f))
     , m_Timer(aTreeNode->GetAttribute<float>("timer", 2.0f))
@@ -28,16 +26,14 @@ CLaser::CLaser(CXMLElement* aTreeNode)
     , m_BoundMinZ(aTreeNode->GetAttribute<float>("boundMinZ", 0.0f))
     , m_BoundMaxZ(aTreeNode->GetAttribute<float>("boundMaxZ", 0.0f))
     , m_StartTime(aTreeNode->GetAttribute<float>("startTime", 0.0f))
-    , m_DeadDistance(aTreeNode->GetAttribute<float>("deadDistance", 0.0f))
     , m_Speed(0.0f)
     , m_Search(true)
-    , m_PhysXManager(CEngine::GetInstance().GetPhysXManager())
 {
     m_Timer = 2.0f;
     CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
     CMaterialManager& lMM = CEngine::GetInstance().GetMaterialManager();
 
-    m_StartPosition = Vect3f(GetRandomValue(m_BoundMinX, m_BoundMaxX), 0.0f, GetRandomValue(m_BoundMinZ, m_BoundMaxZ));
+    m_StartPosition = Vect3f(GetRandomValue(m_BoundMinX, m_BoundMaxX),0.0f, GetRandomValue(m_BoundMinZ, m_BoundMaxZ));
     mMaterials = lMM(aTreeNode->GetAttribute<std::string>("material", ""));
 }
 
@@ -110,7 +106,7 @@ void CLaser::FireLaser()
 
 void CLaser::CalculateNextPositionLaser(float ElapsedTime)
 {
-    m_EndPosition = Vect3f(GetRandomValue(m_BoundMinX, m_BoundMaxX), 0.0f, GetRandomValue(m_BoundMinZ, m_BoundMaxZ));
+    m_EndPosition = Vect3f(GetRandomValue(m_BoundMinX, m_BoundMaxX), m_PhysXManager.GetActorPosition("player").y, GetRandomValue(m_BoundMinZ, m_BoundMaxZ));
     m_StartTime = ElapsedTime;
 
     if (m_Timer < 0.1)
