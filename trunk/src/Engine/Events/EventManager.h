@@ -17,8 +17,6 @@ public:
     void Update(float elapsedTime);
 
     CEvent* GetEvent(std::string aEvent);
-    CActor* GetActor(std::string aActor);
-    CReactor* GetReactor(std::string aReactor);
 
     void DrawImgui();
 
@@ -27,8 +25,6 @@ private:
     std::string mFilename;
     bool mEnabled;
 
-    base::utils::CTemplatedMapVector<CActor> mActors;
-    base::utils::CTemplatedMapVector<CReactor> mReactors;
 };
 
 #endif //_ENGINE_EVENTMANAGER_20170830_H

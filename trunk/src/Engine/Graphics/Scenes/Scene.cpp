@@ -21,10 +21,11 @@ CScene::~CScene()
     CTemplatedMapVector<CLayer>::Destroy();
 }
 
-bool CScene::Load(const std::string& aFilename)
+bool CScene::Load(const std::string& aFilename, bool update)
 {
     mFilename = aFilename;
-    return Load();
+
+    return Load(update);
 }
 
 bool CScene::Load(bool update)

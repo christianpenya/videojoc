@@ -202,7 +202,10 @@ bool CLayer::Update(float elapsedTime)
     bool lOk = true;
     for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
     {
-        lOk &= (*iSceneNode)->Update(elapsedTime);
+        if (*iSceneNode)
+        {
+            lOk &= (*iSceneNode)->Update(elapsedTime);
+        }
     }
     return lOk;
 }

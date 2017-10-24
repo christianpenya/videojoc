@@ -8,6 +8,15 @@
 #include "Events/EventManager.h"
 #include "Utils/Logger.h"
 
+#include "Events/DumbActor.h"
+#include "Events/AudioTriggerActor.h"
+
+#include "Events/DumbReactor.h"
+#include "Events/OpenDoorReactor.h"
+#include "Events/LoadSceneReactor.h"
+#include "Events/ReloadSceneReactor.h"
+
+
 CEvent::CEvent() :
     m_Finished(false),
     m_HappeningRightFuckingNow(false),
@@ -25,14 +34,49 @@ CEvent::CEvent(CXMLElement* aEvent) :
     {
         if (strcmp(iElement->Name(), "actor") == 0)
         {
+
             std::string lActorName = iElement->GetAttribute<std::string>("name", "");
-            mActor = CEngine::GetInstance().GetEventManager().GetActor(lActorName);
+            CActor::EActorType lActorType;
+
+            EnumString<CActor::EActorType>::ToEnum(lActorType, lActorName);
+
+            switch (lActorType)
+            {
+            case CActor::eDumb:
+                mActor = new CDumbActor();
+                break;
+            case CActor::eAudioTrigger:
+                mActor = new CAudioTriggerActor();
+                break;
+            }
+
             mActor->Load(iElement);
         }
         else if (strcmp(iElement->Name(), "reactor") == 0)
         {
+
             std::string lReactorName = iElement->GetAttribute<std::string>("name", "");
-            mReactor = CEngine::GetInstance().GetEventManager().GetReactor(lReactorName);
+            CReactor::EReactorType lReactorType;
+
+            EnumString<CReactor::EReactorType>::ToEnum(lReactorType, lReactorName);
+
+            switch (lReactorType)
+            {
+            case CReactor::eDumb:
+                mReactor = new CDumbReactor();
+                break;
+            case CReactor::eOpenDoor:
+                mReactor = new COpenDoorReactor();
+                break;
+            case CReactor::eReloadScene:
+                mReactor = new CReloadSceneReactor();
+                break;
+
+            case CReactor::eLoadScene:
+                mReactor = new CLoadSceneReactor();
+                break;
+            }
+
             mReactor->Load(iElement);
         }
     }

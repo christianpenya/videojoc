@@ -11,7 +11,7 @@ public:
     CScene(const std::string& aName);
     virtual ~CScene();
 
-    bool Load(const std::string& aFilename);
+    bool Load(const std::string& aFilename, bool update = false);
     bool Load(bool update = false);
 
     bool Update(float elapsedTime);

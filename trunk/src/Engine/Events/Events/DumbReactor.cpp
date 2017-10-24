@@ -15,6 +15,7 @@ void CDumbReactor::Load(CXMLElement* aElement)
 void CDumbReactor::React()
 {
     //LOG_INFO_APPLICATION("Reacting! I'm reacting!");
+    m_Finished = true;
 }
 
 void CDumbReactor::Update(float elapsedTime)

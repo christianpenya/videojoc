@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="10" SoundbankVersion="113">
 	<RootPaths>
-		<ProjectRoot>C:\Users\christian\Desktop\Prometeo\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\christian\Desktop\Prometeo\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\christian\Desktop\Prometeo\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/</ProjectRoot>
+		<SourceFilesRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/.cache/Windows/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/GeneratedSoundBanks/Windows/</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\christian\Desktop\Prometeo\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/GeneratedSoundBanks/Windows/</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -15,16 +15,49 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX">
-			<ShortName>Main</ShortName>
-			<Path>Main.bnk</Path>
+		<SoundBank Id="2444914351" Language="SFX">
+			<ShortName>reclusion</ShortName>
+			<Path>reclusion.bnk</Path>
 			<IncludedEvents>
-				<Event Id="1818940147" Name="pasillo"/>
+				<Event Id="3935774190" Name="c11"/>
+				<Event Id="4012403806" Name="camaras_chispazos"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="434193538" Language="SFX">
-					<ShortName>bdmthrfckr.wav</ShortName>
-					<Path>SFX\bdmthrfckr_9E69E797.wem</Path>
+				<File Id="8945505" Language="SFX">
+					<ShortName>5W.wav</ShortName>
+					<Path>SFX/5W_9E69E797.wem</Path>
+				</File>
+				<File Id="419406652" Language="SFX">
+					<ShortName>1W.wav</ShortName>
+					<Path>SFX/1W_9E69E797.wem</Path>
+				</File>
+				<File Id="472217988" Language="SFX">
+					<ShortName>4L.wav</ShortName>
+					<Path>SFX/4L_9E69E797.wem</Path>
+				</File>
+				<File Id="483885003" Language="SFX">
+					<ShortName>3.wav</ShortName>
+					<Path>SFX/3_9E69E797.wem</Path>
+				</File>
+				<File Id="500390299" Language="SFX">
+					<ShortName>2L.wav</ShortName>
+					<Path>SFX/2L_9E69E797.wem</Path>
+				</File>
+				<File Id="649195679" Language="SFX">
+					<ShortName>6L.wav</ShortName>
+					<Path>SFX/6L_9E69E797.wem</Path>
+				</File>
+				<File Id="682000556" Language="SFX">
+					<ShortName>2.wav</ShortName>
+					<Path>SFX/2_9E69E797.wem</Path>
+				</File>
+				<File Id="879432027" Language="SFX">
+					<ShortName>3W.wav</ShortName>
+					<Path>SFX/3W_9E69E797.wem</Path>
+				</File>
+				<File Id="942394009" Language="SFX">
+					<ShortName>1.wav</ShortName>
+					<Path>SFX/1_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

@@ -5,6 +5,7 @@
 #include "SceneNode.h"
 #include "Utils/EnumToString.h"
 #include "Physx/PhysxManager.h"
+#include "Sound/ISoundManager.h"
 
 class CMesh;
 class CRenderManager;
@@ -46,8 +47,11 @@ protected:
 
 private:
     size_t mPhysxIndex;
-    Vect3f cubeOffset;
+    Vect3f mCubeOffset;
 
+    SoundEvent mSoundEvent;
+    float mAudioPeriod;
+    float mTimeAcum;
 };
 
 //--------------------------------------------------------------------------------------------------------

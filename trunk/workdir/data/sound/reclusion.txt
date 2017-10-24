@@ -1,0 +1,15 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3935774190	c11			\reclusion\c11	
+	4012403806	camaras_chispazos			\reclusion\foleys\camaras_chispazos	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	8945505	5W	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\5W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\5W		3596352
+	419406652	1W	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\1W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\1W		193056
+	472217988	4L	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\4L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\4L		287808
+	483885003	3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\3		95204
+	500390299	2L	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\2L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\2L		264098
+	649195679	6L	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\6L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\6L		220714
+	682000556	2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\2		83464
+	879432027	3W	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\3W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\3W		1534528
+	942394009	1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\1		86064
+

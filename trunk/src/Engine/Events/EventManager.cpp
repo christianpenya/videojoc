@@ -3,27 +3,14 @@
 #include "XML/tinyxml2/tinyxml2.h"
 #include "XML/XML.h"
 #include "Imgui/imgui.h"
-
-#include "Events/DumbActor.h"
-#include "Events/AudioTriggerActor.h"
-
-#include "Events/DumbReactor.h"
-#include "Events/OpenDoorReactor.h"
-
 CEventManager::CEventManager() : mEnabled(true)
 {
-    mActors.Add("dumb", new CDumbActor());
-    mActors.Add("audio_trigger", new CAudioTriggerActor());
 
-    mReactors.Add("dumb", new CDumbReactor());
-    mReactors.Add("open_door", new COpenDoorReactor());
 }
 
 CEventManager::~CEventManager()
 {
     __H_CHECKED_DELETE__(mFilename);
-    __H_CHECKED_DELETE__(mActors);
-    __H_CHECKED_DELETE__(mReactors);
 }
 
 bool CEventManager::Load(std::string aFilename)
@@ -78,17 +65,15 @@ void CEventManager::Update(float elapsedTime)
 
 CEvent* CEventManager::GetEvent(std::string aEvent)
 {
-    return  m_ResourcesMap.find(aEvent)->second.m_Value;
-}
+    if (m_ResourcesMap.find(aEvent) != m_ResourcesMap.end())
+    {
+        return  m_ResourcesMap.find(aEvent)->second.m_Value;
+    }
+    else
+    {
+        return nullptr;
+    }
 
-CActor* CEventManager::GetActor(std::string aActor)
-{
-    return mActors(aActor);
-}
-
-CReactor* CEventManager::GetReactor(std::string aReactor)
-{
-    return mReactors(aReactor);
 }
 
 void CEventManager::DrawImgui()

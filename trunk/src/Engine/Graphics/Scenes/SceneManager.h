@@ -10,8 +10,9 @@ class CSceneManager : public base::utils::CTemplatedMapVector<CScene>
 public:
     CSceneManager();
     virtual ~CSceneManager();
-    bool Load(const std::string& aFilename);
+    bool Load(const std::string& aFilename, bool update = false);
     bool ReloadCurrentScene();
+    bool LoadNewScene(const std::string& aName);
 
     bool Update(float elapsedTime);
     bool Render(const std::string& aLayer);
@@ -20,7 +21,7 @@ public:
     CScene* GetCurrentScene();
     void DrawImgui();
 private:
-    bool Load();
+    bool Load(bool update = false);
 protected:
     std::string m_Filename;
     void Destroy();

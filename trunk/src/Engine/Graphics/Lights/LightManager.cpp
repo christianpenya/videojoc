@@ -23,23 +23,29 @@ CLightManager::~CLightManager()
     */
 }
 
-bool CLightManager::Load(const std::string& aFilename)
+bool CLightManager::Load(const std::string& aFilename, bool update)
 {
     m_LevelLightsFilename = aFilename;
-    return Load();
+    return Load(update);
 }
 
 bool CLightManager::Load(bool update)
 {
-    bool lOk = false;
     CXMLDocument document;
-    EXMLParseError error = document.LoadFile((m_LevelLightsFilename).c_str());
     CLight::ELightType lLightType;
+
+    if (m_LevelLightsFilename.find(".xml") == std::string::npos)
+    {
+        m_LevelLightsFilename = "data/scenes/" + m_LevelLightsFilename + "/lights_" + m_LevelLightsFilename + ".xml";
+    }
+
+    EXMLParseError error = document.LoadFile((m_LevelLightsFilename).c_str());
+    std::set< std::string > lNamesLightsFromXML;
 
     if (base::xml::SucceedLoad(error))
     {
         CXMLElement * lLights = document.FirstChildElement("lights");
-        std::set< std::string > lNamesLightsFromXML;
+
         if (lLights)
         {
             for (tinyxml2::XMLElement *iLight = lLights->FirstChildElement(); iLight != nullptr; iLight = iLight->NextSiblingElement())
@@ -70,21 +76,20 @@ bool CLightManager::Load(bool update)
                         {
                             lLight = new CDirectionalLight(iLight);
                         }
-                        lOk = Add(lLight->GetName(), lLight);
+
+                        Add(lLight->GetName(), lLight);
                     }
                 }
             }
         }
     }
 
-    if (lOk && update)
+    if (update)
     {
-        // TODO: Erase the lights that have been deleted1
-        // Bear in mind the size of the array and the map
         std::set<std::string> lMissingLights;
         for (std::vector<CLight *>::iterator it = m_ResourcesVector.begin(); it != m_ResourcesVector.end(); ++it)
         {
-            if (lMissingLights.find((*it)->GetName()) == lMissingLights.end())
+            if (lNamesLightsFromXML.find((*it)->GetName()) == lNamesLightsFromXML.end())
             {
                 assert(lMissingLights.count((*it)->GetName()) == 0);
                 lMissingLights.insert((*it)->GetName());
@@ -97,11 +102,7 @@ bool CLightManager::Load(bool update)
         }
     }
 
-    // iterar sobre lNamesLightsFromXML
-    // sobre el vector: si trobem al vector el nom que hi ha al set guay, si no hi és l'eliminem
-    // sobre el mapa: 1. si trobem al vector el nom que hi ha al set guay, si no hi és l'eliminem 2. l'id del mapa ha de coincidir amb la posició de l'objecte al vector
-
-    return lOk;
+    return true;
 }
 
 void CLightManager::SetLightConstants(size_t idLight, CLight* alight)

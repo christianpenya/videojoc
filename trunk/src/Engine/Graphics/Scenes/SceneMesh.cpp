@@ -14,26 +14,28 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
     , mMesh(CEngine::GetInstance().GetMeshManager().GetMesh(aElement->GetAttribute<std::string>("mesh", "")))
     , mRigidBodyEnum(eRigidBodyCount)
     , mPhysxIndex(0)
+    , mAudioPeriod(0)
+    , mTimeAcum(0.0f)
 {
     m_ignoreFrustum = aElement->GetAttribute<bool>("ignore_frustum", false);
     m_NodeType = CSceneNode::eMesh;
     //COLLIDERS
 
-    for (tinyxml2::XMLElement *iCollider = aElement->FirstChildElement(); iCollider != nullptr; iCollider = iCollider->NextSiblingElement())
+    for (tinyxml2::XMLElement *iSubNode = aElement->FirstChildElement(); iSubNode != nullptr; iSubNode = iSubNode->NextSiblingElement())
     {
-        if (strcmp(iCollider->Name(), "collider") == 0)
+        if (strcmp(iSubNode->Name(), "collider") == 0)
         {
             // (strcmp(aElement->FirstChildElement()->Name(), "transform") == 0) ? aElement->FirstChildElement() : nullptr;
-            std::string lRigidBody = iCollider->GetAttribute<std::string>("rigid_body", "");
-            std::string lFilename = iCollider->GetAttribute<std::string>("filename", "");
-            int lGroup = iCollider->GetAttribute<int>("group", 0);
-            Vect3f lOffset = iCollider->GetAttribute<Vect3f>("offset", Vect3f(0.0f, 0.0f, 0.0f));
-            float lYawOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("yaw", 0.0f));
-            float lPitchOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("pitch", 0.0f));
-            float lRollOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("roll", 0.0f));
-            m_Name = iCollider->GetAttribute<std::string>("name", m_Name);
+            std::string lRigidBody = iSubNode->GetAttribute<std::string>("rigid_body", "");
+            std::string lFilename = iSubNode->GetAttribute<std::string>("filename", "");
+            int lGroup = iSubNode->GetAttribute<int>("group", 0);
+            Vect3f lOffset = iSubNode->GetAttribute<Vect3f>("offset", Vect3f(0.0f, 0.0f, 0.0f));
+            float lYawOffset = mathUtils::Deg2Rad(iSubNode->GetAttribute<float>("yaw", 0.0f));
+            float lPitchOffset = mathUtils::Deg2Rad(iSubNode->GetAttribute<float>("pitch", 0.0f));
+            float lRollOffset = mathUtils::Deg2Rad(iSubNode->GetAttribute<float>("roll", 0.0f));
+            m_Name = iSubNode->GetAttribute<std::string>("name", m_Name);
 
-            bool isKinematic = iCollider->GetAttribute<bool>("kinematic", false);
+            bool isKinematic = iSubNode->GetAttribute<bool>("kinematic", false);
             Vect3f lColliderPosition;
 
             EnumString<ERigidBody>::ToEnum(mRigidBodyEnum, lRigidBody);
@@ -59,7 +61,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 sizeX = abs(abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x);
                 sizeY = abs(abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y);
                 sizeZ = abs(abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z);
-                cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
+                mCubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
 
                 lCenter = m_Position + lOffset;
                 mPhysxIndex = CEngine::GetInstance().GetPhysXManager().CreateStaticBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ);
@@ -79,13 +81,13 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 sizeX = abs(abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x);
                 sizeY = abs(abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y);
                 sizeZ = abs(abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z);
-                cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
+                mCubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
 
                 lCenter = m_Position;
                 CEngine::GetInstance().GetPhysXManager().CreateDynamicBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ, 0.5f, isKinematic, lGroup);
 
                 rotation = CEngine::GetInstance().GetPhysXManager().GetActorOrientation(m_Name);
-                m_Position = CEngine::GetInstance().GetPhysXManager().GetActorPosition(m_Name) + rotation.Rotate(cubeOffset);
+                m_Position = CEngine::GetInstance().GetPhysXManager().GetActorPosition(m_Name) + rotation.Rotate(mCubeOffset);
                 m_Pitch = rotation.GetRotationMatrix().GetAngleX();
                 m_Yaw = rotation.GetRotationMatrix().GetAngleY();
                 m_Roll = rotation.GetRotationMatrix().GetAngleZ();
@@ -119,7 +121,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 sizeX = abs(abs(lAABB.GetMax().x - lAABB.GetMin().x) * m_Scale.x);
                 sizeY = abs(abs(lAABB.GetMax().y - lAABB.GetMin().y) * m_Scale.y);
                 sizeZ = abs(abs(lAABB.GetMax().z - lAABB.GetMin().z) * m_Scale.z);
-                cubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
+                mCubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
                 lCenter = m_Position + mMesh->GetBoundingSphere().GetCenter();
 
                 CEngine::GetInstance().GetPhysXManager().AddTriggerBox(m_Name, sizeX, sizeY, sizeZ, lCenter, rotation);
@@ -129,6 +131,13 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 lDebug = "NO physx were added to " + m_Name;
                 break;
             }
+        }
+        else if (strcmp(iSubNode->Name(), "audio_source") == 0)
+        {
+            std::string lEventName = iSubNode->GetAttribute<std::string>("event_name", "");
+            assert(lEventName != "");
+            mSoundEvent.eventName = lEventName;
+            mAudioPeriod = iSubNode->GetAttribute<float>("period", false);
         }
     }
 }
@@ -216,6 +225,17 @@ bool CSceneMesh::Update(float aDeltaTime)
             default:
                 break;
             }
+        }
+    }
+
+    if (mSoundEvent.eventName != "")
+    {
+        mTimeAcum += aDeltaTime;
+
+        if (mTimeAcum > mAudioPeriod)
+        {
+            CEngine::GetInstance().m_SoundManager->PlayEvent(mSoundEvent, this);
+            mTimeAcum = 0.0f;
         }
     }
 
