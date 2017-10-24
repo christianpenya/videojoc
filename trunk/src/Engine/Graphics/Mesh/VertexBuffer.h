@@ -9,7 +9,7 @@ template< class TVertexType >
 class CVertexBuffer : public CBuffer
 {
 public:
-    CVertexBuffer(CRenderManager& RenderManager, void* aRawData, uint32 aNumVertexs, bool dynamic = false) :
+    CVertexBuffer(CRenderManager& RenderManager, void* aRawData, uint32 aNumVertexs, int dynamic = 0) :
         mNumVertexs(aNumVertexs)
     {
         D3D11_BUFFER_DESC lVertexBufferDesc;

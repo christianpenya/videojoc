@@ -34,6 +34,7 @@ class ISoundManager;
 class CGUIManager;
 class CCameraManager;
 class CCharacterController;
+class CLevelController;
 class CEventManager;
 class CNavMeshManager;
 class CEnemiesManager;
@@ -100,6 +101,8 @@ public:
     double m_FPS;
 
     CCharacterController* m_CharacterController;
+    CLevelController* m_LevelController;
+
     // void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
     void DrawImgui(int choice);
 };

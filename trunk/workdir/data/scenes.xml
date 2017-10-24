@@ -4,6 +4,7 @@
 
 	<scene name="escena_zona_administracion" folder="data/scenes/" active="false"/>
 	<scene name="escena_zona_reclusion" folder="data/scenes/" active="true"/>
+	<scene name="escena_menuPrincipal" folder="data/scenes/" active="false"/>
 
 </scenes>
  

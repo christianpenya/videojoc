@@ -19,6 +19,7 @@
 #include "Graphics/IA/NavMeshManager.h"
 #include "Graphics/IA/Laser.h"
 #include "Graphics/IA/LaserManager.h"
+#include "SceneGUI.h"
 
 #ifdef _DEBUG
 #include <chrono>
@@ -140,6 +141,13 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
                 lNode = l_LaserManager(l_LaserName);
                 lNode->SetNodeType(CSceneNode::eLaser);
             }
+        }
+        else if (strcmp(iSceneNode->Name(), "scene_gui") == 0)
+        {
+            std::string l_GUIElementName = iSceneNode->GetAttribute<std::string>("name", "");
+            lNode = new CSceneGUI(iSceneNode);
+            lNode->SetNodeType(CSceneNode::eGUIElem);
+
         }
 
         if (lNode)

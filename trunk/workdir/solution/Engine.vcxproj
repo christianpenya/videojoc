@@ -319,6 +319,7 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\Layer.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\Scene.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneBasicPrimitive.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneGUI.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneManager.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneMesh.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneNode.h" />
@@ -435,6 +436,7 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\Layer.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\Scene.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneBasicPrimitive.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneGUI.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneMesh.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneNode.cpp" />

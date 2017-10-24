@@ -49,7 +49,7 @@ bool CScene::Load(bool update)
 
                     CLayer* lLayer = (*this)(lLayerName);
 
-                    if (lLayer && lLayer->GetActive())
+                    if (lLayer)//(&& lLayer->GetActive()
                     {
                         lLayer->Load(iLayer, update);
                     }
@@ -58,11 +58,10 @@ bool CScene::Load(bool update)
                         lLayer = new CLayer(lLayerName);
                         lLayer->SetActive(iLayer->GetAttribute<bool>("active", false));
 
-                        if (lLayer->GetActive())
-                        {
-                            lLayer->Load(iLayer);
-                            lLayer->SetParent(this);
-                        }
+                        //if (lLayer->GetActive()){
+                        lLayer->Load(iLayer);
+                        lLayer->SetParent(this);
+                        //}
 
                         lOk &= Add(lLayer->GetName(), lLayer);
                     }
@@ -98,7 +97,8 @@ bool CScene::Update(float elapsedTime)
 
     for (TMapResources::iterator iLayer = m_ResourcesMap.begin(); iLayer != m_ResourcesMap.end(); ++iLayer)
     {
-        lOk &= iLayer->second.m_Value->Update(elapsedTime);
+        if (iLayer->second.m_Value->GetActive())
+            lOk &= iLayer->second.m_Value->Update(elapsedTime);
     }
 
     return lOk;
@@ -110,7 +110,8 @@ bool CScene::Render()
 
     for (TMapResources::iterator iLayer = m_ResourcesMap.begin(); iLayer != m_ResourcesMap.end(); ++iLayer)
     {
-        lOk &= iLayer->second.m_Value->Render();
+        if (iLayer->second.m_Value->GetActive())
+            lOk &= iLayer->second.m_Value->Render();
     }
 
     return lOk;

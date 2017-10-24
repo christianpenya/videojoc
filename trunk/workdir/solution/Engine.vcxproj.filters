@@ -330,6 +330,9 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneBasicPrimitive.h">
       <Filter>Graphics\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneGUI.h">
+      <Filter>Graphics\Scenes</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneManager.h">
       <Filter>Graphics\Scenes</Filter>
     </ClInclude>
@@ -672,6 +675,9 @@
       <Filter>Graphics\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneBasicPrimitive.cpp">
+      <Filter>Graphics\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneGUI.cpp">
       <Filter>Graphics\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneManager.cpp">
