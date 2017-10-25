@@ -18,6 +18,7 @@ CSceneGUI::CSceneGUI(const CXMLElement* TreeNode)
     portion = TreeNode->GetAttribute<Vect2f>("portion", Vect2f(0, 0));
     size = TreeNode->GetAttribute<Vect2f>("size", Vect2f(0, 0));
     type = TreeNode->GetAttribute<std::string>("type", "");
+    action = TreeNode->GetAttribute<int>("action", 0);
 }
 
 CSceneGUI::~CSceneGUI() {}
@@ -38,11 +39,26 @@ bool CSceneGUI::Update(float ElapsedTime)
     }
     else if (strcmp(type.c_str(), "button") == 0)
     {
-        if (guiMan->DoButton(nodeName, gui_element, CGUIPosition(l_size.x*portion.x, l_size.y*portion.y, size.x, size.y)))
+        switch (action)
         {
-            CLevelController *contr = CEngine::GetInstance().m_LevelController;
-            contr->ResumeGame();
+        case 1:
+        {
+
+            if (guiMan->DoButton(nodeName, gui_element, CGUIPosition(l_size.x*portion.x, l_size.y*portion.y, size.x, size.y)))
+            {
+                CLevelController *contr = CEngine::GetInstance().m_LevelController;
+                contr->ResumeGame();
+            }
+
         }
+        break;
+        default:
+        {
+            guiMan->DoButton(nodeName, gui_element, CGUIPosition(l_size.x*portion.x, l_size.y*portion.y, size.x, size.y));
+        }
+        break;
+        }
+
     }
     return true;
 }

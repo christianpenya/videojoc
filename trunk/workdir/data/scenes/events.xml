@@ -6,7 +6,7 @@
 		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
 	</event>
 	<event name="testTextGUI" active = "true">
-		<actor name="dumb" />
-		<reactor name="textGUI" portion="0.5 0.666" time="5.0" text="Mueve el raton para mirar alrededor"/>
+		<actor name="textGUI" portion="0.5 0.666" time="5.0" text="Mueve el raton para mirar alrededor"/>
+		<reactor name="dumb" />
 	</event> 
 </events>

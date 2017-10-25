@@ -242,6 +242,7 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\OpenDoorReactor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\TextGUIActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\TextGUIReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\LevelController.h" />
     <ClInclude Include="..\..\src\Engine\Events\Reactor.h" />
@@ -372,6 +373,7 @@
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\OpenDoorReactor.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\TextGUIActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\TextGUIReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\LevelController.cpp" />
     <ClCompile Include="..\..\src\Engine\GUI\Button.cpp" />

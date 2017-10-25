@@ -21,6 +21,7 @@ public:
     std::string gui_element = "";
     std::string nodeName = "";
     std::string type = "";
+    int action = 1;
 
 
 };
