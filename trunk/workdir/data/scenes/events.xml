@@ -1,30 +1,10 @@
 <events>
-
-	event -> name y obj_name -> deben tener el mismo string
-
-	<!-- 	
 	<event name="trigger_pasillo" active="true">
 		<actor name="audio_trigger" layer="triggers" obj_name="trigger_pasillo"/>
 		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
 	</event>
-
-	<event name="camaras_chispazos" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="camaras_chispazos"/>
-		<reactor name="load_scene" scene="reclusion"/>
+	<event name="testTextGUI" active = "true">
+		<actor name="dumb" />
+		<reactor name="textGUI" portion="0.5 0.666" time="5.0" text="Mueve el raton para mirar alrededor"/>
 	</event>
-
-
-	-->
- 
-	<event name="camaras_chispazos" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="camaras_chispazos"/>
-		<reactor name="load_scene" scene="administracion"/>
-	</event>
-
-	<event name="c11" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="c11"/>
-		<reactor name="dumb"/>
-	</event>
-
-	
 </events>

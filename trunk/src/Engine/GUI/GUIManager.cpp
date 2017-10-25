@@ -10,6 +10,7 @@
 #include "XML/XML.h"
 #include "Graphics/Mesh/TemplatedGeometry.h"
 #include "GUIPosition.h"
+#include "GUISprite.h"
 
 
 CGUIManager::CGUIManager(): m_MouseX(0), m_MouseY(0)
@@ -32,10 +33,10 @@ void CGUIManager::Destroy()
         base::utils::CheckedDelete(m_Materials[i]);
     m_Materials.clear();
 
-    /*    for (size_t i = 0; i < m_VertexBuffers.size(); i++)
-            base::utils::CheckedDelete(m_VertexBuffers[i]);
-        m_VertexBuffers.clear();
-    	*/
+    for (size_t i = 0; i < m_VertexBuffers.size(); i++)
+        base::utils::CheckedDelete(m_VertexBuffers[i]);
+    m_VertexBuffers.clear();
+
     for (auto it = m_Buttons.begin(); it != m_Buttons.end(); it++)
         base::utils::CheckedDelete(it->second);
     m_Buttons.clear();
@@ -114,10 +115,10 @@ bool CGUIManager::Load(std::string _FileName)
                         if (strcmp(iSubElement->Name(), "material")==0)
                         {
                             m_Materials.push_back(new CMaterial(iSubElement));
-                            /*                            m_VertexBuffers.push_back( new CGeometryTriangleList<VertexTypes::SpriteVertex>(
-                                                                                       new CVertexBuffer<VertexTypes::SpriteVertex>(aRM,nullptr, MAX_VERTICES_PER_CALL, true)
-                                                                                   )
-                                                                                 );*/
+                            m_VertexBuffers.push_back( new CGeometryTriangleList<VertexTypes::SpriteVertex>(
+                                                           new CVertexBuffer<VertexTypes::SpriteVertex>(aRM,nullptr, MAX_VERTICES_PER_CALL, true)
+                                                       )
+                                                     );
                         }
                         else if (strcmp(iSubElement->Name(), "sprite") == 0)
                         {
@@ -136,8 +137,14 @@ bool CGUIManager::Load(std::string _FileName)
                 }
                 else if (strcmp(iElement->Name(), "button") == 0)
                 {
-                    //TODO
+                    //TODODoB
                     m_Buttons[iElement->GetAttribute<std::string>("name", "")] = new CButon(&m_Sprites[iElement->GetAttribute<std::string>("normal", "")], &m_Sprites[iElement->GetAttribute<std::string>("highlight", "")], &m_Sprites[iElement->GetAttribute<std::string>("pressed", "")]);
+
+                }
+                else if (strcmp(iElement->Name(), "guisprite") == 0)
+                {
+                    //TODODoB
+                    m_GUISprites[iElement->GetAttribute<std::string>("name", "")] = new CGUISPrite(&m_Sprites[iElement->GetAttribute<std::string>("normal", "")]);
 
                 }
 
@@ -245,7 +252,7 @@ void CGUIManager::CheckInput()
 void CGUIManager::Render(CRenderManager *RenderManager)
 {
 
-//    VertexTypes::SpriteVertex m_CurrentBufferData[MAX_VERTICES_PER_CALL];
+    VertexTypes::SpriteVertex m_CurrentBufferData[MAX_VERTICES_PER_CALL];
     int currentVertex = 0;
     SpriteMapInfo *currentSpriteMap = nullptr;
 
@@ -266,8 +273,8 @@ void CGUIManager::Render(CRenderManager *RenderManager)
                 //TODO draw all c urrent vertex in the currentBuffer
 
                 m_Materials[currentSpriteMap->MaterialIndex]->Apply();
-                /*                m_VertexBuffers[currentSpriteMap->MaterialIndex]->UpdateVertex(m_CurrentBufferData, currentVertex);
-                                m_VertexBuffers[currentSpriteMap->MaterialIndex]->Render(RenderManager->GetDeviceContext(), currentVertex);*/
+                m_VertexBuffers[currentSpriteMap->MaterialIndex]->UpdateVertex(m_CurrentBufferData, currentVertex);
+                m_VertexBuffers[currentSpriteMap->MaterialIndex]->Render(RenderManager->GetDeviceContext(), currentVertex);
             }
             currentVertex = 0;
             currentSpriteMap = commandSpriteMap;
@@ -285,22 +292,22 @@ void CGUIManager::Render(CRenderManager *RenderManager)
         float v2 = commandSprite->v1 * (1.0f - command.v2) + commandSprite->v2 * command.v2;
 
 
-        /*        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y2, 0.f), Vect2f(u1, v2)}; // { Vect4f(x1, y2, 0.f, 1.f), command.color, Vect2f(u2, v2) };
-                m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y1, 0.f), Vect2f(u1, v1) };
-                m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y2, 0.f), Vect2f(u2, v2)};
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y2, 0.f), Vect2f(u1, v2)}; // { Vect4f(x1, y2, 0.f, 1.f), command.color, Vect2f(u2, v2) };
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y1, 0.f), Vect2f(u1, v1) };
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y2, 0.f), Vect2f(u2, v2)};
 
 
-                m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y1, 0.f), Vect2f(u1, v1)};
-                m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y1, 0.f), Vect2f(u2, v1) };
-                m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y2, 0.f), Vect2f(u2, v2)};
-        		*/
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x1, y1, 0.f), Vect2f(u1, v1)};
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y1, 0.f), Vect2f(u2, v1) };
+        m_CurrentBufferData[currentVertex++] = { Vect3f(x2, y2, 0.f), Vect2f(u2, v2)};
+
     }
     if (currentVertex > 0)
     {
 
         m_Materials[currentSpriteMap->MaterialIndex]->Apply();
-        /*        m_VertexBuffers[currentSpriteMap->MaterialIndex]->UpdateVertex(m_CurrentBufferData, currentVertex);
-                m_VertexBuffers[currentSpriteMap->MaterialIndex]->Render(RenderManager->GetDeviceContext(), currentVertex);*/
+        m_VertexBuffers[currentSpriteMap->MaterialIndex]->UpdateVertex(m_CurrentBufferData, currentVertex);
+        m_VertexBuffers[currentSpriteMap->MaterialIndex]->Render(RenderManager->GetDeviceContext(), currentVertex);
     }
     m_Commands.clear();
     m_InputUpToDate = false;
@@ -425,7 +432,20 @@ void CGUIManager::FillCommandQueueWithText(const std::string& _font, const std::
         m_Commands[i].y2 += (int)adjustment.y;
     }
 }
-
+bool CGUIManager::DoGUISprite(const std::string& guiID, const std::string& SpriteID, CGUIPosition& position)
+{
+    SpriteInfo* l_sprite;
+    l_sprite = m_GUISprites[SpriteID]->GetNormal();
+    GUICommand command =
+    {
+        l_sprite,
+        position.Getx(), position.Gety(), position.Getx() + position.Getwidth(), position.Gety() + position.Getheight(),
+        0, 0, 1, 1,
+        CColor(1, 1, 1, 1)
+    };
+    m_Commands.push_back(command);
+    return true;
+}
 
 bool CGUIManager::DoButton(const std::string& guiID, const std::string& buttonID,  CGUIPosition& position)
 {

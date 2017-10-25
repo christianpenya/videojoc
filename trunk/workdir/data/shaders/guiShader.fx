@@ -36,10 +36,13 @@ PS_INPUT VS( VS_INPUT IN )
 
 float4 PS( PS_INPUT IN ) : SV_Target
 {  
-    float4 ColorPixel = DiffuseTexture.Sample(LinearSampler, IN.UV);// * float4(m_RawData[0].xyzw); 
-    if (ColorPixel.w <0.1)
-        {
+ 
+   
+    float4 ColorPixel = DiffuseTexture.Sample(LinearSampler, IN.UV) ;// * float4(m_RawData[0].xyzw); 
+    
+    if (ColorPixel.w <0.1){
             clip(-1);
-        }
-    return float4(ColorPixel.xyz, 1.0);
+    }
+    return float4(ColorPixel.xyz,1.0);
+    //return float4(0.0,1.0,0.0, 1.0);
 }

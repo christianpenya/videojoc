@@ -90,13 +90,13 @@ void CPhysXManagerImplementation::onTrigger(physx::PxTriggerPair* pairs, physx::
         std::string triggerName = m_ActorNames[indexTrigger];
         std::string actorName = m_ActorNames[indexActor];
 
-        CEvent* lEvent = CEngine::GetInstance().GetEventManager().GetEvent(triggerName);
+        /*        CEvent* lEvent = CEngine::GetInstance().GetEventManager().GetEvent(triggerName);
 
-        if (lEvent && !lEvent->IsFinished() && !lEvent->IsHappeningRightFuckingNow())
-        {
-            lEvent->Start();
-        }
-
+                if (lEvent && !lEvent->IsFinished() && !lEvent->IsHappeningRightFuckingNow())
+                {
+                    lEvent->Start();
+                }
+        		*/
         /*
 
         LOG_INFO_APPLICATION("Trigger \"%s\" fired with \"%s\"", triggerName.c_str(), actorName.c_str());
@@ -142,7 +142,16 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
 
 
     physx::PxController* cct = m_ControllerManager->createController(desc);
+    physx::PxShape* shape;
+    physx::PxRigidDynamic* l_actor = cct->getActor();
+    l_actor->getShapes(&shape, 1);
 
+    physx::PxFilterData filterData;
+    filterData.setToDefault();
+    filterData.word0 = 0001;
+    shape->setQueryFilterData(filterData);
+
+    shape->setQueryFilterData(filterData);
     m_CharacterControllers[characterControllerName] = cct;
 
     m_ActorIndexs[characterControllerName] = index;

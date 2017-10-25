@@ -26,7 +26,7 @@
 	<render_layer layer="navmesh"/>
 	<render_layer layer="salas"/>
 	<render_layer layer="laser" />
-	
+	<render_layer layer="drones" />	
 	<unset_render_target/>	
 	End generate gbuffer
 	
@@ -90,7 +90,7 @@
 	INICIO POST PROCESS
 	
 	<apply_technique_pool pool_name="post_process"/>
-	
+	<render_gui/>
 	INICIO NOISE VIGNETTING
 	<!-- <enable_alpha_blend/>	
 	<draw_quad name="noise_vignetting" material="NoiseVignettingMaterial">

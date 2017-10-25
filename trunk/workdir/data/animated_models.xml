@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <animated_models>
-	<animated_model name="sereno" path="data/animated_models/sereno/"/>
 	<animated_model name="guardia" path="data/animated_models/guardia/"/>
-	<animated_model name="guardiaSexy" path="data/animated_models/guardiaSexy/"/>
-	<animated_model name="prota" path="data/animated_models/prota/"/>
+	<animated_model name="guardiaSexy" path="data/animated_models/guardiaSexy/"/> -->
+	<animated_model name="prota" path="data/animated_models/prota/"/> -->
+	<animated_model name="prota2" path="data/animated_models/prota2/"/> -->
+	<animated_model name="dron" path="data/animated_models/dron/"/>
 </animated_models>

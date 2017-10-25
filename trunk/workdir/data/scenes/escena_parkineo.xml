@@ -16,21 +16,21 @@
 	</layer>
 	
 	<layer name="laser" active="true">
-		<scene_laser name="laserBoss">
+		<scene_enemies type="laser" name="laserBoss">
 			<transform position="11.4629 15.3719 45.84" yaw="0.0" pitch="-90.0" roll="0.0" forward="0.0 0.0 0.0" />
-		</scene_laser> 		
+		</scene_enemies>
 		<scene_mesh name="PatrolPoint" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="27.75 0.0 48.95" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="27.75 3.2 48.95" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="-27.75 0.0 48.95" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="-27.75 3.2 48.95" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
 
 		<scene_mesh name="PatrolPoint3" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="27.75 0.0 -26.65" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="27.75 3.2 -26.65" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint4" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="-27.75 0.0 -26.65" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="-27.75 3.2 -26.65" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>			
 
 	</layer>
@@ -84,6 +84,10 @@
 	
 		<scene_mesh name="trigger_pasillo" mesh="data/meshes/Box01.mesh">
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="testTextGUI" mesh="data/meshes/Box01.mesh">
+			<transform position="3.0 0.0 3.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 

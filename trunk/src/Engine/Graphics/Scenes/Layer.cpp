@@ -15,10 +15,12 @@
 #include "Graphics/Particles/ParticleManager.h"
 #include "Graphics/Particles/ParticleSystemType.h"
 #include "Graphics/IA/EnemiesManager.h"
+#include "Graphics/IA/EnemyAnimated.h"
 #include "Graphics/IA/NavMesh.h"
 #include "Graphics/IA/NavMeshManager.h"
 #include "Graphics/IA/Laser.h"
-#include "Graphics/IA/LaserManager.h"
+#include "Graphics/IA/Dron.h"
+
 
 #ifdef _DEBUG
 #include <chrono>
@@ -41,7 +43,6 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
     bool lOk = true;
 
     CEnemiesManager &lEnemiesManager = CEngine::GetInstance().GetEnemiesManager();
-    CLaserManager &l_LaserManager = CEngine::GetInstance().GetLaserManager();
     CNavMeshManager &l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
 
     std::string lNodeName;
@@ -122,24 +123,36 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
         }
         else if (strcmp(iSceneNode->Name(), "scene_enemies") == 0)
         {
-            CEnemy *l_enemy = nullptr;
-
             if (lEnemiesManager.Exist(lNodeName))
             {
-                lNode = lEnemiesManager(lNodeName);
+                if (lEnemiesManager(lNodeName)->GetEnemyType() == CEnemy::eLaser)
+                    lNode = ((CLaser*)lEnemiesManager(lNodeName));
+                else
+                {
+                    CDron * l_Enemy = (CDron*)lEnemiesManager(lNodeName);
+                    CAnimatedCoreModel *l_EnemyAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_Enemy->GetCorename());
+                    if (l_EnemyAnimatedCoreModel != nullptr)
+                    {
+                        //                        lNode = l_Enemy;
+                        lNode = new CDron(*l_Enemy);
+                        ((CDron*)lNode)->Initialize(l_EnemyAnimatedCoreModel);
+                        //((CEnemyAnimated *)lNode)->BlendCycle(2, 1, 0);
+                    }
+
+
+                    /*CEnemyAnimated * l_Enemy = (CEnemyAnimated*)lEnemiesManager(lNodeName);
+                    CAnimatedCoreModel *l_EnemyAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_Enemy->GetCorename());
+                    if (l_EnemyAnimatedCoreModel != nullptr)
+                    {
+                    //                        lNode = l_Enemy;
+                        lNode = new CEnemyAnimated(*l_Enemy);
+                        ((CEnemyAnimated *)lNode)->Initialize(l_EnemyAnimatedCoreModel);
+                        //((CEnemyAnimated *)lNode)->BlendCycle(2, 1, 0);
+                    }*/
+                }
                 lNode->SetNodeType(CSceneNode::eEnemy);
             }
-        }
-        else if (strcmp(iSceneNode->Name(), "scene_laser") == 0)
-        {
-            std::string l_LaserName = iSceneNode->GetAttribute<std::string>("name", "");
-            CLaser *l_laser = nullptr;
 
-            if (l_LaserManager.Exist(l_LaserName))
-            {
-                lNode = l_LaserManager(l_LaserName);
-                lNode->SetNodeType(CSceneNode::eLaser);
-            }
         }
 
         if (lNode)
@@ -319,12 +332,6 @@ void CLayer::DrawImgui()
                     if (lenemy != nullptr)
                         lenemy->DrawImgui();
                 }
-                    /*                case CSceneNode::eLaser:
-                                    {
-                                        CLaser *lLaser = CEngine::GetInstance().GetLaserManager()((*iSceneNode)->GetName());
-                                        if (lLaser != nullptr)
-                                            lLaser->DrawImgui();
-                                    }*/
                 break;
                 default:
                 {
