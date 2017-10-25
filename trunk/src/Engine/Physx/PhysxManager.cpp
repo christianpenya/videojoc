@@ -218,7 +218,6 @@ void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string 
         m_Cooking->setParams(params);
         physx::PxDefaultMemoryOutputStream buf;
 
-
         m_Cooking->cookTriangleMesh(meshDesc, buf);
 
         physx::PxDefaultMemoryInputData input(buf.getData(), buf.getSize());

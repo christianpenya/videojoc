@@ -15,6 +15,7 @@ public:
     CTexture* GetTexture(const std::string& aFilename);
     bool Reload();
     bool AddTexture(CTexture& aTexture);
+    bool Exists(std::string aName);
 private:
     base::utils::CTemplatedMapVector<CTexture> mTextures;
     bool Load(const std::string& aFilename);

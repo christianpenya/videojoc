@@ -3,7 +3,7 @@
 	<layer name="triggers" active="true">
 	
 		<scene_mesh name="camaras_chispazos" mesh="data/meshes/Box01.mesh">
-			<transform position="0.0 4.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+			<transform position="-1.0 4.0 -1.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 	

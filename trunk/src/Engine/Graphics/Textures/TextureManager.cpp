@@ -47,3 +47,14 @@ bool CTextureManager::AddTexture(CTexture &aTexture)
 {
     return mTextures.Add(aTexture.GetName(), &aTexture);
 }
+
+bool CTextureManager::Exists(std::string aName)
+{
+    bool lOut = false;
+    if (mTextures.Exist(aName))
+    {
+        lOut = true;
+    }
+
+    return lOut;
+}

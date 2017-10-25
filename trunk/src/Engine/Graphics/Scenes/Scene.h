@@ -13,6 +13,7 @@ public:
 
     bool Load(const std::string& aFilename, bool update = false);
     bool Load(bool update = false);
+    void Unload();
 
     bool Update(float elapsedTime);
     bool Render();

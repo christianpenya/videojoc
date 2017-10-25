@@ -355,22 +355,6 @@
 		<parameter type="float" name="occlusion" value="0.0" />
 	</material>
 
-	REJILLA ESTANTERIA
-	<material name="Material #309" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\metal.jpg" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="metalness" value="0.0" />
-		<parameter type="float" name="roughness" value="0.6" />
-		<parameter type="float" name="occlusion" value="0.0" />
-	</material>
-	<material name="Material #310" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\TexturesCom_MetalVarious0044_1_alphamasked_S.png" />
-		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
-		<parameter type="float" name="metalness" value="0.0" />
-		<parameter type="float" name="roughness" value="0.6" />
-		<parameter type="float" name="occlusion" value="0.0" />
-	</material>
-
 	MESA
 	<material name="Material #36" vertex_type="PositionNormalUV" >
 		<texture type="diffuse" filename="data\textures\negro metal.jpg" />

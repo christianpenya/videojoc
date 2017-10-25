@@ -39,7 +39,7 @@ CLayer::~CLayer()
 bool CLayer::Load(CXMLElement* aElement, bool update)
 {
     bool lOk = true;
-    CLightManager &lLM = CEngine::GetInstance().GetLightManager();
+
     CEnemiesManager &lEnemiesManager = CEngine::GetInstance().GetEnemiesManager();
     CLaserManager &l_LaserManager = CEngine::GetInstance().GetLaserManager();
     CNavMeshManager &l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
@@ -103,10 +103,10 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
             lConstanBufferManager.mLightsDesc.m_LightEnabled[1] = 0;
             lConstanBufferManager.mLightsDesc.m_LightEnabled[2] = 0;
             lConstanBufferManager.mLightsDesc.m_LightEnabled[3] = 0;
-            if (lLM.Exist(lNodeName))
+            if (CEngine::GetInstance().GetLightManager().Exist(lNodeName))
             {
-                lNode = lLM(lNodeName);
-                lLM.SetLightConstants(iSceneNode->GetAttribute<int>("id_light", 0), lLM(lNodeName));
+                lNode = CEngine::GetInstance().GetLightManager()(lNodeName);
+                //lLM.SetLightConstants(iSceneNode->GetAttribute<int>("id_light", 0), lLM(lNodeName));
                 lNode->SetNodeType(CSceneNode::eLight);
             }
         }
@@ -188,7 +188,7 @@ void CLayer::DeleteAllNodes()
 
     for (std::set<std::string>::iterator iMissingNode = lMissingNodes.begin(); iMissingNode != lMissingNodes.end(); ++iMissingNode)
     {
-        if ((*this)(*iMissingNode)->GetNodeType() == CSceneNode::eMesh)
+        if ((*this)(*iMissingNode)->GetNodeType() == CSceneNode::eMesh || (*this)(*iMissingNode)->GetNodeType() == CSceneNode::eAnimatedModel)
         {
             ((CSceneMesh*)(*this)(*iMissingNode))->DeletePhysx();
         }

@@ -10,6 +10,9 @@
 #include <chrono>
 #include "Utils/Logger.h"
 
+#include "Graphics/Lights/LightManager.h"
+#include "Engine/Engine.h"
+
 CSceneManager::CSceneManager() {}
 CSceneManager::~CSceneManager()
 {
@@ -24,6 +27,11 @@ bool CSceneManager::Load(const std::string& aFilename, bool update)
 
 bool CSceneManager::LoadNewScene(const std::string& aName)
 {
+    CLightManager lLM = CEngine::GetInstance().GetLightManager();
+    GetCurrentScene()->Unload();
+    GetCurrentScene()->SetActive(false);
+
+    (*this)(aName)->SetActive(true);
     return (*this)(aName)->Load(true);
 }
 
@@ -97,25 +105,25 @@ bool CSceneManager::Load(bool update)
                     std::string lName = iScene->GetAttribute<std::string>("name", "");
                     CScene* lScene = new CScene(lName);
 
-                    if (lActive)
+                    lScene->SetActive(iScene->GetAttribute<bool>("active", false));
+                    std::string lFilename = iScene->GetAttribute<std::string>("folder", "") + "scene_" + lName;
+                    std::string lExtension = ".xml";
+
+                    if (lFilename.find(lExtension) == std::string::npos)
                     {
-                        lScene->SetActive(iScene->GetAttribute<bool>("active", false));
-                        std::string lFilename = iScene->GetAttribute<std::string>("folder", "") + "scene_" + lName;
-                        std::string lExtension = ".xml";
-
-                        if (lFilename.find(lExtension) == std::string::npos)
-                        {
-                            lFilename += lExtension;
-                        }
-
-                        lScene->Load(lFilename, update);
-                        lOk &= Add(lScene->GetName(), lScene);
+                        lFilename += lExtension;
                     }
+
+                    if (lScene->GetActive())
+                    {
+                        lScene->Load(lFilename, update);
+                    }
+
+                    lOk &= Add(lScene->GetName(), lScene);
                 }
             }
         }
     }
-
     return lOk;
 }
 
@@ -124,17 +132,6 @@ std::vector<CScene*> CSceneManager::GetScenes()
     return m_ResourcesVector;
 }
 
-void CSceneManager::DrawImgui()
-{
-    for (std::vector<CScene*>::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
-    {
-        if(ImGui::TreeNode((*iScene)->GetName().c_str()))
-        {
-            (*iScene)->DrawImGui();
-            ImGui::TreePop();
-        }
-    }
-}
 
 CScene* CSceneManager::GetCurrentScene()
 {
@@ -143,6 +140,18 @@ CScene* CSceneManager::GetCurrentScene()
         if ((*iScene)->GetActive())
         {
             return (*iScene);
+        }
+    }
+}
+
+void CSceneManager::DrawImgui()
+{
+    for (std::vector<CScene*>::iterator iScene = m_ResourcesVector.begin(); iScene != m_ResourcesVector.end(); ++iScene)
+    {
+        if (ImGui::TreeNode((*iScene)->GetName().c_str()))
+        {
+            (*iScene)->DrawImGui();
+            ImGui::TreePop();
         }
     }
 }

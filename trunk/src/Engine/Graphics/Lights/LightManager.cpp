@@ -159,6 +159,33 @@ void CLightManager::SetLightsConstants()
     }
 }
 
+CLight* CLightManager::GetLightByIdx(size_t idLight)
+{
+    return m_ResourcesVector[idLight];
+}
+
+CLight* CLightManager::GetClosestLightToPosition(Vect3f aPosition)
+{
+    CLight* lOut;
+    float lMinDistance = 1000.0f;
+
+    for (TVectorResources::iterator iLight = m_ResourcesVector.begin(); iLight != m_ResourcesVector.end(); ++iLight)
+    {
+        Vect3f iLightPosition = (*iLight)->GetPosition();
+
+        Vect3f lV3CurrentDistance = aPosition.Distance(iLightPosition);
+        float lCurrentDistance = lV3CurrentDistance.GetModule();
+
+        if (lCurrentDistance < lMinDistance)
+        {
+            lOut = (*iLight);
+            lMinDistance = lCurrentDistance;
+        }
+    }
+
+    return lOut;
+}
+
 void CLightManager::DrawImgui()
 {
     if (ImGui::TreeNode("Lights"))
@@ -176,7 +203,3 @@ void CLightManager::DrawImgui()
     }
 }
 
-CLight* CLightManager::GetLightByIdx(size_t idLight)
-{
-    return m_ResourcesVector[idLight];
-}
