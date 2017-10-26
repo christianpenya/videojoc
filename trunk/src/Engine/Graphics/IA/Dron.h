@@ -4,13 +4,13 @@
 
 #include "Graphics/Mesh/Mesh.h"
 #include "Input/CharacterController.h"
-#include "Graphics\IA\enemy.h"
+#include "Graphics\IA\EnemyAnimated.h"
 #include "Math\Vector3.h"
 #include "Render\RenderManager.h"
 #include <string>
 
 
-class CDron : public CEnemy
+class CDron : public CEnemyAnimated
 {
 
 public:
@@ -29,17 +29,16 @@ public:
     float m_speedChasing;
     float m_investigatingTolerance;
     Vect3f m_lastPositionView;
-    Vect3f height = Vect3f(0.f, 1.5f, .0f);
 
-    void patrol() override;
-    void chase() override;
+    void patrol();
+    void chase();
     CCharacterController m_DronController;
 
     void GotoNextPoint();
     void GotoNextPointChase();
     void ComputePath();
-    void Move(Vect3f movement, Vect3f destination, float speed);
-
+    void Move(Vect3f destination, float speed);
+    bool straight;
 };
 
 #endif //_DRON_20170809

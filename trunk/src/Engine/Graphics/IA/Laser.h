@@ -3,6 +3,7 @@
 #define _LASER_20170809
 
 #include "Graphics/Scenes/SceneNode.h"
+#include "Graphics/IA/enemy.h"
 #include "Math\Vector3.h"
 #include "Render\RenderManager.h"
 #include <string>
@@ -18,13 +19,13 @@
 #include "Utils/MemLeaks/MemLeaks.h"
 #endif
 
-class CLaser : public CSceneNode
+
+class CLaser : public CEnemy, public CSceneNode
 {
 
 public:
-    CLaser();
-    virtual ~CLaser();
     CLaser(CXMLElement* aTreeNode);
+    virtual ~CLaser();
 
     struct CDebugVertex
     {
@@ -63,16 +64,10 @@ public:
     float m_BoundMaxX;
     float m_BoundMinZ;
     float m_BoundMaxZ;
-    float m_DeadDistance;
     bool m_Search;
-    CPhysXManager::RaycastData* resultado;
-
-    CPhysXManager &m_PhysXManager;
     CGeometry* mGeometries;
     CMaterial* mMaterials;
     bool Render(CRenderManager& lRM);
-
-
     bool Update(float ElapsedTime);
     void CalculateNextPositionLaser(float ElapsedTime);
     void FireLaser();

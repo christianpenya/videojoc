@@ -27,7 +27,6 @@ f_SpeakersFile = "speakers.xml";
 f_EventManager = "data/scenes/events.xml";
 f_NavMeshManager = "data/navMesh.xml"
 f_EnemiesManager = "data/enemies.xml"
-f_LaserManager = "data/laser.xml"
 
 function getFileEventManager()
 	return f_EventManager
@@ -103,8 +102,4 @@ end
 
 function getFileEnemiesManager()
 	return f_EnemiesManager
-end
-
-function getFileLaserManager()
-	return f_LaserManager
 end

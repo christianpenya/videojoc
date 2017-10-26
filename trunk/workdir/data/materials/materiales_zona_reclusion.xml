@@ -1,5 +1,8 @@
 <materials >
-
+	<material name="NavMeshMaterial" vertex_type="Position">
+		<parameter type="color" name="diffuse_color" value="1 0 0 1.0" />
+	</material>
+	
 	TRIGGER
 	<material name="02 - Default" vertex_type="PositionNormal" >
 		<texture type="diffuse" filename="" />

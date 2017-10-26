@@ -1,5 +1,5 @@
 <lasers>
-	<laser name="laserBoss" material="LineMaterial" gunPosition="11.4629 15.3719 45.84" startTime="0.01" normalSpeed="0.03" sprintSpeed = "0.05"  boundMinX = "-27.75"  boundMaxX = "27.75"  boundMinZ = "-26.65" boundMaxZ = "48.95" startPosition="0 0 0" endPosition="0 0 0" timer="2.0" deadDistance = "1.0">
+	<laser name="laserBoss" material="LineMaterial" gunPosition="11.4629 15.3719 45.84" startTime="0.01" normalSpeed="0.03" sprintSpeed = "0.05"  boundMinX = "-27.75"  boundMaxX = "27.75"  boundMinZ = "-26.65" boundMaxZ = "48.95" startPosition="0 3.2 0" endPosition="0 3.2 0" timer="2.0" deadDistance = "2.0">
 		<transform position="11.4629 15.3719 45.84" forward="-1.0 0.0 0.0" /> 
 	</laser>		
 </lasers>

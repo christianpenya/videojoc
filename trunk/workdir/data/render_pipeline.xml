@@ -26,7 +26,7 @@
 	<render_layer layer="navmesh"/>
 	<render_layer layer="salas"/>
 	<render_layer layer="laser" />
-	
+	<render_layer layer="drones" />	
 	<unset_render_target/>	
 	End generate gbuffer
 	

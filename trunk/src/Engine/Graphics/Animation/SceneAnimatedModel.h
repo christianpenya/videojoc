@@ -19,7 +19,6 @@ class CRenderManager;
 class CSceneAnimatedModel : public CSceneNode
 {
 private:
-    CalModel *m_CalModel;
     CAnimatedCoreModel *m_AnimatedCoreModel;
     CalHardwareModel *m_CalHardwareModel;
     std::vector<CMaterial *> m_Materials;
@@ -31,6 +30,8 @@ private:
     void Deactivate();
     int lastCycle = -1;
 public:
+    CalModel *m_CalModel;
+
     CSceneAnimatedModel(const CXMLElement &TreeNode);
     virtual ~CSceneAnimatedModel();
     bool Initialize(CAnimatedCoreModel *AnimatedCoreModel);

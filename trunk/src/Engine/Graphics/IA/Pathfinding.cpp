@@ -230,7 +230,7 @@ void CPathfinding::BuildPath(CPathNode * lastNode)
 void CPathfinding::depurarCercanos()
 {
 
-    if (m_edgesPath.size()>3)
+    if (m_edgesPath.size()>1)
     {
 
         std::vector<Vect3f> m_pathnew;

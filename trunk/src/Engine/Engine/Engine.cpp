@@ -23,7 +23,6 @@
 #include "Graphics/Particles/ParticleManager.h"
 #include "Graphics/IA/NavMeshManager.h"
 #include "Graphics/IA/EnemiesManager.h"
-#include "Graphics/IA/LaserManager.h"
 #include "Sound/ISoundManager.h"
 #include "GUI/GUIManager.h"
 #include "GUI/GUIPosition.h"
@@ -60,7 +59,6 @@ CEngine::CEngine()
     , m_ParticleManager(nullptr)
     , m_NavMeshManager(nullptr)
     , m_EnemiesManager(nullptr)
-    , m_LaserManager(nullptr)
     , m_GUIManager(nullptr)
     , m_CharacterController(nullptr)
     , m_LevelController(nullptr)
@@ -99,7 +97,6 @@ CEngine::~CEngine()
     base::utils::CheckedDelete(m_GUIManager);
     base::utils::CheckedDelete(m_EventManager);
     base::utils::CheckedDelete(m_EnemiesManager);
-    base::utils::CheckedDelete(m_LaserManager);
 
 }
 
@@ -162,11 +159,6 @@ void CEngine::LoadFiles()
     m_EnemiesManager = new CEnemiesManager;
     m_EnemiesManager->Load("data/enemies.xml");
     LOG_INFO_APPLICATION("Engine -> Enemies Loaded! \\(^-^)/");
-
-    m_LaserManager = new CLaserManager;
-    m_LaserManager->Load("data/laser.xml");
-    LOG_INFO_APPLICATION("Engine -> Laser Loaded! \\(^-^)/");
-
 
     m_SceneManager = new CSceneManager();
     m_SceneManager->Load(m_FileSceneManager);
@@ -233,7 +225,6 @@ void CEngine::Init(HWND hWnd)
         m_FileParticleManager = call_function<std::string>(mLS, "getFileParticleManager");
         m_FileCinematicManager = call_function<std::string>(mLS, "getFileCinematicManager");
         m_FileEventManager = call_function<std::string>(mLS, "getFileEventManager");
-        m_FileLaserManager = call_function<std::string>(mLS, "getFileLaserManager");
         m_SoundFilesPath = call_function<std::string>(mLS, "getSoundFilesPath");
         m_SpeakersFile = call_function<std::string>(mLS, "getSoundSpeakersFile");
         m_BanksFile = call_function<std::string>(mLS, "getSoundBankFile");
