@@ -5,10 +5,12 @@
 	
 	<material name="prota_material_2" vertex_type="PositionWeightIndicesNormalUV"/>
 	
-	
-	<animation name="cidle" filename="Anim_CIDLE2.CAF" />
-	<animation name="idle" filename="CUCHILLO.CAF" />
+	<animation name="idle" filename="Anim_IDLE.CAF" />
+	<animation name="cidle" filename="Anim_CIDLE.CAF" />
 	<animation name="walk" filename="Anim_WALK.CAF" />
+	<animation name="run" filename="Anim_RUN.CAF" />
+	<animation name="cwalk" filename="Anim_CWALK.CAF" />	
+	<animation name="kill" filename="CUCHILLO.CAF" />
 
 
 	<!--
