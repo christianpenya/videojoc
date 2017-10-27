@@ -105,6 +105,9 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\ReloadSceneReactor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\TextGUIReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\LevelController.h">
       <Filter>Events</Filter>
     </ClInclude>
@@ -118,6 +121,9 @@
       <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\GUI\GUIPosition.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\GUI\GUISprite.h">
       <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\GUI\Slider.h">
@@ -225,10 +231,10 @@
     <ClInclude Include="..\..\src\Engine\Graphics\IA\EnemiesManager.h">
       <Filter>Graphics\IA</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\IA\Laser.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\EnemyAnimated.h">
       <Filter>Graphics\IA</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\IA\LaserManager.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Laser.h">
       <Filter>Graphics\IA</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\IA\NavMesh.h">
@@ -488,6 +494,9 @@
     <ClCompile Include="..\..\src\Engine\Events\Events\ReloadSceneReactor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\TextGUIReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\LevelController.cpp">
       <Filter>Events</Filter>
     </ClCompile>
@@ -498,6 +507,9 @@
       <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\GUI\GUIPosition.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\GUI\GUISprite.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\GUI\Slider.cpp">
@@ -602,10 +614,10 @@
     <ClCompile Include="..\..\src\Engine\Graphics\IA\EnemiesManager.cpp">
       <Filter>Graphics\IA</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\IA\Laser.cpp">
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\EnemyAnimated.cpp">
       <Filter>Graphics\IA</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\IA\LaserManager.cpp">
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Laser.cpp">
       <Filter>Graphics\IA</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMesh.cpp">

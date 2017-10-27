@@ -15,7 +15,7 @@
 #include "Events/OpenDoorReactor.h"
 #include "Events/LoadSceneReactor.h"
 #include "Events/ReloadSceneReactor.h"
-
+#include "Events/TextGUIReactor.h"
 
 CEvent::CEvent() :
     m_Finished(false),
@@ -71,9 +71,11 @@ CEvent::CEvent(CXMLElement* aEvent) :
             case CReactor::eReloadScene:
                 mReactor = new CReloadSceneReactor();
                 break;
-
             case CReactor::eLoadScene:
                 mReactor = new CLoadSceneReactor();
+                break;
+            case CReactor::eTextGUI:
+                mReactor = new CTextGUIReactor();
                 break;
             }
 

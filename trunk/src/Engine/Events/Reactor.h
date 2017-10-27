@@ -16,6 +16,7 @@ public:
         eOpenDoor,
         eReloadScene,
         eLoadScene,
+        eTextGUI,
         eReactorTypeCount
     };
 
@@ -39,7 +40,7 @@ Begin_Enum_String(CReactor::EReactorType)
     Enum_String_Id(CReactor::eOpenDoor, "open_door");
     Enum_String_Id(CReactor::eReloadScene, "reload_scene");
     Enum_String_Id(CReactor::eLoadScene, "load_scene");
-
+    Enum_String_Id(CReactor::eTextGUI, "textGUI");
 }
 End_Enum_String;
 

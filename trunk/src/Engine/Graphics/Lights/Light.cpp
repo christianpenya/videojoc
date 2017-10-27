@@ -6,9 +6,11 @@
 #include "XML\XML.h"
 #include "Engine\Engine.h"
 #include "Graphics\Textures\TextureManager.h"
+#include "Utils\Logger.h"
 
 CLight::~CLight()
 {
+    LOG_INFO_APPLICATION("TE PUTA MARE!");
     __H_CHECKED_DELETE__(m_pShadowMap);
     __H_CHECKED_DELETE__(m_LightType);
     __H_CHECKED_DELETE__(m_Intensity);

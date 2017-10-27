@@ -90,13 +90,12 @@ void CPhysXManagerImplementation::onTrigger(physx::PxTriggerPair* pairs, physx::
         std::string triggerName = m_ActorNames[indexTrigger];
         std::string actorName = m_ActorNames[indexActor];
 
-        /*        CEvent* lEvent = CEngine::GetInstance().GetEventManager().GetEvent(triggerName);
+        CEvent* lEvent = CEngine::GetInstance().GetEventManager().GetEvent(triggerName);
 
-                if (lEvent && !lEvent->IsFinished() && !lEvent->IsHappeningRightFuckingNow())
-                {
-                    lEvent->Start();
-                }
-        		*/
+        if (lEvent && !lEvent->IsFinished() && !lEvent->IsHappeningRightFuckingNow())
+        {
+            lEvent->Start();
+        }
         /*
 
         LOG_INFO_APPLICATION("Trigger \"%s\" fired with \"%s\"", triggerName.c_str(), actorName.c_str());

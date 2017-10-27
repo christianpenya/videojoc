@@ -514,12 +514,6 @@
 			<transform position="13.8757 1.22019 11.5568" yaw="-90.0" pitch="0.0" roll="90.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		
-		
-		
-		
-		
-		
-		
 		SALA8
 		<scene_mesh name="lampara026" mesh="data/meshes/reclusion/lampara.mesh" >
 			<transform position="41.2916 3.15029 50.3408" yaw="0.0" pitch="-1.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -544,7 +538,6 @@
 			<transform position="29.7218 4.76837e-07 12.3593" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="box" />
 		</scene_mesh>
-
 		<scene_mesh name="water007" mesh="data/meshes/reclusion/water.mesh" >
 			<transform position="29.7218 4.76837e-07 5.66479" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="box" />
@@ -1567,17 +1560,7 @@
 		</scene_mesh>
 
 	</layer>
-		
-		
-	<layer name="triggers" active="true">
-	
-		<scene_mesh name="trigger_pasillo" mesh="data/meshes/Box01.mesh">
-			<transform position="0.0 1.0 25.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
-			<collider rigid_body="triggerBox" />
-		</scene_mesh>
-
-	</layer>
-	
+			
 	<layer name="drones" active="true">
 		
 		<scene_mesh name="PatrolPoint_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >

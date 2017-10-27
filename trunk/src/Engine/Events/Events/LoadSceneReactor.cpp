@@ -9,6 +9,7 @@
 #include "Graphics/Materials/MaterialManager.h"
 #include "Graphics/Lights/LightManager.h"
 #include "Utils/CheckedRelease.h"
+#include "Input/CharacterController.h"
 
 CLoadSceneReactor::CLoadSceneReactor() {}
 CLoadSceneReactor::~CLoadSceneReactor() {}
@@ -27,7 +28,11 @@ void CLoadSceneReactor::React()
 
     CLightManager& lLM = CEngine::GetInstance().GetLightManager();
     lLM.Load(m_Scene, true);
-    CEngine::GetInstance().GetSceneManager().LoadNewScene(m_Scene);
+
+    CSceneManager &lSM = CEngine::GetInstance().GetSceneManager();
+    lSM.LoadNewScene(m_Scene);
+    CEngine::GetInstance().GetCharacterController()->Init(&lSM);
+
 }
 
 void CLoadSceneReactor::Update(float elapsedTime)

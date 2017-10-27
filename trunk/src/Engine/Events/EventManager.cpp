@@ -3,11 +3,8 @@
 #include "XML/tinyxml2/tinyxml2.h"
 #include "XML/XML.h"
 #include "Imgui/imgui.h"
-CEventManager::CEventManager() : mEnabled(true)
-{
 
-}
-
+CEventManager::CEventManager() : mEnabled(true) {}
 CEventManager::~CEventManager()
 {
     __H_CHECKED_DELETE__(mFilename);
@@ -73,7 +70,6 @@ CEvent* CEventManager::GetEvent(std::string aEvent)
     {
         return nullptr;
     }
-
 }
 
 void CEventManager::DrawImgui()

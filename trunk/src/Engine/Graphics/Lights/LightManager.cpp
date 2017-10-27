@@ -13,6 +13,7 @@
 CLightManager::CLightManager() {}
 CLightManager::~CLightManager()
 {
+    LOG_INFO_APPLICATION("YO! DUDE! WHAT THE FUCK!");
     //base::utils::CTemplatedMapVector<CLight>::Clear();
 
     /*

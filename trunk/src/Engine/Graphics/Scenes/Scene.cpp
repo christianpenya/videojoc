@@ -110,7 +110,6 @@ void CScene::Unload()
     for (std::set<std::string>::iterator iMissingLayer = lMissingLayers.begin(); iMissingLayer != lMissingLayers.end(); ++iMissingLayer)
     {
         (*this)(*iMissingLayer)->DeleteAllNodes();
-        Remove(*iMissingLayer);
     }
 }
 

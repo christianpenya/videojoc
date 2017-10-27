@@ -206,7 +206,14 @@ void CLayer::DeleteAllNodes()
             ((CSceneMesh*)(*this)(*iMissingNode))->DeletePhysx();
         }
 
-        Remove(*iMissingNode);
+        if ((*this)(*iMissingNode)->GetNodeType() == CSceneNode::eLight)
+        {
+
+        }
+        else
+        {
+            Remove(*iMissingNode);
+        }
     }
 }
 

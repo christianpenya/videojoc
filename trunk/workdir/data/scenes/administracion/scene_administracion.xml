@@ -1,14 +1,35 @@
 <scene>
 
-	<layer name="test" active="true">
-		
-		<scene_mesh name="trigger_pasillo" mesh="data/meshes/Box01.mesh">
-			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
-			<collider rigid_body="box" />
+	<layer name="triggers" active="true">
+	
+		<scene_mesh name="camaras_chispazos" mesh="data/meshes/Box01.mesh">
+			<transform position="-1.0 4.0 -1.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+	
+		<scene_mesh name="c11" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 1.0 25.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 
 	</layer>
+	
+	<layer name="LPlayer" active="true" >
+		<scene_animated_model name="player" core="prota" height="1.1" radiu="0.17" group="1" >
+			<transform position="0.8 3.2 -1.4" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+		<!--
+		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
+			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+		-->
+	</layer> 
 
+	<layer name="salas" active="true" >
+		
+		
+	</layer> 
+	
 	<layer name="opaque" active="true" >
 		
 		SALA DRONES
@@ -75,10 +96,10 @@
 			<transform position="25.4755 0.833493 -13.5017" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<collider rigid_body="box" />
 		</scene_mesh>
-		<scene_mesh name="nevera" mesh="data/meshes/administracion/nevera.mesh" >
+		<!-- <scene_mesh name="nevera" mesh="data/meshes/administracion/nevera.mesh" >
 			<transform position="25.5455 1.00008 -12.0167" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<collider rigid_body="box" />
-		</scene_mesh>
+		</scene_mesh> -->
 		<scene_mesh name="tarta" mesh="data/meshes/administracion/tarta.mesh" >
 			<transform position="25.3796 0.941892 -9.8877" yaw="0.0" pitch="-0.258819" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
@@ -120,10 +141,10 @@
 			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala025.mesh" offset="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" /> 
 		</scene_mesh>
 
-		<scene_mesh name="silladeescritorio004" mesh="data/meshes/administracion/silladeescritorio.mesh" >
+<!-- 		<scene_mesh name="silladeescritorio004" mesh="data/meshes/administracion/silladeescritorio.mesh" >
 			<transform position="-29.3479 -2.58237 10.6343" yaw="0.0" pitch="-0.976296" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
-		<scene_mesh name="monitor_vis_a_vis" mesh="data/meshes/administracion/monitor.mesh" >
+ -->		<scene_mesh name="monitor_vis_a_vis" mesh="data/meshes/administracion/monitor.mesh" >
 			<transform position="-27.8431 -1.9581 10.6923" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="ordenador" mesh="data/meshes/administracion/ordenador.mesh" >
@@ -299,14 +320,14 @@
 		</scene_mesh>
 	
 		SALA BOSS
-		<scene_mesh name="sala_boss" mesh="data/meshes/administracion/sala024.mesh" >
+		<!-- <scene_mesh name="sala_boss" mesh="data/meshes/administracion/sala024.mesh" >
 			<transform position="18.8 -1.5 10.7" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />			
 			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala024.mesh" offset="0.0 0.0 0.0" yaw="180.0" pitch="0.0" roll="0.0" /> 
-		</scene_mesh>
+		</scene_mesh> -->
 		
-		<scene_mesh name="silladeescritorio" mesh="data/meshes/administracion/silladeescritorio.mesh" >
+		<!-- <scene_mesh name="silladeescritorio" mesh="data/meshes/administracion/silladeescritorio.mesh" >
 			<transform position="21.2885 -2.58237 9.82883" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
+		</scene_mesh> -->
 
 		<scene_mesh name="revistas" mesh="data/meshes/administracion/revistas.mesh" >
 			<transform position="20.4877 -3.13845 11.9613" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -383,21 +404,27 @@
 		<scene_mesh name="cajon013" mesh="data/meshes/administracion/cajon.mesh" >
 			<transform position="-4.67001 -2.15871 -2.86169" yaw="0.0" pitch="-0.0871558" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
+
+		<!-- 
 		<scene_mesh name="cajon014" mesh="data/meshes/administracion/cajon.mesh" >
 			<transform position="-9.80908 -2.33864 13.4132" yaw="0.0" pitch="0.21644" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
+		</scene_mesh> 
+		-->
 		
 		<scene_mesh name="marco_puerta_exterior" mesh="data/meshes/administracion/marco_puerta_principal.mesh" >
 			<transform position="1.10753 -1.61969 17.8249" yaw="90.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
+		
+<!-- 
 		<scene_mesh name="puerta_izquierda" mesh="data/meshes/administracion/puerta_exterior_izq.mesh" >
 			<transform position="2.13762 -1.65978 17.7056" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<collider rigid_body="box" />
-		</scene_mesh>
+		</scene_mesh> 
 		<scene_mesh name="puerta_derecha" mesh="data/meshes/administracion/puerta_exterior_drch.mesh" >
 			<transform position="0.0162506 -1.65978 17.707" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<collider rigid_body="box" />
-		</scene_mesh>
+		</scene_mesh> 
+		-->
 		
 		<scene_mesh name="banqueta" mesh="data/meshes/administracion/banqueta.mesh" >
 			<transform position="7.03534 -2.77634 8.10934" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 0.562564" />
@@ -595,7 +622,32 @@
 	</layer>
 	
 	<layer name="lights" active="true" >
-		<scene_light name="FDirect001" id_light="0" />
+		
+		<scene_light name="Fspot001" />
+		<scene_light name="Fspot002" />
+		<scene_light name="Fspot003" />
+		<scene_light name="Fspot004" />
+		<scene_light name="Fspot005" />
+		<scene_light name="Fspot006" />
+		<scene_light name="Fspot007" />
+		<scene_light name="Fspot008" />
+		<scene_light name="Fspot009" />
+		<scene_light name="Fspot010" />
+		<scene_light name="Fspot011" />
+		<scene_light name="Fspot012" />
+		<scene_light name="Fspot013" />
+		<scene_light name="Fspot014" />
+		<scene_light name="Fspot015" />
+		<scene_light name="Fspot016" />
+		<scene_light name="Fspot017" />
+		<scene_light name="Fspot018" />
+		<scene_light name="Fspot019" />
+		<scene_light name="Fspot020" />
+		<scene_light name="Fspot021" />
+		<scene_light name="Fspot022" />
+		<scene_light name="Fspot023" />
+		<scene_light name="Fspot024" />
+		<scene_light name="Fspot025" />	 
 	</layer>
 
 	<layer name="Skybox" active="true">

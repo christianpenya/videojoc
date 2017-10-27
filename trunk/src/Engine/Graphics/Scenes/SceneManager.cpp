@@ -27,7 +27,6 @@ bool CSceneManager::Load(const std::string& aFilename, bool update)
 
 bool CSceneManager::LoadNewScene(const std::string& aName)
 {
-    CLightManager lLM = CEngine::GetInstance().GetLightManager();
     GetCurrentScene()->Unload();
     GetCurrentScene()->SetActive(false);
 
