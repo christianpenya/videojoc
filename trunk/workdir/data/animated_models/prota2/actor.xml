@@ -3,7 +3,7 @@
 	<skeleton filename="PROTA_SKELETON.CSF"/>
 	<mesh filename="PROTA_MESH.CMF"/>
 	
-	<material name="prota_material_2" vertex_type="PositionWeightIndicesNormalUV"/>
+	<material name="prota_material_1" vertex_type="PositionWeightIndicesNormalUV"/>
 	
 	<animation name="idle" filename="Anim_IDLE.CAF" />
 	<animation name="cidle" filename="Anim_CIDLE.CAF" />

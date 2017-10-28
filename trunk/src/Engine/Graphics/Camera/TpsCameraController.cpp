@@ -47,26 +47,29 @@ void CTpsCameraController::Update(float ElapsedTime)
 
 
         float l_zoom = zoom;
-        Vect3f l_Position = center - m_Front * l_zoom;
+        Vect3f l_Position = (center - m_Front * l_zoom);
         //Vect3f dir = m_Position - m_player->m_Position;
         Vect3f origin = center - (m_Front * pRadius);
         CPhysXManager::RaycastData *data = new CPhysXManager::RaycastData;
-        bool hit = physX->Raycast(origin, l_Position, 0, data); //3 | 4, data);
+        bool hit = physX->RaycastCam(origin, l_Position, 3, data); //3 | 4, data);
         if (hit)
         {
             LOG_INFO_APPLICATION("HIT \\(^-^)/");
             l_zoom = data->distance - hitOffset;
-
+            if (l_zoom < pRadius)
+                l_zoom = -pRadius / 2;
+            else
+                l_zoom = hitOffset;
+            l_Position = data->position + m_Front*l_zoom;
         }
         else
         {
             LOG_INFO_APPLICATION("NOt HIT \\(^-^)/");
         }
-        if (l_zoom < pRadius)
-            l_zoom = -pRadius / 2;
 
-        m_Position = center - m_Front * l_zoom;
 
+        //m_Position = (center - m_Front * l_zoom);
+        m_Position = l_Position;
     }
 }
 

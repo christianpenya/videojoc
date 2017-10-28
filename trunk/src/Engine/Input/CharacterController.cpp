@@ -125,3 +125,18 @@ void CCharacterController::Init(CSceneManager* sceneManager)
 
 }
 
+
+Vect3f CCharacterController::getFront()
+{
+
+    if (player != nullptr)
+    {
+        return player->GetForward();
+    }
+    else
+    {
+        return Vect3f(0, 0, 0);
+    }
+}
+
+

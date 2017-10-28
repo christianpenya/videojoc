@@ -131,6 +131,7 @@ public:
 
     CharacterControllerData MoveCharacterController(const std::string& characterControllerName, const Vect3f& movement, float elapsedTime);
     bool Raycast(const Vect3f& origin, const Vect3f& end, int filterMask, RaycastData* result_ = nullptr);
+    bool RaycastCam(const Vect3f& origin, const Vect3f& end, int filterMask, RaycastData* result_=nullptr);
     bool Overlap(const Vect3f& origin, float radius, int filterMask, OverlapData* result_ = nullptr) ;
     void AddFixedJoint(const std::string& jointName, const std::string& actor1Name, const std::string& actor2Name);
     void DeleteActor(std::string actorName, size_t index);

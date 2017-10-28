@@ -21,20 +21,6 @@
 	
 	
 	
-	
-	<material name="prota_material_2" vertex_type="PositionWeightIndicesNormalUV">
-		<texture type="diffuse" filename="data/animated_models/prota2/txt prota.jpg"/>
-		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
-		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
-		<parameter type="float" name="lightmap" value="1.0" />
-		<texture type="bump" filename="" />
-		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="float" name="metalness" value="0.0" />
-		<parameter type="float" name="roughness" value="1.0" />
-		<parameter type="float" name="occlusion" value="0.0" />
-	</material> 
-	
 	<material name="guardiaSexy_material_1" vertex_type="PositionWeightIndicesNormalUV">
 		<texture type="diffuse" filename="data/animated_models/guardiaSexy/guardiaSexy.jpg"/>
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
