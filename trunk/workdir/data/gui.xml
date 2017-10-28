@@ -1,11 +1,11 @@
 <gui_elements>
 	<gui_spritemap name="gui1" width="512" height="512">
 		<material name="gui1" vertex_type="SpriteVertex">
-			<texture type="diffuse" filename="data/gui/demo.jpg"/>
+			<texture type="diffuse" filename="data/gui/GUI_PAUSA.png"/>
 		</material>
-		<sprite name="teula" x="0" y="0" w="512" h="150"/>
-		<sprite name="teula2" x="0" y="170" w="512" h="150"/>
-		<sprite name="teula3" x="0" y="352" w="512" h="150"/>	
+		<sprite name="teula" x="0" y="30" w="512" h="100"/>
+		<sprite name="teula2" x="0" y="205" w="512" h="100"/>
+		<sprite name="teula3" x="0" y="376" w="512" h="100"/>	
 	</gui_spritemap>
 	
 	<gui_spritemap name="slider1" width="512" height="512">
@@ -25,9 +25,26 @@
 		<sprite name="Font1_0.png" x="0" y="0" w="256" h="256"/>		
 	</gui_spritemap>
 	
-	<button name="teula_button" normal="teula" highlight="teula2" pressed="teula3"/>
+	<gui_spritemap name="background" width="1920" height="1080" >
+		<material name="background" vertex_type="SpriteVertex">
+			<texture type="diffuse" filename="data/gui/background.png"/>
+		</material>
+		<sprite name="background_s" x="0" y="0" w="1920" h="1080"/>
+	</gui_spritemap>
+	
+	<gui_spritemap name="backgroundPAUSE" width="1920" height="1080" >
+		<material name="backgroundPAUSE" vertex_type="SpriteVertex">
+			<texture type="diffuse" filename="data/gui/pause_background2.png"/>
+		</material>
+		<sprite name="background_p" x="0" y="0" w="1920" h="1080"/>
+	</gui_spritemap>
+	
+	
+	
+	<button name="pause_button" normal="teula" highlight="teula2" pressed="teula3"/>
 	<slider name="teula_slider" base="slider_base" top="slider_top" handle="slider_handle" pressed_handle="slider_pressed_handle"/>	
 	<font name="font1" filename="data/fonts/Font1.xml"/>
-	<guisprite name="testImage" normal="teula"/>
+	<guisprite name="backgroundMENU" normal="background_s"/>
+	<guisprite name="backgroundPAUSE" normal="background_p"/>
 
 </gui_elements>

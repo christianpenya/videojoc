@@ -3,9 +3,12 @@
 
 CLevelController::CLevelController()
 {
+
     m_Engine = nullptr;
     m_SceneManager = nullptr;
     m_PhysxManager = nullptr;
+    m_ActionManager = nullptr;
+    m_TimePaused = false;
 }
 
 CLevelController::CLevelController(int lvl)
@@ -14,6 +17,8 @@ CLevelController::CLevelController(int lvl)
     m_Engine = nullptr;
     m_SceneManager = nullptr;
     m_PhysxManager = nullptr;
+    m_ActionManager = nullptr;
+    m_TimePaused = false;
 }
 
 CLevelController::~CLevelController()
@@ -21,6 +26,7 @@ CLevelController::~CLevelController()
     base::utils::CheckedDelete(m_Engine);
     base::utils::CheckedDelete(m_SceneManager);
     base::utils::CheckedDelete(m_PhysxManager);
+    base::utils::CheckedDelete(m_ActionManager);
 }
 
 void CLevelController::Init()
@@ -28,7 +34,7 @@ void CLevelController::Init()
     m_Engine = &CEngine::GetInstance();
     m_SceneManager = &m_Engine->GetSceneManager();
     m_PhysxManager = &m_Engine->GetPhysXManager();
-
+    m_ActionManager = &m_Engine->GetActionManager();
 }
 
 void CLevelController::PlayerDetected(std::string detectorName)
@@ -39,4 +45,26 @@ void CLevelController::PlayerDetected(std::string detectorName)
 
 
 
+void CLevelController::Update(float elapsedTime)
+{
+    if ((*m_ActionManager)("pause")->value>0.1f&&Level!=0&&!m_TimePaused)
+    {
+        PauseGame();
 
+    }
+
+}
+
+
+void CLevelController::PauseGame()
+{
+    m_TimePaused = true;
+    if (m_SceneManager->GetCurrentScene()->Exist("PauseMENU"))
+        m_SceneManager->GetCurrentScene()->GetLayer("PauseMENU")->SetActive(true);
+}
+void CLevelController::ResumeGame()
+{
+    m_TimePaused = false;
+    if (m_SceneManager->GetCurrentScene()->Exist("PauseMENU"))
+        m_SceneManager->GetCurrentScene()->GetLayer("PauseMENU")->SetActive(false);
+}

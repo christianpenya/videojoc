@@ -1,10 +1,12 @@
 <events>
+
+
 	<event name="trigger_pasillo" active="true">
 		<actor name="audio_trigger" layer="triggers" obj_name="trigger_pasillo"/>
 		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
 	</event>
 	<event name="testTextGUI" active = "true">
-		<actor name="dumb" />
-		<reactor name="textGUI" portion="0.5 0.666" time="5.0" text="Mueve el raton para mirar alrededor"/>
-	</event>
+		<actor name="textGUI" portion="0.5 0.666" time="5.0" text="Mueve el raton para mirar alrededor"/>
+		<reactor name="dumb" />
+	</event> 
 </events>

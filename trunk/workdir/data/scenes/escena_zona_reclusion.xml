@@ -1,7 +1,7 @@
 <scene>
 	
 	<layer name="LPlayer" active="true" >
-		<scene_animated_model name="player" core="prota" height="1.1" radiu="0.17" group="1" >
+		<scene_animated_model name="player" core="prota2" height="1.1" radiu="0.17" group="1" >
 			<transform position="0.8 3.2 -1.4" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
 		<!--
@@ -10,6 +10,7 @@
 		</scene_animated_model>
 		-->
 	</layer> 
+	
 	
 	<layer name="lights" active="true" >			
 		
@@ -286,11 +287,11 @@
 
 		<scene_mesh name="valla1" mesh="data/meshes/reclusion/valla1.mesh" >
 			<transform position="11.33 5.1 3.70398" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="box" offset="-7.0 -0.7 0.0"/>
+			<collider rigid_body="box" offset="-7.0 -0.7 0.0" group="5"/>
 		</scene_mesh>
 		<scene_mesh name="valla002" mesh="data/meshes/reclusion/valla002.mesh" >
 			<transform position="13.9242 5.1 5.66695" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		<collider rigid_body="box" offset="0.0 -0.8 3.0"/>
+		<collider rigid_body="box" offset="0.0 -0.8 3.0" group="5"/>
 		</scene_mesh>
 		
 		<scene_mesh name="palovalla008" mesh="data/meshes/reclusion/palovalla.mesh" >
@@ -1568,6 +1569,11 @@
 			<transform position="0.0 1.0 25.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
+		
+			<scene_mesh name="testTextGUI" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 1.0 20.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
 
 	</layer>
 	
@@ -1704,6 +1710,18 @@
 	</layer>	
 
 
+	<layer name="PauseMENU" active="false" >	
+	
+		<scene_gui name="background" gui_element="backgroundPAUSE" portion="0 0" size="1440 810" type="GUIsprite" >
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		<scene_gui name="gui1" gui_element="pause_button" portion="0.2 0.2" size="100 50" type="button" action="1">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+	</layer>
+	
+	
+	
 	
 </scene>
 

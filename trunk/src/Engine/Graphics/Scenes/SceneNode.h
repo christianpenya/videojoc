@@ -25,6 +25,7 @@ public:
         eNavMesh,
         eEnemy,
         eLaser,
+        eGUIElem,
         eSceneNodeCount
     };
 
