@@ -56,9 +56,10 @@ float3 GetFogColor(float Depth, float3 CurrentColor)
 float4 PS(PS_INPUT IN) : SV_Target
 {
     float4 l_FinalColor = T0Texture.Sample(S0Sampler, IN.UV);
+	// return T0Texture.Sample(S0Sampler, IN.UV);
     float l_DepthValue = T1Texture.Sample(S1Sampler, IN.UV).r;
 
-    float3 position=GetPositionFromZDepthView(l_DepthValue, IN.UV, m_InverseView, m_InverseProjection);
+    float3 position = GetPositionFromZDepthView(l_DepthValue, IN.UV, m_InverseView, m_InverseProjection);
     float l_DistanceEyeToWorldPosition = length(position - m_InverseView[3].xyz);
 
     return float4(GetFogColor(l_DistanceEyeToWorldPosition, l_FinalColor.xyz), l_FinalColor.a);
