@@ -28,6 +28,7 @@
 #include "GUI/GUIPosition.h"
 #include "Graphics/Animation/SceneAnimatedModel.h"
 #include "Input/CharacterController.h"
+#include "Events/LevelController.h"
 #include "Events/EventManager.h"
 
 #ifdef _DEBUG
@@ -59,6 +60,8 @@ CEngine::CEngine()
     , m_NavMeshManager(nullptr)
     , m_EnemiesManager(nullptr)
     , m_GUIManager(nullptr)
+    , m_CharacterController(nullptr)
+    , m_LevelController(nullptr)
     , m_DeltaTime(0)
     , m_DeltaTimeAcum (0)
     , m_Frames(0)
@@ -177,8 +180,12 @@ void CEngine::LoadFiles()
     m_CharacterController = new CCharacterController();
     m_CharacterController->Init(m_SceneManager);
 
+    m_LevelController = new CLevelController(1);
+    m_LevelController->Init();
+
     m_CameraManager = new CCameraManager();
     m_CameraManager->Init(m_CharacterController);
+
 
     m_EventManager = new CEventManager();
     m_EventManager->Load(m_FileEventManager);
@@ -252,7 +259,7 @@ double clockToMilliseconds(clock_t ticks)
 void CEngine::Update()
 {
     //CharacterControllerUpdate(m_ActionManager, (float)m_DeltaTime);
-
+    m_LevelController->Update(m_DeltaTime);
     m_PhysXManager->Update(m_DeltaTime);
     m_CharacterController->Update(m_DeltaTime);
     //m_PhysXManager->MoveCharacterController("player", m_CharacterController->m_Movement, PHYSX_UPDATE_STEP);
@@ -270,11 +277,15 @@ void CEngine::Update()
 
     // ReSharper disable once CppMsExtBindingRValueToLvalueReference
 
-    /*if (m_GUIManager->DoButton("gui1", "teula_button", CGUIPosition(50, 50, 512, 170)))
-    {
 
-    }*/
-    // m_GUIManager->DoGUISprite("gui1", "testImage", CGUIPosition(100, 100, 512, 170));
+    //Vect2u size  = m_RenderManager->GetWindowSize();
+    // m_GUIManager->DoGUISprite("gui1", "backgroundMENU", CGUIPosition(0, 0, size.x, size.y));
+    /* if (m_GUIManager->DoButton("gui1", "pause_button", CGUIPosition(50, 50, 400, 100)))
+     {
+         CPhysXManager::OverlapData *data = new CPhysXManager::OverlapData;
+         m_PhysXManager->Overlap(Vect3f(0.8f, 3.2f, -1.4f),5.0f, 0, data);
+
+     }*/
 
     //m_GUIManager->FillCommandQueueWithText("font1", "TEST", l_Pos, CGUIManager::TOP_CENTER,CColor(1.0f, 1.0f, 1.0f));
     //m_GUIManager->DoSlider("slider1", "teula_slider",  CGUIPosition(50, 50, 412, 40), .0f, 100.0f, .0f);

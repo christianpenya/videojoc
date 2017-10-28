@@ -21,4 +21,5 @@ void CDumbReactor::React()
 void CDumbReactor::Update(float elapsedTime)
 {
     //LOG_INFO_APPLICATION("React updating!");
+    m_Finished = true;
 }

@@ -46,7 +46,7 @@ public:
 
 
 private:
-    Vect3f playerHeight = Vect3f(0, 1.6f, 0);
+    Vect3f playerHeight = Vect3f(0, 1.7f, 0);
     float yaw, pitch, roll, zoom;
 
     float maxPitch, minPitch;

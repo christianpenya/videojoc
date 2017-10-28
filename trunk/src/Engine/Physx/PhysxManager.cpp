@@ -558,39 +558,11 @@ CPhysXManager::CharacterControllerData CPhysXManager::MoveCharacterController(co
 
 bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterMask, RaycastData* result_)
 {
-    /*
-    Vect3f dir = end - origin;
-    float len = dir.Length();
-    if (origin != Vect3f(0, 0, 0))
-    {
-        dir.Normalize(1);
-    }
-    else
-    {
-        dir = Vect3f(1, 0, 0);
-    }
+
 
     physx::PxFilterData filterData;
     filterData.setToDefault();
-    filterData.word0 = 0000;  //GROUP1 | GROUP2;//filterMask;
-
-    physx::PxRaycastBuffer hit;
-
-    bool status = m_Scene->raycast(CastVec(origin), CastVec(dir), len, hit, physx::PxHitFlags(physx::PxHitFlag::eDEFAULT), physx::PxQueryFilterData(filterData, physx::PxQueryFlag::eDYNAMIC | physx::PxQueryFlag::eSTATIC));
-    if (status && result_ != nullptr)
-    {
-        result_->position = Vect3f(hit.block.position.x, hit.block.position.y, hit.block.position.z);
-        result_->normal = Vect3f(hit.block.normal.x, hit.block.normal.y, hit.block.normal.z);
-        result_->distance = hit.block.distance;
-        result_->actor = m_ActorNames[(size_t)hit.block.actor->userData];
-
-    }
-    return status;
-    */
-
-    physx::PxFilterData filterData;
-    filterData.setToDefault();
-    filterData.word0 = 0000;  //GROUP1 | GROUP2;*/
+    filterData.word0 = filterMask;  //GROUP1 | GROUP2;
     physx::PxRaycastBuffer hit;
     bool status = false;
     if (end != origin)
@@ -624,6 +596,83 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
     }
     return status;
 
+}
+bool CPhysXManager::RaycastCam(const Vect3f& origin, const Vect3f& end, int filterMask, RaycastData* result_)
+{
+
+    Vect3f dir = end - origin;
+    float len = (end - origin).Length();
+    if (origin != end)
+    {
+        dir.Normalize(1);
+    }
+    else
+    {
+        dir = Vect3f(1, 0, 0);
+    }
+
+    physx::PxFilterData filterData;
+    filterData.setToDefault();
+    filterData.word0 = filterMask;  //GROUP1 | GROUP2;//filterMask;
+
+    physx::PxRaycastBuffer hit;
+
+    bool status = m_Scene->raycast(CastVec(origin), CastVec(dir), len, hit, physx::PxHitFlags(physx::PxHitFlag::eDEFAULT), physx::PxQueryFilterData(filterData, physx::PxQueryFlag::eDYNAMIC | physx::PxQueryFlag::eSTATIC));
+    if (status && result_ != nullptr)
+    {
+        result_->position = Vect3f(hit.block.position.x, hit.block.position.y, hit.block.position.z);
+        result_->normal = Vect3f(hit.block.normal.x, hit.block.normal.y, hit.block.normal.z);
+        result_->distance = hit.block.distance;
+        result_->actor = m_ActorNames[(size_t)hit.block.actor->userData];
+
+    }
+    return status;
+}
+bool CPhysXManager::Overlap(const Vect3f& origin, float radius, int filterMask, OverlapData* result_)
+{
+
+    physx::PxGeometry overlapShape = physx::PxSphereGeometry(radius);
+    physx::PxTransform shapePose = physx::PxTransform(origin.x, origin.y, origin.z);
+
+
+    physx::PxFilterData filterData;
+    filterData.setToDefault();
+    filterData.word0 = filterMask;
+    //const PxU32 bufferSize = 256;        // [in] size of 'hitBuffer'
+    //PxOverlapHit hitBuffer[bufferSize];  // [out] User provided buffer for results
+    //PxOverlapBuffer buf(hitBuffer, bufferSize);
+    PxOverlapBuffer  hit;
+
+    bool status = m_Scene->overlap(overlapShape, shapePose, hit, PxQueryFilterData(filterData, physx::PxQueryFlag::eDYNAMIC | physx::PxQueryFlag::eSTATIC));// physx::PxHitFlags(physx::PxHitFlag::eDEFAULT), physx::PxQueryFilterData(filterData, physx::PxQueryFlag::eDYNAMIC | physx::PxQueryFlag::eSTATIC));
+    if (status && result_ != nullptr)
+    {
+        for (PxU32 i = 0; i < hit.nbTouches; i++)
+        {
+            std::string name = m_ActorNames[(size_t)hit.touches[i].actor->userData];
+            result_->actors.push_back(name);
+
+            /*
+            for (PxU32 i = 0; i < buf.nbTouches; i++)
+            {
+            std::string name = m_ActorNames[(size_t)buf.touches[i].actor->userData];
+
+            result_->actors.push_back(name);
+            }
+            */
+        }
+
+    }
+    return status;
+    /*
+    result_->position = Vect3f(hit.block.position.x, hit.block.position.y, hit.block.position.z);
+    result_->normal = Vect3f(hit.block.normal.x, hit.block.normal.y, hit.block.normal.z);
+    result_->distance = hit.block.distance;
+    result_->actor = m_ActorNames[(size_t)hit.block.actor->userData];
+
+    m_ActorIndexs[actorName] = index;
+    m_Actors.push_back(body);
+    }
+    */
 }
 
 void CPhysXManager::AddFixedJoint(const std::string& jointName, const std::string& actor1Name, const std::string& actor2Name)

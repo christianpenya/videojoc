@@ -33,6 +33,8 @@ public:
     float m_Speed;
     float m_RotationSPeed;
     CSceneAnimatedModel* player;
+    Vect3f getFront();
+
 
 private:
     Vect3f m_Gravity = (0.0f, 9.81f, 0.0f);

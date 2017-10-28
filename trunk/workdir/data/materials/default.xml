@@ -19,6 +19,8 @@
 		<parameter type="float" name="occlusion" value="0.0" />
 	</material>
 	
+	
+	
 	<material name="guardiaSexy_material_1" vertex_type="PositionWeightIndicesNormalUV">
 		<texture type="diffuse" filename="data/animated_models/guardiaSexy/guardiaSexy.jpg"/>
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />

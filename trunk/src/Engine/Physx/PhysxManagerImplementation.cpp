@@ -131,8 +131,8 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
     desc.height = height;
     desc.radius = radius;
     desc.climbingMode = physx::PxCapsuleClimbingMode::eCONSTRAINED;
-    desc.slopeLimit = cosf(3.1415f / 6); // 30
-    desc.stepOffset = 0.25f;
+    desc.slopeLimit = 45;//cosf(3.1415f / 6); // 30
+    desc.stepOffset = 0.35f;
     desc.density = density;
     desc.reportCallback = this;
     desc.position = physx::PxExtendedVec3(position.x, position.y + radius + height * 0.5f, position.z);
