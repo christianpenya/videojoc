@@ -101,6 +101,63 @@
 		<parameter type="color" name="diffuse_color" value="0.7 0.7 0.7 1.0" />
 		<parameter type="float2" name="fog_start_end" value="35.0 100.0" />
 	</material>
+	
+	<material name="HdaoMaterial" vertex_type="Hdao" >
+		<parameter type="float" name="HDAOActive" value="1.0" />
+		<parameter type="float" name="HDAOShowNormals" value="0.0" />
+		<parameter type="float" name="HDAOShowAO" value="0.0" />
+		<parameter type="float" name="HDAOUseNormals" value="1.0" />
+		<parameter type="float2" name="RTSize" value="1366.0 768.0" />
+		<parameter type="float" name="AcceptAngle" value="0.6" />
+		<parameter type="float" name="HDAOIntensity" value="0.2" />
+		<parameter type="float" name="NormalScale" value="0.5" />
+		<parameter type="float" name="HDAORejectRadius" value="0.2" />
+		<parameter type="float" name="HDAOAcceptRadius" value="0.0" />
+	</material>
+	
+	<material name="ZBlurMaterial" vertex_type="ZBlur">
+		<parameter type="float" name="ZBlurActive" value="1.0" />
+		<parameter type="float" name="ZBlurShowDepths" value="0.0" />
+		<parameter type="float" name="ZBlurConstantBlur" value="0.7" />
+		<parameter type="float" name="ZBlurFocalStart" value="0.2" />
+		<parameter type="float" name="ZBlurFocalEnd" value="0.8" />
+		<parameter type="float" name="ZBlurEnd" value="1.0" />
+	</material>	
+	
+	<material name="BloomMaterial" vertex_type="Bloom">
+		<parameter type="float" name="threshold" value="0.8" />
+	</material>
+	
+	<material name="BloomCombineMaterial" vertex_type="BloomCombine" >
+		<parameter type="float" name="bloomActive" value="1.0" />
+		<parameter type="float" name="bloomIntensity" value="0.6" />
+		<parameter type="float" name="originalIntensity" value="1.0" />
+		<parameter type="float" name="bloomSaturation" value="0.7" />
+		<parameter type="float" name="originalSaturation" value="1.0" />
+	</material>
+
+	<material name="StartGaussianMaterial" vertex_type="PositionUV">
+		<parameter type="float" name="textureSize" value="512.0" />
+		<parameter type="float" name="blurScale" value="6.0" />
+	</material>
+
+	
+	<material name="GaussianMaterial" vertex_type="Gaussian">
+		<parameter type="float" name="textureSize" value="512.0" />
+		<parameter type="float" name="blurScale" value="6.0" />
+	</material>
+
+	
+	<material name="ColorGradingMaterial" vertex_type="ColorGrading">
+		<parameter type="float" name="enabled" value="1.0" />
+		<parameter type="float" name="brownSepiaColorGrading" value="0.0" />
+		<parameter type="float" name="greenSepiaColorGrading" value="0.0" />
+		<parameter type="float" name="blueSepiaColorGrading" value="0.0" />
+		<parameter type="float" name="monochromeColorGrading" value="2.5" />
+		<parameter type="float" name="colorColorGrading" value="3" />
+		<parameter type="float" name="contrastColorGrading" value="0.2" />
+		<parameter type="float" name="brightnessColorGrading" value="0.0" />
+	</material>
 <!-- 	
 
 

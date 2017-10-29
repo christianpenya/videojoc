@@ -105,6 +105,9 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\ReloadSceneReactor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\TextGUIActor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\TextGUIReactor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
@@ -336,6 +339,9 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneBasicPrimitive.h">
       <Filter>Graphics\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneGUI.h">
+      <Filter>Graphics\Scenes</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Scenes\SceneManager.h">
       <Filter>Graphics\Scenes</Filter>
     </ClInclude>
@@ -492,6 +498,9 @@
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\ReloadSceneReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\TextGUIActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\TextGUIReactor.cpp">
@@ -684,6 +693,9 @@
       <Filter>Graphics\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneBasicPrimitive.cpp">
+      <Filter>Graphics\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneGUI.cpp">
       <Filter>Graphics\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Scenes\SceneManager.cpp">

@@ -55,6 +55,8 @@ float3 GetFogColor(float Depth, float3 CurrentColor)
 
 float4 PS(PS_INPUT IN) : SV_Target
 {
+	return float4(1,1,0,1);
+	return T0Texture.Sample(S0Sampler, IN.UV);
     float4 l_FinalColor = T0Texture.Sample(S0Sampler, IN.UV);
 	// return T0Texture.Sample(S0Sampler, IN.UV);
     float l_DepthValue = T1Texture.Sample(S1Sampler, IN.UV).r;

@@ -2,10 +2,10 @@
 
 	<layer name="triggers" active="true">
 	
-		<scene_mesh name="CerraduraCelda" mesh="data/meshes/reclusion/cerradura.mesh" >
-			<transform position="1.88966 4.42795 0.895253" yaw="0.0" pitch="-90.0" roll="0.0" scale="1.0 1.0 1.0" />
+		<scene_mesh name="testTextGUI" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 1.0 20.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-	
 	
 		<scene_mesh name="camaras_chispazos" mesh="data/meshes/Box01.mesh">
 			<transform position="-1.0 4.0 -1.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
@@ -114,15 +114,14 @@
 		SALA0
 		
 		<scene_mesh name="Decall072" mesh="data/meshes/reclusion/decall2.mesh" >
-			<transform position="0.72594 5.09892 -3.6227" yaw="0.0" pitch="90.0" roll="0.0" scale="0.445938 0.445938 0.445938" />
+			<transform position="0.72594 5.09892 -3.6227" yaw="0.0" pitch="-90.0" roll="0.0" scale="0.445938 0.445938 0.445938" />
 		</scene_mesh>
 		<scene_mesh name="Decall10" mesh="data/meshes/reclusion/decall1.mesh" >
-			<transform position="-0.426474 4.76765 0.914997" yaw="0.0" pitch="0.0" roll="0.0" scale="0.625059 0.625059 0.625059" />
+			<transform position="-0.426474 4.76765 0.914997" yaw="0.0" pitch="90.0" roll="0.0" scale="0.625059 0.625059 0.625059" />
 		</scene_mesh>
 
-		
 		<scene_mesh name="estanteria" mesh="data/meshes/reclusion/estanteria.mesh" >
-			<transform position="0.261805 4.74826 -3.32239" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<transform position="0.261805 4.74826 -3.32239" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<collider rigid_body="box" />
 		</scene_mesh>
 		
@@ -274,6 +273,10 @@
 		</scene_mesh>
 		
 		SALA1
+
+		<scene_mesh name="CerraduraCelda" mesh="data/meshes/reclusion/cerradura.mesh" >
+			<transform position="1.88966 4.42795 0.895253" yaw="0.0" pitch="-90.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
 		
 		<scene_mesh name="lampara007" mesh="data/meshes/reclusion/lampara.mesh" >
 			<transform position="1.12236 5.7568 9.52523" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
@@ -489,7 +492,7 @@
 			<collider rigid_body="box" offset="0.0 1.1 0.0" />
 		</scene_mesh>
 		<scene_mesh name="CerraduraS017" mesh="data/meshes/reclusion/cerradura.mesh" >
-			<transform position="2.02357 1.22019 3.86825" yaw="0.0" pitch="-90.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<transform position="2.02357 1.22019 3.86825" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="puertaS016" mesh="data/meshes/reclusion/puerta.mesh" >
 			<transform position="7.30 0 3.78933" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />

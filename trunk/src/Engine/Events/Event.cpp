@@ -15,7 +15,7 @@
 #include "Events/OpenDoorReactor.h"
 #include "Events/LoadSceneReactor.h"
 #include "Events/ReloadSceneReactor.h"
-#include "Events/TextGUIReactor.h"
+#include "Events/TextGUIActor.h"
 
 CEvent::CEvent() :
     m_Finished(false),
@@ -48,6 +48,11 @@ CEvent::CEvent(CXMLElement* aEvent) :
             case CActor::eAudioTrigger:
                 mActor = new CAudioTriggerActor();
                 break;
+            case CActor::eTextGUI:
+                mActor = new CTextGUIActor();
+                break;
+            default:
+                break;
             }
 
             mActor->Load(iElement);
@@ -73,9 +78,6 @@ CEvent::CEvent(CXMLElement* aEvent) :
                 break;
             case CReactor::eLoadScene:
                 mReactor = new CLoadSceneReactor();
-                break;
-            case CReactor::eTextGUI:
-                mReactor = new CTextGUIReactor();
                 break;
             }
 

@@ -14,6 +14,7 @@ public:
     {
         eDumb,
         eAudioTrigger,
+        eTextGUI,
         eActorTypeCount
     };
 
@@ -35,6 +36,7 @@ Begin_Enum_String(CActor::EActorType)
 {
     Enum_String_Id(CActor::eDumb, "dumb");
     Enum_String_Id(CActor::eAudioTrigger, "audio_trigger");
+    Enum_String_Id(CActor::eTextGUI, "textGUI");
 }
 End_Enum_String;
 
