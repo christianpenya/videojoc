@@ -41,17 +41,28 @@ bool CSceneGUI::Update(float ElapsedTime)
     {
         switch (action)
         {
-        case 1:
+        case 1://Reanuda el juego
         {
 
             if (guiMan->DoButton(nodeName, gui_element, CGUIPosition(l_size.x*portion.x, l_size.y*portion.y, size.x, size.y)))
             {
                 CLevelController *contr = CEngine::GetInstance().m_LevelController;
-                contr->ResumeGame();
+                if (contr)
+                    contr->ResumeGame();
             }
 
         }
         break;
+        case 2://RestoreLastCheckpoint
+            if (guiMan->DoButton(nodeName, gui_element, CGUIPosition(l_size.x*portion.x, l_size.y*portion.y, size.x, size.y)))
+            {
+                CLevelController *contr = CEngine::GetInstance().m_LevelController;
+                if (contr)
+                    contr->RestoreLastCheckpoint();
+                contr->ResumeGame();
+            }
+
+            break;
         default:
         {
             guiMan->DoButton(nodeName, gui_element, CGUIPosition(l_size.x*portion.x, l_size.y*portion.y, size.x, size.y));

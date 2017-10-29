@@ -7,12 +7,14 @@
 void CTpsCameraController::Update(float ElapsedTime)
 {
     CLevelController *contr = CEngine::GetInstance().m_LevelController;
-    if (m_player != nullptr && !contr->GetTimePaused())
+    if (m_player != nullptr)
     {
         center = m_player->m_Position + playerHeight;
-        yawSpeed = 0.1f * (*actionManager)("pitch")->value;
-        pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
-
+        if (!contr->GetTimePaused())
+        {
+            yawSpeed = 0.1f * (*actionManager)("pitch")->value;
+            pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
+        }
         //zoomSpeed = 0.5f*(*actionManager)("zoom")->value;
 
         yaw += yawSpeed * ElapsedTime;

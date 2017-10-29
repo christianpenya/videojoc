@@ -23,8 +23,10 @@ public:
     void Update(float elapsedTime);
     void PauseGame();
     void ResumeGame();
-    GET_SET(bool,TimePaused)
-
+    GET_SET(bool, TimePaused);
+    GET_SET(Vect3f, LastCheckpoint);
+    void RestoreLastCheckpoint();
+    Vect3f m_LastCheckpoint = Vect3f(0, 0, 0);
 private:
     int Level = 1;
     CEngine* m_Engine;
@@ -32,6 +34,8 @@ private:
     CPhysXManager* m_PhysxManager;
     CActionManager* m_ActionManager;
     bool m_TimePaused;
+
+
 
 
 };

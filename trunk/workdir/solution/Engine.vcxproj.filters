@@ -90,6 +90,12 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointActor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
@@ -477,6 +483,12 @@
       <Filter>Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerActor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointActor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointReactor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp">

@@ -139,4 +139,17 @@ Vect3f CCharacterController::getFront()
     }
 }
 
+void CCharacterController::moveToLastCheckpoint(Vect3f lastCheckpoint)
+{
+    if (player != nullptr)
+    {
+        PxController* contr = physXManager->GetCharacterController("player");
+        contr->setPosition(PxExtendedVec3(lastCheckpoint.x, lastCheckpoint.y, lastCheckpoint.z));
+        player->SetPosition(lastCheckpoint);
+        m_Position = lastCheckpoint;
+
+    }
+
+}
+
 

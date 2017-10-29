@@ -1,4 +1,5 @@
 #include "LevelController.h"
+#include "Input/CharacterController.h"
 #include "Utils/CheckedDelete.h"
 
 CLevelController::CLevelController()
@@ -9,6 +10,7 @@ CLevelController::CLevelController()
     m_PhysxManager = nullptr;
     m_ActionManager = nullptr;
     m_TimePaused = false;
+
 }
 
 CLevelController::CLevelController(int lvl)
@@ -35,6 +37,7 @@ void CLevelController::Init()
     m_SceneManager = &m_Engine->GetSceneManager();
     m_PhysxManager = &m_Engine->GetPhysXManager();
     m_ActionManager = &m_Engine->GetActionManager();
+
 }
 
 void CLevelController::PlayerDetected(std::string detectorName)
@@ -67,4 +70,11 @@ void CLevelController::ResumeGame()
     m_TimePaused = false;
     if (m_SceneManager->GetCurrentScene()->Exist("PauseMENU"))
         m_SceneManager->GetCurrentScene()->GetLayer("PauseMENU")->SetActive(false);
+}
+
+void CLevelController::RestoreLastCheckpoint()
+{
+    CCharacterController* charContr = (CCharacterController*) CEngine::GetInstance().m_CharacterController;
+    if (charContr != nullptr)
+        charContr->moveToLastCheckpoint(m_LastCheckpoint);
 }

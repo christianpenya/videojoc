@@ -8,6 +8,15 @@
 		<sprite name="teula3" x="0" y="376" w="512" h="100"/>	
 	</gui_spritemap>
 	
+	<gui_spritemap name="RestoreCheckpoint" width="512" height="512">
+		<material name="RestoreCheckpoint" vertex_type="SpriteVertex">
+			<texture type="diffuse" filename="data/gui/GUI_PAUSA.png"/>
+		</material>
+		<sprite name="teula" x="0" y="30" w="512" h="100"/>
+		<sprite name="teula2" x="0" y="205" w="512" h="100"/>
+		<sprite name="teula3" x="0" y="376" w="512" h="100"/>	
+	</gui_spritemap>
+	
 	<gui_spritemap name="slider1" width="512" height="512">
 		<material name="slider1" vertex_type="SpriteVertex">		
 			<texture type="diffuse" filename="data/gui/slider.jpg"/>			
@@ -46,5 +55,8 @@
 	<font name="font1" filename="data/fonts/Font1.xml"/>
 	<guisprite name="backgroundMENU" normal="background_s"/>
 	<guisprite name="backgroundPAUSE" normal="background_p"/>
+	<button name="lastCheckpoint" normal="teula" highlight="teula2" pressed="teula3"/>
+	
+	
 
 </gui_elements>
