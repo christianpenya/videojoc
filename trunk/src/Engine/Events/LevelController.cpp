@@ -1,6 +1,7 @@
 #include "LevelController.h"
 #include "Input/CharacterController.h"
 #include "Utils/CheckedDelete.h"
+#include "Graphics/Camera/TpsCameraController.h"
 
 CLevelController::CLevelController()
 {
@@ -74,7 +75,20 @@ void CLevelController::ResumeGame()
 
 void CLevelController::RestoreLastCheckpoint()
 {
-    CCharacterController* charContr = (CCharacterController*) CEngine::GetInstance().m_CharacterController;
+    CCharacterController* charContr = (CCharacterController*)CEngine::GetInstance().m_CharacterController;
     if (charContr != nullptr)
-        charContr->moveToLastCheckpoint(m_LastCheckpoint);
+    {
+        charContr->moveToLastCheckpoint(m_LastCheckpointP, m_LastCheckpointR);
+
+    }
+    CCameraManager* camMan = (CCameraManager*)&CEngine::GetInstance().GetCameraManager();
+    if (camMan)
+    {
+        CTpsCameraController* cam =(CTpsCameraController*) &camMan->GetCurrentCamera();
+        if (cam)
+        {
+            cam->SetPitch(0);
+            cam->SetYaw(m_LastCheckpointR.GetYaw()+3.1415f);
+        }
+    }
 }

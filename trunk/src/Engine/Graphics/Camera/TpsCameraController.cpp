@@ -15,38 +15,42 @@ void CTpsCameraController::Update(float ElapsedTime)
             yawSpeed = 0.1f * (*actionManager)("pitch")->value;
             pitchSpeed = -0.1f * (*actionManager)("yaw")->value;
         }
+        else
+        {
+            yawSpeed = 0.f;
+            pitchSpeed = 0.f;
+        }
         //zoomSpeed = 0.5f*(*actionManager)("zoom")->value;
 
-        yaw += yawSpeed * ElapsedTime;
-        pitch += pitchSpeed * ElapsedTime;
-        roll += rollSpeed * ElapsedTime;
+        m_Yaw += yawSpeed * ElapsedTime;
+        m_Pitch += pitchSpeed * ElapsedTime;
+        m_Roll += rollSpeed * ElapsedTime;
         zoom += zoomSpeed * ElapsedTime;
 
-        if (pitch > maxPitch)
-            pitch = maxPitch;
-        if (pitch < minPitch)
-            pitch = minPitch;
+        if (m_Pitch > maxPitch)
+            m_Pitch = maxPitch;
+        if (m_Pitch < minPitch)
+            m_Pitch = minPitch;
 
         if (zoom > maxZoom)
             zoom = maxZoom;
         if (zoom < minZoom)
             zoom = minZoom;
 
-        if (yaw > mathUtils::PiTimes<float>())
-            yaw -= mathUtils::PiTimes<float>(2.0f);
-        if (yaw < -mathUtils::PiTimes<float>())
-            yaw += mathUtils::PiTimes<float>(2.0f);
+        if (m_Yaw > mathUtils::PiTimes<float>())
+            m_Yaw -= mathUtils::PiTimes<float>(2.0f);
+        if (m_Yaw < -mathUtils::PiTimes<float>())
+            m_Yaw += mathUtils::PiTimes<float>(2.0f);
 
-        if (roll > mathUtils::PiTimes<float>())
-            roll -= mathUtils::PiTimes<float>(2.0f);
-        if (roll < -mathUtils::PiTimes<float>())
-            roll += mathUtils::PiTimes<float>(2.0f);
+        if (m_Roll > mathUtils::PiTimes<float>())
+            m_Roll -= mathUtils::PiTimes<float>(2.0f);
+        if (m_Roll < -mathUtils::PiTimes<float>())
+            m_Roll += mathUtils::PiTimes<float>(2.0f);
 
         // set CameraControllerData
-        m_Front.x = sin(yaw) * cos(-pitch);
-        m_Front.y = -sin(-pitch);
-        m_Front.z = -cos(yaw) * cos(-pitch);
-
+        m_Front.x = sin(m_Yaw) * cos(-m_Pitch);
+        m_Front.y = -sin(-m_Pitch);
+        m_Front.z = -cos(m_Yaw) * cos(-m_Pitch);
 
         float l_zoom = zoom;
         Vect3f l_Position = (center - m_Front * l_zoom);

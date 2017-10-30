@@ -34,7 +34,7 @@ public:
     float m_RotationSPeed;
     CSceneAnimatedModel* player;
     Vect3f getFront();
-    void moveToLastCheckpoint(Vect3f lastCheckpoint);
+    void moveToLastCheckpoint(Vect3f lastCheckpoint,Quatf rotation);
 
 
 private:

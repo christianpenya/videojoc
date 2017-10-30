@@ -8,6 +8,9 @@
 #include "Input/ActionManager.h"
 #include "Graphics/Scenes/SceneManager.h"
 
+#include "Math/Quaternion.h"
+#include "Graphics/Camera/CameraManager.h"
+
 
 class CLevelController
 {
@@ -24,9 +27,11 @@ public:
     void PauseGame();
     void ResumeGame();
     GET_SET(bool, TimePaused);
-    GET_SET(Vect3f, LastCheckpoint);
+    GET_SET(Vect3f, LastCheckpointP);
+    GET_SET(Quatf, LastCheckpointR);
     void RestoreLastCheckpoint();
-    Vect3f m_LastCheckpoint = Vect3f(0, 0, 0);
+    Vect3f m_LastCheckpointP = Vect3f(0, 0, 0);
+    Quatf m_LastCheckpointR = Quatf(0, 0, 0, 1);
 private:
     int Level = 1;
     CEngine* m_Engine;

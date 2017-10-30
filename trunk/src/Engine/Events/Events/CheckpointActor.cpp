@@ -34,8 +34,10 @@ void CCheckpointActor::Act()
     }
     CLevelController* m_Level = CEngine::GetInstance().m_LevelController;
     if (m_Level != nullptr)
-        m_Level->SetLastCheckpoint(m_Position);
-
+    {
+        m_Level->SetLastCheckpointP(m_Position);
+        m_Level->SetLastCheckpointR(m_Rotation);
+    }
 }
 
 void CCheckpointActor::Update(float elapsedTime)

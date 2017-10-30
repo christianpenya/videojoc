@@ -58,8 +58,10 @@ bool CSceneGUI::Update(float ElapsedTime)
             {
                 CLevelController *contr = CEngine::GetInstance().m_LevelController;
                 if (contr)
+                {
                     contr->RestoreLastCheckpoint();
-                contr->ResumeGame();
+                    contr->ResumeGame();
+                }
             }
 
             break;
