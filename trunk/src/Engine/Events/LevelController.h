@@ -7,6 +7,7 @@
 #include "Engine/Engine.h"
 #include "Input/ActionManager.h"
 #include "Graphics/Scenes/SceneManager.h"
+#include "GUI/GUIManager.h"
 
 #include "Math/Quaternion.h"
 #include "Graphics/Camera/CameraManager.h"
@@ -21,7 +22,7 @@ public:
     CLevelController(int lvl);
     ~CLevelController();
     void Init();
-    void PlayerDetected(std::string detectorName );  //Nombre del dron/guardia
+    void PlayerDetected();
 
     void Update(float elapsedTime);
     void PauseGame();
@@ -39,6 +40,8 @@ private:
     CPhysXManager* m_PhysxManager;
     CActionManager* m_ActionManager;
     bool m_TimePaused;
+    bool m_PlayerDetected;
+    float m_TimerDetected;
 
 
 

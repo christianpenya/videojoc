@@ -2,6 +2,7 @@
 #include "Input/CharacterController.h"
 #include "Utils/CheckedDelete.h"
 #include "Graphics/Camera/TpsCameraController.h"
+#include "Render/RenderManager.h"
 
 CLevelController::CLevelController()
 {
@@ -41,10 +42,10 @@ void CLevelController::Init()
 
 }
 
-void CLevelController::PlayerDetected(std::string detectorName)
+void CLevelController::PlayerDetected()
 {
-    std::string l_Nombre = detectorName;
-    //Ejemplo: Mostrar indicador UI del posicionamiento del detector respecto la prota
+    m_PlayerDetected = true;
+
 }
 
 
@@ -56,7 +57,21 @@ void CLevelController::Update(float elapsedTime)
         PauseGame();
 
     }
-
+    if (m_PlayerDetected && m_TimerDetected<5.0f)
+    {
+        m_TimerDetected += elapsedTime;
+        CGUIManager* guiMan = &CEngine::GetInstance().GetGUIManager();
+        Vect2f lPos;
+        Vect2u lSize = CEngine::GetInstance().GetRenderManager().GetWindowSize();
+        lPos.x = lSize.x / 2;
+        lPos.y = lSize.y / 2;
+        guiMan->FillCommandQueueWithText("font1", "Protagonista Descubierta", lPos, CGUIManager::MID_CENTER, CColor(.0f, .0f, .0f));
+    }
+    else
+    {
+        m_TimerDetected = 0;
+        m_PlayerDetected = false;
+    }
 }
 
 
