@@ -11,15 +11,18 @@
 #include "Events/OpenDoorReactor.h"
 #include "Events/TextGUIReactor.h"
 #include "Events/TextGUIActor.h"
+#include "Events/CheckpointActor.h"
 
 CEventManager::CEventManager() : mEnabled(true)
 {
     mActors.Add("dumb", new CDumbActor());
     mActors.Add("audio_trigger", new CAudioTriggerActor());
-    mActors.Add("textGUI", new CTextGUIActor());
+    mActors.Add("textGUIA", new CTextGUIActor());
+    mActors.Add("checkpoint", new CCheckpointActor());
 
     mReactors.Add("dumb", new CDumbReactor());
     mReactors.Add("open_door", new COpenDoorReactor());
+    mReactors.Add("textGUIR", new CTextGUIReactor());
 }
 
 CEventManager::~CEventManager()

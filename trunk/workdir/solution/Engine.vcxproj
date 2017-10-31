@@ -239,6 +239,8 @@
     <ClInclude Include="..\..\src\Engine\Events\Event.h" />
     <ClInclude Include="..\..\src\Engine\Events\EventManager.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerActor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointActor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\OpenDoorReactor.h" />
@@ -370,6 +372,8 @@
     <ClCompile Include="..\..\src\Engine\Events\Event.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\EventManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerActor.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointActor.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\OpenDoorReactor.cpp" />
