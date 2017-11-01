@@ -1,27 +1,31 @@
 <lights >
 
 	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot001" color="1.0 1.0 1.0" enabled="true" intensity="2.0" attenuation_range="0.0 4.93039" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
-		<transform position="0.642233 5.76294 -1.22715" forward="0.0 -1.0 0.0" />
+		<transform position="1.01 5.76294 -1.22715" forward="0.0 -1.0 0.0" />
 		<layer name = "LPlayer" />
 		<layer name = "salas" />
+		<layer name = "opaque" />
 	</light>
 	
 	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot002" color="1.0 1.0 1.0" enabled="true" intensity="2.0" attenuation_range="0.0 4.93039" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
 		<transform position="0.642233 5.76294 2.42153" forward="0.0 -1.0 0.0" />
 		<layer name = "LPlayer"/>
 		<layer name = "salas" />
+		<layer name = "opaque" />
 	</light>
 	
 	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot003" color="1.0 1.0 1.0" enabled="true" intensity="2.0" attenuation_range="0.0 4.93039" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
 		<transform position="8.50918 5.76294 2.42153" forward="0.0 -1.0 0.0" />
 		<layer name = "LPlayer"/>
 		<layer name = "salas" />
+		<layer name = "opaque" />
 	</light>
 	
-	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot004" color="1.0 1.0 1.0" enabled="true" intensity="2.0" attenuation_range="0.0 14.93039" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot004" color="1.0 1.0 1.0" enabled="true" intensity="2.0" attenuation_range="0.0 14.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
 		<transform position="0.642233 5.76294 9.66714" forward="0.0 -1.0 0.0" />
 		<layer name = "LPlayer"/>
 		<layer name = "salas" />
+		<layer name = "opaque" />
 	</light>
 	
 	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot005" color="1.0 1.0 1.0" enabled="true" intensity="2.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
@@ -151,5 +155,5 @@
 		<layer name = "LPlayer"/>
 		<layer name = "salas" />
 	</light>
-	
+ -->	
 </lights>

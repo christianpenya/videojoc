@@ -92,9 +92,9 @@
 	<material name="NoiseVignettingMaterial" effect="NoiseVignetting">
 		<texture type="diffuse" filename="data\textures\post_process\noise.png" />
 		<texture type="diffuse" filename="data\textures\post_process\vignetting.png" />
-		<parameter type="float" name="noisePct" value="0.15" />
-		<parameter type="float" name="vignettingPct" value="0.5" />
-		<parameter type="float" name="noiseAmount" value="0.15" />
+		<parameter type="float" name="noisePct" value="0.05" />
+		<parameter type="float" name="vignettingPct" value="0.25" />
+		<parameter type="float" name="noiseAmount" value="0.1" />
 	</material>
 	
 	<material name="FogMaterial" effect="Fog" vertex_type="Fog">
@@ -115,25 +115,25 @@
 		<parameter type="float" name="HDAOAcceptRadius" value="0.0" />
 	</material>
 	
-	<material name="AZBlurMaterial" vertex_type="ZBlur">
+	<material name="ZBlurMaterial" vertex_type="ZBlur">
 		<parameter type="float" name="ZBlurActive" value="1.0" />
 		<parameter type="float" name="ZBlurShowDepths" value="0.0" />
-		<parameter type="float" name="ZBlurConstantBlur" value="0.7" />
-		<parameter type="float" name="ZBlurFocalStart" value="0.2" />
-		<parameter type="float" name="ZBlurFocalEnd" value="0.8" />
+		<parameter type="float" name="ZBlurConstantBlur" value="0.3" />
+		<parameter type="float" name="ZBlurFocalStart" value="1.0" />
+		<parameter type="float" name="ZBlurFocalEnd" value="15.0" />
 		<parameter type="float" name="ZBlurEnd" value="1.0" />
 	</material>	
 	
 	<material name="BloomMaterial" vertex_type="Bloom">
-		<parameter type="float" name="threshold" value="0.8" />
+		<parameter type="float" name="threshold" value="0.6" />
 	</material>
 	
 	<material name="BloomCombineMaterial" vertex_type="BloomCombine" >
 		<parameter type="float" name="bloomActive" value="1.0"/>
-		<parameter type="float" name="bloomIntensity" value="0.6" min_value="0.0" max_value="3.0" />
-		<parameter type="float" name="originalIntensity" value="1.0" min_value="0.0" max_value="3.0"/>
-		<parameter type="float" name="bloomSaturation" value="1.0" min_value="0.0" max_value="3.0"/>
-		<parameter type="float" name="originalSaturation" value="1.25" min_value="0.0" max_value="3.0"/>
+		<parameter type="float" name="bloomIntensity" value="0.2" min_value="0.0" max_value="3.0" />
+		<parameter type="float" name="originalIntensity" value="0.8" min_value="0.0" max_value="3.0"/>
+		<parameter type="float" name="bloomSaturation" value="0.5" min_value="0.0" max_value="3.0"/>
+		<parameter type="float" name="originalSaturation" value="0.8" min_value="0.0" max_value="3.0"/>
 	</material>
 
 	<material name="StartGaussianMaterial" vertex_type="PositionUV">

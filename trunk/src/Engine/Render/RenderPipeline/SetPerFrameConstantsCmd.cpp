@@ -29,7 +29,7 @@ void CSetPerFrameConstantsCmd::UpdateConstants()
     CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
     CCameraController& lCC = CEngine::GetInstance().GetCameraManager().GetCurrentCamera();
 
-    CEngine::GetInstance().GetLightManager().SetLightsConstants();
+    //CEngine::GetInstance().GetLightManager().SetLightsConstants();
 
     if (CEngine::GetInstance().ExistConstantBufferManager())
     {

@@ -99,16 +99,9 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
         }
         else if (strcmp(iSceneNode->Name(), "scene_light") == 0)
         {
-            CLight *l_light = nullptr;
-            CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
-            lConstanBufferManager.mLightsDesc.m_LightEnabled[0] = 0;
-            lConstanBufferManager.mLightsDesc.m_LightEnabled[1] = 0;
-            lConstanBufferManager.mLightsDesc.m_LightEnabled[2] = 0;
-            lConstanBufferManager.mLightsDesc.m_LightEnabled[3] = 0;
             if (CEngine::GetInstance().GetLightManager().Exist(lNodeName))
             {
                 lNode = CEngine::GetInstance().GetLightManager()(lNodeName);
-                //lLM.SetLightConstants(iSceneNode->GetAttribute<int>("id_light", 0), lLM(lNodeName));
                 lNode->SetNodeType(CSceneNode::eLight);
             }
         }

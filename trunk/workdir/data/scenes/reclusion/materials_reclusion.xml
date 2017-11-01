@@ -383,8 +383,8 @@
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
 		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
-		<parameter type="float" name="metalness" value="0.0" />
-		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="metalness" value="0.8" />
+		<parameter type="float" name="roughness" value="0.2" />
 		<parameter type="float" name="occlusion" value="0.0" />
 	</material>
 	
