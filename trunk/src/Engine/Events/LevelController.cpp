@@ -23,6 +23,7 @@ CLevelController::CLevelController(int lvl)
     m_PhysxManager = nullptr;
     m_ActionManager = nullptr;
     m_TimePaused = false;
+    m_PlayerDetected = false;
 }
 
 CLevelController::~CLevelController()
