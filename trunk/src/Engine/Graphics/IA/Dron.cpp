@@ -57,6 +57,7 @@ void CDron::DrawImgui()
 
 void CDron::patrol()
 {
+    hearsPlayer();
 //    std::cout << " Dron " << GetName() << "patroling." << std::endl;
     if ((m_Destination == Vect3f{ 0.0f, -99.9f, 0.0f }) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_Destination.x,m_Destination.z)<=1.0f))
         GotoNextPoint();

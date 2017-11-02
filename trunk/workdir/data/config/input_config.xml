@@ -54,8 +54,14 @@
 		<trigger type="KEYBOARD" key_code="CONTROL" value ="1"/>
 	
 	</action>
+	<action name = "pause">
+		<trigger type="KEYBOARD" key_code="P" value="1"/>
+	</action>
 	
 	<action name = "mouse_right_pressed">
 		<trigger type="MOUSE_BUTTON" button="RIGHT" value="1"/>
+	</action>
+	<action name = "mouse_left_pressed">
+		<trigger type="MOUSE_BUTTON" button="LEFT" value="1"/>
 	</action>
 </actions>

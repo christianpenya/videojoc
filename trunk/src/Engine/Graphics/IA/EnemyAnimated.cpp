@@ -64,7 +64,8 @@ bool CEnemyAnimated::PlayerOnSight()
 void CEnemyAnimated::hearsPlayer()
 {
     CPhysXManager::RaycastData* resultado = new CPhysXManager::RaycastData();
-    bool hittedP = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, resultado);
+    bool hittedP = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, resultado); //funciona con grupo 0
+
     if (hittedP && (resultado->actor == "player"))
     {
         m_hear = true;
@@ -86,7 +87,7 @@ void CEnemyAnimated::dieEnemy()
 
 bool CEnemyAnimated::Update(float ElapsedTime)
 {
-    //if (!m_LevelController->GetTimePaused())
+    //if (!m_LevelController.GetTimePaused())
     {
         if (!m_enemydead)
         {
@@ -96,7 +97,7 @@ bool CEnemyAnimated::Update(float ElapsedTime)
             m_ElapsedTime = ElapsedTime;
             Vect3f actorpos = m_PhysXManager.GetActorPosition("player");
             CPhysXManager::RaycastData* resultado = new CPhysXManager::RaycastData();
-            bool hittedP = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, resultado);
+            bool hittedP = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, resultado); //funciona con grupo 0
 
             if (hittedP && (resultado->actor == "player"))
             {
@@ -105,7 +106,7 @@ bool CEnemyAnimated::Update(float ElapsedTime)
                     if (PlayerOnSight())
                     {
                         m_State = Input::STOP;
-                        m_LevelController.PlayerDetected(GetName());
+                        m_LevelController.PlayerDetected();
                         std::cout << "Muere protagonista" << std::endl;
                     }
                 }

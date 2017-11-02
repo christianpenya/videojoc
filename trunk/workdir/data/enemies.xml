@@ -1,24 +1,24 @@
 <enemies>
 	<!--ESCENA ZONA RECLUSION-->
-	<enemy type="dron" name="DronReclusion1" core="dron" height="1.1" radiu="0.17" group="2"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
+	<enemy type="dron" name="DronReclusion1" core="dron" height="1.1" radiu="0.17" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
 		<transform position="8.46 1.19 25.40" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DronReclusion1"/>
 		<point name="PatrolPoint2_DronReclusion1"/>
 	</enemy>	
 
-	<enemy type="dron" name="DronCabinas" core="dron" height="1.1" radiu="0.17" group="2"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
+	<enemy type="dron" name="DronCabinas" core="dron" height="1.1" radiu="0.17" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
 		<transform position="19.81 1.19 27.19" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DronCabinas"/>
 		<point name="PatrolPoint2_DronCabinas"/>
 	</enemy>	
 
-	<enemy type="dron" name="DronReclusion2" core="dron" height="1.1" radiu="0.17" group="2"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
+	<enemy type="dron" name="DronReclusion2" core="dron" height="1.1" radiu="0.17" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
 		<transform position="3.29 1.19 42.87" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DronReclusion2"/>
 		<point name="PatrolPoint2_DronReclusion2"/>
 	</enemy>	
 
-	<enemy type="dron" name="DroneComedorInicioIzquierda" core="dron" height="1.1" radiu="0.17" group="2"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
+	<enemy type="dron" name="DroneComedorInicioIzquierda" core="dron" height="1.1" radiu="0.17" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
 		<transform position="33.29 1.19 24.84" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DroneComedorInicioIzquierda"/>
 		<point name="PatrolPoint2_DroneComedorInicioIzquierda"/>
@@ -26,7 +26,7 @@
 		<point name="PatrolPoint4_DroneComedorInicioIzquierda"/>
 	</enemy>	
 
-	<enemy type="dron" name="DroneComedorInicioDerecha" core="dron" height="1.1" radiu="0.17" group="2"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
+	<enemy type="dron" name="DroneComedorInicioDerecha" core="dron" height="1.1" radiu="0.17" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
 		<transform position="31.51 1.19 33.83" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DroneComedorInicioDerecha"/>
 		<point name="PatrolPoint2_DroneComedorInicioDerecha"/>
@@ -34,7 +34,7 @@
 		<point name="PatrolPoint4_DroneComedorInicioDerecha"/>
 	</enemy>	
 
-	<enemy type="dron" name="DroneComedorMitad" core="dron" height="1.1" radiu="0.17" group="2"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
+	<enemy type="dron" name="DroneComedorMitad" core="dron" height="1.1" radiu="0.17" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
 		<transform position="35.95 1.19 20.60" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DroneComedorMitad"/>
 		<point name="PatrolPoint2_DroneComedorMitad"/>
@@ -42,13 +42,13 @@
 		<point name="PatrolPoint4_DroneComedorMitad"/>
 	</enemy>	
 
-	<enemy type="dron" name="DroneComedorFinIzquierda" core="dron" height="1.1" radiu="0.17" group="2"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
+	<enemy type="dron" name="DroneComedorFinIzquierda" core="dron" height="1.1" radiu="0.17" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
 		<transform position="44.02 1.19 22.47" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DroneComedorFinIzquierda"/>
 		<point name="PatrolPoint2_DroneComedorFinIzquierda"/>
 	</enemy>	
 	
-	<enemy type="dron" name="DroneComedorFinDerecha" core="dron" height="1.1" radiu="0.17" group="2"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
+	<enemy type="dron" name="DroneComedorFinDerecha" core="dron" height="1.1" radiu="0.17" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene01">
 		<transform position="39.54 1.19 33.5" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DroneComedorFinDerecha"/>
 		<point name="PatrolPoint2_DroneComedorFinDerecha"/>
@@ -60,12 +60,12 @@
 	</enemy>		
 
 	<!--ESCENA ZONA ADMINISTRACION-->
-	<enemy type="guard" name="GuardiaArco" core="guardia" height="1.1" radiu="0.17" group="2" standby="true" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
+	<enemy type="guard" name="GuardiaArco" core="guardia" height="1.1" radiu="0.17" group="0" standby="true" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="1.491242 0.0 -18.6949" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaArco"/>
 	</enemy>	
 
-	<enemy type="guard" name="GuardiaPasillo" core="guardia" height="1.1" radiu="0.17" group="2"  standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
+	<enemy type="guard" name="GuardiaPasillo" core="guardia" height="1.1" radiu="0.17" group="0"  standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="11.668 0.0 -9.84571" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaPasillo01" />
 		<point name="PatrolPoint_GuardiaPasillo02" />
@@ -75,17 +75,17 @@
 		<point name="PatrolPoint_GuardiaPasillo06" />
 	</enemy>	
 			
-	<enemy type="guard" name="GuardiaComedor01" core="guardia" height="1.1" radiu="0.17" group="2" standby="true" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
+	<enemy type="guard" name="GuardiaComedor01" core="guardia" height="1.1" radiu="0.17" group="0" standby="true" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="23.0547 0.0 -11.9276" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaComedor01" />
 	</enemy>	
 	
-	<enemy type="guard" name="GuardiaComedor02" core="guardia" height="1.1" radiu="0.17" group="2" standby="true" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
+	<enemy type="guard" name="GuardiaComedor02" core="guardia" height="1.1" radiu="0.17" group="0" standby="true" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="23.1118 0.0 -6.63727" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaComedor02" />
 	</enemy>			
 		
-	<enemy type="guard" name="GuardiaInferiorIzq" core="guardia" height="1.1" radiu="0.17" group="2" standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.05" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
+	<enemy type="guard" name="GuardiaInferiorIzq" core="guardia" height="1.1" radiu="0.17" group="0" standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="-9.70875 -2.94 1.75217" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaInferiorIzq01" />
 		<point name="PatrolPoint_GuardiaInferiorIzq02" />
@@ -93,7 +93,7 @@
 		<point name="PatrolPoint_GuardiaInferiorIzq04" />
 	</enemy>			
 				
-	<enemy type="guard" name="GuardiaInferiorDer" core="guardia" height="1.1" radiu="0.17" group="2" standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
+	<enemy type="guard" name="GuardiaInferiorDer" core="guardia" height="1.1" radiu="0.17" group="0" standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="11.5883 -2.94 1.0173" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaInferiorDer01" />
 		<point name="PatrolPoint_GuardiaInferiorDer02" />
@@ -101,7 +101,7 @@
 		<point name="PatrolPoint_GuardiaInferiorDer04" />
 	</enemy>				
 
-	<enemy type="guard" name="GuardiaInferiorSillas" core="guardia" height="1.1" radiu="0.17" group="2" standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
+	<enemy type="guard" name="GuardiaInferiorSillas" core="guardia" height="1.1" radiu="0.17" group="0" standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="-8.23539 -2.94 12.376" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaInferiorSillas01" />
 		<point name="PatrolPoint_GuardiaInferiorSillas02" />
@@ -113,19 +113,19 @@
 		<point name="PatrolPoint_GuardiaInferiorSillas08" />
 	</enemy>	
 
-	<enemy type="guard" name="GuardiaOficina" core="guardia" height="1.1" radiu="0.17" group="2" standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
+	<enemy type="guard" name="GuardiaOficina" core="guardia" height="1.1" radiu="0.17" group="0" standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="15.7044 -2.94 12.6917" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaOficina" />
 	</enemy>			
 
-	<enemy type="guard" name="GuardiaInferiorCabinas" core="guardia" height="1.1" radiu="0.17" group="2" standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
+	<enemy type="guard" name="GuardiaInferiorCabinas" core="guardia" height="1.1" radiu="0.17" group="0" standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="-23.4928 -2.94 12.1718" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaInferiorCabinas01" />
 		<point name="PatrolPoint_GuardiaInferiorCabinas02" />
 		<point name="PatrolPoint_GuardiaInferiorCabinas03" />
 	</enemy>			
 	
-	<enemy type="dron" name="DronAdministracion" core="dron" height="1.1" radiu="0.17" group="2"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
+	<enemy type="dron" name="DronAdministracion" core="dron" height="1.1" radiu="0.17" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="-16.8285 0.0 -10.9129" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DronAdministracion" />
 	</enemy>			

@@ -156,11 +156,11 @@ void CGuard::Move(Vect3f destination, float speed)
 
 void CGuard::GotoNextPointChase()
 {
-    //m_lastPositionView = Vect3f(m_PhysXManager.GetActorPosition("player").x, m_Height.y, m_PhysXManager.GetActorPosition("player").z);
     m_lastPositionView = m_PhysXManager.GetActorPosition("player");
 
     CPhysXManager::RaycastData* result = new CPhysXManager::RaycastData();
-    bool hitted = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, result);
+    bool hitted = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, result); //Funciona con grupo 0
+
 
     if (hitted && (result->actor == "player"))
         m_DestinationChase = m_lastPositionView;

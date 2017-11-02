@@ -19,6 +19,7 @@
 #include "Graphics/IA/NavMeshManager.h"
 #include "Graphics/IA/Laser.h"
 #include "Graphics/IA/Dron.h"
+#include "SceneGUI.h"
 #include "Graphics/IA/Guard.h"
 
 #ifdef _DEBUG
@@ -72,7 +73,7 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
             if (!Exist(lNodeName))
             {
                 std::string l_CoreName = iSceneNode->GetAttribute<std::string>("core", "");
-                int lGroup = iSceneNode->GetAttribute<int>("group", 0);
+                int lGroup = iSceneNode->GetAttribute<int>("group", 1);
                 CAnimatedCoreModel *l_AnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_CoreName);
                 if (l_AnimatedCoreModel != nullptr)
                 {
@@ -148,6 +149,13 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
                 }
                 lNode->SetNodeType(CSceneNode::eEnemy);
             }
+
+        }
+        else if (strcmp(iSceneNode->Name(), "scene_gui") == 0)
+        {
+            std::string l_GUIElementName = iSceneNode->GetAttribute<std::string>("name", "");
+            lNode = new CSceneGUI(iSceneNode);
+            lNode->SetNodeType(CSceneNode::eGUIElem);
 
         }
 

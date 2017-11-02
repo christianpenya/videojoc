@@ -91,7 +91,9 @@
 	INICIO POST PROCESS
 	
 	<apply_technique_pool pool_name="post_process"/>
+	<enable_alpha_blend/>
 	<render_gui/>
+	<disable_alpha_blend/>
 	INICIO NOISE VIGNETTING
 	<!-- <enable_alpha_blend/>	
 	<draw_quad name="noise_vignetting" material="NoiseVignettingMaterial">

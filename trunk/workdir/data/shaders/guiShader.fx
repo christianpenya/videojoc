@@ -43,6 +43,7 @@ float4 PS( PS_INPUT IN ) : SV_Target
     if (ColorPixel.w <0.1){
             clip(-1);
     }
-    return float4(ColorPixel.xyz,1.0);
+
+    return float4(ColorPixel.xyzw);
     //return float4(0.0,1.0,0.0, 1.0);
 }

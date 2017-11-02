@@ -89,14 +89,15 @@ void CPhysXManagerImplementation::onTrigger(physx::PxTriggerPair* pairs, physx::
 
         std::string triggerName = m_ActorNames[indexTrigger];
         std::string actorName = m_ActorNames[indexActor];
+        if (actorName == "player")
+        {
+            CEvent* lEvent = CEngine::GetInstance().GetEventManager().GetEvent(triggerName);
 
-        /*        CEvent* lEvent = CEngine::GetInstance().GetEventManager().GetEvent(triggerName);
-
-                if (lEvent && !lEvent->IsFinished() && !lEvent->IsHappeningRightFuckingNow())
-                {
-                    lEvent->Start();
-                }
-        		*/
+            if (lEvent && !lEvent->IsFinished() && !lEvent->IsHappeningRightFuckingNow())
+            {
+                lEvent->Start();
+            }
+        }
         /*
 
         LOG_INFO_APPLICATION("Trigger \"%s\" fired with \"%s\"", triggerName.c_str(), actorName.c_str());
@@ -132,8 +133,8 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
     desc.height = height;
     desc.radius = radius;
     desc.climbingMode = physx::PxCapsuleClimbingMode::eCONSTRAINED;
-    desc.slopeLimit = cosf(3.1415f / 6); // 30
-    desc.stepOffset = 0.25f;
+    desc.slopeLimit = 45;//cosf(3.1415f / 6); // 30
+    desc.stepOffset = 0.35f;
     desc.density = density;
     desc.reportCallback = this;
     desc.position = physx::PxExtendedVec3(position.x, position.y + radius + height * 0.5f, position.z);
@@ -160,4 +161,8 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
     m_ActorOrientations.push_back(Quatf(0, 0, 0, 1));
     m_Actors.push_back(cct->getActor());
     cct->getActor()->userData = (void*)index;
+}
+PxController* CPhysXManagerImplementation::GetCharacterController(std::string actorName)
+{
+    return m_CharacterControllers[actorName];
 }

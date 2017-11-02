@@ -1,0 +1,12 @@
+<scene>
+	
+	<layer name="GUI" active="true" >	
+		<scene_gui name="background" gui_element="backgroundMENU" portion="0 0" size="1920 1080" type="GUIsprite" >
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		<scene_gui name="gui1" gui_element="pause_button" portion="0.2 0.2" size="100 50" type="button" >
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+	</layer>
+	
+</scene>
