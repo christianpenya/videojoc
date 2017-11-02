@@ -14,6 +14,7 @@ CEnemy::CEnemy(CXMLElement* aElement)
     : m_PhysXManager(CEngine::GetInstance().GetPhysXManager())
       //, resultado(new CPhysXManager::RaycastData())
     , m_DeadDistance(aElement->GetAttribute<float>("deadDistance", 1.8f))
+    , m_LevelController(CLevelController())
 {
     EnumString<EEnemyType>::ToEnum(m_EnemyType, aElement->GetAttribute<std::string>("type", "dron"));
 }
@@ -36,4 +37,12 @@ float CEnemy::getAngle2(float x1, float y1, float z1, float x2, float y2, float 
     float dist = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2) + pow(z1 - z2, 2));
     float dist2 = sqrt(pow(x1 - x2, 2) + pow(z1 - z2, 2));
     return acos(dist2 / dist) * 180 / 3.1415926;
+}
+
+float CEnemy::GetRandomValue(float min, float max)
+{
+    float random = ((float)rand()) / (float)RAND_MAX;
+    float diff = max - min;
+    float r = random * diff;
+    return min + r;
 }

@@ -15,12 +15,11 @@
 #include "Graphics/Particles/ParticleManager.h"
 #include "Graphics/Particles/ParticleSystemType.h"
 #include "Graphics/IA/EnemiesManager.h"
-#include "Graphics/IA/EnemyAnimated.h"
 #include "Graphics/IA/NavMesh.h"
 #include "Graphics/IA/NavMeshManager.h"
 #include "Graphics/IA/Laser.h"
 #include "Graphics/IA/Dron.h"
-
+#include "Graphics/IA/Guard.h"
 
 #ifdef _DEBUG
 #include <chrono>
@@ -127,28 +126,25 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
             {
                 if (lEnemiesManager(lNodeName)->GetEnemyType() == CEnemy::eLaser)
                     lNode = ((CLaser*)lEnemiesManager(lNodeName));
-                else
+                else if (lEnemiesManager(lNodeName)->GetEnemyType() == CEnemy::eDron)
                 {
                     CDron * l_Enemy = (CDron*)lEnemiesManager(lNodeName);
                     CAnimatedCoreModel *l_EnemyAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_Enemy->GetCorename());
                     if (l_EnemyAnimatedCoreModel != nullptr)
                     {
-                        //                        lNode = l_Enemy;
                         lNode = new CDron(*l_Enemy);
                         ((CDron*)lNode)->Initialize(l_EnemyAnimatedCoreModel);
-                        //((CEnemyAnimated *)lNode)->BlendCycle(2, 1, 0);
                     }
-
-
-                    /*CEnemyAnimated * l_Enemy = (CEnemyAnimated*)lEnemiesManager(lNodeName);
+                }
+                else if (lEnemiesManager(lNodeName)->GetEnemyType() == CEnemy::eGuard)
+                {
+                    CGuard * l_Enemy = (CGuard*)lEnemiesManager(lNodeName);
                     CAnimatedCoreModel *l_EnemyAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_Enemy->GetCorename());
                     if (l_EnemyAnimatedCoreModel != nullptr)
                     {
-                    //                        lNode = l_Enemy;
-                        lNode = new CEnemyAnimated(*l_Enemy);
-                        ((CEnemyAnimated *)lNode)->Initialize(l_EnemyAnimatedCoreModel);
-                        //((CEnemyAnimated *)lNode)->BlendCycle(2, 1, 0);
-                    }*/
+                        lNode = new CGuard(*l_Enemy);
+                        ((CGuard*)lNode)->Initialize(l_EnemyAnimatedCoreModel);
+                    }
                 }
                 lNode->SetNodeType(CSceneNode::eEnemy);
             }

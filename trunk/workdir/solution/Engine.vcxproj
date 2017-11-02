@@ -246,6 +246,7 @@
     <ClInclude Include="..\..\src\Engine\Events\LevelController.h" />
     <ClInclude Include="..\..\src\Engine\Events\Reactor.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\IA\EnemyAnimated.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Guard.h" />
     <ClInclude Include="..\..\src\Engine\GUI\Button.h" />
     <ClInclude Include="..\..\src\Engine\GUI\GUIManager.h" />
     <ClInclude Include="..\..\src\Engine\GUI\GUIPosition.h" />
@@ -374,6 +375,7 @@
     <ClCompile Include="..\..\src\Engine\Events\Events\TextGUIReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\LevelController.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\EnemyAnimated.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Guard.cpp" />
     <ClCompile Include="..\..\src\Engine\GUI\Button.cpp" />
     <ClCompile Include="..\..\src\Engine\GUI\GUIManager.cpp" />
     <ClCompile Include="..\..\src\Engine\GUI\GUIPosition.cpp" />

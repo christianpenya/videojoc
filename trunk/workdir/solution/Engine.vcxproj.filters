@@ -459,6 +459,9 @@
     <ClInclude Include="..\..\src\Engine\Graphics\IA\EnemyAnimated.h">
       <Filter>Graphics\IA</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Guard.h">
+      <Filter>Graphics\IA</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp">
@@ -795,6 +798,9 @@
       <Filter>Sound</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\IA\EnemyAnimated.cpp">
+      <Filter>Graphics\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Guard.cpp">
       <Filter>Graphics\IA</Filter>
     </ClCompile>
   </ItemGroup>

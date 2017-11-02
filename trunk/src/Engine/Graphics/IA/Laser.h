@@ -71,7 +71,7 @@ public:
     bool Update(float ElapsedTime);
     void CalculateNextPositionLaser(float ElapsedTime);
     void FireLaser();
-    float GetRandomValue(float min, float max);
+
 };
 
 #endif //_LASER_20170809
