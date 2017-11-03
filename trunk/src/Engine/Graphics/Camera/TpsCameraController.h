@@ -22,7 +22,7 @@ public:
     GET_SET(float, Pitch)
     GET_SET(float, Yaw)
     GET_SET(float, Roll)
-    CTpsCameraController( Vect3f center = Vect3f(0, 0, 0), float maxPitch = 0.5f, float minPitch = -0.6f, float maxZoom = 20.0f, float minZoom = 0.5f)
+    CTpsCameraController( Vect3f center = Vect3f(0, 0, 0), float maxPitch = 0.4f, float minPitch = -0.5f, float maxZoom = 20.0f, float minZoom = 0.5f)
         : center(center)
         , maxPitch(maxPitch)
         , minPitch(minPitch)
@@ -55,6 +55,7 @@ private:
     float maxZoom, minZoom;
     float hitOffset;
     float pRadius;
+
 
 
 };

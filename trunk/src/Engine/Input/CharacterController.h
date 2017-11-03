@@ -20,7 +20,9 @@ public:
         m_Position(0, 0, 0),
         m_Speed(2.5f),
         m_RotationSPeed(0.8f),
-        player(nullptr)
+        player(nullptr),
+        killDistance(2.f),
+        m_KILLING(false)
     {
     }
 
@@ -42,7 +44,11 @@ private:
     CActionManager* actionManager;
     CPhysXManager* physXManager;
     CSceneManager* sceneManager;
-
+    float killDistance;
+    bool m_KILLING;
+    Vect3f killingPosition;
+    Vect3f enemyPos;
+    float killingTimer = 0.f;
 };
 
 #endif //_ENGINE_CAMERACONTROLLER_CPB_20161126_H

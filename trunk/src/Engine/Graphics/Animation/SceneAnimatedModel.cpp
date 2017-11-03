@@ -116,6 +116,7 @@ void CSceneAnimatedModel::Destroy()
 
 void CSceneAnimatedModel::ExecuteAction(int Id, float DelayIn, float DelayOut, float WeightTarget, bool AutoLock)
 {
+    lastAction = Id;
     m_CalModel->getMixer()->executeAction(Id, DelayIn, DelayOut, WeightTarget, AutoLock);
 }
 
@@ -127,7 +128,6 @@ void CSceneAnimatedModel::BlendCycle(int Id, float Weight, float DelayIn)
 
 void CSceneAnimatedModel::ClearCycle(int Id, float DelayOut)
 {
-    lastCycle = -1;
     m_CalModel->getMixer()->clearCycle(Id, DelayOut);
 }
 
@@ -145,7 +145,17 @@ bool CSceneAnimatedModel::IsActionAnimationActive(int Id) const
 void  CSceneAnimatedModel::ClearActiveAnimationCycle(float DelayOut)
 {
     if (lastCycle != -1)
+    {
+
         ClearCycle(lastCycle, DelayOut);
+        lastCycle = -1;
+
+    }
+    else if (lastAction != -1)
+    {
+        // m_CalModel->getMixer()->removeAction(lastAction);
+        lastAction = -1;
+    }
 }
 
 
