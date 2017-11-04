@@ -3,7 +3,7 @@
 	<set_depth_stencil_state name="Depth Stencil Deferred Multiple Target" enable_z_test = "true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>
 	<set_rasterizer_state cull_mode="front" clock_wise="1" type="solid"/> <!-- type  -->
 	
-	<apply_technique_pool name = "temare" pool_name="shadows"/>
+	<apply_technique_pool name = "apply_technique_shadows" pool_name="shadows"/>
 	<generate_shadow_maps />	
 	<set_per_frame_constants name="set_per_frame_cmd"/>
 	
@@ -19,14 +19,15 @@
 	<clear render_target="true" depth_stencil="true" color="0.0 0.0 0.0 0.0"/>
 	<apply_technique_pool pool_name="pbr_gbuffer"/>
 	
-	<render_layer layer="test"/>
+<!--	<render_layer layer="test"/>-->
 	<render_layer layer="opaque"/>
 	<render_layer layer="LPlayer"/>
-	<render_layer layer="triggers"/>
+	<!--<render_layer layer="triggers"/>-->
 	<render_layer layer="navmesh"/>
 	<render_layer layer="salas"/>
 	<render_layer layer="laser" />
 	<render_layer layer="drones" />	
+	<render_layer layer="guardias" />	
 	<unset_render_target/>	
 	End generate gbuffer
 	
@@ -86,49 +87,104 @@
         <texture name="HDRCapturedTexture" stage_id="0"/>
     </draw_quad>
 	
-	
 	INICIO POST PROCESS
 	
 	<apply_technique_pool pool_name="post_process"/>
-	<enable_alpha_blend/>
-	<render_gui/>
-	<disable_alpha_blend/>
+	<capture_frame_buffer name="capture_frame_buffer" texture_width_as_frame_buffer="true" />
+	<set_depth_stencil_state enable_z_test="false" write_z_buffer="false" enable_stencil="false"/>
+			
+	INICIO EFECTO BLOOM	
+	<capture_frame_buffer name="capture_frame_buffer_bloom" texture_width_as_frame_buffer="true" />
+
+	<apply_filter>
+        <texture name="capture_frame_buffer_bloom" stage_id="0"/>
+		<dynamic_texture name="bloomTexture" size="1024 768" material="BloomMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussiano2" size="1024 768" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussiano" size="1024 768" material="GaussianMaterial" format="RGBA8_UNORM"/>
+	</apply_filter>
+
+	<draw_quad name="bloomCombineQuad" material="BloomCombineMaterial">
+        <texture name="capture_frame_buffer_bloom" stage_id="0"/>
+		<texture name="Gaussiano" stage_id="1"/>
+    </draw_quad>	
+	FIN EFECTO BLOOM		
+	
+	
+	INICIO EFECTO ZBLUR
+	<capture_frame_buffer name="capture_frame_buffer_ZBlur" texture_width_as_frame_buffer="true" />
+
+	<apply_filter>
+        <texture name="capture_frame_buffer_ZBlur" stage_id="0"/>
+		<dynamic_texture name="Gaussiano3" size="1024 768" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussiano2" size="1024 768" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussiano1" size="1024 768" material="GaussianMaterial" format="RGBA8_UNORM"/>
+		<dynamic_texture name="Gaussiano" size="1024 768" material="GaussianMaterial" format="RGBA8_UNORM"/>
+	</apply_filter>
+
+	<draw_quad name="ZBlurQuad" material="ZBlurMaterial">
+        <texture name="capture_frame_buffer_ZBlur" stage_id="0"/>
+        <texture name="Gaussiano" stage_id="1"/>
+		<texture name="DepthMapTexture" stage_id="2"/>
+    </draw_quad>	
+	FIN EFECTO ZBLUR
+	
+<!--	
+	 INICIO EFECTO HDAO
+	<capture_frame_buffer name="capture_frame_bufferHDAO" texture_width_as_frame_buffer="true" />
+
+	<draw_quad name="HdaoQuad" material="HdaoMaterial">
+        <texture name="capture_frame_bufferHDAO" stage_id="0"/>
+        <texture name="NormalMapTexture" stage_id="1"/>
+		<texture name="DepthMapTexture" stage_id="2"/>		 
+	</draw_quad>	
+	FIN EFECTO HDAO		 -->
+			
+	<!-- INICIO FOG
+	<capture_frame_buffer name="capture_frame_buffer_fog" texture_width_as_frame_buffer="true" />
+	<draw_quad name="FogQuad" material="FogMaterial">
+		<texture name="capture_frame_buffer_fog" stage="0"/>
+		<texture name="DepthMapTexture" stage="1"/>
+	</draw_quad>
+	FIN FOG -->
+	
 	INICIO NOISE VIGNETTING
-	<!-- <enable_alpha_blend/>	
+	<enable_alpha_blend/>	
 	<draw_quad name="noise_vignetting" material="NoiseVignettingMaterial">
 		<texture name="noise" />	
 		<texture name="vignetting" />
 	</draw_quad>	
-	<disable_alpha_blend/>	 -->
+	<disable_alpha_blend/>
 	FIN NOISE VIGNETTING
 
-	DEBUG SHIT
-
+	INICIO GUI
+	<enable_alpha_blend/>
+	<render_gui/>
+	<disable_alpha_blend/>	
+	FIN GUI
 	
-	<!-- 	
+	DEBUG SHIT 	
+	<!--
 	<apply_technique_pool pool_name="quad"/>
 	
-	<draw_quad  material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "512 512">
-        <texture name="DiffuseLightingTexture" stage_id="0"/>
+	<draw_quad  material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "256 256">
+        <texture name="Fspot001" stage_id="0"/>
+    </draw_quad>
+		
+	<draw_quad name="Draw Quad LightMap" material="DrawQuadMaterial" viewport_position = "0 257" viewport_size = "256 256">
+        <texture name="Fspot002" stage_id="0"/>
     </draw_quad>
 	
-	<draw_quad name="Draw Quad LightMap" material="DrawQuadMaterial" viewport_position = "0 129" viewport_size = "128 128">
-        <texture name="LightMapTexture" stage_id="0"/>
+	<draw_quad name="Draw Quad NormalMap" material="DrawQuadMaterial" viewport_position = "2 514" viewport_size = "256 256">
+        <texture name="Fspot003" stage_id="0"/>
     </draw_quad>
 	
-	<draw_quad name="Draw Quad NormalMap" material="DrawQuadMaterial" viewport_position = "129 0" viewport_size = "128 128">
-        <texture name="NormalMapTexture" stage_id="0"/>
-    </draw_quad>
-	
-	<draw_quad name="Draw Quad DepthMap" material="DrawQuadMaterial" viewport_position = "129 129" viewport_size = "128 128">
+	<draw_quad name="Draw Quad DepthMap" material="DrawQuadMaterial" viewport_position = "257 0" viewport_size = "256 256">
         <texture name="DepthMapTexture" stage_id="0"/>
     </draw_quad>
 	
-	<draw_quad name="Draw Quad SpecularMap" material="DrawQuadMaterial" viewport_position = "258 0" viewport_size = "128 128">
+	<draw_quad name="Draw Quad SpecularMap" material="DrawQuadMaterial" viewport_position = "257 257" viewport_size = "256 256">
         <texture name="SpecularMapTexture" stage_id="0"/>
     </draw_quad> -->
-	
-	
 	
 	INICIO LIGHT SCATTERING
 	<!--

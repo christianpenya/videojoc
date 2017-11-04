@@ -25,7 +25,7 @@ void CCharacterController::Update(float ElapsedTime)
         //player->BlendCycle(5, 1, 0.5f);
 
 
-        if (killingTimer>2.0f)
+        if (killingTimer>2.18f)//2a 1.27f
         {
             m_KILLING = false;
         }
@@ -53,7 +53,7 @@ void CCharacterController::Update(float ElapsedTime)
 
             Vect3f dist = l_Front * killDistance*1.5;
             Vect3f lKPos = m_Position + Vect3f(0, 1, 0)+ (l_Front*0.5f);
-            bool hit = physXManager->Raycast(lKPos, lKPos + dist, 0, data);
+            bool hit = physXManager->RaycastCam(lKPos, lKPos + dist, 0, data);
             if (hit)
             {
 

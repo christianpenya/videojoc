@@ -4,6 +4,9 @@
 #include "Graphics/Camera/CameraController.h"
 #include "Utils/Logger.h"
 #include "Imgui/imgui.h"
+#include "Engine/Engine.h"
+#include "Graphics/Scenes/SceneManager.h"
+#include "Graphics/Scenes/Scene.h"
 
 bool CSoundManager::m_EndOfEventPendantToNotify = false;
 
@@ -165,32 +168,6 @@ bool CSoundManager::UnloadSoundBank(const std::string &bank)
     }
 
     return true;
-}
-
-void CSoundManager::RegisterSpeaker(CSceneNode* _speaker)
-{
-    //assert(m_GameObjectSpeakers.find(_speaker) == m_GameObjectSpeakers.end());
-    if (m_GameObjectSpeakers.find(_speaker) != m_GameObjectSpeakers.end())
-        UnregisterSpeaker(_speaker);
-
-    AkGameObjectID id = GenerateObjectID();
-    m_GameObjectSpeakers[_speaker] = id;
-
-    Vect3f l_Position = _speaker->GetPosition();
-    Vect3f l_Orientation = _speaker->GetForward();
-
-    AkSoundPosition l_SoundPosition = {};
-
-    l_SoundPosition.Position.X = -l_Position.x;
-    l_SoundPosition.Position.Y = l_Position.y;
-    l_SoundPosition.Position.Z = l_Position.z;
-
-    l_SoundPosition.Orientation.X = -l_Orientation.x;
-    l_SoundPosition.Orientation.Y = l_Orientation.y;
-    l_SoundPosition.Orientation.Z = l_Orientation.z;
-
-    AK::SoundEngine::RegisterGameObj(id);
-    AK::SoundEngine::SetPosition(id, l_SoundPosition);
 }
 
 void CSoundManager::UnregisterSpeaker(const CSceneNode* _speaker)
@@ -400,38 +377,52 @@ bool CSoundManager::LoadSoundBanksXML()
     return true;
 }
 
+void CSoundManager::RegisterSpeaker(CSceneNode* _speaker)
+{
+    //assert(m_GameObjectSpeakers.find(_speaker) == m_GameObjectSpeakers.end());
+    if (m_GameObjectSpeakers.find(_speaker) != m_GameObjectSpeakers.end())
+        UnregisterSpeaker(_speaker);
+
+    AkGameObjectID id = GenerateObjectID();
+    m_GameObjectSpeakers[_speaker] = id;
+
+    Vect3f l_Position = _speaker->GetPosition();
+    Vect3f l_Orientation = _speaker->GetForward();
+
+    AkSoundPosition l_SoundPosition = {};
+
+    l_SoundPosition.Position.X = l_Position.x;
+    l_SoundPosition.Position.Y = l_Position.y;
+    l_SoundPosition.Position.Z = l_Position.z;
+
+    l_SoundPosition.Orientation.X = l_Orientation.x;
+    l_SoundPosition.Orientation.Y = l_Orientation.y;
+    l_SoundPosition.Orientation.Z = l_Orientation.z;
+
+    AK::SoundEngine::RegisterGameObj(id);
+    AK::SoundEngine::SetPosition(id, l_SoundPosition);
+}
+
+
 bool CSoundManager::LoadSpeakersXML()
 {
     tinyxml2::XMLDocument doc;
     tinyxml2::XMLError l_Error = doc.LoadFile((m_Path + m_SpeakersFilename).c_str());
-
     tinyxml2::XMLElement* l_Element;
 
-    if (l_Error == tinyxml2::XML_SUCCESS)
+    if (base::xml::SucceedLoad(l_Error))
     {
-        l_Element = doc.FirstChildElement("Speakers")->FirstChildElement();
+        CXMLElement * l_Element = doc.FirstChildElement("speakers");
 
-        while (l_Element != NULL)
+        if (l_Element)
         {
-            std::string l_Name = l_Element->GetAttribute<std::string>("name", "");;
-            Vect3f l_Position = l_Element->GetAttribute<Vect3f>("position", Vect3f(0.0f, 0.0f, 0.0f));
-            Vect3f l_Orientation = l_Element->GetAttribute<Vect3f>("forward", Vect3f(1.0f, 1.0f, 1.0f));
+            for (tinyxml2::XMLElement *iSpeaker = l_Element->FirstChildElement(); iSpeaker != nullptr; iSpeaker = iSpeaker->NextSiblingElement())
+            {
+                std::string l_Name = iSpeaker->GetAttribute<std::string>("name", "");
+                std::string lLayerName = iSpeaker->GetAttribute<std::string>("layer", "");
 
-            AkSoundPosition l_SoundPosition = {};
-
-            l_SoundPosition.Position.X = -l_Position.x;
-            l_SoundPosition.Position.Y = l_Position.y;
-            l_SoundPosition.Position.Z = l_Position.z;
-
-            l_SoundPosition.Orientation.X = -l_Orientation.x;
-            l_SoundPosition.Orientation.Y = l_Orientation.y;
-            l_SoundPosition.Orientation.Z = l_Orientation.z;
-
-            AkGameObjectID id = GenerateObjectID();
-            m_NamedSpeakers[l_Name] = id;
-            AK::SoundEngine::RegisterGameObj(id);
-            AK::SoundEngine::SetPosition(id, l_SoundPosition);
-            l_Element = l_Element->NextSiblingElement();
+                RegisterSpeaker(CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(l_Name));
+            }
         }
     }
     else

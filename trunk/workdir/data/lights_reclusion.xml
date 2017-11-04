@@ -1,0 +1,242 @@
+<lights >
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot001" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="0.642233 5.76294 -1.22715" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer" />
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot002" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="0.642233 5.76294 2.42153" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot003" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.50918 5.76294 2.42153" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot004" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 14.93039" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="0.642233 5.76294 9.66714" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot005" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="15.0165 5.76294 2.42153" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot006" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 14.93039" generate_shadow_map="false" 
+		shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="15.0165 5.76294 10.1229" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot007" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 14.93039" generate_shadow_map="false"
+	shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.85227 5.76294 9.53179" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot008" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="1.05948 3.11509 17.8078" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot009" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="1.05948 3.11509 26.1245" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot010" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.38974 3.11509 27.3032" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot011" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.38974 3.11509 33.9526" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot012" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.38974 3.11509 42.1164" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot013" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="16.3407 3.11509 26.7207" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot014" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="23.0656 3.11509 26.7207" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot015" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="32.3117 3.11509 19.3255" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot016" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="32.3117 3.11509 26.6097" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot017" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="32.3117 3.11509 34.1888" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot018" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="40.6067 3.11509 19.3255" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot019" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="40.6067 3.11509 26.6097" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot020" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="40.6067 3.11509 34.1888" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot021" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="32.4509 3.11509 11.6983" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot022" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="32.4509 3.11509 3.75499" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot023" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="41.2561 3.11509 43.0373" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot024" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="41.2561 3.11509 50.3642" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot025" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 4.93039" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="48.4591 3.11509 34.376" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="10.0 10.0">
+		<transform position="0.0 10.0 10.0" forward="0 -1.0 0" />
+		<layer name = "LPlayer"/>
+		<layer name = "opaque" />
+	</light>
+	
+	<!--
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="10.0 10.0">
+		<transform position="0.0 10.0 10.0" forward="0 -1.0 0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
+	
+	
+	
+	
+	
+	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot001" color="1.0 1.0 1.0" enabled="true" intensity="5.0" attenuation_range="0.0 40.93039" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0" >
+		<transform position="-0.642233 5.76294 -1.22715" forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>	
+	</light>
+		
+	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="5.0" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="00.0 80.0 0.0" forward="0 -1.0 0" />
+		<layer name = "LPlayer"/>
+		<!-- <layer name = "objetos_transparentes" />		 
+	</light>
+	
+	
+	<light type="directional" name="FDirect002" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+				<transform position="-20.0 20.0 -20.0" forward="0.5 -0.5 0.5" />
+		<layer name = "opaque" />		
+		<layer name = "objetos_transparentes" />		
+	</light>
+	
+	<light type="spot" name="LDronReclusion1"  angle="45.0" fall_off="45.0"  color="1.0 1.0 1.0" active="true" intensity="0.5" attenuation_range="0.0 100.0" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024">
+		<transform position="8.46 1.19 25.40" forward="-1.0 0.0 0.0" /> 
+		<layer name = "drones" />
+	</light>
+	<light type="spot" name="Fspot001"  angle="20.0" fall_off="60.0"  color="1.0 1.0 1.0" active="true" intensity="0.1" attenuation_range="0.0 100.0" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024">
+		<transform position="-4.0 5.0 -7.5" forward="0.0 -0.5 -1.0" />
+		<layer name = "opaque" />
+	</light>
+	
+<!--
+	<light type="spot" name="Fspot001"  angle="20.0" fall_off="60.0"  color="1.0 1.0 1.0" active="true" intensity="0.1" attenuation_range="0.0 100.0" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024">
+		<transform position="-4.0 5.0 -7.5" forward="0.0 -0.5 -1.0" />
+		<layer name = "opaque" />
+	</light>
+	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+				<transform position="-6.23034 48.7916 37.74" forward="0.0 -0.819152 -0.573576" />
+	
+	<!--
+	<light type="point" name="Omni001" color="1.0 1.0 1.0" active="true" intensity="0.2" attenuation_range="0.0 100.0" >
+		<transform position="-13.8572 20.0 -16.0357" yaw="0." pitch ="-0.0" roll="0.0" />
+	</light>
+	<light type="point" name="Omni002" color="1.0 1.0 1.0" active="true" intensity="0.2" attenuation_range="0.0 100.0" >
+		<transform position="18.0355 20.0 28.6497" yaw="0.0" pitch ="0.0" roll="0.0" />
+	</light>
+	
+	<!--
+	
+	
+	<!--
+	<light type="spot" name="Fspot001"  angle="10.0" fall_off="40.0"  color="1.0 1.0 1.0" enabled="true" intensity="0.5" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024">
+		<transform position="-20.0 20.0 -20.0" yaw="0.5" pitch ="0.5" roll="0.0" />
+		<layer name = "deferred_opaque" />
+	</light>
+	
+	<light type="point" name="Omni001" color="1.0 1.0 1.0" enabled="true" intensity="0.5" attenuation_range="0.0 100.0" >
+		<transform position="-13.8572 7.78125 -16.0357" yaw="0.5" pitch ="0.5" roll="0.0" />
+	</light>
+	
+	<light type="point" name="Omni002" color="1.0 1.0 1.0" enabled="true" intensity="0.5" attenuation_range="0.0 100.0" >
+		<transform position="18.0355 15.3003 28.6497" yaw="0.5" pitch ="0.5" roll="0.0" />
+	</light>
+	-->
+	
+</lights>

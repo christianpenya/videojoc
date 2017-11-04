@@ -77,7 +77,8 @@ public:
     Vect3f m_Height = Vect3f(0.f, 0.0f, 0.0f); //Vect3f(0.f, 0.0f, .0f); Para guardias
     std::string m_Corename;
     CSceneAnimatedModel* m_SceneAnimatedModel;
-
+    void dieEnemy();
+    bool m_enemydead;
 
     GET_SET(float, SightDistance);
     GET_SET(float, MaxDetectDistance);
@@ -94,6 +95,10 @@ public:
     Vect3f GetPatrolPosition();
     bool PlayerOnSight();
     float m_ElapsedTime;
+    float m_accumtime = 0;
+    void hearsPlayer();
+    bool m_hear;
+    bool m_standby;
 
     virtual void handleInput(Input input)
     {

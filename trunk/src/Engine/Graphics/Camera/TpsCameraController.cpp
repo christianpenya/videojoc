@@ -9,7 +9,7 @@ void CTpsCameraController::Update(float ElapsedTime)
     CLevelController *contr = CEngine::GetInstance().m_LevelController;
     if (m_player != nullptr)
     {
-        Vect3f l_HEIGHT = (m_player->m_CrouchingCAM ? Vect3f(0,1.3f,0): playerHeight);
+        Vect3f l_HEIGHT = (m_player->m_CrouchingCAM ? Vect3f(0,1.4f,0): playerHeight);
         center = m_player->m_Position + l_HEIGHT;
         if (!contr->GetTimePaused())
         {
@@ -59,14 +59,11 @@ void CTpsCameraController::Update(float ElapsedTime)
         Vect3f origin = center - (m_Front * pRadius);
         CPhysXManager::RaycastData *data = new CPhysXManager::RaycastData;
         bool hit = physX->RaycastCam(origin, l_Position, 3, data); //3 | 4, data);
-        if (hit)
+        if (hit && strcmp(data->actor.c_str(),"player")!=0)
         {
 
             l_zoom = data->distance;
-            std::stringstream ss(std::stringstream::in | std::stringstream::out);
-            ss << l_zoom;
-            LOG_INFO_APPLICATION(ss.str().c_str());
-            if (l_zoom < 0.6f)
+            if (l_zoom < minDist)
                 l_zoom = pRadius;
 
             else

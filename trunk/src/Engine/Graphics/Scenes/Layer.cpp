@@ -15,13 +15,12 @@
 #include "Graphics/Particles/ParticleManager.h"
 #include "Graphics/Particles/ParticleSystemType.h"
 #include "Graphics/IA/EnemiesManager.h"
-#include "Graphics/IA/EnemyAnimated.h"
 #include "Graphics/IA/NavMesh.h"
 #include "Graphics/IA/NavMeshManager.h"
 #include "Graphics/IA/Laser.h"
 #include "Graphics/IA/Dron.h"
 #include "SceneGUI.h"
-
+#include "Graphics/IA/Guard.h"
 
 #ifdef _DEBUG
 #include <chrono>
@@ -42,7 +41,7 @@ CLayer::~CLayer()
 bool CLayer::Load(CXMLElement* aElement, bool update)
 {
     bool lOk = true;
-    CLightManager &lLM = CEngine::GetInstance().GetLightManager();
+
     CEnemiesManager &lEnemiesManager = CEngine::GetInstance().GetEnemiesManager();
     CNavMeshManager &l_NavMeshManager = CEngine::GetInstance().GetNavMeshManager();
 
@@ -54,6 +53,7 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
         CSceneNode* lNode = nullptr;
         lNodeName = iSceneNode->GetAttribute<std::string>("name", "");
         lNodeNamesFromXML.insert(lNodeName);
+        LOG_INFO_APPLICATION(lNodeName.c_str());
 
         if (strcmp(iSceneNode->Name(), "scene_mesh") == 0)
         {
@@ -99,16 +99,9 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
         }
         else if (strcmp(iSceneNode->Name(), "scene_light") == 0)
         {
-            CLight *l_light = nullptr;
-            CConstantBufferManager& lConstanBufferManager = CEngine::GetInstance().GetConstantBufferManager();
-            lConstanBufferManager.mLightsDesc.m_LightEnabled[0] = 0;
-            lConstanBufferManager.mLightsDesc.m_LightEnabled[1] = 0;
-            lConstanBufferManager.mLightsDesc.m_LightEnabled[2] = 0;
-            lConstanBufferManager.mLightsDesc.m_LightEnabled[3] = 0;
-            if (lLM.Exist(lNodeName))
+            if (CEngine::GetInstance().GetLightManager().Exist(lNodeName))
             {
-                lNode = lLM(lNodeName);
-                lLM.SetLightConstants(iSceneNode->GetAttribute<int>("id_light", 0), lLM(lNodeName));
+                lNode = CEngine::GetInstance().GetLightManager()(lNodeName);
                 lNode->SetNodeType(CSceneNode::eLight);
             }
         }
@@ -128,28 +121,25 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
             {
                 if (lEnemiesManager(lNodeName)->GetEnemyType() == CEnemy::eLaser)
                     lNode = ((CLaser*)lEnemiesManager(lNodeName));
-                else
+                else if (lEnemiesManager(lNodeName)->GetEnemyType() == CEnemy::eDron)
                 {
                     CDron * l_Enemy = (CDron*)lEnemiesManager(lNodeName);
                     CAnimatedCoreModel *l_EnemyAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_Enemy->GetCorename());
                     if (l_EnemyAnimatedCoreModel != nullptr)
                     {
-                        //lNode = l_Enemy;
                         lNode = new CDron(*l_Enemy);
                         ((CDron*)lNode)->Initialize(l_EnemyAnimatedCoreModel);
-                        //((CEnemyAnimated *)lNode)->BlendCycle(2, 1, 0);
                     }
-
-
-                    /*CEnemyAnimated * l_Enemy = (CEnemyAnimated*)lEnemiesManager(lNodeName);
+                }
+                else if (lEnemiesManager(lNodeName)->GetEnemyType() == CEnemy::eGuard)
+                {
+                    CGuard * l_Enemy = (CGuard*)lEnemiesManager(lNodeName);
                     CAnimatedCoreModel *l_EnemyAnimatedCoreModel = CEngine::GetInstance().GetAnimatedModelManager()(l_Enemy->GetCorename());
                     if (l_EnemyAnimatedCoreModel != nullptr)
                     {
-                    //                        lNode = l_Enemy;
-                        lNode = new CEnemyAnimated(*l_Enemy);
-                        ((CEnemyAnimated *)lNode)->Initialize(l_EnemyAnimatedCoreModel);
-                        //((CEnemyAnimated *)lNode)->BlendCycle(2, 1, 0);
-                    }*/
+                        lNode = new CGuard(*l_Enemy);
+                        ((CGuard*)lNode)->Initialize(l_EnemyAnimatedCoreModel);
+                    }
                 }
                 lNode->SetNodeType(CSceneNode::eEnemy);
             }
@@ -209,12 +199,19 @@ void CLayer::DeleteAllNodes()
 
     for (std::set<std::string>::iterator iMissingNode = lMissingNodes.begin(); iMissingNode != lMissingNodes.end(); ++iMissingNode)
     {
-        if ((*this)(*iMissingNode)->GetNodeType() == CSceneNode::eMesh)
+        if ((*this)(*iMissingNode)->GetNodeType() == CSceneNode::eMesh || (*this)(*iMissingNode)->GetNodeType() == CSceneNode::eAnimatedModel)
         {
             ((CSceneMesh*)(*this)(*iMissingNode))->DeletePhysx();
         }
 
-        Remove(*iMissingNode);
+        if ((*this)(*iMissingNode)->GetNodeType() == CSceneNode::eLight)
+        {
+
+        }
+        else
+        {
+            Remove(*iMissingNode);
+        }
     }
 }
 
@@ -223,7 +220,10 @@ bool CLayer::Update(float elapsedTime)
     bool lOk = true;
     for (std::vector<CSceneNode*>::iterator iSceneNode = m_ResourcesVector.begin(); iSceneNode != m_ResourcesVector.end(); ++iSceneNode)
     {
-        lOk &= (*iSceneNode)->Update(elapsedTime);
+        if (*iSceneNode)
+        {
+            lOk &= (*iSceneNode)->Update(elapsedTime);
+        }
     }
     return lOk;
 }
@@ -356,11 +356,14 @@ CSceneNode* CLayer::GetSceneNode(std::string aName)
 {
     CSceneNode* lOut = nullptr;
 
-    auto lNodePair = m_ResourcesMap.find(aName);
-
-    if (lNodePair != m_ResourcesMap.end())
+    if (m_ResourcesMap.find(aName) != m_ResourcesMap.end())
     {
-        lOut = lNodePair->second.m_Value;
+        auto lNodePair = m_ResourcesMap.find(aName);
+
+        if (lNodePair != m_ResourcesMap.end())
+        {
+            lOut = lNodePair->second.m_Value;
+        }
     }
 
     return lOut;

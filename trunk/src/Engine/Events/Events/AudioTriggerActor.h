@@ -4,14 +4,13 @@
 #define _ENGINE_AUDIOTRIGGERACTOR_20170910_H
 
 #include "Events/Actor.h"
+#include "Sound/ISoundManager.h"
 
 class CXMLElement;
 class CSceneNode;
 
 class CAudioTriggerActor : public CActor
 {
-private:
-
 public:
     CAudioTriggerActor();
     ~CAudioTriggerActor();
@@ -21,6 +20,7 @@ public:
     void Update(float elapsedTime);
 
     CSceneNode* mTrigger;
+    SoundEvent mSoundEvent;
 };
 
 #endif //_ENGINE_AUDIOTRIGGERACTOR_20170910_H

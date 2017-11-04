@@ -12,7 +12,7 @@
 #include "Utils/EnumToString.h"
 #include "Graphics/Scenes/Layer.h"
 #include "Physx/PhysxManager.h"
-
+#include "Events/LevelController.h"
 
 
 class CEnemy
@@ -28,6 +28,7 @@ public:
     CEnemy(CXMLElement* aElement);
     virtual ~CEnemy();
     CPhysXManager &m_PhysXManager;
+    CLevelController &m_LevelController;
     float m_DeadDistance;
 
     GET_SET(EEnemyType, EnemyType);
@@ -38,7 +39,7 @@ public:
     double distanceBetweenTwoPoints(double x, double y, double a, double b);
     float getAngle(float x1, float y1, float z1, float x2, float y2, float z2);
     float getAngle2(float x1, float y1, float z1, float x2, float y2, float z2);
-
+    float GetRandomValue(float min, float max);
 };
 
 

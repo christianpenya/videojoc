@@ -102,6 +102,11 @@ public:
     CLevelController* m_LevelController;
 
     // void CharacterControllerUpdate(CActionManager* aActionManager, float dt);
+    CCharacterController* GetCharacterController()
+    {
+        return m_CharacterController;
+    }
+
     void DrawImgui(int choice);
 };
 

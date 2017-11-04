@@ -1,7 +1,6 @@
 #include "Scene.h"
 #include "XML/tinyxml2/tinyxml2.h"
 #include "XML/XML.h"
-#include "Graphics/Lights/lightManager.h"
 #include "Imgui/imgui.h"
 
 #ifdef _DEBUG
@@ -21,15 +20,21 @@ CScene::~CScene()
     CTemplatedMapVector<CLayer>::Destroy();
 }
 
-bool CScene::Load(const std::string& aFilename)
+bool CScene::Load(const std::string& aFilename, bool update)
 {
     mFilename = aFilename;
-    return Load();
+
+    return Load(update);
 }
 
 bool CScene::Load(bool update)
 {
     bool lOk = true;
+
+    if (mFilename.find(".xml") == std::string::npos)
+    {
+        mFilename = "data/scenes/" + m_Name + "/scene_" + m_Name + ".xml";
+    }
 
     CXMLDocument document;
     EXMLParseError error = document.LoadFile((mFilename).c_str());
@@ -49,7 +54,7 @@ bool CScene::Load(bool update)
 
                     CLayer* lLayer = (*this)(lLayerName);
 
-                    if (lLayer)//(&& lLayer->GetActive()
+                    if (lLayer)
                     {
                         lLayer->Load(iLayer, update);
                     }
@@ -91,6 +96,23 @@ bool CScene::Load(bool update)
 
     return lOk;
 }
+
+void CScene::Unload()
+{
+    std::set<std::string> lMissingLayers;
+    for (std::vector<CLayer *>::iterator it = m_ResourcesVector.begin(); it != m_ResourcesVector.end(); ++it)
+    {
+        assert(lMissingLayers.count((*it)->GetName()) == 0);
+        lMissingLayers.insert((*it)->GetName());
+    }
+
+    for (std::set<std::string>::iterator iMissingLayer = lMissingLayers.begin(); iMissingLayer != lMissingLayers.end(); ++iMissingLayer)
+    {
+        (*this)(*iMissingLayer)->DeleteAllNodes();
+    }
+}
+
+
 bool CScene::Update(float elapsedTime)
 {
     bool lOk = true;

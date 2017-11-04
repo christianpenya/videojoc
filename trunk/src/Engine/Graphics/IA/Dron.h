@@ -32,7 +32,6 @@ public:
 
     void patrol();
     void chase();
-    CCharacterController m_DronController;
 
     void GotoNextPoint();
     void GotoNextPointChase();

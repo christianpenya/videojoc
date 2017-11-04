@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="10" SoundbankVersion="113">
 	<RootPaths>
-		<ProjectRoot>C:\Users\christian\Desktop\Prometeo\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\christian\Desktop\Prometeo\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\christian\Desktop\Prometeo\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/</ProjectRoot>
+		<SourceFilesRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/.cache/Windows/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/GeneratedSoundBanks/Windows/</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\christian\Desktop\Prometeo\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/GeneratedSoundBanks/Windows/</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -15,16 +15,137 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX">
-			<ShortName>Main</ShortName>
-			<Path>Main.bnk</Path>
+		<SoundBank Id="2444914351" Language="SFX">
+			<ShortName>reclusion</ShortName>
+			<Path>reclusion.bnk</Path>
 			<IncludedEvents>
-				<Event Id="1818940147" Name="pasillo"/>
+				<Event Id="3935774190" Name="c11"/>
+				<Event Id="4012403806" Name="camaras_chispazos"/>
+				<Event Id="2013887443" Name="click_mouse"/>
+				<Event Id="198708743" Name="drone_motor"/>
+				<Event Id="1447488131" Name="drone_off"/>
+				<Event Id="2682326191" Name="drone_on"/>
+				<Event Id="2659565010" Name="fluerescent_light"/>
+				<Event Id="1403540682" Name="keyboard"/>
+				<Event Id="2187720622" Name="musica_nivel_1"/>
+				<Event Id="362316840" Name="passos_caminar"/>
+				<Event Id="1233668454" Name="passos_corre"/>
+				<Event Id="3479756012" Name="passos_sigilo"/>
+				<Event Id="2550763292" Name="sniper"/>
+				<Event Id="3788374456" Name="sonido_ambiente_carcel"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="434193538" Language="SFX">
-					<ShortName>bdmthrfckr.wav</ShortName>
-					<Path>SFX\bdmthrfckr_9E69E797.wem</Path>
+				<File Id="8945505" Language="SFX">
+					<ShortName>5W.wav</ShortName>
+					<Path>SFX/5W_9E69E797.wem</Path>
+				</File>
+				<File Id="22141420" Language="SFX">
+					<ShortName>sniper4.wav</ShortName>
+					<Path>SFX/sniper4_9E69E797.wem</Path>
+				</File>
+				<File Id="29918590" Language="SFX">
+					<ShortName>passos4.wav</ShortName>
+					<Path>SFX/passos4_9E69E797.wem</Path>
+				</File>
+				<File Id="54256266" Language="SFX">
+					<ShortName>keyboard.wav</ShortName>
+					<Path>SFX/keyboard_9E69E797.wem</Path>
+				</File>
+				<File Id="60544498" Language="SFX">
+					<ShortName>ambiente_carcel.wav</ShortName>
+					<Path>SFX/ambiente_carcel_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="71849007" Language="SFX">
+					<ShortName>fluorescent_light.wav</ShortName>
+					<Path>SFX/fluorescent_light_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="88635069" Language="SFX">
+					<ShortName>drone_off.wav</ShortName>
+					<Path>SFX/drone_off_9E69E797.wem</Path>
+				</File>
+				<File Id="118166310" Language="SFX">
+					<ShortName>drone_motor.wav</ShortName>
+					<Path>SFX/drone_motor_9E69E797.wem</Path>
+				</File>
+				<File Id="213786686" Language="SFX">
+					<ShortName>passos2.wav</ShortName>
+					<Path>SFX/passos2_9E69E797.wem</Path>
+				</File>
+				<File Id="322792517" Language="SFX">
+					<ShortName>Alcatraz_Nivel 1_M1.wav</ShortName>
+					<Path>SFX/Alcatraz_Nivel 1_M1_9E69E797.wem</Path>
+				</File>
+				<File Id="334403130" Language="SFX">
+					<ShortName>chispazos3.wav</ShortName>
+					<Path>SFX/chispazos3_9E69E797.wem</Path>
+				</File>
+				<File Id="374103117" Language="SFX">
+					<ShortName>passos5.wav</ShortName>
+					<Path>SFX/passos5_9E69E797.wem</Path>
+				</File>
+				<File Id="419406652" Language="SFX">
+					<ShortName>1W.wav</ShortName>
+					<Path>SFX/1W_9E69E797.wem</Path>
+				</File>
+				<File Id="472217988" Language="SFX">
+					<ShortName>4L.wav</ShortName>
+					<Path>SFX/4L_9E69E797.wem</Path>
+				</File>
+				<File Id="500390299" Language="SFX">
+					<ShortName>2L.wav</ShortName>
+					<Path>SFX/2L_9E69E797.wem</Path>
+				</File>
+				<File Id="504779822" Language="SFX">
+					<ShortName>sniper3.wav</ShortName>
+					<Path>SFX/sniper3_9E69E797.wem</Path>
+				</File>
+				<File Id="566239681" Language="SFX">
+					<ShortName>Click Mouse.wav</ShortName>
+					<Path>SFX/Click Mouse_9E69E797.wem</Path>
+				</File>
+				<File Id="573956825" Language="SFX">
+					<ShortName>passos3.wav</ShortName>
+					<Path>SFX/passos3_9E69E797.wem</Path>
+				</File>
+				<File Id="646972843" Language="SFX">
+					<ShortName>sniper1.wav</ShortName>
+					<Path>SFX/sniper1_9E69E797.wem</Path>
+				</File>
+				<File Id="649195679" Language="SFX">
+					<ShortName>6L.wav</ShortName>
+					<Path>SFX/6L_9E69E797.wem</Path>
+				</File>
+				<File Id="766959344" Language="SFX">
+					<ShortName>sniper2.wav</ShortName>
+					<Path>SFX/sniper2_9E69E797.wem</Path>
+				</File>
+				<File Id="861354335" Language="SFX">
+					<ShortName>chispazos2.wav</ShortName>
+					<Path>SFX/chispazos2_9E69E797.wem</Path>
+				</File>
+				<File Id="879432027" Language="SFX">
+					<ShortName>3W.wav</ShortName>
+					<Path>SFX/3W_9E69E797.wem</Path>
+				</File>
+				<File Id="900751072" Language="SFX">
+					<ShortName>passos1.wav</ShortName>
+					<Path>SFX/passos1_9E69E797.wem</Path>
+				</File>
+				<File Id="934114347" Language="SFX">
+					<ShortName>Drone_on.wav</ShortName>
+					<Path>SFX/Drone_on_9E69E797.wem</Path>
+				</File>
+				<File Id="960541829" Language="SFX">
+					<ShortName>Alcatraz_Nivel 1_M2_bucle.wav</ShortName>
+					<Path>SFX/Alcatraz_Nivel 1_M2_bucle_9E69E797.wem</Path>
+				</File>
+				<File Id="973699189" Language="SFX">
+					<ShortName>Alcatraz_Nivel 1_M3.wav</ShortName>
+					<Path>SFX/Alcatraz_Nivel 1_M3_9E69E797.wem</Path>
+				</File>
+				<File Id="985087689" Language="SFX">
+					<ShortName>chispazos1.wav</ShortName>
+					<Path>SFX/chispazos1_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

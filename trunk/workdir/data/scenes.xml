@@ -1,9 +1,9 @@
 <scenes>
 
-	<scene name="escena_parkineo" folder="data/scenes/" active="false" />
+	<scene name="escena_parkineo" folder="data/scenes/parkineo/" active="false" />
 
-	<scene name="escena_zona_administracion" folder="data/scenes/" active="false"/>
-	<scene name="escena_zona_reclusion" folder="data/scenes/" active="true"/>
+	<scene name="escena_zona_administracion" folder="data/scenes/administracion/" active="false"/>
+	<scene name="reclusion" folder="data/scenes/reclusion/" active="true"/>
 	<scene name="escena_menuPrincipal" folder="data/scenes/" active="false"/>
 
 </scenes>

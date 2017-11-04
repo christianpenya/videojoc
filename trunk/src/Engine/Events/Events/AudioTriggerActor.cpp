@@ -27,15 +27,14 @@ void CAudioTriggerActor::Load(CXMLElement* aElement)
     assert(lLayerName != "");
     assert(lObjectName != "");
 
+    mSoundEvent.eventName = lObjectName;
     mTrigger = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(lObjectName);
 }
 
 void CAudioTriggerActor::Act()
 {
     //LOG_INFO_APPLICATION("ACTING! I'M ACTING!");
-    SoundEvent se;
-    se.eventName = "pasillo";
-    CEngine::GetInstance().m_SoundManager->PlayEvent(se, true);
+    CEngine::GetInstance().m_SoundManager->PlayEvent(mSoundEvent, true);
 }
 
 void CAudioTriggerActor::Update(float elapsedTime)

@@ -10,11 +10,11 @@ float2 UV :
 };
 
 
-static float m_BloomActive= m_RawData[1].x;
-static float m_BloomIntensity= m_RawData[2].x;
-static float m_OriginalIntensity= m_RawData[3].x;
-static float m_BloomSaturation=m_RawData[4].x;
-static float m_OriginalSaturation=m_RawData[5].x;
+static float m_BloomActive= m_RawData[0].x;
+static float m_BloomIntensity= m_RawData[1].x;
+static float m_OriginalIntensity= m_RawData[2].x;
+static float m_BloomSaturation=m_RawData[3].x;
+static float m_OriginalSaturation=m_RawData[4].x;
 
 
 float4 AdjustSaturation(float4 Color, float Saturation)
@@ -26,8 +26,9 @@ float4 AdjustSaturation(float4 Color, float Saturation)
 
 float4 BloomCombinePS(PS_INPUT IN) : SV_Target
 {
-	if(m_BloomActive==0.0)
+	if(m_BloomActive==0.0) {
 		return T0Texture.Sample(S0Sampler, IN.UV);
+	}
 	else
 	{
 		float4 l_BloomColor=T1Texture.Sample(S1Sampler, IN.UV);

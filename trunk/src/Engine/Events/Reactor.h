@@ -4,10 +4,21 @@
 #define _ENGINE_REACTOR_20170830_H
 
 #include "Utils/Name.h"
+#include "Utils\EnumToString.h"
 
 class CReactor : public CName
 {
 public:
+
+    enum EReactorType
+    {
+        eDumb,
+        eOpenDoor,
+        eReloadScene,
+        eLoadScene,
+        eReactorTypeCount
+    };
+
     CReactor() : m_Finished(false) {}
     ~CReactor() {}
 
@@ -16,9 +27,19 @@ public:
     virtual void Update(float elapsedTime) = 0;
 
     GET_SET_BOOL(Finished);
+    EReactorType mReactorType;
 
 protected:
     bool m_Finished;
 };
+
+Begin_Enum_String(CReactor::EReactorType)
+{
+    Enum_String_Id(CReactor::eDumb, "dumb");
+    Enum_String_Id(CReactor::eOpenDoor, "open_door");
+    Enum_String_Id(CReactor::eReloadScene, "reload_scene");
+    Enum_String_Id(CReactor::eLoadScene, "load_scene");
+}
+End_Enum_String;
 
 #endif //_ENGINE_REACTOR_20170215_H

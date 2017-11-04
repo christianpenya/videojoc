@@ -23,6 +23,11 @@ void CMaterialManager::Load(const std::string & aLevelFilename, const std::strin
     Load(lMaterialFilenames);
 }
 
+void CMaterialManager::Load(const std::string & aLevelFilename, bool update)
+{
+    m_LevelMaterialsFilename = aLevelFilename;
+    Load(update);
+}
 
 bool CMaterialManager::Load(bool update)
 {
@@ -44,6 +49,11 @@ bool CMaterialManager::Load(std::set< std::string > &filenames, bool update)
 
     for (auto iFilename : filenames)
     {
+        if (iFilename.find(".xml") == std::string::npos)
+        {
+            iFilename = "data/scenes/" + iFilename + "/materials_" + iFilename + ".xml";
+        }
+
         EXMLParseError error = document.LoadFile(iFilename.c_str());
 
         if (base::xml::SucceedLoad(error))

@@ -594,14 +594,141 @@
 	</layer>
 
 	<layer name="guardias" active="true" >
-		<scene_animated_model name="guardiaTEST" core="guardia"> rigid_body = "player">
-			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
-		</scene_animated_model>
-		<!--
-		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
-			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
-		</scene_animated_model>
-		-->
+		<scene_mesh name="PatrolPoint_GuardiaArco" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="1.491242 0.0 -18.6949" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_enemies name="GuardiaArco" core="guardia"  height="1.1" radiu="0.17" group="0">
+			<transform position="1.491242 0.0 -18.6949" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		
+		<scene_mesh name="PatrolPoint_GuardiaPasillo01"  mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="11.668 0.0 -9.84571" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaPasillo02"  mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="0.483442 0.0 -7.73145" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaPasillo03"  mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-9.23565 0.0 -8.25202" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaPasillo04"  mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-5.63444 0.0 -10.9063" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaPasillo05"  mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="5.98491 0.0 -11.1423" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaPasillo06"  mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="7.454 0.0 -8.15776" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_enemies name="GuardiaPasillo" core="guardia"  height="1.1" radiu="0.17" group="0">
+			<transform position="11.668 0.0 -9.84571" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		
+		
+		<scene_mesh name="PatrolPoint_GuardiaComedor01" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="23.0547 0.0 -11.9276" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_enemies name="GuardiaComedor01" core="guardia"  height="1.1" radiu="0.17" group="0">
+			<transform position="23.0547 0.0 -11.9276" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+	
+		
+		<scene_mesh name="PatrolPoint_GuardiaComedor02" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="23.1118 0.0 -6.63727" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>		
+		<scene_enemies name="GuardiaComedor02" core="guardia"  height="1.1" radiu="0.17" group="0">
+			<transform position="23.1118 0.0 -6.63727" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		
+		<scene_mesh name="PatrolPoint_GuardiaInferiorIzq01" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-9.70875 -2.94 1.75217" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorIzq02" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-8.03568 -2.94 -4.74" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorIzq03" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-1.41845 -2.94 -4.56" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorIzq04" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-0.94641 -2.94 1.7818" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_enemies name="GuardiaInferiorIzq" core="guardia"  height="1.1" radiu="0.17" group="0">
+			<transform position="-9.70875 -2.94 1.75217" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		
+		<scene_mesh name="PatrolPoint_GuardiaInferiorDer01" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="11.5883 -2.94 1.0173" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorDer02" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="11.5805 -2.94 -2.93877" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorDer03" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="3.36283 -2.94 -4.64" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorDer04" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="3.256 -2.94 1.21045" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_enemies name="GuardiaInferiorDer" core="guardia"  height="1.1" radiu="0.17" group="0">
+			<transform position="3.36283 -2.94 -4.64" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		
+		
+		<scene_mesh name="PatrolPoint_GuardiaInferiorSillas01" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-8.23539 -2.94 12.376" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorSillas02" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-7.3438 -2.94 5.96" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorSillas03" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="4.01993 -2.94 5.62" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorSillas04" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="4.25073 -2.94 15.39" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorSillas05" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-6.99 -2.94 15.84" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorSillas06" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-1.89478 -2.94 5.13" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorSillas07" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="12.0891 -2.94 6.8794" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorSillas08" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="11.94 -2.94 14.32" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_enemies name="GuardiaInferiorSillas" core="guardia"  height="1.1" radiu="0.17" group="0">
+			<transform position="-8.23539 -2.94 12.376" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		
+		<scene_mesh name="PatrolPoint_GuardiaOficina" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="15.7044 -2.94 12.6917" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_enemies name="GuardiaOficina" core="guardia"  height="1.1" radiu="0.17" group="0">
+			<transform position="15.7044 -2.94 12.6917" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		
+		
+		<scene_mesh name="PatrolPoint_GuardiaInferiorCabinas01" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-23.4928 -2.94 12.1718" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorCabinas02" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-16.4499 -2.94 10.9372" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint_GuardiaInferiorCabinas03" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-13.2719 -2.94 12.3387" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_enemies name="GuardiaInferiorCabinas" core="guardia"  height="1.1" radiu="0.17" group="0">
+			<transform position="-23.4928 -2.94 12.1718" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		
+		
+		<scene_mesh name="PatrolPoint_DronAdministracion" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-16.8285 0.0 -10.9129" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_enemies name="DronAdministracion" core="dron"  height="1.1" radiu="0.17" group="0">
+			<transform position="-16.8285 0.0 -10.9129" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>
+		
 	</layer>
 	
 	<layer name="lights" active="true" >

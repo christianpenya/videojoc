@@ -48,13 +48,13 @@ float4 PS(PS_INPUT IN) : SV_Target
 	float3 l_NormalPlane=Decode(l_Normal.xy);
 	float3 l_NormalPixel=Decode(l_Normal.zw);
 		
-	//return float4(l_NormalPlane, 1);
+	//return float4(l_NormalPixel, 1);
 	
 	float3 l_CameraToPixel=normalize(l_WorldPosition-m_InverseView[3].xyz);
 	float3 l_NormalDotCam=max(dot(lerp(l_NormalPlane, l_NormalPixel,max(dot(l_NormalPlane, -l_CameraToPixel), 0)), -l_CameraToPixel), 0);
 	
 	//Comment next line to set fresnel or find another operation to calculate fresnel
-	//l_NormalDotCam=float3(1,1,1);
+	l_NormalDotCam=float3(1,1,1);
 	
 	float3 l_ShlickFresnel=saturate(l_SpecularColor.xyz+(1-l_SpecularColor.xyz)*pow(1-l_NormalDotCam.xyz, 5));
 	
