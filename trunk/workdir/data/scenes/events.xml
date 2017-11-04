@@ -1,6 +1,9 @@
 <events>
 
-
+	<event name="c11" active="true">
+		<actor name="audio_trigger" layer="triggers" obj_name="c11"/>
+		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
+	</event>
 	<event name="trigger_pasillo" active="true">
 		<actor name="audio_trigger" layer="triggers" obj_name="trigger_pasillo"/>
 		<reactor name="open_door" layer="opaque" obj_name="puerta666" />

@@ -22,7 +22,7 @@
 	<render_layer layer="test"/>
 	<render_layer layer="opaque"/>
 	<render_layer layer="LPlayer"/>
-	<!-- <render_layer layer="triggers"/> -->
+	<render_layer layer="triggers"/>
 	<render_layer layer="navmesh"/>
 	<render_layer layer="salas"/>
 	<render_layer layer="laser" />
@@ -108,7 +108,7 @@
     </draw_quad>	
 	FIN EFECTO BLOOM		
 	
-		
+	
 	INICIO EFECTO ZBLUR
 	<capture_frame_buffer name="capture_frame_buffer_ZBlur" texture_width_as_frame_buffer="true" />
 
@@ -127,8 +127,7 @@
     </draw_quad>	
 	FIN EFECTO ZBLUR
 	
-	
-	<!--
+<!--	
 	 INICIO EFECTO HDAO
 	<capture_frame_buffer name="capture_frame_bufferHDAO" texture_width_as_frame_buffer="true" />
 
@@ -167,7 +166,7 @@
 	<apply_technique_pool pool_name="quad"/>
 	
 	<draw_quad  material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "256 256">
-        <texture name="FDirect001" stage_id="0"/>
+        <texture name="Fspot001" stage_id="0"/>
     </draw_quad>
 		
 	<draw_quad name="Draw Quad LightMap" material="DrawQuadMaterial" viewport_position = "0 257" viewport_size = "256 256">
@@ -177,18 +176,14 @@
 	<draw_quad name="Draw Quad NormalMap" material="DrawQuadMaterial" viewport_position = "2 514" viewport_size = "256 256">
         <texture name="Fspot003" stage_id="0"/>
     </draw_quad>
-
 	
-	
-	<draw_quad name="Draw Quad DepthMap" material="DrawQuadMaterial" viewport_position = "129 129" viewport_size = "128 128">
+	<draw_quad name="Draw Quad DepthMap" material="DrawQuadMaterial" viewport_position = "257 0" viewport_size = "256 256">
         <texture name="DepthMapTexture" stage_id="0"/>
     </draw_quad>
 	
-	<draw_quad name="Draw Quad SpecularMap" material="DrawQuadMaterial" viewport_position = "258 0" viewport_size = "128 128">
+	<draw_quad name="Draw Quad SpecularMap" material="DrawQuadMaterial" viewport_position = "257 257" viewport_size = "256 256">
         <texture name="SpecularMapTexture" stage_id="0"/>
     </draw_quad> -->
-	
-	
 	
 	INICIO LIGHT SCATTERING
 	<!--

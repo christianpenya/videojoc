@@ -54,6 +54,7 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
         CSceneNode* lNode = nullptr;
         lNodeName = iSceneNode->GetAttribute<std::string>("name", "");
         lNodeNamesFromXML.insert(lNodeName);
+        LOG_INFO_APPLICATION(lNodeName.c_str());
 
         if (strcmp(iSceneNode->Name(), "scene_mesh") == 0)
         {

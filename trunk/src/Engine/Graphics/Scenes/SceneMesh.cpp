@@ -157,7 +157,8 @@ void CSceneMesh::Initialize(CXMLElement* aElement)
         {
             Quatf rotation = Quatf();
             rotation.QuatFromYawPitchRoll(m_Yaw, m_Pitch, m_Roll);
-            CEngine::GetInstance().GetPhysXManager().SetActorTransform(m_Name, m_Position, rotation);
+            Vect3f lOffset = iNode->GetAttribute<Vect3f>("offset", Vect3f(0.0f, 0.0f, 0.0f));
+            CEngine::GetInstance().GetPhysXManager().SetActorTransform(m_Name, m_Position + lOffset, rotation);
         }
     }
 }

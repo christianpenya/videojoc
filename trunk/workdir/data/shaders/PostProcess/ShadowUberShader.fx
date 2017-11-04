@@ -107,5 +107,5 @@ float4 PS(PS_INPUT IN) : SV_Target
 	#endif
 	
 	float l_Depth=IN.Depth.z/IN.Depth.w;
-	return float4(l_Depth, l_Depth, l_Depth, 1);
+	return float4(l_Depth, l_Depth, l_Depth, 1.0f);
 }
