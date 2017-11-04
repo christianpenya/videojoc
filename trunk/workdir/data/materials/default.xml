@@ -61,7 +61,7 @@
 	</material>
 	
 	<material name="guardia_material_1" vertex_type="PositionWeightIndicesNormalUV">
-		<texture type="diffuse" filename="data/animated_models/guardia/guardia.jpg"/>
+		<texture type="diffuse" filename="data/animated_models/guardia/text_guardia.jpg"/>
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
 		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
 		<parameter type="float" name="lightmap" value="1.0" />

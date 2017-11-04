@@ -239,6 +239,8 @@
     <ClInclude Include="..\..\src\Engine\Events\Event.h" />
     <ClInclude Include="..\..\src\Engine\Events\EventManager.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerActor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointActor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\LoadSceneReactor.h" />
@@ -288,6 +290,7 @@
     <ClInclude Include="..\..\src\Engine\Graphics\IA\Dron.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\IA\EnemiesManager.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\IA\EnemyAnimated.h" />
+    <ClInclude Include="..\..\src\Engine\Graphics\IA\Guard.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\IA\Laser.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\IA\NavMesh.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\IA\NavMeshManager.h" />
@@ -372,6 +375,8 @@
     <ClCompile Include="..\..\src\Engine\Events\Event.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\EventManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerActor.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointActor.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\LoadSceneReactor.cpp" />
@@ -419,6 +424,7 @@
     <ClCompile Include="..\..\src\Engine\Graphics\IA\Dron.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\EnemiesManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\EnemyAnimated.cpp" />
+    <ClCompile Include="..\..\src\Engine\Graphics\IA\Guard.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\Laser.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMesh.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\IA\NavMeshManager.cpp" />

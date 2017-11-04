@@ -68,7 +68,14 @@ CSceneNode* CCinematicObjectPlayer::GetSceneNode(std::string sceneName, std::str
 {
     CSceneNode * lOut = nullptr;
 
-    CSceneManager &lScenMan = CEngine::GetInstance().GetSceneManager();
+    CSceneManager* lScenMan = &CEngine::GetInstance().GetSceneManager();
+    CScene* scene = lScenMan->GetCurrentScene();
+    CLayer* layer = scene->GetLayer(layerName);
+    lOut = layer->GetSceneNode(nodeName);
+    return lOut;
+
+
+    /*
     std::vector<CScene*> l_Scenes = lScenMan.GetScenes();
 
     for (std::vector<CScene*>::iterator it = l_Scenes.begin(); it != l_Scenes.end(); ++it)
@@ -94,4 +101,5 @@ CSceneNode* CCinematicObjectPlayer::GetSceneNode(std::string sceneName, std::str
     }
 
     return lOut;
+    */
 }

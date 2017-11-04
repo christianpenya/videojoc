@@ -193,6 +193,8 @@ void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string 
     void* vertexData = nullptr;
     unsigned short indexNum = 0;
     void* indexData = nullptr;
+    size_t index = GetActorSize(actorName);
+
 
     if (LoadMeshFile(aFileName, &vertexNum, &vertexData, &indexNum, &indexData))
     {
@@ -230,6 +232,7 @@ void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string 
         filterData.word0 = group;
         shape->setQueryFilterData(filterData);
         body->attachShape(*shape);
+        body->userData = (void*)index;
         m_Scene->addActor(*body);
 
         size_t index = GetActorSize(actorName);
@@ -588,7 +591,7 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
         {
             result_->position = CastVec(hit.block.position);
             result_->normal = CastVec(hit.block.normal);
-            result_->distance = origin.Distance(end); //hit.block.distance
+            result_->distance = hit.block.distance; //hit.block.distance
             result_->actor = m_ActorNames[(size_t)hit.block.actor->userData];
         }
         else
@@ -623,6 +626,7 @@ bool CPhysXManager::RaycastCam(const Vect3f& origin, const Vect3f& end, int filt
         result_->position = Vect3f(hit.block.position.x, hit.block.position.y, hit.block.position.z);
         result_->normal = Vect3f(hit.block.normal.x, hit.block.normal.y, hit.block.normal.z);
         result_->distance = hit.block.distance;
+        size_t a = (size_t)hit.block.actor->userData;
         result_->actor = m_ActorNames[(size_t)hit.block.actor->userData];
 
     }

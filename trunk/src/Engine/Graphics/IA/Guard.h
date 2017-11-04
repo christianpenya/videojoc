@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _DRON_20170809
-#define _DRON_20170809
+#ifndef _GUARD_20170902
+#define _GUARD_20170902
 
 #include "Graphics/Mesh/Mesh.h"
 #include "Input/CharacterController.h"
@@ -10,12 +10,12 @@
 #include <string>
 
 
-class CDron : public CEnemyAnimated
+class CGuard : public CEnemyAnimated
 {
 
 public:
-    CDron(CXMLElement* aTreeNode);
-    virtual ~CDron();
+    CGuard(CXMLElement* aTreeNode);
+    virtual ~CGuard();
 
     GET_SET(float, DetectAngle);
     GET_SET(float, speedPatroling);
@@ -30,6 +30,7 @@ public:
     float m_investigatingTolerance;
     Vect3f m_lastPositionView;
 
+
     void patrol();
     void chase();
 
@@ -37,7 +38,9 @@ public:
     void GotoNextPointChase();
     void ComputePath();
     void Move(Vect3f destination, float speed);
-    bool straight;
+    void Sleep();
+    bool m_sleep;
+    float m_timeSleep;
 };
 
-#endif //_DRON_20170809
+#endif //_GUARD_20170902

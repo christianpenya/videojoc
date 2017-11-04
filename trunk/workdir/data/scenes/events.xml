@@ -1,15 +1,21 @@
 <events>
 
+
 	<event name="c11" active="true">
 		<actor name="audio_trigger" layer="triggers" obj_name="c11"/>
 		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
 	</event>
-	<event name="trigger_pasillo" active="true">
+<!--	<event name="trigger_pasillo" active="true">
 		<actor name="audio_trigger" layer="triggers" obj_name="trigger_pasillo"/>
 		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
-	</event>
+	</event>-->
 	<event name="testTextGUI" active = "true">
-		<actor name="textGUI" portion="0.5 0.666" time="5.0" text="Mueve el raton para mirar alrededor"/>
+		<actor name="textGUIA" portion="0.5 0.666" time="5.0" text="Mueve el raton para mirar alrededor"/>
 		<reactor name="dumb" />
 	</event> 
+	
+<!--	<event name="checkpoint1" active = "true">
+		<actor name="checkpoint" triggerName="checkpoint1"/>
+		<reactor name="textGUIR" portion="0.5 0.333" time="5.0" text="Punto de control alcanzado"/>
+	</event> -->
 </events>

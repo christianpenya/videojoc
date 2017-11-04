@@ -3,7 +3,7 @@
 	<navmesh name="navMeshScene01" color="1.0 0.0 0.0 1.0" material="NavMeshMaterial" obj="data\zona1_navMesh.obj">
 		<transform position="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="-90.0"  forward="0.0 0.0 0.0" />	
 	</navmesh>
-	<!-- <navmesh name="navMeshScene02" color="1.0 0.0 0.0 1.0" material="NavMeshMaterial" obj="data\zona2_navMesh.obj">
+	<navmesh name="navMeshScene02" color="1.0 0.0 0.0 1.0" material="NavMeshMaterial" obj="data\zona2_navMesh.obj">
 		<transform position="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="-90.0"  forward="0.0 0.0 0.0" />	
-	</navmesh> -->
+	</navmesh>
 </navmeshs>
