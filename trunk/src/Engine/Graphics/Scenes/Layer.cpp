@@ -356,11 +356,14 @@ CSceneNode* CLayer::GetSceneNode(std::string aName)
 {
     CSceneNode* lOut = nullptr;
 
-    auto lNodePair = m_ResourcesMap.find(aName);
-
-    if (lNodePair != m_ResourcesMap.end())
+    if (m_ResourcesMap.find(aName) != m_ResourcesMap.end())
     {
-        lOut = lNodePair->second.m_Value;
+        auto lNodePair = m_ResourcesMap.find(aName);
+
+        if (lNodePair != m_ResourcesMap.end())
+        {
+            lOut = lNodePair->second.m_Value;
+        }
     }
 
     return lOut;
