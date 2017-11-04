@@ -152,7 +152,6 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
     filterData.word0 = 0001;
     shape->setQueryFilterData(filterData);
 
-    shape->setQueryFilterData(filterData);
     m_CharacterControllers[characterControllerName] = cct;
 
     m_ActorIndexs[characterControllerName] = index;

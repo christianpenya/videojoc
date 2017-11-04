@@ -1,7 +1,7 @@
 <scene>
 	
 	<layer name="LPlayer" active="true" >
-		<scene_animated_model name="player" core="prota2" height="1.1" radius="0.2" group="1" >
+		<scene_animated_model name="player" core="prota" height="1.1" radius="0.2" group="1" >
 			<transform position="0.8 3.2 -1.4" rotation="0.0 0.0 0.0" scale="1.0 1.05 1.0" />
 		</scene_animated_model>
 		<!--

@@ -37,6 +37,7 @@ public:
     CSceneAnimatedModel* player;
     Vect3f getFront();
     void moveToLastCheckpoint(Vect3f lastCheckpoint,Quatf rotation);
+    bool m_CrouchingCAM;
 
 
 private:

@@ -193,6 +193,8 @@ void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string 
     void* vertexData = nullptr;
     unsigned short indexNum = 0;
     void* indexData = nullptr;
+    size_t index = GetActorSize(actorName);
+
 
     if (LoadMeshFile(aFileName, &vertexNum, &vertexData, &indexNum, &indexData))
     {
@@ -230,6 +232,7 @@ void CPhysXManager::CreateStaticShape(const std::string& actorName, std::string 
         filterData.word0 = group;
         shape->setQueryFilterData(filterData);
         body->attachShape(*shape);
+        body->userData = (void*)index;
         m_Scene->addActor(*body);
 
         size_t index = GetActorSize(actorName);

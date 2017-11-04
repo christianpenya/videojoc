@@ -21,11 +21,11 @@ void CCharacterController::Update(float ElapsedTime)
     if (player != nullptr && !contr->GetTimePaused() && m_KILLING)
     {
         killingTimer += ElapsedTime;
-        player->ClearActiveAnimationCycle(0.5f);
-        player->BlendCycle(5, 1, 0.5f);
+        //player->ClearActiveAnimationCycle(0.5f);
+        //player->BlendCycle(5, 1, 0.5f);
 
 
-        if (killingTimer>3.0f)
+        if (killingTimer>2.0f)
         {
             m_KILLING = false;
         }
@@ -51,14 +51,16 @@ void CCharacterController::Update(float ElapsedTime)
 
             CPhysXManager::RaycastData *data = new CPhysXManager::RaycastData;
 
-            Vect3f dist = l_Front * killDistance;
-
-            bool hit = physXManager->RaycastCam(m_Position, m_Position+dist, 2, data);
+            Vect3f dist = l_Front * killDistance*1.5;
+            Vect3f lKPos = m_Position + Vect3f(0, 1, 0)+ (l_Front*0.5f);
+            bool hit = physXManager->Raycast(lKPos, lKPos + dist, 0, data);
             if (hit)
             {
 
                 if (strcmp(data->actor.c_str(), "DronReclusion1")==0)
                 {
+                    CSceneManager* sceneMan = &CEngine::GetInstance().GetSceneManager();
+                    Vect3f enemForward = sceneMan->GetCurrentScene()->GetLayer("drones")->GetSceneNode(data->actor.c_str())->GetForward();
                     enemyPos = data->position;
                     player->ClearActiveAnimationCycle(0.5f);
                     player->BlendCycle(5, 1, 0.5f);
@@ -76,9 +78,13 @@ void CCharacterController::Update(float ElapsedTime)
             x /= 2;
             l_Speed *= 1.4;
         }
+        m_CrouchingCAM = false;
         if (crouch>0.1f)
-            l_Speed *= .6f;
+        {
 
+            m_CrouchingCAM = true;
+            l_Speed *= .6f;
+        }
 
         if (!m_KILLING)
         {
@@ -102,6 +108,7 @@ void CCharacterController::Update(float ElapsedTime)
                 }
                 else
                 {
+
                     player->ClearActiveAnimationCycle(0.5f);
                     player->BlendCycle(2, 1, 0.5f);
                 }
