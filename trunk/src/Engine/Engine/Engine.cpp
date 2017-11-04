@@ -280,12 +280,11 @@ void CEngine::Update()
 
     //Vect2u size  = m_RenderManager->GetWindowSize();
     // m_GUIManager->DoGUISprite("gui1", "backgroundMENU", CGUIPosition(0, 0, size.x, size.y));
-    /* if (m_GUIManager->DoButton("gui1", "pause_button", CGUIPosition(50, 50, 400, 100)))
-     {
-         CPhysXManager::OverlapData *data = new CPhysXManager::OverlapData;
-         m_PhysXManager->Overlap(Vect3f(0.8f, 3.2f, -1.4f),5.0f, 0, data);
+    /*if (m_GUIManager->DoButton("gui1", "pause_button", CGUIPosition(50, 50, 400, 100)))
+    {
+        m_CinematicManager->Play("Cinematica01");
 
-     }*/
+    }*/
 
     //m_GUIManager->FillCommandQueueWithText("font1", "TEST", l_Pos, CGUIManager::TOP_CENTER,CColor(1.0f, 1.0f, 1.0f));
     //m_GUIManager->DoSlider("slider1", "teula_slider",  CGUIPosition(50, 50, 412, 40), .0f, 100.0f, .0f);

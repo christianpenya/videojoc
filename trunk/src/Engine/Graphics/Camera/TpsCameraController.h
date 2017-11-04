@@ -35,9 +35,10 @@ public:
         , m_Yaw(3.14f)
         , m_Pitch(0.0f)
         , m_Roll(0.0f)
-        , zoom(2.5f)
-        , hitOffset(0.3f)
-        , pRadius(0.2f)
+        , zoom(2.f)
+        , hitOffset(0.25f)
+        , pRadius(0.25f)
+        , minDist(pRadius+hitOffset)
     {
 
     };
@@ -55,6 +56,7 @@ private:
     float maxZoom, minZoom;
     float hitOffset;
     float pRadius;
+    float minDist;
 
 
 
