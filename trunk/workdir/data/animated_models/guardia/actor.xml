@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <actor name="guardia" radius_bs="2.0" pos_bs="0.0 1.0 0.0">
-	<skeleton filename="guardiaSKELETO.CSF"/>
-	<mesh filename="guardiaMESH.CMF"/>
+	<skeleton filename="ESKELETO_GUARDIA.CSF"/>
+	<mesh filename="MESH_GUARDIA.CMF"/>
 	
 	<material name="guardia_material_1" vertex_type="PositionWeightIndicesNormalUV">
-		<texture type="diffuse" filename="data/animated_models/guardia/guardia.jpg"/>
+		<texture type="diffuse" filename="data/animated_models/guardia/text_guardia.jpg"/>
 		<texture type="bump" filename="data/animated_models/guardia/guardiaNRM.jpg"/>
 		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
 		<parameter type="float" name="diffuse" value="100.0" />
@@ -14,8 +14,9 @@
 		<parameter type="float" name="environment_factor" value="0.4"/>
 		<parameter type="float" name="cutout_factor" value="1.0"/>
 	</material>
-	<animation name="idle" filename="idleGuardiaANIMATION.CAF" />
-	<animation name="walk" filename="walkGuardiaANIMATION.CAF" />
+	<animation name="idle" filename="IDLE_GUARDIA.CAF" />
+	<animation name="walk" filename="WALK_GUARDIA.CAF" />
+	<animation name="muere" filename="MUERTE_GUARDIA.CAF"/>
 	<!--
 	<animation name="attack_idle" filename="SerenoCombatIdle.CAF" />
 	<animation name="attackNormal" filename="SerenoAttack.CAF" />

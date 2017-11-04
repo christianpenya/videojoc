@@ -25,6 +25,7 @@ private:
     CGeometry *m_Geometry;
     int m_NumVertices;
     int m_NumFaces;
+    int lastAction = -1;
     bool LoadVertexBuffer();
     void LoadMaterials();
     void Deactivate();
