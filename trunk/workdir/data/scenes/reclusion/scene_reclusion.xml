@@ -567,23 +567,23 @@
 		
 		<scene_mesh name="Object004" mesh="data/meshes/reclusion/Object004.mesh" >
 			<transform position="31.561 0.279774 2.3979" yaw="0.0" piwtch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/Object004.mesh" scale="1.0 1.0 1.0" />
+			<!-- <collider rigid_body="shape" filename="data/meshes/reclusion/physx/Object004.mesh" scale="1.0 1.0 1.0" /> -->
 		</scene_mesh>
 		<scene_mesh name="Object005" mesh="data/meshes/reclusion/Object005.mesh" >
 			<transform position="31.561 0.279774 2.3979" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/Object005.mesh" scale="1.0 1.0 1.0" />
+			<!-- <collider rigid_body="shape" filename="data/meshes/reclusion/physx/Object005.mesh" scale="1.0 1.0 1.0" /> -->
 		</scene_mesh>
 		<scene_mesh name="Object006" mesh="data/meshes/reclusion/Object006.mesh" >
 			<transform position="31.561 0.279774 2.3979" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/Object006.mesh" scale="1.0 1.0 1.0" />
+			<!-- <collider rigid_body="shape" filename="data/meshes/reclusion/physx/Object006.mesh" scale="1.0 1.0 1.0" /> -->
 		</scene_mesh>
 		<scene_mesh name="Object007" mesh="data/meshes/reclusion/Object007.mesh" >
 			<transform position="31.561 0.279774 2.3979" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/Object007.mesh" scale="1.0 1.0 1.0" />
+			<!-- <collider rigid_body="shape" filename="data/meshes/reclusion/physx/Object007.mesh" scale="1.0 1.0 1.0" /> -->
 		</scene_mesh>
 		<scene_mesh name="Object008" mesh="data/meshes/reclusion/Object008.mesh" >
 			<transform position="31.561 0.279774 2.3979" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/reclusion/physx/Object008.mesh" scale="1.0 1.0 1.0" />
+			<!-- <collider rigid_body="shape" filename="data/meshes/reclusion/physx/Object008.mesh" scale="1.0 1.0 1.0" /> -->
 		</scene_mesh>
 		
 		
