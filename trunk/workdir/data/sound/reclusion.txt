@@ -1,0 +1,56 @@
+Event	ID	Name			Wwise Object Path	Notes
+	198708743	drone_motor			\reclusion\foleys\drone_motor	
+	362316840	passos_caminar			\reclusion\foleys\passos_caminar	
+	1233668454	passos_corre			\reclusion\foleys\passos_corre	
+	1403540682	keyboard			\reclusion\foleys\keyboard	
+	1447488131	drone_off			\reclusion\foleys\drone_off	
+	2013887443	click_mouse			\reclusion\foleys\click_mouse	
+	2187720622	musica_nivel_1			\reclusion\music\musica_nivel_1	
+	2550763292	sniper			\reclusion\foleys\sniper	
+	2659565010	fluerescent_light			\reclusion\foleys\fluerescent_light	
+	2682326191	drone_on			\reclusion\foleys\drone_on	
+	3479756012	passos_sigilo			\reclusion\foleys\passos_sigilo	
+	3788374456	sonido_ambiente_carcel			\reclusion\foleys\sonido_ambiente_carcel	
+	3935774190	c11			\reclusion\c11	
+	4012403806	camaras_chispazos			\reclusion\foleys\camaras_chispazos	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	2187720622	musica_nivel_1			\Default Work Unit\musica_nivel_1	
+
+Switch	ID	Name	Switch Group			Notes
+	544496509	calma	musica_nivel_1			
+	1853303301	c1	musica_nivel_1			
+	1853303302	c2	musica_nivel_1			
+	2460183230	fuig	musica_nivel_1			
+	2749728541	compte	musica_nivel_1			
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	8945505	5W	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\5W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\5W		3596352
+	22141420	sniper4	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\sniper4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper4		209954
+	29918590	passos4	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\passos4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos4		34664
+	54256266	keyboard	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\keyboard_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\keyboard\keyboard		282114
+	60544498	ambiente_carcel	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\ambiente_carcel_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sonido_ambiente_carcel\ambiente_carcel		5640464
+	71849007	fluorescent_light	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\fluorescent_light_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\fluorescent_light\fluorescent_light		831696
+	88635069	drone_off	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\drone_off_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\drone_off\drone_off		199744
+	118166310	drone_motor	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\drone_motor_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\drone_motor\drone_motor		358848
+	213786686	passos2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\passos2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos2		59064
+	322792517	Alcatraz_Nivel 1_M1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\calma\Alcatraz_Nivel 1_M1		25401792
+	334403130	chispazos3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\chispazos3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos3		95204
+	374103117	passos5	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\passos5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos5		55264
+	419406652	1W	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\1W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\1W		193056
+	472217988	4L	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\4L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\4L		287808
+	500390299	2L	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\2L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\2L		264098
+	504779822	sniper3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\sniper3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper3		191864
+	566239681	Click Mouse	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Click Mouse_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\click_mouse\Click Mouse		40464
+	573956825	passos3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\passos3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos3		48064
+	646972843	sniper1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\sniper1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper1		219014
+	649195679	6L	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\6L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\6L		220714
+	766959344	sniper2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\sniper2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper2		240664
+	861354335	chispazos2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\chispazos2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos2		83464
+	879432027	3W	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\3W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\c11\3W		1534528
+	900751072	passos1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\passos1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos1		53464
+	934114347	Drone_on	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Drone_on_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\drone_on\Drone_on		366136
+	960541829	Alcatraz_Nivel 1_M2_bucle	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M2_bucle_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\compte\Alcatraz_Nivel 1_M2_bucle		13824064
+	973699189	Alcatraz_Nivel 1_M3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\fuig\Alcatraz_Nivel 1_M3		2822592
+	985087689	chispazos1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\chispazos1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos1		86064
+

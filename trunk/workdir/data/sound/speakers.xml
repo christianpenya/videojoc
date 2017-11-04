@@ -1,3 +1,14 @@
-<Speakers>
-	<Speaker name="luz010" position="0.864574 5.77846 0.701807" orientation="0.0 0.0 -1.0"/>
-</Speakers>
+<speakers>
+	<!-- <speaker name="camara" layer="opaque"/>
+	<speaker name="camara001" layer="opaque"/>
+	<speaker name="camara002" layer="opaque"/>
+	<speaker name="camara003" layer="opaque"/>
+	<speaker name="camara004" layer="opaque"/>
+	<speaker name="camara005" layer="opaque"/>
+	<speaker name="camara006" layer="opaque"/>
+	<speaker name="camara007" layer="opaque"/>
+	<speaker name="camara010" layer="opaque"/>
+	<speaker name="camara011" layer="opaque"/>
+	<speaker name="camara012" layer="opaque"/>
+	<speaker name="camara013" layer="opaque"/> -->
+</speakers>

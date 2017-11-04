@@ -15,6 +15,7 @@ public:
     CMaterialManager();
     virtual ~CMaterialManager();
     void Load(const std::string &LevelFilename, const std::string &DefaultsFileName = "");
+    void Load(const std::string &LevelFilename, bool update = false);
     bool Load(bool update = false);
     void DrawImgui();
 

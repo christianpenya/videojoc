@@ -1,0 +1,608 @@
+<materials >
+
+	AUDIO TRIGGERS
+	<material name="AUDIO_009Material" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="0.0313726 0.0313726 0.533333 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+
+	ORDENADOR
+	<material name="computer" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\txt_computer.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	MONITOR
+	<material name="22 - Default" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\PC.jpg" />
+		<parameter type="color" name="diffuse_color" value="1.0 1.0 1.0 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+
+	SEPARADORES BAÑO
+	<material name="01 - Default" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\fibra de vidrio.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.15" />
+		<parameter type="float" name="roughness" value="0.8" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+
+	WATER, PUERTAS
+	<material name="metal_independent" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\metal.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala8_attachShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.3" />
+		<parameter type="float" name="roughness" value="0.4" />
+		<parameter type="float" name="occlusion" value="0.3" />
+	</material>
+
+	TRIGGER
+	<material name="02 - Default" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="1.0 0.0 1.0 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+
+	SALA
+	puto_cubemap.dds
+	<material name="escayolaconladrillos" vertex_type="PositionBumpUVUV2" >
+		<texture type="diffuse" filename="data\textures\escayolaconladrillos.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala8_attachShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="data\textures\nm_escayolaconladrillos.png" />
+		<parameter type="float" name="bump" value="0.52" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="madera sucia" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\madera sucia.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="microcemento" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\microcemento.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala8_attachShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.1" />
+		<parameter type="float" name="roughness" value="0.7" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="metal" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\metal.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala8_attachShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.3" />
+		<parameter type="float" name="roughness" value="0.4" />
+		<parameter type="float" name="occlusion" value="0.3" />
+	</material>
+	<material name="Material #86" vertex_type="PositionBumpUVUV2" >
+		<texture type="diffuse" filename="data\textures\escayola.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala8_attachShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="data\textures\nm_escayola.png" />
+		<parameter type="float" name="bump" value="0.52" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="baldosnes" vertex_type="PositionBumpUVUV2" >
+		<texture type="diffuse" filename="data\textures\baldosinespeques.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala8_attachShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="data\textures\nm_baldosinespeques.png" />
+		<parameter type="float" name="bump" value="0.5" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="barreraalpha" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\TexturesCom_MetalVarious0044_1_alphamasked_S.png" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="Material #132" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="0.858824 0.00392157 0.00392157 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="Material #155" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\fibra de vidrio.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala8_attachShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="persiana" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\persiana.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.5" />
+		<parameter type="float" name="roughness" value="0.5" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="Material #223" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\paredes bano.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala8_attachShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="espejo" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="0.662745 0.862745 1.0 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="1.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="Material #297" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\TexturesCom_Rust_albedo_S.tif" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="luz" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="0.952941 0.952941 0.952941 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.5" />
+		<parameter type="float" name="roughness" value="0.3" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="Material #344" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\corcho.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.5" />
+	</material>
+	<material name="negro" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="0.137255 0.137255 0.137255 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+
+	PALO VALLA
+	<material name="Material #121" vertex_type="PositionNormal" >
+		<texture type="diffuse" filename="" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="escaleones" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\metalescaleras.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="hierro" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\metal.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+
+	DRONES
+	<material name="Dron001Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.0 0.0 0.0 1.0 " />
+	</material>
+
+	<material name="PatrolPoint002Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.0 1.0 1.0 1.0 " />
+	</material>
+
+	<material name="SmokeMaterial" vertex_type="ParticleVertex" >
+		<texture type="diffuse" filename="data\particles\Smoke15Frames.png" />		
+		<parameter type="float2" name="sprite_size" value="5.0 3.0" />
+		<parameter type="float" name="lerp_sprite" value="0.1" />
+		<parameter type="float" name="ratio_y" value="0.8" />
+	</material>	
+	
+	DECALL ZONA B
+	<material name="19 - Default" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\letreros.png" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	TELEFONOS
+	<material name="telefono" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\txttelefono.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	DECAL PASILLO TELÉFONO
+	<material name="15 - Default" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\aviso.png" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	CONDUCTO
+	<material name="conducto" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\conducto.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.8" />
+		<parameter type="float" name="roughness" value="0.2" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	POSTER SUICIDIO
+	<material name="20 - Default" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\cartelitos.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+
+	MESA
+	<material name="Material #36" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\negro metal.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="Material #37" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\tabla.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+
+	CAMARA
+	<material name="10 - Default" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\Txt_camara.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+
+	CERRADURA
+	<material name="panel" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\txt_panel.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+
+	DECALS
+	<material name="Decall1" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\decall1.png" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\Decall084ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="Material #857" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\decall2.png" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\Decall084ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="0.5" />
+	</material>
+	<material name="Material #858" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\decall3.png" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\Decall084ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="Material #859" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\decall4.png" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\Decall084ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="Material #860" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\decall5.png" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\Decall084ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+	<material name="Material #861" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\decall6.png" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\Decall084ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="1.0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="1.0" />
+		<parameter type="float" name="occlusion" value="1.0" />
+	</material>
+
+	TUBERÍAS / ESTANTERIA
+	<material name="Material #309" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\metal.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="Material #310" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\TexturesCom_MetalVarious0044_1_alphamasked_S.png" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	
+	POSTER
+	<material name="07 - poster" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\poster.png" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="lightmap" filename="" />
+		<parameter type="float" name="lightmap" value="0" />
+		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+
+	CAMA
+	<material name="catre" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\TexturesCom_Carpet0012_1_seamless_S.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588235 0.588235 0.588235 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="0.5" />		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="manta almohada" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\TexturesCom_FabricWool0005_2_seamless_S.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="0.5" />		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.0" />
+		<parameter type="float" name="roughness" value="0.0" />
+		<parameter type="float" name="occlusion" value="0.0" />
+	</material>
+	<material name="Material #85" vertex_type="PositionNormalUVUV2" >
+		<texture type="diffuse" filename="data\textures\gris.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
+		<texture type="lightmap" filename="data\textures\sala5ShadowsMap.tga" />
+		<parameter type="float" name="lightmap" value="0.5" />		<texture type="bump" filename="" />
+		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
+		<texture type="cubemap" filename="data\textures\puto_cubemap.dds" />
+		<parameter type="float" name="metalness" value="0.6" />
+		<parameter type="float" name="roughness" value="0.4" />
+		<parameter type="float" name="occlusion" value="0.2" />
+	</material>
+	
+</materials>

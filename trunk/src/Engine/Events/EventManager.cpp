@@ -28,8 +28,6 @@ CEventManager::CEventManager() : mEnabled(true)
 CEventManager::~CEventManager()
 {
     __H_CHECKED_DELETE__(mFilename);
-    __H_CHECKED_DELETE__(mActors);
-    __H_CHECKED_DELETE__(mReactors);
 }
 
 bool CEventManager::Load(std::string aFilename)
@@ -84,17 +82,14 @@ void CEventManager::Update(float elapsedTime)
 
 CEvent* CEventManager::GetEvent(std::string aEvent)
 {
-    return  m_ResourcesMap.find(aEvent)->second.m_Value;
-}
-
-CActor* CEventManager::GetActor(std::string aActor)
-{
-    return mActors(aActor);
-}
-
-CReactor* CEventManager::GetReactor(std::string aReactor)
-{
-    return mReactors(aReactor);
+    if (m_ResourcesMap.find(aEvent) != m_ResourcesMap.end())
+    {
+        return  m_ResourcesMap.find(aEvent)->second.m_Value;
+    }
+    else
+    {
+        return nullptr;
+    }
 }
 
 void CEventManager::DrawImgui()

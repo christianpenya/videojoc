@@ -28,6 +28,7 @@
 #include"GUI/GUIManager.h"
 #include"GUI/GUIPosition.h"
 #include "RenderGUI.h"
+#include "Utils/Logger.h"
 
 #define RENDER_CMD_ENTRY(tag, command_class_name)  { tag, [] { return new  command_class_name();}},
 std::map<std::string, std::function<CRenderCmd*(void)>> sComandsFactory =
@@ -116,8 +117,10 @@ void CRenderPipeline::Execute()
     CRenderManager& lRenderManager = CEngine::GetInstance().GetRenderManager();
 
     for (size_t i = 0; i < GetCount(); ++i)
+    {
+        //LOG_INFO_APPLICATION(m_ResourcesVector[i]->GetName().c_str());
         m_ResourcesVector[i]->Execute(lRenderManager);
-
+    }
 }
 
 void CRenderPipeline::DrawImgui()

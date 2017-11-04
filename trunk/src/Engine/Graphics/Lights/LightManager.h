@@ -11,8 +11,9 @@ class CLightManager : public base::utils::CTemplatedMapVector<CLight>
 public:
     CLightManager();
     ~CLightManager();
-    bool Load(const std::string& aFileName);
+    bool Load(const std::string& aFileName, bool update = false);
     CLight* GetLightByIdx(size_t idLight);
+    CLight* GetClosestLightToPosition(Vect3f aTransform);
     void SetLightConstants(size_t idLight, CLight* alight);
     void SetLightsConstants();
     bool Load( bool update = false );

@@ -102,7 +102,13 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\LoadSceneReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\OpenDoorReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\ReloadSceneReactor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\TextGUIActor.h">
@@ -500,7 +506,13 @@
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\LoadSceneReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\OpenDoorReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\ReloadSceneReactor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\TextGUIActor.cpp">

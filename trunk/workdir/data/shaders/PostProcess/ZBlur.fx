@@ -54,9 +54,10 @@ void GetNearFarFromProjectionMatrixB(out float Near, out float Far, float4x4 Pro
 
 float4 ZBlurPS(PS_INPUT IN) : SV_Target
 {
-	float4 l_Color = T0Texture.Sample(S0Sampler, IN.UV);
-	if (!m_ZBlurActive)
-		return l_Color;
+	if (!m_ZBlurActive) 
+	{
+		return T0Texture.Sample(S0Sampler, IN.UV);
+	}
 	else
 	{
 		float4 l_SourceColor=T0Texture.Sample(S0Sampler, IN.UV);
@@ -64,6 +65,7 @@ float4 ZBlurPS(PS_INPUT IN) : SV_Target
 		float3 l_WorldPosition=GetPositionFromZDepthView(l_Depth, IN.UV, m_InverseView, m_InverseProjection);
 		float3 l_CameraPosition=m_InverseView[3].xyz;
 		float l_Distance=length(l_WorldPosition-l_CameraPosition);
+		
 		if(l_Depth==0.0)
 		{
 			//return float4(1,0,0,1);

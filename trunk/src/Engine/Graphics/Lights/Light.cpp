@@ -6,9 +6,11 @@
 #include "XML\XML.h"
 #include "Engine\Engine.h"
 #include "Graphics\Textures\TextureManager.h"
+#include "Utils\Logger.h"
 
 CLight::~CLight()
 {
+    LOG_INFO_APPLICATION("TE PUTA MARE!");
     __H_CHECKED_DELETE__(m_pShadowMap);
     __H_CHECKED_DELETE__(m_LightType);
     __H_CHECKED_DELETE__(m_Intensity);
@@ -99,7 +101,12 @@ void CLight::Initialize(CXMLElement* aElement)
     if (m_GenerateShadowMap)
     {
         m_pShadowMap = new CDynamicTexture(m_Name, Vect2u(aElement->GetAttribute<uint32>("shadow_map_width", 128), aElement->GetAttribute<uint32>("shadow_map_height", 128)), "R32_FLOAT", true);
-        CEngine::GetInstance().GetTextureManager().AddTexture(*m_pShadowMap);
+
+        if (CEngine::GetInstance().GetTextureManager().Exists(m_Name))
+        {
+            CEngine::GetInstance().GetTextureManager().AddTexture(*m_pShadowMap);
+        }
+
         //TODO ShadowTextureMask shadow_texture_mask
 
         for (tinyxml2::XMLElement *lLayerNode = aElement->FirstChildElement(); lLayerNode != nullptr; lLayerNode = lLayerNode->NextSiblingElement())
