@@ -46,18 +46,18 @@ void CCharacterController::Update(float ElapsedTime)
         float crouch = (*actionManager)("crouch")->value;
         float kill = (*actionManager)("mouse_left_pressed")->value;
         float l_Speed = m_Speed;
-        if (kill>0.1)
+        if (kill > 0.1)
         {
 
             CPhysXManager::RaycastData *data = new CPhysXManager::RaycastData;
 
             Vect3f dist = l_Front * killDistance*1.5;
-            Vect3f lKPos = m_Position + Vect3f(0, 1, 0)+ (l_Front*0.5f);
+            Vect3f lKPos = m_Position + Vect3f(0, 1, 0) + (l_Front*0.5f);
             bool hit = physXManager->RaycastCam(lKPos, lKPos + dist, 0, data);
             if (hit)
             {
 
-                if (strcmp(data->actor.c_str(), "DronReclusion1")==0)
+                if (strcmp(data->actor.c_str(), "DronReclusion1") == 0)
                 {
                     CSceneManager* sceneMan = &CEngine::GetInstance().GetSceneManager();
                     Vect3f enemForward = sceneMan->GetCurrentScene()->GetLayer("drones")->GetSceneNode(data->actor.c_str())->GetForward();
@@ -73,13 +73,13 @@ void CCharacterController::Update(float ElapsedTime)
 
 
         }
-        if (run>0.f && z>0.1f)
+        if (run > 0.f && z > 0.1f)
         {
             x /= 2;
             l_Speed *= 1.4;
         }
         m_CrouchingCAM = false;
-        if (crouch>0.1f)
+        if (crouch > 0.1f)
         {
 
             m_CrouchingCAM = true;
@@ -145,13 +145,14 @@ void CCharacterController::Update(float ElapsedTime)
 
 
         }
-        else if (player && contr->GetTimePaused())
-        {
-            player->ClearActiveAnimationCycle(0.5f);
-            player->BlendCycle(0, 1.f, 0.5);
-        }
+    }
+    else if (player && contr->GetTimePaused())
+    {
+        player->ClearActiveAnimationCycle(0.5f);
+        player->BlendCycle(0, 1.f, 0.5);
     }
 }
+
 
 
 

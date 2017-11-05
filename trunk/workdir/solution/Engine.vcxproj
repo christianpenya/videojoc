@@ -244,6 +244,7 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\CinematicActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\IconTextReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\LoadSceneReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\NodeInteractActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\OpenDoorReactor.h" />
@@ -382,6 +383,7 @@
     <ClCompile Include="..\..\src\Engine\Events\Events\CinematicActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\IconTextReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\LoadSceneReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\NodeInteractActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\OpenDoorReactor.cpp" />

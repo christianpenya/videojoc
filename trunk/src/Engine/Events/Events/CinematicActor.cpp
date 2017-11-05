@@ -29,6 +29,7 @@ void CCinematicActor::Load(CXMLElement* aElement)
 
 void CCinematicActor::Act()
 {
+
     cinematicMan->Play(cinName);
 }
 

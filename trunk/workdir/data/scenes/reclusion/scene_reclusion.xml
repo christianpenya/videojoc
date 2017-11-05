@@ -67,6 +67,11 @@
 			<transform position="48.9546 0.0 34.8382" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
+		//CUCHILLO
+		<scene_mesh name="cuchillo" mesh="data/meshes/Box01.mesh">
+			<transform position="30.3862 0.0 0.902714" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
 		
 
 		

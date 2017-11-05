@@ -20,6 +20,7 @@
 #include "Events/TextGUIReactor.h"
 #include "Events/CinematicActor.h"
 #include "Events/NodeInteractActor.h"
+#include "Events/IconTextReactor.h"
 
 CEvent::CEvent() :
     m_Finished(false),
@@ -94,6 +95,9 @@ CEvent::CEvent(CXMLElement* aEvent) :
                 break;
             case CReactor::eTextGUIR:
                 mReactor = new CTextGUIReactor();
+                break;
+            case CReactor::eTextIcon:
+                mReactor = new CIconTextReactor();
                 break;
             }
 

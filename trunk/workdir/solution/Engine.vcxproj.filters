@@ -105,6 +105,9 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\IconTextReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\LoadSceneReactor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
@@ -513,6 +516,9 @@
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\IconTextReactor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\LoadSceneReactor.cpp">

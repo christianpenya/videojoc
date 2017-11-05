@@ -70,13 +70,18 @@
 		</material>
 		<sprite name="background_c" x="0" y="0" w="1920" h="1080"/>
 	</gui_spritemap>
-		<gui_spritemap name="backgroundMUERTE" width="1920" height="1080" >
+	<gui_spritemap name="backgroundMUERTE" width="1920" height="1080" >
 		<material name="backgroundMUERTE" vertex_type="SpriteVertex">
 			<texture type="diffuse" filename="data/gui/MUERTE_MENU.png"/>
 		</material>
 		<sprite name="background_m" x="0" y="0" w="1920" h="1080"/>
 	</gui_spritemap>
-	
+	<gui_spritemap name="cuchilloICON" width="512" height="512" >
+		<material name="cuchilloICON" vertex_type="SpriteVertex">
+			<texture type="diffuse" filename="data/gui/cuchillo.png"/>
+		</material>
+		<sprite name="cuchillo" x="0" y="0" w="512" h="512"/>
+	</gui_spritemap>
 	
 	
 	
@@ -90,7 +95,7 @@
 	<guisprite name="backgroundMUERTE" normal="background_m"/>
 	<button name="lastCheckpointB" normal="RestoreCheckpoint1" highlight="RestoreCheckpoint2" pressed="RestoreCheckpoint3"/>
 	<button name="toMainMenuB" normal="toMainMenuB1" highlight="toMainMenuB2" pressed="toMainMenuB3"/>
-	
+	<guisprite name="cuchilloICON" normal="cuchillo"/>
 	
 
 </gui_elements>

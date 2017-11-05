@@ -17,7 +17,8 @@ public:
         eReloadScene,
         eLoadScene,
         eReactorTypeCount,
-        eTextGUIR
+        eTextGUIR,
+        eTextIcon
     };
 
     CReactor() : m_Finished(false) {}
@@ -41,6 +42,7 @@ Begin_Enum_String(CReactor::EReactorType)
     Enum_String_Id(CReactor::eReloadScene, "reload_scene");
     Enum_String_Id(CReactor::eLoadScene, "load_scene");
     Enum_String_Id(CReactor::eTextGUIR, "textGUIR");
+    Enum_String_Id(CReactor::eTextIcon, "iconText");
 }
 End_Enum_String;
 

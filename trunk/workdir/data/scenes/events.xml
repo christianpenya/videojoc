@@ -19,11 +19,11 @@ AUDIOS
 	</event>
 		<event name="checkpoint2" active = "true">
 		<actor name="checkpoint" triggerName="checkpoint2"/>
-		<reactor name="textGUIR" portion="0.5 0.666" time="3.0" text="Punto de control alcanzado" />
+		<reactor name="textGUIR" portion="0.5 0.333" time="3.0" text="Punto de control alcanzado" />
 	</event>
 	<event name="checkpoint3" active = "true">
 		<actor name="checkpoint" triggerName="checkpoint3"/>
-		<reactor name="textGUIR" portion="0.5 0.666" time="2.0" text="Punto de control alcanzado" />
+		<reactor name="textGUIR" portion="0.5 0.333" time="2.0" text="Punto de control alcanzado" />
 	</event>
 	
 	
@@ -64,8 +64,13 @@ AUDIOS
 
 
 //NODos
-	<event name="primerNODO" active="true">
+<event name="primerNODO" active="true">
 	<actor name="node"  portion="0.5 0.666" time="3.0" text="Pulsa E para hackear el ordenador"/>
-	<reactor name="textGUIR" portion="0.5 0.666" time="3.0" text="Hackeo completado con exito!"/>
+	<reactor name="textGUIR" portion="0.5 0.333" time="3.0" text="Hackeo completado con exito!"/>
+</event>
+
+<event name="cuchillo" active="true">
+	<actor name="node"  portion="0.5 0.666" time="3.0" text="Pulsa E para recoger el arma"/>
+	<reactor name="iconText" portion="0.5 0.66" time="3.0" text="Arma recogida!" icon="cuchilloICON" iPortion="0.5 0.33"/>
 </event>
 </events>
