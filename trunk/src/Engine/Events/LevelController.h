@@ -11,6 +11,7 @@
 
 #include "Math/Quaternion.h"
 #include "Graphics/Camera/CameraManager.h"
+#include "EventManager.h"
 
 
 class CLevelController
@@ -27,6 +28,8 @@ public:
     void Update(float elapsedTime);
     void PauseGame();
     void ResumeGame();
+    void NewGame();
+    void ToMainMenu();
     GET_SET(bool, TimePaused);
     GET_SET(Vect3f, LastCheckpointP);
     GET_SET(Quatf, LastCheckpointR);

@@ -626,7 +626,6 @@ bool CPhysXManager::RaycastCam(const Vect3f& origin, const Vect3f& end, int filt
         result_->position = Vect3f(hit.block.position.x, hit.block.position.y, hit.block.position.z);
         result_->normal = Vect3f(hit.block.normal.x, hit.block.normal.y, hit.block.normal.z);
         result_->distance = hit.block.distance;
-        size_t a = (size_t)hit.block.actor->userData;
         result_->actor = m_ActorNames[(size_t)hit.block.actor->userData];
 
     }

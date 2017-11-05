@@ -3,7 +3,7 @@
 	<layer name="triggers" active="true">
 	
 		AUDIO TRIGGERS
-		<scene_mesh name="AUDIO_008" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
+		<!-- <scene_mesh name="AUDIO_008" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
 			<transform position="40.7966 0.00705194 40.8085" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="AUDIO_007" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
@@ -26,29 +26,57 @@
 		</scene_mesh>
 		<scene_mesh name="AUDIO_001" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
 			<transform position="0.764666 3.20944 -2.11214" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
+		</scene_mesh> -->
 	
-	
-		<scene_mesh name="testTextGUI" mesh="data/meshes/Box01.mesh">
-			<transform position="0.0 1.0 20.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+	//TEXT UI
+		<scene_mesh name="miraAlrededor" mesh="data/meshes/Box01.mesh">
+			<transform position="3.10485 3.20944 2.23557" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-	
-		<scene_mesh name="musica_nivel_1" mesh="data/meshes/Box01.mesh">
-			<transform position="-1.0 4.0 -1.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+		<scene_mesh name="correForest" mesh="data/meshes/Box01.mesh">
+			<transform position="12.5461 3.20944 2.23557" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-	
-		<scene_mesh name="c11" mesh="data/meshes/Box01.mesh">
-			<transform position="0.0 1.0 25.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+		<scene_mesh name="agachateForest" mesh="data/meshes/Box01.mesh">
+			<transform position="-0.0136948 0.00705194 14.0069" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
+		
+		
+	//CHECKPOINTS
+	<scene_mesh name="checkpoint1" mesh="data/meshes/Box01.mesh">
+			<transform position="0.8 3.7 -1.4" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="checkpoint2" mesh="data/meshes/Box01.mesh">
+			<transform position="2.1575 0.0 27.1152" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="checkpoint3" mesh="data/meshes/Box01.mesh">
+			<transform position="46.5618 0.00705194 34.8862" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		//CINEMATICAS
+				<scene_mesh name="Cinematica02" mesh="data/meshes/Box01.mesh">
+			<transform position="27.3455 0.00705194 27.0446" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		
+		//NODO
+		<scene_mesh name="primerNODO" mesh="data/meshes/Box01.mesh">
+			<transform position="48.9546 0.0 34.8382" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		
+
+		
+
 
 	</layer>
 	
 	<layer name="LPlayer" active="true" >
-		<scene_animated_model name="player" core="prota" height="1.1" radius="0.17" group="1" >
-			<transform position="0.8 3.2 -1.4" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		<scene_animated_model name="player" core="prota" height="1.1" radius="0.2" group="1" >
+			<transform position="0.8 3.2 -1.4" rotation="0.0 0.0 0.0" scale="1.0 1. 1.0" />
 		</scene_animated_model>
 		<!--
 		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
@@ -249,10 +277,10 @@
 		SALA1
 		decals paredes
 		<scene_mesh name="Decall10" mesh="data/meshes/reclusion/decall1.mesh" >
-			<transform position="-0.426474 4.76765 0.914997" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<transform position="-2.066 4.76765 0.914997" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="Decall061" mesh="data/meshes/reclusion/decall1.mesh" >
-			<transform position="3.88781 4.76765 0.914997" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<transform position="3.74 4.76765 0.914997" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="Decall066" mesh="data/meshes/reclusion/decall1b.mesh" >
 			<transform position="9.33875 4.76765 0.92339" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
@@ -349,44 +377,44 @@
 
 		<scene_mesh name="valla1" mesh="data/meshes/reclusion/valla1.mesh" >
 			<transform position="11.33 5.1 3.70398" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="box" offset="-5.8 -0.7 0.0"/>
+			<collider rigid_body="box" offset="-5.8 -0.7 0.0" group="5"/>
 		</scene_mesh>
 		<scene_mesh name="valla002" mesh="data/meshes/reclusion/valla002.mesh" >
 			<transform position="13.9242 5.1 5.5" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 0.93" />
-		<collider rigid_body="box" offset="0.0 -0.8 2.6"/>
+		<collider rigid_body="box" offset="0.0 -0.8 2.6" group="5"/>
 		</scene_mesh>
 		
 		<scene_mesh name="palovalla008" mesh="data/meshes/reclusion/palovalla.mesh" >
 			<transform position="6.27802 0.0 34.7543" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="box"/>
+			<collider rigid_body="box" group="5"/>
 		</scene_mesh>
 		<scene_mesh name="palovalla007" mesh="data/meshes/reclusion/palovalla.mesh" >
 			<transform position="10.444 0.0 34.7543" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="box"/>
+			<collider rigid_body="box" group="5"/>
 		</scene_mesh>
 		<scene_mesh name="palovalla006" mesh="data/meshes/reclusion/palovalla.mesh" >
 			<transform position="13.9309 3.198 12.2205" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="box"/>
+			<collider rigid_body="box" group="5"/>
 		</scene_mesh>
 		<scene_mesh name="palovalla005" mesh="data/meshes/reclusion/palovalla.mesh" >
 			<transform position="13.9309 3.198 9.24239" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="box"/>
+			<collider rigid_body="box" group="5"/>
 		</scene_mesh>
 		<scene_mesh name="palovalla004" mesh="data/meshes/reclusion/palovalla.mesh" >
 			<transform position="13.9309 3.198 3.70133" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="box"/>
+			<collider rigid_body="box" group="5"/>
 		</scene_mesh>
 		<scene_mesh name="palovalla003" mesh="data/meshes/reclusion/palovalla.mesh" >
 			<transform position="9.922 3.198 3.70133" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="box"/>
+			<collider rigid_body="box" group="5"/>
 		</scene_mesh>
 		<scene_mesh name="palovalla002" mesh="data/meshes/reclusion/palovalla.mesh" >
 			<transform position="5.75151 3.198 3.70133" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="box"/>
+			<collider rigid_body="box" group="5"/>
 		</scene_mesh>
 		<scene_mesh name="palovalla001" mesh="data/meshes/reclusion/palovalla.mesh" >
 			<transform position="1.58102 3.198 3.70133" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="box"/>
+			<collider rigid_body="box" group="5"/>
 		</scene_mesh>
 		
 		<scene_mesh name="pared marcosalida001" mesh="data/meshes/reclusion/marco_puerta.mesh" >
@@ -1420,27 +1448,26 @@
 	</layer>
 			
 	<layer name="drones" active="true">
-		
+			
 		<scene_mesh name="PatrolPoint_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="8.46 1.19 22.11" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="8.46 1.19 33.49" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
-		<scene_enemies type="dron" name="DronReclusion1" mesh="data/meshes/reclusion/Dron.mesh">
-			<transform position="8.46 1.19 30.40" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
-			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
+		<scene_enemies name="DronReclusion1" core="dron"  height="1.1" radiu="0.2" group="2">
+			<transform position="8.46 1.19 30.4" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>
 		
+	
 		<scene_mesh name="PatrolPoint_DronCabinas" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="14.5 1.19 27.19" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DronCabinas" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="23.75 1.19 27.19" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
-		<scene_enemies type="dron" name="DronCabinas" mesh="data/meshes/reclusion/Dron.mesh">
-			<transform position="19.81 1.19 27.19" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
-			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
+		<scene_enemies name="DronCabinas" core="dron"  height="1.1" radiu="0.2" group="2">
+			<transform position="19.81 1.19 27.19" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>
 
 
@@ -1450,9 +1477,8 @@
 		<scene_mesh name="PatrolPoint2_DronReclusion2" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="5.07 1.19 42.87" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
-		<scene_enemies type="dron" name="DronReclusion2" mesh="data/meshes/reclusion/Dron.mesh">
-			<transform position="3.29 1.19 42.87" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
-			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
+		<scene_enemies name="DronReclusion2" core="dron"  height="1.1" radiu="0.2" group="2">
+			<transform position="3.29 1.19 42.87" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>
 		
 		
@@ -1468,9 +1494,8 @@
 		<scene_mesh name="PatrolPoint4_DroneComedorInicioIzquierda" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="27.97 1.19 20.45" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>		
-		<scene_enemies type="dron" name="DroneComedorInicioIzquierda" mesh="data/meshes/reclusion/Dron.mesh">
-			<transform position="33.29 1.19 24.84" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
-			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
+		<scene_enemies name="DroneComedorInicioIzquierda" core="dron"  height="1.1" radiu="0.2" group="2">
+			<transform position="33.29 1.19 24.84" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>		
 	
 	
@@ -1486,9 +1511,8 @@
 		<scene_mesh name="PatrolPoint4_DroneComedorInicioDerecha" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="35.20 1.19 38.24" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>		
-		<scene_enemies type="dron" name="DroneComedorInicioDerecha" mesh="data/meshes/reclusion/Dron.mesh">
-			<transform position="31.51 1.19 33.83" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
-			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
+		<scene_enemies name="DroneComedorInicioDerecha" core="dron"  height="1.1" radiu="0.2" group="2">
+			<transform position="31.51 1.19 33.83" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>		
 		
 		<scene_mesh name="PatrolPoint_DroneComedorMitad" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
@@ -1503,9 +1527,8 @@
 		<scene_mesh name="PatrolPoint4_DroneComedorMitad" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="39.46 1.19 20.60" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>		
-		<scene_enemies type="dron" name="DroneComedorMitad" mesh="data/meshes/reclusion/Dron.mesh">
-			<transform position="35.95 1.19 20.60" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
-			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
+		<scene_enemies name="DroneComedorMitad" core="dron"  height="1.1" radiu="0.2" group="2">
+			<transform position="35.95 1.19 20.60" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>		
 		
 		<scene_mesh name="PatrolPoint_DroneComedorFinIzquierda" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
@@ -1514,9 +1537,8 @@
 		<scene_mesh name="PatrolPoint2_DroneComedorFinIzquierda" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="44.02 1.19 29.16" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
-		<scene_enemies type="dron" name="DroneComedorFinIzquierda" mesh="data/meshes/reclusion/Dron.mesh">
-			<transform position="44.02 1.19 22.47" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
-			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
+		<scene_enemies name="DroneComedorFinIzquierda" core="dron"  height="1.1" radiu="0.2" group="2">
+			<transform position="44.02 1.19 22.47" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>				
 
 		<scene_mesh name="PatrolPoint_DroneComedorFinDerecha" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
@@ -1525,10 +1547,9 @@
 		<scene_mesh name="PatrolPoint2_DroneComedorFinDerecha" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="39.54 1.19 38.22" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
 		</scene_mesh>
-		<scene_enemies type="dron" name="DroneComedorFinDerecha" mesh="data/meshes/reclusion/Dron.mesh">
-			<transform position="39.54 1.19 33.5" yaw="-0.00491568" pitch="-0.705115" roll="-0.00140036" scale="1.0 1.0 1.0" />
-			<collider rigid_body="enemy" filename="data/meshes/reclusion/Dron.mesh" scale="1.0 1.0 1.0" />
-		</scene_enemies>
+		<scene_enemies name="DroneComedorFinDerecha" core="dron"  height="1.1" radiu="0.2" group="2">
+			<transform position="39.54 1.19 33.5" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>	
 		
 	</layer>
 		
@@ -1561,17 +1582,51 @@
 
 <layer name="PauseMENU" active="false" >	
 	
-		<scene_gui name="background" gui_element="backgroundPAUSE" portion="0 0" size="1440 810" type="GUIsprite" >
+		<scene_gui name="backgroundP" gui_element="backgroundPAUSE" portion="0 0" size="1920 1080" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-		<scene_gui name="gui1" gui_element="pause_button" portion="0.2 0.2" size="100 50" type="button" action="1">
+		<scene_gui name="reanudarJuego" gui_element="reanudarButton" portion="0.25 0.3" size="250 50" type="button" action="1">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		<scene_gui name="restaurarCheckpoint" gui_element="lastCheckpointB" portion="0.25 0.5" size="250 50" type="button" action="2">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		<scene_gui name="toMainMenu" gui_element="toMainMenuB" portion="0.25 0.7" size="250 50" type="button" action="4">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		
-		<scene_gui name="RestoreCheckpoint" gui_element="lastCheckpoint" portion="0.5 0.2" size="100 50" type="button" action="2">
+</layer>
+
+<layer name="MenuPrincipal" active="true" >	
+		<scene_gui name="backgroundMP" gui_element="backgroundMENU" portion="0 0" size="1920 1080" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-</layer>
+		<scene_gui name="newGame" gui_element="new_gameB" portion="0.25 0.45" size="250 50" type="button" action="3">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		
+	</layer>
+	<layer name="MenuCompletado" active="false" >	
+		<scene_gui name="backgroundMC" gui_element="backgroundCOMPLETE" portion="0 0" size="1920 1080" type="GUIsprite" >
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		<!-- <scene_gui name="newGame" gui_element="new_gameB" portion="0.25 0.45" size="250 50" type="button" action="3">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui> -->
+		
+	</layer>
+	<layer name="MenuMuerte" active="false" >	
+		<scene_gui name="backgroundMM" gui_element="backgroundMUERTE" portion="0 0" size="1920 1080" type="GUIsprite" >
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+	<scene_gui name="restaurarCheckpoint" gui_element="lastCheckpointB" portion="0.25 0.3" size="250 50" type="button" action="2">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		<scene_gui name="toMainMenu" gui_element="toMainMenuB" portion="0.25 0.6" size="250 50" type="button" action="4">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		
+	</layer>
 	
 </scene>
 

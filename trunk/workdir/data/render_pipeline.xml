@@ -22,7 +22,7 @@
 <!--	<render_layer layer="test"/>-->
 	<render_layer layer="opaque"/>
 	<render_layer layer="LPlayer"/>
-	<!--<render_layer layer="triggers"/>-->
+	<render_layer layer="triggers"/>-->
 	<render_layer layer="navmesh"/>
 	<render_layer layer="salas"/>
 	<render_layer layer="laser" />
@@ -157,9 +157,7 @@
 	FIN NOISE VIGNETTING
 
 	INICIO GUI
-	<enable_alpha_blend/>
 	<render_gui/>
-	<disable_alpha_blend/>	
 	FIN GUI
 	
 	DEBUG SHIT 	

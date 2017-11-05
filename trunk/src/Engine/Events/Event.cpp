@@ -16,6 +16,10 @@
 #include "Events/LoadSceneReactor.h"
 #include "Events/ReloadSceneReactor.h"
 #include "Events/TextGUIActor.h"
+#include "Events/CheckpointActor.h"
+#include "Events/TextGUIReactor.h"
+#include "Events/CinematicActor.h"
+#include "Events/NodeInteractActor.h"
 
 CEvent::CEvent() :
     m_Finished(false),
@@ -48,8 +52,17 @@ CEvent::CEvent(CXMLElement* aEvent) :
             case CActor::eAudioTrigger:
                 mActor = new CAudioTriggerActor();
                 break;
-            case CActor::eTextGUI:
+            case CActor::eTextGUIA:
                 mActor = new CTextGUIActor();
+                break;
+            case CActor::eCheckpoint:
+                mActor = new CCheckpointActor();
+                break;
+            case CActor::eCinematic:
+                mActor = new CCinematicActor();
+                break;
+            case CActor::eNodeInteract:
+                mActor = new CNodeInteractActor();
                 break;
             default:
                 break;
@@ -78,6 +91,9 @@ CEvent::CEvent(CXMLElement* aEvent) :
                 break;
             case CReactor::eLoadScene:
                 mReactor = new CLoadSceneReactor();
+                break;
+            case CReactor::eTextGUIR:
+                mReactor = new CTextGUIReactor();
                 break;
             }
 

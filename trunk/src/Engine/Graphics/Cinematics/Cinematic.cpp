@@ -7,6 +7,7 @@
 #include "Engine/Engine.h"
 #include "Graphics/Camera/CinematicCameraController.h"
 #include "Utils/CheckedDelete.h"
+#include "Events/LevelController.h"
 
 CCinematic::CCinematic():
     CName(""),
@@ -87,6 +88,7 @@ void CCinematic::Update(float elapsedTime)
                     CCinematicPlayer* lCinematPlay = iPlayerMapEntry->second.m_Value;
                     lCinematPlay->Finish();
                 }
+                CEngine::GetInstance().m_LevelController->SetTimePaused(false);
             }
         }
         else
@@ -129,6 +131,8 @@ void CCinematic::Update(float elapsedTime)
 
 void CCinematic::Play()
 {
+    if(CEngine::GetInstance().m_LevelController)
+        CEngine::GetInstance().m_LevelController->SetTimePaused(true);
     for (TMapResources::iterator iPlayerMapEntry = m_ResourcesMap.begin(); iPlayerMapEntry != m_ResourcesMap.end(); ++iPlayerMapEntry)
     {
         CCinematicPlayer* lCinematPlay = iPlayerMapEntry->second.m_Value;

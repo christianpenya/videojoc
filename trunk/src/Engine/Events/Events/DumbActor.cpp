@@ -12,7 +12,14 @@
 
 CDumbActor::CDumbActor() {}
 CDumbActor::~CDumbActor() {}
-void CDumbActor::Load(CXMLElement* aElement) {}
+void CDumbActor::Load(CXMLElement* aElement)
+{
+
+    mTime = aElement->GetAttribute<float>("time", 0.f);
+    mElapsed = 0.f;
+
+
+}
 
 void CDumbActor::Act()
 {
@@ -23,12 +30,15 @@ void CDumbActor::Act()
     CSceneNode* temare = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(lDoorName);
     temare->SetActive(false);
     */
+
 }
 
 void CDumbActor::Update(float elapsedTime)
 {
     //LOG_INFO_APPLICATION("ACTOR UPDATING");
     // is audio finished?
-    m_Finished = true;
+    mElapsed += elapsedTime;
+    if (mElapsed>mTime)
+        m_Finished = true;
 
 }

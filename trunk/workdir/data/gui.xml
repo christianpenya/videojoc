@@ -1,20 +1,37 @@
 <gui_elements>
-	<gui_spritemap name="gui1" width="512" height="512">
-		<material name="gui1" vertex_type="SpriteVertex">
-			<texture type="diffuse" filename="data/gui/GUI_PAUSA.png"/>
+	<gui_spritemap name="reanudar" width="512" height="512">
+		<material name="reanudar" vertex_type="SpriteVertex">
+			<texture type="diffuse" filename="data/gui/REANUDAR.png"/>
 		</material>
-		<sprite name="teula" x="0" y="30" w="512" h="100"/>
-		<sprite name="teula2" x="0" y="205" w="512" h="100"/>
-		<sprite name="teula3" x="0" y="376" w="512" h="100"/>	
+		<sprite name="reanudar1" x="0" y="0" w="512" h="102"/>
+		<sprite name="reanudar2" x="0" y="205" w="512" h="102"/>
+		<sprite name="reanudar3" x="0" y="410" w="512" h="102"/>	
+	</gui_spritemap>
+	
+	<gui_spritemap name="new_game" width="512" height="512">
+		<material name="new_game" vertex_type="SpriteVertex">
+			<texture type="diffuse" filename="data/gui/NUEVA_PARTIDA.png"/>
+		</material>
+		<sprite name="new_game1" x="0" y="0" w="512" h="102"/>
+		<sprite name="new_game2" x="0" y="205" w="512" h="102"/>
+		<sprite name="new_game3" x="0" y="410" w="512" h="102"/>	
 	</gui_spritemap>
 	
 	<gui_spritemap name="RestoreCheckpoint" width="512" height="512">
 		<material name="RestoreCheckpoint" vertex_type="SpriteVertex">
-			<texture type="diffuse" filename="data/gui/GUI_PAUSA.png"/>
+			<texture type="diffuse" filename="data/gui/REINICIAR.png"/>
 		</material>
-		<sprite name="teula" x="0" y="30" w="512" h="100"/>
-		<sprite name="teula2" x="0" y="205" w="512" h="100"/>
-		<sprite name="teula3" x="0" y="376" w="512" h="100"/>	
+		<sprite name="RestoreCheckpoint1" x="0" y="0" w="512" h="102"/>
+		<sprite name="RestoreCheckpoint2"x="0" y="205" w="512" h="102"/>
+		<sprite name="RestoreCheckpoint3" x="0" y="410" w="512" h="102"/>
+	</gui_spritemap>
+		<gui_spritemap name="toMainMenuB" width="512" height="512">
+		<material name="toMainMenuB" vertex_type="SpriteVertex">
+			<texture type="diffuse" filename="data/gui/Boton_MENU_PRINCIPAL.png"/>
+		</material>
+		<sprite name="toMainMenuB1" x="0" y="0" w="512" h="102"/>
+		<sprite name="toMainMenuB2"x="0" y="205" w="512" h="102"/>
+		<sprite name="toMainMenuB3" x="0" y="410" w="512" h="102"/>
 	</gui_spritemap>
 	
 	<gui_spritemap name="slider1" width="512" height="512">
@@ -36,26 +53,43 @@
 	
 	<gui_spritemap name="background" width="1920" height="1080" >
 		<material name="background" vertex_type="SpriteVertex">
-			<texture type="diffuse" filename="data/gui/background.png"/>
+			<texture type="diffuse" filename="data/gui/BackgroundPRINCIPAL_MENU.png"/>
 		</material>
 		<sprite name="background_s" x="0" y="0" w="1920" h="1080"/>
 	</gui_spritemap>
 	
 	<gui_spritemap name="backgroundPAUSE" width="1920" height="1080" >
 		<material name="backgroundPAUSE" vertex_type="SpriteVertex">
-			<texture type="diffuse" filename="data/gui/pause_background2.png"/>
+			<texture type="diffuse" filename="data/gui/PAUSA_MENU.png"/>
 		</material>
 		<sprite name="background_p" x="0" y="0" w="1920" h="1080"/>
+	</gui_spritemap>
+		<gui_spritemap name="backgroundCOMPLETE" width="1920" height="1080" >
+		<material name="backgroundCOMPLETE" vertex_type="SpriteVertex">
+			<texture type="diffuse" filename="data/gui/NIVEL_COMPLETADO_MENU.png"/>
+		</material>
+		<sprite name="background_c" x="0" y="0" w="1920" h="1080"/>
+	</gui_spritemap>
+		<gui_spritemap name="backgroundMUERTE" width="1920" height="1080" >
+		<material name="backgroundMUERTE" vertex_type="SpriteVertex">
+			<texture type="diffuse" filename="data/gui/MUERTE_MENU.png"/>
+		</material>
+		<sprite name="background_m" x="0" y="0" w="1920" h="1080"/>
 	</gui_spritemap>
 	
 	
 	
-	<button name="pause_button" normal="teula" highlight="teula2" pressed="teula3"/>
+	
+	<button name="reanudarButton" normal="reanudar1" highlight="reanudar2" pressed="reanudar3"/>
+	<button name="new_gameB" normal="new_game1" highlight="new_game2" pressed="new_game3"/>
 	<slider name="teula_slider" base="slider_base" top="slider_top" handle="slider_handle" pressed_handle="slider_pressed_handle"/>	
 	<font name="font1" filename="data/fonts/Font1.xml"/>
 	<guisprite name="backgroundMENU" normal="background_s"/>
 	<guisprite name="backgroundPAUSE" normal="background_p"/>
-	<button name="lastCheckpoint" normal="teula" highlight="teula2" pressed="teula3"/>
+	<guisprite name="backgroundCOMPLETE" normal="background_s"/>
+	<guisprite name="backgroundMUERTE" normal="background_m"/>
+	<button name="lastCheckpointB" normal="RestoreCheckpoint1" highlight="RestoreCheckpoint2" pressed="RestoreCheckpoint3"/>
+	<button name="toMainMenuB" normal="toMainMenuB1" highlight="toMainMenuB2" pressed="toMainMenuB3"/>
 	
 	
 

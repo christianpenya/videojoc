@@ -28,6 +28,7 @@ void CTpsCameraController::Update(float ElapsedTime)
         m_Roll += rollSpeed * ElapsedTime;
         zoom += zoomSpeed * ElapsedTime;
 
+
         if (m_Pitch > maxPitch)
             m_Pitch = maxPitch;
         if (m_Pitch < minPitch)
@@ -43,10 +44,7 @@ void CTpsCameraController::Update(float ElapsedTime)
         if (m_Yaw < -mathUtils::PiTimes<float>())
             m_Yaw += mathUtils::PiTimes<float>(2.0f);
 
-        if (m_Roll > mathUtils::PiTimes<float>())
-            m_Roll -= mathUtils::PiTimes<float>(2.0f);
-        if (m_Roll < -mathUtils::PiTimes<float>())
-            m_Roll += mathUtils::PiTimes<float>(2.0f);
+
 
         // set CameraControllerData
         m_Front.x = sin(m_Yaw) * cos(-m_Pitch);

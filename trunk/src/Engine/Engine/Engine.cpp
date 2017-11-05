@@ -67,6 +67,7 @@ CEngine::CEngine()
     , m_Frames(0)
     , m_FPS (0.0)
 {
+    m_LastTime = clock();
 }
 
 CEngine::~CEngine()
@@ -258,6 +259,10 @@ double clockToMilliseconds(clock_t ticks)
 
 void CEngine::Update()
 {
+    double l_time = clock();
+    m_DeltaTime = (l_time - m_LastTime)/1000;
+    m_DeltaTimeAcum += m_DeltaTime;
+    m_LastTime = l_time;
     //CharacterControllerUpdate(m_ActionManager, (float)m_DeltaTime);
     m_LevelController->Update(m_DeltaTime);
     m_PhysXManager->Update(m_DeltaTime);
@@ -292,14 +297,16 @@ void CEngine::Update()
 
 void CEngine::Render()
 {
-    clock_t l_BeginFrame = clock();
+    //clock_t l_BeginFrame = clock();
 
     m_RenderPipeline->Execute();
 
-    clock_t l_EndFrame = clock();
+    /*clock_t l_EndFrame = clock();
     m_DeltaTime = l_EndFrame - l_BeginFrame;
-    m_DeltaTime = m_DeltaTime / 400.0f;
+    m_DeltaTime = m_DeltaTime/800 ;
     m_DeltaTimeAcum += l_EndFrame - l_BeginFrame;
+
+    */
     ++m_Frames;
 
     if (clockToMilliseconds(m_DeltaTimeAcum) > 1000.0)  //every second

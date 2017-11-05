@@ -3,6 +3,8 @@
 #include "Utils/CheckedDelete.h"
 #include "Graphics/Camera/TpsCameraController.h"
 #include "Render/RenderManager.h"
+#include"Graphics/Cinematics/CinematicsManager.h"
+#include <concrt.h>
 
 CLevelController::CLevelController()
 {
@@ -11,7 +13,7 @@ CLevelController::CLevelController()
     m_SceneManager = nullptr;
     m_PhysxManager = nullptr;
     m_ActionManager = nullptr;
-    m_TimePaused = false;
+    m_TimePaused = true;
 
 }
 
@@ -22,7 +24,7 @@ CLevelController::CLevelController(int lvl)
     m_SceneManager = nullptr;
     m_PhysxManager = nullptr;
     m_ActionManager = nullptr;
-    m_TimePaused = false;
+    m_TimePaused = true;
     m_PlayerDetected = false;
 }
 
@@ -53,7 +55,7 @@ void CLevelController::PlayerDetected()
 
 void CLevelController::Update(float elapsedTime)
 {
-    if ((*m_ActionManager)("pause")->value>0.1f&&Level!=0&&!m_TimePaused)
+    if ((*m_ActionManager)("pause")->value>0.1f&&!m_TimePaused)
     {
         PauseGame();
 
@@ -89,6 +91,26 @@ void CLevelController::ResumeGame()
         m_SceneManager->GetCurrentScene()->GetLayer("PauseMENU")->SetActive(false);
 }
 
+void CLevelController::NewGame()
+{
+    if (m_SceneManager->GetCurrentScene()->Exist("MenuPrincipal"))
+        m_SceneManager->GetCurrentScene()->GetLayer("MenuPrincipal")->SetActive(false);
+    CEvent* event = CEngine::GetInstance().GetEventManager().GetEvent("Cinematica01");
+    if (event)
+        event->Start();
+    event = CEngine::GetInstance().GetEventManager().GetEvent("c11");
+    if (event)
+        event->Start();
+    event = CEngine::GetInstance().GetEventManager().GetEvent("mueveteWASD");
+    if (event)
+        event->Start();
+    event = CEngine::GetInstance().GetEventManager().GetEvent("puertaSala0");
+    if (event)
+        event->Start();
+
+}
+
+
 void CLevelController::RestoreLastCheckpoint()
 {
     CCharacterController* charContr = (CCharacterController*)CEngine::GetInstance().m_CharacterController;
@@ -104,7 +126,21 @@ void CLevelController::RestoreLastCheckpoint()
         if (cam)
         {
             cam->SetPitch(0);
-            cam->SetYaw(m_LastCheckpointR.GetYaw()+3.1415f);
+            cam->SetYaw(-m_LastCheckpointR.GetYaw()+3.14);
         }
     }
+}
+
+
+void CLevelController::ToMainMenu()
+{
+    m_TimePaused = true;
+    if (m_SceneManager->GetCurrentScene()->Exist("MenuPrincipal"))
+        m_SceneManager->GetCurrentScene()->GetLayer("MenuPrincipal")->SetActive(true);
+    if (m_SceneManager->GetCurrentScene()->Exist("PauseMENU"))
+        m_SceneManager->GetCurrentScene()->GetLayer("PauseMENU")->SetActive(false);
+    if (m_SceneManager->GetCurrentScene()->Exist("MenuMuerte"))
+        m_SceneManager->GetCurrentScene()->GetLayer("MenuMuerte")->SetActive(false);
+    if (m_SceneManager->GetCurrentScene()->Exist("MenuCompletado"))
+        m_SceneManager->GetCurrentScene()->GetLayer("MenuCompletado")->SetActive(false);
 }

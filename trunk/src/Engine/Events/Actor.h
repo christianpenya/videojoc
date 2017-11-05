@@ -14,8 +14,11 @@ public:
     {
         eDumb,
         eAudioTrigger,
-        eTextGUI,
-        eActorTypeCount
+        eTextGUIA,
+        eActorTypeCount,
+        eCheckpoint,
+        eCinematic,
+        eNodeInteract
     };
 
     CActor() : m_Finished(false) {}
@@ -36,7 +39,10 @@ Begin_Enum_String(CActor::EActorType)
 {
     Enum_String_Id(CActor::eDumb, "dumb");
     Enum_String_Id(CActor::eAudioTrigger, "audio_trigger");
-    Enum_String_Id(CActor::eTextGUI, "textGUI");
+    Enum_String_Id(CActor::eTextGUIA, "textGUIA");
+    Enum_String_Id(CActor::eCheckpoint, "checkpoint");
+    Enum_String_Id(CActor::eCinematic, "Cinematica");
+    Enum_String_Id(CActor::eNodeInteract, "node")
 }
 End_Enum_String;
 

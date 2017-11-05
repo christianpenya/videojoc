@@ -97,6 +97,7 @@ public:
     clock_t m_DeltaTimeAcum = 0;
     unsigned int m_Frames;
     double m_FPS;
+    double m_LastTime;
 
     CCharacterController* m_CharacterController;
     CLevelController* m_LevelController;
