@@ -29,6 +29,8 @@ public:
     float m_speedChasing;
     float m_investigatingTolerance;
     Vect3f m_lastPositionView;
+    std::string m_light;
+
 
     void patrol();
     void chase();

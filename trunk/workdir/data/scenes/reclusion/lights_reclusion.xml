@@ -155,5 +155,53 @@
 		<layer name = "LPlayer"/>
 		<layer name = "salas" />
 	</light>
- -->	
+
+	<light angle="180" fall_off="180" type="spot" name="DronReclusion1Fspot" color="1.0 1.0 1.0" enabled="true" intensity="15.0" attenuation_range="0.0 2.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.46 1.19 30.4"  forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+
+	<light angle="180" fall_off="180" type="spot" name="DronCabinasFspot" color="1.0 1.0 1.0" enabled="true" intensity="15.0" attenuation_range="0.0 2.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.46 1.19 30.4"  forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+
+	<light angle="180" fall_off="180" type="spot" name="DronReclusion2Fspot" color="1.0 1.0 1.0" enabled="true" intensity="15.0" attenuation_range="0.0 2.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.46 1.19 30.4"  forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+
+	<light angle="180" fall_off="180" type="spot" name="DroneComedorInicioIzquierdaFspot" color="1.0 1.0 1.0" enabled="true" intensity="15.0" attenuation_range="0.0 2.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.46 1.19 30.4"  forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+
+	<light angle="180" fall_off="180" type="spot" name="DroneComedorInicioDerechaFspot" color="1.0 1.0 1.0" enabled="true" intensity="15.0" attenuation_range="0.0 2.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.46 1.19 30.4"  forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+
+	<light angle="180" fall_off="180" type="spot" name="DroneComedorMitadFspot" color="1.0 1.0 1.0" enabled="true" intensity="15.0" attenuation_range="0.0 2.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.46 1.19 30.4"  forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+
+	<light angle="180" fall_off="180" type="spot" name="DroneComedorFinIzquierdaFspot" color="1.0 1.0 1.0" enabled="true" intensity="15.0" attenuation_range="0.0 2.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.46 1.19 30.4"  forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+
+	<light angle="180" fall_off="180" type="spot" name="DroneComedorFinDerechaFspot" color="1.0 1.0 1.0" enabled="true" intensity="15.0" attenuation_range="0.0 2.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
+		<transform position="8.46 1.19 30.4"  forward="0.0 -1.0 0.0" />
+		<layer name = "LPlayer"/>
+		<layer name = "salas" />
+	</light>
+	
 </lights>

@@ -322,7 +322,7 @@
 	</material>
 
 	<material name="PatrolPoint002Material" vertex_type="PositionNormal" >
-		<parameter type="color" name="diffuse_color" value="0.0 1.0 1.0 1.0 " />
+		<parameter type="color" name="diffuse_color" value="0.0 0.0 0.0 0.0 " />
 	</material>
 
 	<material name="SmokeMaterial" vertex_type="ParticleVertex" >
