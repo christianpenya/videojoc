@@ -82,18 +82,25 @@ void CLevelController::NewGame()
 {
     if (m_SceneManager->GetCurrentScene()->Exist("MenuPrincipal"))
         m_SceneManager->GetCurrentScene()->GetLayer("MenuPrincipal")->SetActive(false);
-    CEvent* event = CEngine::GetInstance().GetEventManager().GetEvent("Cinematica01");
-    if (event)
-        event->Start();
-    event = CEngine::GetInstance().GetEventManager().GetEvent("c11");
-    if (event)
-        event->Start();
-    event = CEngine::GetInstance().GetEventManager().GetEvent("mueveteWASD");
-    if (event)
-        event->Start();
-    event = CEngine::GetInstance().GetEventManager().GetEvent("puertaSala0");
-    if (event)
-        event->Start();
+    if (strcmp(m_SceneManager->GetCurrentScene()->GetName().c_str(), "reclusion") == 0)
+    {
+        CEvent* event = CEngine::GetInstance().GetEventManager().GetEvent("Cinematica01");
+        if (event)
+            event->Start();
+        event = CEngine::GetInstance().GetEventManager().GetEvent("c11");
+        if (event)
+            event->Start();
+        event = CEngine::GetInstance().GetEventManager().GetEvent("mueveteWASD");
+        if (event)
+            event->Start();
+        event = CEngine::GetInstance().GetEventManager().GetEvent("puertaSala0");
+        if (event)
+            event->Start();
+    }
+    else
+    {
+        m_TimePaused = false;
+    }
 
 }
 
