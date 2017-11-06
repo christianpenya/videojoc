@@ -73,7 +73,7 @@ void CTpsCameraController::Update(float ElapsedTime)
             LOG_INFO_APPLICATION("NOt HIT \\(^-^)/");
         }
 
-
+        delete data;
         //m_Position = (center - m_Front * l_zoom);
         m_Position = l_Position;
     }

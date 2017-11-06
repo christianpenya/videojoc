@@ -87,7 +87,7 @@ void CEnemyAnimated::dieEnemy()
 
 bool CEnemyAnimated::Update(float ElapsedTime)
 {
-    //if (!m_LevelController.GetTimePaused())
+    if (!CEngine::GetInstance().m_LevelController->GetTimePaused())
     {
         if (!m_enemydead)
         {
