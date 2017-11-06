@@ -120,8 +120,8 @@
 		<parameter type="float" name="ZBlurShowDepths" value="0.0" />
 		<parameter type="float" name="ZBlurConstantBlur" value="0.3" />
 		<parameter type="float" name="ZBlurFocalStart" value="1.0" />
-		<parameter type="float" name="ZBlurFocalEnd" value="20.0" />
-		<parameter type="float" name="ZBlurEnd" value="1.0" />
+		<parameter type="float" name="ZBlurFocalEnd" value="50.0" />
+		<parameter type="float" name="ZBlurEnd" value="50.0" />
 	</material>	
 	
 	<material name="BloomMaterial" vertex_type="Bloom">
