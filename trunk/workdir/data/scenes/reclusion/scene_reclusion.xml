@@ -31,7 +31,7 @@
 			<transform position="0.764666 3.20944 -0.000478745" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-		<scene_mesh name="c11" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
+		<!--<scene_mesh name="c11" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
 			<transform position="0.764666 3.20944 -2.11214" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="triggerBox" />
 		</scene_mesh> -->

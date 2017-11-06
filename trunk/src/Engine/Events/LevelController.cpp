@@ -47,8 +47,9 @@ void CLevelController::Init()
 
 void CLevelController::PlayerDetected()
 {
-    m_PlayerDetected = true;
-
+    m_TimePaused = true;
+    if (m_SceneManager->GetCurrentScene()->Exist("MenuMuerte"))
+        m_SceneManager->GetCurrentScene()->GetLayer("MenuMuerte")->SetActive(true);
 }
 
 
@@ -60,21 +61,7 @@ void CLevelController::Update(float elapsedTime)
         PauseGame();
 
     }
-    if (m_PlayerDetected && m_TimerDetected<5.0f)
-    {
-        m_TimerDetected += elapsedTime;
-        CGUIManager* guiMan = &CEngine::GetInstance().GetGUIManager();
-        Vect2f lPos;
-        Vect2u lSize = CEngine::GetInstance().GetRenderManager().GetWindowSize();
-        lPos.x = lSize.x / 2;
-        lPos.y = lSize.y / 2;
-        guiMan->FillCommandQueueWithText("font1", "Protagonista Descubierta", lPos, CGUIManager::MID_CENTER, CColor(.0f, .0f, .0f));
-    }
-    else
-    {
-        m_TimerDetected = 0;
-        m_PlayerDetected = false;
-    }
+
 }
 
 
