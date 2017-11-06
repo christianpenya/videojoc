@@ -8,8 +8,8 @@ CCheckpointActor::CCheckpointActor() {}
 CCheckpointActor::~CCheckpointActor() {}
 void CCheckpointActor::Load(CXMLElement* aElement)
 {
-    std::string lObjectName = aElement->GetAttribute<std::string>("triggerName", "");
-    CSceneNode* mTrigger = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer("triggers")->GetSceneNode(lObjectName);
+    mObjectName = aElement->GetAttribute<std::string>("triggerName", "");
+    CSceneNode* mTrigger = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer("triggers")->GetSceneNode(mObjectName);
     if (mTrigger)
     {
         m_Position = mTrigger->GetPosition();
@@ -23,7 +23,7 @@ void CCheckpointActor::Load(CXMLElement* aElement)
 
 void CCheckpointActor::Act()
 {
-    CSceneNode* mTrigger = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer("triggers")->GetSceneNode("checkpoint1");
+    CSceneNode* mTrigger = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer("triggers")->GetSceneNode(mObjectName);
     if (mTrigger)
     {
         m_Position = mTrigger->GetPosition();

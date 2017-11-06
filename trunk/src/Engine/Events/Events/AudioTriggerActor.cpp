@@ -16,19 +16,16 @@
 CAudioTriggerActor::CAudioTriggerActor() {}
 CAudioTriggerActor::~CAudioTriggerActor()
 {
-    __H_CHECKED_RELEASE__(mTrigger);
 }
 
 void CAudioTriggerActor::Load(CXMLElement* aElement)
 {
-    std::string lLayerName = aElement->GetAttribute<std::string>("layer", "");
     std::string lObjectName = aElement->GetAttribute<std::string>("obj_name", "");
 
-    assert(lLayerName != "");
     assert(lObjectName != "");
 
     mSoundEvent.eventName = lObjectName;
-    mTrigger = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer(lLayerName)->GetSceneNode(lObjectName);
+
 }
 
 void CAudioTriggerActor::Act()

@@ -3,35 +3,35 @@ fileIn "structCinematics.ms"
 
 
 fn getUserNFrames obj = (
-	return getUserProp obj "FrameStep"
+	return 5
 
 )
 
 fn getUserPropertiesAnimationName obj = (
-	return getUserProp obj "AnimName"
+	return "Cinematica2"
 
 )
 
 fn getUserPropertiesScene obj = (
-	return getUserProp obj "SceneAnim"
+	return ""
 )
 
 fn getUserPropertiesLayer obj = (
-	return getUserProp obj "LayerAnim"
+	return ""
 )
 
 fn getUserPropertiesIsCinematic obj = (
-	return getUserProp obj "IsCinematic"
+	return true
 )
 
 fn getUserPropertiesReverse obj = (
-	return getUserProp obj "Reverse"
+	return false
 
 )
 
 
 fn getUserPropertiesLoop obj = (
-	return getUserProp obj "Loop"
+	return false
 
 
 )
@@ -50,7 +50,7 @@ fn processCamera cam  lCinematic = (
 				lCameraKey.mTime = (((t as float) / ticksPerFrame) / framerate)
 				lCameraKey.mPos = TranslationToRH(cam.transform.translation) --Pasar a RH
 				lCameraKey.mFov=cam.curFOV	
-				lCameraKey.mLookAt = TranslationToRH(-cam.transform[1])
+				lCameraKey.mLookAt = TranslationToRH2(cam.transform[1])
 				lCameraKey.mUp = TranslationToRH(cam.transform[2])
 				lCameraKey.mNear_plane = cam.nearrange
 				lCameraKey.mFar_plane = cam.farrange
@@ -139,7 +139,7 @@ fn write = (
 				local keyNode = XmlNode tag:"key"
 				objNode.addChild keyNode
 				keyNode.addAttribute "time" objKey.mTime
-				
+				str = Vect3ToStr(objKey.mPos)
 				keyNode.addAttribute "pos"  str
 				keyNode.addAttribute "yaw" objKey.mYaw
 				keyNode.addAttribute "pitch" objKey.mPitch

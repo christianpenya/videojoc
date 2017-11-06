@@ -65,11 +65,38 @@ bool CSceneGUI::Update(float ElapsedTime)
             }
 
             break;
-        default:
+        case 3://New Game
         {
-            guiMan->DoButton(nodeName, gui_element, CGUIPosition(l_size.x*portion.x, l_size.y*portion.y, size.x, size.y));
+            if (guiMan->DoButton(nodeName, gui_element, CGUIPosition(l_size.x*portion.x, l_size.y*portion.y, size.x, size.y)))
+            {
+
+                CLevelController *contr = CEngine::GetInstance().m_LevelController;
+                if (contr)
+                {
+                    contr->NewGame();
+                }
+
+            }
+            break;
         }
-        break;
+        case 4://mostramenu
+        {
+            if (guiMan->DoButton(nodeName, gui_element, CGUIPosition(l_size.x*portion.x, l_size.y*portion.y, size.x, size.y)))
+            {
+
+                CLevelController *contr = CEngine::GetInstance().m_LevelController;
+                if (contr)
+                {
+                    contr->ToMainMenu();
+                }
+
+            }
+
+            break;
+        }
+        default:
+
+            break;
         }
 
     }
