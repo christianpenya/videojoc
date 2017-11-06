@@ -16,7 +16,10 @@ public:
         eOpenDoor,
         eReloadScene,
         eLoadScene,
-        eReactorTypeCount
+        eReactorTypeCount,
+        eTextGUIR,
+        eTextIcon,
+        eAudioTrigger
     };
 
     CReactor() : m_Finished(false) {}
@@ -39,6 +42,9 @@ Begin_Enum_String(CReactor::EReactorType)
     Enum_String_Id(CReactor::eOpenDoor, "open_door");
     Enum_String_Id(CReactor::eReloadScene, "reload_scene");
     Enum_String_Id(CReactor::eLoadScene, "load_scene");
+    Enum_String_Id(CReactor::eTextGUIR, "textGUIR");
+    Enum_String_Id(CReactor::eTextIcon, "iconText");
+    Enum_String_Id(CReactor::eAudioTrigger, "audio_triggerR");
 }
 End_Enum_String;
 

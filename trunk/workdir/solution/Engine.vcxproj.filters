@@ -90,10 +90,16 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\CinematicActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h">
@@ -102,7 +108,16 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\GameCompleteActor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\IconTextReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\LoadSceneReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\NodeInteractActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\OpenDoorReactor.h">
@@ -494,10 +509,16 @@
     <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\CinematicActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp">
@@ -506,7 +527,16 @@
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\GameCompleteActor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\IconTextReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\LoadSceneReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\NodeInteractActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\OpenDoorReactor.cpp">

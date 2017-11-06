@@ -48,6 +48,9 @@ struct sObjectKey(
 fn TranslationToRH translation = (
 	return point3 -translation.x translation.z translation.y
 )
+fn TranslationToRH2 translation = (
+	return point3 translation.y translation.z translation.x
+)
 
 fn Vect3ToStr vect3 = (
 

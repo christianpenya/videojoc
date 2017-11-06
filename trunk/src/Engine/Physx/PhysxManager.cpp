@@ -561,8 +561,6 @@ CPhysXManager::CharacterControllerData CPhysXManager::MoveCharacterController(co
 
 bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterMask, RaycastData* result_)
 {
-
-
     physx::PxFilterData filterData;
     filterData.setToDefault();
     filterData.word0 = filterMask;  //GROUP1 | GROUP2;
@@ -591,13 +589,14 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
         {
             result_->position = CastVec(hit.block.position);
             result_->normal = CastVec(hit.block.normal);
-            result_->distance = hit.block.distance; //hit.block.distance
+            result_->distance = origin.Distance(end); //hit.block.distance
             result_->actor = m_ActorNames[(size_t)hit.block.actor->userData];
         }
         else
             status = false;
     }
     return status;
+
 
 }
 bool CPhysXManager::RaycastCam(const Vect3f& origin, const Vect3f& end, int filterMask, RaycastData* result_)
@@ -626,7 +625,6 @@ bool CPhysXManager::RaycastCam(const Vect3f& origin, const Vect3f& end, int filt
         result_->position = Vect3f(hit.block.position.x, hit.block.position.y, hit.block.position.z);
         result_->normal = Vect3f(hit.block.normal.x, hit.block.normal.y, hit.block.normal.z);
         result_->distance = hit.block.distance;
-        size_t a = (size_t)hit.block.actor->userData;
         result_->actor = m_ActorNames[(size_t)hit.block.actor->userData];
 
     }

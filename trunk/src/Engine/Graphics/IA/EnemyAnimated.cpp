@@ -29,7 +29,7 @@ CEnemyAnimated::CEnemyAnimated(CXMLElement* aElement)
     , m_State(Input::PATROL)
     , m_DetectAngle(aElement->GetAttribute<float>("detectAngle", 45.0f))
     , m_Corename(aElement->GetAttribute<std::string>("core", "dron"))
-    , m_Group(aElement->GetAttribute<int>("group", 2))
+    , m_Group(aElement->GetAttribute<int>("group", 0))
 {
     m_standby = aElement->GetAttribute<bool>("standby", false);
 
@@ -69,7 +69,7 @@ void CEnemyAnimated::hearsPlayer()
     if (hittedP && (resultado->actor == "player"))
     {
         m_hear = true;
-        std::cout << "Escucho prota" << std::endl;
+//        std::cout << "Escucho prota" << std::endl;
     }
     else
         m_hear = false;
@@ -91,7 +91,6 @@ bool CEnemyAnimated::Update(float ElapsedTime)
     {
         if (!m_enemydead)
         {
-
             //this->ClearCycle(1, 0.5);
             m_CalModel->update(ElapsedTime);
             m_ElapsedTime = ElapsedTime;
@@ -107,7 +106,7 @@ bool CEnemyAnimated::Update(float ElapsedTime)
                     {
                         m_State = Input::STOP;
                         m_LevelController.PlayerDetected();
-                        std::cout << "Muere protagonista" << std::endl;
+                        //                      std::cout << "Muere protagonista" << std::endl;
                     }
                 }
                 else if (resultado->distance <= m_SightDistance)
