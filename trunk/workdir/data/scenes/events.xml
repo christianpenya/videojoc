@@ -1,43 +1,43 @@
 <events>
 
-AUDIOS
-<event name="c11" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="c11"/>
+	AUDIOS
+	<event name="c11" active="true">
+		<actor name="audio_triggerA" obj_name="c11"/>
 		<reactor name="dumb"/>
 	</event>
 
 	<event name="d12" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="d12"/>
+		<actor name="audio_triggerA" obj_name="d12"/>
 		<reactor name="dumb"/>
 	</event>
 	
 	<event name="d13" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="d13"/>
+		<actor name="audio_triggerA"  obj_name="d13"/>
 		<reactor name="dumb"/>
 	</event>
 	
 	<event name="d14" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="d14"/>
+		<actor name="audio_triggerA" obj_name="d14"/>
 		<reactor name="dumb"/>
 	</event>
 	
 	<event name="d15" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="d15"/>
+		<actor name="audio_triggerA" obj_name="d15"/>
 		<reactor name="dumb"/>
 	</event>
 
 	<event name="c16" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="c16"/>
+		<actor name="audio_triggerA" obj_name="c16"/>
 		<reactor name="dumb"/>
 	</event>
 
 	<event name="d17" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="d17"/>
+		<actor name="audio_triggerA" obj_name="d17"/>
 		<reactor name="dumb"/>
 	</event>
 
 	<event name="d18" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="d18"/>
+		<actor name="audio_triggerA" obj_name="d18"/>
 		<reactor name="dumb"/>
 	</event>
 	<!-- 
@@ -50,7 +50,7 @@ AUDIOS
 		<actor name="audio_trigger" layer="triggers" obj_name="c11"/>
 		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
 	</event>
-	
+	-->
 	MUSICA
 	
 	CHECKPOINTS
