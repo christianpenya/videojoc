@@ -118,7 +118,7 @@ void CRenderPipeline::Execute()
 
     for (size_t i = 0; i < GetCount(); ++i)
     {
-        //LOG_INFO_APPLICATION(m_ResourcesVector[i]->GetName().c_str());
+        LOG_INFO_APPLICATION(m_ResourcesVector[i]->GetName().c_str());
         m_ResourcesVector[i]->Execute(lRenderManager);
     }
 }

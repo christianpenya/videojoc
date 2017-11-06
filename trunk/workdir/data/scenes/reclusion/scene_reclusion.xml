@@ -3,29 +3,37 @@
 	<layer name="triggers" active="true">
 	
 		AUDIO TRIGGERS
-		<!-- <scene_mesh name="AUDIO_008" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
-			<transform position="40.7966 0.00705194 40.8085" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		<scene_mesh name="d18" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
+			<transform position="40.7966 0.00705194 40.8085" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-		<scene_mesh name="AUDIO_007" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
-			<transform position="46.5618 0.00705194 34.8862" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		<scene_mesh name="d15" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
+			<transform position="46.5618 0.00705194 34.8862" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-		<scene_mesh name="AUDIO_006" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
-			<transform position="32.5864 0.00705194 13.4216" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		<scene_mesh name="d17" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
+			<transform position="32.5864 0.00705194 13.4216" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-		<scene_mesh name="AUDIO_005" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
-			<transform position="27.3455 0.00705194 27.0446" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		<scene_mesh name="c16" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
+			<transform position="27.3455 0.00705194 27.0446" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-		<scene_mesh name="AUDIO_004" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
-			<transform position="14.2335 0.00705194 27.0446" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		<scene_mesh name="d14" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
+			<transform position="14.2335 0.00705194 27.0446" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-		<scene_mesh name="AUDIO_003" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
-			<transform position="-0.0136948 0.00705194 16.0447" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		<scene_mesh name="d13" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
+			<transform position="-0.0136948 0.00705194 16.0447" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-		<scene_mesh name="AUDIO_002" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
-			<transform position="0.764666 3.20944 -0.000478745" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		<scene_mesh name="d12" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
+			<transform position="0.764666 3.20944 -0.000478745" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-		<scene_mesh name="AUDIO_001" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
-			<transform position="0.764666 3.20944 -2.11214" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+		<scene_mesh name="c11" mesh="data/meshes/reclusion/AUDIO_001.mesh" >
+			<transform position="0.764666 3.20944 -2.11214" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="triggerBox" />
 		</scene_mesh> -->
 	
 	//TEXT UI
@@ -37,11 +45,10 @@
 			<transform position="12.5461 3.20944 2.23557" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
-		<scene_mesh name="agachateForest" mesh="data/meshes/Box01.mesh">
+<scene_mesh name="agachateForest" mesh="data/meshes/Box01.mesh">
 			<transform position="-0.0136948 0.00705194 14.0069" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
-		</scene_mesh>
-		
+		</scene_mesh>		
 		
 	//CHECKPOINTS
 	<scene_mesh name="checkpoint1" mesh="data/meshes/Box01.mesh">
@@ -784,7 +791,7 @@
 			<transform position="46.7233 0.512733 24.6315" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
 		
-		<scene_mesh name="columna" mesh="data/meshes/reclusion/columna001.mesh" >
+<!-- 		<scene_mesh name="columna" mesh="data/meshes/reclusion/columna001.mesh" >
 			<transform position="39.9011 0.0 20.6431" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="box" />
 		</scene_mesh>
@@ -804,7 +811,7 @@
 			<transform position="31.9872 0.0 33.9912" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 			<collider rigid_body="box" />
 		</scene_mesh>
-		
+ -->		
 		<scene_mesh name="Decall079" mesh="data/meshes/reclusion/decall6.mesh" >
 			<transform position="30.5725 0.0156934 21.9012" yaw="45.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
@@ -1469,7 +1476,6 @@
 			<transform position="8.46 1.19 30.4" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="0.0 0.0 0.0" />
 		</scene_enemies>
 					
-	
 		<scene_mesh name="PatrolPoint_DronCabinas" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="14.5 1.19 27.19" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>

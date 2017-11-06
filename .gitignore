@@ -14,3 +14,4 @@ trunk/workdir/solution/obj/x32/Debug/Base/Base.tlog/Base.lastbuildstate
 *.vcxproj
 *.filters
 trunk/workdir/imgui.ini
+*.bnk

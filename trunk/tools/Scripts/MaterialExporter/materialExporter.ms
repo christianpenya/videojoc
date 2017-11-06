@@ -42,6 +42,7 @@ function process = (
 		--Creamos un objeto con la estructura y añadimos el nombre
 		local lSMaterial = sMaterial()
 
+		print mMaterial.name
 		lSMaterial.m_name = mMaterial.name
 		lSMaterial.m_vertexType = "PositionNormal"
 		lSMaterial.m_opacity = mMaterial.opacity
@@ -66,6 +67,8 @@ function process = (
 			)
 		)
 
+		print "bump ok"
+		
 		--Obtenemos los datos referentes al diffuse del material
 		lSMaterial.m_diffuseEnabled = mMaterial.diffuseMapEnable
 		
@@ -86,6 +89,8 @@ function process = (
 			)
 		)	
 		
+		print "diffuse ok"
+		
 		--Datos ambient map
 		lSMaterial.m_ambientEnabled = mMaterial.ambientMapEnable
 		
@@ -104,6 +109,7 @@ function process = (
 				lSMaterial.m_ambientMapEnabled = false
 			)
 		)		
+		print "ambient ok"
 		
 		--Datos specular level
 		lSMaterial.m_specularLevelEnabled = mMaterial.specularLevelMapEnable
@@ -122,7 +128,7 @@ function process = (
 				lSMaterial.m_specularLevelEnabled = false
 			)
 		)		
-		
+		print "specular ok"
 		--Datos specular
 		lSMaterial.m_specularEnabled = mMaterial.specularMapEnable
 		
@@ -141,7 +147,7 @@ function process = (
 				lSMaterial.m_specularEnabled = false
 			)
 		)	
-		
+		print "specular ok"
 		--Datos glossiness
 		lSMaterial.m_glossinessEnabled = mMaterial.glossinessMapEnable
 		
@@ -159,12 +165,11 @@ function process = (
 				lSMaterial.m_glossinessEnabled = false
 			)
 		)
-
+print "specular glossi"
 		if lSMaterial.m_glossinessEnabled or lSMaterial.m_specularEnabled or lSMaterial.m_diffuseEnabled then
 		(
 			lSMaterial.m_vertexType = lSMaterial.m_vertexType + "UV"
 		)
-
 
 		--Datos self illum
 		lSMaterial.m_selfIllumEnabled = mMaterial.selfIllumMapEnable
@@ -178,6 +183,7 @@ function process = (
 				lSMaterial.m_selfIllumEnabled = false
 			)
 		)
+print "self illum"
 
 		/*--Datos emission
 		lSMaterial.m_emissionEnabled = mMaterial.emissionMapEnable
@@ -192,6 +198,8 @@ function process = (
 		)*/
 		
 		append mArrayMaterialStruct lSMaterial 
+		
+		print "ta mere"
 	)	
 )
 
