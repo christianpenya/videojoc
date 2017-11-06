@@ -18,7 +18,8 @@ public:
         eActorTypeCount,
         eCheckpoint,
         eCinematic,
-        eNodeInteract
+        eNodeInteract,
+        eGameComplete
     };
 
     CActor() : m_Finished(false) {}
@@ -38,11 +39,12 @@ protected:
 Begin_Enum_String(CActor::EActorType)
 {
     Enum_String_Id(CActor::eDumb, "dumb");
-    Enum_String_Id(CActor::eAudioTrigger, "audio_trigger");
+    Enum_String_Id(CActor::eAudioTrigger, "audio_triggerA");
     Enum_String_Id(CActor::eTextGUIA, "textGUIA");
     Enum_String_Id(CActor::eCheckpoint, "checkpoint");
     Enum_String_Id(CActor::eCinematic, "Cinematica");
-    Enum_String_Id(CActor::eNodeInteract, "node")
+    Enum_String_Id(CActor::eNodeInteract, "node");
+    Enum_String_Id(CActor::eGameComplete,"GameComplete")
 }
 End_Enum_String;
 

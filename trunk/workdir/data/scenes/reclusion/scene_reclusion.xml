@@ -53,7 +53,7 @@
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 		<scene_mesh name="checkpoint3" mesh="data/meshes/Box01.mesh">
-			<transform position="46.5618 0.00705194 34.8862" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<transform position="46.5618 0.00705194 34.8862" yaw="-90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 		//CINEMATICAS
@@ -70,6 +70,11 @@
 		//CUCHILLO
 		<scene_mesh name="cuchillo" mesh="data/meshes/Box01.mesh">
 			<transform position="30.3862 0.0 0.902714" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		//FIN NIVEL
+		<scene_mesh name="finNivel1" mesh="data/meshes/Box01.mesh">
+			<transform position="40.7966 0.00705194 54.3484" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 		
@@ -1615,9 +1620,12 @@
 		<scene_gui name="backgroundMC" gui_element="backgroundCOMPLETE" portion="0 0" size="1920 1080" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-		<!-- <scene_gui name="newGame" gui_element="new_gameB" portion="0.25 0.45" size="250 50" type="button" action="3">
+		<scene_gui name="nextLevel" gui_element="nextLevelB" portion="0.25 0.3" size="250 50" type="button" action="5">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
-		</scene_gui> -->
+		</scene_gui> 
+		<scene_gui name="toMainMenu2" gui_element="toMainMenuB" portion="0.25 0.6" size="250 50" type="button" action="4">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
 		
 	</layer>
 	<layer name="MenuMuerte" active="false" >	

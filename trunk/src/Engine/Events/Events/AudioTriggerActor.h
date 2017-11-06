@@ -19,7 +19,7 @@ public:
     void Act();
     void Update(float elapsedTime);
 
-    CSceneNode* mTrigger;
+
     SoundEvent mSoundEvent;
 };
 

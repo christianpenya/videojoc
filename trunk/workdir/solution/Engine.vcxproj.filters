@@ -90,6 +90,9 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
@@ -103,6 +106,9 @@
       <Filter>Events\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\GameCompleteActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\IconTextReactor.h">
@@ -503,6 +509,9 @@
     <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
@@ -516,6 +525,9 @@
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\GameCompleteActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\IconTextReactor.cpp">

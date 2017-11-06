@@ -33,6 +33,14 @@
 		<sprite name="toMainMenuB2"x="0" y="205" w="512" h="102"/>
 		<sprite name="toMainMenuB3" x="0" y="410" w="512" h="102"/>
 	</gui_spritemap>
+		<gui_spritemap name="nextLevelB" width="512" height="512">
+		<material name="nextLevelB" vertex_type="SpriteVertex">
+			<texture type="diffuse" filename="data/gui/Boton_MENU_PRINCIPAL.png"/>
+		</material>
+		<sprite name="nextLevelB1" x="0" y="0" w="512" h="102"/>
+		<sprite name="nextLevelB2"x="0" y="205" w="512" h="102"/>
+		<sprite name="nextLevelB3" x="0" y="410" w="512" h="102"/>
+	</gui_spritemap>
 	
 	<gui_spritemap name="slider1" width="512" height="512">
 		<material name="slider1" vertex_type="SpriteVertex">		
@@ -76,6 +84,7 @@
 		</material>
 		<sprite name="background_m" x="0" y="0" w="1920" h="1080"/>
 	</gui_spritemap>
+	
 	<gui_spritemap name="cuchilloICON" width="512" height="512" >
 		<material name="cuchilloICON" vertex_type="SpriteVertex">
 			<texture type="diffuse" filename="data/gui/cuchillo.png"/>
@@ -95,6 +104,7 @@
 	<guisprite name="backgroundMUERTE" normal="background_m"/>
 	<button name="lastCheckpointB" normal="RestoreCheckpoint1" highlight="RestoreCheckpoint2" pressed="RestoreCheckpoint3"/>
 	<button name="toMainMenuB" normal="toMainMenuB1" highlight="toMainMenuB2" pressed="toMainMenuB3"/>
+	<button name="nextLevelB" normal="nextLevelB1" highlight="nextLevelB2" pressed="nextLevelB3"/>
 	<guisprite name="cuchilloICON" normal="cuchillo"/>
 	
 

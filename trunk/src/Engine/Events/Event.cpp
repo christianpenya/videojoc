@@ -21,6 +21,8 @@
 #include "Events/CinematicActor.h"
 #include "Events/NodeInteractActor.h"
 #include "Events/IconTextReactor.h"
+#include "Events/GameCompleteActor.h"
+#include "Events/AudioTriggerReactor.h"
 
 CEvent::CEvent() :
     m_Finished(false),
@@ -65,6 +67,9 @@ CEvent::CEvent(CXMLElement* aEvent) :
             case CActor::eNodeInteract:
                 mActor = new CNodeInteractActor();
                 break;
+            case CActor::eGameComplete:
+                mActor = new CGameCompleteActor();
+                break;
             default:
                 break;
             }
@@ -98,6 +103,9 @@ CEvent::CEvent(CXMLElement* aEvent) :
                 break;
             case CReactor::eTextIcon:
                 mReactor = new CIconTextReactor();
+                break;
+            case CReactor::eAudioTrigger:
+                mReactor = new CAudioTriggerReactor();
                 break;
             }
 

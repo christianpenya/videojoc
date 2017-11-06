@@ -2,11 +2,12 @@
 
 AUDIOS
  	<event name="c11" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="c11"/>
-		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
+		<actor name="audio_triggerA" obj_name="c11"/>
+		<reactor name="dumb"/>
+		<!-- <reactor name="audio_triggerR" obj_name="NOM_MUSICA_AQUI"/> -->
 	</event>
 	<event name="trigger_pasillo" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="trigger_pasillo"/>
+		<actor name="audio_triggerA" layer="triggers" obj_name="trigger_pasillo"/>
 		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
 	</event>
 	
@@ -31,19 +32,19 @@ AUDIOS
 	TEXTOS
 	<event name="mueveteWASD" active = "true">		
 		<actor name="dumb" time="68.0"/>
-		<reactor name="textGUIR" portion="0.5 0.666" time="3.0" text="Usa WASD para moverte" />
+		<reactor name="textGUIR" portion="0.5 0.666" time="2.0" text="Usa WASD para moverte" />
 	</event> 
 	 <event name="miraAlrededor" active = "true">
-		<actor name="textGUIA" portion="0.5 0.666" time="3.0" text="Mueve el raton para mirar alrededor"/>
+		<actor name="textGUIA" portion="0.5 0.666" time="2.0" text="Mueve el raton para mirar alrededor"/>
 		<reactor name="dumb" />
 	</event>  
 	
 	<event name="correForest" active = "true">
-		<actor name="textGUIA" portion="0.5 0.666" time="3.0" text="Pulsa Shift para correr"/>
+		<actor name="textGUIA" portion="0.5 0.666" time="2.0" text="Pulsa Shift para correr"/>
 		<reactor name="dumb" />
 	</event>  
 	<event name="agachateForest" active = "true">
-		<actor name="textGUIA" portion="0.5 0.666" time="3.0" text="Pulsa Ctrl para ir en sigilo"/>
+		<actor name="textGUIA" portion="0.5 0.666" time="2.0" text="Pulsa Ctrl para ir en sigilo"/>
 		<reactor name="dumb" />
 	</event> 
 	CINEMATICAS
@@ -73,4 +74,12 @@ AUDIOS
 	<actor name="node"  portion="0.5 0.666" time="3.0" text="Pulsa E para recoger el arma"/>
 	<reactor name="iconText" portion="0.5 0.66" time="3.0" text="Arma recogida!" icon="cuchilloICON" iPortion="0.5 0.33"/>
 </event>
+
+//FINNIVEL
+<event name="finNivel1" active="true">
+	<actor name="GameComplete" />
+	<reactor name="dumb"/>
+</event>
+
+
 </events>

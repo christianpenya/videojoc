@@ -65,8 +65,7 @@ bool CSceneGUI::Update(float ElapsedTime)
             }
 
             break;
-        default:
-        case 3:
+        case 3://New Game
         {
             if (guiMan->DoButton(nodeName, gui_element, CGUIPosition(l_size.x*portion.x, l_size.y*portion.y, size.x, size.y)))
             {
@@ -78,8 +77,9 @@ bool CSceneGUI::Update(float ElapsedTime)
                 }
 
             }
+            break;
         }
-        case 4:
+        case 4://mostramenu
         {
             if (guiMan->DoButton(nodeName, gui_element, CGUIPosition(l_size.x*portion.x, l_size.y*portion.y, size.x, size.y)))
             {
@@ -91,8 +91,12 @@ bool CSceneGUI::Update(float ElapsedTime)
                 }
 
             }
+
+            break;
         }
-        break;
+        default:
+
+            break;
         }
 
     }

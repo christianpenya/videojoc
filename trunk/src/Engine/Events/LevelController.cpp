@@ -144,3 +144,11 @@ void CLevelController::ToMainMenu()
     if (m_SceneManager->GetCurrentScene()->Exist("MenuCompletado"))
         m_SceneManager->GetCurrentScene()->GetLayer("MenuCompletado")->SetActive(false);
 }
+
+void CLevelController::GameComplete()
+{
+    m_TimePaused = true;
+    if (m_SceneManager->GetCurrentScene()->Exist("MenuCompletado"))
+        m_SceneManager->GetCurrentScene()->GetLayer("MenuCompletado")->SetActive(true);
+}
+
