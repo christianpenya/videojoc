@@ -22,8 +22,10 @@ CDron::CDron(CXMLElement* aTreeNode)
     , m_speedChasing(aTreeNode->GetAttribute<float>("speedChasing", 1.0f))
     , m_investigatingTolerance(aTreeNode->GetAttribute<float>("investigatingTolerance", 1.0f))
     , m_lastPositionView(Vect3f(0.0f,0.0f,0.0f))
+    , m_light(aTreeNode->GetAttribute<std::string>("light", ""))
 {
     const tinyxml2::XMLElement* aElement = aTreeNode->FirstChildElement();
+
 
     while (aElement != NULL)
     {
@@ -31,6 +33,7 @@ CDron::CDron(CXMLElement* aTreeNode)
             m_patrolPoints.push_back(aElement->GetAttribute<std::string>("name", ""));
         aElement = aElement->NextSiblingElement();
     }
+
     straight = false;
 
 }
@@ -101,6 +104,7 @@ void CDron::Move(Vect3f destination, float speed)
     this->SetForward(destination - m_Position);
     m_PhysXManager.MoveCharacterController(GetName(), m_Position - lastMove, PHYSX_UPDATE_STEP);
     this->SetPosition(m_PhysXManager.GetActorPosition(GetName()) + m_Height);
+    (*this->GetParent())(m_light.data())->SetPosition(m_Position + Vect3f(0.0f, 1.19f, 0.0f));
 
 }
 

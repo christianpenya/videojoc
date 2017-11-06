@@ -1458,109 +1458,116 @@
 	</layer>
 			
 	<layer name="drones" active="true">
-			
-		<scene_mesh name="PatrolPoint_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="8.46 1.19 22.11" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		<scene_mesh name="PatrolPoint_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh">
+			<transform position="8.46 1.19 22.11" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
-		<scene_mesh name="PatrolPoint2_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="8.46 1.19 33.49" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		<scene_mesh name="PatrolPoint2_DronReclusion1" mesh="data/meshes/reclusion/PatrolPoint.mesh">
+			<transform position="8.46 1.19 33.49" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
-		<scene_enemies name="DronReclusion1" core="dron"  height="1.1" radiu="0.2" group="2">
-			<transform position="8.46 1.19 30.4" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		<scene_light name="DronReclusion1Fspot" />
+		<scene_enemies name="DronReclusion1" core="dron"  height="1.1" radiu="0.17" group="0">
+			<transform position="8.46 1.19 30.4" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="0.0 0.0 0.0" />
 		</scene_enemies>
-		
+					
 	
 		<scene_mesh name="PatrolPoint_DronCabinas" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="14.5 1.19 27.19" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="14.5 1.19 27.19" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DronCabinas" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="23.75 1.19 27.19" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="23.75 1.19 27.19" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
-		<scene_enemies name="DronCabinas" core="dron"  height="1.1" radiu="0.2" group="2">
-			<transform position="19.81 1.19 27.19" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		<scene_light name="DronCabinasFspot" />
+		<scene_enemies name="DronCabinas" core="dron"  height="1.1" radiu="0.17" group="0">
+			<transform position="19.81 1.19 27.19" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>
 
 
 		<scene_mesh name="PatrolPoint_DronReclusion2" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="11.38 1.19 42.87" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="11.38 1.19 42.87" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DronReclusion2" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="5.07 1.19 42.87" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="5.07 1.19 42.87" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
-		<scene_enemies name="DronReclusion2" core="dron"  height="1.1" radiu="0.2" group="2">
-			<transform position="3.29 1.19 42.87" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		<scene_light name="DronReclusion2Fspot" />
+		<scene_enemies name="DronReclusion2" core="dron"  height="1.1" radiu="0.17" group="0">
+			<transform position="3.29 1.19 42.87" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>
 		
 		
 		<scene_mesh name="PatrolPoint_DroneComedorInicioIzquierda" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="35.17 1.19 24.84" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="35.17 1.19 24.84" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DroneComedorInicioIzquierda" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="31.47 1.19 24.84" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="31.47 1.19 24.84" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint3_DroneComedorInicioIzquierda" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="31.47 1.19 20.45" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="31.47 1.19 20.45" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint4_DroneComedorInicioIzquierda" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="27.97 1.19 20.45" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
-		</scene_mesh>		
-		<scene_enemies name="DroneComedorInicioIzquierda" core="dron"  height="1.1" radiu="0.2" group="2">
-			<transform position="33.29 1.19 24.84" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+			<transform position="27.97 1.19 20.45" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
+		</scene_mesh>
+		<scene_light name="DroneComedorInicioIzquierdaFspot" />		
+		<scene_enemies name="DroneComedorInicioIzquierda" core="dron"  height="1.1" radiu="0.17" group="0">
+			<transform position="33.29 1.19 24.84" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>		
 	
 	
 		<scene_mesh name="PatrolPoint_DroneComedorInicioDerecha" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="31.84 1.19 38.13" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="31.84 1.19 38.13" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DroneComedorInicioDerecha" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="31.84 1.19 29.82" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="31.84 1.19 29.82" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint3_DroneComedorInicioDerecha" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="35.2 1.19 29.82" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="35.2 1.19 29.82" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint4_DroneComedorInicioDerecha" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="35.20 1.19 38.24" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="35.20 1.19 38.24" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>		
-		<scene_enemies name="DroneComedorInicioDerecha" core="dron"  height="1.1" radiu="0.2" group="2">
-			<transform position="31.51 1.19 33.83" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		<scene_light name="DroneComedorInicioDerechaFspot" />		
+		<scene_enemies name="DroneComedorInicioDerecha" core="dron"  height="1.1" radiu="0.17" group="0">
+			<transform position="31.51 1.19 33.83" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>		
 		
 		<scene_mesh name="PatrolPoint_DroneComedorMitad" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="31.47 1.19 20.45" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="31.47 1.19 20.45" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DroneComedorMitad" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="31.47 1.19 16.1" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="31.47 1.19 16.1" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint3_DroneComedorMitad" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="39.46 1.19 16.1" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="39.46 1.19 16.1" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint4_DroneComedorMitad" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="39.46 1.19 20.60" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="39.46 1.19 20.60" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>		
-		<scene_enemies name="DroneComedorMitad" core="dron"  height="1.1" radiu="0.2" group="2">
-			<transform position="35.95 1.19 20.60" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		<scene_light name="DroneComedorMitadFspot" />
+		<scene_enemies name="DroneComedorMitad" core="dron"  height="1.1" radiu="0.17" group="0">
+			<transform position="35.95 1.19 20.60" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>		
 		
 		<scene_mesh name="PatrolPoint_DroneComedorFinIzquierda" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="44.02 1.19 16.49" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="44.02 1.19 16.49" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DroneComedorFinIzquierda" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="44.02 1.19 29.16" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="44.02 1.19 29.16" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
-		<scene_enemies name="DroneComedorFinIzquierda" core="dron"  height="1.1" radiu="0.2" group="2">
-			<transform position="44.02 1.19 22.47" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		<scene_light name="DroneComedorFinIzquierdaFspot" />
+		<scene_enemies name="DroneComedorFinIzquierda" core="dron"  height="1.1" radiu="0.17" group="0">
+			<transform position="44.02 1.19 22.47" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>				
 
 		<scene_mesh name="PatrolPoint_DroneComedorFinDerecha" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="39.54 1.19 29.2" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="39.54 1.19 29.2" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DroneComedorFinDerecha" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="39.54 1.19 38.22" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="39.54 1.19 38.22" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
-		<scene_enemies name="DroneComedorFinDerecha" core="dron"  height="1.1" radiu="0.2" group="2">
-			<transform position="39.54 1.19 33.5" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
-		</scene_enemies>	
-		
+		<scene_light name="DroneComedorFinDerechaFspot" />
+		<scene_enemies name="DroneComedorFinDerecha" core="dron"  height="1.1" radiu="0.17" group="0">
+			<transform position="39.54 1.19 33.5" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>			
+	
 	</layer>
 		
 	

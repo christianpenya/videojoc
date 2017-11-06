@@ -56,11 +56,11 @@ void CCharacterController::Update(float ElapsedTime)
             bool hit = physXManager->RaycastCam(lKPos, lKPos + dist, 0, data);
             if (hit)
             {
-
-                if (strcmp(data->actor.c_str(), "DronReclusion1") == 0)
+                std::string actorName = data->actor;
+                if (actorName.find("Guardia")==0)
                 {
                     CSceneManager* sceneMan = &CEngine::GetInstance().GetSceneManager();
-                    Vect3f enemForward = sceneMan->GetCurrentScene()->GetLayer("drones")->GetSceneNode(data->actor.c_str())->GetForward();
+                    Vect3f enemForward = sceneMan->GetCurrentScene()->GetLayer("guardias")->GetSceneNode(actorName)->GetForward();
                     enemyPos = data->position;
                     player->ClearActiveAnimationCycle(0.5f);
                     player->BlendCycle(5, 1, 0.5f);
