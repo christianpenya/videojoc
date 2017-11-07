@@ -9,7 +9,7 @@ void CTpsCameraController::Update(float ElapsedTime)
     CLevelController *contr = CEngine::GetInstance().m_LevelController;
     if (m_player != nullptr)
     {
-        Vect3f l_HEIGHT = (m_player->m_CrouchingCAM ? Vect3f(0,1.4f,0): playerHeight);
+        Vect3f l_HEIGHT = (m_player->m_CrouchingBOOL ? Vect3f(0,1.4f,0): playerHeight);
         center = m_player->m_Position + l_HEIGHT;
         if (!contr->GetTimePaused())
         {
@@ -50,8 +50,7 @@ void CTpsCameraController::Update(float ElapsedTime)
         m_Front.x = sin(m_Yaw) * cos(-m_Pitch);
         m_Front.y = -sin(-m_Pitch);
         m_Front.z = -cos(m_Yaw) * cos(-m_Pitch);
-
-        float l_zoom = zoom;
+        float l_zoom = m_player->m_RunningBOOL ? zoom*1.1 : zoom;
         Vect3f l_Position = (center - m_Front * l_zoom);
         //Vect3f dir = m_Position - m_player->m_Position;
         Vect3f origin = center - (m_Front * pRadius);
