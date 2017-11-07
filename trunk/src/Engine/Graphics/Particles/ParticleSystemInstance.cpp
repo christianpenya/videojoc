@@ -82,7 +82,7 @@ CParticleSystemInstance::CParticleSystemInstance(const CXMLElement* aElement)
     m_Type = lParticleManager(aElement->GetAttribute<std::string>("name", ""));
     m_EmissionVolume = m_EmissionBoxHalfSize.x * m_EmissionBoxHalfSize.y * m_EmissionBoxHalfSize.z * 8;
     m_EmissionScaler = m_Type->m_EmitAbsolute ? 1 : 1.0f / m_EmissionVolume;
-    CVertexBuffer<VertexTypes::ParticleVertex> *l_buffer = new CVertexBuffer < VertexTypes::ParticleVertex>(lRenderManager, m_ParticleRenderableData, s_MaxParticlesPerInstance);
+    CVertexBuffer<VertexTypes::ParticleVertex> *l_buffer = new CVertexBuffer < VertexTypes::ParticleVertex>(lRenderManager, m_ParticleRenderableData, s_MaxParticlesPerInstance,2);
     m_Vertices = new CGeometryPointList<VertexTypes::ParticleVertex>(l_buffer);
 }
 

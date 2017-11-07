@@ -107,8 +107,11 @@ bool CLayer::Load(CXMLElement* aElement, bool update)
         }
         else if (strcmp(iSceneNode->Name(), "scene_particle") == 0)
         {
-            lNode = new CParticleSystemInstance(iSceneNode);
-            lNode->SetNodeType(CSceneNode::eParticle);
+            if (CEngine::GetInstance().GetParticleManager().Exist(lNodeName))
+            {
+                lNode = new CParticleSystemInstance(iSceneNode);
+                lNode->SetNodeType(CSceneNode::eParticle);
+            }
         }
         else if (strcmp(iSceneNode->Name(), "scene_navmesh") == 0)
         {

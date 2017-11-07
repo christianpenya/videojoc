@@ -58,7 +58,7 @@ void CSetRasterizerState::Execute(CRenderManager& lRM)
 
 void CSetRasterizerState::DrawImgui()
 {
-    if (ImGui::TreeNode("SetRasterizerState"))
+    if (ImGui::TreeNode(GetName().c_str()))
     {
         const char* items[] = { "none","back","front" };
         ImGui::Combo("Cull Mode", (int*)&m_CullMode, items, IM_ARRAYSIZE(items));

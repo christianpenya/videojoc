@@ -332,6 +332,17 @@
 		<parameter type="float" name="ratio_y" value="0.8" />
 	</material>	
 	
+	<material name="ChispasMaterial" vertex_type="ParticleVertex" >
+		<texture type="diffuse" filename="data\particles\Particulanaranja.png" />		
+		<parameter type="float2" name="sprite_size" value="1.0 1.0" />
+		<parameter type="float" name="lerp_sprite" value="0.1" />
+		<parameter type="float" name="ratio_y" value="0.8" />
+	</material>	
+
+	<material name="NavMeshMaterial" vertex_type="Position">
+		<parameter type="color" name="diffuse_color" value="1 0 0 1.0" />
+	</material>
+
 	DECALL ZONA B
 	<material name="19 - Default" vertex_type="PositionNormalUV" >
 		<texture type="diffuse" filename="data\textures\letreros.png" />

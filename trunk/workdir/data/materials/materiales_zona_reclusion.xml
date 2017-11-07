@@ -253,6 +253,14 @@
 		<parameter type="float" name="lerp_sprite" value="0.1" />
 		<parameter type="float" name="ratio_y" value="0.8" />
 	</material>	
+
+	<material name="ChispasMaterial" vertex_type="ParticleVertex" >
+		<texture type="diffuse" filename="data\particles\Particulanaranja.png" />		
+		<parameter type="float2" name="sprite_size" value="1.0 1.0" />
+		<parameter type="float" name="lerp_sprite" value="0.1" />
+		<parameter type="float" name="ratio_y" value="0.8" />
+	</material>	
+
 	
 	MONITOR
 	<material name="ordenadorMaterial" vertex_type="PositionNormal" >
