@@ -5,6 +5,7 @@
 #include "CameraController.h"
 #include "Input/ActionManager.h"
 #include "Input/CharacterController.h"
+#include "Utils/CheckedRelease.h"
 
 #ifdef _DEBUG
 #include "Utils/MemLeaks/MemLeaks.h"
@@ -42,7 +43,12 @@ public:
     {
 
     };
-    virtual ~CTpsCameraController() {};
+    virtual ~CTpsCameraController()
+    {
+        base::utils::CheckedDelete(m_player);
+        base::utils::CheckedDelete(physX);
+        base::utils::CheckedDelete(actionManager);
+    };
 
     virtual void Update(float ElapsedTime) override;
     virtual void Init(CCharacterController* player);
