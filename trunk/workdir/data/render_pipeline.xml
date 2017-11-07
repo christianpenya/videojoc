@@ -73,7 +73,15 @@
 		<texture stage_id="6" name="SpecularLightingTexture"/>
 	</draw_quad>
 
-	<set_depth_stencil_state name="Depth Stencil End Composite final pixel" enable_z_test="true" write_z_buffer="true"/>	
+	<!--<set_depth_stencil_state name="Depth Stencil End Composite final pixel" enable_z_test="true" write_z_buffer="true"/>	-->
+	<set_depth_stencil_state name ="Depth Stencil Particles" enable_z_test="true"  write_z_buffer = "true" enable_stencil = "false" comparison_func = "4"/>	
+	<set_rasterizer_state name="Particles Rasterizer" cull_mode="none" clock_wise="1" type="solid"/> <!-- type  -->
+
+	<apply_technique_pool pool_name="pbr_gbuffer"/>
+	<set_alpha_blend_state name ="Alpha Blend Particles" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="SrcAlpha" dst_blend_alpha="InvSrcAlpha" blend_op_alpha="add"  render_target_write_mask="all" />
+	<render_layer layer="Particles"/>
+	<disable_alpha_blend/>
+
 	
 	SKYBOX
 	<apply_technique_pool pool_name="skybox"/>
@@ -356,12 +364,6 @@
     </draw_quad>
 	
 	
-	<set_depth_stencil_state name ="Depth Stencil Particles" enable_z_test="false"  write_z_buffer = "false" enable_stencil = "false" comparison_func = "4"/>	
-	<apply_technique_pool pool_name="forward"/>
-	<set_alpha_blend_state name ="Alpha Blend Particles" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="SrcAlpha" dst_blend_alpha="InvSrcAlpha" blend_op_alpha="add"  render_target_write_mask="all" />
-	<render_layer layer="Principal"/>
-	<disable_alpha_blend/>
-	-->
 	
 	<!--<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="One" dst_blend_alpha="One" blend_op_alpha="add"  render_target_write_mask="all" />--> TEXTURAS TRANSPARENTES
 	

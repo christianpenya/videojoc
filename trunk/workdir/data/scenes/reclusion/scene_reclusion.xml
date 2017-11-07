@@ -1590,18 +1590,70 @@
 		</scene_navmesh> 
 	</layer>
 	
-    <layer name="Principal" active="false" >	
-		<scene_particle name="Smoke" nextParticleEmission="0.5"  awake="true" awakeTimer="0.8"  activeParticles="200" emission_box_size="1.0 1.0 1.0" > 
-			<transform position="0.0 0.0 1.0" forward="0.0 0.0 0.0" />
+	<layer name="Particles" active="true" >	
+		<scene_particle name="SmokeCamara011" nextParticleEmission="5.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.15 0.2 0.15" > 
+			<transform position="-2.40106 5.91597 2.03317"  forward="0.0 0.0 0.0" />
 		</scene_particle> 
+		<scene_particle name="ChispasCamara011" nextParticleEmission="1.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.01 0.01 0.01" > 
+			<transform position="-2.40106 5.81597 2.03317"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="SmokeCamara013" nextParticleEmission="5.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.15 0.2 0.15" > 
+			<transform position="8.11169 2.7729 14.2724"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="ChispasCamara013" nextParticleEmission="1.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.01 0.01 0.01" > 
+			<transform position="8.11169 2.6729 14.2724"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="SmokeCamara012" nextParticleEmission="5.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.15 0.2 0.15" > 
+			<transform position="16.6686 5.91597 2.03317"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="ChispasCamara012" nextParticleEmission="1.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.01 0.01 0.01" > 
+			<transform position="16.6686 5.81597 2.03317"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="SmokeCamara010" nextParticleEmission="5.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.15 0.2 0.15" > 
+			<transform position="-1.45562 2.47163 4.06155"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="ChispasCamara010" nextParticleEmission="1.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.01 0.01 0.01" > 
+			<transform position="-1.45562 2.37163 4.06155"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="SmokeCamara008" nextParticleEmission="5.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.15 0.2 0.15" > 
+			<transform position="3.17316 2.47163 25.8959"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="ChispasCamara008" nextParticleEmission="1.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.01 0.01 0.01" > 
+			<transform position="3.17316 2.37163 25.8959"  forward="0.0 0.0 0.0" />
+		</scene_particle> 		
+		<scene_particle name="SmokeCamara004" nextParticleEmission="5.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.15 0.2 0.15" > 
+			<transform position="10.2965 2.47163 24.9525"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="ChispasCamara004" nextParticleEmission="1.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.01 0.01 0.01" > 
+			<transform position="10.2965 2.37163 24.9525"  forward="0.0 0.0 0.0" />
+		</scene_particle> 		
+		<scene_particle name="SmokeCamara005" nextParticleEmission="5.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.15 0.2 0.15" > 
+			<transform position="10.2965 2.47163 30.6602"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="ChispasCamara005" nextParticleEmission="1.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.01 0.01 0.01" > 
+			<transform position="10.2965 2.37163 30.6602"  forward="0.0 0.0 0.0" />
+		</scene_particle> 		
+		<scene_particle name="SmokeCamara014" nextParticleEmission="5.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.15 0.2 0.15" > 
+			<transform position="25.954 2.47163 28.0992"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="ChispasCamara014" nextParticleEmission="1.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.01 0.01 0.01" > 
+			<transform position="25.954 2.37163 28.0992"  forward="0.0 0.0 0.0" />
+		</scene_particle> 		
+		<scene_particle name="SmokeCamara002" nextParticleEmission="5.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.15 0.2 0.15" > 
+			<transform position="46.099 2.47163 36.1902"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="ChispasCamara002" nextParticleEmission="1.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.01 0.01 0.01" > 
+			<transform position="46.099 2.37163 36.1902"  forward="0.0 0.0 0.0" />
+		</scene_particle> 		
+		<scene_particle name="SmokeCamara003" nextParticleEmission="5.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.15 0.2 0.15" > 
+			<transform position="46.099 2.47163 16.6935"  forward="0.0 0.0 0.0" />
+		</scene_particle> 
+		<scene_particle name="ChispasCamara003" nextParticleEmission="1.0"  awake="true" awakeTimer="0.1"  activeParticles="200" emission_box_size="0.01 0.01 0.01" > 
+			<transform position="46.099 2.37163 16.6935"  forward="0.0 0.0 0.0" />
+		</scene_particle> 		
 	</layer>	
 	
-	<layer name="DronesLight" active="false" >	
-<!--		<scene_particle name="LightDrone" nextParticleEmission="0.5"  awake="true" awakeTimer="0.8"  activeParticles="200" emission_box_size="0.0 0.0 0.0" > 
-			<transform position="0.0 0.0 5.0"  forward="0.0 0.0 0.0" />
-		</scene_particle> 
--->
-	</layer>	
+
 
 <layer name="PauseMENU" active="false" >	
 	
