@@ -18,6 +18,8 @@ public:
     void Load(CXMLElement* aElement);
     void Act();
     void Update(float elapsedTime);
+    float mTime = 0.f;
+    float mElapsed = 0.f;
 };
 
 #endif //_ENGINE_DUMBACTOR_20170831_H

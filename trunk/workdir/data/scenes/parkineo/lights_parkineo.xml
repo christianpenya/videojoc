@@ -1,0 +1,105 @@
+<lights >
+ 
+	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="10.0 10.0">
+		<transform position="0.0 10.0 10.0" forward="0 -1.0 0" />
+	</light>
+	
+ 
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot028" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="1.07281 5.00692 -34.7431" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot058" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >S
+		<transform position="-1.15199 9.5006 44.9584" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot051" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-15.5172 2.68151 -15.6663" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot029" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-2.48451 2.68151 -29.2676" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot026" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="5.18347 2.68151 -29.2676" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot030" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="17.3807 2.68151 -15.6663" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot031" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="17.3807 2.68151 -6.32424" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot032" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="17.3807 2.68151 3.01783" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot038" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="4.83273 2.68151 -6.32424" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot039" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="4.83273 2.68151 3.01783" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot034" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="17.3807 2.68151 21.702" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot036" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="17.3807 2.68151 40.3861" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot035" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="17.3807 2.68151 31.044" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot033" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="17.3807 2.68151 12.3599" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot037" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="4.83273 2.68151 -15.6663" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot040" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="4.83273 2.68151 12.3599" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot041" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="4.83273 2.68151 21.702" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot043" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="4.83273 2.68151 40.3861" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot046" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-3.71994 2.68151 3.01783" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot044" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-3.71994 2.68151 -15.6663" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot049" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-3.71994 2.68151 31.044" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot042" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="4.83273 2.68151 31.044" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot045" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-3.71994 2.68151 -6.32424" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot047" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-3.71994 2.68151 12.3599" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot048" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-3.71994 2.68151 21.702" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot050" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-3.71994 2.68151 40.3861" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot057" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-15.5172 2.68151 40.3861" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot054" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-15.5172 2.68151 12.3599" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot055" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-15.5172 2.68151 21.702" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot053" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-15.5172 2.68151 3.01783" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot056" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-15.5172 2.68151 31.044" forward="0.0 -1.0 0.0" />
+	</light>
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot052" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+		<transform position="-15.5172 2.68151 -6.32424" forward="0.0 -1.0 0.0" />
+	</light>
+	
+</lights>

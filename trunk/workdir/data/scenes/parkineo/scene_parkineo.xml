@@ -1,0 +1,599 @@
+<scene>
+	
+	<layer name="lights" active="true" >			
+		
+		<scene_light name="FDirect001" />
+		
+	</layer>	
+	
+	<layer name="salas" active="true" >		
+
+		<scene_mesh name="Box011" mesh="data/meshes/parkineo/Box011.mesh" >
+			<transform position="-11.4685 1.27886 -31.3841" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Box012" mesh="data/meshes/parkineo/Box012.mesh" >
+			<transform position="9.53275 1.27886 -31.3841" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Object020" mesh="data/meshes/parkineo/Object020.mesh" >
+			<transform position="-1.7837 -0.229552 -1.17354" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Line006" mesh="data/meshes/parkineo/Object020.mesh" >
+			<transform position="0.0 1.464243 -1.8179" yaw="0.0" pitch="0.0" roll="180.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Shape001" mesh="data/meshes/parkineo/Shape001.mesh" >
+			<transform position="-20.0767 -1b.0 -14.8179" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="Shape002" mesh="data/meshes/parkineo/Shape002.mesh" >
+			<transform position="17.5281 -1.0 -14.8179" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="suelo" mesh="data/meshes/parkineo/carretera.mesh" >
+			<transform position="-1.7837 -0.229552 -1.17354" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/suelo.mesh" scale="-1.0 1.0 1.0" />
+		</scene_mesh>		
+		<scene_mesh name="edificio" mesh="data/meshes/parkineo/edificio.mesh" >
+			<transform position="-0.883163 -0.247192 -4.02659" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+		<scene_mesh name="torreta" mesh="data/meshes/parkineo/torreta.mesh" >
+			<transform position="11.745 -0.222592 48.1769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+	</layer>
+
+	<layer name="opaque" active="true" >		
+		
+	PINTURA SUELO
+	<scene_mesh name="Object021" mesh="data/meshes/parkineo/pintura_suelo.mesh" >
+			<transform position="-1.7837 -0.229552 -1.17354" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="Shape105" mesh="data/meshes/parkineo/pintura_suelo.mesh" >
+		<transform position="10.57131 -0.204276 -1.0" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="Shape106" mesh="data/meshes/parkineo/pintura_suelo.mesh" >
+		<transform position="23.0 -0.204276 -1.0." yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="Shape107" mesh="data/meshes/parkineo/pintura_suelo.mesh" >
+		<transform position="34.8 -0.204276 -1.0" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+	</scene_mesh>	
+	
+	FAROLAS
+	<scene_mesh name="farola090" mesh="data/meshes/parkineo/farola.mesh" >
+			<transform position="-6.16157 -0.265372 -29.2544" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola100" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="3.46261 -0.265372 -29.2544" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola101" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-16.4026 -0.265372 -15.6531" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola102" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-16.4026 -0.265372 -6.31102" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola103" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-16.4026 -0.265372 3.03105" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola109" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-3.85463 -0.265372 -6.31102" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola110" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-3.85463 -0.265372 3.03105" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola105" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-16.4026 -0.265372 21.7152" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola107" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-16.4026 -0.265372 40.3993" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola106" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-16.4026 -0.265372 31.0573" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola104" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-16.4026 -0.265372 12.3731" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola108" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-3.85463 -0.265372 -15.6531" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola111" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-3.85463 -0.265372 12.3731" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola112" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-3.85463 -0.265372 21.7152" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola114" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-3.85463 -0.265372 40.3993" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola117" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="2.74184 -0.265372 3.03105" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola115" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="2.74184 -0.265372 -15.6531" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola120" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="2.74184 -0.265372 31.0573" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola113" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="-3.85463 -0.265372 31.0573" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola116" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="2.74184 -0.265372 -6.31102" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola118" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="2.74184 -0.265372 12.3731" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola119" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="2.74184 -0.265372 21.7152" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola121" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="2.74184 -0.265372 40.3993" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola128" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="14.5391 -0.265372 40.3993" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola125" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="14.5391 -0.265372 12.3731" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola126" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="14.5391 -0.265372 21.7152" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola124" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="14.5391 -0.265372 3.03105" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola127" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="14.5391 -0.265372 31.0573" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="farola123" mesh="data/meshes/parkineo/farola.mesh" >
+		<transform position="14.5391 -0.265372 -6.31102" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+	</scene_mesh>
+		
+	PUERTA
+	<scene_mesh name="puerta" mesh="data/meshes/parkineo/puerta.mesh" >
+		<transform position="-0.883163 -0.440474 48.3396" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+	</scene_mesh>
+
+		
+	EDIFICIO
+	<scene_mesh name="pared" mesh="data/meshes/parkineo/pared.mesh" >
+			<transform position="-0.883163 -0.440474 48.3396" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+	</scene_mesh>
+	<scene_mesh name="puerta001" mesh="data/meshes/parkineo/puerta001.mesh" >
+			<transform position="-0.883163 -0.264158 -4.02659" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+	</scene_mesh>
+	
+	putas ventanas
+		<scene_mesh name="ventana003" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-14.165 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana004" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-17.8809 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana005" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-21.5969 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana006" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-25.3128 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana007" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-29.0288 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana008" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-32.7447 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana009" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-36.4606 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana010" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-40.1766 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana011" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-14.165 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana012" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-17.8809 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana013" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-21.5969 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana014" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-25.3128 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana015" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-29.0288 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana016" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-32.7447 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana017" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-36.4606 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana018" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-40.1766 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana019" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-14.165 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana020" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-17.8809 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana021" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-21.5969 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana022" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-25.3128 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana023" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-29.0288 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana024" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-32.7447 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana025" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-36.4606 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana026" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-40.1766 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana027" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-14.165 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana028" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-17.8809 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana029" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-21.5969 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana030" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-25.3128 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana031" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-29.0288 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana032" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-32.7447 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana033" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-36.4606 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana034" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-40.1766 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana035" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-14.165 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana036" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-17.8809 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana037" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-21.5969 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana038" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-25.3128 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana039" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-29.0288 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana040" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-32.7447 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana041" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-36.4606 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana042" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-40.1766 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana043" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="38.7474 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana044" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="35.0315 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana045" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="31.3155 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana046" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="27.5996 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana047" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="23.8837 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana048" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="20.1677 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana049" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="16.4518 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana050" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="12.7358 18.6762 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana051" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="38.7474 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana052" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="35.0315 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana053" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="31.3155 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana054" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="27.5996 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana055" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="23.8837 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana056" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="20.1677 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana057" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="16.4518 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana058" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="12.7358 15.3101 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana059" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="38.7474 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana060" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="35.0315 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana061" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="31.3155 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana062" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="27.5996 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana063" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="23.8837 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana064" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="20.1677 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana065" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="16.4518 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana066" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="12.7358 11.8446 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana067" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="38.7474 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana068" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="35.0315 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana069" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="31.3155 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana070" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="27.5996 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana071" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="23.8837 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana072" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="20.1677 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana073" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="16.4518 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana074" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="12.7358 8.65267 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana075" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="38.7474 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana076" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="35.0315 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana077" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="31.3155 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana078" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="27.5996 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana079" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="23.8837 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana080" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="20.1677 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana081" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="16.4518 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana082" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="12.7358 5.8652 -42.1134" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana083" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-10.0574 13.3017 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana084" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-7.0629 13.3017 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana085" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-4.06838 13.3017 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana086" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-1.07386 13.3017 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana087" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="1.92066 13.3017 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana088" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="4.91519 13.3017 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana089" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="7.90971 13.3017 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana090" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-10.0574 10.3354 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana091" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-7.0629 10.3354 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana092" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-4.06838 10.3354 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana093" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-1.07386 10.3354 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana094" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="1.92066 10.3354 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana095" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="4.91519 10.3354 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana096" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="7.90971 10.3354 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana097" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="-10.0574 7.50106 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		<scene_mesh name="ventana103" mesh="data/meshes/parkineo/ventana.mesh" >
+			<transform position="7.90971 7.50106 -35.3769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_mesh>
+		
+	</layer>
+	
+	<layer name="laser" active="true">
+		<scene_enemies type="laser" name="laserBoss">
+			<transform position="11.4629 15.3719 45.84" yaw="0.0" pitch="-90.0" roll="0.0" forward="0.0 0.0 0.0" />
+		</scene_enemies>
+		<scene_mesh name="PatrolPoint" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="27.75 3.2 48.95" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint2" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-27.75 3.2 48.95" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+
+		<scene_mesh name="PatrolPoint3" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="27.75 3.2 -26.65" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint4" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-27.75 3.2 -26.65" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		</scene_mesh>			
+
+	</layer>
+	
+	
+	<layer name="lights" active="true" >		
+
+<scene_light name="FDirect001" />
+		<!-- <scene_light name="Fspot028" />
+ 		<scene_light name="Fspot058" />
+ 		<scene_light name="Fspot051" />
+		<scene_light name="Fspot029" />
+		<scene_light name="Fspot026" />
+		<scene_light name="Fspot030" />
+		<scene_light name="Fspot031" />
+		<scene_light name="Fspot032" />
+		<scene_light name="Fspot038" />
+		<scene_light name="Fspot039" />
+		<scene_light name="Fspot034" />
+		<scene_light name="Fspot036" />
+		<scene_light name="Fspot035" />
+		<scene_light name="Fspot033" />
+		<scene_light name="Fspot037" />
+		<scene_light name="Fspot040" />
+		<scene_light name="Fspot041" />
+		<scene_light name="Fspot043" />
+		<scene_light name="Fspot046" />
+		<scene_light name="Fspot044" />
+		<scene_light name="Fspot049" />
+		<scene_light name="Fspot042" />
+		<scene_light name="Fspot045" />
+		<scene_light name="Fspot047" />
+		<scene_light name="Fspot048" />
+		<scene_light name="Fspot050" />
+		<scene_light name="Fspot057" />
+		<scene_light name="Fspot054" />
+		<scene_light name="Fspot055" />
+		<scene_light name="Fspot053" />
+		<scene_light name="Fspot056" />
+		<scene_light name="Fspot052" />	 -->	
+		
+	</layer>	
+	
+	
+	<layer name="LPlayer" active="true" >
+		<scene_animated_model name="player" core="prota" height="1.1" radiu="0.17" group="1" >
+			<transform position="0.8 3.2 -1.4" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+		<!--
+		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
+			<transform position="1.0 3.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_animated_model>
+		-->
+	</layer> 
+	
+	
+				
+	<layer name="triggers" active="true">
+	
+		<scene_mesh name="trigger_pasillo" mesh="data/meshes/Box01.mesh">
+			<transform position="0.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="testTextGUI" mesh="data/meshes/Box01.mesh">
+			<transform position="3.0 0.0 3.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+
+	</layer>
+	
+	<layer name="drones" active="false">
+		
+	</layer>
+	
+	<layer name="Skybox" active="true">
+		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true" active="true">
+			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
+		</scene_mesh>
+	</layer>
+
+
+	<layer name="navmesh" active="false">
+			
+	</layer>
+	
+    <layer name="Principal" active="false" >	
+		
+	</layer>	
+	
+	<layer name="DronesLight" active="false" >	
+		
+	</layer>	
+<layer name="MenuPrincipal" active="true" >	
+		<scene_gui name="backgroundMP" gui_element="backgroundMENU" portion="0 0" size="1440 810" type="GUIsprite" >
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		<scene_gui name="newGame" gui_element="new_gameB" portion="0.25 0.45" size="250 50" type="button" action="3">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		
+	</layer>
+	<layer name="MenuCompletado" active="false" >	
+		<scene_gui name="backgroundMC" gui_element="backgroundCOMPLETE" portion="0 0" size="1440 810" type="GUIsprite" >
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		<scene_gui name="nextLevel" gui_element="nextLevelB" portion="0.25 0.3" size="250 50" type="button" action="5">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui> 
+		<scene_gui name="toMainMenu2" gui_element="toMainMenuB" portion="0.25 0.6" size="250 50" type="button" action="4">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		
+	</layer>
+	<layer name="MenuMuerte" active="false" >	
+		<scene_gui name="backgroundMM" gui_element="backgroundMUERTE" portion="0 0" size="1440 810" type="GUIsprite" >
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+	<scene_gui name="restaurarCheckpoint" gui_element="lastCheckpointB" portion="0.25 0.3" size="250 50" type="button" action="2">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		<scene_gui name="toMainMenu" gui_element="toMainMenuB" portion="0.25 0.6" size="250 50" type="button" action="4">
+			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+		</scene_gui>
+		
+	</layer>
+
+	
+</scene>
+

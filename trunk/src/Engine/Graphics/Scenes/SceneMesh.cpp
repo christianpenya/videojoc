@@ -27,6 +27,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
             std::string lRigidBody = iCollider->GetAttribute<std::string>("rigid_body", "");
             std::string lFilename = iCollider->GetAttribute<std::string>("filename", "");
             int lGroup = iCollider->GetAttribute<int>("group", 3);
+
             Vect3f lOffset = iCollider->GetAttribute<Vect3f>("offset", Vect3f(0.0f, 0.0f, 0.0f));
             float lYawOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("yaw", 0.0f));
             float lPitchOffset = mathUtils::Deg2Rad(iCollider->GetAttribute<float>("pitch", 0.0f));
@@ -62,7 +63,7 @@ CSceneMesh::CSceneMesh(CXMLElement* aElement)
                 mCubeOffset = Vect3f(mMesh->GetBoundingSphere().GetCenter().x, -mMesh->GetBoundingSphere().GetCenter().y, 0);
 
                 lCenter = m_Position + lOffset;
-                mPhysxIndex = CEngine::GetInstance().GetPhysXManager().CreateStaticBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ);
+                mPhysxIndex = CEngine::GetInstance().GetPhysXManager().CreateStaticBox(m_Name, "Default", rotation, lCenter, sizeX, sizeY, sizeZ,lGroup);
 
                 //rotation = CEngine::GetInstance().GetPhysXManager().GetActorOrientation(m_Name);
                 //m_Position = CEngine::GetInstance().GetPhysXManager().GetActorPosition(m_Name) + rotation.Rotate(cubeOffset);

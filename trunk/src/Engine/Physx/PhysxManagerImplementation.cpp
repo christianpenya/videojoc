@@ -149,7 +149,7 @@ void CPhysXManagerImplementation::AddCharacterController(const std::string& char
 
     physx::PxFilterData filterData;
     filterData.setToDefault();
-    filterData.word0 = 0001;
+    filterData.word0 = group;
     shape->setQueryFilterData(filterData);
 
     m_CharacterControllers[characterControllerName] = cct;

@@ -20,14 +20,14 @@
 	<apply_technique_pool pool_name="pbr_gbuffer"/>
 	
 <!--	<render_layer layer="test"/>-->
-	<render_layer layer="opaque"/>
-	<render_layer layer="LPlayer"/>
-	<!--<render_layer layer="triggers"/>-->
-	<render_layer layer="navmesh"/>
-	<render_layer layer="salas"/>
-	<render_layer layer="laser" />
-	<render_layer layer="drones" />	
-	<render_layer layer="guardias" />	
+	<render_layer name="render_opaque" layer="opaque"/>
+	<render_layer name="render_player"layer="LPlayer"/>
+	<!-- <render_layer layer="triggers"/> -->
+	<render_layer name="render_navmesh"layer="navmesh"/>
+	<render_layer name="render_salas"layer="salas"/>
+	<render_layer name="render_laser"layer="laser" />
+	<render_layer name="render_drones"layer="drones" />	
+	<render_layer name="render_guardias"layer="guardias" />	
 	<unset_render_target/>	
 	End generate gbuffer
 	
@@ -365,7 +365,7 @@
 	
 	<!--<set_alpha_blend_state name ="set_alpha_blend_state" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="One" dst_blend_alpha="One" blend_op_alpha="add"  render_target_write_mask="all" />--> TEXTURAS TRANSPARENTES
 	
-	<render_imgui name="imediate_gui_render"/>
+	<!-- <render_imgui name="imediate_gui_render"/> -->
 	<end_render name="end_render_main_loop"/>
 </render_pipeline>
 

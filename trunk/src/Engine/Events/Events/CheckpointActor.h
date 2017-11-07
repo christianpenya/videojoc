@@ -14,6 +14,7 @@ class CCheckpointActor : public CActor
 private:
     Vect3f m_Position = Vect3f(0, 0, 0);
     Quatf m_Rotation =  Quatf(0,0,0,0);
+    std::string mObjectName;
 public:
     CCheckpointActor();
     ~CCheckpointActor();

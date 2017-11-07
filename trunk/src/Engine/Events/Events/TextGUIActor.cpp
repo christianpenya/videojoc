@@ -1,14 +1,9 @@
-
-
-#include <string>
 #include "XML/XML.h"
-#include "Utils/Logger.h"
 
 #include "Engine/Engine.h"
 
 #include "Physx/PhysxManager.h"
 
-#include "Utils/CheckedRelease.h"
 #include "TextGUIActor.h"
 
 CTextGUIActor::CTextGUIActor():

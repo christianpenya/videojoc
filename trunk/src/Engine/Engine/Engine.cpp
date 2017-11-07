@@ -67,6 +67,7 @@ CEngine::CEngine()
     , m_Frames(0)
     , m_FPS (0.0)
 {
+    m_LastTime = clock();
 }
 
 CEngine::~CEngine()
@@ -258,6 +259,10 @@ double clockToMilliseconds(clock_t ticks)
 
 void CEngine::Update()
 {
+    double l_time = clock();
+    m_DeltaTime = (l_time - m_LastTime)/1000;
+    m_DeltaTimeAcum += m_DeltaTime;
+    m_LastTime = l_time;
     //CharacterControllerUpdate(m_ActionManager, (float)m_DeltaTime);
     m_LevelController->Update(m_DeltaTime);
     m_PhysXManager->Update(m_DeltaTime);
@@ -280,12 +285,11 @@ void CEngine::Update()
 
     //Vect2u size  = m_RenderManager->GetWindowSize();
     // m_GUIManager->DoGUISprite("gui1", "backgroundMENU", CGUIPosition(0, 0, size.x, size.y));
-    /* if (m_GUIManager->DoButton("gui1", "pause_button", CGUIPosition(50, 50, 400, 100)))
-     {
-         CPhysXManager::OverlapData *data = new CPhysXManager::OverlapData;
-         m_PhysXManager->Overlap(Vect3f(0.8f, 3.2f, -1.4f),5.0f, 0, data);
+    /*if (m_GUIManager->DoButton("gui1", "pause_button", CGUIPosition(50, 50, 400, 100)))
+    {
+        m_CinematicManager->Play("Cinematica01");
 
-     }*/
+    }*/
 
     //m_GUIManager->FillCommandQueueWithText("font1", "TEST", l_Pos, CGUIManager::TOP_CENTER,CColor(1.0f, 1.0f, 1.0f));
     //m_GUIManager->DoSlider("slider1", "teula_slider",  CGUIPosition(50, 50, 412, 40), .0f, 100.0f, .0f);
@@ -293,14 +297,16 @@ void CEngine::Update()
 
 void CEngine::Render()
 {
-    clock_t l_BeginFrame = clock();
+    //clock_t l_BeginFrame = clock();
 
     m_RenderPipeline->Execute();
 
-    clock_t l_EndFrame = clock();
+    /*clock_t l_EndFrame = clock();
     m_DeltaTime = l_EndFrame - l_BeginFrame;
-    m_DeltaTime = m_DeltaTime / 400.0f;
+    m_DeltaTime = m_DeltaTime/800 ;
     m_DeltaTimeAcum += l_EndFrame - l_BeginFrame;
+
+    */
     ++m_Frames;
 
     if (clockToMilliseconds(m_DeltaTimeAcum) > 1000.0)  //every second

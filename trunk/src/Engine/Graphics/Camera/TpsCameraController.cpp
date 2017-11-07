@@ -9,7 +9,7 @@ void CTpsCameraController::Update(float ElapsedTime)
     CLevelController *contr = CEngine::GetInstance().m_LevelController;
     if (m_player != nullptr)
     {
-        Vect3f l_HEIGHT = (m_player->m_CrouchingCAM ? Vect3f(0,1,0): playerHeight);
+        Vect3f l_HEIGHT = (m_player->m_CrouchingCAM ? Vect3f(0,1.4f,0): playerHeight);
         center = m_player->m_Position + l_HEIGHT;
         if (!contr->GetTimePaused())
         {
@@ -28,6 +28,7 @@ void CTpsCameraController::Update(float ElapsedTime)
         m_Roll += rollSpeed * ElapsedTime;
         zoom += zoomSpeed * ElapsedTime;
 
+
         if (m_Pitch > maxPitch)
             m_Pitch = maxPitch;
         if (m_Pitch < minPitch)
@@ -43,10 +44,7 @@ void CTpsCameraController::Update(float ElapsedTime)
         if (m_Yaw < -mathUtils::PiTimes<float>())
             m_Yaw += mathUtils::PiTimes<float>(2.0f);
 
-        if (m_Roll > mathUtils::PiTimes<float>())
-            m_Roll -= mathUtils::PiTimes<float>(2.0f);
-        if (m_Roll < -mathUtils::PiTimes<float>())
-            m_Roll += mathUtils::PiTimes<float>(2.0f);
+
 
         // set CameraControllerData
         m_Front.x = sin(m_Yaw) * cos(-m_Pitch);
@@ -56,15 +54,15 @@ void CTpsCameraController::Update(float ElapsedTime)
         float l_zoom = zoom;
         Vect3f l_Position = (center - m_Front * l_zoom);
         //Vect3f dir = m_Position - m_player->m_Position;
-        Vect3f origin = center - (m_Front * pRadius*1.5);
+        Vect3f origin = center - (m_Front * pRadius);
         CPhysXManager::RaycastData *data = new CPhysXManager::RaycastData;
         bool hit = physX->RaycastCam(origin, l_Position, 3, data); //3 | 4, data);
-        if (hit)
+        if (hit && strcmp(data->actor.c_str(),"player")!=0)
         {
-            LOG_INFO_APPLICATION("HIT \\(^-^)/");
-            l_zoom = data->distance - hitOffset;
-            if (l_zoom < pRadius*1.5)
-                l_zoom = -pRadius*1.5;
+
+            l_zoom = data->distance;
+            if (l_zoom < minDist)
+                l_zoom = pRadius;
 
             else
                 l_zoom = hitOffset;
@@ -75,7 +73,7 @@ void CTpsCameraController::Update(float ElapsedTime)
             LOG_INFO_APPLICATION("NOt HIT \\(^-^)/");
         }
 
-
+        delete data;
         //m_Position = (center - m_Front * l_zoom);
         m_Position = l_Position;
     }
