@@ -64,6 +64,7 @@
 	<enemy type="guard" name="GuardiaArco" core="guardia" height="1.1" radiu="0.17" group="0" standby="true" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="1.491242 0.0 -18.6949" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaArco"/>
+		<point name="PatrolPoint2_GuardiaArco"/>
 	</enemy>	
 
 	<enemy type="guard" name="GuardiaPasillo" core="guardia" height="1.1" radiu="0.17" group="0"  standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
@@ -77,13 +78,15 @@
 	</enemy>	
 			
 	<enemy type="guard" name="GuardiaComedor01" core="guardia" height="1.1" radiu="0.17" group="0" standby="true" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
-		<transform position="23.0547 0.0 -11.9276" forward="-1.0 0.0 0.0" /> 
+		<transform position="23.71 0.0 -8.96" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaComedor01" />
+		<point name="PatrolPoint2_GuardiaComedor01" />
 	</enemy>	
 	
 	<enemy type="guard" name="GuardiaComedor02" core="guardia" height="1.1" radiu="0.17" group="0" standby="true" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="23.1118 0.0 -6.63727" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_GuardiaComedor02" />
+		<point name="PatrolPoint2_GuardiaComedor02" />
 	</enemy>			
 		
 	<enemy type="guard" name="GuardiaInferiorIzq" core="guardia" height="1.1" radiu="0.17" group="0" standby="false" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.08" investigatingTolerance="1.0" navmesh="navMeshScene02">
@@ -126,7 +129,7 @@
 		<point name="PatrolPoint_GuardiaInferiorCabinas03" />
 	</enemy>			
 	
-	<enemy type="dron" name="DronAdministracion" core="dron" height="1.1" radiu="0.17" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
+	<enemy type="dron" name="DronAdministracion" core="dron" height="1.1" radiu="0.17" light="DronAdministracionFspot" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="45" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
 		<transform position="-16.8285 0.0 -10.9129" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DronAdministracion" />
 	</enemy>			

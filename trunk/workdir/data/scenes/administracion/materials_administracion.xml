@@ -1,4 +1,16 @@
 <materials >
+
+	<material name="PatrolPoint002Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.0 0.0 0.0 0.0 " />
+	</material>
+
+	<material name="Dron001Material" vertex_type="PositionNormal" >
+		<parameter type="color" name="diffuse_color" value="0.0 0.0 0.0 1.0 " />
+	</material>
+
+	<material name="NavMeshMaterial" vertex_type="Position">
+		<parameter type="color" name="diffuse_color" value="1 0 0 1.0" />
+	</material>
 	
 	<material name="Material #1118" vertex_type="PositionNormalUV" >
 		<texture type="diffuse" filename="data\textures\drontxt.jpg" />

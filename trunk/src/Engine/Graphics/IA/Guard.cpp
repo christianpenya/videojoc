@@ -65,6 +65,9 @@ void CGuard::patrol()
     {
         ClearActiveAnimationCycle(0.5f);
         BlendCycle(0, 0.5f, 0.5f);
+        m_DestPoint = 1;
+        this->SetForward(GetPatrolPosition() - m_Position);
+
     }
     else
     {
