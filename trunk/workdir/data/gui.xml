@@ -100,7 +100,7 @@
 	<font name="font1" filename="data/fonts/Font1.xml"/>
 	<guisprite name="backgroundMENU" normal="background_s"/>
 	<guisprite name="backgroundPAUSE" normal="background_p"/>
-	<guisprite name="backgroundCOMPLETE" normal="background_s"/>
+	<guisprite name="backgroundCOMPLETE" normal="background_c"/>
 	<guisprite name="backgroundMUERTE" normal="background_m"/>
 	<button name="lastCheckpointB" normal="RestoreCheckpoint1" highlight="RestoreCheckpoint2" pressed="RestoreCheckpoint3"/>
 	<button name="toMainMenuB" normal="toMainMenuB1" highlight="toMainMenuB2" pressed="toMainMenuB3"/>

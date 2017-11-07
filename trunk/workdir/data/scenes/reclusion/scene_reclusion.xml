@@ -1605,7 +1605,7 @@
 
 <layer name="PauseMENU" active="false" >	
 	
-		<scene_gui name="backgroundP" gui_element="backgroundPAUSE" portion="0 0" size="1920 1080" type="GUIsprite" >
+		<scene_gui name="backgroundP" gui_element="backgroundPAUSE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		<scene_gui name="reanudarJuego" gui_element="reanudarButton" portion="0.25 0.3" size="250 50" type="button" action="1">
@@ -1621,7 +1621,7 @@
 </layer>
 
 <layer name="MenuPrincipal" active="true" >	
-		<scene_gui name="backgroundMP" gui_element="backgroundMENU" portion="0 0" size="1920 1080" type="GUIsprite" >
+		<scene_gui name="backgroundMP" gui_element="backgroundMENU" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		<scene_gui name="newGame" gui_element="new_gameB" portion="0.25 0.45" size="250 50" type="button" action="3">
@@ -1630,7 +1630,7 @@
 		
 	</layer>
 	<layer name="MenuCompletado" active="false" >	
-		<scene_gui name="backgroundMC" gui_element="backgroundCOMPLETE" portion="0 0" size="1920 1080" type="GUIsprite" >
+		<scene_gui name="backgroundMC" gui_element="backgroundCOMPLETE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		<scene_gui name="nextLevel" gui_element="nextLevelB" portion="0.25 0.3" size="250 50" type="button" action="5">
@@ -1642,7 +1642,7 @@
 		
 	</layer>
 	<layer name="MenuMuerte" active="false" >	
-		<scene_gui name="backgroundMM" gui_element="backgroundMUERTE" portion="0 0" size="1920 1080" type="GUIsprite" >
+		<scene_gui name="backgroundMM" gui_element="backgroundMUERTE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 	<scene_gui name="restaurarCheckpoint" gui_element="lastCheckpointB" portion="0.25 0.3" size="250 50" type="button" action="2">
