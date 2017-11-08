@@ -14,7 +14,6 @@ CEnemy::CEnemy(CXMLElement* aElement)
     : m_PhysXManager(CEngine::GetInstance().GetPhysXManager())
       //, resultado(new CPhysXManager::RaycastData())
     , m_DeadDistance(aElement->GetAttribute<float>("deadDistance", 1.8f))
-    , m_LevelController(CLevelController())
 {
     EnumString<EEnemyType>::ToEnum(m_EnemyType, aElement->GetAttribute<std::string>("type", "dron"));
 }

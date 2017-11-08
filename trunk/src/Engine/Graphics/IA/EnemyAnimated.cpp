@@ -57,6 +57,7 @@ Vect3f CEnemyAnimated::GetPatrolPosition()
 
 bool CEnemyAnimated::PlayerOnSight()
 {
+    //direccion entre la prota y el guardia y el getforward front
     float angulo = getAngle(m_Position.x, m_Height.y, m_Position.z, m_PhysXManager.GetActorPosition("player").x,m_Height.y, m_PhysXManager.GetActorPosition("player").z);
     return ((angulo <= m_DetectAngle) && (angulo >= -m_DetectAngle)) ? true : false;
 }
@@ -105,8 +106,8 @@ bool CEnemyAnimated::Update(float ElapsedTime)
                     if (PlayerOnSight())
                     {
                         m_State = Input::STOP;
-                        m_LevelController.PlayerDetected();
-                        //                      std::cout << "Muere protagonista" << std::endl;
+                        CEngine::GetInstance().m_LevelController->PlayerDetected();
+                        // std::cout << "Muere protagonista" << std::endl;
                     }
                 }
                 else if (resultado->distance <= m_SightDistance)
