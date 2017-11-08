@@ -19,12 +19,11 @@ f_SceneManager = "data/scenes.xml"
 f_ActionManager = "data/config/input_config.xml"
 f_RenderPipeline = "data/render_pipeline.xml"
 f_ParticleManager = "data/particles.xml"
-
 f_CinematicsManager = "data/cinematics.xml";
 f_SoundPath = "data/sound/";
 f_SoundBankFile = "SoundbanksInfo.xml";
 f_SpeakersFile = "speakers.xml";
-f_EventManager = "data/scenes/events.xml";
+f_EventManager = "reclusion";
 f_NavMeshManager = "data/navMesh.xml"
 f_EnemiesManager = "data/enemies.xml"
 
