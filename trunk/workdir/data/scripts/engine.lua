@@ -10,21 +10,20 @@ bar["key"] = "there"
 f_ShaderManager = "data/shaders.xml"
 f_Effects = "data/effects.xml"
 f_TPManager = "data/techniques_pool.xml"
-f_LevelMaterial = "reclusion"
+f_LevelMaterial = "administracion"
 f_DefaultMaterial = "data/materials/default.xml"
 f_Texture = "data/textures/BARK5.jpg"
 f_AnimatedModel = "data/animated_models.xml"
-f_LightManager = "reclusion"
+f_LightManager = "administracion"
 f_SceneManager = "data/scenes.xml"
 f_ActionManager = "data/config/input_config.xml"
 f_RenderPipeline = "data/render_pipeline.xml"
 f_ParticleManager = "data/particles.xml"
-
 f_CinematicsManager = "data/cinematics.xml";
 f_SoundPath = "data/sound/";
 f_SoundBankFile = "SoundbanksInfo.xml";
 f_SpeakersFile = "speakers.xml";
-f_EventManager = "data/scenes/events.xml";
+f_EventManager = "administracion";
 f_NavMeshManager = "data/navMesh.xml"
 f_EnemiesManager = "data/enemies.xml"
 
