@@ -187,7 +187,6 @@ void CEngine::LoadFiles()
     m_CameraManager = new CCameraManager();
     m_CameraManager->Init(m_CharacterController);
 
-
     m_EventManager = new CEventManager();
     m_EventManager->Load(m_FileEventManager);
 

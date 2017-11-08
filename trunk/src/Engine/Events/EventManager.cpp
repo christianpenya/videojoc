@@ -25,7 +25,16 @@ CEventManager::~CEventManager()
 
 bool CEventManager::Load(std::string aFilename)
 {
-    mFilename = aFilename;
+
+    if (aFilename.find(".xml") == std::string::npos)
+    {
+        mFilename = "data/scenes/" + aFilename + "/events_" + aFilename + ".xml";
+    }
+    else
+    {
+        mFilename = aFilename;
+    }
+
     return Load();
 }
 

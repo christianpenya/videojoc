@@ -102,6 +102,9 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\CinematicActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\DeactivateObjectReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
@@ -130,6 +133,9 @@
       <Filter>Events\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\Events\TextGUIReactor.h">
+      <Filter>Events\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Events\Events\WaitEActor.h">
       <Filter>Events\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Events\LevelController.h">
@@ -521,6 +527,9 @@
     <ClCompile Include="..\..\src\Engine\Events\Events\CinematicActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\DeactivateObjectReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
@@ -549,6 +558,9 @@
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\Events\TextGUIReactor.cpp">
+      <Filter>Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Events\Events\WaitEActor.cpp">
       <Filter>Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Events\LevelController.cpp">
