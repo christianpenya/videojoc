@@ -36,7 +36,7 @@ public:
     EEnemyType m_EnemyType;
     virtual void DrawImgui();
     double distanceBetweenTwoPoints(double x, double y, double a, double b);
-    float getAngle(float x1, float y1, float z1, float x2, float y2, float z2);
+    float getAngle(float x1, float z1, float x2, float z2);
     float getAngle2(float x1, float y1, float z1, float x2, float y2, float z2);
     float GetRandomValue(float min, float max);
 };

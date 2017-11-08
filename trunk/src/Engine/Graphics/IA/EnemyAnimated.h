@@ -99,6 +99,7 @@ public:
     void hearsPlayer();
     bool m_hear;
     bool m_standby;
+    void Patrullar();
 
     virtual void handleInput(Input input)
     {
