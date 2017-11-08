@@ -19,7 +19,8 @@ public:
         eReactorTypeCount,
         eTextGUIR,
         eTextIcon,
-        eAudioTrigger
+        eAudioTrigger,
+        eDeactivateObj
     };
 
     CReactor() : m_Finished(false) {}
@@ -45,6 +46,7 @@ Begin_Enum_String(CReactor::EReactorType)
     Enum_String_Id(CReactor::eTextGUIR, "textGUIR");
     Enum_String_Id(CReactor::eTextIcon, "iconText");
     Enum_String_Id(CReactor::eAudioTrigger, "audio_triggerR");
+    Enum_String_Id(CReactor::eDeactivateObj, "DeactivateObj")
 }
 End_Enum_String;
 

@@ -1,22 +1,63 @@
 <scene>
 
 	<layer name="triggers" active="true">
-	
-		<!-- <scene_mesh name="camaras_chispazos" mesh="data/meshes/Box01.mesh">
-			<transform position="-1.0 4.0 -1.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+	//Checkpoints
+	<scene_mesh name="checkpoint2_1" mesh="data/meshes/Box01.mesh">
+			<transform position="0.774161 7.15256e-07 -27.2961" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="checkpoint2_2" mesh="data/meshes/Box01.mesh">
+			<transform position="12.4047 0.0 -9.34936" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="checkpoint2_3" mesh="data/meshes/Box01.mesh">
+			<transform position="-12.9611 0.0601807 -9.33309" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="checkpoint2_4" mesh="data/meshes/Box01.mesh">
+			<transform position="-10.0311 -3.32397 10.24" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="checkpoint2_5" mesh="data/meshes/Box01.mesh">
+			<transform position="12.4198 -3.2583 11.2381" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+//NODOS
+<scene_mesh name="NODO2_1" mesh="data/meshes/Box01.mesh">
+			<transform position="-19.4023 7.15256e-07 -13.6547" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="NODO2_2" mesh="data/meshes/Box01.mesh">
+			<transform position="-29.3479 -2.58237 10.6343" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="NODO2_3" mesh="data/meshes/Box01.mesh">
+			<transform position="21.8512 -2.89936 10.4135" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 	
-		<scene_mesh name="c11" mesh="data/meshes/Box01.mesh">
-			<transform position="0.0 1.0 25.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
-			<collider rigid_body="triggerBox" />
-		</scene_mesh> -->
-
-	</layer>
 	
+	//Tarja
+		<scene_mesh name="tarjetaRecog" mesh="data/meshes/Box01.mesh">
+			<transform position="24.92 0.03 -6.11" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="desapareceTarjeta" mesh="data/meshes/Box01.mesh">
+			<transform position="24.92 0.03 -6.11" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+	
+	//PortaAmbTarja
+		<scene_mesh name="TarjetaDoor" mesh="data/meshes/Box01.mesh">
+			<transform position="-10.1387 0.0 -9.4447" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+	
+	
+	</layer>
 	<layer name="LPlayer" active="true" >
 		<scene_animated_model name="player" core="prota2" height="1.1" radius="0.17" group="1" >
-			<transform position="7.66 0.0 -1.4" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+			<transform position="0.774161 7.15256e-07 -27.2961" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
 		<!--
 		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
@@ -942,10 +983,10 @@
 		<scene_gui name="backgroundMC" gui_element="backgroundCOMPLETE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-		<scene_gui name="nextLevel" gui_element="nextLevelB" portion="0.25 0.3" size="250 50" type="button" action="5">
+		<scene_gui name="nextLevel" gui_element="nextLevelB" portion="0.25 0.6" size="250 50" type="button" action="5">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui> 
-		<scene_gui name="toMainMenu2" gui_element="toMainMenuB" portion="0.25 0.6" size="250 50" type="button" action="4">
+		<scene_gui name="toMainMenu2" gui_element="toMainMenuB" portion="0.75 0.6" size="250 50" type="button" action="4">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		
@@ -954,10 +995,10 @@
 		<scene_gui name="backgroundMM" gui_element="backgroundMUERTE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-	<scene_gui name="restaurarCheckpoint" gui_element="lastCheckpointB" portion="0.25 0.3" size="250 50" type="button" action="2">
+	<scene_gui name="restaurarCheckpoint" gui_element="lastCheckpointB" portion="0.25 0.6" size="250 50" type="button" action="2">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-		<scene_gui name="toMainMenu" gui_element="toMainMenuB" portion="0.25 0.6" size="250 50" type="button" action="4">
+		<scene_gui name="toMainMenu" gui_element="toMainMenuB" portion="0.75 0.6" size="250 50" type="button" action="4">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		

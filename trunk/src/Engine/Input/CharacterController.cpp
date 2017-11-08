@@ -62,8 +62,7 @@ void CCharacterController::Update(float ElapsedTime)
                 {
                     CSceneManager* sceneMan = &CEngine::GetInstance().GetSceneManager();
                     Vect3f enemForward = sceneMan->GetCurrentScene()->GetLayer("guardias")->GetSceneNode(actorName)->GetForward();
-                    CEnemiesManager &enemMan = CEngine::GetInstance().GetEnemiesManager();
-
+                    //CEnemiesManager &enemMan = CEngine::GetInstance().GetEnemiesManager();
                     //CEnemyAnimated* enemy = (CEnemyAnimated*)enemMan(actorName);
                     //enemy->dieEnemy();
                     enemyPos = data->position;

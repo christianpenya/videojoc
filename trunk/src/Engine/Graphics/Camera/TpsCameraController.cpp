@@ -39,6 +39,10 @@ void CTpsCameraController::Update(float ElapsedTime)
         if (zoom < minZoom)
             zoom = minZoom;
 
+        if (m_Pitch > mathUtils::PiTimes<float>())
+            m_Pitch -= mathUtils::PiTimes<float>(2.0f);
+        if (m_Pitch < -mathUtils::PiTimes<float>())
+            m_Pitch += mathUtils::PiTimes<float>(2.0f);
         if (m_Yaw > mathUtils::PiTimes<float>())
             m_Yaw -= mathUtils::PiTimes<float>(2.0f);
         if (m_Yaw < -mathUtils::PiTimes<float>())

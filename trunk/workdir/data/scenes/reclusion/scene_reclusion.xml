@@ -252,7 +252,7 @@
 			<transform position="3.37125 1.86091 22.9201" yaw="90" pitch="0" roll="90" scale="0.969886 0.969886 0.969886" />
 		</scene_mesh>
 		
-		<scene_mesh name="lampara009" mesh="data/meshes/reclusion/lampara.mesh" >b
+		<scene_mesh name="lampara009" mesh="data/meshes/reclusion/lampara.mesh" >
 			<transform position="1.12236 3.15029 26.1197" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
 			<collider rigid_body="box" />
 		</scene_mesh>
