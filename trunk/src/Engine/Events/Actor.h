@@ -19,7 +19,8 @@ public:
         eCheckpoint,
         eCinematic,
         eNodeInteract,
-        eGameComplete
+        eGameComplete,
+        eWaitE,
     };
 
     CActor() : m_Finished(false) {}
@@ -44,7 +45,8 @@ Begin_Enum_String(CActor::EActorType)
     Enum_String_Id(CActor::eCheckpoint, "checkpoint");
     Enum_String_Id(CActor::eCinematic, "Cinematica");
     Enum_String_Id(CActor::eNodeInteract, "node");
-    Enum_String_Id(CActor::eGameComplete,"GameComplete")
+    Enum_String_Id(CActor::eGameComplete, "GameComplete");
+    Enum_String_Id(CActor::eWaitE, "waitE");
 }
 End_Enum_String;
 

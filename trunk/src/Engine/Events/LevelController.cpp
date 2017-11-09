@@ -52,8 +52,6 @@ void CLevelController::PlayerDetected()
         m_SceneManager->GetCurrentScene()->GetLayer("MenuMuerte")->SetActive(true);
 }
 
-
-
 void CLevelController::Update(float elapsedTime)
 {
     if ((*m_ActionManager)("pause")->value>0.1f&&!m_TimePaused)

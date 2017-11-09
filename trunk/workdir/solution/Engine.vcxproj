@@ -243,6 +243,7 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\CinematicActor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\DeactivateObjectReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\DumbReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\GameCompleteActor.h" />
@@ -253,6 +254,7 @@
     <ClInclude Include="..\..\src\Engine\Events\Events\ReloadSceneReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\TextGUIActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\TextGUIReactor.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\WaitEActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\LevelController.h" />
     <ClInclude Include="..\..\src\Engine\Events\Reactor.h" />
     <ClInclude Include="..\..\src\Engine\GUI\Button.h" />
@@ -384,6 +386,7 @@
     <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\CinematicActor.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\DeactivateObjectReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\DumbReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\GameCompleteActor.cpp" />
@@ -394,6 +397,7 @@
     <ClCompile Include="..\..\src\Engine\Events\Events\ReloadSceneReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\TextGUIActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\TextGUIReactor.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\WaitEActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\LevelController.cpp" />
     <ClCompile Include="..\..\src\Engine\GUI\Button.cpp" />
     <ClCompile Include="..\..\src\Engine\GUI\GUIManager.cpp" />

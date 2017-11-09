@@ -7,12 +7,13 @@
 #include "Utils/CheckedRelease.h"
 #include "Events/LevelController.h"
 #include "Graphics/IA/EnemyAnimated.h"
+#include "Graphics/IA/Guard.h"
 
 CCharacterController::~CCharacterController()
 {
-    __H_CHECKED_RELEASE__(sceneManager);
-    __H_CHECKED_RELEASE__(actionManager);
-    __H_CHECKED_RELEASE__(physXManager);
+    base::utils::CheckedDelete(sceneManager);
+    base::utils::CheckedDelete(actionManager);
+    base::utils::CheckedDelete(physXManager);
 }
 
 void CCharacterController::Update(float ElapsedTime)
@@ -61,6 +62,9 @@ void CCharacterController::Update(float ElapsedTime)
                 {
                     CSceneManager* sceneMan = &CEngine::GetInstance().GetSceneManager();
                     Vect3f enemForward = sceneMan->GetCurrentScene()->GetLayer("guardias")->GetSceneNode(actorName)->GetForward();
+                    //CEnemiesManager &enemMan = CEngine::GetInstance().GetEnemiesManager();
+                    //CEnemyAnimated* enemy = (CEnemyAnimated*)enemMan(actorName);
+                    //enemy->dieEnemy();
                     enemyPos = data->position;
                     player->ClearActiveAnimationCycle(0.5f);
                     player->BlendCycle(5, 1, 0.5f);
@@ -73,16 +77,20 @@ void CCharacterController::Update(float ElapsedTime)
 
 
         }
+        m_CrouchingBOOL = false;
+        m_RunningBOOL = false;
         if (run > 0.f && z > 0.1f)
         {
             x /= 2;
             l_Speed *= 1.4;
+            m_RunningBOOL = true;
         }
-        m_CrouchingCAM = false;
+
         if (crouch > 0.1f)
         {
 
-            m_CrouchingCAM = true;
+            m_CrouchingBOOL = true;
+            m_RunningBOOL = false;
             l_Speed *= .6f;
         }
 
@@ -161,6 +169,8 @@ void CCharacterController::Init(CSceneManager* sceneManager)
     actionManager = &CEngine::GetInstance().GetActionManager();
     physXManager = &CEngine::GetInstance().GetPhysXManager();
     sceneManager = &CEngine::GetInstance().GetSceneManager();
+    m_CrouchingBOOL = false;
+    m_RunningBOOL = false;
 
     if (sceneManager->GetCurrentScene()->Exist("LPlayer"))
     {

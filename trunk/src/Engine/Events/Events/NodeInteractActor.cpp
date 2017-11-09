@@ -40,6 +40,6 @@ void CNodeInteractActor::Update(float elapsedTime)
         GUIMan->FillCommandQueueWithText(mFont, mText, lPos, CGUIManager::MID_CENTER, CColor(.0f, .0f, .0f));
     if ((*ActionMan)("use")->value>0.1)
         pressed = true;
-    if (pressed==true && mElapsed>3.5f)
+    if (pressed==true && mElapsed>1.f)
         m_Finished = true;
 }
