@@ -10,6 +10,7 @@
 
 #include "Utils/CheckedRelease.h"
 #include "TextGUIReactor.h"
+#include "Graphics/IA/Dron.h"
 
 CTextGUIReactor::CTextGUIReactor()
 {
@@ -44,6 +45,14 @@ void CTextGUIReactor::Update(float elapsedTime)
     lPos.x = lSize.x * mPortion.x;
     lPos.y = lSize.y * mPortion.y;
     GUIMan->FillCommandQueueWithText(mFont, mText, lPos, CGUIManager::MID_CENTER, CColor(.0f, .0f, .0f));
+
+    if (strcmp(mText.c_str(), "Hackeo dron completado con exito!") == 0)
+    {
+        CSceneManager* sceneMan = &CEngine::GetInstance().GetSceneManager();
+        CDron* enemy = (CDron*)(sceneMan->GetCurrentScene()->GetLayer("drones")->GetSceneNode("DronAdministracion"));
+        enemy->hacked();
+    }
+
 
     if (mTmpTime >= mTime)
         m_Finished = true;

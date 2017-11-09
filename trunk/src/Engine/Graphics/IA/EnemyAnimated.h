@@ -12,7 +12,7 @@
 
 
 using namespace std;
-enum Input { PATROL, CHASE, STOP };
+enum Input { PATROL, CHASE, STOP};
 
 class CEnemyAnimated;
 class CPatrolingState;
@@ -97,6 +97,7 @@ public:
     void hearsPlayer();
     bool m_hear;
     bool m_standby;
+    Vect3f m_HackedPos;
     void Patrullar();
 
     virtual void handleInput(Input input)

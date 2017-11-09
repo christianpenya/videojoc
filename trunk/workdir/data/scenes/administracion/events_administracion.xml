@@ -149,7 +149,7 @@ checkpoints
 	//NODos
 	<event name="NODO2_1" active="true">
 	<actor name="node"  portion="0.5 0.666" time="3.0" text="Pulsa E para hackear el ordenador"/>
-	<reactor name="textGUIR" portion="0.5 0.333" time="2.0" text="Hackeo completado con exito!"/>
+	<reactor name="textGUIR" portion="0.5 0.333" time="2.0" text="Hackeo dron completado con exito!"/>
 </event>
 <event name="NODO2_2" active="true">
 	<actor name="node"  portion="0.5 0.666" time="3.0" text="Pulsa E para hackear el ordenador"/>

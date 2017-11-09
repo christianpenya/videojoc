@@ -30,6 +30,7 @@ CEnemyAnimated::CEnemyAnimated(CXMLElement* aElement)
     , m_DetectAngle(aElement->GetAttribute<float>("detectAngle", 45.0f))
     , m_Corename(aElement->GetAttribute<std::string>("core", "dron"))
     , m_Group(aElement->GetAttribute<int>("group", 0))
+    , m_HackedPos(aElement->GetAttribute<Vect3f>("hackedpos", Vect3f(0.0f, 0.0f, 0.0f)))
 {
     m_standby = aElement->GetAttribute<bool>("standby", false);
 

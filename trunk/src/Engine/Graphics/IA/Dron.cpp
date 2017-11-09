@@ -60,18 +60,43 @@ void CDron::DrawImgui()
     }
 }
 
+void CDron::hacked()
+{
+    m_ppath = new CPathfinding(m_Position, m_HackedPos, m_pnavMesh->GetName());
+    bool encontro = m_ppath->PathfindStep();
+    if (encontro)
+    {
+        m_pathChasingAux = m_ppath->GetPath();
+        if (m_pathChasingAux.size() > 0)
+        {
+            m_Destination = m_pathChasingAux[m_pathChasingAux.size() - 1];
+            m_pathChasingAux.pop_back();
+        }
+        m_CalculateReturn = false;
+    }
+    m_State = Input::PATROL;
+    m_standby = false;
+}
 
 void CDron::patrol()
 {
     hearsPlayer();
-//    std::cout << " Dron " << GetName() << "patroling." << std::endl;
     CSpotLight* l_light = (CSpotLight*)CEngine::GetInstance().GetLightManager()(m_light);
     l_light->SetColor(CColor(0.0, 1.0, 0.0));
 
-    if ((m_Destination == Vect3f{ 0.0f, -99.9f, 0.0f }) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_Destination.x,m_Destination.z)<=1.0f))
-        GotoNextPoint();
+    if (m_standby)
+    {
+        m_DestPoint = 1;
+        this->SetForward(GetPatrolPosition() - m_Position);
+    }
+    else
+    {
+        //std::cout << " Dron " << GetName() << "patroling." << std::endl;
+        if ((m_Destination == Vect3f{ 0.0f, -99.9f, 0.0f }) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_Destination.x,m_Destination.z)<=1.0f))
+            GotoNextPoint();
 
-    Move(m_Destination, m_speedPatroling);
+        Move(m_Destination, m_speedPatroling);
+    }
 }
 
 void CDron::GotoNextPoint()

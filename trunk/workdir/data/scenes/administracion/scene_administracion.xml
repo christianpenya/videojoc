@@ -915,18 +915,36 @@
 		</scene_mesh>
 		<scene_enemies name="GuardiaInferiorCabinas" core="guardia"  height="1.1" radiu="0.17" group="0">
 			<transform position="-23.4928 -2.94 12.1718" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
-		</scene_enemies> 
-
-<!--		
-		<scene_mesh name="PatrolPoint_DronAdministracion" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="-16.8285 0.0 -10.9129" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0 0.0 0.0" />
-		</scene_mesh>
-		<scene_light name="DronAdministracionFspot"/>
-		<scene_enemies name="DronAdministracion" core="dron"  height="1.1" radiu="0.17" group="0">
-			<transform position="-16.8285 0.0 -10.9129" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
-		</scene_enemies> 
-	-->	
+		</scene_enemies> 	
 	</layer>
+
+
+		
+	<layer name="drones" active="true">
+		<!--<scene_mesh name="PatrolPoint_DronAdministracion" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-16.8285 0.0 -10.9129" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint2_DronAdministracion" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="-16.8285 0.0 -11.9129" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
+		</scene_mesh>
+		<scene_light name="DronAdministracionFspot" />
+		<scene_enemies name="DronAdministracion" core="dron"  height="1.1" radiu="0.17" group="0">
+			<transform position="-16.8285 0.0 -10.9129" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>-->
+
+		<scene_mesh name="PatrolPoint_DronAdministracion" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="0.98 0.0 -5.17" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
+		</scene_mesh>
+		<scene_mesh name="PatrolPoint2_DronAdministracion" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="0.98 0.0 -4.85" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
+		</scene_mesh>
+		<scene_light name="DronAdministracionFspot" />
+		<scene_enemies name="DronAdministracion" core="dron"  height="1.1" radiu="0.17" group="0">
+			<transform position="0.98 0.0 -5.17" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+		</scene_enemies>		
+	</layer>
+		
+	
 	
 	<layer name="lights" active="true" >
 		<scene_light name="Fspot001" id_light="0" />
@@ -1003,11 +1021,10 @@
 		</scene_gui>
 		
 	</layer>
-<!--
-	<layer name="navmesh" active="false">
-		<scene_navmesh name="navMeshScene02">
+
+	<layer name="navmesh" active="true">
+<!--	<scene_navmesh name="navMeshScene02">
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch="-90.0" roll="0.0" forward="0.0 0.0 0.0" />
-		</scene_navmesh> 
+		</scene_navmesh> -->		
 	</layer>
--->		
 </scene>

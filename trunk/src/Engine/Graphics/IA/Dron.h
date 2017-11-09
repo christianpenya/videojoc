@@ -34,7 +34,7 @@ public:
 
     void patrol();
     void chase();
-
+    void hacked();
     void GotoNextPoint();
     void GotoNextPointChase();
     void ComputePath();

@@ -48,11 +48,9 @@
 	<light angle="39.9" fall_off="106.6" type="spot" name="Fspot016" color="1.0 1.0 1.0" enabled="true" intensity="10.0" attenuation_range="0.0 4.93039" >
 		<transform position="23.5166 -0.209736 9.97129" forward="-0.34202 -0.939693 0.0" />
 	</light>
-	<!--
+	
 	<light angle="180" fall_off="180" type="spot" name="DronAdministracionFspot" color="1.0 1.0 1.0" enabled="true" intensity="15.0" attenuation_range="0.0 2.0" generate_shadow_map="true" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="50.0 80.0">
-		<transform "-16.8285 0.0 -10.9129"  forward="0.0 -1.0 0.0" />
-		<layer name = "LPlayer"/>
-		<layer name = "salas" />
-	</light>-->
+		<transform position="-16.8285 0.0 -10.9129"  forward="0.0 -1.0 0.0" />
+	</light>
 
 </lights>

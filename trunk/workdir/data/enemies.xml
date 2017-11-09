@@ -128,9 +128,10 @@
 		<point name="PatrolPoint_GuardiaInferiorCabinas03" />
 	</enemy>			
 	
-	<enemy type="dron" name="DronAdministracion" core="dron" height="1.1" radiu="0.17" light="DronAdministracionFspot" group="0"  rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="1" detectAngle="35" soundDetected="drone_detect_bioshock"  speedPatroling="0.01" speedChasing="0.03" investigatingTolerance="1.0" navmesh="navMeshScene02">
-		<transform position="-16.8285 0.0 -10.9129" forward="-1.0 0.0 0.0" /> 
-		<point name="PatrolPoint_DronAdministracion" />
-	</enemy>			
-			
+	<enemy type="dron" name="DronAdministracion" core="dron" height="1.1" radiu="0.17" group="0" light="DronAdministracionFspot" standby="true" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="35" soundDetected="drone_detect_bioshock"  speedPatroling="0.001" speedChasing="0.05" investigatingTolerance="1.0" navmesh="navMeshScene01" hackedpos="-6.99 -2.94 15.84"> <!--Punto InfS05-->
+		<transform position="0.98 0.0 -5.17" forward="-1.0 0.0 0.0" /> 
+		<point name="PatrolPoint_DronAdministracion"/>
+		<point name="PatrolPoint2_DronAdministracion"/>
+	</enemy>	 
+	
 </enemies>
