@@ -8,6 +8,9 @@
 #include "Utils\Logger.h"
 #include "XML\XML.h"
 #include "Pathfinding.h"
+#include "Graphics\Lights\SpotLight.h"
+#include "Engine\Engine.h"
+#include "Graphics\Lights\LightManager.h"
 
 CDron::~CDron()
 {
@@ -62,6 +65,9 @@ void CDron::patrol()
 {
     hearsPlayer();
 //    std::cout << " Dron " << GetName() << "patroling." << std::endl;
+    CSpotLight* l_light = (CSpotLight*)CEngine::GetInstance().GetLightManager()(m_light);
+    l_light->SetColor(CColor(0.0, 1.0, 0.0));
+
     if ((m_Destination == Vect3f{ 0.0f, -99.9f, 0.0f }) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_Destination.x,m_Destination.z)<=1.0f))
         GotoNextPoint();
 
@@ -91,6 +97,8 @@ void CDron::chase()
 {
     //  std::cout << " Dron " << GetName() << "chasing." << std::endl;
 
+    CSpotLight* l_light = (CSpotLight*)CEngine::GetInstance().GetLightManager()(m_light);
+    l_light->SetColor(CColor(1.0, 0.0, 0.0));
     if ((!m_Calculated) || (distanceBetweenTwoPoints(m_Position.x, m_Position.z, m_DestinationChase.x, m_DestinationChase.z) <= 0.2f))
         GotoNextPointChase();
     Move(m_DestinationChase, m_speedChasing);
@@ -113,7 +121,7 @@ void CDron::GotoNextPointChase()
     m_lastPositionView = Vect3f(m_PhysXManager.GetActorPosition("player").x, m_Height.y, m_PhysXManager.GetActorPosition("player").z);
 
     CPhysXManager::RaycastData* result = new CPhysXManager::RaycastData();
-    bool hitted = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, result);
+    bool hitted = m_PhysXManager.Raycast(m_Position + Vect3f(0.0f, 1.0f, 0.0f) + (GetForward()*0.5f), m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Group, result); //funciona con grupo 0
 
     if (hitted && (result->actor == "player"))
         m_DestinationChase = m_lastPositionView;

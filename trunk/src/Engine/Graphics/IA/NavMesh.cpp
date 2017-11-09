@@ -76,6 +76,8 @@ CNavMesh::CNavMesh(const CXMLElement* aTreeNode)
     for (size_t v = 0; v < attrib.normals.size(); v += 3)
         m_Triangles[attrib.normals[v]-1].m_neighbour.push_back(*GetTriangle(attrib.normals[v + 1]-1));
 
+    /*
+    //ACTIVAR PARA GRAFICAR
     CRenderManager& lRM = CEngine::GetInstance().GetRenderManager();
     CMaterialManager& lMM = CEngine::GetInstance().GetMaterialManager();
 
@@ -87,6 +89,7 @@ CNavMesh::CNavMesh(const CXMLElement* aTreeNode)
 
     mGeometries = lgeometry;
     mMaterials = lMM(aTreeNode->GetAttribute<std::string>("material", ""));
+    */
 
 }
 
@@ -95,8 +98,11 @@ bool CNavMesh::Render(CRenderManager& lRM)
 {
 
     bool lOk = true;
+    /*
+    //ACTIVAR PARA GRAFICAR
     mMaterials->Apply();
     mGeometries->RenderIndexed(lRM.GetDeviceContext());
+    */
     return lOk;
 }
 

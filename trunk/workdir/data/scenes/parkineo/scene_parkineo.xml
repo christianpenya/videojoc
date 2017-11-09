@@ -465,21 +465,21 @@
 	
 	<layer name="laser" active="true">
 		<scene_enemies type="laser" name="laserBoss">
-			<transform position="11.4629 15.3719 45.84" yaw="0.0" pitch="-90.0" roll="0.0" forward="0.0 0.0 0.0" />
+			<transform position="11.4629 13.3719 45.84" yaw="0.0" pitch="-90.0" roll="0.0" forward="0.0 0.0 0.0" />
 		</scene_enemies>
-		<scene_mesh name="PatrolPoint" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="27.75 3.2 48.95" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+		<!--<scene_mesh name="PatrolPoint" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+			<transform position="19.61 0.0 47.12" yaw="0.0" pitch="0.0" roll="0.0" scale="1.03 1.03 1.03" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="-27.75 3.2 48.95" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="-21.55 0.0 47.12" yaw="0.0" pitch="0.0" roll="0.0" scale="1.03 1.03 1.03" />
 		</scene_mesh>
 
 		<scene_mesh name="PatrolPoint3" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="27.75 3.2 -26.65" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
+			<transform position="-21.55 0.0 -31.7" yaw="0.0" pitch="0.0" roll="0.0" scale="1.03 1.03 1.03" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint4" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="-27.75 3.2 -26.65" yaw="0.0" pitch="0.0" roll="0.0" scale="0.03 0.03 0.03" />
-		</scene_mesh>			
+			<transform position="19.61 0.0 -31.7" yaw="0.0" pitch="0.0" roll="0.0" scale="1.03 1.03 1.03" />
+		</scene_mesh>-->			
 
 	</layer>
 	
@@ -535,31 +535,18 @@
 	</layer> 
 	
 	
-				
-	
-	
-	<layer name="drones" active="false">
-		
-	</layer>
 	
 	<layer name="Skybox" active="true">
 		<scene_mesh name="Skybox" mesh="data/meshes/Skybox01.mesh" ignore_frustum="true" active="true">
 			<transform position="0.0 0.0 0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0"/>
 		</scene_mesh>
 	</layer>
-
-
-	<layer name="navmesh" active="false">
-			
-	</layer>
 	
-    <layer name="Principal" active="false" >	
+    <layer name="Particles" active="false" >	
 		
 	</layer>	
 	
-	<layer name="DronesLight" active="false" >	
-		
-	</layer>	
+
 	<layer name="PauseMENU" active="false" >	
 	
 		<scene_gui name="backgroundP" gui_element="backgroundPAUSE" portion="0 0" size="1440 810" type="GUIsprite" >

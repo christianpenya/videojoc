@@ -30,7 +30,7 @@ public:
     float m_investigatingTolerance;
     Vect3f m_lastPositionView;
 
-
+    void dieEnemy(Vect3f pos);
     void patrol();
     void chase();
 
