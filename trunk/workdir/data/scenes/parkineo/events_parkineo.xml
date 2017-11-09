@@ -1,122 +1,18 @@
 <events>
 
-	AUDIOS
-	<event name="c11" active="true">
-		<actor name="audio_triggerA" obj_name="c11"/>
-		<reactor name="dumb"/>
-	</event>
-
-	<event name="d12" active="true">
-		<actor name="audio_triggerA" obj_name="d12"/>
-		<reactor name="dumb"/>
-	</event>
-	
-	<event name="d13" active="true">
-		<actor name="audio_triggerA"  obj_name="d13"/>
-		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
-	</event>
-	
-	<event name="d14" active="true">
-		<actor name="audio_triggerA" obj_name="d14"/>
-		<reactor name="dumb"/>
-	</event>
-	
-	<event name="d15" active="true">
-		<actor name="audio_triggerA" obj_name="d15"/>
-		<reactor name="dumb"/>
-	</event>
-
-	<event name="c16" active="true">
-		<actor name="audio_triggerA" obj_name="c16"/>
-		<reactor name="dumb"/>
-	</event>
-
-	<event name="d17" active="true">
-		<actor name="audio_triggerA" obj_name="d17"/>
-		<reactor name="dumb"/>
-	</event>
-
-	<event name="d18" active="true">
-		<actor name="audio_triggerA" obj_name="d18"/>
-		<reactor name="dumb"/>
-	</event>
-	<!-- 
-	<event name="c11" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="c11"/>
-		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
-	</event>
-
-	<event name="c11" active="true">
-		<actor name="audio_trigger" layer="triggers" obj_name="c11"/>
-		<reactor name="open_door" layer="opaque" obj_name="puerta666" />
-	</event>
-	-->
 	MUSICA
 	
 	CHECKPOINTS
-	<event name="checkpoint1" active = "true">
-		<actor name="checkpoint" triggerName="checkpoint1"/>
+	<event name="checkpoint3_1" active = "true">
+		<actor name="checkpoint" triggerName="checkpoint3_1"/>
 		<reactor name="dumb"/>
 	</event>
-		<event name="checkpoint2" active = "true">
-		<actor name="checkpoint" triggerName="checkpoint2"/>
-		<reactor name="textGUIR" portion="0.5 0.333" time="3.0" text="Punto de control alcanzado" />
-	</event>
-	<event name="checkpoint3" active = "true">
-		<actor name="checkpoint" triggerName="checkpoint3"/>
-		<reactor name="textGUIR" portion="0.5 0.333" time="2.0" text="Punto de control alcanzado" />
-	</event>
+		
 	
 	
 	
-	TEXTOS
-	<event name="mueveteWASD" active = "true">		
-		<actor name="dumb" time="68.0"/>
-		<reactor name="textGUIR" portion="0.5 0.666" time="2.0" text="Usa WASD para moverte" />
-	</event> 
-	 <event name="miraAlrededor" active = "true">
-		<actor name="textGUIA" portion="0.5 0.666" time="2.0" text="Mueve el raton para mirar alrededor"/>
-		<reactor name="dumb" />
-	</event>  
-	
-	<event name="correForest" active = "true">
-		<actor name="textGUIA" portion="0.5 0.666" time="2.0" text="Pulsa Shift para correr"/>
-		<reactor name="dumb" />
-	</event>  
-	<event name="agachateForest" active = "true">
-		<actor name="textGUIA" portion="0.5 0.666" time="2.0" text="Pulsa Ctrl para ir en sigilo"/>
-		<reactor name="dumb" />
-	</event> 
-	CINEMATICAS
-	<event name="Cinematica01" active = "true">		
-		<actor name="Cinematica" cinematic_name="Cinematica01"/>
-		<reactor name="dumb" />
-	</event>
-	<event name="Cinematica02" active = "true">		
-		<actor name="Cinematica" cinematic_name="Cinematica02"/>
-		<reactor name="dumb" />
-	</event>
-
-//Puerta habitacion
-<event name="puertaSala0" active="true">
-	<actor name="dumb" time="68"/>
-	<reactor name="open_door" layer="opaque" obj_name="puerta"/>
-</event>
-
-
-//NODos
-<event name="primerNODO" active="true">
-	<actor name="node"  portion="0.5 0.666" time="3.0" text="Pulsa E para hackear el ordenador"/>
-	<reactor name="textGUIR" portion="0.5 0.333" time="3.0" text="Hackeo completado con exito!"/>
-</event>
-
-<event name="cuchillo" active="true">
-	<actor name="node"  portion="0.5 0.666" time="3.0" text="Pulsa E para recoger el arma"/>
-	<reactor name="iconText" portion="0.5 0.66" time="3.0" text="Arma recogida!" icon="cuchilloICON" iPortion="0.5 0.33"/>
-</event>
-
 //FINNIVEL
-<event name="finNivel1" active="true">
+<event name="finNivel3" active="true">
 	<actor name="GameComplete" />
 	<reactor name="dumb"/>
 </event>
