@@ -3,7 +3,7 @@
 	AUDIOS
 	<event name="c11" active="true">
 		<actor name="audio_triggerA" obj_name="c11"/>
-		<reactor name="dumb"/>
+		<reactor name="audio_triggerR" obj_name="musica_nivel_1" />
 	</event>
 
 	<event name="d12" active="true">

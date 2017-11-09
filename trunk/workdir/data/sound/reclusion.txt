@@ -148,7 +148,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	727274732	alcatrazcinematica1albert	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\alcatrazcinematica1albert_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_3\alcatrazcinematica1albert		5117572
 	735866572	18ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\18ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\entrando_al_hall\18ADW		664188
 	751980399	DESPACITO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\DESPACITO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_guardias_cocina\DESPACITO		344604
-	757875902	18LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\18LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c16\18LO		477568
+	757875902	18LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\18LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d18\18LO		477568
 	763354845	C1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\C1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\C1		619914
 	766959344	sniper2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\sniper2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper2		240664
 	792022448	15ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\15ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\15ADW		302344
