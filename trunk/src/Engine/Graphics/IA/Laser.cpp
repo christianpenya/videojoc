@@ -26,7 +26,7 @@ CLaser::CLaser(CXMLElement* aTreeNode)
     , m_BoundMinZ(aTreeNode->GetAttribute<float>("boundMinZ", 0.0f))
     , m_BoundMaxZ(aTreeNode->GetAttribute<float>("boundMaxZ", 0.0f))
     , m_StartTime(aTreeNode->GetAttribute<float>("startTime", 0.0f))
-    , m_Speed(0.0f)
+    , m_Speed(m_NormalSpeed)
     , m_Search(true)
 {
     m_Timer = 2.0f;
@@ -35,24 +35,24 @@ CLaser::CLaser(CXMLElement* aTreeNode)
 
     m_StartPosition = Vect3f(GetRandomValue(m_BoundMinX, m_BoundMaxX),0.0f, GetRandomValue(m_BoundMinZ, m_BoundMaxZ));
     mMaterials = lMM(aTreeNode->GetAttribute<std::string>("material", ""));
+
+    m_PhysXManager.AddCharacterController(GetName(), 1.1f, 0.17f, m_StartPosition, Quatf(), "Default", 0.5f, 0);
+
 }
 
 bool CLaser::Render(CRenderManager& lRM)
 {
     bool lOk = true;
-    if (m_Search)
+    mMaterials->Apply();
+    CUSTOMVERTEX Vertices[] =
     {
-        mMaterials->Apply();
-        CUSTOMVERTEX Vertices[] =
-        {
-            { m_GunPosition.x, m_GunPosition.y, m_GunPosition.z},
-            { m_StartPosition.x, m_StartPosition.y, m_StartPosition.z}
-        };
+        { m_GunPosition.x, m_GunPosition.y, m_GunPosition.z},
+        { m_StartPosition.x, m_StartPosition.y, m_StartPosition.z}
+    };
 
-        CGeometry* lgeometry = new CGeometryLinesList<VertexTypes::Line>(new CVertexBuffer<VertexTypes::Line>(lRM, Vertices, 2));
-        mGeometries = lgeometry;
-        mGeometries->Render(lRM.GetDeviceContext());
-    }
+    CGeometry* lgeometry = new CGeometryLinesList<VertexTypes::Line>(new CVertexBuffer<VertexTypes::Line>(lRM, Vertices, 2));
+    mGeometries = lgeometry;
+    mGeometries->Render(lRM.GetDeviceContext());
     return lOk;
 }
 
@@ -60,11 +60,12 @@ bool CLaser::Render(CRenderManager& lRM)
 bool CLaser::Update(float ElapsedTime)
 {
     m_Timer -= ElapsedTime;
-
-    if (m_StartPosition.Distance(m_EndPosition) <= 1.0f)
-        CalculateNextPositionLaser(ElapsedTime);
-
-    FireLaser();
+    if (m_Search)
+    {
+        FireLaser();
+        if (m_StartPosition.Distance(m_EndPosition) <= 0.02f)
+            CalculateNextPositionLaser(ElapsedTime);
+    }
     return true;
 }
 
@@ -74,39 +75,33 @@ bool CLaser::Update(float ElapsedTime)
 void CLaser::FireLaser()
 {
 
-    //(*this->GetParent())(m_patrolPoints[m_DestPoint].data())->GetPosition();
-
-    //if (player.GetComponentInParent<PlayerControllerTPC>().sprint)
-    //	m_Speed = m_SprintSpeed;
-    //else
-    m_Speed = m_NormalSpeed;
-    m_StartPosition.Lerp(m_EndPosition, m_Speed);
-
-    /*if (m_PhysXManager.GetActorPosition("player").y > -10.0f)
-    {*/
-    CPhysXManager::RaycastData* resultado = new CPhysXManager::RaycastData();
-    bool hitted = m_PhysXManager.Raycast(m_StartPosition, m_PhysXManager.GetActorPosition("player"), 0001, resultado);
-
-    if (hitted && (resultado->actor == "player"))
+    if (!CEngine::GetInstance().m_LevelController->GetTimePaused())
     {
-        if ((resultado->distance >= -m_DeadDistance) && (resultado->distance <= m_DeadDistance))
+        m_StartPosition.Lerp(m_EndPosition, m_Speed);
+        CPhysXManager::RaycastData* resultado = new CPhysXManager::RaycastData();
+        bool hittedP = m_PhysXManager.Raycast(m_GunPosition + (GetForward()*0.5f), m_StartPosition, 0, resultado); //funciona con grupo 0
+
+        if (hittedP && (resultado->actor == "player"))
         {
             m_Search = false;
-            std::cout << "Muere protagonista" << std::endl;
+            CEngine::GetInstance().m_LevelController->PlayerDetected();
+            //std::cout << "Muere protagonista" << std::endl;
         }
+        delete resultado;
     }
-    //}
 }
 
 void CLaser::CalculateNextPositionLaser(float ElapsedTime)
 {
-    m_EndPosition = Vect3f(GetRandomValue(m_BoundMinX, m_BoundMaxX), m_PhysXManager.GetActorPosition("player").y, GetRandomValue(m_BoundMinZ, m_BoundMaxZ));
+    m_EndPosition = Vect3f(GetRandomValue(m_BoundMinX, m_BoundMaxX), m_PhysXManager.GetActorPosition("player").y + 1.3f, GetRandomValue(m_BoundMinZ, m_BoundMaxZ));
     m_StartTime = ElapsedTime;
+    m_Speed = GetRandomValue(m_NormalSpeed, m_SprintSpeed);
 
     if (m_Timer < 0.1)
     {
-        m_EndPosition = m_PhysXManager.GetActorPosition("player");
-        m_Timer = 2.0f;
+        m_Speed = m_SprintSpeed;
+        m_EndPosition = m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.3f, 0.0f);
+        m_Timer = 1.5f;
     }
 
 }

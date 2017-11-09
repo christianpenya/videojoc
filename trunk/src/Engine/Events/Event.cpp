@@ -24,6 +24,8 @@
 #include "Events/IconTextReactor.h"
 #include "Events/GameCompleteActor.h"
 #include "Events/AudioTriggerReactor.h"
+#include "Events/WaitEActor.h"
+#include "Events/DeactivateObjectReactor.h"
 
 CEvent::CEvent() :
     m_Finished(false),
@@ -74,6 +76,9 @@ CEvent::CEvent(CXMLElement* aEvent) :
             case CActor::eGameComplete:
                 mActor = new CGameCompleteActor();
                 break;
+            case CActor::eWaitE:
+                mActor = new CWaitEActor();
+                break;
             default:
                 break;
             }
@@ -110,6 +115,9 @@ CEvent::CEvent(CXMLElement* aEvent) :
                 break;
             case CReactor::eAudioTrigger:
                 mReactor = new CAudioTriggerReactor();
+                break;
+            case CReactor::eDeactivateObj:
+                mReactor = new CDeactivateObjReactor();
                 break;
             }
 

@@ -9,15 +9,7 @@ CCheckpointActor::~CCheckpointActor() {}
 void CCheckpointActor::Load(CXMLElement* aElement)
 {
     mObjectName = aElement->GetAttribute<std::string>("triggerName", "");
-    CSceneNode* mTrigger = CEngine::GetInstance().GetSceneManager().GetCurrentScene()->GetLayer("triggers")->GetSceneNode(mObjectName);
-    if (mTrigger)
-    {
-        m_Position = mTrigger->GetPosition();
-        m_Rotation.QuatFromYawPitchRoll(mTrigger->GetYaw(),
-                                        mTrigger->GetPitch(),
-                                        mTrigger->GetRoll());
 
-    }
 
 }
 

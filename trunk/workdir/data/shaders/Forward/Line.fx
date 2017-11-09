@@ -27,18 +27,10 @@ PS_INPUT VS( VS_INPUT IN )
 
     PS_INPUT l_Output = (PS_INPUT)0;
     float4 lPos = float4( IN.Pos.xyz, 1.0 );
-	l_Output.Pos = lPos;//mul( lPos, m_World );
-	/*l_Output.Pos = mul( lPos, m_World );*/
+	l_Output.Pos = lPos;
     l_Output.WorldPosition=l_Output.Pos.xyz;
     l_Output.Pos = mul( l_Output.Pos, m_View );
-    l_Output.Pos = mul( l_Output.Pos, m_Projection );
-    //l_Output.Normal=mul(normalize(IN.Normal).xyz, (float3x3)m_World);
-	//l_Output.WorldNormal = mul(normalize(IN.Normal).xyz, (float3x3)m_World);
-
-	
-//    
-//	l_Output.Pos = mul( l_Output.Pos, float4(pointPos,1.0) );
-       
+    l_Output.Pos = mul( l_Output.Pos, m_Projection );       
 	return l_Output;
 }
 

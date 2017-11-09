@@ -22,7 +22,7 @@
 <!--	<render_layer layer="test"/>-->
 	<render_layer name="render_opaque" layer="opaque"/>
 	<render_layer name="render_player"layer="LPlayer"/>
-	<render_layer layer="triggers"/>
+	<!-- <render_layer layer="triggers"/>  -->
 	<render_layer name="render_navmesh"layer="navmesh"/>
 	<render_layer name="render_salas"layer="salas"/>
 	<render_layer name="render_laser"layer="laser" />
@@ -78,6 +78,7 @@
 	<set_rasterizer_state name="Particles Rasterizer" cull_mode="none" clock_wise="1" type="solid"/> <!-- type  -->
 
 	<apply_technique_pool pool_name="pbr_gbuffer"/>
+	<!-- <enable_alpha_blend/>	 -->
 	<set_alpha_blend_state name ="Alpha Blend Particles" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="SrcAlpha" dst_blend_alpha="InvSrcAlpha" blend_op_alpha="add"  render_target_write_mask="all" />
 	<render_layer layer="Particles"/>
 	<disable_alpha_blend/>

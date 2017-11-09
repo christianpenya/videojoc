@@ -57,99 +57,108 @@ Vect3f CEnemyAnimated::GetPatrolPosition()
 
 bool CEnemyAnimated::PlayerOnSight()
 {
-    float angulo = getAngle(m_Position.x, m_Height.y, m_Position.z, m_PhysXManager.GetActorPosition("player").x,m_Height.y, m_PhysXManager.GetActorPosition("player").z);
-    return ((angulo <= m_DetectAngle) && (angulo >= -m_DetectAngle)) ? true : false;
+    Vect3f origin = (Vect3f(m_PhysXManager.GetActorPosition("player").x, m_Height.y, m_PhysXManager.GetActorPosition("player").z) - Vect3f(m_Position.x, m_Height.y, m_Position.z)).GetNormalized();
+    Vect3f destiny = GetForward();
+    float angulo = getAngle(origin.x,origin.z, destiny.x, destiny.z);
+
+    /*    std::cout << "Dron " << GetName() << " Posicion x=" << m_Position.x << " y= " << m_Position.y << "z=" << m_Position.z <<  std::endl;
+        std::cout << "Player " << " Posicion x=" << m_PhysXManager.GetActorPosition("player").x << " y= " << m_PhysXManager.GetActorPosition("player").y << "z=" << m_PhysXManager.GetActorPosition("player").z << std::endl;
+        std::cout << "Angulo " << angulo << std::endl;
+    	*/
+    return ((angulo <= -(m_DetectAngle/2 + 100)) && (angulo >= -((m_DetectAngle / 2) + 100 + m_DetectAngle))) || ((angulo >= (m_DetectAngle / 2)) && (angulo <= m_DetectAngle + (m_DetectAngle / 2))) ? true : false;
+
 }
 
 void CEnemyAnimated::hearsPlayer()
 {
+    /*
     CPhysXManager::RaycastData* resultado = new CPhysXManager::RaycastData();
     bool hittedP = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, resultado); //funciona con grupo 0
 
     if (hittedP && (resultado->actor == "player"))
     {
         m_hear = true;
-//        std::cout << "Escucho prota" << std::endl;
+    //        std::cout << "Escucho prota" << std::endl;
     }
     else
-        m_hear = false;
+        m_hear = false
     delete resultado;
-
+    */
+    m_hear = false;
 }
 
-void CEnemyAnimated::dieEnemy()
-{
-    m_enemydead = true;
-    ClearActiveAnimationCycle(0.5f);
-    BlendCycle(2, 0.5f, 0.5f);
-
-}
 
 bool CEnemyAnimated::Update(float ElapsedTime)
 {
     if (!CEngine::GetInstance().m_LevelController->GetTimePaused())
     {
+        m_CalModel->update(ElapsedTime);
         if (!m_enemydead)
         {
-            //this->ClearCycle(1, 0.5);
-            m_CalModel->update(ElapsedTime);
-            m_ElapsedTime = ElapsedTime;
-            Vect3f actorpos = m_PhysXManager.GetActorPosition("player");
-            CPhysXManager::RaycastData* resultado = new CPhysXManager::RaycastData();
-            bool hittedP = m_PhysXManager.Raycast(m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Position + Vect3f(0.0f, 1.0f, 0.0f), m_Group, resultado); //funciona con grupo 0
 
-            if (hittedP && (resultado->actor == "player"))
+            bool l_comprobar = false;
+            m_ElapsedTime = ElapsedTime;
+
+            if (PlayerOnSight())
+                l_comprobar = true;
+            else
             {
-                if (resultado->distance <= m_DeadDistance)
+                if ((m_State == Input::CHASE))
+                    l_comprobar = true;
+                else
+                    Patrullar();
+            }
+
+            if (l_comprobar)
+            {
+                CPhysXManager::RaycastData* resultado = new CPhysXManager::RaycastData();
+                bool hittedP = m_PhysXManager.Raycast(m_Position + Vect3f(0.0f, 1.0f, 0.0f) + (GetForward()*0.5f), m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Group, resultado); //funciona con grupo 0
+
+                if (hittedP && (resultado->actor == "player"))
                 {
-                    if (PlayerOnSight())
+                    if (resultado->distance <= m_DeadDistance)
                     {
                         m_State = Input::STOP;
-                        m_LevelController.PlayerDetected();
-                        //                      std::cout << "Muere protagonista" << std::endl;
+                        CEngine::GetInstance().m_LevelController->PlayerDetected();
+                        // std::cout << "Muere protagonista" << std::endl;
                     }
-                }
-                else if (resultado->distance <= m_SightDistance)
-                {
-                    if (PlayerOnSight() || m_hear)
+                    else if (resultado->distance <= m_SightDistance)
                     {
                         m_State = Input::CHASE;
                         m_CalculateReturn = true;
-                        //std::cout << "Chasing-" << std::endl;
                     }
+                    else if (resultado->distance >= m_MaxDetectDistance)
+                        Patrullar();
                 }
-                else if (resultado->distance >= m_MaxDetectDistance)
-                {
-                    if (m_CalculateReturn)
-                    {
-                        m_ppath = new CPathfinding(m_Position, GetPatrolPosition(), m_pnavMesh->GetName());
-                        bool encontro = m_ppath->PathfindStep();
-                        if (encontro)
-                        {
-                            m_pathChasingAux = m_ppath->GetPath();
-                            if (m_pathChasingAux.size() > 0)
-                            {
-                                m_Destination = m_pathChasingAux[m_pathChasingAux.size() - 1];
-                                m_pathChasingAux.pop_back();
-                            }
-                            m_CalculateReturn = false;
-                        }
-                    }
-                    m_State = Input::PATROL;
-                    m_Calculated = false;
-                    m_ppath = new CPathfinding();
-                    m_hear = false;
-                }
-                //CEngine::GetInstance().GetEventManager()("Box hitted");
             }
-            delete resultado;
-            handleInput(m_State);
         }
+        handleInput(m_State);
     }
     return true;
-
 }
 
+void CEnemyAnimated::Patrullar()
+{
+    if (m_CalculateReturn)
+    {
+        m_ppath = new CPathfinding(m_Position, GetPatrolPosition(), m_pnavMesh->GetName());
+        bool encontro = m_ppath->PathfindStep();
+        if (encontro)
+        {
+            m_pathChasingAux = m_ppath->GetPath();
+            if (m_pathChasingAux.size() > 0)
+            {
+                m_Destination = m_pathChasingAux[m_pathChasingAux.size() - 1];
+                m_pathChasingAux.pop_back();
+            }
+            m_CalculateReturn = false;
+        }
+    }
+    m_State = Input::PATROL;
+    m_Calculated = false;
+    m_ppath = new CPathfinding();
+    m_hear = false;
+}
 
 
 std::shared_ptr<CPatrolingState> CEnemyState::patroling(new CPatrolingState);

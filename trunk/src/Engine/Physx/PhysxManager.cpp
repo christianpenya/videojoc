@@ -589,7 +589,7 @@ bool CPhysXManager::Raycast(const Vect3f& origin, const Vect3f& end, int filterM
         {
             result_->position = CastVec(hit.block.position);
             result_->normal = CastVec(hit.block.normal);
-            result_->distance = origin.Distance(end); //hit.block.distance
+            result_->distance = hit.block.distance; //origin.Distance(end);
             result_->actor = m_ActorNames[(size_t)hit.block.actor->userData];
         }
         else

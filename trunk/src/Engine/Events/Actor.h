@@ -19,6 +19,7 @@ public:
         eCinematic,
         eNodeInteract,
         eGameComplete,
+		 eWaitE,
         eAudioSwitch,
         eActorTypeCount
     };
@@ -47,6 +48,7 @@ Begin_Enum_String(CActor::EActorType)
     Enum_String_Id(CActor::eNodeInteract, "node");
     Enum_String_Id(CActor::eGameComplete, "GameComplete");
     Enum_String_Id(CActor::eAudioSwitch, "audio_switch");
+Enum_String_Id(CActor::eWaitE, "waitE");
 }
 End_Enum_String;
 

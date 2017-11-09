@@ -11,4 +11,17 @@
 		<reactor name="dumb"/>
 	</event>
 
-</events>
+	CHECKPOINTS
+	<event name="checkpoint3_1" active = "true">
+		<actor name="checkpoint" triggerName="checkpoint3_1"/>
+		<reactor name="dumb"/>
+	</event>
+		
+	
+	
+	
+//FINNIVEL
+<event name="finNivel3" active="true">
+	<actor name="GameComplete" />
+	<reactor name="dumb"/>
+</event></events>
