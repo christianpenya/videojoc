@@ -26,7 +26,7 @@ void CCharacterController::Update(float ElapsedTime)
         //player->BlendCycle(5, 1, 0.5f);
 
 
-        if (killingTimer>2.18f)//2a 1.27f
+        if (killingTimer>2.95f)//2a 3.45f
         {
             m_KILLING = false;
         }
