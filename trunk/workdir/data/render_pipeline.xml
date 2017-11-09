@@ -22,7 +22,7 @@
 <!--	<render_layer layer="test"/>-->
 	<render_layer name="render_opaque" layer="opaque"/>
 	<render_layer name="render_player"layer="LPlayer"/>
-	<!-- <render_layer layer="triggers"/> -->
+	<render_layer layer="triggers"/>
 	<render_layer name="render_navmesh"layer="navmesh"/>
 	<render_layer name="render_salas"layer="salas"/>
 	<render_layer name="render_laser"layer="laser" />

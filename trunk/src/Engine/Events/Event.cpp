@@ -10,6 +10,7 @@
 
 #include "Events/DumbActor.h"
 #include "Events/AudioTriggerActor.h"
+#include "Events/AudioSwitchActor.h"
 
 #include "Events/DumbReactor.h"
 #include "Events/OpenDoorReactor.h"
@@ -54,6 +55,9 @@ CEvent::CEvent(CXMLElement* aEvent) :
                 break;
             case CActor::eAudioTrigger:
                 mActor = new CAudioTriggerActor();
+                break;
+            case CActor::eAudioSwitch:
+                mActor = new CAudioSwitchActor();
                 break;
             case CActor::eTextGUIA:
                 mActor = new CTextGUIActor();
