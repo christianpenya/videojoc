@@ -20,11 +20,10 @@
 	</enemy>	
 
 	<enemy type="dron" name="DroneComedorInicioIzquierda" core="dron" height="1.1" radiu="0.17" standby="false" group="0" light="DroneComedorInicioIzquierdaFspot" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="35" soundDetected="drone_detect_bioshock"  speedPatroling="0.02" speedChasing="0.05" investigatingTolerance="1.0" navmesh="navMeshScene01">
-		<transform position="33.29 1.19 24.84" forward="-1.0 0.0 0.0" /> 
+		<transform position="27.97 1.19 20.45" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DroneComedorInicioIzquierda"/>
 		<point name="PatrolPoint2_DroneComedorInicioIzquierda"/>
 		<point name="PatrolPoint3_DroneComedorInicioIzquierda"/>
-		<point name="PatrolPoint4_DroneComedorInicioIzquierda"/>
 	</enemy>	
 
 	<enemy type="dron" name="DroneComedorInicioDerecha" core="dron" height="1.1" radiu="0.17" standby="false" group="0" light="DroneComedorInicioDerechaFspot" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="35" soundDetected="drone_detect_bioshock"  speedPatroling="0.02" speedChasing="0.05" investigatingTolerance="1.0" navmesh="navMeshScene01">
@@ -44,7 +43,7 @@
 	</enemy>	
 
 	<enemy type="dron" name="DroneComedorFinIzquierda" core="dron" height="1.1" radiu="0.17" standby="false" group="0" light="DroneComedorFinIzquierdaFspot" rotationAngle="10" sightDistance="4" maxDetectDistance="7" deadDistance="0.2" detectAngle="35" soundDetected="drone_detect_bioshock"  speedPatroling="0.02" speedChasing="0.05" investigatingTolerance="1.0" navmesh="navMeshScene01">
-		<transform position="44.02 1.19 22.47" forward="-1.0 0.0 0.0" /> 
+		<transform position="37.87 1.19 16.59" forward="-1.0 0.0 0.0" /> 
 		<point name="PatrolPoint_DroneComedorFinIzquierda"/>
 		<point name="PatrolPoint2_DroneComedorFinIzquierda"/>
 	</enemy>	
