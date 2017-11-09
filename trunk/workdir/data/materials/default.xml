@@ -115,15 +115,6 @@
 		<parameter type="float" name="HDAOAcceptRadius" value="0.0" />
 	</material>
 	
-	<material name="ZBlurMaterial" vertex_type="ZBlur">
-		<parameter type="float" name="ZBlurActive" value="1.0" />
-		<parameter type="float" name="ZBlurShowDepths" value="0.0" />
-		<parameter type="float" name="ZBlurConstantBlur" value="0.3" />
-		<parameter type="float" name="ZBlurFocalStart" value="1.0" />
-		<parameter type="float" name="ZBlurFocalEnd" value="50.0" />
-		<parameter type="float" name="ZBlurEnd" value="50.0" />
-	</material>	
-	
 	<material name="BloomMaterial" vertex_type="Bloom">
 		<parameter type="float" name="threshold" value="0.6" />
 	</material>

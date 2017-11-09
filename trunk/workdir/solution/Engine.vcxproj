@@ -238,6 +238,7 @@
     <ClInclude Include="..\..\src\Engine\Events\Actor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Event.h" />
     <ClInclude Include="..\..\src\Engine\Events\EventManager.h" />
+    <ClInclude Include="..\..\src\Engine\Events\Events\AudioSwitchActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerActor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\AudioTriggerReactor.h" />
     <ClInclude Include="..\..\src\Engine\Events\Events\CheckpointActor.h" />
@@ -381,6 +382,7 @@
     <ClCompile Include="..\..\src\Engine\Engine\Engine.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Event.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\EventManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Events\Events\AudioSwitchActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerActor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\AudioTriggerReactor.cpp" />
     <ClCompile Include="..\..\src\Engine\Events\Events\CheckpointActor.cpp" />
