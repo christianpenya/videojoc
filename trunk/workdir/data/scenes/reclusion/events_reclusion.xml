@@ -115,6 +115,12 @@
 	<reactor name="iconText" portion="0.5 0.66" time="3.0" text="Arma recogida!" icon="cuchilloICON" iPortion="0.5 0.33"/>
 </event>
 
+<event name="desapareceCuchillo" active="true">
+	<actor name="waitE" />
+	<!-- <reactor name="dumb"/> -->
+	<reactor name="DeactivateObj" layer="opaque" obj_name="cuchillito"/>
+</event>
+
 //FINNIVEL
 <event name="finNivel1" active="true">
 	<actor name="GameComplete" />
