@@ -81,28 +81,22 @@ void CEnemyAnimated::hearsPlayer()
     //        std::cout << "Escucho prota" << std::endl;
     }
     else
-        m_hear = false;
+        m_hear = false
     delete resultado;
     */
     m_hear = false;
 }
 
-void CEnemyAnimated::dieEnemy()
-{
-    m_enemydead = true;
-    ClearActiveAnimationCycle(0.5f);
-    BlendCycle(2, 0.5f, 0.5f);
-
-}
 
 bool CEnemyAnimated::Update(float ElapsedTime)
 {
     if (!CEngine::GetInstance().m_LevelController->GetTimePaused())
     {
+        m_CalModel->update(ElapsedTime);
         if (!m_enemydead)
         {
+
             bool l_comprobar = false;
-            m_CalModel->update(ElapsedTime);
             m_ElapsedTime = ElapsedTime;
 
             if (PlayerOnSight())

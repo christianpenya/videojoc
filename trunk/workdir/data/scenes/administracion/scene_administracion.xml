@@ -781,7 +781,7 @@
 	</layer>
 	
 	<layer name="guardias" active="true" >
-		<!-- <scene_mesh name="PatrolPoint_GuardiaArco" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
+		<scene_mesh name="PatrolPoint_GuardiaArco" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
 			<transform position="1.491242 0.0 -18.6949" yaw="0.0" pitch="0.0" roll="0.0" scale="0.0 0.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_GuardiaArco" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
@@ -915,7 +915,7 @@
 		</scene_mesh>
 		<scene_enemies name="GuardiaInferiorCabinas" core="guardia"  height="1.1" radiu="0.17" group="0">
 			<transform position="-23.4928 -2.94 12.1718" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
-		</scene_enemies> -->
+		</scene_enemies> 
 
 <!--		
 		<scene_mesh name="PatrolPoint_DronAdministracion" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
@@ -1003,11 +1003,11 @@
 		</scene_gui>
 		
 	</layer>
-
+<!--
 	<layer name="navmesh" active="false">
 		<scene_navmesh name="navMeshScene02">
 			<transform position="0.0 0.0 0.0" yaw="0.0" pitch="-90.0" roll="0.0" forward="0.0 0.0 0.0" />
 		</scene_navmesh> 
 	</layer>
-		
+-->		
 </scene>
