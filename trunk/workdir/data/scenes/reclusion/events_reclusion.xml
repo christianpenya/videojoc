@@ -3,7 +3,7 @@
 	AUDIOS
 	<event name="c11" active="true">
 		<actor name="audio_triggerA" obj_name="c11"/>
-		<reactor name="dumb"/>
+		<reactor name="audio_triggerR" obj_name="musica_nivel_1" />
 	</event>
 
 	<event name="d12" active="true">
@@ -113,6 +113,12 @@
 <event name="cuchillo" active="true">
 	<actor name="node"  portion="0.5 0.666" time="3.0" text="Pulsa E para recoger el arma"/>
 	<reactor name="iconText" portion="0.5 0.66" time="3.0" text="Arma recogida!" icon="cuchilloICON" iPortion="0.5 0.33"/>
+</event>
+
+<event name="desapareceCuchillo" active="true">
+	<actor name="waitE" />
+	<!-- <reactor name="dumb"/> -->
+	<reactor name="DeactivateObj" layer="opaque" obj_name="cuchillito"/>
 </event>
 
 //FINNIVEL

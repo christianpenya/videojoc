@@ -91,7 +91,7 @@ public:
     void DrawImgui();
     bool Update(float ElapsedTime);
     Vect3f GetPatrolPosition();
-    bool PlayerOnSight();
+    bool PlayerOnSight(Vect3f actorpos);
     float m_ElapsedTime;
     float m_accumtime = 0;
     void hearsPlayer();

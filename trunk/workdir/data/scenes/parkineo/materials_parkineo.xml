@@ -1,6 +1,13 @@
 <materials >
 
-	
+	<material name="ZBlurMaterial" vertex_type="ZBlur">
+		<parameter type="float" name="ZBlurActive" value="1.0" />
+		<parameter type="float" name="ZBlurShowDepths" value="0.0" />
+		<parameter type="float" name="ZBlurConstantBlur" value="0.3" />
+		<parameter type="float" name="ZBlurFocalStart" value="1.0" />
+		<parameter type="float" name="ZBlurFocalEnd" value="25.0" />
+		<parameter type="float" name="ZBlurEnd" value="35.0" />
+	</material>
 
 	<material name="LineMaterial" vertex_type="Line">
 		<parameter type="color" name="diffuse_color" value="1.0 0.0 0.0 1.0" />
@@ -10,42 +17,30 @@
 	</material>
 	
 	COCHE
-	<material name="11 - Default" vertex_type="PositionNormalUV" >
-		<texture type="diffuse" filename="data\textures\blanco coche.jpg" />
-		<parameter type="color" name="diffuse_color" value="0.164706 0.164706 0.164706 1.0 " />
+	<material name="Material #60" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\AM_133_car_005_diffuse.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
 		<texture type="lightmap" filename="" />
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="float" name="metalness" value="0.0" />
-		<parameter type="float" name="roughness" value="0.0" />
-		<parameter type="float" name="occlusion" value="0.0" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
+		<parameter type="float" name="metalness" value="0.3" />
+		<parameter type="float" name="roughness" value="0.9" />
+		<parameter type="float" name="occlusion" value="0.7" />
 	</material>
-	<material name="14 - Default" vertex_type="PositionNormal" >
-		<texture type="diffuse" filename="" />
-		<parameter type="color" name="diffuse_color" value="0.027451 0.027451 0.027451 1.0 " />
+	<material name="Material #19" vertex_type="PositionNormalUV" >
+		<texture type="diffuse" filename="data\textures\AM_133_car_004_diffuse_01.jpg" />
+		<parameter type="color" name="diffuse_color" value="0.588 0.588 0.588 1.0 " />
 		<texture type="lightmap" filename="" />
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="float" name="metalness" value="0.0" />
-		<parameter type="float" name="roughness" value="0.0" />
-		<parameter type="float" name="occlusion" value="0.0" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
+		<parameter type="float" name="metalness" value="0.3" />
+		<parameter type="float" name="roughness" value="0.9" />
+		<parameter type="float" name="occlusion" value="0.7" />
 	</material>
-	<material name="Material #348" vertex_type="PositionNormal" >
-		<texture type="diffuse" filename="" />
-		<parameter type="color" name="diffuse_color" value="0.113725 0.113725 0.113725 1.0 " />
-		<texture type="lightmap" filename="" />
-		<parameter type="float" name="lightmap" value="0" />
-		<texture type="bump" filename="" />
-		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
-		<parameter type="float" name="metalness" value="0.0" />
-		<parameter type="float" name="roughness" value="0.0" />
-		<parameter type="float" name="occlusion" value="0.0" />
-	</material>	
 	
 	PINTURA SUELO
 	<material name="01 - BLANCO ASFALTO" vertex_type="PositionNormalUVUV2" >
@@ -55,7 +50,7 @@
 		<parameter type="float" name="lightmap" value="1.0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -69,7 +64,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="1.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -83,7 +78,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -97,7 +92,7 @@
 		<parameter type="float" name="lightmap" value="1.0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="1.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -111,7 +106,7 @@
 		<parameter type="float" name="lightmap" value="1.0" />
 		<texture type="bump" filename="data\textures\asfalt_b.tif" />
 		<parameter type="float" name="bump" value="0.3" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="1.0" />
 		<parameter type="float" name="occlusion" value="0.5" />
@@ -125,7 +120,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="1.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -137,7 +132,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="1.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -149,7 +144,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.1" />
 		<parameter type="float" name="roughness" value="0.2" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -161,7 +156,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.3" />
 		<parameter type="float" name="roughness" value="0.4" />
 		<parameter type="float" name="occlusion" value="0.4" />
@@ -173,7 +168,7 @@
 		<parameter type="float" name="lightmap" value="1.0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="1.0" />
 		<parameter type="float" name="occlusion" value="0.3" />
@@ -185,7 +180,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.2" />
 		<parameter type="float" name="roughness" value="0.8" />
 		<parameter type="float" name="occlusion" value="0.4" />
@@ -197,7 +192,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -209,7 +204,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -221,7 +216,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -233,7 +228,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -245,7 +240,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -257,7 +252,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -269,7 +264,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -281,7 +276,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -293,7 +288,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -305,7 +300,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -320,7 +315,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -334,7 +329,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -348,7 +343,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />
@@ -362,7 +357,7 @@
 		<parameter type="float" name="lightmap" value="0" />
 		<texture type="bump" filename="" />
 		<parameter type="float" name="bump" value="0" min_value="0.0" max_value="10.0" />
-		<texture type="cubemap" filename="data\textures\KGSkyBox.dds" />
+		<texture type="cubemap" filename="data\textures\night_sky_SIDE.dds" />
 		<parameter type="float" name="metalness" value="0.0" />
 		<parameter type="float" name="roughness" value="0.0" />
 		<parameter type="float" name="occlusion" value="0.0" />

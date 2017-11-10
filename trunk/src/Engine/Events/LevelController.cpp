@@ -74,6 +74,8 @@ void CLevelController::ResumeGame()
     m_TimePaused = false;
     if (m_SceneManager->GetCurrentScene()->Exist("PauseMENU"))
         m_SceneManager->GetCurrentScene()->GetLayer("PauseMENU")->SetActive(false);
+    if (m_SceneManager->GetCurrentScene()->Exist("MenuMuerte"))
+        m_SceneManager->GetCurrentScene()->GetLayer("MenuMuerte")->SetActive(false);
 }
 
 void CLevelController::NewGame()
@@ -92,6 +94,22 @@ void CLevelController::NewGame()
         if (event)
             event->Start();
         event = CEngine::GetInstance().GetEventManager().GetEvent("puertaSala0");
+        if (event)
+            event->Start();
+    }
+    else if (strcmp(m_SceneManager->GetCurrentScene()->GetName().c_str(), "administracion") == 0)
+    {
+        CEvent* event = CEngine::GetInstance().GetEventManager().GetEvent("Cinematica03");
+        if (event)
+            event->Start();
+        event = CEngine::GetInstance().GetEventManager().GetEvent("c12");
+        if (event)
+            event->Start();
+    }
+    else if (strcmp(m_SceneManager->GetCurrentScene()->GetName().c_str(), "parkineo") == 0)
+    {
+        m_TimePaused = false;
+        CEvent* event = CEngine::GetInstance().GetEventManager().GetEvent("nivel_3");
         if (event)
             event->Start();
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="10" SoundbankVersion="113">
 	<RootPaths>
-		<ProjectRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/</ProjectRoot>
-		<SourceFilesRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/.cache/Windows/</SourceFilesRoot>
-		<SoundBanksRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/GeneratedSoundBanks/Windows/</SoundBanksRoot>
+		<ProjectRoot>C:\Users\christian\Downloads\wwise promoteo compres\promoteo\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\christian\Downloads\wwise promoteo compres\promoteo\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>/Users/Newell/Library/Application Support/Wwise/Bottles/wwise/dosdevices/c:/users/crossover/My Documents/WwiseProjects/promoteo/GeneratedSoundBanks/Windows/</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\christian\Downloads\wwise promoteo compres\promoteo\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -54,6 +54,7 @@
 				<Event Id="2187720622" Name="musica_nivel_1"/>
 				<Event Id="2187720621" Name="musica_nivel_2"/>
 				<Event Id="2187720620" Name="musica_nivel_3"/>
+				<Event Id="2666064985" Name="nivel_3"/>
 				<Event Id="362316840" Name="passos_caminar"/>
 				<Event Id="1233668454" Name="passos_corre"/>
 				<Event Id="3479756012" Name="passos_sigilo"/>
@@ -64,496 +65,521 @@
 				<Event Id="2550763292" Name="sniper"/>
 				<Event Id="3788374456" Name="sonido_ambiente_carcel"/>
 				<Event Id="148355399" Name="te_tenemos_guardias"/>
+				<Event Id="3157003241" Name="test"/>
 				<Event Id="3209361438" Name="volver_atras_lola"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="8945505" Language="SFX">
 					<ShortName>5W.wav</ShortName>
-					<Path>SFX/5W_9E69E797.wem</Path>
+					<Path>SFX\5W_9E69E797.wem</Path>
 				</File>
 				<File Id="19500159" Language="SFX">
 					<ShortName>17CAGON.wav</ShortName>
-					<Path>SFX/17CAGON_9E69E797.wem</Path>
+					<Path>SFX\17CAGON_9E69E797.wem</Path>
 				</File>
 				<File Id="21691249" Language="SFX">
 					<ShortName>GUARDIA HALL 4.wav</ShortName>
-					<Path>SFX/GUARDIA HALL 4_9E69E797.wem</Path>
+					<Path>SFX\GUARDIA HALL 4_9E69E797.wem</Path>
 				</File>
 				<File Id="22141420" Language="SFX">
 					<ShortName>sniper4.wav</ShortName>
-					<Path>SFX/sniper4_9E69E797.wem</Path>
+					<Path>SFX\sniper4_9E69E797.wem</Path>
 				</File>
 				<File Id="23822768" Language="SFX">
 					<ShortName>5.wav</ShortName>
-					<Path>SFX/5_9E69E797.wem</Path>
+					<Path>SFX\5_9E69E797.wem</Path>
 				</File>
 				<File Id="29918590" Language="SFX">
 					<ShortName>passos4.wav</ShortName>
-					<Path>SFX/passos4_9E69E797.wem</Path>
+					<Path>SFX\passos4_9E69E797.wem</Path>
 				</File>
 				<File Id="53161312" Language="SFX">
 					<ShortName>4.wav</ShortName>
-					<Path>SFX/4_9E69E797.wem</Path>
+					<Path>SFX\4_9E69E797.wem</Path>
 				</File>
 				<File Id="54256266" Language="SFX">
 					<ShortName>keyboard.wav</ShortName>
-					<Path>SFX/keyboard_9E69E797.wem</Path>
+					<Path>SFX\keyboard_9E69E797.wem</Path>
 				</File>
 				<File Id="60544498" Language="SFX">
 					<ShortName>ambiente_carcel.wav</ShortName>
-					<Path>SFX/ambiente_carcel_4B8CC0C5.wem</Path>
+					<Path>SFX\ambiente_carcel_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="63929857" Language="SFX">
 					<ShortName>TE TENEMOS 2.wav</ShortName>
-					<Path>SFX/TE TENEMOS 2_9E69E797.wem</Path>
+					<Path>SFX\TE TENEMOS 2_9E69E797.wem</Path>
 				</File>
 				<File Id="71849007" Language="SFX">
 					<ShortName>fluorescent_light.wav</ShortName>
-					<Path>SFX/fluorescent_light_4B8CC0C5.wem</Path>
+					<Path>SFX\fluorescent_light_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="76618454" Language="SFX">
 					<ShortName>avistamiento_6.wav</ShortName>
-					<Path>SFX/avistamiento_6_9E69E797.wem</Path>
+					<Path>SFX\avistamiento_6_9E69E797.wem</Path>
 				</File>
 				<File Id="82643045" Language="SFX">
 					<ShortName>9WA.wav</ShortName>
-					<Path>SFX/9WA_9E69E797.wem</Path>
+					<Path>SFX\9WA_9E69E797.wem</Path>
 				</File>
 				<File Id="88635069" Language="SFX">
 					<ShortName>drone_off.wav</ShortName>
-					<Path>SFX/drone_off_9E69E797.wem</Path>
+					<Path>SFX\drone_off_9E69E797.wem</Path>
 				</File>
 				<File Id="95280683" Language="SFX">
 					<ShortName>GUARDIA HALL 5.wav</ShortName>
-					<Path>SFX/GUARDIA HALL 5_9E69E797.wem</Path>
+					<Path>SFX\GUARDIA HALL 5_9E69E797.wem</Path>
 				</File>
 				<File Id="111437913" Language="SFX">
 					<ShortName>14ADLO.wav</ShortName>
-					<Path>SFX/14ADLO_9E69E797.wem</Path>
+					<Path>SFX\14ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="111521859" Language="SFX">
 					<ShortName>14ADW.wav</ShortName>
-					<Path>SFX/14ADW_9E69E797.wem</Path>
+					<Path>SFX\14ADW_9E69E797.wem</Path>
 				</File>
 				<File Id="116392036" Language="SFX">
 					<ShortName>16WA.wav</ShortName>
-					<Path>SFX/16WA_9E69E797.wem</Path>
+					<Path>SFX\16WA_9E69E797.wem</Path>
 				</File>
 				<File Id="118166310" Language="SFX">
 					<ShortName>drone_motor.wav</ShortName>
-					<Path>SFX/drone_motor_9E69E797.wem</Path>
+					<Path>SFX\drone_motor_9E69E797.wem</Path>
 				</File>
 				<File Id="119991467" Language="SFX">
 					<ShortName>carcel  capa 2.wav</ShortName>
-					<Path>SFX/carcel  capa 2_4B8CC0C5.wem</Path>
+					<Path>SFX\carcel  capa 2_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="123742478" Language="SFX">
 					<ShortName>12ADLO.wav</ShortName>
-					<Path>SFX/12ADLO_9E69E797.wem</Path>
+					<Path>SFX\12ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="125891575" Language="SFX">
 					<ShortName>GUARDIA RASCAR ESPALDA.wav</ShortName>
-					<Path>SFX/GUARDIA RASCAR ESPALDA_9E69E797.wem</Path>
+					<Path>SFX\GUARDIA RASCAR ESPALDA_9E69E797.wem</Path>
 				</File>
 				<File Id="131018792" Language="SFX">
 					<ShortName>24ADLO.wav</ShortName>
-					<Path>SFX/24ADLO_9E69E797.wem</Path>
+					<Path>SFX\24ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="134509480" Language="SFX">
 					<ShortName>17ADLO.wav</ShortName>
-					<Path>SFX/17ADLO_9E69E797.wem</Path>
+					<Path>SFX\17ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="151375512" Language="SFX">
 					<ShortName>musica_c11.wav</ShortName>
-					<Path>SFX/musica_c11_4B8CC0C5.wem</Path>
+					<Path>SFX\musica_c11_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="154652212" Language="SFX">
 					<ShortName>20LO.wav</ShortName>
-					<Path>SFX/20LO_9E69E797.wem</Path>
+					<Path>SFX\20LO_9E69E797.wem</Path>
 				</File>
 				<File Id="189788533" Language="SFX">
 					<ShortName>13ADLO.wav</ShortName>
-					<Path>SFX/13ADLO_9E69E797.wem</Path>
+					<Path>SFX\13ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="203301443" Language="SFX">
 					<ShortName>insulto_lola_9.wav</ShortName>
-					<Path>SFX/insulto_lola_9_9E69E797.wem</Path>
+					<Path>SFX\insulto_lola_9_9E69E797.wem</Path>
 				</File>
 				<File Id="203757741" Language="SFX">
 					<ShortName>insulto_lola_4.wav</ShortName>
-					<Path>SFX/insulto_lola_4_9E69E797.wem</Path>
+					<Path>SFX\insulto_lola_4_9E69E797.wem</Path>
 				</File>
 				<File Id="209132311" Language="SFX">
 					<ShortName>insulto_lola_8.wav</ShortName>
-					<Path>SFX/insulto_lola_8_9E69E797.wem</Path>
+					<Path>SFX\insulto_lola_8_9E69E797.wem</Path>
 				</File>
 				<File Id="213786686" Language="SFX">
 					<ShortName>passos2.wav</ShortName>
-					<Path>SFX/passos2_9E69E797.wem</Path>
+					<Path>SFX\passos2_9E69E797.wem</Path>
 				</File>
 				<File Id="229335519" Language="SFX">
 					<ShortName>VOLVER ATRAS.wav</ShortName>
-					<Path>SFX/VOLVER ATRAS_9E69E797.wem</Path>
+					<Path>SFX\VOLVER ATRAS_9E69E797.wem</Path>
 				</File>
 				<File Id="231673087" Language="SFX">
 					<ShortName>12LO.wav</ShortName>
-					<Path>SFX/12LO_9E69E797.wem</Path>
+					<Path>SFX\12LO_9E69E797.wem</Path>
 				</File>
 				<File Id="233006307" Language="SFX">
 					<ShortName>carcel  Autechere.wav</ShortName>
-					<Path>SFX/carcel  Autechere_4B8CC0C5.wem</Path>
+					<Path>SFX\carcel  Autechere_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="245480394" Language="SFX">
 					<ShortName>avistamiento_7.wav</ShortName>
-					<Path>SFX/avistamiento_7_9E69E797.wem</Path>
+					<Path>SFX\avistamiento_7_9E69E797.wem</Path>
 				</File>
 				<File Id="256005478" Language="SFX">
 					<ShortName>16ADW.wav</ShortName>
-					<Path>SFX/16ADW_9E69E797.wem</Path>
+					<Path>SFX\16ADW_9E69E797.wem</Path>
 				</File>
 				<File Id="264201675" Language="SFX">
 					<ShortName>insulto_lola_3.wav</ShortName>
-					<Path>SFX/insulto_lola_3_9E69E797.wem</Path>
+					<Path>SFX\insulto_lola_3_9E69E797.wem</Path>
 				</File>
 				<File Id="281729272" Language="SFX">
 					<ShortName>21WA.wav</ShortName>
-					<Path>SFX/21WA_9E69E797.wem</Path>
+					<Path>SFX\21WA_9E69E797.wem</Path>
 				</File>
 				<File Id="288346177" Language="SFX">
 					<ShortName>alcatrazcinematica2albert.wav</ShortName>
-					<Path>SFX/alcatrazcinematica2albert_4B8CC0C5.wem</Path>
+					<Path>SFX\alcatrazcinematica2albert_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="292212350" Language="SFX">
 					<ShortName>17ADW.wav</ShortName>
-					<Path>SFX/17ADW_9E69E797.wem</Path>
+					<Path>SFX\17ADW_9E69E797.wem</Path>
 				</File>
 				<File Id="294040929" Language="SFX">
 					<ShortName>avistamiento_5.wav</ShortName>
-					<Path>SFX/avistamiento_5_9E69E797.wem</Path>
+					<Path>SFX\avistamiento_5_9E69E797.wem</Path>
 				</File>
 				<File Id="294404222" Language="SFX">
 					<ShortName>13ADW.wav</ShortName>
-					<Path>SFX/13ADW_9E69E797.wem</Path>
+					<Path>SFX\13ADW_9E69E797.wem</Path>
+				</File>
+				<File Id="296938760" Language="SFX">
+					<ShortName>21PAWA.wav</ShortName>
+					<Path>SFX\21PAWA_9E69E797.wem</Path>
 				</File>
 				<File Id="298767448" Language="SFX">
 					<ShortName>insulto_lola_7.wav</ShortName>
-					<Path>SFX/insulto_lola_7_9E69E797.wem</Path>
+					<Path>SFX\insulto_lola_7_9E69E797.wem</Path>
 				</File>
 				<File Id="301803785" Language="SFX">
 					<ShortName>A1.wav</ShortName>
-					<Path>SFX/A1_9E69E797.wem</Path>
+					<Path>SFX\A1_9E69E797.wem</Path>
 				</File>
 				<File Id="316890219" Language="SFX">
 					<ShortName>Prometeo Cinematica02 KZ.L.wav</ShortName>
-					<Path>SFX/Prometeo Cinematica02 KZ.L_4B8CC0C5.wem</Path>
+					<Path>SFX\Prometeo Cinematica02 KZ.L_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="320821539" Language="SFX">
 					<ShortName>17LO.wav</ShortName>
-					<Path>SFX/17LO_9E69E797.wem</Path>
+					<Path>SFX\17LO_9E69E797.wem</Path>
 				</File>
 				<File Id="322792517" Language="SFX">
 					<ShortName>Alcatraz_Nivel 1_M1.wav</ShortName>
-					<Path>SFX/Alcatraz_Nivel 1_M1_4B8CC0C5.wem</Path>
+					<Path>SFX\Alcatraz_Nivel 1_M1_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="326467571" Language="SFX">
 					<ShortName>PUTAS DUCHAS 1.wav</ShortName>
-					<Path>SFX/PUTAS DUCHAS 1_9E69E797.wem</Path>
+					<Path>SFX\PUTAS DUCHAS 1_9E69E797.wem</Path>
 				</File>
 				<File Id="328307977" Language="SFX">
 					<ShortName>insulto_lola_1.wav</ShortName>
-					<Path>SFX/insulto_lola_1_9E69E797.wem</Path>
+					<Path>SFX\insulto_lola_1_9E69E797.wem</Path>
 				</File>
 				<File Id="334403130" Language="SFX">
 					<ShortName>chispazos3.wav</ShortName>
-					<Path>SFX/chispazos3_9E69E797.wem</Path>
+					<Path>SFX\chispazos3_9E69E797.wem</Path>
 				</File>
 				<File Id="341577179" Language="SFX">
 					<ShortName>15ADLO.wav</ShortName>
-					<Path>SFX/15ADLO_9E69E797.wem</Path>
+					<Path>SFX\15ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="351720030" Language="SFX">
 					<ShortName>avistamiento_2.wav</ShortName>
-					<Path>SFX/avistamiento_2_9E69E797.wem</Path>
+					<Path>SFX\avistamiento_2_9E69E797.wem</Path>
 				</File>
 				<File Id="364547637" Language="SFX">
 					<ShortName>2.wav</ShortName>
-					<Path>SFX/2_9E69E797.wem</Path>
+					<Path>SFX\2_9E69E797.wem</Path>
 				</File>
 				<File Id="374103117" Language="SFX">
 					<ShortName>passos5.wav</ShortName>
-					<Path>SFX/passos5_9E69E797.wem</Path>
+					<Path>SFX\passos5_9E69E797.wem</Path>
 				</File>
 				<File Id="378279207" Language="SFX">
 					<ShortName>Prometeo Cinematica01 KZ.R.wav</ShortName>
-					<Path>SFX/Prometeo Cinematica01 KZ.R_4B8CC0C5.wem</Path>
+					<Path>SFX\Prometeo Cinematica01 KZ.R_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="384085299" Language="SFX">
 					<ShortName>insulto_lola_6.wav</ShortName>
-					<Path>SFX/insulto_lola_6_9E69E797.wem</Path>
+					<Path>SFX\insulto_lola_6_9E69E797.wem</Path>
 				</File>
 				<File Id="389576689" Language="SFX">
 					<ShortName>19WA.wav</ShortName>
-					<Path>SFX/19WA_9E69E797.wem</Path>
+					<Path>SFX\19WA_9E69E797.wem</Path>
 				</File>
 				<File Id="395274170" Language="SFX">
 					<ShortName>musica_c16.wav</ShortName>
-					<Path>SFX/musica_c16_4B8CC0C5.wem</Path>
+					<Path>SFX\musica_c16_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="399559430" Language="SFX">
 					<ShortName>avistamiento_4.wav</ShortName>
-					<Path>SFX/avistamiento_4_9E69E797.wem</Path>
+					<Path>SFX\avistamiento_4_9E69E797.wem</Path>
 				</File>
 				<File Id="403662736" Language="SFX">
 					<ShortName>carcel  capa 3.wav</ShortName>
-					<Path>SFX/carcel  capa 3_4B8CC0C5.wem</Path>
+					<Path>SFX\carcel  capa 3_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="416822417" Language="SFX">
 					<ShortName>TE TENEMOS 3.wav</ShortName>
-					<Path>SFX/TE TENEMOS 3_9E69E797.wem</Path>
+					<Path>SFX\TE TENEMOS 3_9E69E797.wem</Path>
 				</File>
 				<File Id="419406652" Language="SFX">
 					<ShortName>1W.wav</ShortName>
-					<Path>SFX/1W_9E69E797.wem</Path>
+					<Path>SFX\1W_9E69E797.wem</Path>
 				</File>
 				<File Id="424964437" Language="SFX">
 					<ShortName>insulto_lola_5.wav</ShortName>
-					<Path>SFX/insulto_lola_5_9E69E797.wem</Path>
+					<Path>SFX\insulto_lola_5_9E69E797.wem</Path>
+				</File>
+				<File Id="429192249" Language="SFX">
+					<ShortName>29PALO.wav</ShortName>
+					<Path>SFX\29PALO_9E69E797.wem</Path>
+				</File>
+				<File Id="431721008" Language="SFX">
+					<ShortName>27PALO.wav</ShortName>
+					<Path>SFX\27PALO_9E69E797.wem</Path>
 				</File>
 				<File Id="433499282" Language="SFX">
 					<ShortName>insulto_lola_11.wav</ShortName>
-					<Path>SFX/insulto_lola_11_9E69E797.wem</Path>
+					<Path>SFX\insulto_lola_11_9E69E797.wem</Path>
 				</File>
 				<File Id="440982754" Language="SFX">
 					<ShortName>avistamiento_3.wav</ShortName>
-					<Path>SFX/avistamiento_3_9E69E797.wem</Path>
+					<Path>SFX\avistamiento_3_9E69E797.wem</Path>
 				</File>
 				<File Id="443600505" Language="SFX">
 					<ShortName>GUARDIA LASTIMA.wav</ShortName>
-					<Path>SFX/GUARDIA LASTIMA_9E69E797.wem</Path>
+					<Path>SFX\GUARDIA LASTIMA_9E69E797.wem</Path>
 				</File>
 				<File Id="472217988" Language="SFX">
 					<ShortName>4L.wav</ShortName>
-					<Path>SFX/4L_9E69E797.wem</Path>
+					<Path>SFX\4L_9E69E797.wem</Path>
 				</File>
 				<File Id="479355696" Language="SFX">
 					<ShortName>insulto_lola_2.wav</ShortName>
-					<Path>SFX/insulto_lola_2_9E69E797.wem</Path>
+					<Path>SFX\insulto_lola_2_9E69E797.wem</Path>
 				</File>
 				<File Id="482922622" Language="SFX">
 					<ShortName>TE TENEMOS 1.wav</ShortName>
-					<Path>SFX/TE TENEMOS 1_9E69E797.wem</Path>
+					<Path>SFX\TE TENEMOS 1_9E69E797.wem</Path>
 				</File>
 				<File Id="490810162" Language="SFX">
 					<ShortName>25ADLO.wav</ShortName>
-					<Path>SFX/25ADLO_9E69E797.wem</Path>
+					<Path>SFX\25ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="500390299" Language="SFX">
 					<ShortName>2L.wav</ShortName>
-					<Path>SFX/2L_9E69E797.wem</Path>
+					<Path>SFX\2L_9E69E797.wem</Path>
 				</File>
 				<File Id="504779822" Language="SFX">
 					<ShortName>sniper3.wav</ShortName>
-					<Path>SFX/sniper3_9E69E797.wem</Path>
+					<Path>SFX\sniper3_9E69E797.wem</Path>
 				</File>
 				<File Id="532251822" Language="SFX">
 					<ShortName>D1.wav</ShortName>
-					<Path>SFX/D1_9E69E797.wem</Path>
+					<Path>SFX\D1_9E69E797.wem</Path>
 				</File>
 				<File Id="535157446" Language="SFX">
 					<ShortName>13LO.wav</ShortName>
-					<Path>SFX/13LO_9E69E797.wem</Path>
+					<Path>SFX\13LO_9E69E797.wem</Path>
 				</File>
 				<File Id="547504806" Language="SFX">
 					<ShortName>7WA.wav</ShortName>
-					<Path>SFX/7WA_9E69E797.wem</Path>
+					<Path>SFX\7WA_9E69E797.wem</Path>
 				</File>
 				<File Id="560064995" Language="SFX">
 					<ShortName>18ADLO.wav</ShortName>
-					<Path>SFX/18ADLO_9E69E797.wem</Path>
+					<Path>SFX\18ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="566239681" Language="SFX">
 					<ShortName>Click Mouse.wav</ShortName>
-					<Path>SFX/Click Mouse_9E69E797.wem</Path>
+					<Path>SFX\Click Mouse_9E69E797.wem</Path>
 				</File>
 				<File Id="573956825" Language="SFX">
 					<ShortName>passos3.wav</ShortName>
-					<Path>SFX/passos3_9E69E797.wem</Path>
+					<Path>SFX\passos3_9E69E797.wem</Path>
 				</File>
 				<File Id="577206812" Language="SFX">
 					<ShortName>14WA.wav</ShortName>
-					<Path>SFX/14WA_9E69E797.wem</Path>
+					<Path>SFX\14WA_9E69E797.wem</Path>
 				</File>
 				<File Id="582412070" Language="SFX">
 					<ShortName>C2.wav</ShortName>
-					<Path>SFX/C2_9E69E797.wem</Path>
+					<Path>SFX\C2_9E69E797.wem</Path>
 				</File>
 				<File Id="590234846" Language="SFX">
 					<ShortName>GUARDIA HALL 1.wav</ShortName>
-					<Path>SFX/GUARDIA HALL 1_9E69E797.wem</Path>
+					<Path>SFX\GUARDIA HALL 1_9E69E797.wem</Path>
 				</File>
 				<File Id="605161041" Language="SFX">
 					<ShortName>carcel  capa 1.wav</ShortName>
-					<Path>SFX/carcel  capa 1_4B8CC0C5.wem</Path>
+					<Path>SFX\carcel  capa 1_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="605828487" Language="SFX">
 					<ShortName>15LO.wav</ShortName>
-					<Path>SFX/15LO_9E69E797.wem</Path>
+					<Path>SFX\15LO_9E69E797.wem</Path>
 				</File>
 				<File Id="622926767" Language="SFX">
 					<ShortName>20ADLO.wav</ShortName>
-					<Path>SFX/20ADLO_9E69E797.wem</Path>
+					<Path>SFX\20ADLO_9E69E797.wem</Path>
+				</File>
+				<File Id="629246542" Language="SFX">
+					<ShortName>28PALO.wav</ShortName>
+					<Path>SFX\28PALO_9E69E797.wem</Path>
 				</File>
 				<File Id="639639911" Language="SFX">
 					<ShortName>10WA.wav</ShortName>
-					<Path>SFX/10WA_9E69E797.wem</Path>
+					<Path>SFX\10WA_9E69E797.wem</Path>
 				</File>
 				<File Id="646972843" Language="SFX">
 					<ShortName>sniper1.wav</ShortName>
-					<Path>SFX/sniper1_9E69E797.wem</Path>
+					<Path>SFX\sniper1_9E69E797.wem</Path>
 				</File>
 				<File Id="649195679" Language="SFX">
 					<ShortName>6L.wav</ShortName>
-					<Path>SFX/6L_9E69E797.wem</Path>
+					<Path>SFX\6L_9E69E797.wem</Path>
 				</File>
 				<File Id="656747234" Language="SFX">
 					<ShortName>8LO.wav</ShortName>
-					<Path>SFX/8LO_9E69E797.wem</Path>
+					<Path>SFX\8LO_9E69E797.wem</Path>
+				</File>
+				<File Id="676319696" Language="SFX">
+					<ShortName>22PAWA.wav</ShortName>
+					<Path>SFX\22PAWA_9E69E797.wem</Path>
 				</File>
 				<File Id="678374583" Language="SFX">
 					<ShortName>3.wav</ShortName>
-					<Path>SFX/3_9E69E797.wem</Path>
+					<Path>SFX\3_9E69E797.wem</Path>
 				</File>
 				<File Id="697859116" Language="SFX">
 					<ShortName>insulto_lola_10.wav</ShortName>
-					<Path>SFX/insulto_lola_10_9E69E797.wem</Path>
-				</File>
-				<File Id="698801766" Language="SFX">
-					<ShortName>carcel sala boss 2.wav</ShortName>
-					<Path>SFX/carcel sala boss 2_4B8CC0C5.wem</Path>
+					<Path>SFX\insulto_lola_10_9E69E797.wem</Path>
 				</File>
 				<File Id="727274732" Language="SFX">
 					<ShortName>alcatrazcinematica1albert.wav</ShortName>
-					<Path>SFX/alcatrazcinematica1albert_4B8CC0C5.wem</Path>
+					<Path>SFX\alcatrazcinematica1albert_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="735866572" Language="SFX">
 					<ShortName>18ADW.wav</ShortName>
-					<Path>SFX/18ADW_9E69E797.wem</Path>
+					<Path>SFX\18ADW_9E69E797.wem</Path>
 				</File>
 				<File Id="751980399" Language="SFX">
 					<ShortName>DESPACITO.wav</ShortName>
-					<Path>SFX/DESPACITO_9E69E797.wem</Path>
+					<Path>SFX\DESPACITO_9E69E797.wem</Path>
 				</File>
 				<File Id="757875902" Language="SFX">
 					<ShortName>18LO.wav</ShortName>
-					<Path>SFX/18LO_9E69E797.wem</Path>
+					<Path>SFX\18LO_9E69E797.wem</Path>
 				</File>
 				<File Id="763354845" Language="SFX">
 					<ShortName>C1.wav</ShortName>
-					<Path>SFX/C1_9E69E797.wem</Path>
+					<Path>SFX\C1_9E69E797.wem</Path>
 				</File>
 				<File Id="766959344" Language="SFX">
 					<ShortName>sniper2.wav</ShortName>
-					<Path>SFX/sniper2_9E69E797.wem</Path>
+					<Path>SFX\sniper2_9E69E797.wem</Path>
 				</File>
 				<File Id="792022448" Language="SFX">
 					<ShortName>15ADW.wav</ShortName>
-					<Path>SFX/15ADW_9E69E797.wem</Path>
+					<Path>SFX\15ADW_9E69E797.wem</Path>
+				</File>
+				<File Id="822565975" Language="SFX">
+					<ShortName>23PAWA.wav</ShortName>
+					<Path>SFX\23PAWA_9E69E797.wem</Path>
 				</File>
 				<File Id="853198485" Language="SFX">
 					<ShortName>16ADLO.wav</ShortName>
-					<Path>SFX/16ADLO_9E69E797.wem</Path>
+					<Path>SFX\16ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="861354335" Language="SFX">
 					<ShortName>chispazos2.wav</ShortName>
-					<Path>SFX/chispazos2_9E69E797.wem</Path>
+					<Path>SFX\chispazos2_9E69E797.wem</Path>
 				</File>
 				<File Id="876016977" Language="SFX">
 					<ShortName>6.wav</ShortName>
-					<Path>SFX/6_9E69E797.wem</Path>
+					<Path>SFX\6_9E69E797.wem</Path>
 				</File>
 				<File Id="879432027" Language="SFX">
 					<ShortName>3W.wav</ShortName>
-					<Path>SFX/3W_9E69E797.wem</Path>
+					<Path>SFX\3W_9E69E797.wem</Path>
 				</File>
 				<File Id="883634297" Language="SFX">
 					<ShortName>21ADLO.wav</ShortName>
-					<Path>SFX/21ADLO_9E69E797.wem</Path>
+					<Path>SFX\21ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="900751072" Language="SFX">
 					<ShortName>passos1.wav</ShortName>
-					<Path>SFX/passos1_9E69E797.wem</Path>
+					<Path>SFX\passos1_9E69E797.wem</Path>
 				</File>
 				<File Id="901150434" Language="SFX">
 					<ShortName>TE TENEMOS 4.wav</ShortName>
-					<Path>SFX/TE TENEMOS 4_9E69E797.wem</Path>
+					<Path>SFX\TE TENEMOS 4_9E69E797.wem</Path>
 				</File>
 				<File Id="914574868" Language="SFX">
 					<ShortName>19ADLO.wav</ShortName>
-					<Path>SFX/19ADLO_9E69E797.wem</Path>
+					<Path>SFX\19ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="924958496" Language="SFX">
 					<ShortName>alcatrazalbertsencer.wav</ShortName>
-					<Path>SFX/alcatrazalbertsencer_4B8CC0C5.wem</Path>
+					<Path>SFX\alcatrazalbertsencer_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="934114347" Language="SFX">
 					<ShortName>Drone_on.wav</ShortName>
-					<Path>SFX/Drone_on_9E69E797.wem</Path>
+					<Path>SFX\Drone_on_9E69E797.wem</Path>
 				</File>
 				<File Id="945860780" Language="SFX">
 					<ShortName>11WA.wav</ShortName>
-					<Path>SFX/11WA_9E69E797.wem</Path>
+					<Path>SFX\11WA_9E69E797.wem</Path>
 				</File>
 				<File Id="952345030" Language="SFX">
 					<ShortName>GUARDIA HALL 2.wav</ShortName>
-					<Path>SFX/GUARDIA HALL 2_9E69E797.wem</Path>
+					<Path>SFX\GUARDIA HALL 2_9E69E797.wem</Path>
 				</File>
 				<File Id="960541829" Language="SFX">
 					<ShortName>Alcatraz_Nivel 1_M2_bucle.wav</ShortName>
-					<Path>SFX/Alcatraz_Nivel 1_M2_bucle_4B8CC0C5.wem</Path>
+					<Path>SFX\Alcatraz_Nivel 1_M2_bucle_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="961513002" Language="SFX">
 					<ShortName>1.wav</ShortName>
-					<Path>SFX/1_9E69E797.wem</Path>
+					<Path>SFX\1_9E69E797.wem</Path>
 				</File>
 				<File Id="962803394" Language="SFX">
 					<ShortName>26ADLO.wav</ShortName>
-					<Path>SFX/26ADLO_9E69E797.wem</Path>
+					<Path>SFX\26ADLO_9E69E797.wem</Path>
 				</File>
 				<File Id="964219743" Language="SFX">
 					<ShortName>avistamiento_1.wav</ShortName>
-					<Path>SFX/avistamiento_1_9E69E797.wem</Path>
+					<Path>SFX\avistamiento_1_9E69E797.wem</Path>
 				</File>
 				<File Id="965580599" Language="SFX">
 					<ShortName>B1.wav</ShortName>
-					<Path>SFX/B1_9E69E797.wem</Path>
+					<Path>SFX\B1_9E69E797.wem</Path>
 				</File>
 				<File Id="973699189" Language="SFX">
 					<ShortName>Alcatraz_Nivel 1_M3.wav</ShortName>
-					<Path>SFX/Alcatraz_Nivel 1_M3_4B8CC0C5.wem</Path>
+					<Path>SFX\Alcatraz_Nivel 1_M3_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="985087689" Language="SFX">
 					<ShortName>chispazos1.wav</ShortName>
-					<Path>SFX/chispazos1_9E69E797.wem</Path>
+					<Path>SFX\chispazos1_9E69E797.wem</Path>
 				</File>
 				<File Id="1005005398" Language="SFX">
 					<ShortName>12ADW.wav</ShortName>
-					<Path>SFX/12ADW_9E69E797.wem</Path>
+					<Path>SFX\12ADW_9E69E797.wem</Path>
 				</File>
 				<File Id="1008023535" Language="SFX">
 					<ShortName>carcel  capa ritmica.wav</ShortName>
-					<Path>SFX/carcel  capa ritmica_4B8CC0C5.wem</Path>
+					<Path>SFX\carcel  capa ritmica_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="1013299048" Language="SFX">
 					<ShortName>GUARDIA ABUELO.wav</ShortName>
-					<Path>SFX/GUARDIA ABUELO_9E69E797.wem</Path>
+					<Path>SFX\GUARDIA ABUELO_9E69E797.wem</Path>
 				</File>
 				<File Id="1024159736" Language="SFX">
 					<ShortName>GUARDIA HALL 3.wav</ShortName>
-					<Path>SFX/GUARDIA HALL 3_9E69E797.wem</Path>
+					<Path>SFX\GUARDIA HALL 3_9E69E797.wem</Path>
 				</File>
 				<File Id="1045103315" Language="SFX">
 					<ShortName>GUARDIAS COVERSACION 1.wav</ShortName>
-					<Path>SFX/GUARDIAS COVERSACION 1_9E69E797.wem</Path>
+					<Path>SFX\GUARDIAS COVERSACION 1_9E69E797.wem</Path>
+				</File>
+				<File Id="1065499520" Language="SFX">
+					<ShortName>20PAWA.wav</ShortName>
+					<Path>SFX\20PAWA_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

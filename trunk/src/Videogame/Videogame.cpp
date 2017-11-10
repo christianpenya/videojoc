@@ -7,7 +7,7 @@
 #include <Windows.h>
 #include "Utils/Logger.h"
 
-#define APPLICATION_NAME	"ESCAPE FROM ALCATRAZ"
+#define APPLICATION_NAME	"PROMETEO"
 
 float m_width = 1920 * 0.75;
 float m_height = 1080 * 0.75;

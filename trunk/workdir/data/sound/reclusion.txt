@@ -21,9 +21,11 @@ Event	ID	Name			Wwise Object Path	Notes
 	2473644603	insultos_lola			\reclusion\dialegs\insultos_lola	
 	2550763292	sniper			\reclusion\foleys\sniper	
 	2659565010	fluerescent_light			\reclusion\foleys\fluerescent_light	
+	2666064985	nivel_3			\reclusion\dialegs\nivel_3	
 	2682326191	drone_on			\reclusion\foleys\drone_on	
 	2684710179	gritos_dolor_guardias			\reclusion\dialegs\gritos_dolor_guardias	
 	2689597464	guardia_3_dia_de_mierda			\reclusion\dialegs\guardia_3_dia_de_mierda	
+	3157003241	test			\reclusion\music\test	
 	3209361438	volver_atras_lola			\reclusion\dialegs\volver_atras_lola	
 	3462283647	avistamientos_guardias			\reclusion\dialegs\avistamientos_guardias	
 	3479756012	passos_sigilo			\reclusion\foleys\passos_sigilo	
@@ -60,126 +62,132 @@ Switch	ID	Name	Switch Group			Notes
 	3311862193	extra	musica_nivel_1			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	8945505	5W	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\5W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\5W		3596352
-	19500159	17CAGON	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\17CAGON_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d17\17CAGON		1419824
-	21691249	GUARDIA HALL 4	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\GUARDIA HALL 4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\guardia_2_paliza\GUARDIA HALL 4		559942
-	22141420	sniper4	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\sniper4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper4		209954
-	23822768	grito_5	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_5		75864
-	29918590	passos4	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\passos4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos4		34664
-	53161312	grito_4	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_4		78064
-	54256266	keyboard	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\keyboard_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\keyboard\keyboard		282114
-	60544498	ambiente_carcel	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\ambiente_carcel_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sonido_ambiente_carcel\ambiente_carcel		5640464
-	63929857	TE TENEMOS 2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\TE TENEMOS 2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\te_tenemos_guardias\TE TENEMOS 2		176360
-	71849007	fluorescent_light	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\fluorescent_light_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\fluorescent_light\fluorescent_light		831696
-	76618454	avistamiento_6	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\avistamiento_6_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_6		168938
-	82643045	9WA	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\9WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d12\9WA		597952
-	88635069	drone_off	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\drone_off_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\drone_off\drone_off		199744
-	95280683	GUARDIA HALL 5	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\GUARDIA HALL 5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\guardi_3_dia_de_mierda\GUARDIA HALL 5		739858
-	111437913	14ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\14ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\14ADLO		517440
-	111521859	14ADW	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\14ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\14ADW		82324
-	116392036	16WA	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\16WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\16WA		578368
-	118166310	drone_motor	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\drone_motor_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\drone_motor\drone_motor		358848
-	119991467	carcel  capa 2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\carcel  capa 2_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa 2		29232192
-	123742478	12ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\12ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\12ADLO		209472
-	125891575	GUARDIA RASCAR ESPALDA	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\GUARDIA RASCAR ESPALDA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\guardia_4_rascar_espalda\GUARDIA RASCAR ESPALDA		884758
-	131018792	24ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\24ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_boss\24ADLO		156480
-	134509480	17ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\17ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\17ADLO		118912
-	151375512	musica_c11	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\musica_c11_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\c1\musica_c11		21888536
-	154652212	20LO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\20LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c16\20LO		389888
-	189788533	13ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\13ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\13ADLO		311616
-	203301443	insulto_lola_9	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\insulto_lola_9_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_9		126664
-	203757741	insulto_lola_4	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\insulto_lola_4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_4		82364
-	209132311	insulto_lola_8	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\insulto_lola_8_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_8		144064
-	213786686	passos2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\passos2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos2		59064
-	229335519	VOLVER ATRAS	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\VOLVER ATRAS_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\volver_atras_lola\VOLVER ATRAS		322864
-	231673087	12LO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\12LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d14\12LO		196660
-	233006307	carcel  Autechere	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\carcel  Autechere_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  Autechere		10368144
-	245480394	avistamiento_7	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\avistamiento_7_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_7		216206
-	256005478	16ADW	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\16ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\16ADW		212586
-	264201675	insulto_lola_3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\insulto_lola_3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_3		119664
-	281729272	21WA	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\21WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c16\21WA		576576
-	288346177	alcatrazcinematica2albert	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\alcatrazcinematica2albert_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_3\alcatrazcinematica2albert		2563628
-	292212350	17ADW	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\17ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\17ADW		989408
-	294040929	avistamiento_5	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\avistamiento_5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_5		186424
-	294404222	13ADW	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\13ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\13ADW		2027328
-	298767448	insulto_lola_7	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\insulto_lola_7_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_7		105164
-	301803785	A1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\A1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\A1		1085204
-	316890219	Prometeo Cinematica02 KZ_L	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Prometeo Cinematica02 KZ.L_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\Prometeo Cinematica02 KZ_L		2704166
-	320821539	17LO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\17LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\17LO		55088
-	322792517	Alcatraz_Nivel 1_M1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\calma\Alcatraz_Nivel 1_M1		25401792
-	326467571	PUTAS DUCHAS 1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\PUTAS DUCHAS 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\a2_cinematica\PUTAS DUCHAS 1		1117404
-	328307977	insulto_lola_1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\insulto_lola_1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_1		122264
-	334403130	chispazos3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\chispazos3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos3		95204
-	341577179	15ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\15ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\15ADLO		575040
-	351720030	avistamiento_2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\avistamiento_2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_2		146674
-	364547637	grito_2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_2		107264
-	374103117	passos5	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\passos5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos5		55264
-	378279207	Prometeo Cinematica01 KZ_R	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Prometeo Cinematica01 KZ.R_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\Prometeo Cinematica01 KZ_R		6178712
-	384085299	insulto_lola_6	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\insulto_lola_6_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_6		88964
-	389576689	19WA	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\19WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c16\19WA		1437632
-	395274170	musica_c16	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\musica_c16_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\c2\musica_c16		9984280
-	399559430	avistamiento_4	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\avistamiento_4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_4		148990
-	403662736	carcel  capa 3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\carcel  capa 3_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa 3		29232192
-	416822417	TE TENEMOS 3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\TE TENEMOS 3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\te_tenemos_guardias\TE TENEMOS 3		270896
-	419406652	1W	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\1W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\1W		193056
-	424964437	insulto_lola_5	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\insulto_lola_5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_5		138064
-	433499282	insulto_lola_11	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\insulto_lola_11_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_11		130064
-	440982754	avistamiento_3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\avistamiento_3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_3		113468
-	443600505	GUARDIA LASTIMA	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\GUARDIA LASTIMA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_vis_a_vis_2\GUARDIA LASTIMA		2302162
-	472217988	4L	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\4L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\4L		287808
-	479355696	insulto_lola_2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\insulto_lola_2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_2		84964
-	482922622	TE TENEMOS 1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\TE TENEMOS 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\te_tenemos_guardias\TE TENEMOS 1		243576
-	490810162	25ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\25ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_boss\25ADLO		213056
-	500390299	2L	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\2L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\2L		264098
-	504779822	sniper3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\sniper3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper3		191864
-	532251822	D1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\D1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\D1		759178
-	535157446	13LO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\13LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\13LO		307744
-	547504806	7WA	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\7WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d12\7WA		479808
-	560064995	18ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\18ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\18ADLO		143680
-	566239681	Click Mouse	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Click Mouse_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\click_mouse\Click Mouse		40464
-	573956825	passos3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\passos3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos3		48064
-	577206812	14WA	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\14WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\14WA		354048
-	582412070	C2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\C2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\C2		621524
-	590234846	GUARDIA HALL 1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\GUARDIA HALL 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\abajo_en_hall_1\GUARDIA HALL 1		437178
-	605161041	carcel  capa 1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\carcel  capa 1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa 1		29232192
-	605828487	15LO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\15LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\15LO		91712
-	622926767	20ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\20ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\despues_de_matar\20ADLO		255040
-	639639911	10WA	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\10WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d13\10WA		582912
-	646972843	sniper1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\sniper1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper1		219014
-	649195679	6L	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\6L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\6L		220714
-	656747234	8LO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\8LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d12\8LO		173152
-	678374583	grito_3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_3		73664
-	697859116	insulto_lola_10	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\insulto_lola_10_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_10		167664
-	698801766	carcel sala boss 2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\carcel sala boss 2_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel sala boss 2		18000192
-	727274732	alcatrazcinematica1albert	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\alcatrazcinematica1albert_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_3\alcatrazcinematica1albert		5117572
-	735866572	18ADW	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\18ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\entrando_al_hall\18ADW		664188
-	751980399	DESPACITO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\DESPACITO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_guardias_cocina\DESPACITO		344604
-	757875902	18LO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\18LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c16\18LO		477568
-	763354845	C1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\C1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\C1		619914
-	766959344	sniper2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\sniper2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper2		240664
-	792022448	15ADW	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\15ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\15ADW		302344
-	853198485	16ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\16ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\16ADLO		257408
-	861354335	chispazos2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\chispazos2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos2		83464
-	876016977	grito_6	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\6_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_6		106764
-	879432027	3W	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\3W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\3W		1534528
-	883634297	21ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\21ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\al_intentar_bajar\21ADLO		593472
-	900751072	passos1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\passos1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos1		53464
-	901150434	TE TENEMOS 4	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\TE TENEMOS 4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\te_tenemos_guardias\TE TENEMOS 4		115782
-	914574868	19ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\19ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\19ADLO		488512
-	924958496	alcatrazalbertsencer	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\alcatrazalbertsencer_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_3\alcatrazalbertsencer		25344368
-	934114347	Drone_on	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Drone_on_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\drone_on\Drone_on		366136
-	945860780	11WA	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\11WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d14\11WA		85184
-	952345030	GUARDIA HALL 2	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\GUARDIA HALL 2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\abajo_en_hall_2\GUARDIA HALL 2		1469188
-	960541829	Alcatraz_Nivel 1_M2_bucle	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M2_bucle_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\compte\Alcatraz_Nivel 1_M2_bucle		13824064
-	961513002	grito_1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_1		100064
-	962803394	26ADLO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\26ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_boss\26ADLO		127296
-	964219743	avistamiento_1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\avistamiento_1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_1		109996
-	965580599	B1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\B1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\B1		1005508
-	973699189	Alcatraz_Nivel 1_M3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M3_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\fuig\Alcatraz_Nivel 1_M3		2822592
-	985087689	chispazos1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\chispazos1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos1		86064
-	1005005398	12ADW	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\12ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\12ADW		144704
-	1008023535	carcel  capa ritmica	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\carcel  capa ritmica_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa ritmica		29232192
-	1013299048	GUARDIA ABUELO	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\GUARDIA ABUELO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\guardia_1_abuelo\GUARDIA ABUELO		922594
-	1024159736	GUARDIA HALL 3	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\GUARDIA HALL 3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_vis_a_vis_1\GUARDIA HALL 3		3281244
-	1045103315	GUARDIAS COVERSACION 1	C:\users\crossover\My Documents\WwiseProjects\promoteo\.cache\Windows\SFX\GUARDIAS COVERSACION 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_guardias_cocina\GUARDIAS COVERSACION 1		1354878
+	8945505	5W	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\5W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\5W		3596352
+	19500159	17CAGON	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\17CAGON_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d17\17CAGON		1419824
+	21691249	GUARDIA HALL 4	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA HALL 4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\guardia_2_paliza\GUARDIA HALL 4		559942
+	22141420	sniper4	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\sniper4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper4		209954
+	23822768	grito_5	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_5		75864
+	29918590	passos4	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\passos4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos4		34664
+	53161312	grito_4	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_4		78064
+	54256266	keyboard	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\keyboard_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\keyboard\keyboard		0
+	60544498	ambiente_carcel	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\ambiente_carcel_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sonido_ambiente_carcel\ambiente_carcel		0
+	63929857	TE TENEMOS 2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\TE TENEMOS 2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\te_tenemos_guardias\TE TENEMOS 2		176360
+	71849007	fluorescent_light	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\fluorescent_light_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\fluorescent_light\fluorescent_light		831696
+	76618454	avistamiento_6	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_6_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_6		168938
+	82643045	9WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\9WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d12\9WA		597952
+	88635069	drone_off	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\drone_off_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\drone_off\drone_off		199744
+	95280683	GUARDIA HALL 5	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA HALL 5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\guardi_3_dia_de_mierda\GUARDIA HALL 5		739858
+	111437913	14ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\14ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\14ADLO		517440
+	111521859	14ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\14ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\14ADW		82324
+	116392036	16WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\16WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\16WA		578368
+	118166310	drone_motor	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\drone_motor_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\drone_motor\drone_motor		358848
+	119991467	carcel  capa 2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\carcel  capa 2_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa 2		29232192
+	123742478	12ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\12ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\12ADLO		209472
+	125891575	GUARDIA RASCAR ESPALDA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA RASCAR ESPALDA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\guardia_4_rascar_espalda\GUARDIA RASCAR ESPALDA		884758
+	131018792	24ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\24ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_boss\24ADLO		156480
+	134509480	17ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\17ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\17ADLO		118912
+	151375512	musica_c11	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\musica_c11_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\c1\musica_c11		21888536
+	154652212	20LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\20LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c16\20LO		389888
+	189788533	13ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\13ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\13ADLO		311616
+	203301443	insulto_lola_9	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_9_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_9		126664
+	203757741	insulto_lola_4	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_4		82364
+	209132311	insulto_lola_8	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_8_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_8		0
+	213786686	passos2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\passos2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos2		59064
+	229335519	VOLVER ATRAS	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\VOLVER ATRAS_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\volver_atras_lola\VOLVER ATRAS		322864
+	231673087	12LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\12LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d14\12LO		196660
+	233006307	carcel  Autechere	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\carcel  Autechere_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  Autechere		10368144
+	245480394	avistamiento_7	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_7_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_7		216206
+	256005478	16ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\16ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\16ADW		212586
+	264201675	insulto_lola_3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_3		119664
+	281729272	21WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\21WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c16\21WA		576576
+	288346177	alcatrazcinematica2albert	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\alcatrazcinematica2albert_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_3\alcatrazcinematica2albert		2563628
+	292212350	17ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\17ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\17ADW		989408
+	294040929	avistamiento_5	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_5		0
+	294404222	13ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\13ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\13ADW		2027328
+	296938760	21PAWA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\21PAWA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\21PAWA		615486
+	298767448	insulto_lola_7	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_7_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_7		105164
+	301803785	A1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\A1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\A1		1085204
+	316890219	Prometeo Cinematica02 KZ_L	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Prometeo Cinematica02 KZ.L_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\Prometeo Cinematica02 KZ_L		2704166
+	320821539	17LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\17LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\17LO		55088
+	322792517	Alcatraz_Nivel 1_M1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\calma\Alcatraz_Nivel 1_M1		25401792
+	326467571	PUTAS DUCHAS 1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\PUTAS DUCHAS 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\a2_cinematica\PUTAS DUCHAS 1		1117404
+	328307977	insulto_lola_1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_1		122264
+	334403130	chispazos3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\chispazos3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos3		95204
+	341577179	15ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\15ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\15ADLO		575040
+	351720030	avistamiento_2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_2		146674
+	364547637	grito_2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_2		107264
+	374103117	passos5	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\passos5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos5		55264
+	378279207	Prometeo Cinematica01 KZ_R	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Prometeo Cinematica01 KZ.R_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\Prometeo Cinematica01 KZ_R		6178712
+	384085299	insulto_lola_6	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_6_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_6		88964
+	389576689	19WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\19WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c16\19WA		1437632
+	395274170	musica_c16	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\musica_c16_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\c2\musica_c16		9984280
+	399559430	avistamiento_4	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_4		148990
+	403662736	carcel  capa 3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\carcel  capa 3_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa 3		29232192
+	416822417	TE TENEMOS 3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\TE TENEMOS 3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\te_tenemos_guardias\TE TENEMOS 3		270896
+	419406652	1W	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\1W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\1W		193056
+	424964437	insulto_lola_5	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_5		138064
+	429192249	29PALO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\29PALO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\29PALO		122120
+	431721008	27PALO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\27PALO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\27PALO		193264
+	433499282	insulto_lola_11	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_11_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_11		130064
+	440982754	avistamiento_3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_3		113468
+	443600505	GUARDIA LASTIMA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA LASTIMA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_vis_a_vis_2\GUARDIA LASTIMA		2302162
+	472217988	4L	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\4L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\4L		287808
+	479355696	insulto_lola_2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_2		84964
+	482922622	TE TENEMOS 1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\TE TENEMOS 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\te_tenemos_guardias\TE TENEMOS 1		243576
+	490810162	25ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\25ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_boss\25ADLO		213056
+	500390299	2L	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\2L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\2L		264098
+	504779822	sniper3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\sniper3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper3		191864
+	532251822	D1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\D1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\D1		759178
+	535157446	13LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\13LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\13LO		307744
+	547504806	7WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\7WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d12\7WA		479808
+	560064995	18ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\18ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\18ADLO		143680
+	566239681	Click Mouse	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Click Mouse_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\click_mouse\Click Mouse		40464
+	573956825	passos3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\passos3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos3		48064
+	577206812	14WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\14WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\14WA		354048
+	582412070	C2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\C2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\C2		621524
+	590234846	GUARDIA HALL 1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA HALL 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\abajo_en_hall_1\GUARDIA HALL 1		437178
+	605161041	carcel  capa 1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\carcel  capa 1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa 1		29232192
+	605828487	15LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\15LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\15LO		91712
+	622926767	20ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\20ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\despues_de_matar\20ADLO		255040
+	629246542	28PALO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\28PALO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\28PALO		159856
+	639639911	10WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\10WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d13\10WA		582912
+	646972843	sniper1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\sniper1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper1		219014
+	649195679	6L	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\6L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\6L		220714
+	656747234	8LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\8LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d12\8LO		173152
+	676319696	22PAWA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\22PAWA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\22PAWA		232004
+	678374583	grito_3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_3		73664
+	697859116	insulto_lola_10	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_10_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_10		167664
+	727274732	alcatrazcinematica1albert	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\alcatrazcinematica1albert_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_3\alcatrazcinematica1albert		5117572
+	735866572	18ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\18ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\entrando_al_hall\18ADW		664188
+	751980399	DESPACITO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\DESPACITO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_guardias_cocina\DESPACITO		344604
+	757875902	18LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\18LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d18\18LO		477568
+	763354845	C1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\C1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\C1		619914
+	766959344	sniper2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\sniper2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper2		240664
+	792022448	15ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\15ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\15ADW		302344
+	822565975	23PAWA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\23PAWA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\23PAWA		1690564
+	853198485	16ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\16ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\16ADLO		257408
+	861354335	chispazos2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\chispazos2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos2		83464
+	876016977	grito_6	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\6_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_6		106764
+	879432027	3W	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\3W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\3W		1534528
+	883634297	21ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\21ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\al_intentar_bajar\21ADLO		593472
+	900751072	passos1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\passos1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos1		53464
+	901150434	TE TENEMOS 4	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\TE TENEMOS 4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\te_tenemos_guardias\TE TENEMOS 4		115782
+	914574868	19ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\19ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\19ADLO		488512
+	924958496	alcatrazalbertsencer	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\alcatrazalbertsencer_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_3\alcatrazalbertsencer		25344368
+	934114347	Drone_on	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Drone_on_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\drone_on\Drone_on		366136
+	945860780	11WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\11WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d14\11WA		85184
+	952345030	GUARDIA HALL 2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA HALL 2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\abajo_en_hall_2\GUARDIA HALL 2		1469188
+	960541829	Alcatraz_Nivel 1_M2_bucle	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M2_bucle_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\compte\Alcatraz_Nivel 1_M2_bucle		13824064
+	961513002	grito_1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_1		100064
+	962803394	26ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\26ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_boss\26ADLO		127296
+	964219743	avistamiento_1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_1		109996
+	965580599	B1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\B1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\B1		1005508
+	973699189	Alcatraz_Nivel 1_M3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M3_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\fuig\Alcatraz_Nivel 1_M3		2822592
+	985087689	chispazos1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\chispazos1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos1		86064
+	1005005398	12ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\12ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\12ADW		144704
+	1008023535	carcel  capa ritmica	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\carcel  capa ritmica_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa ritmica		29232192
+	1013299048	GUARDIA ABUELO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA ABUELO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\guardia_1_abuelo\GUARDIA ABUELO		922594
+	1024159736	GUARDIA HALL 3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA HALL 3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_vis_a_vis_1\GUARDIA HALL 3		3281244
+	1045103315	GUARDIAS COVERSACION 1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIAS COVERSACION 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_guardias_cocina\GUARDIAS COVERSACION 1		1354878
+	1065499520	20PAWA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\20PAWA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\20PAWA		314014
 

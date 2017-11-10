@@ -56,9 +56,9 @@ Vect3f CEnemyAnimated::GetPatrolPosition()
     return (*this->GetParent())(m_patrolPoints[m_DestPoint].data())->GetPosition();
 }
 
-bool CEnemyAnimated::PlayerOnSight()
+bool CEnemyAnimated::PlayerOnSight(Vect3f actorpos)
 {
-    Vect3f origin = (Vect3f(m_PhysXManager.GetActorPosition("player").x, m_Height.y, m_PhysXManager.GetActorPosition("player").z) - Vect3f(m_Position.x, m_Height.y, m_Position.z)).GetNormalized();
+    Vect3f origin = (Vect3f(actorpos.x, m_Height.y, actorpos.z) - Vect3f(m_Position.x, m_Height.y, m_Position.z)).GetNormalized();
     Vect3f destiny = GetForward();
     float angulo = getAngle(origin.x,origin.z, destiny.x, destiny.z);
 
@@ -93,6 +93,7 @@ bool CEnemyAnimated::Update(float ElapsedTime)
 {
     if (!CEngine::GetInstance().m_LevelController->GetTimePaused())
     {
+        Vect3f actorpos = m_PhysXManager.GetActorPosition("player");
         m_CalModel->update(ElapsedTime);
         if (!m_enemydead)
         {
@@ -100,7 +101,7 @@ bool CEnemyAnimated::Update(float ElapsedTime)
             bool l_comprobar = false;
             m_ElapsedTime = ElapsedTime;
 
-            if (PlayerOnSight())
+            if (PlayerOnSight(actorpos))
                 l_comprobar = true;
             else
             {
@@ -113,7 +114,7 @@ bool CEnemyAnimated::Update(float ElapsedTime)
             if (l_comprobar)
             {
                 CPhysXManager::RaycastData* resultado = new CPhysXManager::RaycastData();
-                bool hittedP = m_PhysXManager.Raycast(m_Position + Vect3f(0.0f, 1.0f, 0.0f) + (GetForward()*0.5f), m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.0f, 0.0f), m_Group, resultado); //funciona con grupo 0
+                bool hittedP = m_PhysXManager.Raycast(m_Position + Vect3f(0.0f, 1.0f, 0.0f) + (GetForward()*0.5f), actorpos + Vect3f(0.0f, 1.0f, 0.0f), 0, resultado); //funciona con grupo 0
 
                 if (hittedP && (resultado->actor == "player"))
                 {
