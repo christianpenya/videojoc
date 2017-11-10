@@ -1,8 +1,8 @@
 <scenes>
 
-	<scene name="parkineo" folder="data/scenes/parkineo/" active="true" />
+	<scene name="parkineo" folder="data/scenes/parkineo/" active="false" />
 
-	<scene name="administracion" folder="data/scenes/administracion/" active="false"/>
+	<scene name="administracion" folder="data/scenes/administracion/" active="true"/>
 	
 	<scene name="reclusion" folder="data/scenes/reclusion/" active="false"/>
 	

@@ -1,9 +1,20 @@
 <scene>
 
 	<layer name="triggers" active="true">
+	
+	AUDIOS
+	<scene_mesh name="despues_de_matar" mesh="data/meshes/Box01.mesh" >
+			<transform position="0.623446 0.0601807 -18.0968" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="triggerBox" />
+	</scene_mesh>
+	<scene_mesh name="sala_boss" mesh="data/meshes/Box01.mesh" >
+			<transform position="15.9446 -3.1803 10.465" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="triggerBox" />
+	</scene_mesh>
+	
 	//Checkpoints
 	<scene_mesh name="checkpoint2_1" mesh="data/meshes/Box01.mesh">
-			<transform position="0.774161 7.15256e-07 -27.2961" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<transform position="0.774161 0.0 -27.2961" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 		<scene_mesh name="checkpoint2_2" mesh="data/meshes/Box01.mesh">
@@ -79,7 +90,7 @@
 		
 		<scene_mesh name="sala_comedor" mesh="data/meshes/administracion/sala022.mesh" >
 			<transform position="19.9 1.75 -9.6" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala022.mesh" offset="0.0 0.0 -1.0" yaw="0.0" pitch="0.0" roll="0.0" />
+			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala022.mesh" offset="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" />
 		</scene_mesh>
 
 		<scene_mesh name="sala_vis_a_vis" mesh="data/meshes/administracion/sala025.mesh" >
@@ -92,7 +103,7 @@
 			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala21.mesh" offset="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.660169 1.0 1.0"/>
 		</scene_mesh>
 		
-		<scene_mesh name="sala_boss" mesh="data/meshes/administracion/sala026.mesh" >
+		<scene_mesh name="sala_boss_de_verdad" mesh="data/meshes/administracion/sala026.mesh" >
 			<transform position="18.8 -1.5 11.215" yaw="180.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />			
 			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala024.mesh" offset="0.0 0.0 -1.0" yaw="180.0" pitch="0.0" roll="0.0" />
 		</scene_mesh>
@@ -599,19 +610,19 @@
 			<collider rigid_body="box" />
 		</scene_mesh>
 		
-		<scene_mesh name="armario_seguridad001" mesh="data/meshes/reclusion/armario_seguridad.mesh" >
+		<scene_mesh name="armario_seguridad001" mesh="data/meshes/administracion/estanterias_boss.mesh" >
 			<transform position="-18.588 0.038 -2.829" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
 			<collider rigid_body="box" />
 		</scene_mesh>
-		<scene_mesh name="armario_seguridad002" mesh="data/meshes/reclusion/armario_seguridad.mesh" >
+		<scene_mesh name="armario_seguridad002" mesh="data/meshes/administracion/estanterias_boss.mesh" >
 			<transform position="-15.0656 0.038 -2.829" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
 			<collider rigid_body="box" />
 		</scene_mesh>
-		<scene_mesh name="armario_seguridad003" mesh="data/meshes/reclusion/armario_seguridad.mesh" >
+		<scene_mesh name="armario_seguridad003" mesh="data/meshes/administracion/estanterias_boss.mesh" >
 			<transform position="-12.0767 0.038 -4.73616" yaw="90.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
 			<collider rigid_body="box" />
 		</scene_mesh>
-		<scene_mesh name="armario_seguridad004" mesh="data/meshes/reclusion/armario_seguridad.mesh" >
+		<scene_mesh name="armario_seguridad004" mesh="data/meshes/administracion/estanterias_boss.mesh" >
 			<transform position="-21.2928 0.038 -4.73302" yaw="-90.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
 			<collider rigid_body="box" />
 		</scene_mesh>

@@ -145,6 +145,10 @@
 					<ShortName>drone_motor.wav</ShortName>
 					<Path>SFX\drone_motor_9E69E797.wem</Path>
 				</File>
+				<File Id="119991467" Language="SFX">
+					<ShortName>carcel  capa 2.wav</ShortName>
+					<Path>SFX\carcel  capa 2_4B8CC0C5.wem</Path>
+				</File>
 				<File Id="123742478" Language="SFX">
 					<ShortName>12ADLO.wav</ShortName>
 					<Path>SFX\12ADLO_9E69E797.wem</Path>
@@ -197,6 +201,10 @@
 					<ShortName>12LO.wav</ShortName>
 					<Path>SFX\12LO_9E69E797.wem</Path>
 				</File>
+				<File Id="233006307" Language="SFX">
+					<ShortName>carcel  Autechere.wav</ShortName>
+					<Path>SFX\carcel  Autechere_4B8CC0C5.wem</Path>
+				</File>
 				<File Id="245480394" Language="SFX">
 					<ShortName>avistamiento_7.wav</ShortName>
 					<Path>SFX\avistamiento_7_9E69E797.wem</Path>
@@ -241,6 +249,10 @@
 					<ShortName>A1.wav</ShortName>
 					<Path>SFX\A1_9E69E797.wem</Path>
 				</File>
+				<File Id="316890219" Language="SFX">
+					<ShortName>Prometeo Cinematica02 KZ.L.wav</ShortName>
+					<Path>SFX\Prometeo Cinematica02 KZ.L_4B8CC0C5.wem</Path>
+				</File>
 				<File Id="320821539" Language="SFX">
 					<ShortName>17LO.wav</ShortName>
 					<Path>SFX\17LO_9E69E797.wem</Path>
@@ -277,6 +289,10 @@
 					<ShortName>passos5.wav</ShortName>
 					<Path>SFX\passos5_9E69E797.wem</Path>
 				</File>
+				<File Id="378279207" Language="SFX">
+					<ShortName>Prometeo Cinematica01 KZ.R.wav</ShortName>
+					<Path>SFX\Prometeo Cinematica01 KZ.R_4B8CC0C5.wem</Path>
+				</File>
 				<File Id="384085299" Language="SFX">
 					<ShortName>insulto_lola_6.wav</ShortName>
 					<Path>SFX\insulto_lola_6_9E69E797.wem</Path>
@@ -292,6 +308,10 @@
 				<File Id="399559430" Language="SFX">
 					<ShortName>avistamiento_4.wav</ShortName>
 					<Path>SFX\avistamiento_4_9E69E797.wem</Path>
+				</File>
+				<File Id="403662736" Language="SFX">
+					<ShortName>carcel  capa 3.wav</ShortName>
+					<Path>SFX\carcel  capa 3_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="416822417" Language="SFX">
 					<ShortName>TE TENEMOS 3.wav</ShortName>
@@ -384,6 +404,10 @@
 				<File Id="590234846" Language="SFX">
 					<ShortName>GUARDIA HALL 1.wav</ShortName>
 					<Path>SFX\GUARDIA HALL 1_9E69E797.wem</Path>
+				</File>
+				<File Id="605161041" Language="SFX">
+					<ShortName>carcel  capa 1.wav</ShortName>
+					<Path>SFX\carcel  capa 1_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="605828487" Language="SFX">
 					<ShortName>15LO.wav</ShortName>
@@ -536,6 +560,10 @@
 				<File Id="1005005398" Language="SFX">
 					<ShortName>12ADW.wav</ShortName>
 					<Path>SFX\12ADW_9E69E797.wem</Path>
+				</File>
+				<File Id="1008023535" Language="SFX">
+					<ShortName>carcel  capa ritmica.wav</ShortName>
+					<Path>SFX\carcel  capa ritmica_4B8CC0C5.wem</Path>
 				</File>
 				<File Id="1013299048" Language="SFX">
 					<ShortName>GUARDIA ABUELO.wav</ShortName>
