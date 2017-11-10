@@ -2,23 +2,17 @@
 	<layer name="triggers" active="true">
 	//Checkpoints
 	<scene_mesh name="checkpoint3_1" mesh="data/meshes/Box01.mesh">
-			<transform position="-0.4 1.2 -33.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<transform position="-0.4 1.2 -25.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>	
+
 
 	<scene_mesh name="finNivel3" mesh="data/meshes/Box01.mesh">
 			<transform position="0.78 -0.23 46.40" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>		
 
-		<scene_mesh name="nivel_3" mesh="data/meshes/Box01.mesh">
-			<transform position="2.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
-			<collider rigid_body="triggerBox" />
-		</scene_mesh>
-		<scene_mesh name="audio_switch" mesh="data/meshes/Box01.mesh">
-			<transform position="2.0 0.5 2.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
-			<collider rigid_body="triggerBox" />
-		</scene_mesh>
+
 	</layer>
 	<layer name="lights" active="true" >			
 		
