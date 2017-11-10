@@ -1,10 +1,10 @@
 <scenes>
 
-	<scene name="parkineo" folder="data/scenes/parkineo/" active="false" />
+	<scene name="parkineo" folder="data/scenes/parkineo/" active="true" />
 
-	<scene name="administracion" folder="data/scenes/administracion/" active="true"/>
+	<scene name="administracion" folder="data/scenes/administracion/" active="false"/>
 	
-	<scene name="reclusion" folder="data/scenes/reclusion/" active="true"/>
+	<scene name="reclusion" folder="data/scenes/reclusion/" active="false"/>
 	
 	<scene name="escena_menuPrincipal" folder="data/scenes/" active="false"/>
 

@@ -12,6 +12,15 @@
 		<parameter type="color" name="diffuse_color" value="1 0 0 1.0" />
 	</material>
 	
+	<material name="ZBlurMaterial" vertex_type="ZBlur">
+		<parameter type="float" name="ZBlurActive" value="1.0" />
+		<parameter type="float" name="ZBlurShowDepths" value="0.0" />
+		<parameter type="float" name="ZBlurConstantBlur" value="0.3" />
+		<parameter type="float" name="ZBlurFocalStart" value="1.0" />
+		<parameter type="float" name="ZBlurFocalEnd" value="20.0" />
+		<parameter type="float" name="ZBlurEnd" value="30.0" />
+	</material>	
+	
 	DECALS
 	<material name="Decall1" vertex_type="PositionNormalUVUV2" >
 		<texture type="diffuse" filename="data\textures\decall1.png" />

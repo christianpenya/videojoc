@@ -11,7 +11,7 @@
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>		
 
-		<scene_mesh name="musica_nivel_2" mesh="data/meshes/Box01.mesh">
+		<scene_mesh name="nivel_3" mesh="data/meshes/Box01.mesh">
 			<transform position="2.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
@@ -30,18 +30,22 @@
 
 		<scene_mesh name="Box011" mesh="data/meshes/parkineo/Box011.mesh" >
 			<transform position="-11.4685 1.27886 -31.3841" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/Box011.mesh" scale="1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="Box012" mesh="data/meshes/parkineo/Box012.mesh" >
 			<transform position="9.53275 1.27886 -31.3841" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/Box012.mesh" scale="1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="Object020" mesh="data/meshes/parkineo/Object020.mesh" >
 			<transform position="-1.7837 -0.229552 -1.17354" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<!-- <collider rigid_body="shape" filename="data/meshes/parkineo/physx/Object020.mesh" scale="-1.0 1.0 1.0" /> -->
 		</scene_mesh>
 		<scene_mesh name="Line006" mesh="data/meshes/parkineo/Object020.mesh" >
 			<transform position="0.0 1.464243 -1.8179" yaw="0.0" pitch="0.0" roll="180.0" scale="1.0 1.0 1.0" />
+			<!-- <collider rigid_body="shape" filename="data/meshes/parkineo/physx/Object020.mesh" scale="-1.0 1.0 1.0" /> -->
 		</scene_mesh>
 		<scene_mesh name="Shape001" mesh="data/meshes/parkineo/Shape001.mesh" >
-			<transform position="-20.0767 -1b.0 -14.8179" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<transform position="-20.0767 -1.0 -14.8179" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_mesh>
 		<scene_mesh name="Shape002" mesh="data/meshes/parkineo/Shape002.mesh" >
 			<transform position="17.5281 -1.0 -14.8179" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
@@ -53,10 +57,12 @@
 		</scene_mesh>		
 		<scene_mesh name="edificio" mesh="data/meshes/parkineo/edificio.mesh" >
 			<transform position="-0.883163 -0.247192 -4.02659" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="box" offset = "0.0 0.0 -50.0"/>
 		</scene_mesh>
 		
 		<scene_mesh name="torreta" mesh="data/meshes/parkineo/torreta.mesh" >
 			<transform position="11.745 -0.222592 48.1769" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_torreta.mesh" scale="1.0 1.0 1.0" />
 		</scene_mesh>
 		
 	</layer>
@@ -66,59 +72,59 @@
 		COCHES
 		<scene_mesh name="Box039" mesh="data/meshes/parkineo/coche_grande.mesh" >
 			<transform position="17.2673 -0.273 1.428" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
  		<scene_mesh name="Box038" mesh="data/meshes/parkineo/cocheslow.mesh" >
 			<transform position="17.2673 -0.273 16.897" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box037" mesh="data/meshes/parkineo/coche_grande.mesh" >
 			<transform position="17.2673 -0.273 29.4666" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box036" mesh="data/meshes/parkineo/cocheslow.mesh" >
 			<transform position="5.58669 -0.273 7.5285" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box035" mesh="data/meshes/parkineo/coche_grande.mesh" >
 			<transform position="5.2924 -0.273 38.7795" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box034" mesh="data/meshes/parkineo/cocheslow.mesh" >
 			<transform position="5.58669 -0.273 26.3856" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box033" mesh="data/meshes/parkineo/cocheslow.mesh" >
 			<transform position="-19.1953 -0.273 -4.61619" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box032" mesh="data/meshes/parkineo/coche_grande.mesh" >
 			<transform position="-19.1953 -0.273 10.9104" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box031" mesh="data/meshes/parkineo/cocheslow.mesh" >
 			<transform position="-19.1953 -0.273 23.241" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box030" mesh="data/meshes/parkineo/coche_grande.mesh" >
 			<transform position="-6.62701 -0.273 32.4927" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box029" mesh="data/meshes/parkineo/cocheslow.mesh" >
 			<transform position="-6.62701 -0.273 20.1563" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box028" mesh="data/meshes/parkineo/coche_grande.mesh" >
 			<transform position="-6.62701 -0.273 10.8988" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box027" mesh="data/meshes/parkineo/cocheslow.mesh" >
 			<transform position="-6.62701 -0.273 -1.68503" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		<scene_mesh name="Box026" mesh="data/meshes/parkineo/coche_grande.mesh" >
 			<transform position="-6.72565 273 -13.9701" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
-			<collider rigid_body = "box" />
+			<collider rigid_body = "box" offset = "0.0 2.0 0.0" />
 		</scene_mesh>
 		
 		
@@ -140,90 +146,119 @@
 	FAROLAS
 	<scene_mesh name="farola090" mesh="data/meshes/parkineo/farola.mesh" >
 			<transform position="-6.16157 -0.265372 -29.2544" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola100" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="3.46261 -0.265372 -29.2544" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola101" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-16.4026 -0.265372 -15.6531" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola102" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-16.4026 -0.265372 -6.31102" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola103" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-16.4026 -0.265372 3.03105" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola109" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-3.85463 -0.265372 -6.31102" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola110" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-3.85463 -0.265372 3.03105" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola105" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-16.4026 -0.265372 21.7152" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola107" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-16.4026 -0.265372 40.3993" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola106" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-16.4026 -0.265372 31.0573" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola104" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-16.4026 -0.265372 12.3731" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola108" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-3.85463 -0.265372 -15.6531" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola111" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-3.85463 -0.265372 12.3731" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola112" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-3.85463 -0.265372 21.7152" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola114" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-3.85463 -0.265372 40.3993" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola117" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="2.74184 -0.265372 3.03105" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola115" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="2.74184 -0.265372 -15.6531" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola120" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="2.74184 -0.265372 31.0573" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola113" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="-3.85463 -0.265372 31.0573" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola116" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="2.74184 -0.265372 -6.31102" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola118" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="2.74184 -0.265372 12.3731" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola119" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="2.74184 -0.265372 21.7152" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola121" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="2.74184 -0.265372 40.3993" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola128" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="14.5391 -0.265372 40.3993" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola125" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="14.5391 -0.265372 12.3731" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola126" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="14.5391 -0.265372 21.7152" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola124" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="14.5391 -0.265372 3.03105" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola127" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="14.5391 -0.265372 31.0573" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 	<scene_mesh name="farola123" mesh="data/meshes/parkineo/farola.mesh" >
 		<transform position="14.5391 -0.265372 -6.31102" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
+			<collider rigid_body="shape" filename="data/meshes/parkineo/physx/collider_farola.mesh" scale="1.0 1.0 1.0" /> 
 	</scene_mesh>
 		
 	PUERTA
@@ -235,9 +270,11 @@
 	EDIFICIO
 	<scene_mesh name="pared" mesh="data/meshes/parkineo/pared.mesh" >
 			<transform position="-0.883163 -0.440474 48.3396" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="box" />
 	</scene_mesh>
 	<scene_mesh name="puerta001" mesh="data/meshes/parkineo/puerta001.mesh" >
 			<transform position="-0.883163 -0.264158 -4.02659" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
+			<collider rigid_body="box" />
 	</scene_mesh>
 	
 	putas ventanas
@@ -591,10 +628,9 @@
 		
 	</layer>	
 	
-	
 	<layer name="LPlayer" active="true" >
 		<scene_animated_model name="player" core="prota" height="1.1" radiu="0.17" group="1" >
-			<transform position="-0.4 1.2 -33.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+			<transform position="-0.4 1.2 -25.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_animated_model>
 		<!--
 		<scene_animated_model name="guardiaTEST2" core="guardiaSexy" >
