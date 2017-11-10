@@ -97,7 +97,7 @@
 
 		<scene_mesh name="sala_vis_a_vis" mesh="data/meshes/administracion/sala025.mesh" >
 			<transform position="-21.259 -1.5 9.92" yaw="180.0" pitch="0.0" roll="0.0" scale="-1.0 1.0 1.0" />
-			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala025.mesh" offset="0.0 0.0 0.0" yaw="0.0" pitch="0.0" roll="0.0" />
+			<collider rigid_body="shape" filename="data/meshes/administracion/physx/sala025.mesh" offset="0.0 0.0 1.0" yaw="0.0" pitch="0.0" roll="0.0" />
 		</scene_mesh>
 		
 		<scene_mesh name="sala_central" mesh="data/meshes/administracion/sala21.mesh" >
@@ -614,19 +614,19 @@
 		</scene_mesh>
 		
 		<scene_mesh name="armario_seguridad001" mesh="data/meshes/administracion/estanterias_boss.mesh" >
-			<transform position="-18.588 0.038 -2.829" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<transform position="-18.588 0.038 -2.829" yaw="0.0" pitch="0.0" roll="0.0" scale="0.969886 0.969886 0.969886" />
 			<collider rigid_body="box" />
 		</scene_mesh>
 		<scene_mesh name="armario_seguridad002" mesh="data/meshes/administracion/estanterias_boss.mesh" >
-			<transform position="-15.0656 0.038 -2.829" yaw="0.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<transform position="-15.0656 0.038 -2.829" yaw="0.0" pitch="0.0" roll="0.0" scale="0.969886 0.969886 0.969886" />
 			<collider rigid_body="box" />
 		</scene_mesh>
 		<scene_mesh name="armario_seguridad003" mesh="data/meshes/administracion/estanterias_boss.mesh" >
-			<transform position="-12.0767 0.038 -4.73616" yaw="90.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<transform position="-12.0767 0.038 -4.73616" yaw="90.0" pitch="0.0" roll="0.0" scale="0.969886 0.969886 0.969886" />
 			<collider rigid_body="box" />
 		</scene_mesh>
 		<scene_mesh name="armario_seguridad004" mesh="data/meshes/administracion/estanterias_boss.mesh" >
-			<transform position="-21.2928 0.038 -4.73302" yaw="-90.0" pitch="0.0" roll="0.0" scale="-0.969886 0.969886 0.969886" />
+			<transform position="-21.2928 0.038 -4.73302" yaw="-90.0" pitch="0.0" roll="0.0" scale="0.969886 0.969886 0.969886" />
 			<collider rigid_body="box" />
 		</scene_mesh>
 		
