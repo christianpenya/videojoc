@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <actor name="prota2" radius_bs="2.0" pos_bs="0.0 1.0 0.0">
 	<skeleton filename="PROTA_SKELETON.CSF"/>
-	<mesh filename="PROTA_MESH.CMF"/>
+	<mesh filename="SENSE_RASTES.CMF"/>
 	
 	<material name="prota_material_1" vertex_type="PositionWeightIndicesNormalUV"/>
 	
