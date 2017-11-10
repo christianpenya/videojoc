@@ -108,6 +108,7 @@
 	
 	<layer name="lights" active="true" >			
 		
+		<scene_light name="FDirect001" />
 		<scene_light name="Fspot001" />
 		<scene_light name="Fspot002" />
 		<scene_light name="Fspot003" />
@@ -1693,10 +1694,10 @@
 		<scene_gui name="backgroundMC" gui_element="backgroundCOMPLETE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-		<scene_gui name="nextLevel" gui_element="nextLevelB" portion="0.25 0.3" size="250 50" type="button" action="5">
+		<scene_gui name="nextLevel" gui_element="nextLevelB" portion="0.2 0.6" size="250 50" type="button" action="5">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui> 
-		<scene_gui name="toMainMenu2" gui_element="toMainMenuB" portion="0.25 0.6" size="250 50" type="button" action="4">
+		<scene_gui name="toMainMenu2" gui_element="toMainMenuB" portion="0.7 0.6" size="250 50" type="button" action="4">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		
@@ -1705,10 +1706,10 @@
 		<scene_gui name="backgroundMM" gui_element="backgroundMUERTE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-	<scene_gui name="restaurarCheckpoint" gui_element="lastCheckpointB" portion="0.25 0.3" size="250 50" type="button" action="2">
+	<scene_gui name="restaurarCheckpoint2" gui_element="lastCheckpointB" portion="0.2 0.6" size="250 50" type="button" action="2">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-		<scene_gui name="toMainMenu" gui_element="toMainMenuB" portion="0.25 0.6" size="250 50" type="button" action="4">
+		<scene_gui name="toMainMenu" gui_element="toMainMenuB" portion="0.7 0.6" size="250 50" type="button" action="4">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		

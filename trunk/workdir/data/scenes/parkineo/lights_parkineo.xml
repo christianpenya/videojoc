@@ -1,14 +1,17 @@
 <lights >
  
-	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="false" shadow_map_width="1024" shadow_map_height="1024" ortho_shadow_map_size="10.0 10.0">
+	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="8192" shadow_map_height="8192" ortho_shadow_map_size="100.0 100.0">
 		<transform position="0.0 10.0 10.0" forward="0 -1.0 0" />
+		<layer name="opaque" />
+		<layer name="LPlayer" />
+		<layer name="salas" />
 	</light>
 	
  
 	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot028" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
 		<transform position="1.07281 5.00692 -34.7431" forward="0.0 -1.0 0.0" />
 	</light>
-	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot058" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >S
+	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot058" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
 		<transform position="-1.15199 9.5006 44.9584" forward="0.0 -1.0 0.0" />
 	</light>
 	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot051" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
@@ -100,6 +103,6 @@
 	</light>
 	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot052" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
 		<transform position="-15.5172 2.68151 -6.32424" forward="0.0 -1.0 0.0" />
-	</light>
+	</light> 
 	
 </lights>

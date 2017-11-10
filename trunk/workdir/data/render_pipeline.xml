@@ -172,6 +172,11 @@
 	FIN GUI
 	
 	DEBUG SHIT 	
+	
+	<draw_quad  material="DrawQuadMaterial" viewport_position = "0 0" viewport_size = "256 256">
+        <texture name="FDirect001" stage_id="0"/>
+    </draw_quad>
+	
 	<!--
 	<apply_technique_pool pool_name="quad"/>
 	

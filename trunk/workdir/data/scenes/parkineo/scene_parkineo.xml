@@ -10,6 +10,15 @@
 			<transform position="0.78 -0.23 46.40" yaw="90.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>		
+
+		<scene_mesh name="musica_nivel_2" mesh="data/meshes/Box01.mesh">
+			<transform position="2.0 0.0 0.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
+		<scene_mesh name="audio_switch" mesh="data/meshes/Box01.mesh">
+			<transform position="2.0 0.5 2.0" yaw="0.0" pitch ="0.0" roll="0.0" scale="1.0 1.0 1.0"/>
+			<collider rigid_body="triggerBox" />
+		</scene_mesh>
 	</layer>
 	<layer name="lights" active="true" >			
 		
@@ -53,6 +62,66 @@
 	</layer>
 
 	<layer name="opaque" active="true" >		
+		
+		COCHES
+		<scene_mesh name="Box039" mesh="data/meshes/parkineo/coche_grande.mesh" >
+			<transform position="17.2673 -0.273 1.428" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+ 		<scene_mesh name="Box038" mesh="data/meshes/parkineo/cocheslow.mesh" >
+			<transform position="17.2673 -0.273 16.897" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box037" mesh="data/meshes/parkineo/coche_grande.mesh" >
+			<transform position="17.2673 -0.273 29.4666" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box036" mesh="data/meshes/parkineo/cocheslow.mesh" >
+			<transform position="5.58669 -0.273 7.5285" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box035" mesh="data/meshes/parkineo/coche_grande.mesh" >
+			<transform position="5.2924 -0.273 38.7795" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box034" mesh="data/meshes/parkineo/cocheslow.mesh" >
+			<transform position="5.58669 -0.273 26.3856" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box033" mesh="data/meshes/parkineo/cocheslow.mesh" >
+			<transform position="-19.1953 -0.273 -4.61619" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box032" mesh="data/meshes/parkineo/coche_grande.mesh" >
+			<transform position="-19.1953 -0.273 10.9104" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box031" mesh="data/meshes/parkineo/cocheslow.mesh" >
+			<transform position="-19.1953 -0.273 23.241" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box030" mesh="data/meshes/parkineo/coche_grande.mesh" >
+			<transform position="-6.62701 -0.273 32.4927" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box029" mesh="data/meshes/parkineo/cocheslow.mesh" >
+			<transform position="-6.62701 -0.273 20.1563" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box028" mesh="data/meshes/parkineo/coche_grande.mesh" >
+			<transform position="-6.62701 -0.273 10.8988" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box027" mesh="data/meshes/parkineo/cocheslow.mesh" >
+			<transform position="-6.62701 -0.273 -1.68503" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		<scene_mesh name="Box026" mesh="data/meshes/parkineo/coche_grande.mesh" >
+			<transform position="-6.72565 273 -13.9701" yaw="0.0" pitch="0.0" roll="0.0" scale="0.01 0.01 0.01" />
+			<collider rigid_body = "box" />
+		</scene_mesh>
+		
+		
 		
 	PINTURA SUELO
 	<scene_mesh name="Object021" mesh="data/meshes/parkineo/pintura_suelo.mesh" >
@@ -547,7 +616,8 @@
 	</layer>	
 	
 
-	<layer name="PauseMENU" active="false" >	
+	
+<layer name="PauseMENU" active="false" >	
 	
 		<scene_gui name="backgroundP" gui_element="backgroundPAUSE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
@@ -562,7 +632,9 @@
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		
-</layer><layer name="MenuPrincipal" active="true" >	
+</layer>
+
+<layer name="MenuPrincipal" active="true" >	
 		<scene_gui name="backgroundMP" gui_element="backgroundMENU" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
@@ -575,10 +647,10 @@
 		<scene_gui name="backgroundMC" gui_element="backgroundCOMPLETE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-		<scene_gui name="nextLevel" gui_element="nextLevelB" portion="0.25 0.6" size="250 50" type="button" action="5">
+		<scene_gui name="nextLevel" gui_element="nextLevelB" portion="0.2 0.6" size="250 50" type="button" action="5">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui> 
-		<scene_gui name="toMainMenu2" gui_element="toMainMenuB" portion="0.75 0.6" size="250 50" type="button" action="4">
+		<scene_gui name="toMainMenu2" gui_element="toMainMenuB" portion="0.7 0.6" size="250 50" type="button" action="4">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		
@@ -587,10 +659,10 @@
 		<scene_gui name="backgroundMM" gui_element="backgroundMUERTE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-	<scene_gui name="restaurarCheckpoint2" gui_element="lastCheckpointB" portion="0.25 0.6" size="250 50" type="button" action="2">
+	<scene_gui name="restaurarCheckpoint2" gui_element="lastCheckpointB" portion="0.2 0.6" size="250 50" type="button" action="2">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-		<scene_gui name="toMainMenu" gui_element="toMainMenuB" portion="0.75 0.6" size="250 50" type="button" action="4">
+		<scene_gui name="toMainMenu" gui_element="toMainMenuB" portion="0.7 0.6" size="250 50" type="button" action="4">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		
