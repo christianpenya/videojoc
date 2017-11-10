@@ -97,6 +97,18 @@ void CLevelController::NewGame()
         if (event)
             event->Start();
     }
+    else if (strcmp(m_SceneManager->GetCurrentScene()->GetName().c_str(), "administracion") == 0)
+    {
+        CEvent* event = CEngine::GetInstance().GetEventManager().GetEvent("Cinematica03");
+        if (event)
+            event->Start();
+    }
+    else if (strcmp(m_SceneManager->GetCurrentScene()->GetName().c_str(), "parkineo") == 0)
+    {
+        CEvent* event = CEngine::GetInstance().GetEventManager().GetEvent("nivell_3");
+        if (event)
+            event->Start();
+    }
     else
     {
         m_TimePaused = false;

@@ -15,8 +15,8 @@ CLaser::~CLaser() {}
 CLaser::CLaser(CXMLElement* aTreeNode)
     : CEnemy(aTreeNode)
     , CSceneNode(aTreeNode)
-    , m_NormalSpeed(aTreeNode->GetAttribute<float>("normalSpeed", 15.0f))
-    , m_SprintSpeed(aTreeNode->GetAttribute<float>("sprintSpeed", 25.0f))
+    , m_NormalSpeed(aTreeNode->GetAttribute<float>("normalSpeed", 0.5f))
+    , m_SprintSpeed(aTreeNode->GetAttribute<float>("sprintSpeed", 0.8f))
     , m_Timer(aTreeNode->GetAttribute<float>("timer", 2.0f))
     , m_GunPosition(aTreeNode->GetAttribute<Vect3f>("gunPosition", Vect3f(0.0f, 0.0f, 0.0f)))
     , m_StartPosition(aTreeNode->GetAttribute<Vect3f>("startPosition", Vect3f(0.0f,0.0f,0.0f)))
@@ -83,7 +83,7 @@ void CLaser::FireLaser()
 
         if (hittedP && (resultado->actor == "player"))
         {
-            m_Search = false;
+            // m_Search = false;
             CEngine::GetInstance().m_LevelController->PlayerDetected();
             //std::cout << "Muere protagonista" << std::endl;
         }
@@ -100,7 +100,7 @@ void CLaser::CalculateNextPositionLaser(float ElapsedTime)
     if (m_Timer < 0.1)
     {
         m_Speed = m_SprintSpeed;
-        m_EndPosition = m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.3f, 0.0f);
+        // m_EndPosition = m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.3f, 0.0f);
         m_Timer = 1.5f;
     }
 

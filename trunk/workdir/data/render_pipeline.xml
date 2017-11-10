@@ -25,7 +25,7 @@
 	<!-- <render_layer layer="triggers"/>  -->
 	<render_layer name="render_navmesh"layer="navmesh"/>
 	<render_layer name="render_salas"layer="salas"/>
-	<render_layer name="render_laser"layer="laser" />
+	
 	<render_layer name="render_drones"layer="drones" />	
 	<render_layer name="render_guardias"layer="guardias" />	
 	<unset_render_target/>	
@@ -81,6 +81,8 @@
 	<!-- <enable_alpha_blend/>	 -->
 	<set_alpha_blend_state name ="Alpha Blend Particles" state="enabled" src_blend="SrcAlpha" dst_blend="InvSrcAlpha" blend_op="add" src_blend_alpha="SrcAlpha" dst_blend_alpha="InvSrcAlpha" blend_op_alpha="add"  render_target_write_mask="all" />
 	<render_layer layer="Particles"/>
+	
+	<render_layer name="render_laser"layer="laser" />
 	<disable_alpha_blend/>
 
 	
@@ -95,7 +97,6 @@
 	<draw_quad name="Draw Quad HDR" material="DrawQuadMaterial">
         <texture name="HDRCapturedTexture" stage_id="0"/>
     </draw_quad>
-	
 	INICIO POST PROCESS
 	
 	<apply_technique_pool pool_name="post_process"/>
