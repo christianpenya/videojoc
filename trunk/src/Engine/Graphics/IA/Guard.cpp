@@ -62,6 +62,7 @@ void CGuard::dieEnemy(Vect3f pos)
     m_enemydead = true;
     ClearActiveAnimationCycle(0.5f);
     ExecuteAction(2, 0.5f, 2.0f, 1.0f, true);
+    m_State = Input::STOP;
 }
 
 

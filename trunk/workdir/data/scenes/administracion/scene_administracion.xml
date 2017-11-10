@@ -15,7 +15,7 @@
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 		<scene_mesh name="checkpoint2_4" mesh="data/meshes/Box01.mesh">
-			<transform position="-10.0311 -3.32397 10.24" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
+			<transform position="-10.0311 -3.25397 10.24" yaw="0.0" pitch ="0.0" roll="0.0" scale="2.0 1.0 2.0"/>
 			<collider rigid_body="triggerBox" />
 		</scene_mesh>
 		<scene_mesh name="checkpoint2_5" mesh="data/meshes/Box01.mesh">
@@ -412,7 +412,7 @@
 			<collider rigid_body="box" />
 		</scene_mesh> 
 		
-		<!--
+		
 		
 		
 		<scene_mesh name="Puerta004" mesh="data/meshes/administracion/puerta.mesh" >
@@ -421,12 +421,10 @@
 		
 		
 		
-		
-		<scene_mesh name="cerradura_sala_drones" mesh="data/meshes/administracion/cerradura.mesh" >
-			<transform position="-11.4755 0.767888 -10.4083" yaw="90" pitch="0.5" roll="-90" scale="-1.0 1.0 1.0" />
-		</scene_mesh>
-		
-	 -->
+		<!-- <scene_mesh name="cerradura_sala_drones" mesh="data/meshes/administracion/cerradura.mesh" > -->
+			<!-- <transform position="-11.4755 0.767888 -10.4083" yaw="90" pitch="0.5" roll="-90" scale="-1.0 1.0 1.0" /> -->
+		<!-- </scene_mesh> -->
+	
 	 
 		<scene_mesh name="VALLA002" mesh="data/meshes/administracion/VALLA.mesh" >
 			<transform position="-6.04668 0.593477 -6.16425" yaw="0.0" pitch="0.0" roll="0.0" scale="-1.5 1.0 1.0" />
@@ -1097,10 +1095,10 @@
 		<scene_gui name="backgroundMC" gui_element="backgroundCOMPLETE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-		<scene_gui name="nextLevel" gui_element="nextLevelB" portion="0.25 0.6" size="250 50" type="button" action="5">
+		<scene_gui name="nextLevel" gui_element="nextLevelB" portion="0.2 0.6" size="250 50" type="button" action="5">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui> 
-		<scene_gui name="toMainMenu2" gui_element="toMainMenuB" portion="0.75 0.6" size="250 50" type="button" action="4">
+		<scene_gui name="toMainMenu2" gui_element="toMainMenuB" portion="0.7 0.6" size="250 50" type="button" action="4">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		
@@ -1109,10 +1107,10 @@
 		<scene_gui name="backgroundMM" gui_element="backgroundMUERTE" portion="0 0" size="1440 810" type="GUIsprite" >
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-	<scene_gui name="restaurarCheckpoint" gui_element="lastCheckpointB" portion="0.25 0.6" size="250 50" type="button" action="2">
+	<scene_gui name="restaurarCheckpoint2" gui_element="lastCheckpointB" portion="0.2 0.6" size="250 50" type="button" action="2">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
-		<scene_gui name="toMainMenu" gui_element="toMainMenuB" portion="0.75 0.6" size="250 50" type="button" action="4">
+		<scene_gui name="toMainMenu" gui_element="toMainMenuB" portion="0.7 0.6" size="250 50" type="button" action="4">
 			<transform position="-50.0 -50 -50" yaw="0.0" pitch="0.0" roll="0.0" scale="1.0 1.0 1.0" />
 		</scene_gui>
 		

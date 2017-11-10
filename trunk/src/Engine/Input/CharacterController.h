@@ -19,7 +19,7 @@ public:
         m_Movement(0, 0, 0),
         m_Position(0, 0, 0),
         m_Speed(2.f),
-        m_RotationSPeed(0.8f),
+        m_RotationSPeed(0.2f),
         player(nullptr),
         killDistance(2.f),
         m_KILLING(false)

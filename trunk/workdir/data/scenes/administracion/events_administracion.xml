@@ -57,8 +57,8 @@ checkpoints
 	
 <event name="TarjetaDoor" active="true">
 	<actor name="node"  portion="0.5 0.666" time="3.0" text="Pulsa E para usar la tarjeta de acceso"/>	
-	<reactor name="dumb"/>
-	<!-- <reactor name="open_door" layer="opaque" obj_name="puerta004"/> -->
+	<!-- <reactor name="dumb"/> -->
+	<reactor name="open_door" layer="opaque" obj_name="Puerta004"/>
 </event>
 
 <event name="finNivel2" active="true">
