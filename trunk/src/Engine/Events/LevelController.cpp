@@ -74,6 +74,8 @@ void CLevelController::ResumeGame()
     m_TimePaused = false;
     if (m_SceneManager->GetCurrentScene()->Exist("PauseMENU"))
         m_SceneManager->GetCurrentScene()->GetLayer("PauseMENU")->SetActive(false);
+    if (m_SceneManager->GetCurrentScene()->Exist("MenuMuerte"))
+        m_SceneManager->GetCurrentScene()->GetLayer("MenuMuerte")->SetActive(false);
 }
 
 void CLevelController::NewGame()
