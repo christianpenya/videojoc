@@ -1,6 +1,20 @@
 <events>
 //RECLUSION
 	
+	<event name="c12" active="true">
+		<actor name="audio_triggerA" obj_name="c12"/>
+		<reactor name="audio_triggerR" obj_name="musica_nivel_2" />
+	</event>
+	
+	<event name="despues_de_matar" active="true">
+		<actor name="audio_triggerA" obj_name="despues_de_matar"/>
+		<reactor name="dumb" />
+	</event>
+	
+	<event name="sala_boss" active="true">
+		<actor name="audio_triggerA" obj_name="sala_boss"/>
+		<reactor name="dumb" />
+	</event>
 
 ADMINISTRACION
 

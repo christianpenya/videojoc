@@ -81,6 +81,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	111521859	14ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\14ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\14ADW		82324
 	116392036	16WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\16WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\16WA		578368
 	118166310	drone_motor	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\drone_motor_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\drone_motor\drone_motor		358848
+	119991467	carcel  capa 2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\carcel  capa 2_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa 2		29232192
 	123742478	12ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\12ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\12ADLO		209472
 	125891575	GUARDIA RASCAR ESPALDA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA RASCAR ESPALDA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\guardia_4_rascar_espalda\GUARDIA RASCAR ESPALDA		884758
 	131018792	24ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\24ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_boss\24ADLO		156480
@@ -94,6 +95,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	213786686	passos2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\passos2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos2		59064
 	229335519	VOLVER ATRAS	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\VOLVER ATRAS_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\volver_atras_lola\VOLVER ATRAS		322864
 	231673087	12LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\12LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d14\12LO		196660
+	233006307	carcel  Autechere	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\carcel  Autechere_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  Autechere		10368144
 	245480394	avistamiento_7	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_7_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_7		216206
 	256005478	16ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\16ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\16ADW		212586
 	264201675	insulto_lola_3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_3		119664
@@ -105,8 +107,9 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	296938760	21PAWA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\21PAWA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\21PAWA		615486
 	298767448	insulto_lola_7	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_7_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_7		105164
 	301803785	A1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\A1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\A1		1085204
+	316890219	Prometeo Cinematica02 KZ_L	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Prometeo Cinematica02 KZ.L_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\Prometeo Cinematica02 KZ_L		2704166
 	320821539	17LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\17LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\17LO		55088
-	322792517	Alcatraz_Nivel 1_M1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M1_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\musica_test\calma_playlist\Alcatraz_Nivel 1_M1\Alcatraz_Nivel 1_M1		25401792
+	322792517	Alcatraz_Nivel 1_M1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\calma\Alcatraz_Nivel 1_M1		25401792
 	326467571	PUTAS DUCHAS 1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\PUTAS DUCHAS 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\a2_cinematica\PUTAS DUCHAS 1		1117404
 	328307977	insulto_lola_1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_1		122264
 	334403130	chispazos3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\chispazos3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos3		95204
@@ -114,10 +117,12 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	351720030	avistamiento_2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_2		146674
 	364547637	grito_2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_2		107264
 	374103117	passos5	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\passos5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\passos_caminar\passos5		55264
+	378279207	Prometeo Cinematica01 KZ_R	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Prometeo Cinematica01 KZ.R_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\Prometeo Cinematica01 KZ_R		6178712
 	384085299	insulto_lola_6	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_6_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_6		88964
 	389576689	19WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\19WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c16\19WA		1437632
 	395274170	musica_c16	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\musica_c16_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\c2\musica_c16		9984280
 	399559430	avistamiento_4	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_4_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_4		148990
+	403662736	carcel  capa 3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\carcel  capa 3_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa 3		29232192
 	416822417	TE TENEMOS 3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\TE TENEMOS 3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\te_tenemos_guardias\TE TENEMOS 3		270896
 	419406652	1W	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\1W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\1W		193056
 	424964437	insulto_lola_5	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_5		138064
@@ -141,6 +146,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	577206812	14WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\14WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\14WA		354048
 	582412070	C2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\C2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\C2		621524
 	590234846	GUARDIA HALL 1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA HALL 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\abajo_en_hall_1\GUARDIA HALL 1		437178
+	605161041	carcel  capa 1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\carcel  capa 1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa 1		29232192
 	605828487	15LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\15LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\15LO		91712
 	622926767	20ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\20ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\despues_de_matar\20ADLO		255040
 	629246542	28PALO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\28PALO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\28PALO		159856
@@ -176,9 +182,10 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	962803394	26ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\26ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_boss\26ADLO		127296
 	964219743	avistamiento_1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_1		109996
 	965580599	B1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\B1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\B1		1005508
-	973699189	Alcatraz_Nivel 1_M3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M3_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\musica_test\fuig_playlist\Alcatraz_Nivel 1_M3\Alcatraz_Nivel 1_M3		2822592
+	973699189	Alcatraz_Nivel 1_M3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\Alcatraz_Nivel 1_M3_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_1\fuig\Alcatraz_Nivel 1_M3		2822592
 	985087689	chispazos1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\chispazos1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos1		86064
 	1005005398	12ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\12ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\12ADW		144704
+	1008023535	carcel  capa ritmica	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\carcel  capa ritmica_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_2\carcel  capa ritmica		29232192
 	1013299048	GUARDIA ABUELO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA ABUELO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\guardia_1_abuelo\GUARDIA ABUELO		922594
 	1024159736	GUARDIA HALL 3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA HALL 3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_vis_a_vis_1\GUARDIA HALL 3		3281244
 	1045103315	GUARDIAS COVERSACION 1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIAS COVERSACION 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_guardias_cocina\GUARDIAS COVERSACION 1		1354878
