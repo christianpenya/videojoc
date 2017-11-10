@@ -1042,6 +1042,7 @@
 	</layer>
 	
 	<layer name="lights" active="true" >
+		<scene_light name="FDirect001" id_light="0" />
 		<scene_light name="Fspot001" id_light="0" />
 		<scene_light name="Fspot002" id_light="0" />
 		<scene_light name="Fspot003" id_light="0" />

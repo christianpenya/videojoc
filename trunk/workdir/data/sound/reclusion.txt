@@ -21,6 +21,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2473644603	insultos_lola			\reclusion\dialegs\insultos_lola	
 	2550763292	sniper			\reclusion\foleys\sniper	
 	2659565010	fluerescent_light			\reclusion\foleys\fluerescent_light	
+	2666064985	nivel_3			\reclusion\dialegs\nivel_3	
 	2682326191	drone_on			\reclusion\foleys\drone_on	
 	2684710179	gritos_dolor_guardias			\reclusion\dialegs\gritos_dolor_guardias	
 	2689597464	guardia_3_dia_de_mierda			\reclusion\dialegs\guardia_3_dia_de_mierda	
@@ -101,6 +102,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	292212350	17ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\17ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\17ADW		989408
 	294040929	avistamiento_5	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_5		0
 	294404222	13ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\13ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c12\13ADW		2027328
+	296938760	21PAWA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\21PAWA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\21PAWA		615486
 	298767448	insulto_lola_7	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_7_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_7		105164
 	301803785	A1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\A1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\A1		1085204
 	320821539	17LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\17LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\17LO		55088
@@ -119,6 +121,8 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	416822417	TE TENEMOS 3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\TE TENEMOS 3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\te_tenemos_guardias\TE TENEMOS 3		270896
 	419406652	1W	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\1W_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\1W		193056
 	424964437	insulto_lola_5	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_5_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_5		138064
+	429192249	29PALO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\29PALO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\29PALO		122120
+	431721008	27PALO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\27PALO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\27PALO		193264
 	433499282	insulto_lola_11	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_11_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_11		130064
 	440982754	avistamiento_3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\avistamiento_3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\avistamientos_guardias\avistamiento_3		113468
 	443600505	GUARDIA LASTIMA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA LASTIMA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_vis_a_vis_2\GUARDIA LASTIMA		2302162
@@ -139,10 +143,12 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	590234846	GUARDIA HALL 1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA HALL 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\abajo_en_hall_1\GUARDIA HALL 1		437178
 	605828487	15LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\15LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d15\15LO		91712
 	622926767	20ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\20ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\despues_de_matar\20ADLO		255040
+	629246542	28PALO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\28PALO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\28PALO		159856
 	639639911	10WA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\10WA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d13\10WA		582912
 	646972843	sniper1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\sniper1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper1		219014
 	649195679	6L	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\6L_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c11\6L		220714
 	656747234	8LO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\8LO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\d12\8LO		173152
+	676319696	22PAWA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\22PAWA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\22PAWA		232004
 	678374583	grito_3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_3		73664
 	697859116	insulto_lola_10	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\insulto_lola_10_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\insultos_lola\insulto_lola_10		167664
 	727274732	alcatrazcinematica1albert	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\alcatrazcinematica1albert_4B8CC0C5.wem		\Actor-Mixer Hierarchy\reclusion\musica\musica_nivel_3\alcatrazcinematica1albert		5117572
@@ -152,6 +158,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	763354845	C1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\C1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\boss\C1		619914
 	766959344	sniper2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\sniper2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\sniper\sniper2		240664
 	792022448	15ADW	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\15ADW_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\15ADW		302344
+	822565975	23PAWA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\23PAWA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\23PAWA		1690564
 	853198485	16ADLO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\16ADLO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\c121\16ADLO		257408
 	861354335	chispazos2	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\chispazos2_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\Foleys\camaras_chispazos\chispazos2		83464
 	876016977	grito_6	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\6_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\gritos_dolor_lola\grito_6		106764
@@ -175,4 +182,5 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	1013299048	GUARDIA ABUELO	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA ABUELO_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\guardia_1_abuelo\GUARDIA ABUELO		922594
 	1024159736	GUARDIA HALL 3	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIA HALL 3_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_vis_a_vis_1\GUARDIA HALL 3		3281244
 	1045103315	GUARDIAS COVERSACION 1	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\GUARDIAS COVERSACION 1_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\sala_guardias_cocina\GUARDIAS COVERSACION 1		1354878
+	1065499520	20PAWA	C:\Users\christian\Downloads\wwise promoteo compres\promoteo\.cache\Windows\SFX\20PAWA_9E69E797.wem		\Actor-Mixer Hierarchy\reclusion\dialegs\nivel_3\20PAWA		314014
 
