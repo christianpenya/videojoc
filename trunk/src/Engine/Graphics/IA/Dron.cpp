@@ -88,6 +88,7 @@ void CDron::patrol()
     {
         m_DestPoint = 1;
         this->SetForward(GetPatrolPosition() - m_Position);
+        (*this->GetParent())(m_light.data())->SetPosition(m_Position + Vect3f(0.0f, 1.19f, 0.0f));
     }
     else
     {

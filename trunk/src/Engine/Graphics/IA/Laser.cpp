@@ -100,7 +100,7 @@ void CLaser::CalculateNextPositionLaser(float ElapsedTime)
     if (m_Timer < 0.1)
     {
         m_Speed = m_SprintSpeed;
-        // m_EndPosition = m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.3f, 0.0f);
+        m_EndPosition = m_PhysXManager.GetActorPosition("player") + Vect3f(0.0f, 1.3f, 0.0f);
         m_Timer = 1.5f;
     }
 

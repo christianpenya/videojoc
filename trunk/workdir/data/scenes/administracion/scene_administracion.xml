@@ -1050,14 +1050,14 @@
 		
 	<layer name="drones" active="true">
 		<scene_mesh name="PatrolPoint_DronAdministracion2" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="-16.8285 0.0 -10.9129" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
+			<transform position="-18.8285 0.0 -10.9129" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_mesh name="PatrolPoint2_DronAdministracion2" mesh="data/meshes/reclusion/PatrolPoint.mesh" >
-			<transform position="-16.8285 0.0 -11.9129" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
+			<transform position="-18.8285 0.0 -11.9129" yaw="0.0" pitch="0.0" roll="0.0" scale="0 0 0" />
 		</scene_mesh>
 		<scene_light name="DronAdministracion2Fspot" />
 		<scene_enemies name="DronAdministracion2" core="dron"  height="1.1" radiu="0.17" group="0">
-			<transform position="-16.8285 0.0 -10.9129" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
+			<transform position="-18.8285 0.0 -10.9129" yaw="0.0" pitch="0.0" roll="0.0" rotation="0.0 0.0 0.0" scale="1.0 1.0 1.0" />
 		</scene_enemies>
 
 		<!--DRON HACKEABLE-->
