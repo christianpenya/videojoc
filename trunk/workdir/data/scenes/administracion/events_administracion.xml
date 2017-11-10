@@ -53,6 +53,7 @@ checkpoints
 
 
 
+
 //PORTA AMB TARJA
 	
 <event name="TarjetaDoor" active="true">
@@ -65,4 +66,12 @@ checkpoints
 	<actor name="GameComplete" />
 	<reactor name="dumb"/>
 </event>
+
+
+
+	//CINEMATICAS
+	<event name="Cinematica03" active = "true">		
+		<actor name="Cinematica" cinematic_name="Cinematica03"/>
+		<reactor name="dumb" />
+	</event>
 </events>
