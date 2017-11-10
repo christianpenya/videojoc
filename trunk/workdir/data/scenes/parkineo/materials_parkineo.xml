@@ -1,13 +1,13 @@
 <materials >
 
-		<material name="ZBlurMaterial" vertex_type="ZBlur">
+	<material name="ZBlurMaterial" vertex_type="ZBlur">
 		<parameter type="float" name="ZBlurActive" value="1.0" />
 		<parameter type="float" name="ZBlurShowDepths" value="0.0" />
 		<parameter type="float" name="ZBlurConstantBlur" value="0.3" />
 		<parameter type="float" name="ZBlurFocalStart" value="1.0" />
-		<parameter type="float" name="ZBlurFocalEnd" value="15.0" />
-		<parameter type="float" name="ZBlurEnd" value="25.0" />
-	</material>	
+		<parameter type="float" name="ZBlurFocalEnd" value="25.0" />
+		<parameter type="float" name="ZBlurEnd" value="35.0" />
+	</material>
 
 	<material name="LineMaterial" vertex_type="Line">
 		<parameter type="color" name="diffuse_color" value="1.0 0.0 0.0 1.0" />

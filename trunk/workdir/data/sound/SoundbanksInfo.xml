@@ -54,6 +54,7 @@
 				<Event Id="2187720622" Name="musica_nivel_1"/>
 				<Event Id="2187720621" Name="musica_nivel_2"/>
 				<Event Id="2187720620" Name="musica_nivel_3"/>
+				<Event Id="2666064985" Name="nivel_3"/>
 				<Event Id="362316840" Name="passos_caminar"/>
 				<Event Id="1233668454" Name="passos_corre"/>
 				<Event Id="3479756012" Name="passos_sigilo"/>
@@ -228,6 +229,10 @@
 					<ShortName>13ADW.wav</ShortName>
 					<Path>SFX\13ADW_9E69E797.wem</Path>
 				</File>
+				<File Id="296938760" Language="SFX">
+					<ShortName>21PAWA.wav</ShortName>
+					<Path>SFX\21PAWA_9E69E797.wem</Path>
+				</File>
 				<File Id="298767448" Language="SFX">
 					<ShortName>insulto_lola_7.wav</ShortName>
 					<Path>SFX\insulto_lola_7_9E69E797.wem</Path>
@@ -299,6 +304,14 @@
 				<File Id="424964437" Language="SFX">
 					<ShortName>insulto_lola_5.wav</ShortName>
 					<Path>SFX\insulto_lola_5_9E69E797.wem</Path>
+				</File>
+				<File Id="429192249" Language="SFX">
+					<ShortName>29PALO.wav</ShortName>
+					<Path>SFX\29PALO_9E69E797.wem</Path>
+				</File>
+				<File Id="431721008" Language="SFX">
+					<ShortName>27PALO.wav</ShortName>
+					<Path>SFX\27PALO_9E69E797.wem</Path>
 				</File>
 				<File Id="433499282" Language="SFX">
 					<ShortName>insulto_lola_11.wav</ShortName>
@@ -380,6 +393,10 @@
 					<ShortName>20ADLO.wav</ShortName>
 					<Path>SFX\20ADLO_9E69E797.wem</Path>
 				</File>
+				<File Id="629246542" Language="SFX">
+					<ShortName>28PALO.wav</ShortName>
+					<Path>SFX\28PALO_9E69E797.wem</Path>
+				</File>
 				<File Id="639639911" Language="SFX">
 					<ShortName>10WA.wav</ShortName>
 					<Path>SFX\10WA_9E69E797.wem</Path>
@@ -395,6 +412,10 @@
 				<File Id="656747234" Language="SFX">
 					<ShortName>8LO.wav</ShortName>
 					<Path>SFX\8LO_9E69E797.wem</Path>
+				</File>
+				<File Id="676319696" Language="SFX">
+					<ShortName>22PAWA.wav</ShortName>
+					<Path>SFX\22PAWA_9E69E797.wem</Path>
 				</File>
 				<File Id="678374583" Language="SFX">
 					<ShortName>3.wav</ShortName>
@@ -431,6 +452,10 @@
 				<File Id="792022448" Language="SFX">
 					<ShortName>15ADW.wav</ShortName>
 					<Path>SFX\15ADW_9E69E797.wem</Path>
+				</File>
+				<File Id="822565975" Language="SFX">
+					<ShortName>23PAWA.wav</ShortName>
+					<Path>SFX\23PAWA_9E69E797.wem</Path>
 				</File>
 				<File Id="853198485" Language="SFX">
 					<ShortName>16ADLO.wav</ShortName>
@@ -523,6 +548,10 @@
 				<File Id="1045103315" Language="SFX">
 					<ShortName>GUARDIAS COVERSACION 1.wav</ShortName>
 					<Path>SFX\GUARDIAS COVERSACION 1_9E69E797.wem</Path>
+				</File>
+				<File Id="1065499520" Language="SFX">
+					<ShortName>20PAWA.wav</ShortName>
+					<Path>SFX\20PAWA_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

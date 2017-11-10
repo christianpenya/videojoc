@@ -1,15 +1,10 @@
 <events>
 
-	AUDIOS
-	<event name="musica_nivel_2" active="true">
-		<actor name="audio_triggerA" obj_name="musica_nivel_2"/>
-		<reactor name="dumb"/>
+	<event name="nivel_3" active="true">
+		<actor name="audio_triggerA" obj_name="nivel_3"/>
+		<reactor name="audio_triggerR" obj_name="musica_nivel_3" />
 	</event>
-	
-	<event name="audio_switch" active="true">
-		<actor name="audio_switch" obj_name="musica_nivel_2" switch_to = "ordinador"/>
-		<reactor name="dumb"/>
-	</event>
+
 
 	CHECKPOINTS
 	<event name="checkpoint3_1" active = "true">
@@ -24,4 +19,5 @@
 <event name="finNivel3" active="true">
 	<actor name="GameComplete" />
 	<reactor name="dumb"/>
-</event></events>
+</event>
+</events>

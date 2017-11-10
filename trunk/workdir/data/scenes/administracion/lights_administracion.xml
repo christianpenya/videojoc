@@ -1,8 +1,8 @@
 <lights >
 
-	<generate_shadow_map="true" shadow_map_width="8192" shadow_map_height="8192" ortho_shadow_map_size="50.0 50.0">
+	<light type="directional" name="FDirect001" color="1.0 1.0 1.0" active="true" intensity="1.0" attenuation_range="0.0 100.0" generate_shadow_map="true" shadow_map_width="8192" shadow_map_height="8192" ortho_shadow_map_size="85.0 85.0">
 		<transform position="0.0 10.0 10.0" forward="0 -1.0 0" />
-		<layer name="opaque" />
+		<layer name="guardias" />
 		<layer name="LPlayer" />
 		<layer name="salas" />
 	</light>

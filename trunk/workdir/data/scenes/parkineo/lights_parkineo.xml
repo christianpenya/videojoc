@@ -8,7 +8,7 @@
 	</light>
 	
  
-	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot028" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
+	<!-- <light angle="40.7" fall_off="140.6" type="spot" name="Fspot028" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
 		<transform position="1.07281 5.00692 -34.7431" forward="0.0 -1.0 0.0" />
 	</light>
 	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot058" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
@@ -103,6 +103,6 @@
 	</light>
 	<light angle="40.7" fall_off="140.6" type="spot" name="Fspot052" color="1.0 1.0 1.0" enabled="true" intensity="1.0" attenuation_range="0.0 10.0" >
 		<transform position="-15.5172 2.68151 -6.32424" forward="0.0 -1.0 0.0" />
-	</light> 
+	</light>  -->
 	
 </lights>
