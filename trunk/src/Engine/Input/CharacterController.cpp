@@ -123,8 +123,10 @@ void CCharacterController::Update(float ElapsedTime)
 
                 m_Movement = m_Movement.GetNormalized();
                 Vect3f l_Dir = m_Movement;
-                Vect3f l_For = player->GetForward();
-                l_For.Lerp(l_Dir, m_RotationSPeed);
+                //Vect3f l_For = player->GetForward();
+                //if (l_Dir.GetAngleWith(l_For)>0.1)
+                //    l_For.Lerp(l_Dir, m_RotationSPeed);
+
                 m_Movement *= l_Speed * ElapsedTime;
                 player->SetForward(l_Dir);
 

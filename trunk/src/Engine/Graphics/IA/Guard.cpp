@@ -89,7 +89,7 @@ void CGuard::patrol()
                 GotoNextPoint();
 
             float l_speed = GetRandomValue(0.0f, m_speedPatroling);
-            Move(m_Destination, l_speed);
+            Move(m_Destination, m_speedPatroling);
         }
     }
 
@@ -149,20 +149,23 @@ void CGuard::chase()
         GotoNextPointChase();
 
     float l_speed =  GetRandomValue(m_speedPatroling, m_speedChasing);
-    Move(m_DestinationChase, l_speed);
+    Move(m_DestinationChase, m_speedChasing);
 }
 
 void CGuard::Move(Vect3f destination, float speed)
 {
     ClearActiveAnimationCycle(0.5f);
     BlendCycle(1, 1, 0.5f);
+    Vect3f dir = (destination - m_Position).GetNormalized();
+    Vect3f movement = dir * speed * mDeltaT;
 
-    Vect3f lastMove = m_Movement;
-    m_Movement.Lerp(destination, speed);
-    m_Position = m_Movement;
-    this->SetForward(destination - m_Position);
-    m_PhysXManager.MoveCharacterController(GetName(), m_Position - lastMove, PHYSX_UPDATE_STEP);
+    //Vect3f lastMove = m_Movement;
+    //m_Movement.Lerp(destination, speed);
+    //m_Position = m_Movement;
+    this->SetForward(dir);
+    m_PhysXManager.MoveCharacterController(GetName(), movement, PHYSX_UPDATE_STEP);
     this->SetPosition(m_PhysXManager.GetActorPosition(GetName()) + m_Height);
+    m_Position = this->GetPosition();
 
     //std::cout << " Guardia " << GetName() << " yaw " << GetYaw() << " pitch " << GetPitch() <<" roll " << GetRoll() << std::endl;
 

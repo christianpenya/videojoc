@@ -2,7 +2,8 @@
 
 	<event name="nivel_3" active="true">
 		<actor name="audio_triggerA" obj_name="nivel_3"/>
-		<reactor name="audio_triggerR" obj_name="musica_nivel_3" />
+		<reactor name="dumb"/>
+		<!-- <reactor name="audio_triggerR" obj_name="musica_nivel_3" /> -->
 	</event>
 
 

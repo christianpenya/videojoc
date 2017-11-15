@@ -21,7 +21,7 @@ CDron::CDron(CXMLElement* aTreeNode)
     : CEnemyAnimated(aTreeNode)
     , m_DetectAngle(aTreeNode->GetAttribute<float>("detectAngle", 45.0f))
     , m_soundDetected(aTreeNode->GetAttribute<std::string>("soundDetected", ""))
-    , m_speedPatroling(aTreeNode->GetAttribute<float>("speedPatroling", 0.8f))
+    , m_speedPatroling(aTreeNode->GetAttribute<float>("speedPatroling", 1.5f))
     , m_speedChasing(aTreeNode->GetAttribute<float>("speedChasing", 1.0f))
     , m_investigatingTolerance(aTreeNode->GetAttribute<float>("investigatingTolerance", 1.0f))
     , m_lastPositionView(Vect3f(0.0f,0.0f,0.0f))
@@ -106,12 +106,15 @@ void CDron::chase()
 
 void CDron::Move(Vect3f destination, float speed)
 {
-    Vect3f lastMove = m_Movement;
-    m_Movement.Lerp(destination, speed);
-    m_Position = m_Movement;
-    this->SetForward(destination - m_Position);
-    m_PhysXManager.MoveCharacterController(GetName(), m_Position - lastMove, PHYSX_UPDATE_STEP);
+    Vect3f dir = (destination - m_Position).GetNormalized();
+    Vect3f movement = dir * speed * mDeltaT;
+    // Vect3f lastMove = m_Movement;
+    //m_Movement.Lerp(destination, speed);
+    // m_Position = m_Movement;
+    this->SetForward(dir);
+    m_PhysXManager.MoveCharacterController(GetName(), movement, PHYSX_UPDATE_STEP);
     this->SetPosition(m_PhysXManager.GetActorPosition(GetName()) + m_Height);
+    m_Position = this->GetPosition();
     (*this->GetParent())(m_light.data())->SetPosition(m_Position + Vect3f(0.0f, 1.19f, 0.0f));
 
 }

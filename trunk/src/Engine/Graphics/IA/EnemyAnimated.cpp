@@ -98,7 +98,7 @@ bool CEnemyAnimated::Update(float ElapsedTime)
         {
 
             bool l_comprobar = false;
-            m_ElapsedTime = ElapsedTime;
+            mDeltaT = ElapsedTime;
 
             if (PlayerOnSight(actorpos))
                 l_comprobar = true;

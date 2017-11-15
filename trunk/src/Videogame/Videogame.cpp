@@ -9,8 +9,8 @@
 
 #define APPLICATION_NAME	"PROMETEO"
 
-float m_width = 1920 * 0.75;
-float m_height = 1080 * 0.75;
+float m_width = 1920 ;
+float m_height = 1080 ;
 
 //float m_width = 1024;
 //float m_height = 576;
